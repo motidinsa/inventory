@@ -1,7 +1,19 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:isar/isar.dart';
+import 'package:my_inventory/customer/ui/customer_detail.dart';
+import 'package:my_inventory/user.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
+  // Client client = Client();
+  //
+  // client
+  //     .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
+  //     .setProject('65c1e7733a536752855d')
+  //     ;
 }
 
 class MyApp extends StatelessWidget {
@@ -10,13 +22,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const  CustomerDetail(),
     );
   }
 }
@@ -41,16 +54,41 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final client = Client()
+      .setEndpoint('https://cloud.appwrite.io/v1')
+      .setProject('65c1e7733a536752855d');
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  Future<void> _incrementCounter() async {
+    // setState(() {
+    //   final databases = Databases(client);
+    //   try {
+    //    for(int i=0;i<1000;i++){
+    //      final document = databases.createDocument(
+    //          databaseId: 'inventory_db',
+    //          collectionId: 'customer_db',
+    //          documentId: ID.unique(),
+    //          data: {
+    //            "name": "Hamlet",
+    //            "type": "aaa",
+    //            "email": "frebhj@dbeu.vfd",
+    //            "phone": ['vfbdh', 'fjgr']
+    //          });
+    //    }
+    //   } on AppwriteException catch (e) {
+    //     print(e.code);
+    //   }
+    // });
+    final dir = await getApplicationDocumentsDirectory();
+    final isar = await Isar.open(
+      [UserSchema],
+      directory: dir.path,
+    );
+    final newUser = User()..name = 'Jane Doe'..age = 36;
+
+    await isar.writeTxn(() async {
+      await isar.users.put(newUser); // insert & update
     });
+
   }
 
   @override
