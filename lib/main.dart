@@ -1,13 +1,33 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/add_company/ui/add_company.dart';
+import 'package:my_inventory/add_customer/ui/add_customer.dart';
+import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
+import 'package:my_inventory/core/app_bindings.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/customer/ui/customer_detail.dart';
+import 'package:my_inventory/homepage/ui/homepage.dart';
+import 'package:my_inventory/product_detail/ui/product_detail.dart';
+import 'package:my_inventory/product_list/product_list.dart';
+import 'package:my_inventory/sales/ui/product_select.dart';
+import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/user.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'core/controller/app_controller.dart';
 void main() {
   runApp(const MyApp());
+  // final dir = await getApplicationDocumentsDirectory();
+  // var isar = await Isar.open(
+  //   [CustomerDatabaseModelSchema],
+  //   directory: dir.path,
+  // );
+  // AppController a = Get.put(AppController());
+  // a.isar = isar;
   // Client client = Client();
   //
   // client
@@ -19,17 +39,21 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      initialBinding: ApplicationBindings(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const  CustomerDetail(),
+      home: Scaffold(
+        body: SafeArea(
+          child: ProductList(),
+        ),
+      ),
     );
   }
 }
@@ -83,12 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
       [UserSchema],
       directory: dir.path,
     );
-    final newUser = User()..name = 'Jane Doe'..age = 36;
+    final newUser = User()
+      ..name = 'Jane Doe'
+      ..age = 36;
 
     await isar.writeTxn(() async {
       await isar.users.put(newUser); // insert & update
     });
-
   }
 
   @override
