@@ -1,0 +1,16 @@
+appNameN()=>'My Inventory';
+addCustomerN()=>'Add customer';
+customerNameN()=>'Customer name';
+phoneNumberN()=>'Phone number';
+addressN()=>'Address';
+cityN()=>'City';
+emailN()=>'Email';
+saveN()=>'Save';
+salesN()=>'Sales';
+purchasingN()=>'Purchasing';
+inventoryN()=>'Inventory';
+customerN()=>'Customer';
+vendorN()=>'Vendor';
+purchaseN()=>'Purchase';
+productN()=>'Product';
+reorderStockN()=>'Reorder Stock';

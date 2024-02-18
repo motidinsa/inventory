@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/customer_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
@@ -21,7 +22,13 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
-
+  final Map<String,IconData> nameToIconTextField = {
+    customerNameN():Icons.person,
+    phoneNumberN():Icons.call,
+    addressN():Icons.location_on,
+    cityN():Icons.location_city,
+    emailN():Icons.mail,
+  };
   @override
   void initState() {
     super.initState();
@@ -45,13 +52,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         // fillColor: Colors.teal.shade50.withOpacity(.7),
         // filled: true,
-        // floatingLabelStyle: TextStyle(color: Colors.teal),
+        // disabledBorder: OutlineInputBorder(
+        //     borderRadius: smoothBorderRadius(radius: 15),
+        //     borderSide: BorderSide(
+        //       color: Colors.blue,
+        //       width: 1,
+        //     )),
         border: OutlineInputBorder(
-            borderRadius: smoothBorderRadius(),
-            borderSide: BorderSide(color: Colors.green)
-            // borderSide: BorderSide.none,
-            ),
-        prefixIcon: Icon(widget.leadingIconData),
+          borderRadius: smoothBorderRadius(radius: 15),
+          // borderSide: BorderSide(
+          //   color: Colors.yellow,
+          //   width: 1,
+          // )
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: smoothBorderRadius(radius: 15),
+          borderSide: BorderSide(
+            color: Colors.green,
+            width: .8,
+          ),
+        ),
+        prefixIcon: Icon(nameToIconTextField[widget.title]),
         // suffixIcon: hasSuffixIcon(
         //   title: widget.title,
         //   listIndex: widget.listIndex,
@@ -68,10 +89,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         // )
         //     : null,
         labelText: widget.title,
-        // labelStyle: TextStyle(
-        //   color: widget.data.isNotEmpty ? Colors.teal : null,
-        // ),
-        focusColor: Colors.teal,
+        // labelStyle: TextStyle(color: Colors.green),
+        alignLabelWithHint: true,
+        // contentPadding: EdgeInsets.only(left: 20),
+        // focusColor: Colors.teal,
       ),
       // validator: (value) => mapValidation(
       //   value: textEditingController.text,

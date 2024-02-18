@@ -1,5 +1,6 @@
-import 'package:appwrite/appwrite.dart';
+// import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -18,9 +19,11 @@ import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/user.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'core/constants/name_constants.dart';
 import 'core/controller/app_controller.dart';
 void main() {
-  runApp(const MyApp());
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  runApp( MyApp());
   // final dir = await getApplicationDocumentsDirectory();
   // var isar = await Isar.open(
   //   [CustomerDatabaseModelSchema],
@@ -37,12 +40,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+   MyApp({super.key});
+  final AppController aa = Get.put(AppController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: appNameN(),
       debugShowCheckedModeBanner: false,
       initialBinding: ApplicationBindings(),
       theme: ThemeData(
@@ -50,9 +53,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
-        body: SafeArea(
-          child: ProductList(),
-        ),
+        drawer: Drawer(),
+        body: Homepage(),
       ),
     );
   }
@@ -78,9 +80,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final client = Client()
-      .setEndpoint('https://cloud.appwrite.io/v1')
-      .setProject('65c1e7733a536752855d');
+  // final client = Client()
+  //     .setEndpoint('https://cloud.appwrite.io/v1')
+  //     .setProject('65c1e7733a536752855d');
 
   Future<void> _incrementCounter() async {
     // setState(() {

@@ -1,91 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
-import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class AddCustomer extends StatelessWidget {
-  // final Isar isar;
-   AddCustomer({super.key});
-  // AddCustomerController appc = Get.put(AddCustomerController());
-   AppController aa = Get.put(AppController());
+  AddCustomer({super.key});
+
+  final AppController aa = Get.find();
+  final List<String> titles = [
+    customerNameN(),
+    phoneNumberN(),
+    addressN(),
+    cityN(),
+    emailN()
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text('Add customer'),
-                  sizedBox(height: 20),
-                  CustomTextField(
-                    title: 'Customer Name',
-                    leadingIconData: Icons.account_balance,
-                    redirectFrom: 'Add Customer',
+    return GestureDetector(
+      onTap: ()=>unFocus(),
+      child: Scaffold(
+        backgroundColor: Colors.green.shade50,
+        body: SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(
+                addCustomerN(),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  color: Color(0xff006E1C).withOpacity(.9),),
+              ),
+              centerTitle: true,
+              elevation: 3,
+              shadowColor: Colors.grey,
+              backgroundColor: Color(0xffDCEEDE),
+              leading: IconButton(
+                onPressed: () =>Get.back(),
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.grey.shade800,
+                ),
+              ),
+              // surfaceTintColor: Colors.white,
+            ),
+            body: ListView(
+              children: [
+                sizedBox(height: 20),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
                   ),
-                  sizedBox(height: 15),
-                  CustomTextField(
-                    title: 'Phone number',
-                    leadingIconData: Icons.phone,
-                    redirectFrom: 'Add Customer',
-                  ),
-                  sizedBox(height: 15),
-                  CustomTextField(
-                    title: 'Address',
-                    leadingIconData: Icons.place_outlined,
-                    redirectFrom: 'Add Customer',
-                  ),
-                  sizedBox(height: 15),
-                  CustomTextField(
-                    title: 'City',
-                    leadingIconData: Icons.access_time_filled_sharp,
-                    redirectFrom: 'Add Customer',
-                  ),
-                  sizedBox(height: 15),
-                  CustomTextField(
-                    title: 'Email',
-                    leadingIconData: Icons.email_outlined,
-                    redirectFrom: 'Add Customer',
-                  ),
-                  sizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        OutlinedButton(onPressed: () {
-                          // AppController aa = Get.find();
-
-                          AddCustomerController appc = Get.put(AddCustomerController());
-                          appc.addCustomerToDB();
-                        }, child: Text('Save')),
-                        OutlinedButton(onPressed: () {}, child: Text('Cancel'))
-                      ],
+                  decoration: BoxDecoration(
+                      borderRadius: smoothBorderRadius(radius: 20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 15,
+                          spreadRadius: 0,
+                        ),
+                      ]),
+                  child: Card(
+                    // elevation: .8,
+                    surfaceTintColor: Colors.white,
+                    shape: smoothRectangleBorder(radius: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => CustomTextField(
+                          title: titles[index],
+                          leadingIconData: Icons.account_balance,
+                          redirectFrom: addCustomerN(),
+                        ),
+                        shrinkWrap: true,
+                        itemCount: titles.length,
+                        separatorBuilder: (ctx, index) =>
+                            sizedBox(height: 15),
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 25),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            saveN(),
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              backgroundColor: Colors.green.shade50),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Terms & condition'),
-              sizedBox(width: 10),
-              Text(
-                '|',
-                style: TextStyle(fontSize: 25),
-              ),
-              sizedBox(width: 10),
-              Text('Contact us')
-            ],
-          )
-        ],
+        ),
       ),
     );
   }
