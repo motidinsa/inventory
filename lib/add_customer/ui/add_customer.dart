@@ -32,12 +32,12 @@ class AddCustomer extends StatelessWidget {
                 addCustomerN(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                  color: Color(0xff006E1C).withOpacity(.9),),
+                  color: const Color(0xff006E1C).withOpacity(.9),),
               ),
               centerTitle: true,
               elevation: 3,
               shadowColor: Colors.grey,
-              backgroundColor: Color(0xffDCEEDE),
+              backgroundColor: const Color(0xffDCEEDE),
               leading: IconButton(
                 onPressed: () =>Get.back(),
                 icon: Icon(
@@ -56,7 +56,7 @@ class AddCustomer extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                       borderRadius: smoothBorderRadius(radius: 20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.grey,
                           blurRadius: 15,
@@ -70,7 +70,7 @@ class AddCustomer extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) => CustomTextField(
                           title: titles[index],
                           leadingIconData: Icons.account_balance,
@@ -92,15 +92,15 @@ class AddCustomer extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: Text(
-                            saveN(),
-                            style: TextStyle(fontSize: 16),
-                          ),
                           style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 15),
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               backgroundColor: Colors.green.shade50),
+                          child: Text(
+                            saveN(),
+                            style: const TextStyle(fontSize: 16),
+                          ),
                         ),
                       ),
                     ],

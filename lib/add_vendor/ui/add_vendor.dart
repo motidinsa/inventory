@@ -15,48 +15,48 @@ class AddVendor extends StatelessWidget {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: Column(children: [Text('Vendor details'),
+              child: Column(children: [const Text('Vendor details'),
                 Row(
                   children: [
-                    Text('Logo'),
+                    const Text('Logo'),
                     sizedBox(width: 30),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.add),
+                      icon: const Icon(Icons.add),
                     )
                   ],
                 ),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Vendor Name',
                   leadingIconData: Icons.account_balance,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Address',
                   leadingIconData: Icons.place_outlined,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'City',
                   leadingIconData: Icons.access_time_filled_sharp,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Phone number',
                   leadingIconData: Icons.phone,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Email',
                   leadingIconData: Icons.email_outlined,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Contact person',
                   leadingIconData: Icons.person,
                   redirectFrom: 'Add Vendor',
@@ -70,8 +70,8 @@ class AddVendor extends StatelessWidget {
                       OutlinedButton(onPressed: () {
                         AddVendorController aa = Get.find();
                         aa.addCustomerToDB();
-                      }, child: Text('Save')),
-                      OutlinedButton(onPressed: () {}, child: Text('Cancel'))
+                      }, child: const Text('Save')),
+                      OutlinedButton(onPressed: () {}, child: const Text('Cancel'))
                     ],
                   ),
                 ),],),
@@ -80,14 +80,14 @@ class AddVendor extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Terms & condition'),
+              const Text('Terms & condition'),
               sizedBox(width: 10),
-              Text(
+              const Text(
                 '|',
                 style: TextStyle(fontSize: 25),
               ),
               sizedBox(width: 10),
-              Text('Contact us')
+              const Text('Contact us')
             ],
           )
         ],

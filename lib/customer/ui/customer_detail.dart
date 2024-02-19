@@ -13,9 +13,9 @@ class CustomerDetail extends StatelessWidget {
       appBar: AppBar(
         elevation: 3,
         shadowColor: Colors.grey,
-        title: Text('Customer detail'),
+        title: const Text('Customer detail'),
          leading: IconButton(
-            icon: FaIcon(
+            icon: const FaIcon(
               FontAwesomeIcons.arrowLeft,
               size: 20,
               color: Colors.teal,
@@ -28,30 +28,31 @@ class CustomerDetail extends StatelessWidget {
       body: ListView(
         children: [
           SmoothContainer(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             smoothness: 1,
             side: BorderSide(color: Colors.green.shade300, width: 2),
             borderRadius: BorderRadius.circular(15),
+            alignment: Alignment.center,
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: EdgeInsets.only(left: 30.0),
                     child: TextField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Enter customer name',
                         hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                         border:
                             UnderlineInputBorder(borderSide: BorderSide.none),
                       ),
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold),
                       maxLines: 1,
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
                     size: 24,
                     color: Colors.teal,
@@ -60,41 +61,40 @@ class CustomerDetail extends StatelessWidget {
                 )
               ],
             ),
-            alignment: Alignment.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SmoothContainer(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 color: Colors.grey.shade300,
                 smoothness: 1,
                 side: BorderSide(color: Colors.green.shade300, width: 2),
                 borderRadius: BorderRadius.circular(10),
-                child: Text(
+                alignment: Alignment.center,
+                child: const Text(
                   'Balance ETB 367743',
                 ),
-                alignment: Alignment.center,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               SmoothContainer(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 color: Colors.orange.shade200,
                 smoothness: 1,
-                side: BorderSide(color: Colors.orange, width: 2),
+                side: const BorderSide(color: Colors.orange, width: 2),
                 borderRadius: BorderRadius.circular(10),
-                child: Text('Credit etb 0'),
                 alignment: Alignment.center,
+                child: const Text('Credit etb 0'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],
@@ -104,21 +104,21 @@ class CustomerDetail extends StatelessWidget {
             field: 'Phone',
             data: '09327362723',
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           SingleCustomerDetail(
             field: 'Email',
             data: 'sdcds@bdsj.cdsj',
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           SingleCustomerDetail(
             field: 'Address',
             data: 'sdbsd, csduycdsu, csdgcyusdgccs, uiicsg vdbuvdbvbyud',
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
@@ -10,7 +11,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'XYZ Company',
           style: TextStyle(
             fontSize: 20,
@@ -18,16 +19,16 @@ class Homepage extends StatelessWidget {
           ),
         ),
         leading: IconButton(
-          icon: FaIcon(
+          icon: const FaIcon(
             FontAwesomeIcons.bars,
             size: 20,
             // color: primaryColor(),
           ),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: 20),
             child: CircleAvatar(
               radius: 25,
               backgroundColor: Colors.white,
@@ -38,14 +39,14 @@ class Homepage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: const Drawer(),
       body: ListView(
         children: [
           sizedBox(height: 10),
           ItemType(
-            addItemName: 'Customer',
-            detailPageName: 'Sales',
-            title: 'Sales',
+            addItemName: customerN(),
+            detailPageName: salesN(),
+            title: salesN(),
           ),
           sizedBox(height: 30),
           ItemType(

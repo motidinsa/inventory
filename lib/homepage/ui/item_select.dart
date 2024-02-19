@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/homepage/homepage_functions.dart';
+import 'package:my_inventory/homepage/functions/homepage_functions.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 class ItemSelect extends StatelessWidget {
@@ -13,16 +13,16 @@ class ItemSelect extends StatelessWidget {
     super.key,
     required this.title,
     required this.iconData,
-     this.isDetailButton,
+    this.isDetailButton,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.green.shade50,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: ListTile(
-        onTap: ()=>navigateFromHomepage(title: title),
+        onTap: () => navigateFromHomepage(title: title),
         shape: SmoothRectangleBorder(
           borderRadius: smoothBorderRadius(),
         ),
@@ -35,11 +35,21 @@ class ItemSelect extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                        fontSize: 17,
-                        ),
+                    style: const TextStyle(
+                      fontSize: 17,
+                    ),
                   ),
-                  Icon(iconData,size: isDetailButton ==true?20:null,),
+                  IconButton(
+                    style: IconButton.styleFrom(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: () =>
+                        navigateFromHomepage(title: title, isAddIcon: true),
+                    icon: Icon(
+                      iconData,
+                      size: isDetailButton == true ? 20 : null,
+                    ),
+                  ),
                 ],
               ),
             ),

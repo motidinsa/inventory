@@ -13,48 +13,48 @@ class AddCompany extends StatelessWidget {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: Column(children: [Text('Company details'),
+              child: Column(children: [const Text('Company details'),
                 Row(
                   children: [
-                    Text('Logo'),
+                    const Text('Logo'),
                     sizedBox(width: 30),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.add),
+                      icon: const Icon(Icons.add),
                     )
                   ],
                 ),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Company Name',
                   leadingIconData: Icons.account_balance,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Address',
                   leadingIconData: Icons.place_outlined,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'City',
                   leadingIconData: Icons.access_time_filled_sharp,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Phone number',
                   leadingIconData: Icons.phone,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Email',
                   leadingIconData: Icons.email_outlined,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                CustomTextField(
+                const CustomTextField(
                   title: 'Web',
                   leadingIconData: Icons.add_chart_sharp,
                   redirectFrom: 'Add Customer',
@@ -65,8 +65,8 @@ class AddCompany extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      OutlinedButton(onPressed: () {}, child: Text('Save')),
-                      OutlinedButton(onPressed: () {}, child: Text('Cancel'))
+                      OutlinedButton(onPressed: () {}, child: const Text('Save')),
+                      OutlinedButton(onPressed: () {}, child: const Text('Cancel'))
                     ],
                   ),
                 ),],),
@@ -75,14 +75,14 @@ class AddCompany extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Terms & condition'),
+              const Text('Terms & condition'),
               sizedBox(width: 10),
-              Text(
+              const Text(
                 '|',
                 style: TextStyle(fontSize: 25),
               ),
               sizedBox(width: 10),
-              Text('Contact us')
+              const Text('Contact us')
             ],
           )
         ],

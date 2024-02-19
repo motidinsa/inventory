@@ -30,23 +30,23 @@ class _ProductDetailState extends State<ProductDetail> {
     return ListView(
       children: [
         SmoothContainer(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           smoothness: 1,
           side: BorderSide(color: Colors.grey.shade300, width: 2),
           borderRadius: BorderRadius.circular(15),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30.0),
+          alignment: Alignment.center,
+          child: const Padding(
+            padding: EdgeInsets.only(left: 30.0),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter product name',
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                 border: UnderlineInputBorder(borderSide: BorderSide.none),
               ),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               maxLines: 1,
             ),
           ),
-          alignment: Alignment.center,
         ),
         sizedBox(height: 20),
         Padding(
@@ -57,48 +57,49 @@ class _ProductDetailState extends State<ProductDetail> {
               SmoothContainer(
                   width: 80,
                   height: 80,
-                  side: BorderSide(width: 2),
+                  side: const BorderSide(width: 2),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add),
+                      const Icon(Icons.add),
                       sizedBox(width: 10),
-                      Text('Add image')
+                      const Text('Add image')
                     ],
                   )),
             ],
           ),
         ),
         SmoothContainer(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           smoothness: 1,
           side: BorderSide(color: Colors.grey.shade500, width: 2),
           borderRadius: BorderRadius.circular(15),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30.0),
+          alignment: Alignment.center,
+          child: const Padding(
+            padding: EdgeInsets.only(left: 30.0),
             child: TextField(
               maxLines: 3,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Description',
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                 border: UnderlineInputBorder(borderSide: BorderSide.none),
               ),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               // maxLines: 1,
             ),
           ),
-          alignment: Alignment.center,
         ),
         sizedBox(height: 10),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Category'),
+            const Text('Category'),
             SmoothContainer(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               smoothness: 1,
               side: BorderSide(color: Colors.grey.shade500, width: 2),
               borderRadius: BorderRadius.circular(15),
+              alignment: Alignment.center,
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2<String>(
                   isExpanded: true,
@@ -136,39 +137,38 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
               ),
-              alignment: Alignment.center,
             ),
           ],
         ),
         sizedBox(height: 5),
         Row(
           children: [
-            Text('Product ID'),
+            const Text('Product ID'),
             sizedBox(width: 10),
             Expanded(
               child: SmoothContainer(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 smoothness: 1,
                 side: BorderSide(color: Colors.grey.shade500, width: 2),
                 borderRadius: BorderRadius.circular(15),
-                child: TextField(
+                alignment: Alignment.center,
+                child: const TextField(
                   // maxLines: 3,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     // hintText: '',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                     border: UnderlineInputBorder(borderSide: BorderSide.none),
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                   // maxLines: 1,
                 ),
-                alignment: Alignment.center,
               ),
             ),
           ],
         ),
         sizedBox(height: 5),
-        Row(
+        const Row(
           children: [
             Expanded(child: Text('Cost: ETB 10',textAlign:TextAlign.center)),
             Expanded(
@@ -177,30 +177,30 @@ class _ProductDetailState extends State<ProductDetail> {
           ],
         ),
         sizedBox(height: 5),
-        Text('Quantity on hand: 80 pcs'),
+        const Text('Quantity on hand: 80 pcs'),
         sizedBox(height: 5),
         Row(
           children: [
-            Text('Reorder Qty'),
+            const Text('Reorder Qty'),
             sizedBox(width: 10),
             Expanded(
               child: SmoothContainer(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 smoothness: 1,
                 side: BorderSide(color: Colors.grey.shade500, width: 2),
                 borderRadius: BorderRadius.circular(15),
-                child: TextField(
+                alignment: Alignment.center,
+                child: const TextField(
                   // maxLines: 3,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     // hintText: '',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                     border: UnderlineInputBorder(borderSide: BorderSide.none),
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                   // maxLines: 1,
                 ),
-                alignment: Alignment.center,
               ),
             ),
           ],
@@ -209,12 +209,13 @@ class _ProductDetailState extends State<ProductDetail> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('UoM'),
+            const Text('UoM'),
             SmoothContainer(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               smoothness: 1,
               side: BorderSide(color: Colors.grey.shade500, width: 2),
               borderRadius: BorderRadius.circular(15),
+              alignment: Alignment.center,
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2<String>(
                   isExpanded: true,
@@ -252,16 +253,15 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
               ),
-              alignment: Alignment.center,
             ),
           ],
         ),
         sizedBox(height:10),
         Row(
           children: [
-            OutlinedButton(onPressed: (){}, child: Text('Save'),),
+            OutlinedButton(onPressed: (){}, child: const Text('Save'),),
             sizedBox(width:10),
-            OutlinedButton(onPressed: (){}, child: Text('Save'),),
+            OutlinedButton(onPressed: (){}, child: const Text('Save'),),
           ],
         ),
       ],

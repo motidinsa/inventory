@@ -26,10 +26,10 @@ class ItemType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
       shape: SmoothRectangleBorder(
         borderRadius: smoothBorderRadius(radius: 15),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.green,
           // width: .5,
         ),
@@ -48,15 +48,15 @@ class ItemType extends StatelessWidget {
                   Text(
                     title,
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Icon(nameToIconItemType[title],color: Colors.grey.shade600,size: fontawesomeIcons.contains(title)?20:null,),
                 ],
               ),
             ),
             sizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 color: Colors.grey,
               ),

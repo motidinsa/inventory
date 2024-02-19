@@ -16,7 +16,7 @@ class SingleCustomerDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      margin: EdgeInsets.symmetric(horizontal: 40),
+      margin: const EdgeInsets.symmetric(horizontal: 40),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: Column(
@@ -29,17 +29,17 @@ class SingleCustomerDetail extends StatelessWidget {
                 Text(
                   field,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Text(data ?? '', style: TextStyle(
+            Text(data ?? '', style: const TextStyle(
               fontSize: 16,
             ),),
           ],

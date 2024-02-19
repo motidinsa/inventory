@@ -1,26 +1,14 @@
 // import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:isar/isar.dart';
-import 'package:my_inventory/add_company/ui/add_company.dart';
-import 'package:my_inventory/add_customer/ui/add_customer.dart';
-import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
 import 'package:my_inventory/core/app_bindings.dart';
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/customer/ui/customer_detail.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
-import 'package:my_inventory/product_detail/ui/product_detail.dart';
-import 'package:my_inventory/product_list/product_list.dart';
-import 'package:my_inventory/sales/ui/product_select.dart';
-import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/user.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'core/constants/name_constants.dart';
-import 'core/controller/app_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 void main() {
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   runApp( MyApp());
@@ -52,7 +40,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         drawer: Drawer(),
         body: Homepage(),
       ),
@@ -79,7 +67,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
   // final client = Client()
   //     .setEndpoint('https://cloud.appwrite.io/v1')
   //     .setProject('65c1e7733a536752855d');

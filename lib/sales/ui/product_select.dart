@@ -108,9 +108,9 @@ class _ProductSelectState extends State<ProductSelect> {
             ),
           ),
         ),
-        Expanded(child: Text('3',textAlign: TextAlign.center,)),
-        Expanded(child: Text('3',textAlign: TextAlign.center,)),
-        Expanded(
+        const Expanded(child: Text('3',textAlign: TextAlign.center,)),
+        const Expanded(child: Text('3',textAlign: TextAlign.center,)),
+        const Expanded(
           child: Text('3',textAlign: TextAlign.center,),
         ),
       ],

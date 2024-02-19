@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import '../core/constants/widget_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final IconData iconData;
@@ -40,10 +40,10 @@ class MiniProductDetail extends StatelessWidget {
                     smoothness: 1,
                     side: BorderSide(color: Colors.grey.shade300, width: 2),
                     borderRadius: BorderRadius.circular(15),
+                    alignment: Alignment.center,
                     child: Text(
                       noOfPieces,
-                    ),
-                    alignment: Alignment.center)
+                    ))
               ],
             )
           ],
