@@ -3,6 +3,8 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_model.dart';
 
+import '../../main.dart';
+
 class AddCustomerController extends GetxController {
   AppController appController = Get.find();
   var customerDetailList = CustomerModel(
@@ -21,8 +23,8 @@ class AddCustomerController extends GetxController {
       ..city = customerDetailList.value.city
       ..email = customerDetailList.value.email;
 
-    await appController.isar.writeTxn(() async {
-      await appController.isar.customerDatabaseModels.put(newUser); // insert & update
+    await isar.writeTxn(() async {
+      await isar.customerDatabaseModels.put(newUser); // insert & update
     });
   }
 }

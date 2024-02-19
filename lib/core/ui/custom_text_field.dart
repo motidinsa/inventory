@@ -69,7 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: smoothBorderRadius(radius: 15),
           borderSide: const BorderSide(
             color: Colors.green,
-            width: .8,
+            width: 1,
           ),
         ),
         prefixIcon: Icon(nameToIconTextField[widget.title]),
