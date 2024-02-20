@@ -8,6 +8,9 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import '../controller/add_product_controller.dart';
+import 'add_product_title_with_textfield.dart';
+
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
 
@@ -30,12 +33,16 @@ class _AddProductState extends State<AddProduct> {
   String? selectedValue;
   String? selectedValue2;
   final List<String> titleList = [
+    productN(),
+    descriptionN(),
     categoryN(),
     productIdN(),
+    costN(),
     quantityOnHandN(),
     reorderQuantityN(),
     uomN()
   ];
+final AddProductController addProductController = Get.put(AddProductController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -86,172 +93,40 @@ class _AddProductState extends State<AddProduct> {
                     shape: smoothRectangleBorder(radius: 20),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          ProductTextField(
-                            hintText: enterProductNameN(),
-                            labelText: productN(),
-                          ),
-                          sizedBox(height: 20),
-                          ProductTextField(
-                            hintText: writeYourDescriptionN(),
-                            labelText: descriptionN(),
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Text(
-                                    categoryN(),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => [0, 1].contains(index)
+                            ? ProductTextField(
+                          title: titleList[index],
+                          labelText: titleList[index],
+                        )
+                            : index != 4
+                            ? AddProductTitleWithTextField(
+                          title: titleList[index],
+                        )
+                            : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: AddProductPriceInput(
+                                title: costN(),
                               ),
-                              Expanded(
-                                child: Center(
-                                  child: ProductTextField(
-                                    hintText: selectItemN(),
-                                    minimizePadding: true,
-                                    hasOptions: true,
-                                    // labelText: descriptionN(),
-                                  ),
-                                ),
+                            ),
+                            sizedBox(width: 20),
+                            Expanded(
+                              child: AddProductPriceInput(
+                                title: priceN(),
                               ),
-                            ],
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Text(
-                                    productIdN(),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Center(
-                                  child: ProductTextField(
-                                    hintText: idN(),
-                                    minimizePadding: true,
-                                    // labelText: descriptionN(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: AddProductPriceInput(
-                                  title: costN(),
-                                ),
-                              ),
-                              sizedBox(width: 20),
-                              Expanded(
-                                child: AddProductPriceInput(
-                                  title: priceN(),
-                                ),
-                              ),
-                            ],
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Text(
-                                    quantityOnHandN(),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              sizedBox(width: 20),
-                              const Expanded(
-                                child: ProductTextField(
-                                  hintText: '',
-                                  minimizePadding: true,
-                                  suffixText: 'pcs',
-                                ),
-                              ),
-                              // Spacer()
-                            ],
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Text(
-                                    reorderQuantityN(),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              sizedBox(width: 20),
-                              const Expanded(
-                                child: ProductTextField(
-                                  hintText: '',
-                                  minimizePadding: true,
-                                  suffixText: 'pcs',
-                                ),
-                              ),
-                              // Spacer()
-                            ],
-                          ),
-                          sizedBox(height: 20),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Text(
-                                    categoryN(),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Center(
-                                  child: ProductTextField(
-                                    hintText: selectItemN(),
-                                    minimizePadding: true,
-                                    hasOptions: true,
-                                    // labelText: descriptionN(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
+                        separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                        itemCount: titleList.length,
                       ),
                     ),
                   ),
                 ),
-                // sizedBox(height: 10),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
@@ -266,6 +141,7 @@ class _AddProductState extends State<AddProduct> {
                                   borderRadius: BorderRadius.circular(15)),
                               backgroundColor: Colors.green.shade50),
                           child: Text(
+                              // addProductController.selectedUnitOfMeasurement.value,
                             saveN(),
                             style: const TextStyle(fontSize: 16),
                           ),

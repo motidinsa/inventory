@@ -29,3 +29,5 @@ uomN() => 'Unit of measurement';
 enterProductNameN() => 'Enter product name';
 writeYourDescriptionN() => 'Write your description';
 idN() => 'ID';
+optionalN() => 'Optional';
+pcsN() => 'Pcs';

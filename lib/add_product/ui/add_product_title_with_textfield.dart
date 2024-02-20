@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
-class AddProductTitleWithTextfield extends StatelessWidget {
+class AddProductTitleWithTextField extends StatelessWidget {
   final String title;
 
-  AddProductTitleWithTextfield({
+  AddProductTitleWithTextField({
     super.key,
     required this.title,
   });
@@ -29,16 +30,11 @@ class AddProductTitleWithTextfield extends StatelessWidget {
             ),
           ),
         ),
+        sizedBox(width: 5),
         Expanded(
           child: Center(
             child: ProductTextField(
-              hintText: title == productIdN()
-                  ? idN()
-                  : !suffixItems.contains(title)
-                      ? selectItemN()
-                      : '',
-              minimizePadding: true,
-              hasOptions: true,
+              title: title,
               // labelText: descriptionN(),
             ),
           ),

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 
+import '../../../add_product/controller/add_product_controller.dart';
+
 class ProductTextField extends StatefulWidget {
-  final String hintText;
+  final String? title;
   final String? labelText;
-  final bool? minimizePadding;
-  final bool? hasOptions;
-  final bool? prefixText;
   final String? suffixText;
 
   const ProductTextField({
     super.key,
-    required this.hintText,
+    this.title,
     this.labelText,
-    this.minimizePadding,
-    this.hasOptions,
-    this.prefixText,
     this.suffixText,
   });
 
@@ -29,7 +27,7 @@ class ProductTextField extends StatefulWidget {
 class _ProductTextFieldState extends State<ProductTextField> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
-
+  final AddProductController addProductController = Get.find();
   @override
   void initState() {
     super.initState();
@@ -50,49 +48,51 @@ class _ProductTextFieldState extends State<ProductTextField> {
       controller: textEditingController,
       focusNode: focusNode,
       maxLines: widget.labelText == descriptionN() ? 2 : 1,
-      readOnly: widget.hasOptions == true ? true : false,
-      textAlign: widget.minimizePadding == true
-          ? widget.prefixText == null
-              ? TextAlign.center
-              : TextAlign.start
+      readOnly: hasOption(title: widget.title),
+      textAlign: minimizePadding(title: widget.title)
+          ? TextAlign.center
           : TextAlign.start,
       decoration: InputDecoration(
         isDense: true,
         isCollapsed: true,
-        prefixIcon: widget.prefixText == true
+        prefixIcon: hasPrefix(title: widget.title)
             ? Padding(
                 padding: const EdgeInsets.only(
                     top: 12, bottom: 10, left: 12, right: 5),
                 child: Text(
                   etbN(),
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: bold(),
+                    color: Colors.grey.shade700,
+                  ),
                 ),
               )
             : null,
         prefixIconConstraints: const BoxConstraints(
           minHeight: 0,
         ),
-        suffixIcon: widget.hasOptions == true
+        suffixIcon: hasOption(title: widget.title)
             ? const Icon(
                 Icons.arrow_drop_down_rounded,
                 color: Colors.teal,
                 size: 24,
               )
-            : widget.suffixText != null
+            : hasSuffix(title: widget.title)
                 ? Padding(
                     padding: const EdgeInsets.only(
                         top: 11, bottom: 10, left: 10, right: 15),
                     child: Text(
-                      widget.suffixText!,
+                      addProductController.selectedUnitOfMeasurement.value,
                       style: const TextStyle(fontSize: 16),
                     ),
                   )
                 : null,
-        hintText: widget.hintText,
+        hintText: titleToHint(title: widget.title),
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
-            horizontal: widget.minimizePadding == true ? 10 : 30,
-            vertical: widget.minimizePadding == true ? 10 : 15),
+            horizontal: minimizePadding(title: widget.title) ? 10 : 30,
+            vertical: minimizePadding(title: widget.title) ? 10 : 15),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
         ),
@@ -100,7 +100,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
           borderRadius: smoothBorderRadius(radius: 15),
           borderSide: BorderSide(
             color: Colors.green,
-            width: widget.hasOptions == true ? 2 : addProductBorderSide(),
+            width: hasOption(title: widget.title) ? 2 : addProductBorderSide(),
           ),
         ),
         labelText: widget.labelText,
