@@ -1,7 +1,4 @@
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
-import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-import 'package:path_provider/path_provider.dart';
 
 class AppController extends GetxController {
   // late Isar isar;

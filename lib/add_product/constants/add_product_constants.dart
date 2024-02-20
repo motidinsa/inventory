@@ -1,1 +1,1 @@
-addProductBorderSide()=>1.3;
+addProductBorderSide() => 1.0;

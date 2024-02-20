@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_model.dart';
 import 'package:my_inventory/main.dart';
+
 class AddVendorController extends GetxController {
-  // AppController appController = Get.find();
   var vendorDetail = VendorModel(
     name: '',
     phoneNumber: '',
@@ -13,9 +12,6 @@ class AddVendorController extends GetxController {
     email: '',
     contactPerson: '',
   ).obs;
-
-  addCustomerToDB() async {
-
 
   addCustomerToDB() async {
     final newUser = VendorDatabaseModel()
@@ -27,7 +23,7 @@ class AddVendorController extends GetxController {
       ..contactPerson = vendorDetail.value.contactPerson;
 
     await isar.writeTxn(() async {
-      await isar.vendorDatabaseModels.put(newUser); // insert & update
+      await isar.vendorDatabaseModels.put(newUser);
     });
   }
 }
