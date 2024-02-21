@@ -1,14 +1,20 @@
 import 'package:get/get.dart';
 
-
 import 'package:my_inventory/core/model/product/product_model.dart';
 
 class AddProductController extends GetxController {
   var selectedUnitOfMeasurement = 'Pcs'.obs;
-  var productInfo = ProductName(
+  var categoryList = [
+    'cat 1',
+    'cat 2',
+    'cat 3',
+  ].obs;
+  var unitOfMeasurementList = ['Pcs', 'Kg', 'Lt'].obs;
+  var productInfo = Product(
     name: '',
     description: '',
     categoryId: '',
+    categoryName: '',
     productId: '',
     cost: -1,
     price: -1,

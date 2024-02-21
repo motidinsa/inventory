@@ -7,6 +7,8 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import '../../core/ui/save_button.dart';
+
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
 
@@ -84,28 +86,7 @@ class AddCustomer extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 25),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              backgroundColor: Colors.green.shade50),
-                          child: Text(
-                            saveN(),
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                SaveButton(redirectFrom: addCustomerN(),),
               ],
             ),
           ),

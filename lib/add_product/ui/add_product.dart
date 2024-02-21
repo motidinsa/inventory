@@ -9,6 +9,8 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import '../../core/ui/save_button.dart';
+
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
 
@@ -64,13 +66,15 @@ class _AddProductState extends State<AddProduct> {
               shadowColor: Colors.grey,
               backgroundColor: const Color(0xffDCEEDE),
               leading: IconButton(
-                onPressed: () => Get.back(),
+                onPressed: (){
+                  Get.delete<AddProductController>();
+                  Get.back();
+                },
                 icon: Icon(
                   Icons.close,
                   color: Colors.grey.shade800,
                 ),
               ),
-              // surfaceTintColor: Colors.white,
             ),
             body: ListView(
               children: [
@@ -127,36 +131,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await unFocus();
-                            print(addProductController
-                                .productInfo.value.description);
-                          },
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  15,
-                                ),
-                              ),
-                              backgroundColor: Colors.green.shade50),
-                          child: Text(
-                            // addProductController.selectedUnitOfMeasurement.value,
-                            saveN(),
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                SaveButton(redirectFrom: addProductN(),),
               ],
             ),
           ),

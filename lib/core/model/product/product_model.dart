@@ -1,7 +1,8 @@
-class ProductName {
+class Product {
   String name;
   String? description;
   String categoryId;
+  String categoryName;
   String productId;
   double cost;
   double price;
@@ -15,10 +16,11 @@ class ProductName {
   String? localImagePath;
   String? onlineImagePath;
 
-  ProductName({
+  Product({
     required this.name,
     this.description,
     required this.categoryId,
+    required this.categoryName,
     required this.productId,
     required this.cost,
     required this.price,
