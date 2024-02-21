@@ -1,4 +1,7 @@
-import '../../core/constants/name_constants.dart';
+import 'package:get/get.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+
+import '../controller/add_product_controller.dart';
 
 titleToHint({String? title}) {
   var titleToHint = {
@@ -25,7 +28,25 @@ hasPrefix({String? title}) {
   var items = [costN(), priceN()];
   return items.contains(title);
 }
+
 hasSuffix({String? title}) {
   var items = [quantityOnHandN(), reorderQuantityN()];
   return items.contains(title);
+}
+
+onAddProductFocusChange({
+  required String title,
+  required bool hasFocus,
+  required String data,
+}) {
+  if (!hasFocus) {
+    AddProductController addProductController = Get.find();
+    addProductController.productInfo.update((product) {
+      if (title == productN()) {
+        product?.name = data;
+      } else if (title == descriptionN()) {
+        product?.description = data;
+      }
+    });
+  }
 }

@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/add_product/constants/add_product_constants.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import 'package:my_inventory/add_product/constants/add_product_constants.dart';
-
-import '../../../add_product/controller/add_product_controller.dart';
-
 class ProductTextField extends StatefulWidget {
-  final String? title;
+  final String title;
   final String? labelText;
   final String? suffixText;
 
   const ProductTextField({
     super.key,
-    this.title,
+    required this.title,
     this.labelText,
     this.suffixText,
   });
@@ -31,15 +29,13 @@ class _ProductTextFieldState extends State<ProductTextField> {
   @override
   void initState() {
     super.initState();
-    // focusNode.addListener(
-    //       () => onFocusChange(
-    //     title: widget.title,
-    //     hasFocus: focusNode.hasFocus,
-    //     data: textEditingController.text,
-    //     context: context,
-    //     redirectFrom: widget.redirectFrom,
-    //   ),
-    // );
+    focusNode.addListener(
+      () => onAddProductFocusChange(
+        title: widget.title,
+        hasFocus: focusNode.hasFocus,
+        data: textEditingController.text,
+      ),
+    );
   }
 
   @override

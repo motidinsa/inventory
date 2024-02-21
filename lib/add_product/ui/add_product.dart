@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/ui/add_product_price_input.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-
+import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
-
-import '../controller/add_product_controller.dart';
-import 'add_product_title_with_textfield.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
@@ -42,7 +40,9 @@ class _AddProductState extends State<AddProduct> {
     reorderQuantityN(),
     uomN()
   ];
-final AddProductController addProductController = Get.put(AddProductController());
+  final AddProductController addProductController =
+      Get.put(AddProductController());
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -95,32 +95,32 @@ final AddProductController addProductController = Get.put(AddProductController()
                       padding: const EdgeInsets.all(20),
                       child: ListView.separated(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) => [0, 1].contains(index)
                             ? ProductTextField(
-                          title: titleList[index],
-                          labelText: titleList[index],
-                        )
+                                title: titleList[index],
+                                labelText: titleList[index],
+                              )
                             : index != 4
-                            ? AddProductTitleWithTextField(
-                          title: titleList[index],
-                        )
-                            : Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Expanded(
-                              child: AddProductPriceInput(
-                                title: costN(),
-                              ),
-                            ),
-                            sizedBox(width: 20),
-                            Expanded(
-                              child: AddProductPriceInput(
-                                title: priceN(),
-                              ),
-                            ),
-                          ],
-                        ),
+                                ? AddProductTitleWithTextField(
+                                    title: titleList[index],
+                                  )
+                                : Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Expanded(
+                                        child: AddProductPriceInput(
+                                          title: costN(),
+                                        ),
+                                      ),
+                                      sizedBox(width: 20),
+                                      Expanded(
+                                        child: AddProductPriceInput(
+                                          title: priceN(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                         separatorBuilder: (ctx, index) => sizedBox(height: 20),
                         itemCount: titleList.length,
                       ),
@@ -134,14 +134,21 @@ final AddProductController addProductController = Get.put(AddProductController()
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await unFocus();
+                            print(addProductController
+                                .productInfo.value.description);
+                          },
                           style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
+                                borderRadius: BorderRadius.circular(
+                                  15,
+                                ),
+                              ),
                               backgroundColor: Colors.green.shade50),
                           child: Text(
-                              // addProductController.selectedUnitOfMeasurement.value,
+                            // addProductController.selectedUnitOfMeasurement.value,
                             saveN(),
                             style: const TextStyle(fontSize: 16),
                           ),

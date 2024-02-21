@@ -1,19 +1,19 @@
 class ProductName {
-  final String name;
-  final String? description;
-  final String categoryId;
-  final String productId;
-  final double cost;
-  final double price;
-  final int quantityOnHand;
-  final int reorderQuantity;
-  final String unitOfMeasurement;
-  final int createdByUserId;
-  final DateTime dateCreated;
-  final DateTime dateModified;
-  final bool? isAppWriteSynced;
-  final String? localImagePath;
-  final String? onlineImagePath;
+  String name;
+  String? description;
+  String categoryId;
+  String productId;
+  double cost;
+  double price;
+  int quantityOnHand;
+  int reorderQuantity;
+  String unitOfMeasurement;
+  int createdByUserId;
+  DateTime dateCreated;
+  DateTime dateModified;
+  bool? isAppWriteSynced;
+  String? localImagePath;
+  String? onlineImagePath;
 
   ProductName({
     required this.name,
