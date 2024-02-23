@@ -1,4 +1,4 @@
-class Product {
+class ProductModel {
   String name;
   String? description;
   String categoryId;
@@ -16,7 +16,7 @@ class Product {
   String? localImagePath;
   String? onlineImagePath;
 
-  Product({
+  ProductModel({
     required this.name,
     this.description,
     required this.categoryId,

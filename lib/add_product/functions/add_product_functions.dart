@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 
-import '../../core/functions/core_functions.dart';
-import '../../core/ui/alert_dialog/alert_dialog_option_select.dart';
-import '../controller/add_product_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
 
 
@@ -15,6 +15,7 @@ titleToHint({String? title}) {
     categoryN(): selectItemN(),
     productIdN(): optionalN(),
     uomN(): selectItemN(),
+    productListN():searchByProductNameOrIdN()
   };
   return titleToHint[title];
 }
@@ -25,7 +26,7 @@ hasOption({String? title}) {
 }
 
 minimizePadding({String? title}) {
-  var items = [productN(), descriptionN()];
+  var items = [productN(), descriptionN(),productListN()];
   return !items.contains(title);
 }
 
@@ -36,6 +37,10 @@ hasPrefix({String? title}) {
 
 hasSuffix({String? title}) {
   var items = [quantityOnHandN(), reorderQuantityN()];
+  return items.contains(title);
+}
+hasSearchIcon({String? title}) {
+  var items = [productListN()];
   return items.contains(title);
 }
 
@@ -51,6 +56,16 @@ onAddProductFocusChange({
         product?.name = data;
       } else if (title == descriptionN()) {
         product?.description = data;
+      }else if (title == productIdN()) {
+        product?.productId = data;
+      }else if (title == costN()) {
+        product?.cost = double.parse(data);
+      }else if (title == priceN()) {
+        product?.price = double.parse(data);
+      }else if (title == quantityOnHandN()) {
+        product?.quantityOnHand = int.parse(data);
+      }else if (title == reorderQuantityN()) {
+        product?.reorderQuantity = int.parse(data);
       }
     });
   }
@@ -95,11 +110,13 @@ onAddProductAlertDialogOptionSelect(
   });
   Get.back();
 }
-titleToData({required String title}){
-  final AddProductController addProductController = Get.find();
-  var items = {
-    categoryN(): addProductController.productInfo.value.categoryName,
-    uomN(): addProductController.productInfo.value.unitOfMeasurement,
-  };
-  return items[title];
-}
+// titleToData({required String title}){
+//   if(title!=productListN()){
+//     final AddProductController addProductController = Get.find();
+//     var items = {
+//       categoryN(): addProductController.productInfo.value.categoryName,
+//       uomN(): addProductController.productInfo.value.unitOfMeasurement,
+//     };
+//     return items[title];
+//   }
+// }

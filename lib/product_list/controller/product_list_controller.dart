@@ -5,7 +5,7 @@ import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/main.dart';
 
-class AddProductController extends GetxController {
+class ProductListController extends GetxController {
   var selectedUnitOfMeasurement = 'Pcs'.obs;
   var categoryList = [
     'cat 1',

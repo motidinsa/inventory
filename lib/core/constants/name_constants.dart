@@ -31,3 +31,5 @@ writeYourDescriptionN() => 'Write your description';
 idN() => 'ID';
 optionalN() => 'Optional';
 pcsN() => 'Pcs';
+productListN() => 'Product list';
+searchByProductNameOrIdN() => 'Search by product name or ID';

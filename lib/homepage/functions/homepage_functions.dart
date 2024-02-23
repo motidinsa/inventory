@@ -4,6 +4,8 @@ import 'package:my_inventory/add_product/ui/add_product.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 
+import 'package:my_inventory/product_list/ui/product_list.dart';
+
 navigateFromHomepage({required String title, bool? isAddIcon}) {
   var titleToPage = {
     customerN(): isAddIcon == true
@@ -21,13 +23,10 @@ navigateFromHomepage({required String title, bool? isAddIcon}) {
               () => const AddProduct(),
             )
         : () => Get.to(
-              () => const Sales(),
+              () => ProductList(),
             ),
   };
   if (titleToPage[title] != null) {
     titleToPage[title]!();
   }
-  // if(title == customerN()){
-  //   Get.to(AddCustomer());
-  // }
 }

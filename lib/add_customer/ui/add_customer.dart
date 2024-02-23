@@ -7,7 +7,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import '../../core/ui/save_button.dart';
+import 'package:my_inventory/core/ui/save_button.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});

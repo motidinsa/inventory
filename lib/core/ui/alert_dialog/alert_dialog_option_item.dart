@@ -1,7 +1,6 @@
-import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 
-import '../../../add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;

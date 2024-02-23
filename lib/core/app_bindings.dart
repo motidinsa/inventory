@@ -5,22 +5,17 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
+import '../product_list/controller/product_list_controller.dart';
+
 class ApplicationBindings implements Bindings {
   ApplicationBindings();
 
   @override
   void dependencies() {
-    Get.lazyPut(
-      () => AppController(),
-    );
-    Get.lazyPut(
-      () => AddCustomerController(),
-    );
-    Get.lazyPut(
-      () => AddVendorController(),
-    );
-    Get.lazyPut(
-      () => AddProductController(),
-    );
+    Get.lazyPut(() => AppController());
+    Get.lazyPut(() => AddCustomerController());
+    Get.lazyPut(() => AddVendorController());
+    // Get.lazyPut(() => AddProductController());
+    // Get.lazyPut(() => ProductListController());
   }
 }

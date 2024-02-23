@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../constants/widget_constants.dart';
-import '../../styles/styles.dart';
-import 'alert_dialog_option_item.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
@@ -24,7 +23,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
       title: Text(
         title,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -36,7 +35,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
             // const Divider(color: Colors.grey, height: 0),
             ListView.separated(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return AlertDialogOptionItem(
                   title: title,
@@ -52,7 +51,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
             Align(
               child: IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add,
                     color: Colors.green,
                     size: 27,
