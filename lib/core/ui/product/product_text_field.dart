@@ -5,21 +5,23 @@ import 'package:my_inventory/add_product/controller/add_product_controller.dart'
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/product_list/controller/product_list_controller.dart';
-import 'package:my_inventory/product_list/ui/product_list.dart';
 
-import '../../functions/core_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class ProductTextField extends StatefulWidget {
+  final String currentPage;
   final String title;
   final String? labelText;
   final String? suffixText;
+  final int? index;
 
   const ProductTextField({
     super.key,
     required this.title,
     this.labelText,
     this.suffixText,
+    required this.currentPage,
+    this.index,
   });
 
   @override
@@ -32,33 +34,51 @@ class _ProductTextFieldState extends State<ProductTextField> {
 
   @override
   void initState() {
-    focusNode.addListener(
-      () => onAddProductFocusChange(
-        title: widget.title,
-        hasFocus: focusNode.hasFocus,
-        data: textEditingController.text,
-      ),
-    );
+    if (widget.currentPage == addProductN()) {
+      focusNode.addListener(
+        () => onAddProductFocusChange(
+          title: widget.title,
+          hasFocus: focusNode.hasFocus,
+          data: textEditingController.text,
+        ),
+      );
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    // if (widget.currentPage == addProductN()) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-        setState(() {
-          textEditingController.value = textEditingController.value.copyWith(
-            text: titleToData(title: widget.title),
-          );
-        });
+      setState(() {
+        textEditingController.value = textEditingController.value.copyWith(
+          text: titleToData(
+            title: widget.title,
+            currentPage: widget.currentPage,
+            index: widget.index,
+          ),
+        );
+      });
     });
+    // }
 
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,
       maxLines: widget.labelText == descriptionN() ? 2 : 1,
       readOnly: hasOption(title: widget.title),
-      onTap: () =>
-          onAddProductTextFieldPressed(title: widget.title, context: context),
+      onChanged: (data) => onTextFieldChange(
+        currentPage: widget.currentPage,
+        title: widget.title,
+        data: data,
+        index: widget.index,
+      ),
+      onTap: () => onTextFieldPressed(
+        currentPage: widget.currentPage,
+        title: widget.title,
+        context: context,
+        index: widget.index,
+      ),
       textAlign: minimizePadding(title: widget.title)
           ? TextAlign.center
           : TextAlign.start,
@@ -103,15 +123,17 @@ class _ProductTextFieldState extends State<ProductTextField> {
                   )
                 : hasSearchIcon(title: widget.title)
                     ? IconButton(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.search_rounded,
                           size: 26,
                         ),
                       )
                     : null,
-        hintText: titleToHint(title: widget.title),
+        hintText: titleToHint(
+          title: widget.title,
+        ),
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
             horizontal: minimizePadding(title: widget.title) ? 10 : 30,

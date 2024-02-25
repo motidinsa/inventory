@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+
+import 'package:my_inventory/core/model/product/product_model.dart';
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
-  final String itemName;
+  final String currentPage;
+  final String? itemList;
+  final int? index;
+  final ProductModel? product;
 
   const AlertDialogOptionItem({
     super.key,
-    required this.itemName,
+    this.itemList,
     required this.title,
+    this.product,
+    required this.currentPage,
+    this.index,
   });
 
   @override
@@ -18,7 +25,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          itemName,
+          itemList ?? product!.name,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -27,10 +34,12 @@ class AlertDialogOptionItem extends StatelessWidget {
         ),
       ),
       titleAlignment: ListTileTitleAlignment.center,
-      onTap: () => onAddProductAlertDialogOptionSelect(
-        title: title,
-        data: itemName,
-      ),
+      onTap: () => onAlertDialogOptionSelect(
+          currentPage: currentPage,
+          title: title,
+          index: index,
+          data: itemList ?? product!.name,
+          productModel: product),
     );
   }
 }

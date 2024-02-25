@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:smooth_corner/smooth_corner.dart';
-
-import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final IconData iconData;
@@ -23,7 +22,7 @@ class MiniProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       shape: smoothRectangleBorder(radius: 12),
       elevation: 3,
       child: Padding(
@@ -50,11 +49,10 @@ class MiniProductDetail extends StatelessWidget {
                     sizedBox(height: 5),
 
                     SmoothContainer(
-                        // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(10),
                         color: Colors.grey.shade300,
                         smoothness: 1,
-                        side: BorderSide(color: Colors.white, width: 2),
+                        side: const BorderSide(color: Colors.white, width: 1),
                         borderRadius: BorderRadius.circular(12),
                         alignment: Alignment.center,
                         child: Text(

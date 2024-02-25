@@ -3,6 +3,8 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import 'package:my_inventory/core/constants/name_constants.dart';
+
 class AddProductPriceInput extends StatelessWidget {
   final String title;
 
@@ -20,8 +22,11 @@ class AddProductPriceInput extends StatelessWidget {
           ),
         ),
         sizedBox(width: 10),
-         Expanded(
-          child: ProductTextField(title: title,),
+        Expanded(
+          child: ProductTextField(
+            title: title,
+            currentPage: addProductN(),
+          ),
         ),
       ],
     );

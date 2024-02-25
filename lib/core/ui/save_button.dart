@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-
 import 'package:my_inventory/core/constants/name_constants.dart';
+
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class SaveButton extends StatelessWidget {
   final String redirectFrom;
@@ -14,8 +14,7 @@ class SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-      const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       child: Row(
         children: [
           Expanded(
@@ -23,8 +22,6 @@ class SaveButton extends StatelessWidget {
               onPressed: () async {
                 await unFocus();
                 onSaveButtonPressed(redirectFrom: redirectFrom);
-                // print(addProductController
-                //     .productInfo.value.description);
               },
               style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15),

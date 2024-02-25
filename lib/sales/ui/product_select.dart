@@ -10,7 +10,7 @@ class ProductSelect extends StatefulWidget {
 
 class _ProductSelectState extends State<ProductSelect> {
   final List<String> items = [
-    'A_Item1\n34535',
+    'A_Item1',
     'A_Item2',
     'A_Item3',
     'A_Item4',
@@ -108,10 +108,21 @@ class _ProductSelectState extends State<ProductSelect> {
             ),
           ),
         ),
-        const Expanded(child: Text('3',textAlign: TextAlign.center,)),
-        const Expanded(child: Text('3',textAlign: TextAlign.center,)),
         const Expanded(
-          child: Text('3',textAlign: TextAlign.center,),
+            child: Text(
+          '3',
+          textAlign: TextAlign.center,
+        )),
+        const Expanded(
+            child: Text(
+          '3',
+          textAlign: TextAlign.center,
+        )),
+        const Expanded(
+          child: Text(
+            '3',
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

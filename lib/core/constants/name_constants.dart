@@ -33,3 +33,5 @@ optionalN() => 'Optional';
 pcsN() => 'Pcs';
 productListN() => 'Product list';
 searchByProductNameOrIdN() => 'Search by product name or ID';
+searchProductsN() => 'Search products';
+quantity() => 'Quantity';

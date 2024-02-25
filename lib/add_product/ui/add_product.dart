@@ -6,9 +6,8 @@ import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dar
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
-
 import 'package:my_inventory/core/ui/body_wrapper.dart';
+import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 
 class AddProduct extends StatefulWidget {
@@ -44,8 +43,6 @@ class _AddProductState extends State<AddProduct> {
   ];
   final AddProductController addProductController =
       Get.put(AddProductController());
-  // final AddProductController? addProductController =
-  //     Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -77,29 +74,30 @@ class _AddProductState extends State<AddProduct> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => [0, 1].contains(index)
                       ? ProductTextField(
-                    title: titleList[index],
-                    labelText: titleList[index],
-                  )
+                          currentPage: addProductN(),
+                          title: titleList[index],
+                          labelText: titleList[index],
+                        )
                       : index != 4
-                      ? AddProductTitleWithTextField(
-                    title: titleList[index],
-                  )
-                      : Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        child: AddProductPriceInput(
-                          title: costN(),
-                        ),
-                      ),
-                      sizedBox(width: 20),
-                      Expanded(
-                        child: AddProductPriceInput(
-                          title: priceN(),
-                        ),
-                      ),
-                    ],
-                  ),
+                          ? AddProductTitleWithTextField(
+                              title: titleList[index],
+                            )
+                          : Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: AddProductPriceInput(
+                                    title: costN(),
+                                  ),
+                                ),
+                                sizedBox(width: 20),
+                                Expanded(
+                                  child: AddProductPriceInput(
+                                    title: priceN(),
+                                  ),
+                                ),
+                              ],
+                            ),
                   separatorBuilder: (ctx, index) => sizedBox(height: 20),
                   itemCount: titleList.length,
                 ),
