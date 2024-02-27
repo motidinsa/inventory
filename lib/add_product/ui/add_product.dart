@@ -11,6 +11,8 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 
+import '../../core/ui/elevated_card.dart';
+
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
 
@@ -65,59 +67,38 @@ class _AddProductState extends State<AddProduct> {
           body: ListView(
             children: [
               sizedBox(height: 20),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: smoothBorderRadius(radius: 20),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 15,
-                        spreadRadius: 0,
+              ElevatedCard(child: ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) => [0, 1].contains(index)
+                    ? ProductTextField(
+                  currentPage: addProductN(),
+                  title: titleList[index],
+                  labelText: titleList[index],
+                )
+                    : index != 4
+                    ? AddProductTitleWithTextField(
+                  title: titleList[index],
+                )
+                    : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: AddProductPriceInput(
+                        title: costN(),
                       ),
-                    ]),
-                child: Card(
-                  surfaceTintColor: Colors.white,
-                  shape: smoothRectangleBorder(radius: 20),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) => [0, 1].contains(index)
-                          ? ProductTextField(
-                        currentPage: addProductN(),
-                        title: titleList[index],
-                        labelText: titleList[index],
-                      )
-                          : index != 4
-                          ? AddProductTitleWithTextField(
-                        title: titleList[index],
-                      )
-                          : Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: AddProductPriceInput(
-                              title: costN(),
-                            ),
-                          ),
-                          sizedBox(width: 20),
-                          Expanded(
-                            child: AddProductPriceInput(
-                              title: priceN(),
-                            ),
-                          ),
-                        ],
-                      ),
-                      separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                      itemCount: titleList.length,
                     ),
-                  ),
+                    sizedBox(width: 20),
+                    Expanded(
+                      child: AddProductPriceInput(
+                        title: priceN(),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+                separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                itemCount: titleList.length,
+              ),),
               SaveButton(
                 redirectFrom: addProductN(),
               ),
