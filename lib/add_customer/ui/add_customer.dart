@@ -24,7 +24,7 @@ class AddCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>unFocus(),
+      onTap: () => unFocus(),
       child: Scaffold(
         backgroundColor: Colors.green.shade50,
         body: SafeArea(
@@ -33,15 +33,16 @@ class AddCustomer extends StatelessWidget {
               title: Text(
                 addCustomerN(),
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  color: const Color(0xff006E1C).withOpacity(.9),),
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xff006E1C).withOpacity(.9),
+                ),
               ),
               centerTitle: true,
               elevation: 3,
               shadowColor: Colors.grey,
               backgroundColor: const Color(0xffDCEEDE),
               leading: IconButton(
-                onPressed: () =>Get.back(),
+                onPressed: () => Get.back(),
                 icon: Icon(
                   Icons.close,
                   color: Colors.grey.shade800,
@@ -80,13 +81,14 @@ class AddCustomer extends StatelessWidget {
                         ),
                         shrinkWrap: true,
                         itemCount: titles.length,
-                        separatorBuilder: (ctx, index) =>
-                            sizedBox(height: 15),
+                        separatorBuilder: (ctx, index) => sizedBox(height: 15),
                       ),
                     ),
                   ),
                 ),
-                SaveButton(redirectFrom: addCustomerN(),),
+                SaveButton(
+                  redirectFrom: addCustomerN(),
+                ),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/ui/add_product_price_input.dart';
 import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dart';
@@ -46,69 +47,84 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return BodyWrapper(
-      pageName: addProductN(),
-      body: ListView(
-        children: [
-          sizedBox(height: 20),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: smoothBorderRadius(radius: 20),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 15,
-                    spreadRadius: 0,
-                  ),
-                ]),
-            child: Card(
-              surfaceTintColor: Colors.white,
-              shape: smoothRectangleBorder(radius: 20),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => [0, 1].contains(index)
-                      ? ProductTextField(
-                          currentPage: addProductN(),
-                          title: titleList[index],
-                          labelText: titleList[index],
-                        )
-                      : index != 4
+    return LoaderOverlay(
+      useDefaultLoading: false,
+      overlayWidgetBuilder: (_) { //ignored progress for the moment
+        return const Center(child: CircularProgressIndicator(strokeWidth: 3,));
+      },
+      child: Obx(() {
+          if(addProductController.isLocalSaveLoading.isTrue){
+            context.loaderOverlay.show();
+          }
+          else{
+            context.loaderOverlay.hide();
+          }
+
+        return BodyWrapper(
+          pageName: addProductN(),
+          body: ListView(
+            children: [
+              sizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: smoothBorderRadius(radius: 20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 15,
+                        spreadRadius: 0,
+                      ),
+                    ]),
+                child: Card(
+                  surfaceTintColor: Colors.white,
+                  shape: smoothRectangleBorder(radius: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) => [0, 1].contains(index)
+                          ? ProductTextField(
+                        currentPage: addProductN(),
+                        title: titleList[index],
+                        labelText: titleList[index],
+                      )
+                          : index != 4
                           ? AddProductTitleWithTextField(
-                              title: titleList[index],
-                            )
+                        title: titleList[index],
+                      )
                           : Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Expanded(
-                                  child: AddProductPriceInput(
-                                    title: costN(),
-                                  ),
-                                ),
-                                sizedBox(width: 20),
-                                Expanded(
-                                  child: AddProductPriceInput(
-                                    title: priceN(),
-                                  ),
-                                ),
-                              ],
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: AddProductPriceInput(
+                              title: costN(),
                             ),
-                  separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                  itemCount: titleList.length,
+                          ),
+                          sizedBox(width: 20),
+                          Expanded(
+                            child: AddProductPriceInput(
+                              title: priceN(),
+                            ),
+                          ),
+                        ],
+                      ),
+                      separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                      itemCount: titleList.length,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              SaveButton(
+                redirectFrom: addProductN(),
+              ),
+            ],
           ),
-          SaveButton(
-            redirectFrom: addProductN(),
-          ),
-        ],
-      ),
+        );
+      }),
     );
   }
 }

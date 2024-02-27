@@ -11,6 +11,8 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+
 class AlertDialogOptionSelect extends StatefulWidget {
   final String title;
   final int? index;
@@ -46,7 +48,7 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
           widget.title,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
           ),
         ),
         content: SizedBox(
@@ -57,8 +59,8 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ProductTextField(
-                  currentPage: salesN(),
-                  title: searchProductsN(),
+                  currentPage: widget.currentPage,
+                  title: widget.title,
                   index: widget.index,
                 ),
               ),
@@ -68,23 +70,32 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   ProductModel? product;
+                  String? item;
                   if (widget.currentPage == salesN()) {
                     SalesController salesController = Get.find();
                     product = salesController.searchProductFoundResult[index];
+                  } else if (widget.currentPage == addProductN()) {
+                    AddProductController addProductController = Get.find();
+                    if (widget.title == selectCategory()) {
+                      item =
+                          addProductController.categoryListFoundResult[index];
+                    } else if (widget.title == selectUomN()) {
+                      item = addProductController
+                          .unitOfMeasurementListFoundResult[index];
+                    }
                   }
                   return AlertDialogOptionItem(
                     title: widget.title,
                     product: widget.currentPage == salesN() ? product : null,
-                    itemList: widget.currentPage != salesN()
-                        ? widget.itemList![index]
-                        : null,
+                    item: widget.currentPage != salesN() ? item : null,
                     currentPage: widget.currentPage,
                     index: widget.index,
                   );
                 },
-                itemCount: widget.currentPage == salesN()
-                    ? getAlertDialogProductLength()
-                    : widget.itemList!.length,
+                itemCount: getAlertDialogLength(
+                  currentPage: widget.currentPage,
+                  title: widget.title,
+                ),
                 separatorBuilder: (BuildContext context, int index) => Divider(
                   color: Colors.grey.shade300,
                   height: 0,

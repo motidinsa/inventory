@@ -17,33 +17,10 @@ titleToHint({String? title}) {
     productListN(): searchByProductNameOrIdN(),
     salesN(): selectItemN(),
     searchProductsN(): searchByProductNameOrIdN(),
+    selectCategory(): searchByCategoryNameN(),
+    selectUomN(): searchUomN(),
   };
   return titleToHint[title];
-  // if (currentPage == addProductN()) {
-  //   var titleToHint = {
-  //     productN(): enterProductNameN(),
-  //     descriptionN(): writeYourDescriptionN(),
-  //     categoryN(): selectItemN(),
-  //     productIdN(): optionalN(),
-  //     uomN(): selectItemN(),
-  //     productListN(): searchByProductNameOrIdN(),
-  //
-  //   };
-  //   return titleToHint[title];
-  // } else if (currentPage == salesN()) {
-  //   var pageToHint = {
-  //     salesN(): selectItemN(),
-  //     searchProductsN(): searchByProductNameOrIdN(),
-  //   };
-  //   return pageToHint[title];
-  // }
-  // else if (currentPage == salesN()) {
-  //   var pageToHint = {
-  //     salesN(): selectItemN(),
-  //     searchProductsN(): searchByProductNameOrIdN(),
-  //   };
-  //   return pageToHint[title];
-  // }
 }
 
 hasOption({String? title}) {
@@ -52,7 +29,14 @@ hasOption({String? title}) {
 }
 
 minimizePadding({String? title}) {
-  var items = [productN(), descriptionN(), searchProductsN(), productListN()];
+  var items = [
+    productN(),
+    descriptionN(),
+    searchProductsN(),
+    productListN(),
+    selectCategory(),
+    selectUomN()
+  ];
   return !items.contains(title);
 }
 
@@ -67,7 +51,12 @@ hasSuffix({String? title}) {
 }
 
 hasSearchIcon({String? title}) {
-  var items = [productListN(), searchProductsN()];
+  var items = [
+    productListN(),
+    searchProductsN(),
+    selectCategory(),
+    selectUomN(),
+  ];
   return items.contains(title);
 }
 
@@ -134,6 +123,22 @@ onTextFieldChange({
         sales?.totalAmount = 0;
       }
     });
+  } else if (currentPage == addProductN() && title == selectCategory()) {
+    AddProductController addProductController = Get.find();
+    addProductController.categoryListFoundResult = addProductController
+        .categoryList
+        .where((categoryName) =>
+            categoryName.toLowerCase().contains(data.toLowerCase()))
+        .toList()
+        .obs;
+  } else if (currentPage == addProductN() && title == selectUomN()) {
+    AddProductController addProductController = Get.find();
+    addProductController.unitOfMeasurementListFoundResult = addProductController
+        .unitOfMeasurementList
+        .where((categoryName) =>
+            categoryName.toLowerCase().contains(data.toLowerCase()))
+        .toList()
+        .obs;
   }
 }
 
@@ -145,6 +150,23 @@ getAlertDialogProduct({required int index}) {
 getAlertDialogProductLength() {
   SalesController salesController = Get.find();
   return salesController.searchProductFoundResult.length;
+}
+
+getAlertDialogAddProductLength({required String title}) {
+  AddProductController addProductController = Get.find();
+  if (title == selectCategory()) {
+    return addProductController.categoryListFoundResult.length;
+  } else if (title == selectUomN()) {
+    return addProductController.unitOfMeasurementListFoundResult.length;
+  }
+}
+
+getAlertDialogLength({required String currentPage, String? title}) {
+  if (currentPage == salesN()) {
+    return getAlertDialogProductLength();
+  } else if (currentPage == addProductN()) {
+    return getAlertDialogAddProductLength(title: title!);
+  }
 }
 
 onSalesProductSelect({
@@ -182,13 +204,18 @@ onAddProductTextFieldPressed(
     categoryN(): addProductController.categoryList,
     uomN(): addProductController.unitOfMeasurementList,
   };
+
   if (itemsWithList.keys.contains(title)) {
+    addProductController.categoryListFoundResult =
+        addProductController.categoryList;
+    addProductController.unitOfMeasurementListFoundResult =
+        addProductController.unitOfMeasurementList;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
           currentPage: addProductN(),
-          title: title,
+          title: title == categoryN() ? selectCategory() : selectUomN(),
           itemList: itemsWithList[title]!,
         );
       },
@@ -212,6 +239,8 @@ onAlertDialogOptionSelect(
   if (currentPage == salesN()) {
     onSalesSearchProductAlertDialogOptionSelect(
         productModel: productModel!, index: index!);
+  } else if (currentPage == addProductN()) {
+    onAddProductAlertDialogOptionSelect(title: title, data: data!);
   }
 }
 
@@ -230,9 +259,9 @@ onAddProductAlertDialogOptionSelect(
   final AddProductController addProductController = Get.find();
 
   addProductController.productInfo.update((product) {
-    if (title == categoryN()) {
+    if (title == selectCategory()) {
       product?.categoryName = data;
-    } else if (title == uomN()) {
+    } else if (title == selectUomN()) {
       product?.unitOfMeasurement = data;
     }
   });

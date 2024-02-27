@@ -6,13 +6,13 @@ import 'package:my_inventory/core/model/product/product_model.dart';
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String currentPage;
-  final String? itemList;
+  final String? item;
   final int? index;
   final ProductModel? product;
 
   const AlertDialogOptionItem({
     super.key,
-    this.itemList,
+    this.item,
     required this.title,
     this.product,
     required this.currentPage,
@@ -25,7 +25,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          itemList ?? product!.name,
+          item ?? product!.name,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -38,7 +38,7 @@ class AlertDialogOptionItem extends StatelessWidget {
           currentPage: currentPage,
           title: title,
           index: index,
-          data: itemList ?? product!.name,
+          data: item ?? product!.name,
           productModel: product),
     );
   }

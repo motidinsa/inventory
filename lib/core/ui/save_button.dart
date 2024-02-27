@@ -5,11 +5,8 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 class SaveButton extends StatelessWidget {
   final String redirectFrom;
-
-  const SaveButton({
-    super.key,
-    required this.redirectFrom,
-  });
+  const SaveButton(
+      {super.key, required this.redirectFrom,});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +28,10 @@ class SaveButton extends StatelessWidget {
                     ),
                   ),
                   backgroundColor: Colors.green.shade50),
-              child: Text(
-                saveN(),
-                style: const TextStyle(fontSize: 16),
-              ),
+              child:Text(
+                      saveN(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
             ),
           ),
         ],
