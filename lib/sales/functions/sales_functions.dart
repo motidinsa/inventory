@@ -4,7 +4,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 getSalesSubtotal() {
   SalesController salesController = Get.find();
   double total = 0;
-  for (var element in salesController.salesModel) {
+  for (var element in salesController.salesModels) {
     total += element.value.price;
   }
   return total.toString();
@@ -13,7 +13,7 @@ getSalesSubtotal() {
 getSalesTotal() {
   SalesController salesController = Get.find();
   double total = 0;
-  for (var element in salesController.salesModel) {
+  for (var element in salesController.salesModels) {
     total += element.value.totalAmount;
   }
   return total.toString();

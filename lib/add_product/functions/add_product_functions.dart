@@ -145,7 +145,7 @@ onTextFieldChange({
         .obs;
   } else if (currentPage == salesN() && title == quantity()) {
     SalesController salesController = Get.find();
-    salesController.salesModel[index!].update((sales) {
+    salesController.salesModels[index!].update((sales) {
       if (data.isNotEmpty) {
         sales?.quantity = int.parse(data);
         sales?.totalAmount = int.parse(data) * sales.price;
@@ -279,7 +279,7 @@ onAlertDialogOptionSelect(
 onSalesSearchProductAlertDialogOptionSelect(
     {required ProductModel productModel, required int index}) {
   final SalesController salesController = Get.find();
-  salesController.salesModel[index].update((sales) {
+  salesController.salesModels[index].update((sales) {
     sales?.productName = productModel.name;
     sales?.productId = productModel.id;
     sales?.price = productModel.price;
@@ -297,5 +297,4 @@ onAddProductAlertDialogOptionSelect(
       product?.unitOfMeasurement = data;
     }
   });
-  Get.back();
 }

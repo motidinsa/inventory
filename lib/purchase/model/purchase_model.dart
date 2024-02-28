@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
 
-part 'sales_model.g.dart';
+part 'purchase_model.g.dart';
 
 @HiveType(typeId: 2)
-class SalesModel extends HiveObject {
+class PurchaseModel extends HiveObject {
   @HiveField(0)
   String productId;
 
@@ -46,15 +46,15 @@ class SalesModel extends HiveObject {
   @HiveField(13)
   String? vendorName;
 
-  SalesModel({
+  PurchaseModel({
     required this.productId,
     required this.productName,
     required this.date,
     required this.dateAdded,
     required this.dateModified,
     required this.reference,
-     this.customerId,
-     this.customerName,
+    this.customerId,
+    this.customerName,
     required this.quantity,
     required this.totalAmount,
     required this.price,

@@ -6,7 +6,7 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
-import 'package:my_inventory/sales/ui/product_item.dart';
+import 'package:my_inventory/core/ui/product/product_item.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 import 'package:my_inventory/core/styles/styles.dart';
@@ -156,7 +156,7 @@ class Sales extends StatelessWidget {
               itemBuilder: (ctx, index) => ProductItem(
                 index: index,
               ),
-              itemCount: salesController.salesModel.length,
+              itemCount: salesController.salesModels.length,
             ),
             Center(
               child: IconButton(

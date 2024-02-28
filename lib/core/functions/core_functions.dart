@@ -6,14 +6,16 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
-onSaveButtonPressed({required String redirectFrom}) {
+onSaveButtonPressed({required String redirectFrom}) async {
+  await unFocus();
   if (redirectFrom == addProductN()) {
     AddProductController addProductController = Get.find();
     addProductController.onAddProductSaveButtonPressed();
   } else if (redirectFrom == salesN()) {
     SalesController salesController = Get.find();
-    salesController.onAddProductSaveButtonPressed();
+    salesController.saveSalesProductToDB();
   }
+  Get.back();
 }
 
 titleToData({required String title, required String currentPage, int? index}) {
@@ -21,7 +23,7 @@ titleToData({required String title, required String currentPage, int? index}) {
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
     if (title == salesN()) {
-      value = salesController.salesModel[index!].value.productName;
+      value = salesController.salesModels[index!].value.productName;
     }
     if (title == discountN()) {
       value = salesController.discount.value;

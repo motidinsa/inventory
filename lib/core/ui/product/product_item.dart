@@ -45,7 +45,7 @@ class ProductItem extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    salesController.salesModel[index].value.price.toString(),
+                    salesController.salesModels[index].value.price.toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 16),
                   ),
@@ -54,7 +54,7 @@ class ProductItem extends StatelessWidget {
                 Expanded(
                     flex: 3,
                     child: Text(
-                      salesController.salesModel[index].value.totalAmount
+                      salesController.salesModels[index].value.totalAmount
                           .toString(),
                       textAlign: TextAlign.center,
                       style:
