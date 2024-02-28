@@ -5,6 +5,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 titleToHint({String? title}) {
@@ -23,6 +24,8 @@ titleToHint({String? title}) {
     value = searchByProductNameOrIdN();
   } else if (title == salesN()) {
     value = selectItemN();
+  } else if (title == purchaseN()) {
+    value = selectItemN();
   } else if (title == searchProductsN()) {
     value = searchByProductNameOrIdN();
   } else if (title == selectCategory()) {
@@ -34,7 +37,7 @@ titleToHint({String? title}) {
 }
 
 hasOption({String? title}) {
-  var itemsWithOption = [categoryN(), uomN(), salesN()];
+  var itemsWithOption = [categoryN(), uomN(), salesN(), purchaseN()];
   return itemsWithOption.contains(title);
 }
 
@@ -51,8 +54,11 @@ minimizePadding({String? title}) {
   return !items.contains(title);
 }
 
-hasPrefix({String? title}) {
+hasPrefix({required String currentPage, String? title}) {
   var items = [costN(), priceN()];
+  if (currentPage == purchaseN() && title == priceN()) {
+    return false;
+  }
   return items.contains(title);
 }
 
@@ -80,7 +86,11 @@ onFocusChange({
   if (!hasFocus) {
     if (currentPage == addProductN()) {
       onAddProductFocusChange(title: title, data: data);
-    } else if (currentPage == salesN()) {}
+    } else if (currentPage == salesN()) {
+      onSalesProductFocusChange(title: title, data: data);
+    } else if (currentPage == purchaseN()) {
+      onPurchaseProductFocusChange(title: title, data: data);
+    }
   }
 }
 
@@ -108,6 +118,26 @@ onAddProductFocusChange({
   });
 }
 
+onSalesProductFocusChange({
+  required String title,
+  required String data,
+}) {
+  final SalesController salesController = Get.find();
+  if (title == discountN()) {
+    salesController.discount(data);
+  }
+}
+
+onPurchaseProductFocusChange({
+  required String title,
+  required String data,
+}) {
+  final PurchaseController purchaseController = Get.find();
+  if (title == discountN()) {
+    purchaseController.discount(data);
+  }
+}
+
 onSalesFocusChange({
   required String title,
   required String data,
@@ -127,6 +157,8 @@ onTextFieldPressed(
     onAddProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == salesN()) {
     onSalesProductSelect(context: context, title: title, index: index);
+  } else if (currentPage == purchaseN()) {
+    onPurchaseProductSelect(context: context, title: title, index: index);
   }
 }
 
@@ -170,6 +202,37 @@ onTextFieldChange({
             categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList()
         .obs;
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    purchaseController.purchaseModels[index!].update((purchase) {
+      if (title == quantity()) {
+        if (data.isEmpty) {
+            purchase?.quantity = 0;
+            purchase?.totalAmount = 0;
+        } else {
+          if (purchase?.price != 0) {
+            purchase?.quantity = int.parse(data);
+            purchase?.totalAmount = int.parse(data) * purchase.price;
+          } else if (purchase?.price == 0) {
+            purchase?.quantity = int.parse(data);
+            purchase?.totalAmount = 0;
+          }
+        }
+      }else if(title == priceN()) {
+        if (data.isEmpty) {
+          purchase?.quantity = 0;
+          purchase?.totalAmount = 0;
+        } else {
+          if (purchase?.quantity != 0) {
+            purchase?.quantity = int.parse(data);
+            purchase?.totalAmount = int.parse(data) * purchase.price;
+          } else if (purchase?.price == 0) {
+            purchase?.quantity = int.parse(data);
+            purchase?.totalAmount = 0;
+          }
+        }
+      }
+    });
   }
 }
 
@@ -178,9 +241,14 @@ getAlertDialogProduct({required int index}) {
   return salesController.searchProductFoundResult[index];
 }
 
-getAlertDialogProductLength() {
+getSalesAlertDialogProductLength() {
   SalesController salesController = Get.find();
   return salesController.searchProductFoundResult.length;
+}
+
+getPurchaseAlertDialogProductLength() {
+  PurchaseController purchaseController = Get.find();
+  return purchaseController.searchProductFoundResult.length;
 }
 
 getAlertDialogAddProductLength({required String title}) {
@@ -194,9 +262,11 @@ getAlertDialogAddProductLength({required String title}) {
 
 getAlertDialogLength({required String currentPage, String? title}) {
   if (currentPage == salesN()) {
-    return getAlertDialogProductLength();
+    return getSalesAlertDialogProductLength();
   } else if (currentPage == addProductN()) {
     return getAlertDialogAddProductLength(title: title!);
+  } else if (currentPage == purchaseN()) {
+    return getPurchaseAlertDialogProductLength();
   }
 }
 
@@ -223,6 +293,32 @@ onSalesProductSelect({
         // if (title == transactionName()) {
         //   Get.delete<OtherTransactionAddController>();
         // }
+      },
+    );
+  }
+}
+
+onPurchaseProductSelect({
+  required BuildContext context,
+  String? title,
+  int? index,
+}) {
+  if (title == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    purchaseController.searchProductFoundResult =
+        purchaseController.products.obs;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialogOptionSelect(
+          currentPage: purchaseN(),
+          title: searchProductsN(),
+          index: index,
+        );
+      },
+    ).then(
+      (value) async {
+        await unFocus();
       },
     );
   }
@@ -272,6 +368,9 @@ onAlertDialogOptionSelect(
         productModel: productModel!, index: index!);
   } else if (currentPage == addProductN()) {
     onAddProductAlertDialogOptionSelect(title: title, data: data!);
+  } else if (currentPage == purchaseN()) {
+    onPurchaseSearchProductAlertDialogOptionSelect(
+        productModel: productModel!, index: index!);
   }
   Get.back();
 }
@@ -283,6 +382,16 @@ onSalesSearchProductAlertDialogOptionSelect(
     sales?.productName = productModel.name;
     sales?.productId = productModel.id;
     sales?.price = productModel.price;
+  });
+}
+
+onPurchaseSearchProductAlertDialogOptionSelect(
+    {required ProductModel productModel, required int index}) {
+  final PurchaseController purchaseController = Get.find();
+  purchaseController.purchaseModels[index].update((purchase) {
+    purchase?.productName = productModel.name;
+    purchase?.productId = productModel.id;
+    purchase?.price = productModel.price;
   });
 }
 

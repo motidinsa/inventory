@@ -50,7 +50,6 @@ class _ProductTextFieldState extends State<ProductTextField> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //   setState(() {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
           title: widget.title,
@@ -58,7 +57,6 @@ class _ProductTextFieldState extends State<ProductTextField> {
           index: widget.index,
         ),
       );
-      //   });
     });
     return TextFormField(
       controller: textEditingController,
@@ -83,7 +81,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
       decoration: InputDecoration(
         isDense: true,
         isCollapsed: true,
-        prefixIcon: hasPrefix(title: widget.title)
+        prefixIcon: hasPrefix(title: widget.title,currentPage: widget.currentPage)
             ? Padding(
                 padding: const EdgeInsets.only(
                     top: 12, bottom: 10, left: 12, right: 5),

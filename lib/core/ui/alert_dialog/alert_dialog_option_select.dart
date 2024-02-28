@@ -13,6 +13,8 @@ import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
+import '../../../purchase/controller/purchase_controller.dart';
+
 class AlertDialogOptionSelect extends StatefulWidget {
   final String title;
   final int? index;
@@ -79,15 +81,15 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                     if (widget.title == selectCategory()) {
                       item =
                           addProductController.categoryListFoundResult[index];
-                    } else if (widget.title == selectUomN()) {
-                      item = addProductController
-                          .unitOfMeasurementListFoundResult[index];
                     }
+                  }else if(widget.currentPage == purchaseN()){
+                    PurchaseController purchaseController = Get.find();
+                    product =  purchaseController.searchProductFoundResult[index];
                   }
                   return AlertDialogOptionItem(
                     title: widget.title,
-                    product: widget.currentPage == salesN() ? product : null,
-                    item: widget.currentPage != salesN() ? item : null,
+                    product:  product,
+                    item: product ==null ? item : null,
                     currentPage: widget.currentPage,
                     index: widget.index,
                   );

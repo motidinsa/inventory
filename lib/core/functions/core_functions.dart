@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
@@ -25,10 +26,6 @@ titleToData({required String title, required String currentPage, int? index}) {
     if (title == salesN()) {
       value = salesController.salesModels[index!].value.productName;
     }
-    if (title == discountN()) {
-      value = salesController.discount.value;
-    }
-    return value;
   } else if (currentPage == addProductN()) {
     AddProductController addProductController = Get.find();
     var items = {
@@ -36,5 +33,14 @@ titleToData({required String title, required String currentPage, int? index}) {
       uomN(): addProductController.productInfo.value.unitOfMeasurement,
     };
     return items[title];
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    if(title==purchaseN()){
+      value = purchaseController.purchaseModels[index!].value.productName;
+    }else if(title==priceN()){
+      value = purchaseController.purchaseModels[index!].value.price.toString();
+    }
+
   }
+  return value;
 }
