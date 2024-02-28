@@ -6,12 +6,11 @@ import 'package:my_inventory/add_product/ui/add_product_price_input.dart';
 import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 
-import '../../core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
@@ -51,54 +50,58 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return LoaderOverlay(
       useDefaultLoading: false,
-      overlayWidgetBuilder: (_) { //ignored progress for the moment
-        return const Center(child: CircularProgressIndicator(strokeWidth: 3,));
+      overlayWidgetBuilder: (_) {
+        return const Center(
+            child: CircularProgressIndicator(
+          strokeWidth: 3,
+        ));
       },
       child: Obx(() {
-          if(addProductController.isLocalSaveLoading.isTrue){
-            context.loaderOverlay.show();
-          }
-          else{
-            context.loaderOverlay.hide();
-          }
+        if (addProductController.isLocalSaveLoading.isTrue) {
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
+        }
 
         return BodyWrapper(
           pageName: addProductN(),
           body: ListView(
             children: [
               sizedBox(height: 20),
-              ElevatedCard(child: ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) => [0, 1].contains(index)
-                    ? ProductTextField(
-                  currentPage: addProductN(),
-                  title: titleList[index],
-                  labelText: titleList[index],
-                )
-                    : index != 4
-                    ? AddProductTitleWithTextField(
-                  title: titleList[index],
-                )
-                    : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: AddProductPriceInput(
-                        title: costN(),
-                      ),
-                    ),
-                    sizedBox(width: 20),
-                    Expanded(
-                      child: AddProductPriceInput(
-                        title: priceN(),
-                      ),
-                    ),
-                  ],
+              ElevatedCard(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (ctx, index) => [0, 1].contains(index)
+                      ? ProductTextField(
+                          currentPage: addProductN(),
+                          title: titleList[index],
+                          labelText: titleList[index],
+                        )
+                      : index != 4
+                          ? AddProductTitleWithTextField(
+                              title: titleList[index],
+                            )
+                          : Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: AddProductPriceInput(
+                                    title: costN(),
+                                  ),
+                                ),
+                                sizedBox(width: 20),
+                                Expanded(
+                                  child: AddProductPriceInput(
+                                    title: priceN(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                  separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                  itemCount: titleList.length,
                 ),
-                separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                itemCount: titleList.length,
-              ),),
+              ),
               SaveButton(
                 redirectFrom: addProductN(),
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../styles/styles.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class ElevatedCard extends StatelessWidget {
   final Widget child;

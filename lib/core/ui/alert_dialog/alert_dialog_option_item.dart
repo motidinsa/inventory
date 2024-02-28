@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
-
 import 'package:my_inventory/core/model/product/product_model.dart';
 
 class AlertDialogOptionItem extends StatelessWidget {
@@ -35,11 +34,12 @@ class AlertDialogOptionItem extends StatelessWidget {
       ),
       titleAlignment: ListTileTitleAlignment.center,
       onTap: () => onAlertDialogOptionSelect(
-          currentPage: currentPage,
-          title: title,
-          index: index,
-          data: item ?? product!.name,
-          productModel: product),
+        currentPage: currentPage,
+        title: title,
+        index: index,
+        data: item ?? product!.name,
+        productModel: product,
+      ),
     );
   }
 }

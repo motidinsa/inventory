@@ -36,7 +36,8 @@ class _ProductTextFieldState extends State<ProductTextField> {
   void initState() {
     if (widget.currentPage == addProductN()) {
       focusNode.addListener(
-        () => onAddProductFocusChange(
+        () => onFocusChange(
+          currentPage: widget.currentPage,
           title: widget.title,
           hasFocus: focusNode.hasFocus,
           data: textEditingController.text,
@@ -48,20 +49,17 @@ class _ProductTextFieldState extends State<ProductTextField> {
 
   @override
   Widget build(BuildContext context) {
-    // if (widget.currentPage == addProductN()) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        textEditingController.value = textEditingController.value.copyWith(
-          text: titleToData(
-            title: widget.title,
-            currentPage: widget.currentPage,
-            index: widget.index,
-          ),
-        );
-      });
+      //   setState(() {
+      textEditingController.value = textEditingController.value.copyWith(
+        text: titleToData(
+          title: widget.title,
+          currentPage: widget.currentPage,
+          index: widget.index,
+        ),
+      );
+      //   });
     });
-    // }
-
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,

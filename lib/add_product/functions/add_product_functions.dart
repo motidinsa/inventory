@@ -8,19 +8,29 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 titleToHint({String? title}) {
-  var titleToHint = {
-    productN(): enterProductNameN(),
-    descriptionN(): writeYourDescriptionN(),
-    categoryN(): selectItemN(),
-    productIdN(): optionalN(),
-    uomN(): selectItemN(),
-    productListN(): searchByProductNameOrIdN(),
-    salesN(): selectItemN(),
-    searchProductsN(): searchByProductNameOrIdN(),
-    selectCategory(): searchByCategoryNameN(),
-    selectUomN(): searchUomN(),
-  };
-  return titleToHint[title];
+  String? value;
+  if (title == productN()) {
+    value = enterProductNameN();
+  } else if (title == descriptionN()) {
+    value = writeYourDescriptionN();
+  } else if (title == categoryN()) {
+    value = selectItemN();
+  } else if (title == productIdN()) {
+    value = optionalN();
+  } else if (title == uomN()) {
+    value = selectItemN();
+  } else if (title == productListN()) {
+    value = searchByProductNameOrIdN();
+  } else if (title == salesN()) {
+    value = selectItemN();
+  } else if (title == searchProductsN()) {
+    value = searchByProductNameOrIdN();
+  } else if (title == selectCategory()) {
+    value = searchByCategoryNameN();
+  } else if (title == selectUomN()) {
+    value = searchUomN();
+  }
+  return value;
 }
 
 hasOption({String? title}) {
@@ -35,7 +45,8 @@ minimizePadding({String? title}) {
     searchProductsN(),
     productListN(),
     selectCategory(),
-    selectUomN()
+    selectUomN(),
+    discountN()
   ];
   return !items.contains(title);
 }
@@ -60,30 +71,50 @@ hasSearchIcon({String? title}) {
   return items.contains(title);
 }
 
-onAddProductFocusChange({
+onFocusChange({
+  required String currentPage,
   required String title,
   required bool hasFocus,
   required String data,
 }) {
   if (!hasFocus) {
-    final AddProductController addProductController = Get.find();
-    addProductController.productInfo.update((product) {
-      if (title == productN()) {
-        product?.name = data;
-      } else if (title == descriptionN()) {
-        product?.description = data;
-      } else if (title == productIdN()) {
-        product?.productId = data;
-      } else if (title == costN()) {
-        product?.cost = double.parse(data);
-      } else if (title == priceN()) {
-        product?.price = double.parse(data);
-      } else if (title == quantityOnHandN()) {
-        product?.quantityOnHand = int.parse(data);
-      } else if (title == reorderQuantityN()) {
-        product?.reorderQuantity = int.parse(data);
-      }
-    });
+    if (currentPage == addProductN()) {
+      onAddProductFocusChange(title: title, data: data);
+    } else if (currentPage == salesN()) {}
+  }
+}
+
+onAddProductFocusChange({
+  required String title,
+  required String data,
+}) {
+  final AddProductController addProductController = Get.find();
+  addProductController.productInfo.update((product) {
+    if (title == productN()) {
+      product?.name = data;
+    } else if (title == descriptionN()) {
+      product?.description = data;
+    } else if (title == productIdN()) {
+      product?.productId = data;
+    } else if (title == costN()) {
+      product?.cost = double.parse(data);
+    } else if (title == priceN()) {
+      product?.price = double.parse(data);
+    } else if (title == quantityOnHandN()) {
+      product?.quantityOnHand = int.parse(data);
+    } else if (title == reorderQuantityN()) {
+      product?.reorderQuantity = int.parse(data);
+    }
+  });
+}
+
+onSalesFocusChange({
+  required String title,
+  required String data,
+}) {
+  final SalesController salesController = Get.find();
+  if (title == discountN()) {
+    salesController.discount(data);
   }
 }
 
@@ -242,6 +273,7 @@ onAlertDialogOptionSelect(
   } else if (currentPage == addProductN()) {
     onAddProductAlertDialogOptionSelect(title: title, data: data!);
   }
+  Get.back();
 }
 
 onSalesSearchProductAlertDialogOptionSelect(

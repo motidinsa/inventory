@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
+import 'package:my_inventory/core/ui/save_button.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
-import 'package:smooth_corner/smooth_corner.dart';
-
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/sales/ui/product_item.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
-import '../../core/ui/elevated_card.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
 class Sales extends StatelessWidget {
   Sales({super.key});
@@ -82,15 +84,16 @@ class Sales extends StatelessWidget {
                       const Text('Customer:'),
                       sizedBox(width: 20),
                       SmoothContainer(
-                          padding: const EdgeInsets.all(5),
-                          side: const BorderSide(width: 2),
-                          child: Row(
-                            children: [
-                              const Text('Alen Smith'),
-                              sizedBox(width: 20),
-                              const Icon(Icons.people)
-                            ],
-                          ))
+                        padding: const EdgeInsets.all(5),
+                        side: const BorderSide(width: 2),
+                        child: Row(
+                          children: [
+                            const Text('Alen Smith'),
+                            sizedBox(width: 20),
+                            const Icon(Icons.people)
+                          ],
+                        ),
+                      )
                     ],
                   ),
                   sizedBox(height: 10),
@@ -166,67 +169,79 @@ class Sales extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text('Subtotal'),
-                      sizedBox(width: 5),
-                      Text(
-                        getSalesSubtotal(),
-                        style: const TextStyle(),
-                      )
-                    ],
-                  ),
-                  sizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text('Discount'),
-                      sizedBox(width: 5),
-                      const Text(
-                        '45',
-                        style: TextStyle(),
-                      )
-                    ],
-                  ),
-                  sizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text('Total'),
-                      sizedBox(width: 5),
-                      Text(
-                        getSalesTotal(),
-                        style: const TextStyle(),
-                      )
-                    ],
-                  ),
-                  sizedBox(height: 5),
-                ],
-              ),
-            ),
-            sizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OutlinedButton(onPressed: () {}, child: const Text('Cash')),
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text('Transfer'),
+                  const Spacer(
+                    flex: 6,
                   ),
+                  Expanded(
+                    flex: 6,
+                    child: Card(
+                      surfaceTintColor: Colors.white,
+                      shape: smoothRectangleBorder(
+                          radius: 15,
+                          side: const BorderSide(color: Colors.green, width: .5)),
+                      elevation: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: 'Subtotal: ',
+                                style: TextStyle(
+                                    fontWeight: bold(),
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic),
+                                // style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: getSalesSubtotal(),
+                                    style:
+                                        TextStyle(color: Colors.grey.shade600),
+                                  ),
+                                  // TextSpan(text: ' world!'),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: ProductTextField(
+                                currentPage: salesN(),
+                                title: discountN(),
+                                labelText: discountN(),
+                              ),
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                text: '${totalN()}: ',
+                                style: TextStyle(
+                                  fontWeight: bold(),
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: getSalesTotal(),
+                                    style:
+                                        TextStyle(color: Colors.grey.shade600),
+                                  ),
+                                  // TextSpan(text: ' world!'),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
-            sizedBox(height: 10),
-            Center(
-              child:
-                  OutlinedButton(onPressed: () {}, child: const Text('Credit')),
-            )
+            SaveButton(redirectFrom: salesN())
           ],
         );
       }),

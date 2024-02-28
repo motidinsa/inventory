@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-
+import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_model.dart';
@@ -40,30 +41,30 @@ class AddProductController extends GetxController {
   onAddProductSaveButtonPressed() async {
     isLocalSaveLoading(true);
     DateTime now = DateTime.now();
-     Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
-    // var productsBox = Hive.box<ProductModel>('products');
-    // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
-    // String key = dateFormatter.format(now);
-    // await productsBox.put(
-    //   key,
-    //   ProductModel(
-    //     name: productInfo.value.name,
-    //     description: productInfo.value.description,
-    //     categoryId: productInfo.value.categoryId,
-    //     categoryName: productInfo.value.categoryName,
-    //     productId: productInfo.value.productId,
-    //     cost: productInfo.value.cost,
-    //     price: productInfo.value.price,
-    //     createdByUserId: productInfo.value.createdByUserId,
-    //     dateCreated: productInfo.value.dateCreated,
-    //     dateModified: productInfo.value.dateModified,
-    //     quantityOnHand: productInfo.value.quantityOnHand,
-    //     reorderQuantity: productInfo.value.reorderQuantity,
-    //     unitOfMeasurement: productInfo.value.unitOfMeasurement,
-    //     id: key,
-    //   ),
-    // );
-    // isLocalSaveLoading(false);
-    // Get.back();
+    // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
+    var productsBox = Hive.box<ProductModel>('products');
+    final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+    String key = dateFormatter.format(now);
+    await productsBox.put(
+      key,
+      ProductModel(
+        name: productInfo.value.name,
+        description: productInfo.value.description,
+        categoryId: productInfo.value.categoryId,
+        categoryName: productInfo.value.categoryName,
+        productId: productInfo.value.productId,
+        cost: productInfo.value.cost,
+        price: productInfo.value.price,
+        createdByUserId: productInfo.value.createdByUserId,
+        dateCreated: productInfo.value.dateCreated,
+        dateModified: productInfo.value.dateModified,
+        quantityOnHand: productInfo.value.quantityOnHand,
+        reorderQuantity: productInfo.value.reorderQuantity,
+        unitOfMeasurement: productInfo.value.unitOfMeasurement,
+        id: key,
+      ),
+    );
+    isLocalSaveLoading(false);
+    Get.back();
   }
 }

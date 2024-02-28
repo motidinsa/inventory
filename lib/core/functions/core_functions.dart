@@ -10,16 +10,23 @@ onSaveButtonPressed({required String redirectFrom}) {
   if (redirectFrom == addProductN()) {
     AddProductController addProductController = Get.find();
     addProductController.onAddProductSaveButtonPressed();
+  } else if (redirectFrom == salesN()) {
+    SalesController salesController = Get.find();
+    salesController.onAddProductSaveButtonPressed();
   }
 }
 
 titleToData({required String title, required String currentPage, int? index}) {
+  String? value;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    var items = {
-      salesN(): salesController.salesModel[index!].value.productName,
-    };
-    return items[title];
+    if (title == salesN()) {
+      value = salesController.salesModel[index!].value.productName;
+    }
+    if (title == discountN()) {
+      value = salesController.discount.value;
+    }
+    return value;
   } else if (currentPage == addProductN()) {
     AddProductController addProductController = Get.find();
     var items = {
