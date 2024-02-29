@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 
+import '../../functions/alert_dialog/alert_dialog_functions.dart';
+
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String currentPage;
