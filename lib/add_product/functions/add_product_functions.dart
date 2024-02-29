@@ -28,7 +28,7 @@ titleToHint({String? title}) {
     value = selectItemN();
   } else if (title == searchProductsN()) {
     value = searchByProductNameOrIdN();
-  } else if (title == selectCategory()) {
+  } else if (title == selectCategoryN()) {
     value = searchByCategoryNameN();
   } else if (title == selectUomN()) {
     value = searchUomN();
@@ -47,7 +47,7 @@ minimizePadding({String? title}) {
     descriptionN(),
     searchProductsN(),
     productListN(),
-    selectCategory(),
+    selectCategoryN(),
     selectUomN(),
     discountN()
   ];
@@ -71,7 +71,7 @@ hasSearchIcon({String? title}) {
   var items = [
     productListN(),
     searchProductsN(),
-    selectCategory(),
+    selectCategoryN(),
     selectUomN(),
   ];
   return items.contains(title);
@@ -170,12 +170,11 @@ onTextFieldChange({
 }) {
   if (currentPage == salesN() && title == searchProductsN()) {
     SalesController salesController = Get.find();
-    salesController.searchProductFoundResult = salesController.products
+    salesController.searchProductFoundResult(salesController.products
         .where((product) =>
             product.name.toLowerCase().contains(data.toLowerCase()))
-        .toList()
-        .obs;
-  } else if (currentPage == salesN() && title == quantity()) {
+        .toList());
+  } else if (currentPage == salesN() && title == quantityN()) {
     SalesController salesController = Get.find();
     salesController.salesModels[index!].update((sales) {
       if (data.isNotEmpty) {
@@ -186,29 +185,27 @@ onTextFieldChange({
         sales?.totalAmount = 0;
       }
     });
-  } else if (currentPage == addProductN() && title == selectCategory()) {
+  } else if (currentPage == addProductN() && title == selectCategoryN()) {
     AddProductController addProductController = Get.find();
-    addProductController.categoryListFoundResult = addProductController
+    addProductController.categoryListFoundResult(addProductController
         .categoryList
         .where((categoryName) =>
             categoryName.toLowerCase().contains(data.toLowerCase()))
-        .toList()
-        .obs;
+        .toList());
   } else if (currentPage == addProductN() && title == selectUomN()) {
     AddProductController addProductController = Get.find();
-    addProductController.unitOfMeasurementListFoundResult = addProductController
+    addProductController.unitOfMeasurementListFoundResult(addProductController
         .unitOfMeasurementList
         .where((categoryName) =>
             categoryName.toLowerCase().contains(data.toLowerCase()))
-        .toList()
-        .obs;
+        .toList());
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
     purchaseController.purchaseModels[index!].update((purchase) {
-      if (title == quantity()) {
+      if (title == quantityN()) {
         if (data.isEmpty) {
-            purchase?.quantity = 0;
-            purchase?.totalAmount = 0;
+          purchase?.quantity = 0;
+          purchase?.totalAmount = 0;
         } else {
           if (purchase?.price != 0) {
             purchase?.quantity = int.parse(data);
@@ -218,16 +215,16 @@ onTextFieldChange({
             purchase?.totalAmount = 0;
           }
         }
-      }else if(title == priceN()) {
+      } else if (title == priceN()) {
         if (data.isEmpty) {
-          purchase?.quantity = 0;
+          purchase?.price = 0;
           purchase?.totalAmount = 0;
         } else {
           if (purchase?.quantity != 0) {
-            purchase?.quantity = int.parse(data);
-            purchase?.totalAmount = int.parse(data) * purchase.price;
-          } else if (purchase?.price == 0) {
-            purchase?.quantity = int.parse(data);
+            purchase?.price = double.parse(data);
+            purchase?.totalAmount = double.parse(data) * purchase.quantity;
+          } else if (purchase?.quantity == 0) {
+            purchase?.price = double.parse(data);
             purchase?.totalAmount = 0;
           }
         }
@@ -253,7 +250,7 @@ getPurchaseAlertDialogProductLength() {
 
 getAlertDialogAddProductLength({required String title}) {
   AddProductController addProductController = Get.find();
-  if (title == selectCategory()) {
+  if (title == selectCategoryN()) {
     return addProductController.categoryListFoundResult.length;
   } else if (title == selectUomN()) {
     return addProductController.unitOfMeasurementListFoundResult.length;
@@ -277,7 +274,7 @@ onSalesProductSelect({
 }) {
   if (title == salesN()) {
     SalesController salesController = Get.find();
-    salesController.searchProductFoundResult = salesController.products.obs;
+    salesController.searchProductFoundResult(salesController.products);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -328,21 +325,21 @@ onAddProductTextFieldPressed(
     {required String title, required BuildContext context}) {
   final AddProductController addProductController = Get.find();
   Map<String, List<String>> itemsWithList = {
-    categoryN(): addProductController.categoryList,
+    categoryN(): addProductController.categoryListFoundResult,
     uomN(): addProductController.unitOfMeasurementList,
   };
 
   if (itemsWithList.keys.contains(title)) {
-    addProductController.categoryListFoundResult =
-        addProductController.categoryList;
-    addProductController.unitOfMeasurementListFoundResult =
-        addProductController.unitOfMeasurementList;
+    addProductController
+        .categoryListFoundResult(addProductController.categoryList.toList());
+    addProductController.unitOfMeasurementListFoundResult(
+        addProductController.unitOfMeasurementList.toList());
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
           currentPage: addProductN(),
-          title: title == categoryN() ? selectCategory() : selectUomN(),
+          title: title == categoryN() ? selectCategoryN() : selectUomN(),
           itemList: itemsWithList[title]!,
         );
       },
@@ -400,7 +397,7 @@ onAddProductAlertDialogOptionSelect(
   final AddProductController addProductController = Get.find();
 
   addProductController.productInfo.update((product) {
-    if (title == selectCategory()) {
+    if (title == selectCategoryN()) {
       product?.categoryName = data;
     } else if (title == selectUomN()) {
       product?.unitOfMeasurement = data;

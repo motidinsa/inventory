@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
@@ -40,7 +38,7 @@ class ProductItem extends StatelessWidget {
                 flex: 3,
                 child: ProductTextField(
                   currentPage: currentPage,
-                  title: quantity(),
+                  title: quantityN(),
                   index: index,
                 ),
               ),

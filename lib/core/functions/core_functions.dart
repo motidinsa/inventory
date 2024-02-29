@@ -25,6 +25,13 @@ titleToData({required String title, required String currentPage, int? index}) {
     SalesController salesController = Get.find();
     if (title == salesN()) {
       value = salesController.salesModels[index!].value.productName;
+    } else if (title == quantityN()) {
+      value = emptyIfDefaultValue(
+          salesController.salesModels[index!].value.quantity);
+    } else if (title == discountN()) {
+      value = salesController.discount.value;
+    } else if (title == searchProductsN()) {
+      value = salesController.emptyString.value;
     }
   } else if (currentPage == addProductN()) {
     AddProductController addProductController = Get.find();
@@ -35,12 +42,34 @@ titleToData({required String title, required String currentPage, int? index}) {
     return items[title];
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
-    if(title==purchaseN()){
+    if (title == purchaseN()) {
       value = purchaseController.purchaseModels[index!].value.productName;
-    }else if(title==priceN()){
+    } else if (title == priceN()) {
       value = purchaseController.purchaseModels[index!].value.price.toString();
     }
-
   }
   return value;
+}
+
+emptyIfNull(String? data) {
+  if (data != null) {
+    return data;
+  }
+  return '';
+}
+
+emptyIfDefaultValue(var data) {
+  if (data != 0) {
+    return data;
+  }
+  return '';
+}
+
+nullIfEmpty(String? data) {
+  if (data != null) {
+    if (data.isEmpty) {
+      return null;
+    }
+  }
+  return data;
 }

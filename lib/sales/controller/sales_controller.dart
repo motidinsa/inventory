@@ -11,6 +11,7 @@ class SalesController extends GetxController {
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
+  RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
   var salesModels = [
     SalesModel(
