@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
-import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../functions/core_functions.dart';
-import '../../functions/product/product_text_field_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 
 class ProductTextField extends StatefulWidget {
   final String currentPage;
@@ -62,9 +60,6 @@ class _ProductTextFieldState extends State<ProductTextField> {
       return TextFormField(
         controller: textEditingController,
         focusNode: focusNode,
-        inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'^[-+]?[0-9]+\.?[0-9]*$')),
-        ],
         maxLines: widget.labelText == descriptionN() ? 2 : 1,
         readOnly: hasOption(title: widget.title),
         onChanged: (data) => onTextFieldChange(

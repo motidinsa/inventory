@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import '../../constants/widget_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   const ProductProfileInfo({super.key});

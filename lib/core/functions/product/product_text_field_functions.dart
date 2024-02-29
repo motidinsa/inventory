@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../add_product/functions/add_product_functions.dart';
-import '../../../purchase/functions/purchase_functions.dart';
-import '../../../sales/functions/sales_functions.dart';
-import '../../constants/name_constants.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 
 titleToHint({String? title}) {
   String? value;

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
-import '../../../sales/functions/sales_functions.dart';
-import '../../constants/name_constants.dart';
-import '../../functions/product/product_functions.dart';
-import '../../styles/styles.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/product/product_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductPriceSummary extends StatelessWidget {
   final String currentPage;

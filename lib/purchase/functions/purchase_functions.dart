@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/functions/core_functions.dart';
-import '../../core/model/product/product_model.dart';
-import '../controller/purchase_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 onPurchaseTextFieldChange({
   String? title,
@@ -21,32 +21,28 @@ onPurchaseTextFieldChange({
           .toList());
     } else if (title == quantityN()) {
       if (data.isEmpty) {
-        purchase?.quantity = 0;
+        purchase?.quantity = '';
         purchase?.totalAmount = 0;
       } else {
-        if (purchase?.price != 0.0) {
-          purchase?.quantity = int.parse(data);
-          purchase?.totalAmount = int.parse(data) * purchase.price;
-        } else if (purchase?.price == 0) {
-          int? num = int.tryParse(data);
-          if(num!=null){
-            purchase?.quantity = num;
-            purchase?.totalAmount = 0;
-          }
-
+        purchase?.quantity = data;
+        if (isNumeric(purchase!.quantity) && isNumeric(purchase.price)) {
+          purchase.totalAmount =
+              double.parse(data) * double.parse(purchase.price);
+        } else {
+          purchase.totalAmount = 0;
         }
       }
     } else if (title == priceN()) {
       if (data.isEmpty) {
-        purchase?.price = 0;
+        purchase?.price = '';
         purchase?.totalAmount = 0;
       } else {
-        if (purchase?.quantity != 0) {
-          purchase?.price = double.parse(data);
-          purchase?.totalAmount = double.parse(data) * purchase.quantity;
-        } else if (purchase?.quantity == 0) {
-          purchase?.price = double.parse(data);
-          purchase?.totalAmount = 0;
+        purchase?.price = data;
+        if (isNumeric(purchase!.quantity) && isNumeric(purchase.price)) {
+          purchase.totalAmount =
+              double.parse(data) * double.parse(purchase.quantity);
+        } else {
+          purchase.totalAmount = 0;
         }
       }
     }
@@ -69,9 +65,10 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   purchaseController.purchaseModels[index].update((purchase) {
     purchase?.productName = productModel.name;
     purchase?.productId = productModel.id;
-    purchase?.price = productModel.price;
-    if (purchase?.quantity != 0) {
-      purchase?.totalAmount = purchase.quantity * productModel.price;
+    purchase?.price = NumberFormat("###.##").format(productModel.price);
+    if (purchase!.quantity.isNotEmpty) {
+      purchase.totalAmount =
+          double.parse(purchase.quantity) * productModel.price;
     }
   });
 }
@@ -85,7 +82,9 @@ getPurchaseSubtotal() {
   PurchaseController purchaseController = Get.find();
   double total = 0;
   for (var element in purchaseController.purchaseModels) {
-    total += element.value.price;
+    if (isNumeric(element.value.price)) {
+      total += double.parse(element.value.price);
+    }
   }
   return total.toString();
 }

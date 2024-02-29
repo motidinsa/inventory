@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
@@ -11,6 +10,7 @@ bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
 }
+
 onSaveButtonPressed({required String redirectFrom}) async {
   await unFocus();
   if (redirectFrom == addProductN()) {
@@ -49,10 +49,11 @@ titleToData({required String title, required String currentPage, int? index}) {
     if (title == purchaseN()) {
       value = purchaseController.purchaseModels[index!].value.productName;
     } else if (title == quantityN()) {
-      value = emptyIfDefaultValue(
-          purchaseController.purchaseModels[index!].value.quantity);
+      value = purchaseController.purchaseModels[index!].value.quantity;
     } else if (title == priceN()) {
-      value = purchaseController.purchaseModels[index!].value.price.toString();
+      // value = NumberFormat("###.##")
+      //     .format(purchaseController.purchaseModels[index!].value.price);
+      value = purchaseController.purchaseModels[index!].value.price;
     } else if (title == discountN()) {
       value = purchaseController.discount.value;
     } else if (title == searchProductsN()) {
@@ -84,4 +85,12 @@ nullIfEmpty(String? data) {
     }
   }
   return data;
+}
+
+onAddIconPressed({required String currentPage}) {
+  if (currentPage == salesN()) {
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    purchaseController.addPurchaseProduct();
+  } else if (currentPage == addProductN()) {}
 }

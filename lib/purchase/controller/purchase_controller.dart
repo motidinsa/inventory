@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/sales/model/sales_model.dart';
 
-import '../model/purchase_model.dart';
+import 'package:my_inventory/purchase/model/purchase_model.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
@@ -22,10 +22,10 @@ class PurchaseController extends GetxController {
       dateModified: DateTime.now(),
       productId: '',
       productName: '',
-      quantity: 0,
+      quantity: '',
       reference: '',
       totalAmount: 0,
-      price: 0,
+      price: '',
       id: '',
     ).obs
   ].obs;
@@ -38,7 +38,7 @@ class PurchaseController extends GetxController {
     super.onInit();
   }
 
-  addSalesProduct() {
+  addPurchaseProduct() {
     purchaseModels.add(
       PurchaseModel(
         date: DateTime.now(),
@@ -46,10 +46,10 @@ class PurchaseController extends GetxController {
         dateModified: DateTime.now(),
         productId: '',
         productName: '',
-        quantity: 0,
+        quantity: '',
         reference: '',
         totalAmount: 0,
-        price: 0,
+        price: '',
         id: '',
       ).obs,
     );

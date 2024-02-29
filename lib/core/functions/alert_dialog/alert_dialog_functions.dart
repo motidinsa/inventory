@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../../add_product/functions/add_product_functions.dart';
-import '../../../purchase/functions/purchase_functions.dart';
-import '../../../sales/functions/sales_functions.dart';
-import '../../constants/name_constants.dart';
-import '../../model/product/product_model.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/model/product/product_model.dart';
 
 getAlertDialogLength({required String currentPage, String? title}) {
   if (currentPage == salesN()) {

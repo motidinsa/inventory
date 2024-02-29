@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/model/product/product_model.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/model/product/product_model.dart';
 
 onSalesTextFieldChange({String? title,
   required String data,

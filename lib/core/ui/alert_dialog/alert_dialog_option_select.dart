@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
-import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -11,8 +10,8 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart'
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../../purchase/controller/purchase_controller.dart';
-import '../../functions/alert_dialog/alert_dialog_functions.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 
 class AlertDialogOptionSelect extends StatefulWidget {
   final String title;

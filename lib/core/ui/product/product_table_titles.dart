@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/name_constants.dart';
-import '../../constants/widget_constants.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class ProductTableTitles extends StatelessWidget {
   final String currentPage;
@@ -30,7 +30,7 @@ class ProductTableTitles extends StatelessWidget {
           sizedBox(width: 15),
            Expanded(
             flex:currentPage==purchaseN()?4: 3,
-            child: Text(
+            child: const Text(
               'Price',
               textAlign: TextAlign.center,
             ),

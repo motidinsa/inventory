@@ -29,13 +29,13 @@ class PurchaseModel extends HiveObject {
   String? customerName;
 
   @HiveField(8)
-  int quantity;
+  String quantity;
 
   @HiveField(9)
   double totalAmount;
 
   @HiveField(10)
-  double price;
+  String price;
 
   @HiveField(11)
   String id;
