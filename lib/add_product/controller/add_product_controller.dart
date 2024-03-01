@@ -32,7 +32,7 @@ class AddProductController extends GetxController {
           createdByUserId: -1,
           dateCreated: DateTime.now(),
           dateModified: DateTime.now(),
-          quantityOnHand: -1,
+          quantityOnHand: '',
           reorderQuantity: -1,
           unitOfMeasurement: 'Pcs',
           id: '')

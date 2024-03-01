@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
@@ -19,6 +20,9 @@ onSaveButtonPressed({required String redirectFrom}) async {
   } else if (redirectFrom == salesN()) {
     SalesController salesController = Get.find();
     salesController.saveSalesProductToDB();
+  } else if (redirectFrom == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    purchaseController.savePurchaseProductToDB();
   }
   Get.back();
 }
@@ -51,14 +55,15 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == quantityN()) {
       value = purchaseController.purchaseModels[index!].value.quantity;
     } else if (title == priceN()) {
-      // value = NumberFormat("###.##")
-      //     .format(purchaseController.purchaseModels[index!].value.price);
       value = purchaseController.purchaseModels[index!].value.price;
     } else if (title == discountN()) {
       value = purchaseController.discount.value;
     } else if (title == searchProductsN()) {
       value = purchaseController.emptyString.value;
     }
+  } else if (currentPage == productListN()) {
+    ProductListController productListController = Get.find();
+    value = productListController.emptyValue.value;
   }
   return value;
 }

@@ -1,31 +1,40 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
+import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-onSalesTextFieldChange({String? title,
+import 'package:my_inventory/core/functions/core_functions.dart';
+
+onSalesTextFieldChange({
+  String? title,
   required String data,
-  int? index,}){
-  if(title == searchProductsN()){
+  int? index,
+}) {
+  if (title == searchProductsN()) {
     SalesController salesController = Get.find();
     salesController.searchProductFoundResult(salesController.products
         .where((product) =>
-        product.name.toLowerCase().contains(data.toLowerCase()))
+            product.name.toLowerCase().contains(data.toLowerCase()))
         .toList());
-  }else if(title == quantityN()){
+  } else if (title == quantityN()) {
     SalesController salesController = Get.find();
     salesController.salesModels[index!].update((sales) {
-      if (data.isNotEmpty) {
-        sales?.quantity = int.parse(data);
-        sales?.totalAmount = int.parse(data) * sales.price;
-      } else {
-        sales?.quantity = 0;
+      if (data.isEmpty) {
+        sales?.quantity = '';
         sales?.totalAmount = 0;
+      } else {
+        sales?.quantity = data;
+        if (isNumeric(sales!.quantity) && isNumeric(sales.price)) {
+          sales.totalAmount = double.parse(data) * double.parse(sales.price);
+        } else {
+          sales.totalAmount = 0;
+        }
       }
     });
   }
 }
+
 onSalesProductFocusChange({
   required String title,
   required String data,
@@ -42,9 +51,9 @@ onSalesSearchProductAlertDialogOptionSelect(
   salesController.salesModels[index].update((sales) {
     sales?.productName = productModel.name;
     sales?.productId = productModel.id;
-    sales?.price = productModel.price;
-    if(sales?.quantity!=0){
-      sales?.totalAmount =sales.quantity* productModel.price;
+    sales?.price = NumberFormat("#,###.##").format(productModel.price);
+    if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+      sales.totalAmount = double.parse(sales.quantity) * productModel.price;
     }
   });
 }
@@ -58,7 +67,9 @@ getSalesSubtotal() {
   SalesController salesController = Get.find();
   double total = 0;
   for (var element in salesController.salesModels) {
-    total += element.value.price;
+    if (isNumeric(element.value.price)) {
+      total += double.parse(element.value.price);
+    }
   }
   return total.toString();
 }

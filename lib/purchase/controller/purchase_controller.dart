@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
-import 'package:my_inventory/sales/model/sales_model.dart';
-
 import 'package:my_inventory/purchase/model/purchase_model.dart';
 
 class PurchaseController extends GetxController {
@@ -55,11 +53,11 @@ class PurchaseController extends GetxController {
     );
   }
 
-  saveSalesProductToDB() async {
-    isLocalSaveLoading(false);
-    var salesBox = Hive.box<SalesModel>('sales');
-    var productsBox = Hive.box<ProductModel>('products');
-    final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+  savePurchaseProductToDB() async {
+    // isLocalSaveLoading(false);
+    // var salesBox = Hive.box<SalesModel>('sales');
+    // var productsBox = Hive.box<ProductModel>('products');
+    // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     // for (var element in purchaseModels) {
     //   String key = dateFormatter.format(DateTime.now());
     //   await salesBox.put(
@@ -85,7 +83,43 @@ class PurchaseController extends GetxController {
     //   productsBox.put(element.value.productId, currentProduct);
     // }
 
-    isLocalSaveLoading(false);
+    // isLocalSaveLoading(false);
     // Get.back();
+
+    isLocalSaveLoading(true);
+    var purchasesBox = Hive.box<PurchaseModel>('purchases');
+    var productsBox = Hive.box<ProductModel>('products');
+    final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+    for (var element in purchaseModels) {
+      String key = dateFormatter.format(DateTime.now());
+      await purchasesBox.put(
+        key,
+        PurchaseModel(
+          id: key,
+          date: element.value.date,
+          dateAdded: now,
+          dateModified: now,
+          price: element.value.price,
+          totalAmount: element.value.totalAmount,
+          productId: element.value.productId,
+          customerId: element.value.customerId,
+          customerName: element.value.customerName,
+          productName: element.value.productName,
+          quantity: element.value.quantity,
+          reference: element.value.reference,
+          vendorId: element.value.vendorId,
+          vendorName: element.value.vendorName,
+        ),
+      );
+
+      var currentProduct = productsBox.get(element.value.productId);
+      currentProduct!.quantityOnHand =
+          (double.parse(currentProduct.quantityOnHand) +
+                  double.parse(element.value.quantity))
+              .toString();
+      await productsBox.put(element.value.productId, currentProduct);
+    }
+
+    isLocalSaveLoading(false);
   }
 }

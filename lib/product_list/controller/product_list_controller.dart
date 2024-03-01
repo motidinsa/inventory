@@ -8,6 +8,7 @@ class ProductListController extends GetxController {
     'cat 2',
     'cat 3',
   ].obs;
+  var emptyValue = ''.obs;
   var unitOfMeasurementList = ['Pcs', 'Kg', 'Lt'].obs;
   // var productInfo = ProductModel(
   //   name: '',

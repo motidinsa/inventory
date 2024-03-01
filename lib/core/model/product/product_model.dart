@@ -26,7 +26,7 @@ class ProductModel extends HiveObject {
   double price;
 
   @HiveField(7)
-  int quantityOnHand;
+  String quantityOnHand;
 
   @HiveField(8)
   int reorderQuantity;

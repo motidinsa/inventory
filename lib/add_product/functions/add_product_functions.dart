@@ -7,22 +7,24 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-onAddProductTextFieldChange({String? title,
+onAddProductTextFieldChange({
+  String? title,
   required String data,
-  int? index,}){
-  if(title == selectCategoryN()){
+  int? index,
+}) {
+  if (title == selectCategoryN()) {
     AddProductController addProductController = Get.find();
     addProductController.categoryListFoundResult(addProductController
         .categoryList
         .where((categoryName) =>
-        categoryName.toLowerCase().contains(data.toLowerCase()))
+            categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
-  }else if(title == selectUomN()){
+  } else if (title == selectUomN()) {
     AddProductController addProductController = Get.find();
     addProductController.unitOfMeasurementListFoundResult(addProductController
         .unitOfMeasurementList
         .where((categoryName) =>
-        categoryName.toLowerCase().contains(data.toLowerCase()))
+            categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
   }
 }
@@ -44,7 +46,7 @@ onAddProductFocusChange({
     } else if (title == priceN()) {
       product?.price = double.parse(data);
     } else if (title == quantityOnHandN()) {
-      product?.quantityOnHand = int.parse(data);
+      product?.quantityOnHand = data;
     } else if (title == reorderQuantityN()) {
       product?.reorderQuantity = int.parse(data);
     }
@@ -146,6 +148,7 @@ onAddProductTextFieldPressed(
     );
   }
 }
+
 onAddProductAlertDialogOptionSelect(
     {required String title, required String data}) {
   final AddProductController addProductController = Get.find();

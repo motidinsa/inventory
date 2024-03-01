@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
@@ -66,7 +65,7 @@ onPurchaseSearchProductAlertDialogOptionSelect(
     purchase?.productName = productModel.name;
     purchase?.productId = productModel.id;
     purchase?.price = NumberFormat("###.##").format(productModel.price);
-    if (purchase!.quantity.isNotEmpty) {
+    if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
       purchase.totalAmount =
           double.parse(purchase.quantity) * productModel.price;
     }

@@ -29,13 +29,13 @@ class SalesModel extends HiveObject {
   String? customerName;
 
   @HiveField(8)
-  int quantity;
+  String quantity;
 
   @HiveField(9)
   double totalAmount;
 
   @HiveField(10)
-  double price;
+  String price;
 
   @HiveField(11)
   String id;
@@ -53,8 +53,8 @@ class SalesModel extends HiveObject {
     required this.dateAdded,
     required this.dateModified,
     required this.reference,
-     this.customerId,
-     this.customerName,
+    this.customerId,
+    this.customerName,
     required this.quantity,
     required this.totalAmount,
     required this.price,

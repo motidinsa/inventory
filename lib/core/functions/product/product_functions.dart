@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 getSubtotal({required String currentPage}) {
   if (currentPage == salesN()) {
@@ -25,7 +24,8 @@ getTotal({required String currentPage}) {
 getProductPrice({required String currentPage, required int index}) {
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    return salesController.salesModels[index].value.price;
+    String currentPrice = salesController.salesModels[index].value.price;
+    return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.purchaseModels[index].value.price;

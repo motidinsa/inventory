@@ -22,10 +22,10 @@ class SalesController extends GetxController {
       customerName: '',
       productId: '',
       productName: '',
-      quantity: 0,
+      quantity: '',
       reference: '',
       totalAmount: 0,
-      price: 0,
+      price: '',
       id: '',
     ).obs
   ].obs;
@@ -48,17 +48,17 @@ class SalesController extends GetxController {
         customerName: '',
         productId: '',
         productName: '',
-        quantity: 0,
+        quantity: '',
         reference: '',
         totalAmount: 0,
-        price: 0,
+        price: '',
         id: '',
       ).obs,
     );
   }
 
   saveSalesProductToDB() async {
-    isLocalSaveLoading(false);
+    isLocalSaveLoading(true);
     var salesBox = Hive.box<SalesModel>('sales');
     var productsBox = Hive.box<ProductModel>('products');
     final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
@@ -79,12 +79,17 @@ class SalesController extends GetxController {
           productName: element.value.productName,
           quantity: element.value.quantity,
           reference: element.value.reference,
+          vendorId: element.value.vendorId,
+          vendorName: element.value.vendorName,
         ),
       );
 
       var currentProduct = productsBox.get(element.value.productId);
-      currentProduct!.quantityOnHand -= element.value.quantity;
-      productsBox.put(element.value.productId, currentProduct);
+      currentProduct!.quantityOnHand =
+          (double.parse(currentProduct.quantityOnHand) -
+                  double.parse(element.value.quantity))
+              .toString();
+      await productsBox.put(element.value.productId, currentProduct);
     }
 
     isLocalSaveLoading(false);
