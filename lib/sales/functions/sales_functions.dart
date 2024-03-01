@@ -51,7 +51,7 @@ onSalesSearchProductAlertDialogOptionSelect(
   salesController.salesModels[index].update((sales) {
     sales?.productName = productModel.name;
     sales?.productId = productModel.id;
-    sales?.price = NumberFormat("#,###.##").format(productModel.price);
+    sales?.price = productModel.price.toString();
     if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
       sales.totalAmount = double.parse(sales.quantity) * productModel.price;
     }

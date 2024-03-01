@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -30,7 +31,7 @@ class Sales extends StatelessWidget {
               verticalMargin: 20,
               blurRadius: 10,
               horizontalPadding: 20,
-              child: ProductProfileInfo(),
+              child: ProductProfileInfo(page: PageName.sales,),
             ),
             sizedBox(height: 10),
             const Divider(

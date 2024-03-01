@@ -3,8 +3,13 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 import 'package:my_inventory/core/constants/widget_constants.dart';
 
+import '../../model/page_name_enum.dart';
+import '../../styles/styles.dart';
+
 class ProductProfileInfo extends StatelessWidget {
-  const ProductProfileInfo({super.key});
+  final PageName page;
+
+  const ProductProfileInfo({super.key, required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +20,48 @@ class ProductProfileInfo extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Row(
             children: [
-              const Text('Sales'),
+              Spacer(),
               Expanded(
                 child: Align(
-                  alignment: Alignment.centerRight,
+                  // alignment: Alignment.centerRight,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Date',
-                            style: TextStyle(color: Colors.orange),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Date: ',
+                          style: TextStyle(
+                            fontWeight: bold(),
+                            fontSize: 18,
+                            color: Colors.orange,
+                            fontStyle: FontStyle.italic,
                           ),
-                          sizedBox(width: 10),
-                          const Text('Feb 17th, 2024')
-                        ],
-                      ),
+                          // style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Feb 17th, 2024',
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 16,
+                              ),
+                            ),
+                            // TextSpan(text: ' world!'),
+                          ],
+                        ),
+                      )
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.min,
+                      //
+                      //   children: [
+                      //     const Text(
+                      //       'Date',
+                      //       style: TextStyle(color: Colors.orange),
+                      //     ),
+                      //     sizedBox(width: 10),
+                      //     const Text('Feb 17th, 2024',)
+                      //   ],
+                      // ),
+                      ,
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
