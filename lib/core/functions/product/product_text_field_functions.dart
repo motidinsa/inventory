@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -29,6 +28,8 @@ titleToHint({String? title}) {
     value = searchByCategoryNameN();
   } else if (title == selectUomN()) {
     value = searchUomN();
+  } else if (title == defaultCustomerN) {
+    value = defaultCustomerN;
   }
   return value;
 }
@@ -61,8 +62,15 @@ onTextFieldPressed(
     onPurchaseProductSelect(context: context, title: title, index: index);
   }
 }
+
 hasOption({String? title}) {
-  var itemsWithOption = [categoryN(), uomN(), salesN(), purchaseN()];
+  var itemsWithOption = [
+    categoryN(),
+    uomN(),
+    salesN(),
+    purchaseN(),
+    defaultCustomerN
+  ];
   return itemsWithOption.contains(title);
 }
 
@@ -101,6 +109,7 @@ hasSearchIcon({String? title}) {
   ];
   return items.contains(title);
 }
+
 onFocusChange({
   required String currentPage,
   required String title,

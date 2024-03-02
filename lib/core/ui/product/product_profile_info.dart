@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_corner/smooth_corner.dart';
-
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
 
-import '../../model/page_name_enum.dart';
-import '../../styles/styles.dart';
+import 'package:my_inventory/core/model/page_name_enum.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   final PageName page;
@@ -16,99 +16,67 @@ class ProductProfileInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: Row(
-            children: [
-              Spacer(),
-              Expanded(
-                child: Align(
-                  // alignment: Alignment.centerRight,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          text: 'Date: ',
-                          style: TextStyle(
-                            fontWeight: bold(),
-                            fontSize: 18,
-                            color: Colors.orange,
-                            fontStyle: FontStyle.italic,
-                          ),
-                          // style: DefaultTextStyle.of(context).style,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Feb 17th, 2024',
-                              style: TextStyle(
-                                color: Colors.grey.shade600,
-                                fontSize: 16,
-                              ),
-                            ),
-                            // TextSpan(text: ' world!'),
-                          ],
-                        ),
-                      )
-                      // Row(
-                      //   mainAxisSize: MainAxisSize.min,
-                      //
-                      //   children: [
-                      //     const Text(
-                      //       'Date',
-                      //       style: TextStyle(color: Colors.orange),
-                      //     ),
-                      //     sizedBox(width: 10),
-                      //     const Text('Feb 17th, 2024',)
-                      //   ],
-                      // ),
-                      ,
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Ref',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(color: Colors.orange),
-                          ),
-                          sizedBox(width: 10),
-                          SmoothContainer(
-                              padding: const EdgeInsets.all(5),
-                              side: const BorderSide(width: 2),
-                              child: const Text('SO-0097'))
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        // sizedBox(height: 10),
         Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Customer:'),
-            sizedBox(width: 20),
-            SmoothContainer(
-              padding: const EdgeInsets.all(5),
-              side: const BorderSide(width: 2),
-              child: Row(
-                children: [
-                  const Text('Alen Smith'),
-                  sizedBox(width: 20),
-                  const Icon(Icons.people)
-                ],
+            const Spacer(
+              flex: 2,
+            ),
+            Expanded(
+              flex: 3,
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ProfileTitleToData(
+                      title: 'Date',
+                      data: 'feb 17, 2024',
+                    ),
+                    sizedBox(height: 10),
+                    const ProfileTitleToData(
+                      title: 'Ref',
+                      data: 'S-1',
+                    ),
+                  ],
+                ),
               ),
             )
           ],
         ),
+        sizedBox(height: 20),
+        Row(
+          children: [
+            Icon(
+              Icons.person,
+              size: 28,
+              color: Colors.grey.shade600,
+            ),
+            sizedBox(width: 15),
+            const Text(
+              'Customer:',
+              style: TextStyle(fontSize: 17),
+            ),
+            sizedBox(width: 20),
+            Expanded(
+              // flex: 9,
+              child: ProductTextField(
+                currentPage: page == PageName.sales ? salesN() : purchaseN(),
+                title: defaultCustomerN,
+                // index: index,
+              ),
+            )
+          ],
+        ),
+        sizedBox(height: 20),
+        const ProfileTitleToData(
+          title: 'Tel',
+          data: '09112222XX',
+        ),
         sizedBox(height: 10),
-        const Text('Customer details:'),
-        sizedBox(height: 5),
-        const Text('Tel: 09785836845'),
-        sizedBox(height: 5),
-        const Text('Email: xyz@gmail.com'),
+        const ProfileTitleToData(
+          title: 'Email',
+          data: 'xyz@gmail.com',
+        ),
+        // const Text('Email: xyz@gmail.com'),
       ],
     );
   }

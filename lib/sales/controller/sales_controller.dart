@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/sales/model/sales_model.dart';
 
@@ -11,6 +12,7 @@ class SalesController extends GetxController {
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
+  RxString customerName = defaultCustomerN.obs;
   RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
   var salesModels = [

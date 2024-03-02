@@ -42,3 +42,7 @@ selectUomN() => 'Select unit of measurement';
 subtotalN() => 'Subtotal';
 discountN() => 'Discount';
 totalN() => 'Total';
+const String defaultCustomerN = 'Default customer';
+const String dateN = 'Date';
+const String refN = 'Ref';
+const String telN = 'Tel';

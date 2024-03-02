@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class ProductTableTitles extends StatelessWidget {
   final String currentPage;
-  const ProductTableTitles({super.key,required this.currentPage});
+  const ProductTableTitles({super.key, required this.currentPage});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +27,10 @@ class ProductTableTitles extends StatelessWidget {
                 textAlign: TextAlign.center,
               )),
           sizedBox(width: 15),
-           Expanded(
-            flex:currentPage==purchaseN()?4: 3,
-            child: const Text(
-              'Price',
+          Expanded(
+            flex: currentPage == purchaseN() ? 4 : 3,
+            child: Text(
+              currentPage == salesN() ? 'Price' : 'Cost',
               textAlign: TextAlign.center,
             ),
           ),

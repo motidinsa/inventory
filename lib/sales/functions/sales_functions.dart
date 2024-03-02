@@ -1,24 +1,21 @@
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
-
-import 'package:my_inventory/core/functions/core_functions.dart';
 
 onSalesTextFieldChange({
   String? title,
   required String data,
   int? index,
 }) {
+  SalesController salesController = Get.find();
   if (title == searchProductsN()) {
-    SalesController salesController = Get.find();
     salesController.searchProductFoundResult(salesController.products
         .where((product) =>
             product.name.toLowerCase().contains(data.toLowerCase()))
         .toList());
   } else if (title == quantityN()) {
-    SalesController salesController = Get.find();
     salesController.salesModels[index!].update((sales) {
       if (data.isEmpty) {
         sales?.quantity = '';
@@ -32,6 +29,8 @@ onSalesTextFieldChange({
         }
       }
     });
+  } else if (title == discountN()) {
+    salesController.discount(data);
   }
 }
 
@@ -65,20 +64,28 @@ getSalesAlertDialogProductLength() {
 
 getSalesSubtotal() {
   SalesController salesController = Get.find();
-  double total = 0;
+  double subTotal = 0;
   for (var element in salesController.salesModels) {
-    if (isNumeric(element.value.price)) {
-      total += double.parse(element.value.price);
-    }
+    // if (isNumeric(element.value.price)) {
+    subTotal += double.parse(element.value.totalAmount.toString());
+    // }
   }
-  return total.toString();
+  salesController.subtotal(subTotal.toString());
+  return salesController.subtotal.value;
 }
 
 getSalesTotal() {
   SalesController salesController = Get.find();
   double total = 0;
+
   for (var element in salesController.salesModels) {
     total += element.value.totalAmount;
   }
-  return total.toString();
+  if (isNumeric(salesController.discount.value)) {
+    salesController.total(
+        (total - double.parse(salesController.discount.value)).toString());
+  } else if (salesController.discount.isEmpty) {
+    salesController.total(total.toString());
+  }
+  return salesController.total.value;
 }

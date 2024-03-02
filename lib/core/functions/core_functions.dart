@@ -40,6 +40,8 @@ titleToData({required String title, required String currentPage, int? index}) {
       value = salesController.discount.value;
     } else if (title == searchProductsN()) {
       value = salesController.emptyString.value;
+    } else if (title == defaultCustomerN) {
+      value = salesController.emptyString.value;
     }
   } else if (currentPage == addProductN()) {
     AddProductController addProductController = Get.find();
@@ -59,6 +61,8 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == discountN()) {
       value = purchaseController.discount.value;
     } else if (title == searchProductsN()) {
+      value = purchaseController.emptyString.value;
+    } else if (title == defaultCustomerN) {
       value = purchaseController.emptyString.value;
     }
   } else if (currentPage == productListN()) {
@@ -98,4 +102,18 @@ onAddIconPressed({required String currentPage}) {
     PurchaseController purchaseController = Get.find();
     purchaseController.addPurchaseProduct();
   } else if (currentPage == addProductN()) {}
+}
+
+titleToIcon({required String title}) {
+  IconData? iconData;
+  if (title == dateN) {
+    iconData = Icons.calendar_month_rounded;
+  } else if (title == refN) {
+    // iconData = Icons.edit;
+  } else if (title == telN) {
+    iconData = Icons.phone;
+  } else if (title == emailN()) {
+    iconData = Icons.email_outlined;
+  }
+  return Icon(iconData, color: Colors.grey.shade600);
 }
