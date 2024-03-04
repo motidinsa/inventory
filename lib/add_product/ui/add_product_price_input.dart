@@ -19,6 +19,7 @@ class AddProductPriceInput extends StatelessWidget {
           style: TextStyle(
             fontWeight: bold(),
             fontSize: 16,
+              color: Colors.grey.shade800
           ),
         ),
         sizedBox(width: 10),

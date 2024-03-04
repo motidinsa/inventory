@@ -80,6 +80,8 @@ class _ProductTextFieldState extends State<ProductTextField> {
         decoration: InputDecoration(
           isDense: true,
           isCollapsed: true,
+          errorText:widget.title == quantityN()? 'invalid':null,
+          errorMaxLines: 10,
           prefixIcon:
               hasPrefix(title: widget.title, currentPage: widget.currentPage)
                   ? Padding(

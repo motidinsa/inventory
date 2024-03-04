@@ -23,10 +23,10 @@ class AddProductTitleWithTextField extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey.shade800),
             ),
           ),
         ),
