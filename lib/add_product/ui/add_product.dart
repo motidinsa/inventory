@@ -9,8 +9,12 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
+
+import 'add_product_image.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
@@ -36,6 +40,7 @@ class _AddProductState extends State<AddProduct> {
   final List<String> titleList = [
     productN(),
     descriptionN(),
+    'image',
     categoryN(),
     productIdN(),
     costN(),
@@ -43,6 +48,7 @@ class _AddProductState extends State<AddProduct> {
     reorderQuantityN(),
     uomN()
   ];
+  
   final AddProductController addProductController =
       Get.put(AddProductController());
   final AppController appController = Get.find();
@@ -80,26 +86,26 @@ class _AddProductState extends State<AddProduct> {
                             title: titleList[index],
                             labelText: titleList[index],
                           )
-                        : index != 4
-                            ? AddProductTitleWithTextField(
-                                title: titleList[index],
-                              )
-                            : Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    child: AddProductPriceInput(
-                                      title: costN(),
-                                    ),
-                                  ),
-                                  sizedBox(width: 20),
-                                  Expanded(
-                                    child: AddProductPriceInput(
-                                      title: priceN(),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                        :index == 2?AddProductImage(): index == 5
+                            ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: AddProductPriceInput(
+                            title: costN(),
+                          ),
+                        ),
+                        sizedBox(width: 20),
+                        Expanded(
+                          child: AddProductPriceInput(
+                            title: priceN(),
+                          ),
+                        ),
+                      ],
+                    )
+                            : AddProductTitleWithTextField(
+                      title: titleList[index],
+                    ),
                     separatorBuilder: (ctx, index) => sizedBox(height: 20),
                     itemCount: titleList.length,
                   ),
