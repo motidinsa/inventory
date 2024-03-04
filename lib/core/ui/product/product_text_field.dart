@@ -6,7 +6,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductTextField extends StatefulWidget {
   final String currentPage;
@@ -80,26 +79,8 @@ class _ProductTextFieldState extends State<ProductTextField> {
         decoration: InputDecoration(
           isDense: true,
           isCollapsed: true,
-          errorText:widget.title == quantityN()? 'invalid':null,
+          errorText: widget.title == quantityN() ? 'invalid' : null,
           errorMaxLines: 10,
-          // prefixIcon:
-          //     hasPrefix(title: widget.title, currentPage: widget.currentPage)
-          //         ? Padding(
-          //             padding: const EdgeInsets.only(
-          //                 top: 12, bottom: 10, left: 12, right: 5),
-          //             child: Text(
-          //               etbN(),
-          //               style: TextStyle(
-          //                 fontSize: 15,
-          //                 fontWeight: bold(),
-          //                 color: Colors.grey.shade700,
-          //               ),
-          //             ),
-          //           )
-          //         : null,
-          // prefixIconConstraints: const BoxConstraints(
-          //   minHeight: 0,
-          // ),
           suffixIcon: hasOption(title: widget.title)
               ? const Icon(
                   Icons.arrow_drop_down_rounded,
