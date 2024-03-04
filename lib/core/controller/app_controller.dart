@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController {
+  final formKey = GlobalKey<FormState>();
   // late Isar isar;
   //
   // @override
@@ -13,7 +15,4 @@ class AppController extends GetxController {
   //   );
   // }
 // AppController(this.isar);
-
 }
-
-

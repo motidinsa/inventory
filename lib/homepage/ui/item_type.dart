@@ -11,18 +11,19 @@ class ItemType extends StatelessWidget {
   final String addItemName;
   final String detailPageName;
 
-   ItemType({
+  ItemType({
     super.key,
     required this.addItemName,
     required this.detailPageName,
     required this.title,
   });
-  final Map<String,IconData> nameToIconItemType = {
-    salesN():FontAwesomeIcons.tags,
-    purchasingN():Icons.shopping_cart,
-    inventoryN():FontAwesomeIcons.box,
+  final Map<String, IconData> nameToIconItemType = {
+    salesN(): FontAwesomeIcons.tags,
+    purchasingN(): Icons.shopping_cart,
+    inventoryN(): FontAwesomeIcons.box,
+    inventoryN(): FontAwesomeIcons.box,
   };
-  final List fontawesomeIcons = [salesN(),inventoryN()];
+  final List fontawesomeIcons = [salesN(), inventoryN()];
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -47,10 +48,14 @@ class ItemType extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style:
-                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  Icon(nameToIconItemType[title],color: Colors.grey.shade600,size: fontawesomeIcons.contains(title)?20:null,),
+                  Icon(
+                    nameToIconItemType[title],
+                    color: Colors.grey.shade600,
+                    size: fontawesomeIcons.contains(title) ? 20 : null,
+                  ),
                 ],
               ),
             ),
@@ -62,11 +67,16 @@ class ItemType extends StatelessWidget {
               ),
             ),
             sizedBox(height: 5),
-            ItemSelect(title: addItemName, iconData: Icons.add,),
+            ItemSelect(
+              title: addItemName,
+              iconData: Icons.add,
+            ),
             sizedBox(height: 10),
             ItemSelect(
-                title: detailPageName,
-                iconData: Icons.arrow_forward_ios_outlined,isDetailButton: true,),
+              title: detailPageName,
+              iconData: Icons.arrow_forward_ios_outlined,
+              isDetailButton: true,
+            ),
           ],
         ),
       ),

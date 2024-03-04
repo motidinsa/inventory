@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 class SaveButton extends StatelessWidget {
   final String redirectFrom;
-  const SaveButton({
+  SaveButton({
     super.key,
     required this.redirectFrom,
   });
-
+  final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,8 +20,10 @@ class SaveButton extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () async {
-                await unFocus();
-                onSaveButtonPressed(redirectFrom: redirectFrom);
+                if (appController.formKey.currentState!.validate()) {
+                  await unFocus();
+                  onSaveButtonPressed(redirectFrom: redirectFrom);
+                }
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),

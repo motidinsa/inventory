@@ -7,6 +7,7 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
+
 bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
@@ -40,7 +41,7 @@ titleToData({required String title, required String currentPage, int? index}) {
       value = salesController.discount.value;
     } else if (title == searchProductsN()) {
       value = salesController.emptyString.value;
-    } else if (title == defaultCustomerN) {
+    } else if (title == defaultN) {
       value = salesController.emptyString.value;
     }
   } else if (currentPage == addProductN()) {
@@ -62,7 +63,7 @@ titleToData({required String title, required String currentPage, int? index}) {
       value = purchaseController.discount.value;
     } else if (title == searchProductsN()) {
       value = purchaseController.emptyString.value;
-    } else if (title == defaultCustomerN) {
+    } else if (title == defaultN) {
       value = purchaseController.emptyString.value;
     }
   } else if (currentPage == productListN()) {
@@ -109,11 +110,42 @@ titleToIcon({required String title}) {
   if (title == dateN) {
     iconData = Icons.calendar_month_rounded;
   } else if (title == refN) {
-    // iconData = Icons.edit;
+    // iconData = Icons.contra;
   } else if (title == telN) {
     iconData = Icons.phone;
   } else if (title == emailN()) {
     iconData = Icons.email_outlined;
   }
   return Icon(iconData, color: Colors.grey.shade600);
+}
+
+mapValidation({
+  required String title,
+  required String data,
+}) {
+  List<String> nonEmptyTitles = [productN(), quantityN()];
+  if (nonEmptyTitles.contains(title)) {
+    if (data.isEmpty) {
+      return '';
+    }
+  }
+  return null;
+  // if (title == numberName()) {
+  //   return validateAccountNumber(
+  //       accountNumber: value, transactionType: transactionType);
+  // } else if (title == transactionTypeName()) {
+  //   return validateTransactionType(transactionType: value);
+  // } else if (title == transactionName() || title == newTransactionName()) {
+  //   return validateTransactionName(transactionName: value);
+  // } else if (title == selectTypeName()) {
+  //   return validateTelecomAccountType(telecomAccType: value);
+  // } else if (title == name()) {
+  //   return validateAccountName(
+  //       accountName: value,
+  //       isTelecom: transactionType == telecomTransactionTypeName());
+  // } else if (title == phoneNumberName()) {
+  //   return validatePhoneNumber(phoneNumber: value);
+  // } else if (title == amountName()) {
+  //   return validateAmount(amount: value);
+  // }
 }

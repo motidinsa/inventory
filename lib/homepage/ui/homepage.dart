@@ -4,6 +4,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
+import 'item_select.dart';
+
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
@@ -60,6 +62,14 @@ class Homepage extends StatelessWidget {
             detailPageName: 'Reorder Stock',
             title: 'Inventory',
           ),
+          // sizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: ItemSelect(
+              title: reportsN(),
+              iconData: Icons.summarize_outlined,
+            ),
+          )
         ],
       ),
     );

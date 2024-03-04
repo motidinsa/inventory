@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/homepage/functions/homepage_functions.dart';
@@ -18,8 +19,10 @@ class ItemSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isReportPage = title == reportsN();
     return Card(
       color: Colors.green.shade50,
+      elevation: title == reportsN() ? 4 : null,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: ListTile(
         onTap: () => navigateFromHomepage(title: title),
@@ -35,8 +38,11 @@ class ItemSelect extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 17,
+                    style: TextStyle(
+                      fontSize: isReportPage ? 19 : 17,
+                      fontWeight: isReportPage ? bold() : null,
+                      fontStyle: isReportPage ? FontStyle.italic : null,
+                      color: isReportPage ? Colors.grey.shade800 : null,
                     ),
                   ),
                   IconButton(
@@ -47,7 +53,11 @@ class ItemSelect extends StatelessWidget {
                         navigateFromHomepage(title: title, isAddIcon: true),
                     icon: Icon(
                       iconData,
-                      size: isDetailButton == true ? 20 : null,
+                      size: isDetailButton == true
+                          ? 20
+                          : title == reportsN()
+                              ? 26
+                              : null,
                     ),
                   ),
                 ],

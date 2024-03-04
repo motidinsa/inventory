@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +10,7 @@ class AddProductController extends GetxController {
   var selectedUnitOfMeasurement = 'Pcs'.obs;
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
+  final formKey = GlobalKey<FormState>();
   var categoryList = [
     'cat 1',
     'cat 2',
@@ -27,13 +29,13 @@ class AddProductController extends GetxController {
           categoryId: '',
           categoryName: '',
           productId: '',
-          cost: -1,
-          price: -1,
-          createdByUserId: -1,
+          cost: 0,
+          price: 0,
+          createdByUserId: 0,
           dateCreated: DateTime.now(),
           dateModified: DateTime.now(),
           quantityOnHand: '',
-          reorderQuantity: -1,
+          reorderQuantity: 0,
           unitOfMeasurement: 'Pcs',
           id: '')
       .obs;

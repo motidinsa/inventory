@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
-
-import 'package:my_inventory/core/model/page_name_enum.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   final PageName page;
@@ -60,7 +59,7 @@ class ProductProfileInfo extends StatelessWidget {
               // flex: 9,
               child: ProductTextField(
                 currentPage: page == PageName.sales ? salesN() : purchaseN(),
-                title: defaultCustomerN,
+                title: defaultN,
                 // index: index,
               ),
             )

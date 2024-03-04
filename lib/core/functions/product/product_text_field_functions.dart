@@ -28,8 +28,8 @@ titleToHint({String? title}) {
     value = searchByCategoryNameN();
   } else if (title == selectUomN()) {
     value = searchUomN();
-  } else if (title == defaultCustomerN) {
-    value = defaultCustomerN;
+  } else if (title == defaultN) {
+    value = defaultN;
   }
   return value;
 }
@@ -64,13 +64,7 @@ onTextFieldPressed(
 }
 
 hasOption({String? title}) {
-  var itemsWithOption = [
-    categoryN(),
-    uomN(),
-    salesN(),
-    purchaseN(),
-    defaultCustomerN
-  ];
+  var itemsWithOption = [categoryN(), uomN(), salesN(), purchaseN(), defaultN];
   return itemsWithOption.contains(title);
 }
 
@@ -85,14 +79,6 @@ minimizePadding({String? title}) {
     discountN()
   ];
   return !items.contains(title);
-}
-
-hasPrefix({required String currentPage, String? title}) {
-  var items = [costN(), priceN()];
-  if (currentPage == purchaseN() && title == priceN()) {
-    return false;
-  }
-  return items.contains(title);
 }
 
 hasSuffix({String? title}) {
