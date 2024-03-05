@@ -48,3 +48,5 @@ const String dateN = 'Date';
 const String refN = 'Ref';
 const String telN = 'Tel';
 const String selectSourceN = 'Select source';
+const String deleteN = 'Delete';
+const String changeN = 'Change';

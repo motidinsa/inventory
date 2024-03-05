@@ -15,7 +15,7 @@ class ProductTableTitles extends StatelessWidget {
       // verticalMargin: 10,
       // blurRadius: 10,
       // horizontalPadding: 20,
-      margin: EdgeInsets.symmetric(horizontal: 0, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6),
       shape: smoothRectangleBorder(
           radius: 0,
           side: const BorderSide(
@@ -29,7 +29,7 @@ class ProductTableTitles extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 9,
+              flex: 8,
               child: Text(
                 'Product',
                 textAlign: TextAlign.center,
@@ -39,7 +39,7 @@ class ProductTableTitles extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: 15),
+            sizedBox(width: 10),
             Expanded(
                 flex: 3,
                 child: Text(
@@ -50,7 +50,7 @@ class ProductTableTitles extends StatelessWidget {
                       fontSize: 17,
                       color: Colors.grey.shade800),
                 )),
-            sizedBox(width: 15),
+            sizedBox(width: 10),
             Expanded(
               flex: currentPage == purchaseN() ? 4 : 3,
               child: Text(

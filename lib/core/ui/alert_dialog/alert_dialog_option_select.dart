@@ -13,7 +13,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 
-import '../../../add_product/ui/add_image_source_button.dart';
+import 'package:my_inventory/add_product/ui/add_image_source_button.dart';
 
 class AlertDialogOptionSelect extends StatefulWidget {
   final String title;

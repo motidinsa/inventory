@@ -4,7 +4,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
-import 'item_select.dart';
+import 'package:my_inventory/homepage/ui/item_select.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});

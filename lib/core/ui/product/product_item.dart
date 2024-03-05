@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
-
-import 'package:my_inventory/core/functions/product/product_functions.dart';
 
 class ProductItem extends StatelessWidget {
   final int index;
@@ -28,14 +27,14 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 9,
+                flex: 8,
                 child: ProductTextField(
                   currentPage: currentPage,
                   title: currentPage,
                   index: index,
                 ),
               ),
-              sizedBox(width: 15),
+              sizedBox(width: 10),
               Expanded(
                 flex: 3,
                 child: ProductTextField(

@@ -12,7 +12,7 @@ import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/save_button.dart';
 
-import 'add_product_image.dart';
+import 'package:my_inventory/add_product/ui/add_product_image.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});

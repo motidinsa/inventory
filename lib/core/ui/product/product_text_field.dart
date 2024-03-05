@@ -79,7 +79,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
         decoration: InputDecoration(
           isDense: true,
           isCollapsed: true,
-          errorText: widget.title == quantityN() ? 'invalid' : null,
+          errorText: widget.title == quantityN() ? 'error' : null,
           errorMaxLines: 10,
           suffixIcon: hasOption(title: widget.title)
               ? const Icon(
