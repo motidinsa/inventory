@@ -50,3 +50,5 @@ const String telN = 'Tel';
 const String selectSourceN = 'Select source';
 const String deleteN = 'Delete';
 const String changeN = 'Change';
+const String galleryN = 'Gallery';
+const String cameraN = 'Camera';

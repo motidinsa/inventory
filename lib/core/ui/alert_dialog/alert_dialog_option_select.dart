@@ -62,11 +62,11 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AddImageSourceButton(
-                      sourceLocation: 'Gallery',
+                      sourceLocation: galleryN,
                     ),
                     sizedBox(width: 20),
                     AddImageSourceButton(
-                      sourceLocation: 'Camera',
+                      sourceLocation: cameraN,
                     ),
                   ],
                 )

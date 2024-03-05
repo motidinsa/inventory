@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
@@ -41,17 +42,21 @@ class AddProductImage extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        addProductController.productInfo.update((val) {
+                          val?.localImagePath = null;
+                        });
+                      },
                       style: TextButton.styleFrom(foregroundColor: Colors.red),
                       child: const Text(
-                        'Delete',
+                        deleteN,
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () =>onAddImagePressed(context: context),
                       child: const Text(
-                        'Change',
+                        changeN,
                         // style: TextStyle(color: Colors.red),
                       ),
                     ),
