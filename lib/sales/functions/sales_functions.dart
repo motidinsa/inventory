@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 onSalesTextFieldChange({
@@ -45,7 +45,7 @@ onSalesProductFocusChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {required ProductModel productModel, required int index}) {
+    {required ProductDatabaseModel productModel, required int index}) {
   final SalesController salesController = Get.find();
   salesController.salesModels[index].update((sales) {
     sales?.productName = productModel.name;

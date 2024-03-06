@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -14,18 +15,21 @@ bool isNumeric(String input) {
 }
 
 onSaveButtonPressed({required String redirectFrom}) async {
+  AppController appController = Get.find();
   await unFocus();
-  if (redirectFrom == addProductN()) {
-    AddProductController addProductController = Get.find();
-    addProductController.onAddProductSaveButtonPressed();
-  } else if (redirectFrom == salesN()) {
-    SalesController salesController = Get.find();
-    salesController.saveSalesProductToDB();
-  } else if (redirectFrom == purchaseN()) {
-    PurchaseController purchaseController = Get.find();
-    purchaseController.savePurchaseProductToDB();
+  if (appController.formKey.currentState!.validate()) {
+    if (redirectFrom == addProductN()) {
+      AddProductController addProductController = Get.find();
+      addProductController.onAddProductSaveButtonPressed();
+    } else if (redirectFrom == salesN()) {
+      SalesController salesController = Get.find();
+      salesController.saveSalesProductToDB();
+    } else if (redirectFrom == purchaseN()) {
+      PurchaseController purchaseController = Get.find();
+      purchaseController.savePurchaseProductToDB();
+    }
+    Get.back();
   }
-  Get.back();
 }
 
 titleToData({required String title, required String currentPage, int? index}) {
@@ -119,33 +123,47 @@ titleToIcon({required String title}) {
   return Icon(iconData, color: Colors.grey.shade600);
 }
 
+getKeyboardType({required String title}) {
+  List<String> numberKeyboardLists = [
+    costN(),
+    priceN(),
+    quantityOnHandN(),
+    reorderQuantityN(),
+    quantityN()
+  ];
+  if (numberKeyboardLists.contains(title)) {
+    return TextInputType.number;
+  } else if (title == phoneNumberN()) {
+    return TextInputType.phone;
+  } else if (title == emailN()) {
+    return TextInputType.emailAddress;
+  }
+  return TextInputType.name;
+}
+
 mapValidation({
   required String title,
   required String data,
 }) {
-  List<String> nonEmptyTitles = [productN(), quantityN()];
+  List<String> nonEmptyTitles = [
+    productN(),
+    categoryN(),
+  ];
+  List<String> numberKeyboardLists = [
+    costN(),
+    priceN(),
+    quantityOnHandN(),
+    reorderQuantityN(),
+    quantityN()
+  ];
   if (nonEmptyTitles.contains(title)) {
     if (data.isEmpty) {
-      return '';
+      return 'This is required field';
+    }
+  } else if (numberKeyboardLists.contains(title)) {
+    if (data.isNotEmpty && !isNumeric(data)) {
+      return 'Invalid number';
     }
   }
   return null;
-  // if (title == numberName()) {
-  //   return validateAccountNumber(
-  //       accountNumber: value, transactionType: transactionType);
-  // } else if (title == transactionTypeName()) {
-  //   return validateTransactionType(transactionType: value);
-  // } else if (title == transactionName() || title == newTransactionName()) {
-  //   return validateTransactionName(transactionName: value);
-  // } else if (title == selectTypeName()) {
-  //   return validateTelecomAccountType(telecomAccType: value);
-  // } else if (title == name()) {
-  //   return validateAccountName(
-  //       accountName: value,
-  //       isTelecom: transactionType == telecomTransactionTypeName());
-  // } else if (title == phoneNumberName()) {
-  //   return validatePhoneNumber(phoneNumber: value);
-  // } else if (title == amountName()) {
-  //   return validateAmount(amount: value);
-  // }
 }

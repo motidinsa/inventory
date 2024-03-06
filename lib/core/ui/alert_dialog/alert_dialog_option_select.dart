@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/add_product/ui/add_image_source_button.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
-
-import 'package:my_inventory/add_product/ui/add_image_source_button.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 class AlertDialogOptionSelect extends StatefulWidget {
   final String title;
@@ -86,7 +84,7 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                           reverse: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            ProductModel? product;
+                            ProductDatabaseModel? product;
                             String? item;
                             if (widget.currentPage == salesN()) {
                               SalesController salesController = Get.find();

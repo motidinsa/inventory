@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/model/product/product_model.dart';
-
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String currentPage;
   final String? item;
   final int? index;
-  final ProductModel? product;
+  final ProductDatabaseModel? product;
 
   const AlertDialogOptionItem({
     super.key,

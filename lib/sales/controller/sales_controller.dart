@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/sales/model/sales_model.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
-  List<ProductModel> products = [];
+  List<ProductDatabaseModel> products = [];
   var searchProductFoundResult = [].obs;
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
@@ -34,9 +34,9 @@ class SalesController extends GetxController {
 
   @override
   void onInit() {
-    products = Hive.box<ProductModel>('products').values.toList();
+    products = Hive.box<ProductDatabaseModel>('products').values.toList();
     searchProductFoundResult =
-        Hive.box<ProductModel>('products').values.toList().obs;
+        Hive.box<ProductDatabaseModel>('products').values.toList().obs;
     super.onInit();
   }
 
@@ -62,7 +62,7 @@ class SalesController extends GetxController {
   saveSalesProductToDB() async {
     isLocalSaveLoading(true);
     var salesBox = Hive.box<SalesModel>('sales');
-    var productsBox = Hive.box<ProductModel>('products');
+    var productsBox = Hive.box<ProductDatabaseModel>('products');
     final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     for (var element in salesModels) {
       String key = dateFormatter.format(DateTime.now());
@@ -87,10 +87,8 @@ class SalesController extends GetxController {
       );
 
       var currentProduct = productsBox.get(element.value.productId);
-      currentProduct!.quantityOnHand =
-          (double.parse(currentProduct.quantityOnHand) -
-                  double.parse(element.value.quantity))
-              .toString();
+      currentProduct!.quantityOnHand = (currentProduct.quantityOnHand -
+          double.parse(element.value.quantity));
       await productsBox.put(element.value.productId, currentProduct);
     }
 

@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/purchase/model/purchase_model.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
-  List<ProductModel> products = [];
+  List<ProductDatabaseModel> products = [];
   var searchProductFoundResult = [].obs;
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
@@ -30,9 +30,9 @@ class PurchaseController extends GetxController {
 
   @override
   void onInit() {
-    products = Hive.box<ProductModel>('products').values.toList();
+    products = Hive.box<ProductDatabaseModel>('products').values.toList();
     searchProductFoundResult =
-        Hive.box<ProductModel>('products').values.toList().obs;
+        Hive.box<ProductDatabaseModel>('products').values.toList().obs;
     super.onInit();
   }
 
@@ -88,7 +88,7 @@ class PurchaseController extends GetxController {
 
     isLocalSaveLoading(true);
     var purchasesBox = Hive.box<PurchaseModel>('purchases');
-    var productsBox = Hive.box<ProductModel>('products');
+    var productsBox = Hive.box<ProductDatabaseModel>('products');
     final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     for (var element in purchaseModels) {
       String key = dateFormatter.format(DateTime.now());
@@ -113,10 +113,8 @@ class PurchaseController extends GetxController {
       );
 
       var currentProduct = productsBox.get(element.value.productId);
-      currentProduct!.quantityOnHand =
-          (double.parse(currentProduct.quantityOnHand) +
-                  double.parse(element.value.quantity))
-              .toString();
+      currentProduct!.quantityOnHand = (currentProduct.quantityOnHand +
+          double.parse(element.value.quantity));
       await productsBox.put(element.value.productId, currentProduct);
     }
 

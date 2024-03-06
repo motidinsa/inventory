@@ -42,17 +42,18 @@ onAddProductFocusChange({
     } else if (title == productIdN()) {
       product?.productId = data;
     } else if (title == costN()) {
-      product?.cost = double.parse(data);
+      product?.cost = data;
     } else if (title == priceN()) {
-      product?.price = double.parse(data);
+      product?.price = data;
     } else if (title == quantityOnHandN()) {
       product?.quantityOnHand = data;
     } else if (title == reorderQuantityN()) {
-      product?.reorderQuantity = int.parse(data);
+      product?.reorderQuantity = data;
     }
   });
 }
-onAddImagePressed({required BuildContext context}){
+
+onAddImagePressed({required BuildContext context}) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -62,11 +63,12 @@ onAddImagePressed({required BuildContext context}){
       );
     },
   ).then(
-        (value) async {
+    (value) async {
       await unFocus();
     },
   );
 }
+
 getAddProductAlertDialogLength({required String title}) {
   AddProductController addProductController = Get.find();
   if (title == selectCategoryN()) {

@@ -19,12 +19,7 @@ class SaveButton extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: () async {
-                if (appController.formKey.currentState!.validate()) {
-                  await unFocus();
-                  onSaveButtonPressed(redirectFrom: redirectFrom);
-                }
-              },
+              onPressed: () => onSaveButtonPressed(redirectFrom: redirectFrom),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
