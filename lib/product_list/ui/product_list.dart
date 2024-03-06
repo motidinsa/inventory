@@ -39,11 +39,13 @@ class ProductList extends StatelessWidget {
                     reverse: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) => MiniProductDetail(
-                        iconData: Icons.add_chart_sharp,
-                        id: box.getAt(index)?.productId ?? '',
-                        name: box.getAt(index)!.name,
-                        noOfPieces: box.getAt(index)!.quantityOnHand.toString(),
-                        price: '${box.getAt(index)!.price}'),
+                      productModel: box.getAt(index)!,
+                        // iconData: Icons.add_chart_sharp,
+                        // id: box.getAt(index)?.productId ?? '',
+                        // name: box.getAt(index)!.productName,
+                        // noOfPieces: box.getAt(index)!.quantityOnHand.toString(),
+                        // price: '${box.getAt(index)!.price}'
+                    ),
                     itemCount: box.length,
                     separatorBuilder: (ctx, index) => sizedBox(height: 20),
                   );

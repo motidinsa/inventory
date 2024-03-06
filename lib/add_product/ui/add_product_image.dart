@@ -9,6 +9,8 @@ import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 
+import '../../core/functions/core_functions.dart';
+
 class AddProductImage extends StatelessWidget {
   AddProductImage({super.key});
 
@@ -54,7 +56,8 @@ class AddProductImage extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () =>onAddImagePressed(context: context),
+                      onPressed: () => onAddImagePressed(
+                          context: context, currentPage: addProductN()),
                       child: const Text(
                         changeN,
                         // style: TextStyle(color: Colors.red),
@@ -66,7 +69,8 @@ class AddProductImage extends StatelessWidget {
             );
           }
           return ElevatedButton(
-            onPressed: () => onAddImagePressed(context: context),
+            onPressed: () =>
+                onAddImagePressed(context: context, currentPage: addProductN()),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),
               padding: const EdgeInsets.all(16),

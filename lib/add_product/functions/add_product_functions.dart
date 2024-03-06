@@ -53,21 +53,6 @@ onAddProductFocusChange({
   });
 }
 
-onAddImagePressed({required BuildContext context}) {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialogOptionSelect(
-        currentPage: addProductN(),
-        title: selectSourceN,
-      );
-    },
-  ).then(
-    (value) async {
-      await unFocus();
-    },
-  );
-}
 
 getAddProductAlertDialogLength({required String title}) {
   AddProductController addProductController = Get.find();

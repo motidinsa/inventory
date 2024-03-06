@@ -24,7 +24,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          item ?? product!.name,
+          item ?? product!.productName,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -37,7 +37,7 @@ class AlertDialogOptionItem extends StatelessWidget {
         currentPage: currentPage,
         title: title,
         index: index,
-        data: item ?? product!.name,
+        data: item ?? product!.productName,
         productModel: product,
       ),
     );

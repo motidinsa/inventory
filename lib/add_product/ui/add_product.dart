@@ -50,15 +50,17 @@ class _AddProductState extends State<AddProduct> {
   final AddProductController addProductController =
       Get.put(AddProductController());
   final AppController appController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidgetBuilder: (_) {
         return const Center(
-            child: CircularProgressIndicator(
-          strokeWidth: 3,
-        ));
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
+        );
       },
       child: Obx(() {
         if (addProductController.isLocalSaveLoading.isTrue) {

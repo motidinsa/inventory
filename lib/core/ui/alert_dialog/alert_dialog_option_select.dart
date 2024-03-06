@@ -13,11 +13,12 @@ import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-class AlertDialogOptionSelect extends StatefulWidget {
+class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? index;
   final String currentPage;
   final List<String>? itemList;
+  final String? productId;
 
   const AlertDialogOptionSelect({
     super.key,
@@ -25,14 +26,10 @@ class AlertDialogOptionSelect extends StatefulWidget {
     required this.currentPage,
     this.itemList,
     this.index,
+    this.productId
   });
 
-  @override
-  State<AlertDialogOptionSelect> createState() =>
-      _AlertDialogOptionSelectState();
-}
 
-class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -43,28 +40,30 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
           left: 24,
           right: 24,
           top: 15,
-          bottom: widget.title != selectSourceN ? 15 : 0,
+          bottom: title != selectSourceN ? 15 : 0,
         ),
         shape: smoothRectangleBorder(radius: 15),
         title: Text(
-          widget.title,
+          title,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
         ),
         content: SizedBox(
-          width: widget.title != selectSourceN ? double.maxFinite : null,
-          child: widget.title == selectSourceN
+          width: title != selectSourceN ? double.maxFinite : null,
+          child: title == selectSourceN
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AddImageSourceButton(
                       sourceLocation: galleryN,
+                      currentPage: currentPage,
                     ),
                     sizedBox(width: 20),
                     AddImageSourceButton(
                       sourceLocation: cameraN,
+                      currentPage: currentPage,
                     ),
                   ],
                 )
@@ -74,9 +73,9 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: ProductTextField(
-                        currentPage: widget.currentPage,
-                        title: widget.title,
-                        index: widget.index,
+                        currentPage: currentPage,
+                        title: title,
+                        index: index,
                       ),
                     ),
                     Obx(() => ListView.separated(
@@ -86,37 +85,37 @@ class _AlertDialogOptionSelectState extends State<AlertDialogOptionSelect> {
                           itemBuilder: (context, index) {
                             ProductDatabaseModel? product;
                             String? item;
-                            if (widget.currentPage == salesN()) {
+                            if (currentPage == salesN()) {
                               SalesController salesController = Get.find();
                               product = salesController
                                   .searchProductFoundResult[index];
-                            } else if (widget.currentPage == addProductN()) {
+                            } else if (currentPage == addProductN()) {
                               AddProductController addProductController =
                                   Get.find();
-                              if (widget.title == selectCategoryN()) {
+                              if (title == selectCategoryN()) {
                                 item = addProductController
                                     .categoryListFoundResult[index];
-                              } else if (widget.title == selectUomN()) {
+                              } else if (title == selectUomN()) {
                                 item = addProductController
                                     .unitOfMeasurementListFoundResult[index];
                               }
-                            } else if (widget.currentPage == purchaseN()) {
+                            } else if (currentPage == purchaseN()) {
                               PurchaseController purchaseController =
                                   Get.find();
                               product = purchaseController
                                   .searchProductFoundResult[index];
                             }
                             return AlertDialogOptionItem(
-                              title: widget.title,
+                              title: title,
                               product: product,
                               item: product == null ? item : null,
-                              currentPage: widget.currentPage,
-                              index: widget.index,
+                              currentPage: currentPage,
+                              index: index,
                             );
                           },
                           itemCount: getAlertDialogLength(
-                            currentPage: widget.currentPage,
-                            title: widget.title,
+                            currentPage: currentPage,
+                            title: title,
                           ),
                           separatorBuilder: (BuildContext context, int index) =>
                               Divider(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
@@ -7,11 +8,24 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
+import '../ui/alert_dialog/alert_dialog_option_select.dart';
+
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
 bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
+}
+
+double getValidNumValue(String data) {
+  if (isNumeric(data)) {
+    return double.parse(data);
+  }
+  return 0;
+}
+
+getFormattedNumber(double num) {
+  return NumberFormat("#,###.##").format(num);
 }
 
 onSaveButtonPressed({required String redirectFrom}) async {
@@ -108,7 +122,22 @@ onAddIconPressed({required String currentPage}) {
     purchaseController.addPurchaseProduct();
   } else if (currentPage == addProductN()) {}
 }
-
+onAddImagePressed({required BuildContext context,required String currentPage,String? productId}) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialogOptionSelect(
+        currentPage: currentPage,
+        title: selectSourceN,
+        productId: productId,
+      );
+    },
+  ).then(
+        (value) async {
+      await unFocus();
+    },
+  );
+}
 titleToIcon({required String title}) {
   IconData? iconData;
   if (title == dateN) {

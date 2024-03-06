@@ -33,7 +33,6 @@ class AddProductController extends GetxController {
   var unitOfMeasurementListFoundResult = ['Pcs', 'Kg', 'Lt'].obs;
   var productInfo = ProductModel(
           name: '',
-          description: '',
           categoryId: '',
           categoryName: '',
           productId: '',
@@ -58,39 +57,31 @@ class AddProductController extends GetxController {
     await productsBox.put(
       key,
       ProductDatabaseModel(
-        name: productInfo.value.name,
+        productName: productInfo.value.name,
         description: productInfo.value.description,
         categoryId: productInfo.value.categoryId,
         productId: productInfo.value.productId,
-        cost: isNumeric(productInfo.value.cost)
-            ? double.parse(productInfo.value.cost)
-            : 0,
-        price: isNumeric(productInfo.value.price)
-            ? double.parse(productInfo.value.price)
-            : 0,
+        cost: getValidNumValue(productInfo.value.cost),
+        price: getValidNumValue(productInfo.value.price),
         createdByUserId: productInfo.value.createdByUserId,
         dateCreated: productInfo.value.dateCreated,
         dateModified: productInfo.value.dateModified,
-        quantityOnHand: isNumeric(productInfo.value.quantityOnHand)
-            ? double.parse(productInfo.value.quantityOnHand)
-            : 0,
-        reorderQuantity: isNumeric(productInfo.value.reorderQuantity)
-            ? double.parse(productInfo.value.reorderQuantity)
-            : 0,
+        quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+        reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
         unitOfMeasurement: productInfo.value.unitOfMeasurement,
         localImagePath: productInfo.value.localImagePath,
         id: key,
       ),
     );
-    if (productInfo.value.localImagePath != null) {
-      try {
-        await Gal.putImage(productInfo.value.localImagePath!,
-            album: appNameN());
-        File(productInfo.value.localImagePath!).delete();
-      } on GalException catch (e) {
-        log(e.type.message);
-      }
-    }
+    // if (productInfo.value.localImagePath != null) {
+    //   try {
+    //     await Gal.putImage(productInfo.value.localImagePath!,
+    //         album: appNameN());
+    //     File(productInfo.value.localImagePath!).delete();
+    //   } on GalException catch (e) {
+    //     log(e.type.message);
+    //   }
+    // }
     isLocalSaveLoading(false);
     Get.back();
   }

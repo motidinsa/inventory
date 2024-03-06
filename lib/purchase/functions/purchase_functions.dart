@@ -16,7 +16,7 @@ onPurchaseTextFieldChange({
       PurchaseController purchaseController = Get.find();
       purchaseController.searchProductFoundResult(purchaseController.products
           .where((product) =>
-              product.name.toLowerCase().contains(data.toLowerCase()))
+              product.productName.toLowerCase().contains(data.toLowerCase()))
           .toList());
     } else if (title == quantityN()) {
       if (data.isEmpty) {
@@ -62,7 +62,7 @@ onPurchaseSearchProductAlertDialogOptionSelect(
     {required ProductDatabaseModel productModel, required int index}) {
   final PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index].update((purchase) {
-    purchase?.productName = productModel.name;
+    purchase?.productName = productModel.productName;
     purchase?.productId = productModel.id;
     purchase?.price = NumberFormat("###.##").format(productModel.price);
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {

@@ -17,7 +17,7 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductDatabaseModel(
-      name: fields[0] as String,
+      productName: fields[0] as String,
       description: fields[1] as String?,
       categoryId: fields[2] as String,
       productId: fields[3] as String,
@@ -41,7 +41,7 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
     writer
       ..writeByte(16)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.productName)
       ..writeByte(1)
       ..write(obj.description)
       ..writeByte(2)

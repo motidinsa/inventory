@@ -6,6 +6,8 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import '../../functions/core_functions.dart';
+
 class ProductPriceSummary extends StatelessWidget {
   final String currentPage;
 
@@ -47,9 +49,11 @@ class ProductPriceSummary extends StatelessWidget {
                               // style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: NumberFormat("#,###.##").format(
-                                      double.parse(getSubtotal(
-                                          currentPage: currentPage))),
+                                  text: getFormattedNumber(double.parse(
+                                    getSubtotal(
+                                      currentPage: currentPage,
+                                    ),
+                                  )),
                                   style: TextStyle(color: Colors.grey.shade600),
                                 ),
                                 // TextSpan(text: ' world!'),
@@ -78,9 +82,8 @@ class ProductPriceSummary extends StatelessWidget {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: NumberFormat("#,###.##").format(
-                                    double.parse(
-                                        getTotal(currentPage: currentPage))),
+                                text:getFormattedNumber(double.parse(
+                                    getTotal(currentPage: currentPage))) ,
                                 style: TextStyle(color: Colors.grey.shade600),
                               ),
                               // TextSpan(text: ' world!'),

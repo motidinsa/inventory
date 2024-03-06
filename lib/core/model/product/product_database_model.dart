@@ -5,7 +5,7 @@ part 'product_database_model.g.dart';
 @HiveType(typeId: 1)
 class ProductDatabaseModel extends HiveObject {
   @HiveField(0)
-  String name;
+  String productName;
 
   @HiveField(1)
   String? description;
@@ -53,7 +53,7 @@ class ProductDatabaseModel extends HiveObject {
   String id;
 
   ProductDatabaseModel({
-    required this.name,
+    required this.productName,
     this.description,
     required this.categoryId,
     required this.productId,

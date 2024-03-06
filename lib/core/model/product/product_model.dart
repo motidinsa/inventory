@@ -1,32 +1,18 @@
 class ProductModel {
   String name;
-
   String id;
-
   String? description;
-
   String categoryId;
-
   String categoryName;
-
   String productId;
-
   String cost;
-
   String price;
-
   String quantityOnHand;
-
   String reorderQuantity;
-
   String unitOfMeasurement;
-
   String createdByUserId;
-
   DateTime dateCreated;
-
   DateTime dateModified;
-
   String? localImagePath;
 
   ProductModel({

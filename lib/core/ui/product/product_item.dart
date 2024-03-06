@@ -7,6 +7,8 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import '../../functions/core_functions.dart';
+
 class ProductItem extends StatelessWidget {
   final int index;
   final String currentPage;
@@ -52,9 +54,8 @@ class ProductItem extends StatelessWidget {
                         title: priceN(),
                         index: index,
                       )
-                    : Text(
-                        NumberFormat("#,###.##").format(getProductPrice(
-                            currentPage: currentPage, index: index)),
+                    : Text(getFormattedNumber(getProductPrice(
+                    currentPage: currentPage, index: index)),
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 16),
                       ),
@@ -62,9 +63,8 @@ class ProductItem extends StatelessWidget {
               sizedBox(width: 10),
               Expanded(
                 flex: 3,
-                child: Text(
-                  NumberFormat("#,###.##").format(getProductTotalPrice(
-                      currentPage: currentPage, index: index)),
+                child: Text(getFormattedNumber(getProductTotalPrice(
+                    currentPage: currentPage, index: index)),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),

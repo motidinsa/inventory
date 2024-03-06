@@ -11,10 +11,18 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:path/path.dart' as path;
+
 class AddImageSourceButton extends StatelessWidget {
   final String sourceLocation;
+  final String currentPage;
+  final String? productId;
 
-  AddImageSourceButton({super.key, required this.sourceLocation});
+  AddImageSourceButton({
+    super.key,
+    required this.sourceLocation,
+    required this.currentPage,
+    this.productId
+  });
 
   final ImagePicker _picker = ImagePicker();
 
@@ -26,8 +34,11 @@ class AddImageSourceButton extends StatelessWidget {
         onPressed: () async {
           AddProductController addProductController = Get.find();
           await _picker
-              .pickImage(source: sourceLocation==galleryN?ImageSource.gallery:ImageSource.camera).
-              then((value) async {
+              .pickImage(
+                  source: sourceLocation == galleryN
+                      ? ImageSource.gallery
+                      : ImageSource.camera)
+              .then((value) async {
             addProductController.productInfo.update((val) {
               val?.localImagePath = value?.path;
             });

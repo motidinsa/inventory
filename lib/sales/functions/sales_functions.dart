@@ -13,7 +13,7 @@ onSalesTextFieldChange({
   if (title == searchProductsN()) {
     salesController.searchProductFoundResult(salesController.products
         .where((product) =>
-            product.name.toLowerCase().contains(data.toLowerCase()))
+            product.productName.toLowerCase().contains(data.toLowerCase()))
         .toList());
   } else if (title == quantityN()) {
     salesController.salesModels[index!].update((sales) {
@@ -48,7 +48,7 @@ onSalesSearchProductAlertDialogOptionSelect(
     {required ProductDatabaseModel productModel, required int index}) {
   final SalesController salesController = Get.find();
   salesController.salesModels[index].update((sales) {
-    sales?.productName = productModel.name;
+    sales?.productName = productModel.productName;
     sales?.productId = productModel.id;
     sales?.price = productModel.price.toString();
     if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
