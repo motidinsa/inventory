@@ -4,6 +4,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
+import 'package:my_inventory/product_list/functions/product_list_functions.dart';
+
 titleToHint({String? title}) {
   String? value;
   if (title == productN()) {
@@ -46,6 +48,8 @@ onTextFieldChange({
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == purchaseN()) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
+  } else if (currentPage == productListN()) {
+    onProductListTextFieldChange(data: data);
   }
 }
 

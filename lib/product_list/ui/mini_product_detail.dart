@@ -8,7 +8,7 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import '../../core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
@@ -38,7 +38,7 @@ class MiniProductDetail extends StatelessWidget {
                   )
                 : Container(
                     width: 100,
-                    padding: EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -56,7 +56,7 @@ class MiniProductDetail extends StatelessWidget {
                           ),
                           style: TextButton.styleFrom(
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                          child: Text('Add image'),
+                          child: const Text('Add image'),
                         ),
                       ],
                     ),

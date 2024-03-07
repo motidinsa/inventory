@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -122,7 +125,11 @@ onAddIconPressed({required String currentPage}) {
     purchaseController.addPurchaseProduct();
   } else if (currentPage == addProductN()) {}
 }
-onAddImagePressed({required BuildContext context,required String currentPage,String? productId}) {
+
+onAddImagePressed(
+    {required BuildContext context,
+    required String currentPage,
+    String? productId}) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -133,11 +140,40 @@ onAddImagePressed({required BuildContext context,required String currentPage,Str
       );
     },
   ).then(
-        (value) async {
+    (value) async {
       await unFocus();
     },
   );
 }
+
+onImageSourceButtonPressed(
+    {required String currentPage,
+    required String sourceLocation,
+    String? productId}) async {
+  final ImagePicker picker = ImagePicker();
+
+  await picker
+      .pickImage(
+          source: sourceLocation == galleryN
+              ? ImageSource.gallery
+              : ImageSource.camera)
+      .then((value) async {
+    if (currentPage == addProductN()) {
+      AddProductController addProductController = Get.find();
+      addProductController.productInfo.update((val) {
+        val?.localImagePath = value?.path;
+      });
+    } else if (productId != null) {
+      var productBox = Hive.box<ProductDatabaseModel>('products');
+      ProductDatabaseModel? currentProduct = productBox.get(productId);
+      currentProduct!.localImagePath = value?.path;
+      productBox.put(productId, currentProduct);
+    }
+
+    Get.back();
+  });
+}
+
 titleToIcon({required String title}) {
   IconData? iconData;
   if (title == dateN) {
@@ -153,7 +189,7 @@ titleToIcon({required String title}) {
 }
 
 getKeyboardType({required String title}) {
-  List<String> numberKeyboardLists = [
+  final List<String> numberKeyboardLists = [
     costN(),
     priceN(),
     quantityOnHandN(),

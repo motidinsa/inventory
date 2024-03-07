@@ -6,9 +6,8 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/app_bindings.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/homepage/ui/homepage.dart';
-
 import 'package:my_inventory/core/database/initialize.dart';
+import 'package:my_inventory/homepage/ui/homepage.dart';
 
 late Isar isar;
 void main() async {
@@ -58,22 +57,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return DevicePreview(
-        builder: (context) {
-        return GetMaterialApp(
-          title: appNameN(),
-          debugShowCheckedModeBanner: false,
-          initialBinding: ApplicationBindings(),
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-            useMaterial3: true,
-          ),
-          home: const Scaffold(
-            drawer: Drawer(),
-            body: Homepage(),
-          ),
-        );
-      }
-    );
+    return DevicePreview(builder: (context) {
+      return GetMaterialApp(
+        title: appNameN(),
+        debugShowCheckedModeBanner: false,
+        initialBinding: ApplicationBindings(),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          useMaterial3: true,
+        ),
+        home: const Scaffold(
+          drawer: Drawer(),
+          body: Homepage(),
+        ),
+      );
+    });
   }
 }

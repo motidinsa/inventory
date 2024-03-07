@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
-import '../../core/styles/styles.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductDetailSingleDescription extends StatelessWidget {
   final String title;

@@ -1,8 +1,5 @@
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gal/gal.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -11,8 +8,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/model/product/product_model.dart';
+import 'package:my_inventory/core/model/product/product_model.dart';
 
 class AddProductController extends GetxController {
   var selectedUnitOfMeasurement = 'Pcs'.obs;

@@ -20,15 +20,13 @@ class AlertDialogOptionSelect extends StatelessWidget {
   final List<String>? itemList;
   final String? productId;
 
-  const AlertDialogOptionSelect({
-    super.key,
-    required this.title,
-    required this.currentPage,
-    this.itemList,
-    this.index,
-    this.productId
-  });
-
+  const AlertDialogOptionSelect(
+      {super.key,
+      required this.title,
+      required this.currentPage,
+      this.itemList,
+      this.index,
+      this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +57,13 @@ class AlertDialogOptionSelect extends StatelessWidget {
                     AddImageSourceButton(
                       sourceLocation: galleryN,
                       currentPage: currentPage,
+                      productId: productId,
                     ),
                     sizedBox(width: 20),
                     AddImageSourceButton(
                       sourceLocation: cameraN,
                       currentPage: currentPage,
+                      productId: productId,
                     ),
                   ],
                 )

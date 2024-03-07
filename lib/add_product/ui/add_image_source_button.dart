@@ -1,50 +1,30 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:gal/gal.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:path/path.dart' as path;
+
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class AddImageSourceButton extends StatelessWidget {
   final String sourceLocation;
   final String currentPage;
   final String? productId;
 
-  AddImageSourceButton({
-    super.key,
-    required this.sourceLocation,
-    required this.currentPage,
-    this.productId
-  });
-
-  final ImagePicker _picker = ImagePicker();
+  const AddImageSourceButton(
+      {super.key,
+      required this.sourceLocation,
+      required this.currentPage,
+      this.productId});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ElevatedButton(
-        onPressed: () async {
-          AddProductController addProductController = Get.find();
-          await _picker
-              .pickImage(
-                  source: sourceLocation == galleryN
-                      ? ImageSource.gallery
-                      : ImageSource.camera)
-              .then((value) async {
-            addProductController.productInfo.update((val) {
-              val?.localImagePath = value?.path;
-            });
-            Get.back();
-          });
-        },
+        onPressed: () => onImageSourceButtonPressed(
+            currentPage: currentPage,
+            sourceLocation: sourceLocation,
+            productId: productId),
         style: ElevatedButton.styleFrom(
           shape: smoothRectangleBorder(radius: 12),
           padding: const EdgeInsets.all(10),

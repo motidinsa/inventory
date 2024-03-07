@@ -8,7 +8,7 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 
-import 'mini_product_detail.dart';
+import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
 class ProductList extends StatelessWidget {
   ProductList({super.key});
@@ -19,47 +19,41 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
-        pageName: productListN(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            children: [
-              sizedBox(height: 15),
-              ProductTextField(
-                currentPage: productListN(),
-                title: productListN(),
-              ),
-              sizedBox(height: 15),
-              ValueListenableBuilder<Box<ProductDatabaseModel>>(
-                valueListenable:
-                    Hive.box<ProductDatabaseModel>('products').listenable(),
-                builder: (context, box, _) {
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => MiniProductDetail(
-                      productModel: box.getAt(index)!,
-                        // iconData: Icons.add_chart_sharp,
-                        // id: box.getAt(index)?.productId ?? '',
-                        // name: box.getAt(index)!.productName,
-                        // noOfPieces: box.getAt(index)!.quantityOnHand.toString(),
-                        // price: '${box.getAt(index)!.price}'
-                    ),
-                    itemCount: box.length,
-                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                  );
-                },
-              )
-              // const MiniProductDetail(
-              //   iconData: Icons.add_chart_sharp,
-              //   id: '473r6t',
-              //   name: 'Bic Pen',
-              //   noOfPieces: '743',
-              //   price: '7346',
-              // )
-            ],
-          ),
-        ));
+      pageName: productListN(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          children: [
+            sizedBox(height: 15),
+            ProductTextField(
+              currentPage: productListN(),
+              title: productListN(),
+            ),
+            // sizedBox(height: 15),
+            ValueListenableBuilder<Box<ProductDatabaseModel>>(
+              valueListenable:
+                  Hive.box<ProductDatabaseModel>('products').listenable(),
+              builder: (context, box, _) {
+                print(box.length);
+                return Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => MiniProductDetail(
+                          productModel:
+                              productListController.productList[index],
+                        ),
+                        itemCount: productListController.productList.length,
+                        separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                      ),
+                    ));
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
