@@ -21,7 +21,7 @@ class AddProductImage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Image\n(Optional)',
+          imageOptionalN,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontWeight: bold(), fontSize: 16, color: Colors.grey.shade600),

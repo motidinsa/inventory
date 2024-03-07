@@ -185,7 +185,9 @@ titleToIcon({required String title}) {
   } else if (title == emailN()) {
     iconData = Icons.email_outlined;
   }
-  return Icon(iconData, color: Colors.grey.shade600);
+  return iconData != null
+      ? Icon(iconData, color: Colors.grey.shade600)
+      : Container();
 }
 
 getKeyboardType({required String title}) {

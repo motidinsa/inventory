@@ -52,3 +52,7 @@ const String deleteN = 'Delete';
 const String changeN = 'Change';
 const String galleryN = 'Gallery';
 const String cameraN = 'Camera';
+const String addImageN = 'Add image';
+const String noImageFoundN = 'No image found';
+const String imageOptionalN = 'Image\n(Optional)';
+const String productDetailN = 'Product detail';

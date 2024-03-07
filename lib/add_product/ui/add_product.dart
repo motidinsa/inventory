@@ -22,12 +22,6 @@ class AddProduct extends StatefulWidget {
 }
 
 class _AddProductState extends State<AddProduct> {
-  final List<String> items = [
-    'Product 1',
-    'Product 2',
-    'Product 3',
-    'Product 4',
-  ];
   final List<String> items2 = [
     'Pcs',
     'Kg',
