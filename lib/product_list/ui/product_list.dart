@@ -35,6 +35,7 @@ class ProductList extends StatelessWidget {
                   Hive.box<ProductDatabaseModel>('products').listenable(),
               builder: (context, box, _) {
                 print(box.length);
+                // productListController.productList(box.values.toList());
                 return Obx(() => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       child: ListView.separated(
@@ -44,6 +45,7 @@ class ProductList extends StatelessWidget {
                         itemBuilder: (ctx, index) => MiniProductDetail(
                           productModel:
                               productListController.productList[index],
+                          index: index,
                         ),
                         itemCount: productListController.productList.length,
                         separatorBuilder: (ctx, index) => sizedBox(height: 20),

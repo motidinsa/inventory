@@ -31,10 +31,19 @@ getFormattedNumber(double num) {
   return NumberFormat("#,###.##").format(num);
 }
 
-onSaveButtonPressed({required String redirectFrom}) async {
+onActionButtonPressed({required String redirectFrom, String? productId}) async {
   AppController appController = Get.find();
   await unFocus();
-  if (appController.formKey.currentState!.validate()) {
+  if (redirectFrom == productDetailN) {
+    var productsBox = Hive.box<ProductDatabaseModel>('products');
+    ProductListController productListController = Get.find();
+    await productsBox.delete(productId);
+    productListController.productList(productsBox.values
+        .where((product) => product.productName
+            .toLowerCase()
+            .contains(productListController.searchedText.toLowerCase()))
+        .toList());
+  } else if (appController.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN()) {
       AddProductController addProductController = Get.find();
       addProductController.onAddProductSaveButtonPressed();
@@ -45,8 +54,8 @@ onSaveButtonPressed({required String redirectFrom}) async {
       PurchaseController purchaseController = Get.find();
       purchaseController.savePurchaseProductToDB();
     }
-    Get.back();
   }
+  Get.back();
 }
 
 titleToData({required String title, required String currentPage, int? index}) {

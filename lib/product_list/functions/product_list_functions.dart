@@ -12,12 +12,18 @@ onProductListTextFieldChange({
 }) {
   var productBox = Hive.box<ProductDatabaseModel>('products');
   ProductListController productListController = Get.find();
+  productListController.searchedText(data);
   productListController.productList(productBox.values
       .where((product) =>
           product.productName.toLowerCase().contains(data.toLowerCase()))
       .toList());
 }
-onMiniProductDetailPressed({required ProductDatabaseModel productDatabaseModel}){
+
+onMiniProductDetailPressed(
+    {required ProductDatabaseModel productDatabaseModel, required int index}) {
   unFocus();
-  Get.to(()=>ProductDetail(productDatabaseModel: productDatabaseModel,));
+  Get.to(() => ProductDetail(
+        productDatabaseModel: productDatabaseModel,
+        index: index,
+      ));
 }

@@ -37,10 +37,10 @@ class ProductImage extends StatelessWidget {
               children: [
                 Text(
                   noImageFoundN,
-                  style: TextStyle(color: Colors.red.shade600),
+                  style: TextStyle(color: Colors.red),
                   textAlign: TextAlign.center,
                 ),
-                TextButton(
+               if(currentPage!=productDetailN) TextButton(
                   onPressed: () => onAddImagePressed(
                     context: context,
                     currentPage: currentPage,

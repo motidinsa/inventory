@@ -12,17 +12,21 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
+  final int index;
 
   const MiniProductDetail({
     super.key,
     required this.productModel,
+    required this.index,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          onMiniProductDetailPressed(productDatabaseModel: productModel),
+      onTap: () => onMiniProductDetailPressed(
+        productDatabaseModel: productModel,
+        index: index,
+      ),
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         shape: smoothRectangleBorder(radius: 12),

@@ -15,8 +15,9 @@ import 'package:my_inventory/product_list/ui/product_detail_single_description.d
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
+  final int index;
 
-  const ProductDetail({super.key, required this.productDatabaseModel});
+  const ProductDetail({super.key, required this.productDatabaseModel,required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +73,10 @@ class ProductDetail extends StatelessWidget {
                   children: [
                     const Icon(Icons.date_range_outlined),
                     sizedBox(width: 15),
-                    Align(
-                      alignment: Alignment.centerRight,
+                    Expanded(
                       child: ProductDetailSingleDescription(
-                        // alignment: MainAxisAlignment.end,
-                        // dataColor: Colors.green,
                         title: 'Date added',
-                        description: '5r73r53475765',
+                        description: '5r73r53475765 nghnngngfn ffdghdfh',
                         dataColor: Colors.green.shade800,
                         titleColor: Colors.grey.shade700,
                       ),
@@ -91,7 +89,7 @@ class ProductDetail extends StatelessWidget {
                   children: [
                     ProductImage(
                       productId: productDatabaseModel.id,
-                      currentPage: productListN(),
+                      currentPage: productDetailN,
                       localImagePath: productDatabaseModel.localImagePath,
                     ),
                     sizedBox(width: 15),
@@ -169,8 +167,9 @@ class ProductDetail extends StatelessWidget {
             ),
           ),
           ActionButton(
-            redirectFrom: addProductN(),
+            redirectFrom: productDetailN,
             actionButtonType: ActionButtonType.delete,
+            productId: productDatabaseModel.id,
           ),
         ],
       ),

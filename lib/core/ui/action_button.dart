@@ -8,9 +8,17 @@ import 'package:my_inventory/core/model/action_button_enum.dart';
 
 class ActionButton extends StatelessWidget {
   final String redirectFrom;
+  final String? productId;
   final ActionButtonType? actionButtonType;
-  ActionButton({super.key, required this.redirectFrom, this.actionButtonType});
+
+  ActionButton(
+      {super.key,
+      this.productId,
+      required this.redirectFrom,
+      this.actionButtonType});
+
   final AppController appController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +27,8 @@ class ActionButton extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: () => onSaveButtonPressed(redirectFrom: redirectFrom),
+              onPressed: () => onActionButtonPressed(
+                  redirectFrom: redirectFrom, productId: productId),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
