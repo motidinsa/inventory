@@ -2,33 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/add_product/ui/add_product_image.dart';
 import 'package:my_inventory/add_product/ui/add_product_price_input.dart';
 import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
-import 'package:my_inventory/core/ui/save_button.dart';
 
-import 'package:my_inventory/add_product/ui/add_product_image.dart';
+class AddProduct extends StatelessWidget {
+  AddProduct({super.key});
 
-class AddProduct extends StatefulWidget {
-  const AddProduct({super.key});
-
-  @override
-  State<AddProduct> createState() => _AddProductState();
-}
-
-class _AddProductState extends State<AddProduct> {
-  final List<String> items2 = [
-    'Pcs',
-    'Kg',
-    'Lt',
-  ];
-  String? selectedValue;
-  String? selectedValue2;
   final List<String> titleList = [
     productN(),
     descriptionN(),
@@ -106,7 +93,7 @@ class _AddProductState extends State<AddProduct> {
                     itemCount: titleList.length,
                   ),
                 ),
-                SaveButton(
+                ActionButton(
                   redirectFrom: addProductN(),
                 ),
               ],

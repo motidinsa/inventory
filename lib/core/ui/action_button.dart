@@ -4,12 +4,12 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
-class SaveButton extends StatelessWidget {
+import 'package:my_inventory/core/model/action_button_enum.dart';
+
+class ActionButton extends StatelessWidget {
   final String redirectFrom;
-  SaveButton({
-    super.key,
-    required this.redirectFrom,
-  });
+  final ActionButtonType? actionButtonType;
+  ActionButton({super.key, required this.redirectFrom, this.actionButtonType});
   final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -27,11 +27,15 @@ class SaveButton extends StatelessWidget {
                     15,
                   ),
                 ),
-                backgroundColor: Colors.green.shade100,
+                backgroundColor: actionButtonType == null
+                    ? Colors.green.shade100
+                    : Colors.red.shade400,
               ),
               child: Text(
-                saveN(),
-                style: const TextStyle(fontSize: 16),
+                actionButtonType == null ? saveN() : 'Delete',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: actionButtonType != null ? Colors.white : null),
               ),
             ),
           ),

@@ -20,7 +20,7 @@ navigateFromHomepage({required String title, bool? isAddIcon}) {
         ),
     productN(): isAddIcon == true
         ? () => Get.to(
-              () => const AddProduct(),
+              () => AddProduct(),
             )
         : () => Get.to(
               () => ProductList(),

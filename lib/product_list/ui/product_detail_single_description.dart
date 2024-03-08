@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-
 import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductDetailSingleDescription extends StatelessWidget {
   final String title;
   final String description;
+  final double? titleFontSize;
+  final double? dataFontSize;
+  final Color? titleColor;
+  final Color? dataColor;
 
   const ProductDetailSingleDescription({
     super.key,
     required this.title,
     required this.description,
+    this.titleFontSize,
+    this.dataFontSize,
+    this.titleColor,
+    this.dataColor,
   });
 
   @override
@@ -20,8 +27,8 @@ class ProductDetailSingleDescription extends StatelessWidget {
         text: '$title:   ',
         style: TextStyle(
           fontWeight: bold(),
-          fontSize: 16,
-          color: Colors.grey.shade700,
+          fontSize: titleFontSize ?? 16,
+          color: titleColor ?? Colors.grey.shade700,
         ),
         children: <TextSpan>[
           TextSpan(
@@ -29,9 +36,9 @@ class ProductDetailSingleDescription extends StatelessWidget {
                 ? getFormattedNumber(double.parse(description))
                 : description,
             style: TextStyle(
-              color: Colors.grey.shade500,
+              color: dataColor ?? Colors.grey.shade500,
               fontStyle: FontStyle.italic,
-              fontSize: 16,
+              fontSize: dataFontSize ?? 16,
             ),
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
-import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
 class ProfileTitleToData extends StatelessWidget {
   final String title;
@@ -27,24 +27,9 @@ class ProfileTitleToData extends StatelessWidget {
       children: [
         titleToIcon(title: title),
         sizedBox(width: 15),
-        RichText(
-          text: TextSpan(
-            text: '$title:   ',
-            style: TextStyle(
-              fontWeight: bold(),
-              fontSize: 17,
-              color: titleColor??Colors.grey.shade700,
-            ),
-            children: <TextSpan>[
-              TextSpan(
-                text: data,
-                style: TextStyle(
-                  color: dataColor??Colors.grey.shade500,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+        ProductDetailSingleDescription(
+          title: title,
+          description: data,
         ),
       ],
     );

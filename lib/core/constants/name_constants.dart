@@ -56,3 +56,4 @@ const String addImageN = 'Add image';
 const String noImageFoundN = 'No image found';
 const String imageOptionalN = 'Image\n(Optional)';
 const String productDetailN = 'Product detail';
+const String editProductN = 'Edit product';

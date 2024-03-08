@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import 'package:my_inventory/core/functions/core_functions.dart';
-import '../../core/ui/product/product_image.dart';
-import '../functions/product_list_functions.dart';
+import 'package:my_inventory/core/ui/product/product_image.dart';
+import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
@@ -43,24 +41,24 @@ class MiniProductDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        productModel.productName,
+                        // overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: bold(),
+                            fontSize: 17,
+                            color: Colors.grey.shade800),
+                      ),
+                    ),
+                    sizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Text(
-                                productModel.productName,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: bold(),
-                                  fontSize: 17,
-                                ),
-                              ),
-                            ),
-                            sizedBox(height: 5),
                             SmoothContainer(
                               padding: const EdgeInsets.all(10),
                               color: Colors.green.shade200,
@@ -75,7 +73,6 @@ class MiniProductDetail extends StatelessWidget {
                                     color: Colors.white, fontWeight: bold()),
                               ),
                             ),
-                            sizedBox(height: 5),
                           ],
                         ),
                         sizedBox(width: 10),
@@ -88,7 +85,8 @@ class MiniProductDetail extends StatelessWidget {
                               fontSize: 17,
                             ),
                           ),
-                        )
+                        ),
+                        sizedBox(width: 10),
                       ],
                     ),
                     if (productModel.description != null) ...[

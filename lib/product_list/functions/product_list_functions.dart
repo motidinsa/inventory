@@ -5,7 +5,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 
-import '../../product_detail/ui/product_detail.dart';
+import 'package:my_inventory/product_detail/ui/product_detail.dart';
 
 onProductListTextFieldChange({
   required String data,

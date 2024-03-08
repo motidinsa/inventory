@@ -1,118 +1,178 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_inventory/core/model/action_button_enum.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/constants/widget_constants.dart';
-import '../../core/ui/body_wrapper.dart';
-import '../../core/ui/elevated_card.dart';
-import '../../core/ui/product/product_image.dart';
-import '../../core/ui/product/profile_title_to_data.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/ui/action_button.dart';
+import 'package:my_inventory/core/ui/body_wrapper.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/product/product_image.dart';
+import 'package:my_inventory/edit_product/ui/edit_product.dart';
+import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
 
-  ProductDetail({super.key, required this.productDatabaseModel});
-
-  final List<String> titleList = [
-    // productN(),
-    // descriptionN(),
-    // 'image',
-    categoryN(),
-    productIdN(),
-    costN(),
-    priceN(),
-    quantityOnHandN(),
-    reorderQuantityN(),
-    uomN()
-  ];
+  const ProductDetail({super.key, required this.productDatabaseModel});
 
   @override
   Widget build(BuildContext context) {
+    var titleToData = {
+      categoryN(): productDatabaseModel.categoryId,
+      productIdN(): productDatabaseModel.productId,
+      costN(): productDatabaseModel.cost,
+      priceN(): productDatabaseModel.price,
+      quantityOnHandN(): productDatabaseModel.quantityOnHand,
+      reorderQuantityN(): productDatabaseModel.reorderQuantity,
+      uomN(): productDatabaseModel.unitOfMeasurement,
+    };
     return BodyWrapper(
       pageName: productDetailN,
-      body: ElevatedCard(
-        verticalPadding: 10,
-        verticalMargin: 20,
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            // sizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+      body: ListView(
+        children: [
+          ElevatedCard(
+            verticalPadding: 10,
+            verticalMargin: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          'Edit',
-                          style: TextStyle(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          Get.to(() => EditProduct(
+                                productDatabaseModel: productDatabaseModel,
+                              ));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              'Edit',
+                              style: TextStyle(
+                                  color: Colors.green.shade700,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            sizedBox(width: 20),
+                            Icon(
+                              Icons.edit,
                               color: Colors.green.shade700,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.date_range_outlined),
+                    sizedBox(width: 15),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ProductDetailSingleDescription(
+                        // alignment: MainAxisAlignment.end,
+                        // dataColor: Colors.green,
+                        title: 'Date added',
+                        description: '5r73r53475765',
+                        dataColor: Colors.green.shade800,
+                        titleColor: Colors.grey.shade700,
+                      ),
+                    ),
+                  ],
+                ),
+                sizedBox(height: 15),
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ProductImage(
+                      productId: productDatabaseModel.id,
+                      currentPage: productListN(),
+                      localImagePath: productDatabaseModel.localImagePath,
+                    ),
+                    sizedBox(width: 15),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              productDatabaseModel.productName,
+                              style: TextStyle(
+                                fontWeight: bold(),
+                                fontSize: 18,
+                                color: Colors.grey.shade800,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                            sizedBox(height: 10),
+                            ProductDetailSingleDescription(
+                              title: descriptionN(),
+                              description:
+                                  productDatabaseModel.description ?? '',
+                              titleColor: Colors.green.shade800,
+                              dataColor: Colors.grey.shade600,
+                              titleFontSize: 18,
+                              // dataFontSize: 17,
+                            )
+                          ],
                         ),
-                        sizedBox(width: 20),
-                        Icon(
-                          Icons.edit,
-                          color: Colors.green.shade700,
-                        ),
-                      ],
-                    ))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(Icons.date_range_outlined),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ProfileTitleToData(
-                    alignment: MainAxisAlignment.end,
-                    dataColor: Colors.green,
-                    title: 'Date added',
-                    data: '5r73r53475765',
+                      ),
+                    )
+                  ],
+                ),
+                // sizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 10),
+                  child: Card(
+                    elevation: 5,
+                    surfaceTintColor: Colors.white,
+                    shape: smoothRectangleBorder(
+                      radius: 15,
+                      side: const BorderSide(
+                        color: Colors.green,
+                        width: .5,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          List keys = titleToData.keys.toList();
+                          String title = keys[index];
+                          String data = titleToData[title].toString();
+                          return ProductDetailSingleDescription(
+                            title: title,
+                            description: data,
+                            titleFontSize: 18,
+                            dataFontSize: 17,
+                            titleColor: Colors.green.shade800,
+                            dataColor: Colors.grey.shade700,
+                          );
+                        },
+                        separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                        itemCount: titleToData.length,
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
-            sizedBox(height: 10),
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ProductImage(
-                  productId: productDatabaseModel.id,
-                  currentPage: productListN(),
-                  localImagePath: productDatabaseModel.localImagePath,
-                ),
-                sizedBox(width: 10),
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    return  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text('cdnsjcbdsj csdhcbjc csdjh'),
-                      ],
-                    );
-                  },
-                )
-
-              ],
-            ),
-            sizedBox(height: 10),
-
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (ctx, index) => Text(titleList[index]),
-              separatorBuilder: (ctx, index) => sizedBox(height: 20),
-              itemCount: titleList.length,
-            ),
-            // SaveButton(
-            //   redirectFrom: addProductN(),
-            // ),
-          ],
-        ),
+          ),
+          ActionButton(
+            redirectFrom: addProductN(),
+            actionButtonType: ActionButtonType.delete,
+          ),
+        ],
       ),
     );
   }
