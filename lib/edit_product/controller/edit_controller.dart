@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
@@ -14,7 +15,7 @@ class EditProductController extends GetxController {
   EditProductController({required this.productDatabaseModel});
 
   late Rx<ProductModel> productInfo;
-
+  final AppController appController = Get.find();
   @override
   void onInit() {
     super.onInit();
@@ -27,7 +28,7 @@ class EditProductController extends GetxController {
             productId: productDatabaseModel.productId,
             cost: productDatabaseModel.cost.toString(),
             price: productDatabaseModel.price.toString(),
-            createdByUserId: '',
+            modifiedByUserId: '',
             dateCreated: productDatabaseModel.dateCreated,
             dateModified: productDatabaseModel.dateModified,
             quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
@@ -70,7 +71,8 @@ class EditProductController extends GetxController {
         productId: productInfo.value.productId,
         cost: getValidNumValue(productInfo.value.cost),
         price: getValidNumValue(productInfo.value.price),
-        createdByUserId: productInfo.value.createdByUserId,
+        createdByUserId: appController.userId.value,
+        modifiedByUserId: productInfo.value.modifiedByUserId,
         dateCreated: productInfo.value.dateCreated,
         dateModified: productInfo.value.dateModified,
         quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),

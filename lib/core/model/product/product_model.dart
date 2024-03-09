@@ -10,7 +10,7 @@ class ProductModel {
   String quantityOnHand;
   String reorderQuantity;
   String unitOfMeasurement;
-  String createdByUserId;
+  String? modifiedByUserId;
   DateTime dateCreated;
   DateTime dateModified;
   String? localImagePath;
@@ -26,10 +26,10 @@ class ProductModel {
     required this.quantityOnHand,
     required this.reorderQuantity,
     required this.unitOfMeasurement,
-    required this.createdByUserId,
     required this.dateCreated,
     required this.dateModified,
     this.localImagePath,
     required this.id,
+    this.modifiedByUserId,
   });
 }

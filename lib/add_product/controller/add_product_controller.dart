@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -7,24 +6,30 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-
 import 'package:my_inventory/core/model/product/product_model.dart';
+
+import '../../core/controller/app_controller.dart';
+import '../../core/model/category/category_database_model.dart';
 
 class AddProductController extends GetxController {
   var selectedUnitOfMeasurement = 'Pcs'.obs;
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
   final formKey = GlobalKey<FormState>();
-  var categoryList = [
-    'cat 1',
-    'cat 2',
-    'cat 3',
-  ].obs;
-  var categoryListFoundResult = [
-    'cat 1',
-    'cat 2',
-    'cat 3',
-  ].obs;
+  final AppController appController = Get.find();
+
+  @override
+  void onInit() {
+    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    categoryListFoundResult(categoryBox.values.toList());
+    super.onInit();
+  } // var categoryList = [
+  //   'cat 1',
+  //   'cat 2',
+  //   'cat 3',
+  // ].obs;
+
+  var categoryListFoundResult = [].obs;
   var unitOfMeasurementList = ['Pcs', 'Kg', 'Lt'].obs;
   var unitOfMeasurementListFoundResult = ['Pcs', 'Kg', 'Lt'].obs;
   var productInfo = ProductModel(
@@ -34,7 +39,6 @@ class AddProductController extends GetxController {
           productId: '',
           cost: '',
           price: '',
-          createdByUserId: '',
           dateCreated: DateTime.now(),
           dateModified: DateTime.now(),
           quantityOnHand: '',
@@ -59,7 +63,8 @@ class AddProductController extends GetxController {
         productId: productInfo.value.productId,
         cost: getValidNumValue(productInfo.value.cost),
         price: getValidNumValue(productInfo.value.price),
-        createdByUserId: productInfo.value.createdByUserId,
+        createdByUserId: appController.userId.value,
+        modifiedByUserId: productInfo.value.modifiedByUserId,
         dateCreated: productInfo.value.dateCreated,
         dateModified: productInfo.value.dateModified,
         quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),

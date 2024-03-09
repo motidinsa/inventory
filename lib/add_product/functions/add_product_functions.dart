@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
+
+import '../../core/controller/add_item_controller.dart';
+import '../../core/model/category/category_database_model.dart';
 
 onAddProductTextFieldChange({
   String? title,
@@ -14,11 +18,16 @@ onAddProductTextFieldChange({
 }) {
   if (title == selectCategoryN()) {
     AddProductController addProductController = Get.find();
-    addProductController.categoryListFoundResult(addProductController
-        .categoryList
-        .where((categoryName) =>
-            categoryName.toLowerCase().contains(data.toLowerCase()))
+    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    addProductController.categoryListFoundResult(categoryBox.values
+        .where((category) =>
+            category.categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
+    // addProductController.categoryListFoundResult(addProductController
+    //     .categoryList
+    //     .where((categoryName) =>
+    //         categoryName.toLowerCase().contains(data.toLowerCase()))
+    //     .toList());
   } else if (title == selectUomN()) {
     AddProductController addProductController = Get.find();
     addProductController.unitOfMeasurementListFoundResult(addProductController
@@ -49,10 +58,12 @@ onAddProductFocusChange({
       product?.quantityOnHand = data;
     } else if (title == reorderQuantityN()) {
       product?.reorderQuantity = data;
+    } else if ([categoryNameN, uomNameN].contains(title)) {
+      AddItemController addItemController = Get.find();
+      addItemController.addedText(data);
     }
   });
 }
-
 
 getAddProductAlertDialogLength({required String title}) {
   AddProductController addProductController = Get.find();
@@ -120,14 +131,14 @@ onPurchaseProductSelect({
 onAddProductTextFieldPressed(
     {required String title, required BuildContext context}) {
   final AddProductController addProductController = Get.find();
-  Map<String, List<String>> itemsWithList = {
+  Map<String, List> itemsWithList = {
     categoryN(): addProductController.categoryListFoundResult,
     uomN(): addProductController.unitOfMeasurementList,
   };
 
   if (itemsWithList.keys.contains(title)) {
-    addProductController
-        .categoryListFoundResult(addProductController.categoryList.toList());
+    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    addProductController.categoryListFoundResult(categoryBox.values.toList());
     addProductController.unitOfMeasurementListFoundResult(
         addProductController.unitOfMeasurementList.toList());
     showDialog(

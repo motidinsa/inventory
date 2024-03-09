@@ -52,6 +52,9 @@ class ProductDatabaseModel extends HiveObject {
   @HiveField(15)
   String id;
 
+  @HiveField(16)
+  String? modifiedByUserId;
+
   ProductDatabaseModel({
     required this.productName,
     this.description,
@@ -69,5 +72,6 @@ class ProductDatabaseModel extends HiveObject {
     this.localImagePath,
     this.onlineImagePath,
     required this.id,
+    this.modifiedByUserId,
   });
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import 'package:my_inventory/product_list/functions/product_list_functions.dart';
+import '../../../product_list/functions/product_list_functions.dart';
+import '../../../purchase/functions/purchase_functions.dart';
+import '../../../sales/functions/sales_functions.dart';
+import '../../constants/name_constants.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -80,7 +80,9 @@ minimizePadding({String? title}) {
     productListN(),
     selectCategoryN(),
     selectUomN(),
-    discountN()
+    discountN(),
+    categoryNameN,
+    uomNameN
   ];
   return !items.contains(title);
 }

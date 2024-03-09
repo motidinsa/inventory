@@ -34,16 +34,19 @@ class _ProductTextFieldState extends State<ProductTextField> {
 
   @override
   void initState() {
-    if (widget.currentPage == addProductN()) {
-      focusNode.addListener(
-        () => onFocusChange(
-          currentPage: widget.currentPage,
-          title: widget.title,
-          hasFocus: focusNode.hasFocus,
-          data: textEditingController.text,
-        ),
-      );
+    // if (widget.currentPage == addProductN()) {
+    focusNode.addListener(
+      () => onFocusChange(
+        currentPage: widget.currentPage,
+        title: widget.title,
+        hasFocus: focusNode.hasFocus,
+        data: textEditingController.text,
+      ),
+    );
+    if ([categoryNameN, uomNameN].contains(widget.title)) {
+      focusNode.requestFocus();
     }
+    // }
     super.initState();
   }
 

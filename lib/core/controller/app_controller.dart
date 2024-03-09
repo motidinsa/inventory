@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();
+  var userId = ''.obs;
   // late Isar isar;
   //
   // @override

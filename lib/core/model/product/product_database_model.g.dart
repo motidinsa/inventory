@@ -33,13 +33,14 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
       localImagePath: fields[13] as String?,
       onlineImagePath: fields[14] as String?,
       id: fields[15] as String,
+      modifiedByUserId: fields[16] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProductDatabaseModel obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.productName)
       ..writeByte(1)
@@ -71,7 +72,9 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
       ..writeByte(14)
       ..write(obj.onlineImagePath)
       ..writeByte(15)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(16)
+      ..write(obj.modifiedByUserId);
   }
 
   @override

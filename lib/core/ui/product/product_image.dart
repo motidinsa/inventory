@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';;
-
+import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';

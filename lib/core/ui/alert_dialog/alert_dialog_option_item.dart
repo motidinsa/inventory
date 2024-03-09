@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 
+import '../../model/category/category_database_model.dart';
+
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String currentPage;
-  final String? item;
   final int? index;
   final ProductDatabaseModel? product;
+  final CategoryDatabaseModel? category;
 
-  const AlertDialogOptionItem({
-    super.key,
-    this.item,
-    required this.title,
-    this.product,
-    required this.currentPage,
-    this.index,
-  });
+  const AlertDialogOptionItem(
+      {super.key,
+      required this.title,
+      this.product,
+      required this.currentPage,
+      this.index,
+      this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          item ?? product!.productName,
+          category?.categoryName ?? product!.productName,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -37,7 +38,7 @@ class AlertDialogOptionItem extends StatelessWidget {
         currentPage: currentPage,
         title: title,
         index: index,
-        data: item ?? product!.productName,
+        data: category?.categoryName ?? product!.productName,
         productModel: product,
       ),
     );

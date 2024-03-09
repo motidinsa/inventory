@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
@@ -12,6 +13,8 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
+import '../model/category/category_database_model.dart';
+import '../ui/add_item.dart';
 import '../ui/alert_dialog/alert_dialog_option_select.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
@@ -19,6 +22,12 @@ unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
+}
+
+generateDatabaseId(DateTime time) {
+  final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+  String key = dateFormatter.format(time);
+  return key;
 }
 
 double getValidNumValue(String data) {
@@ -51,6 +60,29 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
             .toLowerCase()
             .contains(productListController.searchedText.toLowerCase()))
         .toList());
+  } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
+    AddItemController addItemController = Get.find();
+    if (addItemController.formKey.currentState!.validate()) {
+      AddProductController addProductController = Get.find();
+      if (redirectFrom == categoryNameN) {
+        DateTime now = DateTime.now();
+        var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+        await categoryBox.put(
+          generateDatabaseId(now),
+          CategoryDatabaseModel(
+            categoryName: addItemController.addedText.value,
+            dateCreated: now,
+            dateModified: now,
+            createdByUserId: appController.userId.value,
+            categoryId: generateDatabaseId(now),
+          ),
+        );
+        addProductController
+            .categoryListFoundResult(categoryBox.values.toList());
+      }
+    } else {
+      return;
+    }
   } else if (appController.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN()) {
       AddProductController addProductController = Get.find();
@@ -160,12 +192,31 @@ nullIfEmpty(String? data) {
   return data;
 }
 
-onAddIconPressed({required String currentPage}) {
+onAddIconPressed({required String currentPage, String? type}) {
   if (currentPage == salesN()) {
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
     purchaseController.addPurchaseProduct();
-  } else if (currentPage == addProductN()) {}
+  } else {
+    Get.back();
+    Get.dialog(
+      AddItem(
+        type: type!,
+        currentPage: currentPage,
+      ),
+    ).then((value) {
+      AddProductController addProductController = Get.find();
+      Get.dialog(
+        AlertDialogOptionSelect(
+          currentPage: currentPage,
+          title: type,
+          itemList: type == selectCategoryN()
+              ? addProductController.categoryListFoundResult
+              : addProductController.unitOfMeasurementListFoundResult,
+        ),
+      );
+    });
+  }
 }
 
 onAddImagePressed({required String currentPage, String? productId}) {
@@ -242,10 +293,7 @@ mapValidation({
   required String title,
   required String data,
 }) {
-  List<String> nonEmptyTitles = [
-    productN(),
-    categoryN(),
-  ];
+  List<String> nonEmptyTitles = [productN(), categoryN(), categoryNameN];
   List<String> numberKeyboardLists = [
     costN(),
     priceN(),
