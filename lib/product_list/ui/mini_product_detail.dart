@@ -4,11 +4,10 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
-import 'package:smooth_corner/smooth_corner.dart';
-
 import 'package:my_inventory/core/ui/product/product_image.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
+import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
@@ -72,7 +71,7 @@ class MiniProductDetail extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                               alignment: Alignment.center,
                               child: Text(
-                                '${getFormattedNumber(productModel.quantityOnHand)} ${productModel.unitOfMeasurement}',
+                                '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${productModel.unitOfMeasurement}',
                                 style: TextStyle(
                                     color: Colors.white, fontWeight: bold()),
                               ),
@@ -82,7 +81,7 @@ class MiniProductDetail extends StatelessWidget {
                         sizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            'ETB ${getFormattedNumber(productModel.price)}',
+                            'ETB ${getFormattedNumberWithComa(productModel.price)}',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               fontWeight: bold(),

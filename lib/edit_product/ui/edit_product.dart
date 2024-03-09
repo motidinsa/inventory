@@ -7,16 +7,15 @@ import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dar
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
-import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/edit_product/controller/edit_controller.dart';
-
 class EditProduct extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
+
   EditProduct({super.key, required this.productDatabaseModel});
 
   final List<String> titleList = [
@@ -31,10 +30,7 @@ class EditProduct extends StatelessWidget {
     uomN()
   ];
 
-  final EditProductController editProductController =
-      Get.put(EditProductController());
   final AppController appController = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return LoaderOverlay(
@@ -59,12 +55,14 @@ class EditProduct extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => [0, 1].contains(index)
                       ? ProductTextField(
-                          currentPage: addProductN(),
+                          currentPage: editProductN,
                           title: titleList[index],
                           labelText: titleList[index],
                         )
                       : index == 2
-                          ? AddProductImage()
+                          ? AddProductImage(
+                              currentPage: editProductN,
+                            )
                           : index == 5
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -72,25 +70,28 @@ class EditProduct extends StatelessWidget {
                                     Expanded(
                                       child: AddProductPriceInput(
                                         title: costN(),
+                                        currentPage: editProductN,
                                       ),
                                     ),
                                     sizedBox(width: 20),
                                     Expanded(
                                       child: AddProductPriceInput(
                                         title: priceN(),
+                                        currentPage: editProductN,
                                       ),
                                     ),
                                   ],
                                 )
                               : AddProductTitleWithTextField(
                                   title: titleList[index],
+                                  currentPage: editProductN,
                                 ),
                   separatorBuilder: (ctx, index) => sizedBox(height: 20),
                   itemCount: titleList.length,
                 ),
               ),
               ActionButton(
-                redirectFrom: addProductN(),
+                redirectFrom: editProductN,
               ),
             ],
           ),

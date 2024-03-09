@@ -57,3 +57,5 @@ const String noImageFoundN = 'No image found';
 const String imageOptionalN = 'Image\n(Optional)';
 const String productDetailN = 'Product detail';
 const String editProductN = 'Edit product';
+const String noCategoryAvailableSN =
+    'There is no category available. Click the + icon to add new category';

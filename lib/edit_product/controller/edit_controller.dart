@@ -6,10 +6,37 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-
 import 'package:my_inventory/core/model/product/product_model.dart';
 
 class EditProductController extends GetxController {
+  final ProductDatabaseModel productDatabaseModel;
+
+  EditProductController({required this.productDatabaseModel});
+
+  late Rx<ProductModel> productInfo;
+
+  @override
+  void onInit() {
+    super.onInit();
+    productInfo = ProductModel(
+            name: productDatabaseModel.productName,
+            description: productDatabaseModel.description,
+            localImagePath: productDatabaseModel.localImagePath,
+            categoryId: productDatabaseModel.categoryId,
+            categoryName: '',
+            productId: productDatabaseModel.productId,
+            cost: productDatabaseModel.cost.toString(),
+            price: productDatabaseModel.price.toString(),
+            createdByUserId: '',
+            dateCreated: productDatabaseModel.dateCreated,
+            dateModified: productDatabaseModel.dateModified,
+            quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
+            reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
+            unitOfMeasurement: productDatabaseModel.unitOfMeasurement,
+            id: '')
+        .obs;
+  }
+
   var selectedUnitOfMeasurement = 'Pcs'.obs;
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
@@ -26,21 +53,6 @@ class EditProductController extends GetxController {
   ].obs;
   var unitOfMeasurementList = ['Pcs', 'Kg', 'Lt'].obs;
   var unitOfMeasurementListFoundResult = ['Pcs', 'Kg', 'Lt'].obs;
-  var productInfo = ProductModel(
-          name: '',
-          categoryId: '',
-          categoryName: '',
-          productId: '',
-          cost: '',
-          price: '',
-          createdByUserId: '',
-          dateCreated: DateTime.now(),
-          dateModified: DateTime.now(),
-          quantityOnHand: '',
-          reorderQuantity: '',
-          unitOfMeasurement: 'Pcs',
-          id: '')
-      .obs;
 
   onAddProductSaveButtonPressed() async {
     isLocalSaveLoading(true);

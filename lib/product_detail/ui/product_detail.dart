@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_image.dart';
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/edit_product/ui/edit_product.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
   final int index;
+  final DateFormat dateFormatter = DateFormat("MMM d, y");
 
-  const ProductDetail({super.key, required this.productDatabaseModel,required this.index});
+  ProductDetail(
+      {super.key, required this.productDatabaseModel, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -44,48 +47,51 @@ class ProductDetail extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                        onPressed: () {
-                          Get.to(() => EditProduct(
-                                productDatabaseModel: productDatabaseModel,
-                              ));
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'Edit',
-                              style: TextStyle(
-                                  color: Colors.green.shade700,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            sizedBox(width: 20),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.green.shade700,
-                            ),
-                          ],
-                        ))
+                      onPressed: () {
+                        Get.put(EditProductController(
+                            productDatabaseModel: productDatabaseModel));
+                        Get.to(() => EditProduct(
+                              productDatabaseModel: productDatabaseModel,
+                            ));
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            'Edit',
+                            style: TextStyle(
+                                color: Colors.green.shade700,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          sizedBox(width: 20),
+                          Icon(
+                            Icons.edit,
+                            color: Colors.green.shade700,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.date_range_outlined),
-                    sizedBox(width: 15),
                     Expanded(
                       child: ProductDetailSingleDescription(
                         title: 'Date added',
-                        description: '5r73r53475765 nghnngngfn ffdghdfh',
+                        description: dateFormatter
+                            .format(productDatabaseModel.dateCreated),
                         dataColor: Colors.green.shade800,
                         titleColor: Colors.grey.shade700,
+                        textAlign: TextAlign.end,
+                        titleFontSize: 17,
                       ),
                     ),
                   ],
                 ),
                 sizedBox(height: 15),
                 Row(
-                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     ProductImage(
                       productId: productDatabaseModel.id,

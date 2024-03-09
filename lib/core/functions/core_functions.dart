@@ -7,11 +7,12 @@ import 'package:my_inventory/add_product/controller/add_product_controller.dart'
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import '../ui/alert_dialog/alert_dialog_option_select.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -27,8 +28,15 @@ double getValidNumValue(String data) {
   return 0;
 }
 
-getFormattedNumber(double num) {
+getFormattedNumberWithComa(double num) {
   return NumberFormat("#,###.##").format(num);
+}
+
+getFormattedNumberWithoutComa(num) {
+  if (isNumeric(num)) {
+    return NumberFormat("###.##").format(double.parse(num));
+  }
+  return num;
 }
 
 onActionButtonPressed({required String redirectFrom, String? productId}) async {
@@ -99,6 +107,31 @@ titleToData({required String title, required String currentPage, int? index}) {
   } else if (currentPage == productListN()) {
     ProductListController productListController = Get.find();
     value = productListController.emptyValue.value;
+  } else if (currentPage == editProductN) {
+    EditProductController editProductController = Get.find();
+    if (title == productN()) {
+      value = editProductController.productInfo.value.name;
+    } else if (title == descriptionN()) {
+      value = editProductController.productInfo.value.description;
+    } else if (title == productIdN()) {
+      value = editProductController.productInfo.value.productId;
+    } else if (title == costN()) {
+      value = getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.cost);
+    } else if (title == priceN()) {
+      value = getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.price);
+    } else if (title == quantityOnHandN()) {
+      value = getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.quantityOnHand);
+    } else if (title == reorderQuantityN()) {
+      value = getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.reorderQuantity);
+    } else if (title == uomN()) {
+      value = editProductController.productInfo.value.unitOfMeasurement;
+    } else if (title == categoryN()) {
+      value = editProductController.productInfo.value.unitOfMeasurement;
+    }
   }
   return value;
 }
@@ -135,24 +168,12 @@ onAddIconPressed({required String currentPage}) {
   } else if (currentPage == addProductN()) {}
 }
 
-onAddImagePressed(
-    {required BuildContext context,
-    required String currentPage,
-    String? productId}) {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialogOptionSelect(
-        currentPage: currentPage,
-        title: selectSourceN,
-        productId: productId,
-      );
-    },
-  ).then(
-    (value) async {
-      await unFocus();
-    },
-  );
+onAddImagePressed({required String currentPage, String? productId}) {
+  Get.dialog(AlertDialogOptionSelect(
+    currentPage: currentPage,
+    title: selectSourceN,
+    productId: productId,
+  )).then((value) => unFocus());
 }
 
 onImageSourceButtonPressed(

@@ -9,20 +9,22 @@ class ProductDetailSingleDescription extends StatelessWidget {
   final double? dataFontSize;
   final Color? titleColor;
   final Color? dataColor;
+  final TextAlign? textAlign;
 
-  const ProductDetailSingleDescription({
-    super.key,
-    required this.title,
-    required this.description,
-    this.titleFontSize,
-    this.dataFontSize,
-    this.titleColor,
-    this.dataColor,
-  });
+  const ProductDetailSingleDescription(
+      {super.key,
+      required this.title,
+      required this.description,
+      this.titleFontSize,
+      this.dataFontSize,
+      this.titleColor,
+      this.dataColor,
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
     return RichText(
+      textAlign: textAlign ?? TextAlign.start,
       text: TextSpan(
         text: '$title:   ',
         style: TextStyle(
@@ -33,7 +35,7 @@ class ProductDetailSingleDescription extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: isNumeric(description)
-                ? getFormattedNumber(double.parse(description))
+                ? getFormattedNumberWithComa(double.parse(description))
                 : description,
             style: TextStyle(
               color: dataColor ?? Colors.grey.shade500,

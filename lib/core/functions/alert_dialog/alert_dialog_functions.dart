@@ -32,3 +32,7 @@ onAlertDialogOptionSelect(
   }
   Get.back();
 }
+
+onAddIconPressed({required String currentPage, required String title}) {
+  if (currentPage == addProductN()) {}
+}

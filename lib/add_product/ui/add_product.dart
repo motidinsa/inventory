@@ -68,7 +68,9 @@ class AddProduct extends StatelessWidget {
                             labelText: titleList[index],
                           )
                         : index == 2
-                            ? AddProductImage()
+                            ? AddProductImage(
+                                currentPage: addProductN(),
+                              )
                             : index == 5
                                 ? Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -76,18 +78,21 @@ class AddProduct extends StatelessWidget {
                                       Expanded(
                                         child: AddProductPriceInput(
                                           title: costN(),
+                                          currentPage: addProductN(),
                                         ),
                                       ),
                                       sizedBox(width: 20),
                                       Expanded(
                                         child: AddProductPriceInput(
                                           title: priceN(),
+                                          currentPage: addProductN(),
                                         ),
                                       ),
                                     ],
                                   )
                                 : AddProductTitleWithTextField(
                                     title: titleList[index],
+                                    currentPage: addProductN(),
                                   ),
                     separatorBuilder: (ctx, index) => sizedBox(height: 20),
                     itemCount: titleList.length,

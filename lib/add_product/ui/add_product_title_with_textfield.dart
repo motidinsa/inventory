@@ -5,11 +5,10 @@ import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
 class AddProductTitleWithTextField extends StatelessWidget {
   final String title;
+  final String currentPage;
 
-  AddProductTitleWithTextField({
-    super.key,
-    required this.title,
-  });
+  AddProductTitleWithTextField(
+      {super.key, required this.title, required this.currentPage});
 
   final List<String> readOnlyItems = [categoryN(), uomN()];
   final List<String> suffixItems = [quantityOnHandN(), reorderQuantityN()];
@@ -35,7 +34,7 @@ class AddProductTitleWithTextField extends StatelessWidget {
           child: Center(
             child: ProductTextField(
               title: title,
-              currentPage: addProductN(),
+              currentPage: currentPage,
               // labelText: descriptionN(),
             ),
           ),

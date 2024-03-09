@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
@@ -64,7 +63,7 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   purchaseController.purchaseModels[index].update((purchase) {
     purchase?.productName = productModel.productName;
     purchase?.productId = productModel.id;
-    purchase?.price = NumberFormat("###.##").format(productModel.price);
+    purchase?.price = getFormattedNumberWithoutComa(productModel.price);
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
       purchase.totalAmount =
           double.parse(purchase.quantity) * productModel.price;

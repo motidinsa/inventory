@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';;
 
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -40,16 +40,16 @@ class ProductImage extends StatelessWidget {
                   style: TextStyle(color: Colors.red),
                   textAlign: TextAlign.center,
                 ),
-               if(currentPage!=productDetailN) TextButton(
-                  onPressed: () => onAddImagePressed(
-                    context: context,
-                    currentPage: currentPage,
-                    productId: productId,
+                if (currentPage != productDetailN)
+                  TextButton(
+                    onPressed: () => onAddImagePressed(
+                      currentPage: currentPage,
+                      productId: productId,
+                    ),
+                    style: TextButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                    child: const Text(addImageN),
                   ),
-                  style: TextButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: const Text(addImageN),
-                ),
               ],
             ),
           );

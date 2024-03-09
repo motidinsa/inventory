@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
-import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import '../../functions/product/product_functions.dart';
 
 class ProductTextField extends StatefulWidget {
   final String currentPage;
@@ -94,10 +95,9 @@ class _ProductTextFieldState extends State<ProductTextField> {
                       padding: const EdgeInsets.only(
                           top: 11, bottom: 10, left: 10, right: 15),
                       child: Obx(() {
-                        AddProductController addProductController = Get.find();
+                        // AddProductController addProductController = Get.find();
                         return Text(
-                          addProductController
-                              .productInfo.value.unitOfMeasurement,
+                          getSuffix(currentPage: widget.currentPage),
                           style: const TextStyle(fontSize: 16),
                         );
                       }),
