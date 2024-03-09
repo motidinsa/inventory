@@ -3,6 +3,7 @@ import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 
 import '../../model/category/category_database_model.dart';
+import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
@@ -10,14 +11,17 @@ class AlertDialogOptionItem extends StatelessWidget {
   final int? index;
   final ProductDatabaseModel? product;
   final CategoryDatabaseModel? category;
+  final UnitOfMeasurementDatabaseModel? unitOfMeasurement;
 
-  const AlertDialogOptionItem(
-      {super.key,
-      required this.title,
-      this.product,
-      required this.currentPage,
-      this.index,
-      this.category});
+  const AlertDialogOptionItem({
+    super.key,
+    required this.title,
+    this.product,
+    required this.currentPage,
+    this.index,
+    this.category,
+    this.unitOfMeasurement,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,9 @@ class AlertDialogOptionItem extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          category?.categoryName ?? product!.productName,
+          category?.categoryName ??
+              product?.productName ??
+              unitOfMeasurement!.name,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -38,8 +44,11 @@ class AlertDialogOptionItem extends StatelessWidget {
         currentPage: currentPage,
         title: title,
         index: index,
-        data: category?.categoryName ?? product!.productName,
+        data: category?.categoryName ??
+            product?.productName ??
+            unitOfMeasurement!.name,
         productModel: product,
+        id: category?.categoryId ?? product?.id ?? unitOfMeasurement!.uomId,
       ),
     );
   }

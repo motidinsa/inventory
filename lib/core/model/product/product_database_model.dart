@@ -29,7 +29,7 @@ class ProductDatabaseModel extends HiveObject {
   double reorderQuantity;
 
   @HiveField(8)
-  String unitOfMeasurement;
+  String unitOfMeasurementId;
 
   @HiveField(9)
   String createdByUserId;
@@ -64,7 +64,7 @@ class ProductDatabaseModel extends HiveObject {
     required this.price,
     required this.quantityOnHand,
     required this.reorderQuantity,
-    required this.unitOfMeasurement,
+    required this.unitOfMeasurementId,
     required this.createdByUserId,
     required this.dateCreated,
     required this.dateModified,

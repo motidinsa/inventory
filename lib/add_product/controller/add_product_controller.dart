@@ -10,28 +10,34 @@ import 'package:my_inventory/core/model/product/product_model.dart';
 
 import '../../core/controller/app_controller.dart';
 import '../../core/model/category/category_database_model.dart';
+import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AddProductController extends GetxController {
-  var selectedUnitOfMeasurement = 'Pcs'.obs;
+  var selectedUnitOfMeasurement = ''.obs;
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
+  var isSubmitButtonPressed = false.obs;
   final formKey = GlobalKey<FormState>();
   final AppController appController = Get.find();
 
   @override
   void onInit() {
     var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    var uomBox =
+        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+    var defaultUnit =
+        uomBox.values.firstWhere((element) => element.name == 'Pcs');
+    productInfo.update((val) {
+      val?.unitOfMeasurementId = defaultUnit.uomId;
+    });
+    selectedUnitOfMeasurement(defaultUnit.name);
     categoryListFoundResult(categoryBox.values.toList());
+    unitOfMeasurementListFoundResult(uomBox.values.toList());
     super.onInit();
-  } // var categoryList = [
-  //   'cat 1',
-  //   'cat 2',
-  //   'cat 3',
-  // ].obs;
+  }
 
   var categoryListFoundResult = [].obs;
-  var unitOfMeasurementList = ['Pcs', 'Kg', 'Lt'].obs;
-  var unitOfMeasurementListFoundResult = ['Pcs', 'Kg', 'Lt'].obs;
+  var unitOfMeasurementListFoundResult = [].obs;
   var productInfo = ProductModel(
           name: '',
           categoryId: '',
@@ -43,7 +49,7 @@ class AddProductController extends GetxController {
           dateModified: DateTime.now(),
           quantityOnHand: '',
           reorderQuantity: '',
-          unitOfMeasurement: 'Pcs',
+          unitOfMeasurementId: '',
           id: '')
       .obs;
 
@@ -69,7 +75,7 @@ class AddProductController extends GetxController {
         dateModified: productInfo.value.dateModified,
         quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
         reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-        unitOfMeasurement: productInfo.value.unitOfMeasurement,
+        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
         localImagePath: productInfo.value.localImagePath,
         id: key,
       ),

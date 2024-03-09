@@ -10,6 +10,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import '../../core/controller/add_item_controller.dart';
 import '../../core/model/category/category_database_model.dart';
+import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 onAddProductTextFieldChange({
   String? title,
@@ -23,17 +24,12 @@ onAddProductTextFieldChange({
         .where((category) =>
             category.categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
-    // addProductController.categoryListFoundResult(addProductController
-    //     .categoryList
-    //     .where((categoryName) =>
-    //         categoryName.toLowerCase().contains(data.toLowerCase()))
-    //     .toList());
   } else if (title == selectUomN()) {
     AddProductController addProductController = Get.find();
-    addProductController.unitOfMeasurementListFoundResult(addProductController
-        .unitOfMeasurementList
-        .where((categoryName) =>
-            categoryName.toLowerCase().contains(data.toLowerCase()))
+    var uomBox =
+        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+    addProductController.unitOfMeasurementListFoundResult(uomBox.values
+        .where((uom) => uom.name.toLowerCase().contains(data.toLowerCase()))
         .toList());
   }
 }
@@ -133,14 +129,16 @@ onAddProductTextFieldPressed(
   final AddProductController addProductController = Get.find();
   Map<String, List> itemsWithList = {
     categoryN(): addProductController.categoryListFoundResult,
-    uomN(): addProductController.unitOfMeasurementList,
+    uomN(): addProductController.unitOfMeasurementListFoundResult,
   };
 
   if (itemsWithList.keys.contains(title)) {
     var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    var uomBox =
+        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
     addProductController.categoryListFoundResult(categoryBox.values.toList());
-    addProductController.unitOfMeasurementListFoundResult(
-        addProductController.unitOfMeasurementList.toList());
+    addProductController
+        .unitOfMeasurementListFoundResult(uomBox.values.toList());
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -162,13 +160,15 @@ onAddProductTextFieldPressed(
 }
 
 onAddProductAlertDialogOptionSelect(
-    {required String title, required String data}) {
+    {required String title, required String data, required String id}) {
   final AddProductController addProductController = Get.find();
   addProductController.productInfo.update((product) {
     if (title == selectCategoryN()) {
       product?.categoryName = data;
+      product?.categoryId = id;
     } else if (title == selectUomN()) {
-      product?.unitOfMeasurement = data;
+      addProductController.selectedUnitOfMeasurement = data.obs;
+      product?.unitOfMeasurementId = id;
     }
   });
 }

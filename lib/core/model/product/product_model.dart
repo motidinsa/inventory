@@ -9,27 +9,26 @@ class ProductModel {
   String price;
   String quantityOnHand;
   String reorderQuantity;
-  String unitOfMeasurement;
+  String unitOfMeasurementId;
   String? modifiedByUserId;
   DateTime dateCreated;
   DateTime dateModified;
   String? localImagePath;
 
-  ProductModel({
-    required this.name,
-    this.description,
-    required this.categoryId,
-    required this.categoryName,
-    required this.productId,
-    required this.cost,
-    required this.price,
-    required this.quantityOnHand,
-    required this.reorderQuantity,
-    required this.unitOfMeasurement,
-    required this.dateCreated,
-    required this.dateModified,
-    this.localImagePath,
-    required this.id,
-    this.modifiedByUserId,
-  });
+  ProductModel(
+      {required this.name,
+      this.description,
+      required this.categoryId,
+      required this.categoryName,
+      required this.productId,
+      required this.cost,
+      required this.price,
+      required this.quantityOnHand,
+      required this.reorderQuantity,
+      required this.dateCreated,
+      required this.dateModified,
+      this.localImagePath,
+      required this.id,
+      this.modifiedByUserId,
+      required this.unitOfMeasurementId});
 }

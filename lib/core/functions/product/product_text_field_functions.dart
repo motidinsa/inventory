@@ -13,7 +13,7 @@ titleToHint({String? title}) {
   } else if (title == descriptionN()) {
     value = writeYourDescriptionN();
   } else if (title == categoryN()) {
-    value = selectItemN();
+    value = optionalN();
   } else if (title == productIdN()) {
     value = optionalN();
   } else if (title == uomN()) {

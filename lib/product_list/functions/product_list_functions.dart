@@ -7,6 +7,8 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 
 import 'package:my_inventory/product_detail/ui/product_detail.dart';
 
+import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+
 onProductListTextFieldChange({
   required String data,
 }) {
@@ -26,4 +28,8 @@ onMiniProductDetailPressed(
         productDatabaseModel: productDatabaseModel,
         index: index,
       ));
+}
+getUomName({required String id}){
+  var uomBox = Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+  return uomBox.get(id)!.name;
 }

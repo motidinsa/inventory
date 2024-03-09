@@ -16,6 +16,7 @@ class EditProductController extends GetxController {
 
   late Rx<ProductModel> productInfo;
   final AppController appController = Get.find();
+
   @override
   void onInit() {
     super.onInit();
@@ -33,7 +34,7 @@ class EditProductController extends GetxController {
             dateModified: productDatabaseModel.dateModified,
             quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
             reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
-            unitOfMeasurement: productDatabaseModel.unitOfMeasurement,
+            unitOfMeasurementId: productDatabaseModel.unitOfMeasurementId,
             id: '')
         .obs;
   }
@@ -77,7 +78,7 @@ class EditProductController extends GetxController {
         dateModified: productInfo.value.dateModified,
         quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
         reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-        unitOfMeasurement: productInfo.value.unitOfMeasurement,
+        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
         localImagePath: productInfo.value.localImagePath,
         id: key,
       ),

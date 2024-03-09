@@ -31,7 +31,7 @@ class ProductDetail extends StatelessWidget {
       priceN(): productDatabaseModel.price,
       quantityOnHandN(): productDatabaseModel.quantityOnHand,
       reorderQuantityN(): productDatabaseModel.reorderQuantity,
-      uomN(): productDatabaseModel.unitOfMeasurement,
+      // uomN(): productDatabaseModel.unitOfMeasurement,
     };
     return BodyWrapper(
       pageName: productDetailN,

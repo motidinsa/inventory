@@ -12,6 +12,8 @@ import '../../../sales/controller/sales_controller.dart';
 import '../../functions/alert_dialog/alert_dialog_functions.dart';
 import '../../model/category/category_database_model.dart';
 import '../../model/product/product_database_model.dart';
+import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import '../product/product_text_field.dart';
 import 'alert_dialog_option_item.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
@@ -71,14 +73,15 @@ class AlertDialogOptionSelect extends StatelessWidget {
               : ListView(
                   shrinkWrap: true,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 15),
-                    //   child: ProductTextField(
-                    //     currentPage: currentPage,
-                    //     title: title,
-                    //     index: index,
-                    //   ),
-                    // ),
+                    if (itemList?.isNotEmpty ?? false)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: ProductTextField(
+                          currentPage: currentPage,
+                          title: title,
+                          index: index,
+                        ),
+                      ),
                     Obx(() => ListView.separated(
                           shrinkWrap: true,
                           reverse: true,
@@ -86,8 +89,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           itemBuilder: (context, index) {
                             ProductDatabaseModel? product;
                             CategoryDatabaseModel? category;
-                            // uoDatabaseModel? category;
-                            // var item;
+                            UnitOfMeasurementDatabaseModel? unitOfMeasurement;
                             if (currentPage == salesN()) {
                               SalesController salesController = Get.find();
                               product = salesController
@@ -99,8 +101,8 @@ class AlertDialogOptionSelect extends StatelessWidget {
                                 category = addProductController
                                     .categoryListFoundResult[index];
                               } else if (title == selectUomN()) {
-                                // item = addProductController
-                                //     .unitOfMeasurementListFoundResult[index];
+                                unitOfMeasurement = addProductController
+                                    .unitOfMeasurementListFoundResult[index];
                               }
                             } else if (currentPage == purchaseN()) {
                               PurchaseController purchaseController =
@@ -113,6 +115,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               product: product,
                               category: product == null ? category : null,
                               currentPage: currentPage,
+                              unitOfMeasurement: unitOfMeasurement,
                               index: index,
                             );
                           },
@@ -126,15 +129,22 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             height: 0,
                           ),
                         )),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 20, vertical: 8),
-                    //   child: Text(
-                    //     noCategoryAvailableSN,
-                    //     textAlign: TextAlign.center,
-                    //     style: TextStyle(fontSize: 17),
-                    //   ),
-                    // ),
+                    if (itemList?.isEmpty ?? true)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 8),
+                        child: Text(
+                          title == selectCategoryN()
+                              ? noCategoryAvailableSN
+                              : noUomAvailableSN,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.grey.shade800,
+                          ),
+                        ),
+                      ),
                     Align(
                       child: IconButton(
                           onPressed: () => onAddIconPressed(

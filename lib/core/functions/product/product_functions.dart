@@ -58,9 +58,9 @@ getProductImagePath({required String currentPage}) {
 getSuffix({required String currentPage}) {
   if (currentPage == addProductN()) {
     final AddProductController addProductController = Get.find();
-    return addProductController.productInfo.value.unitOfMeasurement;
+    return addProductController.selectedUnitOfMeasurement.value;
   } else if (currentPage == editProductN) {
     final EditProductController editProductController = Get.find();
-    return editProductController.productInfo.value.unitOfMeasurement;
+    return editProductController.selectedUnitOfMeasurement;
   }
 }

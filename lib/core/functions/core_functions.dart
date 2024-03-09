@@ -14,6 +14,7 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import '../model/category/category_database_model.dart';
+import '../model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import '../ui/add_item.dart';
 import '../ui/alert_dialog/alert_dialog_option_select.dart';
 
@@ -35,6 +36,16 @@ double getValidNumValue(String data) {
     return double.parse(data);
   }
   return 0;
+}
+
+autoValidateMode({required String currentPage}) {
+  if (currentPage == addProductN()) {
+    AddProductController addProductController = Get.find();
+    if (addProductController.isSubmitButtonPressed.isTrue) {
+      return true;
+    }
+  }
+  return false;
 }
 
 getFormattedNumberWithComa(double num) {
@@ -67,25 +78,45 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
       if (redirectFrom == categoryNameN) {
         DateTime now = DateTime.now();
         var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+        String id = generateDatabaseId(now);
         await categoryBox.put(
-          generateDatabaseId(now),
+          id,
           CategoryDatabaseModel(
             categoryName: addItemController.addedText.value,
             dateCreated: now,
             dateModified: now,
             createdByUserId: appController.userId.value,
-            categoryId: generateDatabaseId(now),
+            categoryId: id,
           ),
         );
         addProductController
             .categoryListFoundResult(categoryBox.values.toList());
+      } else if (redirectFrom == uomNameN) {
+        DateTime now = DateTime.now();
+        var uomBox =
+            Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+        String id = generateDatabaseId(now);
+        await uomBox.put(
+          id,
+          UnitOfMeasurementDatabaseModel(
+            name: addItemController.addedText.value,
+            dateCreated: now,
+            dateModified: now,
+            createdByUserId: appController.userId.value,
+            uomId: id,
+          ),
+        );
+        addProductController
+            .unitOfMeasurementListFoundResult(uomBox.values.toList());
       }
+      Get.back();
     } else {
       return;
     }
   } else if (appController.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN()) {
       AddProductController addProductController = Get.find();
+      addProductController.isSubmitButtonPressed(true);
       addProductController.onAddProductSaveButtonPressed();
     } else if (redirectFrom == salesN()) {
       SalesController salesController = Get.find();
@@ -94,8 +125,8 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
       PurchaseController purchaseController = Get.find();
       purchaseController.savePurchaseProductToDB();
     }
+    Get.back();
   }
-  Get.back();
 }
 
 titleToData({required String title, required String currentPage, int? index}) {
@@ -118,7 +149,7 @@ titleToData({required String title, required String currentPage, int? index}) {
     AddProductController addProductController = Get.find();
     var items = {
       categoryN(): addProductController.productInfo.value.categoryName,
-      uomN(): addProductController.productInfo.value.unitOfMeasurement,
+      uomN(): addProductController.selectedUnitOfMeasurement.value,
     };
     return items[title];
   } else if (currentPage == purchaseN()) {
@@ -160,9 +191,9 @@ titleToData({required String title, required String currentPage, int? index}) {
       value = getFormattedNumberWithoutComa(
           editProductController.productInfo.value.reorderQuantity);
     } else if (title == uomN()) {
-      value = editProductController.productInfo.value.unitOfMeasurement;
+      value = editProductController.selectedUnitOfMeasurement.value;
     } else if (title == categoryN()) {
-      value = editProductController.productInfo.value.unitOfMeasurement;
+      value = editProductController.selectedUnitOfMeasurement.value;
     }
   }
   return value;
@@ -293,7 +324,11 @@ mapValidation({
   required String title,
   required String data,
 }) {
-  List<String> nonEmptyTitles = [productN(), categoryN(), categoryNameN];
+  List<String> nonEmptyTitles = [
+    productN(),
+    categoryNameN,
+    uomNameN,
+  ];
   List<String> numberKeyboardLists = [
     costN(),
     priceN(),

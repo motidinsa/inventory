@@ -17,6 +17,7 @@ getAlertDialogLength({required String currentPage, String? title}) {
 
 onAlertDialogOptionSelect(
     {required String title,
+    required String id,
     required String currentPage,
     ProductDatabaseModel? productModel,
     String? data,
@@ -25,7 +26,7 @@ onAlertDialogOptionSelect(
     onSalesSearchProductAlertDialogOptionSelect(
         productModel: productModel!, index: index!);
   } else if (currentPage == addProductN()) {
-    onAddProductAlertDialogOptionSelect(title: title, data: data!);
+    onAddProductAlertDialogOptionSelect(title: title, data: data!,id: id);
   } else if (currentPage == purchaseN()) {
     onPurchaseSearchProductAlertDialogOptionSelect(
         productModel: productModel!, index: index!);

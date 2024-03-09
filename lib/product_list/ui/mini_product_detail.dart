@@ -71,7 +71,9 @@ class MiniProductDetail extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                               alignment: Alignment.center,
                               child: Text(
-                                '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${productModel.unitOfMeasurement}',
+                                '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
+                                  id: productModel.unitOfMeasurementId,
+                                )}',
                                 style: TextStyle(
                                     color: Colors.white, fontWeight: bold()),
                               ),

@@ -25,7 +25,7 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
       price: fields[5] as double,
       quantityOnHand: fields[6] as double,
       reorderQuantity: fields[7] as double,
-      unitOfMeasurement: fields[8] as String,
+      unitOfMeasurementId: fields[8] as String,
       createdByUserId: fields[9] as String,
       dateCreated: fields[10] as DateTime,
       dateModified: fields[11] as DateTime,
@@ -58,7 +58,7 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
       ..writeByte(7)
       ..write(obj.reorderQuantity)
       ..writeByte(8)
-      ..write(obj.unitOfMeasurement)
+      ..write(obj.unitOfMeasurementId)
       ..writeByte(9)
       ..write(obj.createdByUserId)
       ..writeByte(10)
