@@ -58,9 +58,23 @@ getProductImagePath({required String currentPage}) {
 getSuffix({required String currentPage}) {
   if (currentPage == addProductN()) {
     final AddProductController addProductController = Get.find();
-    return addProductController.selectedUnitOfMeasurement.value;
+    return addProductController.productInfo.value.unitOfMeasurementName;
   } else if (currentPage == editProductN) {
     final EditProductController editProductController = Get.find();
-    return editProductController.selectedUnitOfMeasurement;
+    return editProductController.productInfo.value.unitOfMeasurementName;
+  }
+}
+
+onImageDeleteButtonPressed({required String currentPage}) {
+  if (currentPage == addProductN()) {
+    AddProductController addProductController = Get.find();
+    addProductController.productInfo.update((val) {
+      val?.localImagePath = null;
+    });
+  } else if (currentPage == editProductN) {
+    EditProductController editProductController = Get.find();
+    editProductController.productInfo.update((val) {
+      val?.localImagePath = null;
+    });
   }
 }

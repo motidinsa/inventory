@@ -13,10 +13,13 @@ import '../../core/model/category/category_database_model.dart';
 import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AddProductController extends GetxController {
-  var selectedUnitOfMeasurement = ''.obs;
+  // var selectedUnitOfMeasurement = ''.obs;
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
   var isSubmitButtonPressed = false.obs;
+
+  var categoryListFoundResult = [].obs;
+  var unitOfMeasurementListFoundResult = [].obs;
   final formKey = GlobalKey<FormState>();
   final AppController appController = Get.find();
 
@@ -30,28 +33,30 @@ class AddProductController extends GetxController {
     productInfo.update((val) {
       val?.unitOfMeasurementId = defaultUnit.uomId;
     });
-    selectedUnitOfMeasurement(defaultUnit.name);
+    // selectedUnitOfMeasurement(defaultUnit.name);
+    productInfo.update((val) {
+      val?.unitOfMeasurementName = defaultUnit.name;
+    });
     categoryListFoundResult(categoryBox.values.toList());
     unitOfMeasurementListFoundResult(uomBox.values.toList());
     super.onInit();
   }
 
-  var categoryListFoundResult = [].obs;
-  var unitOfMeasurementListFoundResult = [].obs;
   var productInfo = ProductModel(
-          name: '',
-          categoryId: '',
-          categoryName: '',
-          productId: '',
-          cost: '',
-          price: '',
-          dateCreated: DateTime.now(),
-          dateModified: DateTime.now(),
-          quantityOnHand: '',
-          reorderQuantity: '',
-          unitOfMeasurementId: '',
-          id: '')
-      .obs;
+    name: '',
+    categoryId: '',
+    categoryName: '',
+    productId: '',
+    cost: '',
+    price: '',
+    dateCreated: DateTime.now(),
+    dateModified: DateTime.now(),
+    quantityOnHand: '',
+    reorderQuantity: '',
+    unitOfMeasurementId: '',
+    unitOfMeasurementName: '',
+    id: '',
+  ).obs;
 
   onAddProductSaveButtonPressed() async {
     isLocalSaveLoading(true);
@@ -64,13 +69,12 @@ class AddProductController extends GetxController {
       key,
       ProductDatabaseModel(
         productName: productInfo.value.name,
-        description: productInfo.value.description,
-        categoryId: productInfo.value.categoryId,
-        productId: productInfo.value.productId,
+        description: nullIfEmpty(productInfo.value.description),
+        categoryId: nullIfEmpty(productInfo.value.categoryId),
+        productId: nullIfEmpty(productInfo.value.productId),
         cost: getValidNumValue(productInfo.value.cost),
         price: getValidNumValue(productInfo.value.price),
         createdByUserId: appController.userId.value,
-        modifiedByUserId: productInfo.value.modifiedByUserId,
         dateCreated: productInfo.value.dateCreated,
         dateModified: productInfo.value.dateModified,
         quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),

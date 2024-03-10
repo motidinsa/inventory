@@ -7,7 +7,6 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
-
 import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
 class ProductList extends StatelessWidget {
@@ -36,21 +35,20 @@ class ProductList extends StatelessWidget {
               builder: (context, box, _) {
                 print(box.length);
                 // productListController.productList(box.values.toList());
-                return Obx(() => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        reverse: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) => MiniProductDetail(
-                          productModel:
-                              productListController.productList[index],
-                          index: index,
-                        ),
-                        itemCount: productListController.productList.length,
-                        separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                      ),
-                    ));
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    reverse: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) => MiniProductDetail(
+                      productModel: box.values.elementAt(index),
+                      index: index,
+                    ),
+                    itemCount: box.values.length,
+                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                  ),
+                );
               },
             )
           ],

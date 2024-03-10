@@ -42,11 +42,8 @@ class AddProductImage extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {
-                        // addProductController.productInfo.update((val) {
-                        //   val?.localImagePath = null;
-                        // });
-                      },
+                      onPressed: () =>
+                          onImageDeleteButtonPressed(currentPage: currentPage),
                       style: TextButton.styleFrom(foregroundColor: Colors.red),
                       child: const Text(
                         deleteN,
@@ -55,7 +52,7 @@ class AddProductImage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () =>
-                          onAddImagePressed(currentPage: addProductN()),
+                          onAddImagePressed(currentPage: currentPage),
                       child: const Text(
                         changeN,
                         // style: TextStyle(color: Colors.red),
@@ -67,7 +64,7 @@ class AddProductImage extends StatelessWidget {
             );
           }
           return ElevatedButton(
-            onPressed: () => onAddImagePressed(currentPage: addProductN()),
+            onPressed: () => onAddImagePressed(currentPage: currentPage),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),
               padding: const EdgeInsets.all(16),

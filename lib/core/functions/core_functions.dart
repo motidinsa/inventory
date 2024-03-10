@@ -124,6 +124,9 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
     } else if (redirectFrom == purchaseN()) {
       PurchaseController purchaseController = Get.find();
       purchaseController.savePurchaseProductToDB();
+    } else if (redirectFrom == editProductN) {
+      EditProductController editProductController = Get.find();
+      editProductController.onEditProductSaveButtonPressed();
     }
     Get.back();
   }
@@ -149,7 +152,7 @@ titleToData({required String title, required String currentPage, int? index}) {
     AddProductController addProductController = Get.find();
     var items = {
       categoryN(): addProductController.productInfo.value.categoryName,
-      uomN(): addProductController.selectedUnitOfMeasurement.value,
+      uomN(): addProductController.productInfo.value.unitOfMeasurementName,
     };
     return items[title];
   } else if (currentPage == purchaseN()) {
@@ -179,21 +182,25 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == productIdN()) {
       value = editProductController.productInfo.value.productId;
     } else if (title == costN()) {
-      value = getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.cost);
+      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.cost));
     } else if (title == priceN()) {
-      value = getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.price);
+      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.price));
     } else if (title == quantityOnHandN()) {
-      value = getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.quantityOnHand);
+      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.quantityOnHand));
     } else if (title == reorderQuantityN()) {
-      value = getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.reorderQuantity);
+      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
+          editProductController.productInfo.value.reorderQuantity));
     } else if (title == uomN()) {
-      value = editProductController.selectedUnitOfMeasurement.value;
+      value = editProductController.productInfo.value.unitOfMeasurementName;
     } else if (title == categoryN()) {
-      value = editProductController.selectedUnitOfMeasurement.value;
+      value = editProductController.productInfo.value.categoryName;
+    } else if (title == selectCategoryN()) {
+      value = editProductController.emptyText.value;
+    } else if (title == selectUomN()) {
+      value = editProductController.emptyText.value;
     }
   }
   return value;
@@ -207,7 +214,7 @@ emptyIfNull(String? data) {
 }
 
 emptyIfDefaultValue(var data) {
-  var emptyLists = [0, '0.0'];
+  var emptyLists = [0, '0.0', '0'];
   if (!emptyLists.contains(data)) {
     return data.toString();
   }
@@ -273,6 +280,11 @@ onImageSourceButtonPressed(
     if (currentPage == addProductN()) {
       AddProductController addProductController = Get.find();
       addProductController.productInfo.update((val) {
+        val?.localImagePath = value?.path;
+      });
+    } else if (currentPage == editProductN) {
+      EditProductController editProductController = Get.find();
+      editProductController.productInfo.update((val) {
         val?.localImagePath = value?.path;
       });
     } else if (productId != null) {

@@ -7,6 +7,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import '../../../add_product/controller/add_product_controller.dart';
+import '../../../edit_product/controller/edit_controller.dart';
 import '../../../purchase/controller/purchase_controller.dart';
 import '../../../sales/controller/sales_controller.dart';
 import '../../functions/alert_dialog/alert_dialog_functions.dart';
@@ -102,6 +103,16 @@ class AlertDialogOptionSelect extends StatelessWidget {
                                     .categoryListFoundResult[index];
                               } else if (title == selectUomN()) {
                                 unitOfMeasurement = addProductController
+                                    .unitOfMeasurementListFoundResult[index];
+                              }
+                            } else if (currentPage == editProductN) {
+                              EditProductController editProductController =
+                                  Get.find();
+                              if (title == selectCategoryN()) {
+                                category = editProductController
+                                    .categoryListFoundResult[index];
+                              } else if (title == selectUomN()) {
+                                unitOfMeasurement = editProductController
                                     .unitOfMeasurementListFoundResult[index];
                               }
                             } else if (currentPage == purchaseN()) {

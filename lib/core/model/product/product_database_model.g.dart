@@ -19,8 +19,8 @@ class ProductDatabaseModelAdapter extends TypeAdapter<ProductDatabaseModel> {
     return ProductDatabaseModel(
       productName: fields[0] as String,
       description: fields[1] as String?,
-      categoryId: fields[2] as String,
-      productId: fields[3] as String,
+      categoryId: fields[2] as String?,
+      productId: fields[3] as String?,
       cost: fields[4] as double,
       price: fields[5] as double,
       quantityOnHand: fields[6] as double,

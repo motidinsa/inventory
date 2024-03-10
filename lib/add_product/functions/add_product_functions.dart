@@ -17,15 +17,15 @@ onAddProductTextFieldChange({
   required String data,
   int? index,
 }) {
+  AddProductController addProductController = Get.find();
   if (title == selectCategoryN()) {
-    AddProductController addProductController = Get.find();
     var categoryBox = Hive.box<CategoryDatabaseModel>('category');
     addProductController.categoryListFoundResult(categoryBox.values
         .where((category) =>
             category.categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
   } else if (title == selectUomN()) {
-    AddProductController addProductController = Get.find();
+    // AddProductController addProductController = Get.find();
     var uomBox =
         Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
     addProductController.unitOfMeasurementListFoundResult(uomBox.values
@@ -167,7 +167,7 @@ onAddProductAlertDialogOptionSelect(
       product?.categoryName = data;
       product?.categoryId = id;
     } else if (title == selectUomN()) {
-      addProductController.selectedUnitOfMeasurement = data.obs;
+      product?.unitOfMeasurementName = data;
       product?.unitOfMeasurementId = id;
     }
   });

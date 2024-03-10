@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 
+import '../../../edit_product/functions/edit_product_functions.dart';
 import '../../../product_list/functions/product_list_functions.dart';
 import '../../../purchase/functions/purchase_functions.dart';
 import '../../../sales/functions/sales_functions.dart';
@@ -46,6 +47,8 @@ onTextFieldChange({
     onSalesTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == addProductN()) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
+  } else if (currentPage == editProductN) {
+    onEditProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == purchaseN()) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == productListN()) {
@@ -60,6 +63,8 @@ onTextFieldPressed(
     required BuildContext context}) {
   if (currentPage == addProductN()) {
     onAddProductTextFieldPressed(title: title!, context: context);
+  } else if (currentPage == editProductN) {
+    onEditProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == salesN()) {
     onSalesProductSelect(context: context, title: title, index: index);
   } else if (currentPage == purchaseN()) {
@@ -115,6 +120,8 @@ onFocusChange({
       onSalesProductFocusChange(title: title, data: data);
     } else if (currentPage == purchaseN()) {
       onPurchaseProductFocusChange(title: title, data: data);
+    } else if (currentPage == editProductN) {
+      onEditProductFocusChange(title: title, data: data);
     }
   }
 }

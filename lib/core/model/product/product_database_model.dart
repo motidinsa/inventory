@@ -11,10 +11,10 @@ class ProductDatabaseModel extends HiveObject {
   String? description;
 
   @HiveField(2)
-  String categoryId;
+  String? categoryId;
 
   @HiveField(3)
-  String productId;
+  String? productId;
 
   @HiveField(4)
   double cost;
@@ -58,8 +58,8 @@ class ProductDatabaseModel extends HiveObject {
   ProductDatabaseModel({
     required this.productName,
     this.description,
-    required this.categoryId,
-    required this.productId,
+    this.categoryId,
+    this.productId,
     required this.cost,
     required this.price,
     required this.quantityOnHand,
