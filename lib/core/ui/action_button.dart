@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-
 import 'package:my_inventory/core/model/action_button_enum.dart';
 
 class ActionButton extends StatelessWidget {
   final String redirectFrom;
+  final String? currentPage;
   final String? productId;
   final ActionButtonType? actionButtonType;
 
@@ -15,7 +15,8 @@ class ActionButton extends StatelessWidget {
       {super.key,
       this.productId,
       required this.redirectFrom,
-      this.actionButtonType});
+      this.actionButtonType,
+      this.currentPage});
 
   final AppController appController = Get.find();
 
@@ -28,7 +29,9 @@ class ActionButton extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () => onActionButtonPressed(
-                  redirectFrom: redirectFrom, productId: productId),
+                  redirectFrom: redirectFrom,
+                  productId: productId,
+                  currentPage: currentPage),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(

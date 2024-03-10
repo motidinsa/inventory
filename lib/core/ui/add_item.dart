@@ -50,7 +50,10 @@ class AddItem extends StatelessWidget {
                     currentPage: currentPage,
                     labelText: labelText,
                   ),
-                  ActionButton(redirectFrom: labelText)
+                  ActionButton(
+                    redirectFrom: labelText,
+                    currentPage: currentPage,
+                  )
                 ],
               ),
             ),

@@ -84,7 +84,7 @@ onSalesProductSelect({
         return AlertDialogOptionSelect(
           currentPage: salesN(),
           title: searchProductsN(),
-          index: index,
+          listIndex: index,
         );
       },
     ).then(
@@ -113,7 +113,7 @@ onPurchaseProductSelect({
         return AlertDialogOptionSelect(
           currentPage: purchaseN(),
           title: searchProductsN(),
-          index: index,
+          listIndex: index,
         );
       },
     ).then(

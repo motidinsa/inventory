@@ -23,20 +23,20 @@ onPurchaseTextFieldChange({
         purchase?.totalAmount = 0;
       } else {
         purchase?.quantity = data;
-        if (isNumeric(purchase!.quantity) && isNumeric(purchase.price)) {
+        if (isNumeric(purchase!.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
-              double.parse(data) * double.parse(purchase.price);
+              double.parse(data) * double.parse(purchase.cost);
         } else {
           purchase.totalAmount = 0;
         }
       }
     } else if (title == priceN()) {
       if (data.isEmpty) {
-        purchase?.price = '';
+        purchase?.cost = '';
         purchase?.totalAmount = 0;
       } else {
-        purchase?.price = data;
-        if (isNumeric(purchase!.quantity) && isNumeric(purchase.price)) {
+        purchase?.cost = data;
+        if (isNumeric(purchase!.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
               double.parse(data) * double.parse(purchase.quantity);
         } else {
@@ -63,7 +63,8 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   purchaseController.purchaseModels[index].update((purchase) {
     purchase?.productName = productModel.productName;
     purchase?.productId = productModel.id;
-    purchase?.price = getFormattedNumberWithoutComa(productModel.price);
+    purchase?.cost =
+        emptyIfDefaultValue(getFormattedNumberWithoutComa(productModel.cost));
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
       purchase.totalAmount =
           double.parse(purchase.quantity) * productModel.price;
@@ -80,8 +81,8 @@ getPurchaseSubtotal() {
   PurchaseController purchaseController = Get.find();
   double total = 0;
   for (var element in purchaseController.purchaseModels) {
-    if (isNumeric(element.value.price)) {
-      total += double.parse(element.value.price);
+    if (isNumeric(element.value.cost)) {
+      total += double.parse(element.value.cost);
     }
   }
   return total.toString();

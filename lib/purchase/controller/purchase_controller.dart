@@ -23,7 +23,7 @@ class PurchaseController extends GetxController {
       quantity: '',
       reference: '',
       totalAmount: 0,
-      price: '',
+      cost: '',
       id: '',
     ).obs
   ].obs;
@@ -31,8 +31,8 @@ class PurchaseController extends GetxController {
   @override
   void onInit() {
     products = Hive.box<ProductDatabaseModel>('products').values.toList();
-    searchProductFoundResult =
-        Hive.box<ProductDatabaseModel>('products').values.toList().obs;
+    searchProductFoundResult(
+        Hive.box<ProductDatabaseModel>('products').values.toList());
     super.onInit();
   }
 
@@ -47,7 +47,7 @@ class PurchaseController extends GetxController {
         quantity: '',
         reference: '',
         totalAmount: 0,
-        price: '',
+        cost: '',
         id: '',
       ).obs,
     );
@@ -99,7 +99,7 @@ class PurchaseController extends GetxController {
           date: element.value.date,
           dateAdded: now,
           dateModified: now,
-          price: element.value.price,
+          cost: element.value.cost,
           totalAmount: element.value.totalAmount,
           productId: element.value.productId,
           customerId: element.value.customerId,

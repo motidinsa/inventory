@@ -7,6 +7,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
+import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 
 import '../../core/model/category/category_database_model.dart';
 import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
@@ -71,6 +72,7 @@ class EditProductController extends GetxController {
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
     var productsBox = Hive.box<ProductDatabaseModel>('products');
+    ProductListController productListController = Get.find();
     // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     // String key = dateFormatter.format(now);
     await productsBox.put(
@@ -102,7 +104,9 @@ class EditProductController extends GetxController {
     //     log(e.type.message);
     //   }
     // }
+    productListController.productList(productsBox.values.toList());
     isLocalSaveLoading(false);
+
     Get.back();
   }
 }

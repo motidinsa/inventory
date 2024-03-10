@@ -33,22 +33,21 @@ class ProductList extends StatelessWidget {
               valueListenable:
                   Hive.box<ProductDatabaseModel>('products').listenable(),
               builder: (context, box, _) {
-                print(box.length);
-                // productListController.productList(box.values.toList());
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => MiniProductDetail(
-                      productModel: box.values.elementAt(index),
-                      index: index,
-                    ),
-                    itemCount: box.values.length,
-                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                  ),
-                );
+                return Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => MiniProductDetail(
+                          productModel:
+                              productListController.productList[index],
+                          index: index,
+                        ),
+                        itemCount: productListController.productList.length,
+                        separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                      ),
+                    ));
               },
             )
           ],

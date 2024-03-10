@@ -53,13 +53,16 @@ getFormattedNumberWithComa(double num) {
 }
 
 getFormattedNumberWithoutComa(num) {
-  if (isNumeric(num)) {
-    return NumberFormat("###.##").format(double.parse(num));
+  if (isNumeric(num.toString())) {
+    return NumberFormat("###.##").format(double.parse(num.toString()));
   }
-  return num;
+  return num.toString();
 }
 
-onActionButtonPressed({required String redirectFrom, String? productId}) async {
+onActionButtonPressed(
+    {required String redirectFrom,
+    String? productId,
+    String? currentPage}) async {
   AppController appController = Get.find();
   await unFocus();
   if (redirectFrom == productDetailN) {
@@ -71,10 +74,10 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
             .toLowerCase()
             .contains(productListController.searchedText.toLowerCase()))
         .toList());
+    Get.back();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
-      AddProductController addProductController = Get.find();
       if (redirectFrom == categoryNameN) {
         DateTime now = DateTime.now();
         var categoryBox = Hive.box<CategoryDatabaseModel>('category');
@@ -89,8 +92,15 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
             categoryId: id,
           ),
         );
-        addProductController
-            .categoryListFoundResult(categoryBox.values.toList());
+        if (currentPage == addProductN()) {
+          AddProductController addProductController = Get.find();
+          addProductController
+              .categoryListFoundResult(categoryBox.values.toList());
+        } else if (currentPage == editProductN) {
+          EditProductController editProductController = Get.find();
+          editProductController
+              .categoryListFoundResult(categoryBox.values.toList());
+        }
       } else if (redirectFrom == uomNameN) {
         DateTime now = DateTime.now();
         var uomBox =
@@ -106,8 +116,16 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
             uomId: id,
           ),
         );
-        addProductController
-            .unitOfMeasurementListFoundResult(uomBox.values.toList());
+
+        if (currentPage == addProductN()) {
+          AddProductController addProductController = Get.find();
+          addProductController
+              .unitOfMeasurementListFoundResult(uomBox.values.toList());
+        } else if (currentPage == editProductN) {
+          EditProductController editProductController = Get.find();
+          editProductController
+              .unitOfMeasurementListFoundResult(uomBox.values.toList());
+        }
       }
       Get.back();
     } else {
@@ -162,7 +180,7 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == quantityN()) {
       value = purchaseController.purchaseModels[index!].value.quantity;
     } else if (title == priceN()) {
-      value = purchaseController.purchaseModels[index!].value.price;
+      value = purchaseController.purchaseModels[index!].value.cost;
     } else if (title == discountN()) {
       value = purchaseController.discount.value;
     } else if (title == searchProductsN()) {
@@ -200,6 +218,10 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == selectCategoryN()) {
       value = editProductController.emptyText.value;
     } else if (title == selectUomN()) {
+      value = editProductController.emptyText.value;
+    } else if (title == categoryNameN) {
+      value = editProductController.emptyText.value;
+    } else if (title == uomNameN) {
       value = editProductController.emptyText.value;
     }
   }
@@ -243,14 +265,28 @@ onAddIconPressed({required String currentPage, String? type}) {
         currentPage: currentPage,
       ),
     ).then((value) {
-      AddProductController addProductController = Get.find();
+      var itemList;
+      if (currentPage == addProductN()) {
+        AddProductController addProductController = Get.find();
+        if (type == selectCategoryN()) {
+          itemList = addProductController.categoryListFoundResult;
+        } else {
+          addProductController.unitOfMeasurementListFoundResult;
+        }
+      } else if (currentPage == editProductN) {
+        EditProductController editProductController = Get.find();
+        if (type == selectCategoryN()) {
+          itemList = editProductController.categoryListFoundResult;
+        } else {
+          editProductController.unitOfMeasurementListFoundResult;
+        }
+      }
+
       Get.dialog(
         AlertDialogOptionSelect(
           currentPage: currentPage,
           title: type,
-          itemList: type == selectCategoryN()
-              ? addProductController.categoryListFoundResult
-              : addProductController.unitOfMeasurementListFoundResult,
+          itemList: itemList,
         ),
       );
     });

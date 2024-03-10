@@ -35,7 +35,7 @@ class PurchaseModel extends HiveObject {
   double totalAmount;
 
   @HiveField(10)
-  String price;
+  String cost;
 
   @HiveField(11)
   String id;
@@ -57,7 +57,7 @@ class PurchaseModel extends HiveObject {
     this.customerName,
     required this.quantity,
     required this.totalAmount,
-    required this.price,
+    required this.cost,
     required this.id,
     this.vendorId,
     this.vendorName,

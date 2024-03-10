@@ -31,7 +31,7 @@ getProductPrice({required String currentPage, required int index}) {
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
-    return purchaseController.purchaseModels[index].value.price;
+    return purchaseController.purchaseModels[index].value.cost;
   }
 }
 

@@ -19,7 +19,7 @@ import 'alert_dialog_option_item.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
-  final int? index;
+  final int? listIndex;
   final String currentPage;
   final List? itemList;
   final String? productId;
@@ -29,7 +29,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
       required this.title,
       required this.currentPage,
       this.itemList,
-      this.index,
+      this.listIndex,
       this.productId});
 
   @override
@@ -74,13 +74,13 @@ class AlertDialogOptionSelect extends StatelessWidget {
               : ListView(
                   shrinkWrap: true,
                   children: [
-                    if (itemList?.isNotEmpty ?? false)
+                    if (itemList?.isNotEmpty ?? title == searchProductsN())
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: ProductTextField(
                           currentPage: currentPage,
                           title: title,
-                          index: index,
+                          index: listIndex,
                         ),
                       ),
                     Obx(() => ListView.separated(
@@ -127,7 +127,10 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               category: product == null ? category : null,
                               currentPage: currentPage,
                               unitOfMeasurement: unitOfMeasurement,
-                              index: index,
+                              index:
+                                  [purchaseN(), salesN()].contains(currentPage)
+                                      ? listIndex
+                                      : index,
                             );
                           },
                           itemCount: getAlertDialogLength(
@@ -140,7 +143,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             height: 0,
                           ),
                         )),
-                    if (itemList?.isEmpty ?? true)
+                    if (itemList?.isEmpty ?? itemList != null)
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 8),
@@ -156,19 +159,21 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Align(
-                      child: IconButton(
-                          onPressed: () => onAddIconPressed(
-                                currentPage: currentPage,
-                                type: title,
-                              ),
-                          icon: const Icon(
-                            Icons.add,
-                            color: Colors.green,
-                            size: 27,
-                          )),
-                    ),
-                    sizedBox(height: 10)
+                    if (title != searchProductsN())
+                      Align(
+                        child: IconButton(
+                            onPressed: () => onAddIconPressed(
+                                  currentPage: currentPage,
+                                  type: title,
+                                ),
+                            icon: const Icon(
+                              Icons.add,
+                              color: Colors.green,
+                              size: 27,
+                            )),
+                      )
+                    else
+                      sizedBox(height: 20)
                   ],
                 ),
         ),

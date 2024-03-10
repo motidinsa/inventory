@@ -10,9 +10,11 @@ import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_image.dart';
-import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/edit_product/ui/edit_product.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
+
+import '../../product_list/functions/product_list_functions.dart';
+import '../functions/product_detail_functions.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
@@ -25,13 +27,14 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var titleToData = {
-      categoryN(): productDatabaseModel.categoryId,
-      productIdN(): productDatabaseModel.productId,
+      categoryN():
+          getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
+      productIdN(): productDatabaseModel.productId ?? '',
       costN(): productDatabaseModel.cost,
       priceN(): productDatabaseModel.price,
       quantityOnHandN(): productDatabaseModel.quantityOnHand,
       reorderQuantityN(): productDatabaseModel.reorderQuantity,
-      // uomN(): productDatabaseModel.unitOfMeasurement,
+      uomN(): getUomName(id: productDatabaseModel.unitOfMeasurementId),
     };
     return BodyWrapper(
       pageName: productDetailN,
@@ -48,8 +51,6 @@ class ProductDetail extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Get.put(EditProductController(
-                            productDatabaseModel: productDatabaseModel));
                         Get.to(() => EditProduct(
                               productDatabaseModel: productDatabaseModel,
                             ));

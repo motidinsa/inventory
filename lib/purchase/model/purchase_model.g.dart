@@ -27,7 +27,7 @@ class PurchaseModelAdapter extends TypeAdapter<PurchaseModel> {
       customerName: fields[7] as String?,
       quantity: fields[8] as String,
       totalAmount: fields[9] as double,
-      price: fields[10] as String,
+      cost: fields[10] as String,
       id: fields[11] as String,
       vendorId: fields[12] as String?,
       vendorName: fields[13] as String?,
@@ -59,7 +59,7 @@ class PurchaseModelAdapter extends TypeAdapter<PurchaseModel> {
       ..writeByte(9)
       ..write(obj.totalAmount)
       ..writeByte(10)
-      ..write(obj.price)
+      ..write(obj.cost)
       ..writeByte(11)
       ..write(obj.id)
       ..writeByte(12)

@@ -13,6 +13,8 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
+import '../controller/edit_controller.dart';
+
 class EditProduct extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
 
@@ -33,6 +35,7 @@ class EditProduct extends StatelessWidget {
   final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
+    Get.put(EditProductController(productDatabaseModel: productDatabaseModel));
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidgetBuilder: (_) {
