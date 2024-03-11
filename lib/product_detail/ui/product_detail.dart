@@ -13,8 +13,8 @@ import 'package:my_inventory/core/ui/product/product_image.dart';
 import 'package:my_inventory/edit_product/ui/edit_product.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
-import '../../product_list/functions/product_list_functions.dart';
-import '../functions/product_detail_functions.dart';
+import 'package:my_inventory/product_list/functions/product_list_functions.dart';
+import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;

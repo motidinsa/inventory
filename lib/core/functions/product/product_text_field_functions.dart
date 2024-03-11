@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 
-import '../../../edit_product/functions/edit_product_functions.dart';
-import '../../../product_list/functions/product_list_functions.dart';
-import '../../../purchase/functions/purchase_functions.dart';
-import '../../../sales/functions/sales_functions.dart';
-import '../../constants/name_constants.dart';
+import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/product_list/functions/product_list_functions.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -45,7 +45,7 @@ onTextFieldChange({
 }) {
   if (currentPage == salesN()) {
     onSalesTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == addProductN()) {
+  } else if (currentPage == addProductN) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
@@ -61,7 +61,7 @@ onTextFieldPressed(
     String? title,
     int? index,
     required BuildContext context}) {
-  if (currentPage == addProductN()) {
+  if (currentPage == addProductN) {
     onAddProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldPressed(title: title!, context: context);
@@ -114,7 +114,7 @@ onFocusChange({
   required String data,
 }) {
   if (!hasFocus) {
-    if (currentPage == addProductN()) {
+    if (currentPage == addProductN) {
       onAddProductFocusChange(title: title, data: data);
     } else if (currentPage == salesN()) {
       onSalesProductFocusChange(title: title, data: data);

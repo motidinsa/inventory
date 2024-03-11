@@ -6,16 +6,16 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../../add_product/controller/add_product_controller.dart';
-import '../../../edit_product/controller/edit_controller.dart';
-import '../../../purchase/controller/purchase_controller.dart';
-import '../../../sales/controller/sales_controller.dart';
-import '../../functions/alert_dialog/alert_dialog_functions.dart';
-import '../../model/category/category_database_model.dart';
-import '../../model/product/product_database_model.dart';
-import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import '../product/product_text_field.dart';
-import 'alert_dialog_option_item.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
@@ -95,7 +95,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               SalesController salesController = Get.find();
                               product = salesController
                                   .searchProductFoundResult[index];
-                            } else if (currentPage == addProductN()) {
+                            } else if (currentPage == addProductN) {
                               AddProductController addProductController =
                                   Get.find();
                               if (title == selectCategoryN()) {

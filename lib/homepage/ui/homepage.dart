@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
 import 'package:my_inventory/homepage/ui/item_select.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+import '../../core/controller/app_controller.dart';
 
+class Homepage extends StatelessWidget {
+   Homepage({super.key});
+  final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -26,7 +30,12 @@ class Homepage extends StatelessWidget {
             size: 20,
             // color: primaryColor(),
           ),
-          onPressed: () => Scaffold.of(context).openDrawer(),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+            print(appController.currentPages);
+          }
+
+          ,
         ),
         actions: const [
           Padding(

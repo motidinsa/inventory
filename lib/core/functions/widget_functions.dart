@@ -6,7 +6,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 appBar({required String pageName}) {
   var pageNameToFunction = {
-    addProductN(): () => Get.delete<AddProductController>()
+    addProductN: () => Get.delete<AddProductController>()
   };
   return AppBar(
     title: Text(

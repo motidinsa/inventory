@@ -8,9 +8,9 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/controller/add_item_controller.dart';
-import '../../core/model/category/category_database_model.dart';
-import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/controller/add_item_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 onAddProductTextFieldChange({
   String? title,
@@ -143,7 +143,7 @@ onAddProductTextFieldPressed(
       context: context,
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
-          currentPage: addProductN(),
+          currentPage: addProductN,
           title: title == categoryN() ? selectCategoryN() : selectUomN(),
           itemList: itemsWithList[title]!,
         );

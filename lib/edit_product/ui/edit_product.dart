@@ -13,7 +13,7 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
-import '../controller/edit_controller.dart';
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 
 class EditProduct extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
@@ -63,7 +63,7 @@ class EditProduct extends StatelessWidget {
                           labelText: titleList[index],
                         )
                       : index == 2
-                          ? AddProductImage(
+                          ? const AddProductImage(
                               currentPage: editProductN,
                             )
                           : index == 5

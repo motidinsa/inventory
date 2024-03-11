@@ -5,12 +5,12 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../../edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 
 getAlertDialogLength({required String currentPage, String? title}) {
   if (currentPage == salesN()) {
     return getSalesAlertDialogProductLength();
-  } else if (currentPage == addProductN()) {
+  } else if (currentPage == addProductN) {
     return getAddProductAlertDialogLength(title: title!);
   } else if (currentPage == editProductN) {
     return getEditProductAlertDialogLength(title: title!);
@@ -29,7 +29,7 @@ onAlertDialogOptionSelect(
   if (currentPage == salesN()) {
     onSalesSearchProductAlertDialogOptionSelect(
         productModel: productModel!, index: index!);
-  } else if (currentPage == addProductN()) {
+  } else if (currentPage == addProductN) {
     onAddProductAlertDialogOptionSelect(title: title, data: data!, id: id);
   } else if (currentPage == editProductN) {
     onEditProductAlertDialogOptionSelect(title: title, data: data!, id: id);

@@ -6,7 +6,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../functions/product/product_functions.dart';
+import 'package:my_inventory/core/functions/product/product_functions.dart';
 
 class ProductTextField extends StatefulWidget {
   final String currentPage;
@@ -34,7 +34,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
 
   @override
   void initState() {
-    // if (widget.currentPage == addProductN()) {
+    // if (widget.currentPage == addProductN) {
     focusNode.addListener(
       () => onFocusChange(
         currentPage: widget.currentPage,

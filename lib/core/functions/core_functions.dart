@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_cryptor/file_cryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -25,8 +28,9 @@ bool isNumeric(String input) {
   return numberRegExp.hasMatch(input);
 }
 
-generateDatabaseId(DateTime time) {
-  final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+generateDatabaseId({required DateTime time, var identifier}) {
+  final DateFormat dateFormatter =
+      DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
   String key = dateFormatter.format(time);
   return key;
 }
@@ -39,7 +43,7 @@ double getValidNumValue(String data) {
 }
 
 autoValidateMode({required String currentPage}) {
-  if (currentPage == addProductN()) {
+  if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (addProductController.isSubmitButtonPressed.isTrue) {
       return true;
@@ -81,7 +85,7 @@ onActionButtonPressed(
       if (redirectFrom == categoryNameN) {
         DateTime now = DateTime.now();
         var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-        String id = generateDatabaseId(now);
+        String id = generateDatabaseId(time: now);
         await categoryBox.put(
           id,
           CategoryDatabaseModel(
@@ -92,7 +96,7 @@ onActionButtonPressed(
             categoryId: id,
           ),
         );
-        if (currentPage == addProductN()) {
+        if (currentPage == addProductN) {
           AddProductController addProductController = Get.find();
           addProductController
               .categoryListFoundResult(categoryBox.values.toList());
@@ -105,7 +109,7 @@ onActionButtonPressed(
         DateTime now = DateTime.now();
         var uomBox =
             Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-        String id = generateDatabaseId(now);
+        String id = generateDatabaseId(time: now);
         await uomBox.put(
           id,
           UnitOfMeasurementDatabaseModel(
@@ -117,7 +121,7 @@ onActionButtonPressed(
           ),
         );
 
-        if (currentPage == addProductN()) {
+        if (currentPage == addProductN) {
           AddProductController addProductController = Get.find();
           addProductController
               .unitOfMeasurementListFoundResult(uomBox.values.toList());
@@ -132,7 +136,7 @@ onActionButtonPressed(
       return;
     }
   } else if (appController.formKey.currentState!.validate()) {
-    if (redirectFrom == addProductN()) {
+    if (redirectFrom == addProductN) {
       AddProductController addProductController = Get.find();
       addProductController.isSubmitButtonPressed(true);
       addProductController.onAddProductSaveButtonPressed();
@@ -166,7 +170,7 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == defaultN) {
       value = salesController.emptyString.value;
     }
-  } else if (currentPage == addProductN()) {
+  } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     var items = {
       categoryN(): addProductController.productInfo.value.categoryName,
@@ -266,7 +270,7 @@ onAddIconPressed({required String currentPage, String? type}) {
       ),
     ).then((value) {
       var itemList;
-      if (currentPage == addProductN()) {
+      if (currentPage == addProductN) {
         AddProductController addProductController = Get.find();
         if (type == selectCategoryN()) {
           itemList = addProductController.categoryListFoundResult;
@@ -306,21 +310,20 @@ onImageSourceButtonPressed(
     required String sourceLocation,
     String? productId}) async {
   final ImagePicker picker = ImagePicker();
-
   await picker
       .pickImage(
           source: sourceLocation == galleryN
               ? ImageSource.gallery
               : ImageSource.camera)
       .then((value) async {
-    if (currentPage == addProductN()) {
+    if (currentPage == addProductN) {
       AddProductController addProductController = Get.find();
       addProductController.productInfo.update((val) {
         val?.localImagePath = value?.path;
       });
     } else if (currentPage == editProductN) {
       EditProductController editProductController = Get.find();
-      editProductController.productInfo.update((val) {
+      editProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
     } else if (productId != null) {
@@ -379,7 +382,7 @@ mapValidation({
     quantityN(),
     purchaseN(),
     salesN(),
-    priceN(),
+    // priceN(),
   ];
   List<String> numberKeyboardLists = [
     costN(),

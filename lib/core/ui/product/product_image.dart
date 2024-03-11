@@ -34,7 +34,7 @@ class ProductImage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   noImageFoundN,
                   style: TextStyle(color: Colors.red),
                   textAlign: TextAlign.center,

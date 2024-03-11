@@ -5,8 +5,8 @@ import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
-import '../functions/core_functions.dart';
-import '../styles/styles.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class AddItem extends StatelessWidget {
   final String type;
@@ -22,7 +22,7 @@ class AddItem extends StatelessWidget {
       onTap: () => unFocus(),
       child: AlertDialog(
         contentPadding: EdgeInsets.zero,
-        titlePadding: EdgeInsets.only(
+        titlePadding: const EdgeInsets.only(
           left: 24,
           right: 24,
           top: 15,

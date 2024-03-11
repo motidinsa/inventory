@@ -8,9 +8,9 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 
-import '../../core/controller/app_controller.dart';
-import '../../core/model/category/category_database_model.dart';
-import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AddProductController extends GetxController {
   // var selectedUnitOfMeasurement = ''.obs;

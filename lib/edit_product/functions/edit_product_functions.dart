@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/controller/add_item_controller.dart';
-import '../../core/functions/core_functions.dart';
-import '../../core/model/category/category_database_model.dart';
-import '../../core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import '../../core/ui/alert_dialog/alert_dialog_option_select.dart';
-import '../controller/edit_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/add_item_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 
 onEditProductFocusChange({
   required String title,

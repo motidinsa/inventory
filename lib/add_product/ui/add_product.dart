@@ -51,7 +51,7 @@ class AddProduct extends StatelessWidget {
         }
 
         return BodyWrapper(
-          pageName: addProductN(),
+          pageName: addProductN,
           body: Form(
             key: appController.formKey,
             child: ListView(
@@ -63,13 +63,13 @@ class AddProduct extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) => [0, 1].contains(index)
                         ? ProductTextField(
-                            currentPage: addProductN(),
+                            currentPage: addProductN,
                             title: titleList[index],
                             labelText: titleList[index],
                           )
                         : index == 2
                             ? AddProductImage(
-                                currentPage: addProductN(),
+                                currentPage: addProductN,
                               )
                             : index == 5
                                 ? Row(
@@ -78,28 +78,28 @@ class AddProduct extends StatelessWidget {
                                       Expanded(
                                         child: AddProductPriceInput(
                                           title: costN(),
-                                          currentPage: addProductN(),
+                                          currentPage: addProductN,
                                         ),
                                       ),
                                       sizedBox(width: 20),
                                       Expanded(
                                         child: AddProductPriceInput(
                                           title: priceN(),
-                                          currentPage: addProductN(),
+                                          currentPage: addProductN,
                                         ),
                                       ),
                                     ],
                                   )
                                 : AddProductTitleWithTextField(
                                     title: titleList[index],
-                                    currentPage: addProductN(),
+                                    currentPage: addProductN,
                                   ),
                     separatorBuilder: (ctx, index) => sizedBox(height: 20),
                     itemCount: titleList.length,
                   ),
                 ),
                 ActionButton(
-                  redirectFrom: addProductN(),
+                  redirectFrom: addProductN,
                 ),
               ],
             ),

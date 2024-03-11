@@ -6,7 +6,7 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../../add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
 getSubtotal({required String currentPage}) {
   if (currentPage == salesN()) {
@@ -46,7 +46,7 @@ getProductTotalPrice({required String currentPage, required int index}) {
 }
 
 getProductImagePath({required String currentPage}) {
-  if (currentPage == addProductN()) {
+  if (currentPage == addProductN) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.localImagePath;
   } else if (currentPage == editProductN) {
@@ -56,7 +56,7 @@ getProductImagePath({required String currentPage}) {
 }
 
 getSuffix({required String currentPage}) {
-  if (currentPage == addProductN()) {
+  if (currentPage == addProductN) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.unitOfMeasurementName;
   } else if (currentPage == editProductN) {
@@ -66,7 +66,7 @@ getSuffix({required String currentPage}) {
 }
 
 onImageDeleteButtonPressed({required String currentPage}) {
-  if (currentPage == addProductN()) {
+  if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     addProductController.productInfo.update((val) {
       val?.localImagePath = null;

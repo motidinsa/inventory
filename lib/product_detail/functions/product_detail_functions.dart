@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../../core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 
 getProductCategoryName({String? id}) {
   var categoryBox = Hive.box<CategoryDatabaseModel>('category');

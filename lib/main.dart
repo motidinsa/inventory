@@ -1,5 +1,8 @@
 // import 'package:appwrite/appwrite.dart';
+import 'dart:io';
+
 import 'package:device_preview/device_preview.dart';
+import 'package:file_cryptor/file_cryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
@@ -18,6 +21,7 @@ void main() async {
   //   [VendorDatabaseModelSchema,UserSchema],
   //   directory: dir.path,
   // );
+
   await initializeDatabase();
   Get.put(AppController());
   // Stream<void> userChanged = isar.users.watchLazy();
@@ -57,20 +61,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return DevicePreview(builder: (context) {
-      return GetMaterialApp(
-        title: appNameN(),
-        debugShowCheckedModeBanner: false,
-        initialBinding: ApplicationBindings(),
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-          useMaterial3: true,
-        ),
-        home: const Scaffold(
-          drawer: Drawer(),
-          body: Homepage(),
-        ),
-      );
-    });
+    return GetMaterialApp(
+      title: appNameN(),
+      debugShowCheckedModeBanner: false,
+      // initialBinding: ApplicationBindings(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      ),
+      home:  Scaffold(
+        drawer: Drawer(),
+        body: Homepage(),
+      ),
+    );
   }
 }

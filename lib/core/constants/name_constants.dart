@@ -2,7 +2,7 @@ appNameN() => 'My Inventory';
 
 addCustomerN() => 'Add customer';
 
-addProductN() => 'Add product';
+const String addProductN = 'Add product';
 
 customerNameN() => 'Customer name';
 
