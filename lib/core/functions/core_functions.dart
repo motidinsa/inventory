@@ -376,17 +376,26 @@ mapValidation({
     productN(),
     categoryNameN,
     uomNameN,
+    quantityN(),
+    purchaseN(),
+    salesN(),
+    priceN(),
   ];
   List<String> numberKeyboardLists = [
     costN(),
     priceN(),
     quantityOnHandN(),
     reorderQuantityN(),
-    quantityN()
+    quantityN(),
+    purchaseN(),
   ];
   if (nonEmptyTitles.contains(title)) {
     if (data.isEmpty) {
-      return 'This is required field';
+      return 'Required';
+    } else if ([quantityN()].contains(title)) {
+      if (!isNumeric(data)) {
+        return 'Invalid number';
+      }
     }
   } else if (numberKeyboardLists.contains(title)) {
     if (data.isNotEmpty && !isNumeric(data)) {
