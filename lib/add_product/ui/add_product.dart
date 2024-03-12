@@ -68,7 +68,7 @@ class AddProduct extends StatelessWidget {
                             labelText: titleList[index],
                           )
                         : index == 2
-                            ? AddProductImage(
+                            ? const AddProductImage(
                                 currentPage: addProductN,
                               )
                             : index == 5

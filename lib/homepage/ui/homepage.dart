@@ -7,7 +7,7 @@ import 'package:my_inventory/homepage/ui/item_type.dart';
 
 import 'package:my_inventory/homepage/ui/item_select.dart';
 
-import '../../core/controller/app_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 class Homepage extends StatelessWidget {
    Homepage({super.key});

@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/product/product_isar.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
-
-import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+
+import 'package:my_inventory/main.dart';
 
 class AddProductController extends GetxController {
   // var selectedUnitOfMeasurement = ''.obs;
@@ -65,25 +67,44 @@ class AddProductController extends GetxController {
     var productsBox = Hive.box<ProductDatabaseModel>('products');
     final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     String key = dateFormatter.format(now);
-    await productsBox.put(
-      key,
-      ProductDatabaseModel(
-        productName: productInfo.value.name,
-        description: nullIfEmpty(productInfo.value.description),
-        categoryId: nullIfEmpty(productInfo.value.categoryId),
-        productId: nullIfEmpty(productInfo.value.productId),
-        cost: getValidNumValue(productInfo.value.cost),
-        price: getValidNumValue(productInfo.value.price),
-        createdByUserId: appController.userId.value,
-        dateCreated: productInfo.value.dateCreated,
-        dateModified: productInfo.value.dateModified,
-        quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-        reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-        localImagePath: productInfo.value.localImagePath,
-        id: key,
-      ),
-    );
+    final dbProduct = ProductIsar()
+      ..productName = productInfo.value.name
+      ..description = nullIfEmpty(productInfo.value.description)
+      ..categoryId = nullIfEmpty(productInfo.value.categoryId)
+      ..productId = key
+      ..cost = getValidNumValue(productInfo.value.cost)
+      ..price = getValidNumValue(productInfo.value.price)
+      ..createdByUserId = appController.userId.value
+      ..dateCreated = productInfo.value.dateCreated
+      ..dateModified = productInfo.value.dateModified
+      ..quantityOnHand = getValidNumValue(productInfo.value.quantityOnHand)
+      ..reorderQuantity = getValidNumValue(productInfo.value.reorderQuantity)
+      ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
+      ..localImagePath = productInfo.value.localImagePath
+      ..userAssignedProductId = nullIfEmpty(productInfo.value.productId);
+
+    await isar.writeTxn(() async {
+      await isar.productIsars.put(dbProduct);
+    });
+    // await productsBox.put(
+    //   key,
+    //   ProductDatabaseModel(
+    //     productName: productInfo.value.name,
+    //     description: nullIfEmpty(productInfo.value.description),
+    //     categoryId: nullIfEmpty(productInfo.value.categoryId),
+    //     productId: nullIfEmpty(productInfo.value.productId),
+    //     cost: getValidNumValue(productInfo.value.cost),
+    //     price: getValidNumValue(productInfo.value.price),
+    //     createdByUserId: appController.userId.value,
+    //     dateCreated: productInfo.value.dateCreated,
+    //     dateModified: productInfo.value.dateModified,
+    //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+    //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+    //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+    //     localImagePath: productInfo.value.localImagePath,
+    //     id: key,
+    //   ),
+    // );
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,

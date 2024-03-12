@@ -29,6 +29,20 @@ class ProductList extends StatelessWidget {
               title: productListN(),
             ),
             // sizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: ListView.separated(
+                shrinkWrap: true,
+                reverse: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) => MiniProductDetail(
+                  productModel: productListController.productList[index],
+                  index: index,
+                ),
+                itemCount: productListController.productList.length,
+                separatorBuilder: (ctx, index) => sizedBox(height: 20),
+              ),
+            ),
             ValueListenableBuilder<Box<ProductDatabaseModel>>(
               valueListenable:
                   Hive.box<ProductDatabaseModel>('products').listenable(),

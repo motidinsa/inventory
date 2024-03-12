@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:file_cryptor/file_cryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -10,16 +7,15 @@ import 'package:my_inventory/add_product/controller/add_product_controller.dart'
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/ui/add_item.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
-
-import '../model/category/category_database_model.dart';
-import '../model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import '../ui/add_item.dart';
-import '../ui/alert_dialog/alert_dialog_option_select.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -269,7 +265,7 @@ onAddIconPressed({required String currentPage, String? type}) {
         currentPage: currentPage,
       ),
     ).then((value) {
-      var itemList;
+      RxList? itemList;
       if (currentPage == addProductN) {
         AddProductController addProductController = Get.find();
         if (type == selectCategoryN()) {

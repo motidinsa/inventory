@@ -124,7 +124,7 @@ int _productIsarEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
-    final value = object.assignedProductId;
+    final value = object.userAssignedProductId;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -172,7 +172,7 @@ void _productIsarSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.assignedProductId);
+  writer.writeString(offsets[0], object.userAssignedProductId);
   writer.writeString(offsets[1], object.categoryId);
   writer.writeDouble(offsets[2], object.cost);
   writer.writeString(offsets[3], object.createdByUserId);
@@ -198,7 +198,7 @@ ProductIsar _productIsarDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = ProductIsar();
-  object.assignedProductId = reader.readStringOrNull(offsets[0]);
+  object.userAssignedProductId = reader.readStringOrNull(offsets[0]);
   object.categoryId = reader.readStringOrNull(offsets[1]);
   object.cost = reader.readDouble(offsets[2]);
   object.createdByUserId = reader.readString(offsets[3]);
