@@ -22,4 +22,5 @@ class ProductIsar {
   String? onlineImagePath;
   late String productId;
   String? modifiedByUserId;
+  late String test;
 }

@@ -15,12 +15,6 @@ class ProductListController extends GetxController {
   @override
   Future<void> onInit() async {
     productList(productBox.values.toList());
-    Stream<void> userChanged = isar.productIsars.watchLazy();
-    userChanged.listen((a) {
-      print('change');
-    });
-    var a = await isar.productIsars.where().findAll();
-    print(a.first.cost);
     super.onInit();
   }
 }

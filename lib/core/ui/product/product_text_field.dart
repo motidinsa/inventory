@@ -65,7 +65,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
         focusNode: focusNode,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: getKeyboardType(title: widget.title),
-        maxLines: widget.labelText == descriptionN() ? 2 : 1,
+        maxLines: widget.labelText == descriptionN ? 2 : 1,
         readOnly: hasOption(title: widget.title),
         onChanged: (data) => onTextFieldChange(
           currentPage: widget.currentPage,

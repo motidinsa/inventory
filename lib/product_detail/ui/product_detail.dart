@@ -27,14 +27,14 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var titleToData = {
-      categoryN():
+      categoryN:
           getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
-      productIdN(): productDatabaseModel.productId ?? '',
-      costN(): productDatabaseModel.cost,
+      productIdN: productDatabaseModel.productId ?? '',
+      costN: productDatabaseModel.cost,
       priceN(): productDatabaseModel.price,
-      quantityOnHandN(): productDatabaseModel.quantityOnHand,
-      reorderQuantityN(): productDatabaseModel.reorderQuantity,
-      uomN(): getUomName(id: productDatabaseModel.unitOfMeasurementId),
+      quantityOnHandN: productDatabaseModel.quantityOnHand,
+      reorderQuantityN: productDatabaseModel.reorderQuantity,
+      uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),
     };
     return BodyWrapper(
       pageName: productDetailN,
@@ -119,7 +119,7 @@ class ProductDetail extends StatelessWidget {
                             ),
                             sizedBox(height: 10),
                             ProductDetailSingleDescription(
-                              title: descriptionN(),
+                              title: descriptionN,
                               description:
                                   productDatabaseModel.description ?? '',
                               titleColor: Colors.green.shade800,

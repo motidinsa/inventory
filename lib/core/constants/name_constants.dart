@@ -1,3 +1,4 @@
+
 appNameN() => 'My Inventory';
 
 addCustomerN() => 'Add customer';
@@ -30,35 +31,35 @@ vendorN() => 'Vendor';
 
 purchaseN() => 'Purchase';
 
-productN() => 'Product';
+const String productN = 'Product';
 
 reorderStockN() => 'Reorder Stock';
 
 productNameN() => 'Product name';
 
-descriptionN() => 'Description';
+const String descriptionN = 'Description';
 
-categoryN() => 'Category';
+const String categoryN = 'Category';
 
 selectItemN() => 'Select item';
 
-productIdN() => 'Product ID';
+const String productIdN = 'Product ID';
 
-costN() => 'Cost';
+const String costN = 'Cost';
 
 priceN() => 'Price';
 
 etbN() => 'ETB';
 
-quantityOnHandN() => 'Quantity on hand';
+const String quantityOnHandN = 'Quantity on hand';
 
-reorderQuantityN() => 'Reorder quantity';
+const String reorderQuantityN = 'Reorder quantity';
 
-uomN() => 'Unit of measurement';
+const String uomSN = 'Unit of measurement';
 
 enterProductNameN() => 'Enter product name';
 
-writeYourDescriptionN() => 'Write your description';
+const String writeYourdescriptionN = 'Write your description';
 
 idN() => 'ID';
 
@@ -72,15 +73,15 @@ searchByProductNameOrIdN() => 'Search by product name or ID';
 
 searchByCategoryNameN() => 'Search by category name';
 
-searchUomN() => 'Search unit of measurement';
+const String searchUomSN = 'Search unit of measurement';
 
 searchProductsN() => 'Search products';
 
 quantityN() => 'Quantity';
 
-selectCategoryN() => 'Select category';
+const String selectCategoryN = 'Select category';
 
-selectUomN() => 'Select unit of measurement';
+const String selectUomSN = 'Select unit of measurement';
 
 subtotalN() => 'Subtotal';
 

@@ -21,15 +21,15 @@ class EditProduct extends StatelessWidget {
   EditProduct({super.key, required this.productDatabaseModel});
 
   final List<String> titleList = [
-    productN(),
-    descriptionN(),
+    productN,
+    descriptionN,
     'image',
-    categoryN(),
-    productIdN(),
-    costN(),
-    quantityOnHandN(),
-    reorderQuantityN(),
-    uomN()
+    categoryN,
+    productIdN,
+    costN,
+    quantityOnHandN,
+    reorderQuantityN,
+    uomSN
   ];
 
   final AppController appController = Get.find();
@@ -72,7 +72,7 @@ class EditProduct extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: AddProductPriceInput(
-                                        title: costN(),
+                                        title: costN,
                                         currentPage: editProductN,
                                       ),
                                     ),

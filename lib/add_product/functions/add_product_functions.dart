@@ -18,14 +18,13 @@ onAddProductTextFieldChange({
   int? index,
 }) {
   AddProductController addProductController = Get.find();
-  if (title == selectCategoryN()) {
+  if (title == selectCategoryN) {
     var categoryBox = Hive.box<CategoryDatabaseModel>('category');
     addProductController.categoryListFoundResult(categoryBox.values
         .where((category) =>
             category.categoryName.toLowerCase().contains(data.toLowerCase()))
         .toList());
-  } else if (title == selectUomN()) {
-    // AddProductController addProductController = Get.find();
+  } else if (title == selectUomSN) {
     var uomBox =
         Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
     addProductController.unitOfMeasurementListFoundResult(uomBox.values
@@ -40,19 +39,19 @@ onAddProductFocusChange({
 }) {
   final AddProductController addProductController = Get.find();
   addProductController.productInfo.update((product) {
-    if (title == productN()) {
+    if (title == productN) {
       product?.name = data;
-    } else if (title == descriptionN()) {
+    } else if (title == descriptionN) {
       product?.description = data;
-    } else if (title == productIdN()) {
+    } else if (title == productIdN) {
       product?.productId = data;
-    } else if (title == costN()) {
+    } else if (title == costN) {
       product?.cost = data;
     } else if (title == priceN()) {
       product?.price = data;
-    } else if (title == quantityOnHandN()) {
+    } else if (title == quantityOnHandN) {
       product?.quantityOnHand = data;
-    } else if (title == reorderQuantityN()) {
+    } else if (title == reorderQuantityN) {
       product?.reorderQuantity = data;
     } else if ([categoryNameN, uomNameN].contains(title)) {
       AddItemController addItemController = Get.find();
@@ -63,9 +62,9 @@ onAddProductFocusChange({
 
 getAddProductAlertDialogLength({required String title}) {
   AddProductController addProductController = Get.find();
-  if (title == selectCategoryN()) {
+  if (title == selectCategoryN) {
     return addProductController.categoryListFoundResult.length;
-  } else if (title == selectUomN()) {
+  } else if (title == selectUomSN) {
     return addProductController.unitOfMeasurementListFoundResult.length;
   }
 }
@@ -128,8 +127,8 @@ onAddProductTextFieldPressed(
     {required String title, required BuildContext context}) {
   final AddProductController addProductController = Get.find();
   Map<String, List> itemsWithList = {
-    categoryN(): addProductController.categoryListFoundResult,
-    uomN(): addProductController.unitOfMeasurementListFoundResult,
+    categoryN: addProductController.categoryListFoundResult,
+    uomSN: addProductController.unitOfMeasurementListFoundResult,
   };
 
   if (itemsWithList.keys.contains(title)) {
@@ -144,7 +143,7 @@ onAddProductTextFieldPressed(
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
           currentPage: addProductN,
-          title: title == categoryN() ? selectCategoryN() : selectUomN(),
+          title: title == categoryN ? selectCategoryN : selectUomSN,
           itemList: itemsWithList[title]!,
         );
       },
@@ -163,10 +162,10 @@ onAddProductAlertDialogOptionSelect(
     {required String title, required String data, required String id}) {
   final AddProductController addProductController = Get.find();
   addProductController.productInfo.update((product) {
-    if (title == selectCategoryN()) {
+    if (title == selectCategoryN) {
       product?.categoryName = data;
       product?.categoryId = id;
-    } else if (title == selectUomN()) {
+    } else if (title == selectUomSN) {
       product?.unitOfMeasurementName = data;
       product?.unitOfMeasurementId = id;
     }

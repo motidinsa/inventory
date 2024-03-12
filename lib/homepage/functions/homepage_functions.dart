@@ -15,7 +15,7 @@ navigateFromHomepage({required String title, bool? isAddIcon}) {
     }
   } else if (title == salesN()) {
     Get.to(() => Sales());
-  } else if (title == productN()) {
+  } else if (title == productN) {
     if (isAddIcon == true) {
       Get.to(() => AddProduct());
     } else {

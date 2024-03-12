@@ -98,20 +98,20 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             } else if (currentPage == addProductN) {
                               AddProductController addProductController =
                                   Get.find();
-                              if (title == selectCategoryN()) {
+                              if (title == selectCategoryN) {
                                 category = addProductController
                                     .categoryListFoundResult[index];
-                              } else if (title == selectUomN()) {
+                              } else if (title == selectUomSN) {
                                 unitOfMeasurement = addProductController
                                     .unitOfMeasurementListFoundResult[index];
                               }
                             } else if (currentPage == editProductN) {
                               EditProductController editProductController =
                                   Get.find();
-                              if (title == selectCategoryN()) {
+                              if (title == selectCategoryN) {
                                 category = editProductController
                                     .categoryListFoundResult[index];
-                              } else if (title == selectUomN()) {
+                              } else if (title == selectUomSN) {
                                 unitOfMeasurement = editProductController
                                     .unitOfMeasurementListFoundResult[index];
                               }
@@ -148,7 +148,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 8),
                         child: Text(
-                          title == selectCategoryN()
+                          title == selectCategoryN
                               ? noCategoryAvailableSN
                               : noUomAvailableSN,
                           textAlign: TextAlign.center,

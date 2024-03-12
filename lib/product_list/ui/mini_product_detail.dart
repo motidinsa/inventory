@@ -97,13 +97,13 @@ class MiniProductDetail extends StatelessWidget {
                     if (productModel.description != null) ...[
                       sizedBox(height: 5),
                       ProductDetailSingleDescription(
-                        title: descriptionN(),
+                        title: descriptionN,
                         description: productModel.description!,
                       )
                     ],
                     sizedBox(height: 10),
                     ProductDetailSingleDescription(
-                      title: reorderQuantityN(),
+                      title: reorderQuantityN,
                       description: productModel.reorderQuantity.toString(),
                     )
                   ],

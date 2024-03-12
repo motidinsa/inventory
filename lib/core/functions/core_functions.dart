@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
@@ -169,8 +172,8 @@ titleToData({required String title, required String currentPage, int? index}) {
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     var items = {
-      categoryN(): addProductController.productInfo.value.categoryName,
-      uomN(): addProductController.productInfo.value.unitOfMeasurementName,
+      categoryN: addProductController.productInfo.value.categoryName,
+      uomSN: addProductController.productInfo.value.unitOfMeasurementName,
     };
     return items[title];
   } else if (currentPage == purchaseN()) {
@@ -193,31 +196,31 @@ titleToData({required String title, required String currentPage, int? index}) {
     value = productListController.emptyValue.value;
   } else if (currentPage == editProductN) {
     EditProductController editProductController = Get.find();
-    if (title == productN()) {
+    if (title == productN) {
       value = editProductController.productInfo.value.name;
-    } else if (title == descriptionN()) {
+    } else if (title == descriptionN) {
       value = editProductController.productInfo.value.description;
-    } else if (title == productIdN()) {
+    } else if (title == productIdN) {
       value = editProductController.productInfo.value.productId;
-    } else if (title == costN()) {
+    } else if (title == costN) {
       value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
           editProductController.productInfo.value.cost));
     } else if (title == priceN()) {
       value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
           editProductController.productInfo.value.price));
-    } else if (title == quantityOnHandN()) {
+    } else if (title == quantityOnHandN) {
       value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
           editProductController.productInfo.value.quantityOnHand));
-    } else if (title == reorderQuantityN()) {
+    } else if (title == reorderQuantityN) {
       value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
           editProductController.productInfo.value.reorderQuantity));
-    } else if (title == uomN()) {
+    } else if (title == uomSN) {
       value = editProductController.productInfo.value.unitOfMeasurementName;
-    } else if (title == categoryN()) {
+    } else if (title == categoryN) {
       value = editProductController.productInfo.value.categoryName;
-    } else if (title == selectCategoryN()) {
+    } else if (title == selectCategoryN) {
       value = editProductController.emptyText.value;
-    } else if (title == selectUomN()) {
+    } else if (title == selectUomSN) {
       value = editProductController.emptyText.value;
     } else if (title == categoryNameN) {
       value = editProductController.emptyText.value;
@@ -268,14 +271,14 @@ onAddIconPressed({required String currentPage, String? type}) {
       RxList? itemList;
       if (currentPage == addProductN) {
         AddProductController addProductController = Get.find();
-        if (type == selectCategoryN()) {
+        if (type == selectCategoryN) {
           itemList = addProductController.categoryListFoundResult;
         } else {
           addProductController.unitOfMeasurementListFoundResult;
         }
       } else if (currentPage == editProductN) {
         EditProductController editProductController = Get.find();
-        if (type == selectCategoryN()) {
+        if (type == selectCategoryN) {
           itemList = editProductController.categoryListFoundResult;
         } else {
           editProductController.unitOfMeasurementListFoundResult;
@@ -317,6 +320,7 @@ onImageSourceButtonPressed(
       addProductController.productInfo.update((val) {
         val?.localImagePath = value?.path;
       });
+
     } else if (currentPage == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.productInfo.update((val) async {
@@ -351,10 +355,10 @@ titleToIcon({required String title}) {
 
 getKeyboardType({required String title}) {
   final List<String> numberKeyboardLists = [
-    costN(),
+    costN,
     priceN(),
-    quantityOnHandN(),
-    reorderQuantityN(),
+    quantityOnHandN,
+    reorderQuantityN,
     quantityN()
   ];
   if (numberKeyboardLists.contains(title)) {
@@ -372,19 +376,18 @@ mapValidation({
   required String data,
 }) {
   List<String> nonEmptyTitles = [
-    productN(),
+    productN,
     categoryNameN,
     uomNameN,
     quantityN(),
     purchaseN(),
-    salesN(),
-    // priceN(),
+    salesN()
   ];
   List<String> numberKeyboardLists = [
-    costN(),
+    costN,
     priceN(),
-    quantityOnHandN(),
-    reorderQuantityN(),
+    quantityOnHandN,
+    reorderQuantityN,
     quantityN(),
     purchaseN(),
   ];
@@ -402,4 +405,13 @@ mapValidation({
     }
   }
   return null;
+}
+
+Future<File> compressFile(File file, String targetPath) async {
+  var result = await FlutterImageCompress.compressAndGetFile(
+    file.absolute.path,
+    targetPath,
+    quality: 50,
+  );
+  return File(result!.path);
 }

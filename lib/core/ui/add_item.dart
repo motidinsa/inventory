@@ -15,8 +15,8 @@ class AddItem extends StatelessWidget {
   const AddItem({super.key, required this.type, required this.currentPage});
   @override
   Widget build(BuildContext context) {
-    String title = type == selectCategoryN() ? addCategoryNameN : addUomNameN;
-    String labelText = type == selectCategoryN() ? categoryNameN : uomNameN;
+    String title = type == selectCategoryN ? addCategoryNameN : addUomNameN;
+    String labelText = type == selectCategoryN ? categoryNameN : uomNameN;
     AddItemController addItemController = Get.put(AddItemController());
     return GestureDetector(
       onTap: () => unFocus(),

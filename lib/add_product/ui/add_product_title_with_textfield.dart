@@ -10,8 +10,8 @@ class AddProductTitleWithTextField extends StatelessWidget {
   AddProductTitleWithTextField(
       {super.key, required this.title, required this.currentPage});
 
-  final List<String> readOnlyItems = [categoryN(), uomN()];
-  final List<String> suffixItems = [quantityOnHandN(), reorderQuantityN()];
+  final List<String> readOnlyItems = [categoryN, uomSN];
+  final List<String> suffixItems = [quantityOnHandN, reorderQuantityN];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class AddProductTitleWithTextField extends StatelessWidget {
             child: ProductTextField(
               title: title,
               currentPage: currentPage,
-              // labelText: descriptionN(),
+              // labelText: descriptionN,
             ),
           ),
         ),

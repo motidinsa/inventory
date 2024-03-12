@@ -17,15 +17,15 @@ class AddProduct extends StatelessWidget {
   AddProduct({super.key});
 
   final List<String> titleList = [
-    productN(),
-    descriptionN(),
+    productN,
+    descriptionN,
     'image',
-    categoryN(),
-    productIdN(),
-    costN(),
-    quantityOnHandN(),
-    reorderQuantityN(),
-    uomN()
+    categoryN,
+    productIdN,
+    costN,
+    quantityOnHandN,
+    reorderQuantityN,
+    uomSN
   ];
 
   final AddProductController addProductController =
@@ -77,7 +77,7 @@ class AddProduct extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: AddProductPriceInput(
-                                          title: costN(),
+                                          title: costN,
                                           currentPage: addProductN,
                                         ),
                                       ),
