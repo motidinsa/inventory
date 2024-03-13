@@ -11,9 +11,8 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 
 class AddProductImage extends StatelessWidget {
   final String currentPage;
-  const AddProductImage({super.key, required this.currentPage});
 
-  // final AddProductController addProductController = Get.find();
+  const AddProductImage({super.key, required this.currentPage});
 
   @override
   Widget build(BuildContext context) {

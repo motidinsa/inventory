@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
@@ -201,7 +199,7 @@ titleToData({required String title, required String currentPage, int? index}) {
     } else if (title == descriptionN) {
       value = editProductController.productInfo.value.description;
     } else if (title == productIdN) {
-      value = editProductController.productInfo.value.productId;
+      value = editProductController.productInfo.value.userAssignedProductId;
     } else if (title == costN) {
       value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
           editProductController.productInfo.value.cost));
@@ -313,7 +311,7 @@ onImageSourceButtonPressed(
       .pickImage(
           source: sourceLocation == galleryN
               ? ImageSource.gallery
-              : ImageSource.camera)
+              : ImageSource.camera,imageQuality: 50)
       .then((value) async {
     if (currentPage == addProductN) {
       AddProductController addProductController = Get.find();
@@ -407,11 +405,3 @@ mapValidation({
   return null;
 }
 
-Future<File> compressFile(File file, String targetPath) async {
-  var result = await FlutterImageCompress.compressAndGetFile(
-    file.absolute.path,
-    targetPath,
-    quality: 50,
-  );
-  return File(result!.path);
-}

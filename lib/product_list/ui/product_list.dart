@@ -5,13 +5,12 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/model/product/product_isar.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
-import '../../main.dart';
+import 'package:my_inventory/main.dart';
 
 class ProductList extends StatelessWidget {
   ProductList({super.key});
@@ -25,8 +24,8 @@ class ProductList extends StatelessWidget {
       pageName: productListN(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: StreamBuilder<List<ProductIsar>>(
-            stream: isar.productIsars.where().watch(fireImmediately: true),
+        child: StreamBuilder<List<ProductDatabaseModel>>(
+            stream: isar.productDatabaseModels.where().watch(fireImmediately: true),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 AlertDialog(
@@ -34,7 +33,7 @@ class ProductList extends StatelessWidget {
                 );
               }
               else if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

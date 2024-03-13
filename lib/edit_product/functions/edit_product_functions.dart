@@ -21,7 +21,7 @@ onEditProductFocusChange({
     } else if (title == descriptionN) {
       product?.description = data;
     } else if (title == productIdN) {
-      product?.productId = data;
+      product?.userAssignedProductId = data;
     } else if (title == costN) {
       product?.cost = data;
     } else if (title == priceN()) {

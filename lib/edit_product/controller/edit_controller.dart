@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
@@ -48,24 +47,24 @@ class EditProductController extends GetxController {
             element.uomId == productDatabaseModel.unitOfMeasurementId)
         .name;
     // }
-    productInfo = ProductModel(
-      name: productDatabaseModel.productName,
-      description: productDatabaseModel.description,
-      localImagePath: productDatabaseModel.localImagePath,
-      categoryId: productDatabaseModel.categoryId,
-      categoryName: categoryName,
-      productId: productDatabaseModel.productId,
-      cost: productDatabaseModel.cost.toString(),
-      price: productDatabaseModel.price.toString(),
-      modifiedByUserId: appController.userId.value,
-      dateCreated: productDatabaseModel.dateCreated,
-      dateModified: productDatabaseModel.dateModified,
-      quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
-      reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
-      unitOfMeasurementId: productDatabaseModel.unitOfMeasurementId,
-      unitOfMeasurementName: uomName,
-      id: productDatabaseModel.id,
-    ).obs;
+    // productInfo = ProductModel(
+    //   name: productDatabaseModel.productName,
+    //   description: productDatabaseModel.description,
+    //   localImagePath: productDatabaseModel.localImagePath,
+    //   categoryId: productDatabaseModel.categoryId,
+    //   categoryName: categoryName,
+    //   productId: productDatabaseModel.productId,
+    //   cost: productDatabaseModel.cost.toString(),
+    //   price: productDatabaseModel.price.toString(),
+    //   modifiedByUserId: appController.userId.value,
+    //   dateCreated: productDatabaseModel.dateCreated,
+    //   dateModified: productDatabaseModel.dateModified,
+    //   quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
+    //   reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
+    //   unitOfMeasurementId: productDatabaseModel.unitOfMeasurementId,
+    //   unitOfMeasurementName: uomName,
+    //   id: productDatabaseModel.id,
+    // ).obs;
   }
 
   onEditProductSaveButtonPressed() async {
@@ -75,26 +74,28 @@ class EditProductController extends GetxController {
     ProductListController productListController = Get.find();
     // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
     // String key = dateFormatter.format(now);
-    await productsBox.put(
-      productInfo.value.id,
-      ProductDatabaseModel(
-        productName: productInfo.value.name,
-        description: productInfo.value.description,
-        categoryId: productInfo.value.categoryId,
-        productId: productInfo.value.productId,
-        cost: getValidNumValue(productInfo.value.cost),
-        price: getValidNumValue(productInfo.value.price),
-        createdByUserId: appController.userId.value,
-        modifiedByUserId: productInfo.value.modifiedByUserId,
-        dateCreated: productInfo.value.dateCreated,
-        dateModified: productInfo.value.dateModified,
-        quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-        reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-        localImagePath: productInfo.value.localImagePath,
-        id: productInfo.value.id,
-      ),
-    );
+    // await productsBox.put(
+    //   productInfo.value.id,
+    //   ProductDatabaseModel(
+    //     productName: productInfo.value.name,
+    //     description: productInfo.value.description,
+    //     categoryId: productInfo.value.categoryId,
+    //     productId: productInfo.value.productId,
+    //     cost: getValidNumValue(productInfo.value.cost),
+    //     price: getValidNumValue(productInfo.value.price),
+    //     createdByUserId: appController.userId.value,
+    //     modifiedByUserId: productInfo.value.modifiedByUserId,
+    //     dateCreated: productInfo.value.dateCreated,
+    //     dateModified: productInfo.value.dateModified,
+    //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+    //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+    //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+    //     localImagePath: productInfo.value.localImagePath,
+    //     id: productInfo.value.id,
+    //   ),
+    // );
+
+
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,

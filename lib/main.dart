@@ -6,7 +6,6 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/database/initialize.dart';
-import 'package:my_inventory/core/model/product/product_isar.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 

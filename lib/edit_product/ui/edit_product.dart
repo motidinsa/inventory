@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:my_inventory/add_product/ui/add_product_image.dart';
+import 'package:my_inventory/core/ui/add_image/add_product_image.dart';
 import 'package:my_inventory/add_product/ui/add_product_price_input.dart';
 import 'package:my_inventory/add_product/ui/add_product_title_with_textfield.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -70,7 +70,7 @@ class EditProduct extends StatelessWidget {
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Expanded(
+                                    const Expanded(
                                       child: AddProductPriceInput(
                                         title: costN,
                                         currentPage: editProductN,

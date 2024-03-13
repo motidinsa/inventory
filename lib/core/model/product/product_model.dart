@@ -1,10 +1,10 @@
 class ProductModel {
   String name;
-  String id;
+  int id;
   String? description;
   String? categoryId;
   String? categoryName;
-  String? productId;
+  String? userAssignedProductId;
   String cost;
   String price;
   String quantityOnHand;
@@ -13,7 +13,7 @@ class ProductModel {
   String unitOfMeasurementName;
   String? modifiedByUserId;
   DateTime dateCreated;
-  DateTime dateModified;
+  DateTime lastDateModified;
   String? localImagePath;
 
   ProductModel({
@@ -21,13 +21,13 @@ class ProductModel {
     this.description,
     required this.categoryId,
     required this.categoryName,
-    required this.productId,
+    required this.userAssignedProductId,
     required this.cost,
     required this.price,
     required this.quantityOnHand,
     required this.reorderQuantity,
     required this.dateCreated,
-    required this.dateModified,
+    required this.lastDateModified,
     this.localImagePath,
     required this.id,
     this.modifiedByUserId,
