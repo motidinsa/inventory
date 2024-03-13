@@ -48,7 +48,7 @@ class Purchase extends StatelessWidget {
                 ),
                 itemCount: purchaseController.purchaseModels.length,
               ),
-              addIconButton(currentPage: purchaseN()),
+              addIconButton(),
               ProductPriceSummary(currentPage: purchaseN()),
               ActionButton(redirectFrom: purchaseN())
             ],

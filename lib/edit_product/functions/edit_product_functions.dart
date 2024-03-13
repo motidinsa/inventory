@@ -56,7 +56,6 @@ onEditProductTextFieldPressed(
       context: context,
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
-          currentPage: editProductN,
           title: title == categoryN ? selectCategoryN : selectUomSN,
           itemList: itemsWithList[title]!,
         );

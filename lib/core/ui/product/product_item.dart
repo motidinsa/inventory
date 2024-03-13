@@ -29,7 +29,6 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: ProductTextField(
-                  currentPage: currentPage,
                   title: currentPage,
                   index: index,
                 ),
@@ -38,7 +37,6 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: ProductTextField(
-                  currentPage: currentPage,
                   title: quantityN(),
                   index: index,
                 ),
@@ -48,13 +46,11 @@ class ProductItem extends StatelessWidget {
                 flex: currentPage == purchaseN() ? 4 : 3,
                 child: currentPage == purchaseN()
                     ? ProductTextField(
-                        currentPage: currentPage,
                         title: priceN(),
                         index: index,
                       )
                     : Text(
-                        getFormattedNumberWithComa(getProductPrice(
-                            currentPage: currentPage, index: index)),
+                        getFormattedNumberWithComa(getProductPrice( index: index)),
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 16),
                       ),
@@ -63,8 +59,7 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Text(
-                  getFormattedNumberWithComa(getProductTotalPrice(
-                      currentPage: currentPage, index: index)),
+                  getFormattedNumberWithComa(getProductTotalPrice( index: index)),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),

@@ -37,7 +37,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         title: widget.title,
         hasFocus: focusNode.hasFocus,
         data: textEditingController.text,
-        context: context,
         redirectFrom: widget.redirectFrom,
       ),
     );

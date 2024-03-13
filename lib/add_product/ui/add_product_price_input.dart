@@ -5,10 +5,9 @@ import 'package:my_inventory/core/ui/product/product_text_field.dart';
 
 class AddProductPriceInput extends StatelessWidget {
   final String title;
-  final String currentPage;
 
   const AddProductPriceInput(
-      {super.key, required this.title, required this.currentPage});
+      {super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class AddProductPriceInput extends StatelessWidget {
         Expanded(
           child: ProductTextField(
             title: title,
-            currentPage: currentPage,
           ),
         ),
       ],

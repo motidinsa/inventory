@@ -70,35 +70,24 @@ getAddProductAlertDialogLength({required String title}) {
 }
 
 onSalesProductSelect({
-  required BuildContext context,
   String? title,
   int? index,
 }) {
   if (title == salesN()) {
     SalesController salesController = Get.find();
     salesController.searchProductFoundResult(salesController.products);
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialogOptionSelect(
-          currentPage: salesN(),
-          title: searchProductsN(),
-          listIndex: index,
-        );
-      },
-    ).then(
+    Get.dialog(AlertDialogOptionSelect(
+      title: searchProductsN(),
+      listIndex: index,
+    )).then(
       (value) async {
         await unFocus();
-        // if (title == transactionName()) {
-        //   Get.delete<OtherTransactionAddController>();
-        // }
       },
     );
   }
 }
 
 onPurchaseProductSelect({
-  required BuildContext context,
   String? title,
   int? index,
 }) {
@@ -106,16 +95,10 @@ onPurchaseProductSelect({
     PurchaseController purchaseController = Get.find();
     purchaseController.searchProductFoundResult =
         purchaseController.products.obs;
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialogOptionSelect(
-          currentPage: purchaseN(),
-          title: searchProductsN(),
-          listIndex: index,
-        );
-      },
-    ).then(
+    Get.dialog(AlertDialogOptionSelect(
+      title: searchProductsN(),
+      listIndex: index,
+    )).then(
       (value) async {
         await unFocus();
       },
@@ -142,7 +125,6 @@ onAddProductTextFieldPressed(
       context: context,
       builder: (BuildContext context) {
         return AlertDialogOptionSelect(
-          currentPage: addProductN,
           title: title == categoryN ? selectCategoryN : selectUomSN,
           itemList: itemsWithList[title]!,
         );
@@ -150,9 +132,6 @@ onAddProductTextFieldPressed(
     ).then(
       (value) async {
         await unFocus();
-        // if (title == transactionName()) {
-        //   Get.delete<OtherTransactionAddController>();
-        // }
       },
     );
   }

@@ -19,7 +19,7 @@ class AddProduct extends StatelessWidget {
   final List<String> titleList = [
     productN,
     descriptionN,
-    'image',
+    imageN,
     categoryN,
     productIdN,
     costN,
@@ -63,7 +63,6 @@ class AddProduct extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) => [0, 1].contains(index)
                         ? ProductTextField(
-                            currentPage: addProductN,
                             title: titleList[index],
                             labelText: titleList[index],
                           )
@@ -78,14 +77,12 @@ class AddProduct extends StatelessWidget {
                                       const Expanded(
                                         child: AddProductPriceInput(
                                           title: costN,
-                                          currentPage: addProductN,
                                         ),
                                       ),
                                       sizedBox(width: 20),
                                       Expanded(
                                         child: AddProductPriceInput(
                                           title: priceN(),
-                                          currentPage: addProductN,
                                         ),
                                       ),
                                     ],

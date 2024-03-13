@@ -39,7 +39,9 @@ double getValidNumValue(String data) {
   return 0;
 }
 
-autoValidateMode({required String currentPage}) {
+autoValidateMode() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (addProductController.isSubmitButtonPressed.isTrue) {
@@ -62,8 +64,7 @@ getFormattedNumberWithoutComa(num) {
 
 onActionButtonPressed(
     {required String redirectFrom,
-    String? productId,
-    String? currentPage}) async {
+    String? productId}) async {
   AppController appController = Get.find();
   await unFocus();
   if (redirectFrom == productDetailN) {
@@ -79,6 +80,8 @@ onActionButtonPressed(
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
+      final AppController appController = Get.find();
+      String currentPage = appController.currentPages.last;
       if (redirectFrom == categoryNameN) {
         DateTime now = DateTime.now();
         var categoryBox = Hive.box<CategoryDatabaseModel>('category');
@@ -151,7 +154,9 @@ onActionButtonPressed(
   }
 }
 
-titleToData({required String title, required String currentPage, int? index}) {
+titleToData({required String title,  int? index}) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   String? value;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
@@ -253,7 +258,9 @@ nullIfEmpty(String? data) {
   return data;
 }
 
-onAddIconPressed({required String currentPage, String? type}) {
+onAddIconPressed({String? type}) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
@@ -285,7 +292,6 @@ onAddIconPressed({required String currentPage, String? type}) {
 
       Get.dialog(
         AlertDialogOptionSelect(
-          currentPage: currentPage,
           title: type,
           itemList: itemList,
         ),
@@ -294,16 +300,15 @@ onAddIconPressed({required String currentPage, String? type}) {
   }
 }
 
-onAddImagePressed({required String currentPage, String? productId}) {
+onAddImagePressed({String? productId}) {
   Get.dialog(AlertDialogOptionSelect(
-    currentPage: currentPage,
     title: selectSourceN,
     productId: productId,
   )).then((value) => unFocus());
 }
 
 onImageSourceButtonPressed(
-    {required String currentPage,
+    {
     required String sourceLocation,
     String? productId}) async {
   final ImagePicker picker = ImagePicker();
@@ -313,6 +318,8 @@ onImageSourceButtonPressed(
               ? ImageSource.gallery
               : ImageSource.camera,imageQuality: 50)
       .then((value) async {
+    final AppController appController = Get.find();
+    String currentPage = appController.currentPages.last;
     if (currentPage == addProductN) {
       AddProductController addProductController = Get.find();
       addProductController.productInfo.update((val) {

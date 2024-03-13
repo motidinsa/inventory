@@ -42,7 +42,6 @@ class ProductImage extends StatelessWidget {
                 if (currentPage != productDetailN)
                   TextButton(
                     onPressed: () => onAddImagePressed(
-                      currentPage: currentPage,
                       productId: productId,
                     ),
                     style: TextButton.styleFrom(

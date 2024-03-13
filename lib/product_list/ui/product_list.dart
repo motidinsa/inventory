@@ -41,7 +41,6 @@ class ProductList extends StatelessWidget {
                 children: [
                   sizedBox(height: 15),
                   ProductTextField(
-                    currentPage: productListN(),
                     title: productListN(),
                   ),
                   // sizedBox(height: 15),

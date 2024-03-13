@@ -58,7 +58,6 @@ class ProductProfileInfo extends StatelessWidget {
             Expanded(
               // flex: 9,
               child: ProductTextField(
-                currentPage: page == PageName.sales ? salesN() : purchaseN(),
                 title: defaultN,
                 // index: index,
               ),

@@ -47,7 +47,6 @@ class AddItem extends StatelessWidget {
                 children: [
                   ProductTextField(
                     title: labelText,
-                    currentPage: currentPage,
                     labelText: labelText,
                   ),
                   ActionButton(

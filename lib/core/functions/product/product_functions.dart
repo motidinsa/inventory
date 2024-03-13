@@ -8,7 +8,11 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
-getSubtotal({required String currentPage}) {
+import '../../controller/app_controller.dart';
+
+getSubtotal() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     return getSalesSubtotal();
   } else if (currentPage == purchaseN()) {
@@ -16,7 +20,9 @@ getSubtotal({required String currentPage}) {
   }
 }
 
-getTotal({required String currentPage}) {
+getTotal() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     return getSalesTotal();
   } else if (currentPage == purchaseN()) {
@@ -24,7 +30,9 @@ getTotal({required String currentPage}) {
   }
 }
 
-getProductPrice({required String currentPage, required int index}) {
+getProductPrice({required int index}) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
     String currentPrice = salesController.salesModels[index].value.price;
@@ -35,7 +43,9 @@ getProductPrice({required String currentPage, required int index}) {
   }
 }
 
-getProductTotalPrice({required String currentPage, required int index}) {
+getProductTotalPrice({required int index}) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
     return salesController.salesModels[index].value.totalAmount;
@@ -45,7 +55,9 @@ getProductTotalPrice({required String currentPage, required int index}) {
   }
 }
 
-getProductImagePath({required String currentPage}) {
+getProductImagePath() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.localImagePath;
@@ -55,7 +67,9 @@ getProductImagePath({required String currentPage}) {
   }
 }
 
-getSuffix({required String currentPage}) {
+getSuffix() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.unitOfMeasurementName;
@@ -65,7 +79,9 @@ getSuffix({required String currentPage}) {
   }
 }
 
-onImageDeleteButtonPressed({required String currentPage}) {
+onImageDeleteButtonPressed() {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     addProductController.productInfo.update((val) {

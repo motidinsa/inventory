@@ -17,17 +17,17 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/core/ui/product/product_text_field.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 
+import '../../controller/app_controller.dart';
+
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
-  final String currentPage;
   final List? itemList;
   final String? productId;
 
   const AlertDialogOptionSelect(
       {super.key,
       required this.title,
-      required this.currentPage,
       this.itemList,
       this.listIndex,
       this.productId});
@@ -60,13 +60,11 @@ class AlertDialogOptionSelect extends StatelessWidget {
                   children: [
                     AddImageSourceButton(
                       sourceLocation: galleryN,
-                      currentPage: currentPage,
                       productId: productId,
                     ),
                     sizedBox(width: 20),
                     AddImageSourceButton(
                       sourceLocation: cameraN,
-                      currentPage: currentPage,
                       productId: productId,
                     ),
                   ],
@@ -78,7 +76,6 @@ class AlertDialogOptionSelect extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: ProductTextField(
-                          currentPage: currentPage,
                           title: title,
                           index: listIndex,
                         ),
@@ -91,6 +88,8 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             ProductDatabaseModel? product;
                             CategoryDatabaseModel? category;
                             UnitOfMeasurementDatabaseModel? unitOfMeasurement;
+                            final AppController appController = Get.find();
+                            String currentPage = appController.currentPages.last;
                             if (currentPage == salesN()) {
                               SalesController salesController = Get.find();
                               product = salesController
@@ -125,7 +124,6 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               title: title,
                               product: product,
                               category: product == null ? category : null,
-                              currentPage: currentPage,
                               unitOfMeasurement: unitOfMeasurement,
                               index:
                                   [purchaseN(), salesN()].contains(currentPage)
@@ -134,7 +132,6 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             );
                           },
                           itemCount: getAlertDialogLength(
-                            currentPage: currentPage,
                             title: title,
                           ),
                           separatorBuilder: (BuildContext context, int index) =>
@@ -163,7 +160,6 @@ class AlertDialogOptionSelect extends StatelessWidget {
                       Align(
                         child: IconButton(
                             onPressed: () => onAddIconPressed(
-                                  currentPage: currentPage,
                                   type: title,
                                 ),
                             icon: const Icon(

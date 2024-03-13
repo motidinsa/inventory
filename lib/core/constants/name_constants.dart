@@ -110,3 +110,4 @@ const String addCategoryNameN = 'Add category';
 const String addUomNameN = 'Add unit of measurement';
 const String categoryNameN = 'Category name';
 const String uomNameN = 'Unit of measurement name';
+const String imageN = 'image';

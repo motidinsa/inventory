@@ -62,7 +62,7 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   final PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index].update((purchase) {
     purchase?.productName = productModel.productName;
-    purchase?.productId = productModel.id;
+    purchase?.productId = productModel.productId;
     purchase?.cost =
         emptyIfDefaultValue(getFormattedNumberWithoutComa(productModel.cost));
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {

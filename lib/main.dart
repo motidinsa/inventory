@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/database/initialize.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -15,11 +15,11 @@ void main() async {
 
   final dir = await getApplicationDocumentsDirectory();
   isar = await Isar.open(
-    [ProductIsarSchema],
+    [ProductDatabaseModelSchema],
     directory: dir.path,
   );
   // await Isar.initialize();
-  await initializeDatabase();
+  // await initializeDatabase();
   Get.put(AppController());
   // Stream<void> userChanged = isar.users.watchLazy();
   // userChanged.listen(

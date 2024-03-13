@@ -7,7 +7,6 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
-  final String currentPage;
   final int? index;
   final ProductDatabaseModel? product;
   final CategoryDatabaseModel? category;
@@ -17,7 +16,6 @@ class AlertDialogOptionItem extends StatelessWidget {
     super.key,
     required this.title,
     this.product,
-    required this.currentPage,
     this.index,
     this.category,
     this.unitOfMeasurement,
@@ -41,14 +39,13 @@ class AlertDialogOptionItem extends StatelessWidget {
       ),
       titleAlignment: ListTileTitleAlignment.center,
       onTap: () => onAlertDialogOptionSelect(
-        currentPage: currentPage,
         title: title,
         index: index,
         data: category?.categoryName ??
             product?.productName ??
             unitOfMeasurement!.name,
         productModel: product,
-        id: category?.categoryId ?? product?.id ?? unitOfMeasurement!.uomId,
+        id: category?.categoryId ?? product?.id.toString() ?? unitOfMeasurement!.uomId,
       ),
     );
   }

@@ -9,7 +9,6 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 
 class ProductTextField extends StatefulWidget {
-  final String currentPage;
   final String title;
   final String? labelText;
   final String? suffixText;
@@ -20,7 +19,6 @@ class ProductTextField extends StatefulWidget {
     required this.title,
     this.labelText,
     this.suffixText,
-    required this.currentPage,
     this.index,
   });
 
@@ -37,7 +35,6 @@ class _ProductTextFieldState extends State<ProductTextField> {
     // if (widget.currentPage == addProductN) {
     focusNode.addListener(
       () => onFocusChange(
-        currentPage: widget.currentPage,
         title: widget.title,
         hasFocus: focusNode.hasFocus,
         data: textEditingController.text,
@@ -56,7 +53,6 @@ class _ProductTextFieldState extends State<ProductTextField> {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
           title: widget.title,
-          currentPage: widget.currentPage,
           index: widget.index,
         ),
       );
@@ -68,13 +64,11 @@ class _ProductTextFieldState extends State<ProductTextField> {
         maxLines: widget.labelText == descriptionN ? 2 : 1,
         readOnly: hasOption(title: widget.title),
         onChanged: (data) => onTextFieldChange(
-          currentPage: widget.currentPage,
           title: widget.title,
           data: data,
           index: widget.index,
         ),
         onTap: () => onTextFieldPressed(
-          currentPage: widget.currentPage,
           title: widget.title,
           context: context,
           index: widget.index,
@@ -100,7 +94,7 @@ class _ProductTextFieldState extends State<ProductTextField> {
                       child: Obx(() {
                         // AddProductController addProductController = Get.find();
                         return Text(
-                          getSuffix(currentPage: widget.currentPage),
+                          getSuffix(),
                           style: const TextStyle(fontSize: 16),
                         );
                       }),

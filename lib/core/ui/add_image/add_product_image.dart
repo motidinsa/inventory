@@ -27,13 +27,13 @@ class AddProductImage extends StatelessWidget {
         ),
         sizedBox(width: 20),
         Obx(() {
-          if (getProductImagePath(currentPage: currentPage) != null) {
+          if (getProductImagePath() != null) {
             return Column(
               children: [
                 ClipRRect(
                   borderRadius: smoothBorderRadius(radius: 15),
                   child: Image.file(
-                    File(getProductImagePath(currentPage: currentPage)),
+                    File(getProductImagePath()),
                     width: 120,
                   ),
                 ),
@@ -42,7 +42,7 @@ class AddProductImage extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () =>
-                          onImageDeleteButtonPressed(currentPage: currentPage),
+                          onImageDeleteButtonPressed(),
                       style: TextButton.styleFrom(foregroundColor: Colors.red),
                       child: const Text(
                         deleteN,
@@ -51,7 +51,7 @@ class AddProductImage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () =>
-                          onAddImagePressed(currentPage: currentPage),
+                          onAddImagePressed(),
                       child: const Text(
                         changeN,
                         // style: TextStyle(color: Colors.red),
@@ -63,7 +63,7 @@ class AddProductImage extends StatelessWidget {
             );
           }
           return ElevatedButton(
-            onPressed: () => onAddImagePressed(currentPage: currentPage),
+            onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),
               padding: const EdgeInsets.all(16),

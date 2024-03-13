@@ -20,19 +20,19 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
-    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    var uomBox =
-        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    var defaultUnit =
-        uomBox.values.firstWhere((element) => element.name == 'Pcs');
-    productInfo.update((val) {
-      val?.unitOfMeasurementId = defaultUnit.uomId;
-    });
-    productInfo.update((val) {
-      val?.unitOfMeasurementName = defaultUnit.name;
-    });
-    categoryListFoundResult(categoryBox.values.toList());
-    unitOfMeasurementListFoundResult(uomBox.values.toList());
+    // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    // var uomBox =
+    //     Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+    // var defaultUnit =
+    //     uomBox.values.firstWhere((element) => element.name == 'Pcs');
+    // productInfo.update((val) {
+    //   val?.unitOfMeasurementId = defaultUnit.uomId;
+    // });
+    // productInfo.update((val) {
+    //   val?.unitOfMeasurementName = defaultUnit.name;
+    // });
+    // categoryListFoundResult(categoryBox.values.toList());
+    // unitOfMeasurementListFoundResult(uomBox.values.toList());
     super.onInit();
   }
 
@@ -68,7 +68,9 @@ class AddProductController extends GetxController {
       ..reorderQuantity = getValidNumValue(productInfo.value.reorderQuantity)
       ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
       ..localImagePath = productInfo.value.localImagePath
-      ..userAssignedProductId = nullIfEmpty(productInfo.value.userAssignedProductId);
+      ..userAssignedProductId =
+          nullIfEmpty(productInfo.value.userAssignedProductId)
+      ..productId = generateDatabaseId(time: now);
 
     await isar.writeTxn(() async {
       await isar.productDatabaseModels.put(dbProduct);

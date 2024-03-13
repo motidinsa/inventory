@@ -35,7 +35,7 @@ class MiniProductDetail extends StatelessWidget {
           child: Row(
             children: [
               ProductImage(
-                productId: productModel.id,
+                productId: productModel.productId,
                 currentPage: productListN(),
                 localImagePath: productModel.localImagePath,
               ),

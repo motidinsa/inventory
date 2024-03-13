@@ -33,10 +33,10 @@ appBar({required String pageName}) {
   );
 }
 
-addIconButton({required String currentPage}) {
+addIconButton() {
   return Center(
     child: IconButton(
-      onPressed: () => onAddIconPressed(currentPage: currentPage),
+      onPressed: () => onAddIconPressed(),
       icon: const Icon(
         Icons.add,
         color: Colors.green,

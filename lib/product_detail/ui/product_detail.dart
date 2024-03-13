@@ -95,7 +95,7 @@ class ProductDetail extends StatelessWidget {
                 Row(
                   children: [
                     ProductImage(
-                      productId: productDatabaseModel.id,
+                      productId: productDatabaseModel.productId,
                       currentPage: productDetailN,
                       localImagePath: productDatabaseModel.localImagePath,
                     ),
@@ -176,7 +176,7 @@ class ProductDetail extends StatelessWidget {
           ActionButton(
             redirectFrom: productDetailN,
             actionButtonType: ActionButtonType.delete,
-            productId: productDatabaseModel.id,
+            productId: productDatabaseModel.productId,
           ),
         ],
       ),

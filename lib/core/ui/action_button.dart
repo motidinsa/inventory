@@ -30,8 +30,7 @@ class ActionButton extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => onActionButtonPressed(
                   redirectFrom: redirectFrom,
-                  productId: productId,
-                  currentPage: currentPage),
+                  productId: productId,),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(

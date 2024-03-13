@@ -7,7 +7,6 @@ onFocusChange(
     {required String title,
     required bool hasFocus,
     required String data,
-    required BuildContext context,
     required String redirectFrom}) {
   if (!hasFocus) {
     if (redirectFrom == 'Add Customer') {

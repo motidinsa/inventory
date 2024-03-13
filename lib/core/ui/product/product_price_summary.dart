@@ -49,7 +49,6 @@ class ProductPriceSummary extends StatelessWidget {
                                 TextSpan(
                                   text: getFormattedNumberWithComa(double.parse(
                                     getSubtotal(
-                                      currentPage: currentPage,
                                     ),
                                   )),
                                   style: TextStyle(color: Colors.grey.shade600),
@@ -63,7 +62,6 @@ class ProductPriceSummary extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: currentPage == salesN()
                                 ? ProductTextField(
-                                    currentPage: currentPage,
                                     title: discountN(),
                                     labelText: discountN(),
                                   )
@@ -81,7 +79,7 @@ class ProductPriceSummary extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                 text: getFormattedNumberWithComa(double.parse(
-                                    getTotal(currentPage: currentPage))),
+                                    getTotal())),
                                 style: TextStyle(color: Colors.grey.shade600),
                               ),
                               // TextSpan(text: ' world!'),

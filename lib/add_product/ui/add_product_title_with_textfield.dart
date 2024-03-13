@@ -34,7 +34,6 @@ class AddProductTitleWithTextField extends StatelessWidget {
           child: Center(
             child: ProductTextField(
               title: title,
-              currentPage: currentPage,
               // labelText: descriptionN,
             ),
           ),

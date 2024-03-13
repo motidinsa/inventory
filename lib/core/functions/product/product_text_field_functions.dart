@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
@@ -6,6 +7,8 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+
+import '../../controller/app_controller.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -38,11 +41,12 @@ titleToHint({String? title}) {
 }
 
 onTextFieldChange({
-  required String currentPage,
   String? title,
   required String data,
   int? index,
 }) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     onSalesTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == addProductN) {
@@ -57,18 +61,20 @@ onTextFieldChange({
 }
 
 onTextFieldPressed(
-    {required String currentPage,
+    {
     String? title,
     int? index,
     required BuildContext context}) {
+  final AppController appController = Get.find();
+  String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     onAddProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == salesN()) {
-    onSalesProductSelect(context: context, title: title, index: index);
+    onSalesProductSelect( title: title, index: index);
   } else if (currentPage == purchaseN()) {
-    onPurchaseProductSelect(context: context, title: title, index: index);
+    onPurchaseProductSelect(title: title, index: index);
   }
 }
 
@@ -108,12 +114,13 @@ hasSearchIcon({String? title}) {
 }
 
 onFocusChange({
-  required String currentPage,
   required String title,
   required bool hasFocus,
   required String data,
 }) {
   if (!hasFocus) {
+    final AppController appController = Get.find();
+    String currentPage = appController.currentPages.last;
     if (currentPage == addProductN) {
       onAddProductFocusChange(title: title, data: data);
     } else if (currentPage == salesN()) {

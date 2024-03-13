@@ -58,7 +58,6 @@ class EditProduct extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => [0, 1].contains(index)
                       ? ProductTextField(
-                          currentPage: editProductN,
                           title: titleList[index],
                           labelText: titleList[index],
                         )
@@ -73,14 +72,12 @@ class EditProduct extends StatelessWidget {
                                     const Expanded(
                                       child: AddProductPriceInput(
                                         title: costN,
-                                        currentPage: editProductN,
                                       ),
                                     ),
                                     sizedBox(width: 20),
                                     Expanded(
                                       child: AddProductPriceInput(
                                         title: priceN(),
-                                        currentPage: editProductN,
                                       ),
                                     ),
                                   ],

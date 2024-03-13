@@ -7,13 +7,11 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 class AddImageSourceButton extends StatelessWidget {
   final String sourceLocation;
-  final String currentPage;
   final String? productId;
 
   const AddImageSourceButton(
       {super.key,
       required this.sourceLocation,
-      required this.currentPage,
       this.productId});
 
   @override
@@ -22,7 +20,6 @@ class AddImageSourceButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ElevatedButton(
         onPressed: () => onImageSourceButtonPressed(
-            currentPage: currentPage,
             sourceLocation: sourceLocation,
             productId: productId),
         style: ElevatedButton.styleFrom(
