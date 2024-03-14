@@ -1,13 +1,18 @@
 // import 'package:appwrite/appwrite.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'core/ui/drawer/drawer.dart';
 
 late Isar isar;
 
@@ -16,7 +21,11 @@ void main() async {
 
   final dir = await getApplicationDocumentsDirectory();
   isar = await Isar.open(
-    [ProductDatabaseModelSchema],
+    [
+      ProductDatabaseModelSchema,
+      CategoryDatabaseModelSchema,
+      UnitOfMeasurementDatabaseModelSchema,
+    ],
     directory: dir.path,
   );
   // await Isar.initialize();
@@ -69,7 +78,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          drawer: const Drawer(),
+          drawer: Drawer(
+            child: MyDrawer(),
+          ),
           body: Homepage(),
         ),
       );

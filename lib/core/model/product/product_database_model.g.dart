@@ -137,12 +137,7 @@ int _productDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  {
-    final value = object.lastModifiedByUserId;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.lastModifiedByUserId.length * 3;
   {
     final value = object.localImagePath;
     if (value != null) {
@@ -207,7 +202,7 @@ ProductDatabaseModel _productDatabaseModelDeserialize(
   object.id = id;
   object.isAppWriteSynced = reader.readBoolOrNull(offsets[5]);
   object.lastDateModified = reader.readDateTime(offsets[6]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[7]);
+  object.lastModifiedByUserId = reader.readString(offsets[7]);
   object.localImagePath = reader.readStringOrNull(offsets[8]);
   object.onlineImagePath = reader.readStringOrNull(offsets[9]);
   object.price = reader.readDouble(offsets[10]);
@@ -242,7 +237,7 @@ P _productDatabaseModelDeserializeProp<P>(
     case 6:
       return (reader.readDateTime(offset)) as P;
     case 7:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
       return (reader.readStringOrNull(offset)) as P;
     case 9:
@@ -1076,26 +1071,8 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
   }
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastModifiedByUserIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'lastModifiedByUserId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'lastModifiedByUserId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1109,7 +1086,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1125,7 +1102,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1141,8 +1118,8 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2999,7 +2976,7 @@ extension ProductDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');

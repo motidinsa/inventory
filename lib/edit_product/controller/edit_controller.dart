@@ -8,9 +8,6 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 
-import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-
 class EditProductController extends GetxController {
   final ProductDatabaseModel productDatabaseModel;
   EditProductController({required this.productDatabaseModel});
@@ -29,23 +26,23 @@ class EditProductController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
-    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    var uomBox =
-        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    String? categoryName;
-    late String uomName;
-    if (productDatabaseModel.categoryId != null) {
-      categoryName = categoryBox.values
-          .firstWhere((element) =>
-              element.categoryId == productDatabaseModel.categoryId)
-          .categoryName;
-    }
+    // super.onInit();
+    // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+    // var uomBox =
+    //     Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+    // String? categoryName;
+    // late String uomName;
     // if (productDatabaseModel.categoryId != null) {
-    uomName = uomBox.values
-        .firstWhere((element) =>
-            element.uomId == productDatabaseModel.unitOfMeasurementId)
-        .name;
+    //   categoryName = categoryBox.values
+    //       .firstWhere((element) =>
+    //           element.categoryId == productDatabaseModel.categoryId)
+    //       .categoryName;
+    // }
+    // if (productDatabaseModel.categoryId != null) {
+    // uomName = uomBox.values
+    //     .firstWhere((element) =>
+    //         element.uomId == productDatabaseModel.unitOfMeasurementId)
+    //     .name;
     // }
     // productInfo = ProductModel(
     //   name: productDatabaseModel.productName,

@@ -11,13 +11,13 @@ import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 
 import '../../controller/app_controller.dart';
+import '../../model/category/category_database_model.dart';
+import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;

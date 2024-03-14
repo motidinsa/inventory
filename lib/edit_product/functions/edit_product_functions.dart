@@ -4,10 +4,6 @@ import 'package:hive/hive.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 
 onEditProductFocusChange({
@@ -45,30 +41,30 @@ onEditProductTextFieldPressed(
     uomSN: editProductController.unitOfMeasurementListFoundResult,
   };
 
-  if (itemsWithList.keys.contains(title)) {
-    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    var uomBox =
-        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    editProductController.categoryListFoundResult(categoryBox.values.toList());
-    editProductController
-        .unitOfMeasurementListFoundResult(uomBox.values.toList());
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialogOptionSelect(
-          title: title == categoryN ? selectCategoryN : selectUomSN,
-          itemList: itemsWithList[title]!,
-        );
-      },
-    ).then(
-      (value) async {
-        await unFocus();
-        // if (title == transactionName()) {
-        //   Get.delete<OtherTransactionAddController>();
-        // }
-      },
-    );
-  }
+  // if (itemsWithList.keys.contains(title)) {
+  //   var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+  //   var uomBox =
+  //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+  //   editProductController.categoryListFoundResult(categoryBox.values.toList());
+  //   editProductController
+  //       .unitOfMeasurementListFoundResult(uomBox.values.toList());
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialogOptionSelect(
+  //         title: title == categoryN ? selectCategoryN : selectUomSN,
+  //         itemList: itemsWithList[title]!,
+  //       );
+  //     },
+  //   ).then(
+  //     (value) async {
+  //       await unFocus();
+  //       // if (title == transactionName()) {
+  //       //   Get.delete<OtherTransactionAddController>();
+  //       // }
+  //     },
+  //   );
+  // }
 }
 
 getEditProductAlertDialogLength({required String title}) {
@@ -86,19 +82,19 @@ onEditProductTextFieldChange({
   int? index,
 }) {
   EditProductController editProductController = Get.find();
-  if (title == selectCategoryN) {
-    var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    editProductController.categoryListFoundResult(categoryBox.values
-        .where((category) =>
-            category.categoryName.toLowerCase().contains(data.toLowerCase()))
-        .toList());
-  } else if (title == selectUomSN) {
-    var uomBox =
-        Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    editProductController.unitOfMeasurementListFoundResult(uomBox.values
-        .where((uom) => uom.name.toLowerCase().contains(data.toLowerCase()))
-        .toList());
-  }
+  // if (title == selectCategoryN) {
+  //   var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+  //   editProductController.categoryListFoundResult(categoryBox.values
+  //       .where((category) =>
+  //           category.categoryName.toLowerCase().contains(data.toLowerCase()))
+  //       .toList());
+  // } else if (title == selectUomSN) {
+  //   var uomBox =
+  //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+  //   editProductController.unitOfMeasurementListFoundResult(uomBox.values
+  //       .where((uom) => uom.name.toLowerCase().contains(data.toLowerCase()))
+  //       .toList());
+  // }
 }
 
 onEditProductAlertDialogOptionSelect(

@@ -1,37 +1,15 @@
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 
 part 'category_database_model.g.dart';
 
-@HiveType(typeId: 4)
-class CategoryDatabaseModel extends HiveObject {
-  @HiveField(0)
-  String categoryName;
-
-  @HiveField(1)
-  String categoryId;
-
-  @HiveField(2)
-  String createdByUserId;
-
-  @HiveField(3)
-  String? modifiedByUserId;
-
-  @HiveField(4)
-  DateTime dateCreated;
-
-  @HiveField(5)
-  DateTime dateModified;
-
-  @HiveField(6)
+@collection
+class CategoryDatabaseModel {
+  Id id = Isar.autoIncrement;
+  late String categoryName;
+  late String categoryId;
+  late String createdByUserId;
+  late String lastModifiedByUserId;
+  late DateTime dateCreated;
+  late DateTime lastDateModified;
   bool? isAppWriteSynced;
-
-  CategoryDatabaseModel({
-    required this.categoryId,
-    required this.createdByUserId,
-    required this.dateCreated,
-    required this.dateModified,
-    required this.categoryName,
-    this.isAppWriteSynced,
-    this.modifiedByUserId,
-  });
 }

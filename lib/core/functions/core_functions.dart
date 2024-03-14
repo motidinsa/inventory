@@ -8,9 +8,7 @@ import 'package:my_inventory/add_product/controller/add_product_controller.dart'
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
@@ -83,53 +81,53 @@ onActionButtonPressed(
       final AppController appController = Get.find();
       String currentPage = appController.currentPages.last;
       if (redirectFrom == categoryNameN) {
-        DateTime now = DateTime.now();
-        var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-        String id = generateDatabaseId(time: now);
-        await categoryBox.put(
-          id,
-          CategoryDatabaseModel(
-            categoryName: addItemController.addedText.value,
-            dateCreated: now,
-            dateModified: now,
-            createdByUserId: appController.userId.value,
-            categoryId: id,
-          ),
-        );
-        if (currentPage == addProductN) {
-          AddProductController addProductController = Get.find();
-          addProductController
-              .categoryListFoundResult(categoryBox.values.toList());
-        } else if (currentPage == editProductN) {
-          EditProductController editProductController = Get.find();
-          editProductController
-              .categoryListFoundResult(categoryBox.values.toList());
-        }
-      } else if (redirectFrom == uomNameN) {
-        DateTime now = DateTime.now();
-        var uomBox =
-            Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-        String id = generateDatabaseId(time: now);
-        await uomBox.put(
-          id,
-          UnitOfMeasurementDatabaseModel(
-            name: addItemController.addedText.value,
-            dateCreated: now,
-            dateModified: now,
-            createdByUserId: appController.userId.value,
-            uomId: id,
-          ),
-        );
-
-        if (currentPage == addProductN) {
-          AddProductController addProductController = Get.find();
-          addProductController
-              .unitOfMeasurementListFoundResult(uomBox.values.toList());
-        } else if (currentPage == editProductN) {
-          EditProductController editProductController = Get.find();
-          editProductController
-              .unitOfMeasurementListFoundResult(uomBox.values.toList());
-        }
+        // DateTime now = DateTime.now();
+        // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
+        // String id = generateDatabaseId(time: now);
+        // await categoryBox.put(
+        //   id,
+        //   CategoryDatabaseModel(
+        //     categoryName: addItemController.addedText.value,
+        //     dateCreated: now,
+        //     dateModified: now,
+        //     createdByUserId: appController.userId.value,
+        //     categoryId: id,
+        //   ),
+        // );
+      //   if (currentPage == addProductN) {
+      //     AddProductController addProductController = Get.find();
+      //     addProductController
+      //         .categoryListFoundResult(categoryBox.values.toList());
+      //   } else if (currentPage == editProductN) {
+      //     EditProductController editProductController = Get.find();
+      //     editProductController
+      //         .categoryListFoundResult(categoryBox.values.toList());
+      //   }
+      // } else if (redirectFrom == uomNameN) {
+      //   DateTime now = DateTime.now();
+      //   var uomBox =
+      //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
+      //   String id = generateDatabaseId(time: now);
+      //   await uomBox.put(
+      //     id,
+      //     UnitOfMeasurementDatabaseModel(
+      //       name: addItemController.addedText.value,
+      //       dateCreated: now,
+      //       dateModified: now,
+      //       createdByUserId: appController.userId.value,
+      //       uomId: id,
+      //     ),
+      //   );
+      //
+      //   if (currentPage == addProductN) {
+      //     AddProductController addProductController = Get.find();
+      //     addProductController
+      //         .unitOfMeasurementListFoundResult(uomBox.values.toList());
+      //   } else if (currentPage == editProductN) {
+      //     EditProductController editProductController = Get.find();
+      //     editProductController
+      //         .unitOfMeasurementListFoundResult(uomBox.values.toList());
+      //   }
       }
       Get.back();
     } else {

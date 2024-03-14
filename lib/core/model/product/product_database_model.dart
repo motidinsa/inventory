@@ -16,7 +16,7 @@ class ProductDatabaseModel {
   late double reorderQuantity;
   late String unitOfMeasurementId;
   late String createdByUserId;
-  String? lastModifiedByUserId;
+  late String lastModifiedByUserId;
   late DateTime dateCreated;
   late DateTime lastDateModified;
   bool? isAppWriteSynced;
