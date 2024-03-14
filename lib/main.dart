@@ -10,6 +10,7 @@ import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
 late Isar isar;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -56,13 +57,13 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return DevicePreview(builder: (context) {
       return GetMaterialApp(
         title: appNameN(),
         debugShowCheckedModeBanner: false,
-        // initialBinding: ApplicationBindings(),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,

@@ -6,10 +6,15 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 class AppController extends GetxController {
+  static AppController get to => Get.find();
   final formKey = GlobalKey<FormState>();
   var userId = ''.obs;
   List<String> currentPages = [];
-
+var x = 0;
+  void increment() {
+    x++;
+    update();
+  }
   @override
   void onInit() {
     super.onInit();

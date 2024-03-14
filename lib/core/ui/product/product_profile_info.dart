@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/model/page_name_enum.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
 
 class ProductProfileInfo extends StatelessWidget {
@@ -57,7 +57,7 @@ class ProductProfileInfo extends StatelessWidget {
             sizedBox(width: 20),
             Expanded(
               // flex: 9,
-              child: ProductTextField(
+              child: CustomTextField(
                 title: defaultN,
                 // index: index,
               ),

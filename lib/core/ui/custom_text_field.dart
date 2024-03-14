@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_inventory/add_product/constants/add_product_constants.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/customer_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import 'package:my_inventory/core/functions/product/product_functions.dart';
+
+import '../controller/app_controller.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
-  final IconData leadingIconData;
-  final String redirectFrom;
+  final String? labelText;
+  final String? suffixText;
+  final int? index;
 
   const CustomTextField({
     super.key,
     required this.title,
-    required this.leadingIconData,
-    required this.redirectFrom,
+    this.labelText,
+    this.suffixText,
+    this.index,
   });
 
   @override
@@ -22,83 +32,103 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
-  final Map<String,IconData> nameToIconTextField = {
-    customerNameN():Icons.person,
-    phoneNumberN():Icons.call,
-    addressN():Icons.location_on,
-    cityN():Icons.location_city,
-    emailN():Icons.mail,
-  };
+
   @override
   void initState() {
-    super.initState();
     focusNode.addListener(
       () => onFocusChange(
         title: widget.title,
         hasFocus: focusNode.hasFocus,
         data: textEditingController.text,
-        redirectFrom: widget.redirectFrom,
       ),
     );
+    if ([categoryNameN, uomNameN].contains(widget.title)) {
+      focusNode.requestFocus();
+    }
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    textEditingController.value = textEditingController.value.copyWith(
+      text: titleToData(
+        title: widget.title,
+        index: widget.index,
+      ),
+    );
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,
-
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: getKeyboardType(title: widget.title),
+      maxLines: widget.labelText == descriptionN ? 2 : 1,
+      readOnly: hasOption(title: widget.title),
+      onChanged: (data) => onTextFieldChange(
+        title: widget.title,
+        data: data,
+        index: widget.index,
+      ),
+      onTap: () => onTextFieldPressed(
+        title: widget.title,
+        context: context,
+        index: widget.index,
+      ),
+      textAlign: minimizePadding(title: widget.title)
+          ? TextAlign.center
+          : TextAlign.start,
       decoration: InputDecoration(
-        // fillColor: Colors.teal.shade50.withOpacity(.7),
-        // filled: true,
-        // disabledBorder: OutlineInputBorder(
-        //     borderRadius: smoothBorderRadius(radius: 15),
-        //     borderSide: BorderSide(
-        //       color: Colors.blue,
-        //       width: 1,
-        //     )),
+        isDense: true,
+        isCollapsed: true,
+        errorMaxLines: 5,
+        suffixIcon: hasOption(title: widget.title)
+            ? const Icon(
+                Icons.arrow_drop_down_rounded,
+                color: Colors.teal,
+                size: 24,
+              )
+            : hasSuffix(title: widget.title)
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                        top: 11, bottom: 10, left: 10, right: 15),
+                    child: Text(
+                      getSuffix(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  )
+                : hasSearchIcon(title: widget.title)
+                    ? IconButton(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.search_rounded,
+                          size: 26,
+                        ),
+                      )
+                    : null,
+        hintText: titleToHint(
+          title: widget.title,
+        ),
+        hintStyle: const TextStyle(),
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: minimizePadding(title: widget.title) ? 10 : 30,
+            vertical: minimizePadding(title: widget.title) ? 10 : 15),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
-          // borderSide: BorderSide(
-          //   color: Colors.yellow,
-          //   width: 1,
-          // )
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: Colors.green,
-            width: 1,
+            width: hasOption(title: widget.title) ? 2 : addProductBorderSide(),
           ),
         ),
-        prefixIcon: Icon(nameToIconTextField[widget.title]),
-        // suffixIcon: hasSuffixIcon(
-        //   title: widget.title,
-        //   listIndex: widget.listIndex,
-        // )
-        //     ? GestureDetector(
-        //   child: const Icon(
-        //     Icons.arrow_drop_down_rounded,
-        //     color: Colors.teal,
-        //   ),
-        //   onTap: widget.title == phoneNumberName()
-        //       ? () => onSuffixIconPressed(
-        //       context: context, listIndex: widget.listIndex)
-        //       : null,
-        // )
-        //     : null,
-        labelText: widget.title,
-        // labelStyle: TextStyle(color: Colors.green),
+        labelText: widget.labelText,
         alignLabelWithHint: true,
-        // contentPadding: EdgeInsets.only(left: 20),
-        // focusColor: Colors.teal,
       ),
-      // validator: (value) => mapValidation(
-      //   value: textEditingController.text,
-      //   title: widget.title,
-      //   transactionType: addTransactionController
-      //       .transactionModelList[widget.listIndex].value.transactionType,
-      // ),
+      validator: (value) => mapValidation(
+        data: textEditingController.text,
+        title: widget.title,
+      ),
     );
   }
 }

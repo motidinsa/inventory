@@ -19,8 +19,6 @@ class BodyWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => appController.currentPages.add(pageName));
     return PopScope(
       onPopInvoked: (_) {
         appController.currentPages.removeLast();

@@ -11,7 +11,7 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 
@@ -57,7 +57,7 @@ class EditProduct extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => [0, 1].contains(index)
-                      ? ProductTextField(
+                      ? CustomTextField(
                           title: titleList[index],
                           labelText: titleList[index],
                         )

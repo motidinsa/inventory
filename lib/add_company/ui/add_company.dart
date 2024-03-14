@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
+import 'package:my_inventory/core/ui/my_custom_text_field.dart';
 
 class AddCompany extends StatelessWidget {
   const AddCompany({super.key});
@@ -24,37 +24,37 @@ class AddCompany extends StatelessWidget {
                     )
                   ],
                 ),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Company Name',
                   leadingIconData: Icons.account_balance,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Address',
                   leadingIconData: Icons.place_outlined,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'City',
                   leadingIconData: Icons.access_time_filled_sharp,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Phone number',
                   leadingIconData: Icons.phone,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Email',
                   leadingIconData: Icons.email_outlined,
                   redirectFrom: 'Add Customer',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Web',
                   leadingIconData: Icons.add_chart_sharp,
                   redirectFrom: 'Add Customer',

@@ -4,7 +4,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class ProductPriceSummary extends StatelessWidget {
   final String currentPage;
@@ -61,7 +61,7 @@ class ProductPriceSummary extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: currentPage == salesN()
-                                ? ProductTextField(
+                                ? CustomTextField(
                                     title: discountN(),
                                     labelText: discountN(),
                                   )

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
@@ -33,6 +34,7 @@ class AddProductController extends GetxController {
     // });
     // categoryListFoundResult(categoryBox.values.toList());
     // unitOfMeasurementListFoundResult(uomBox.values.toList());
+    appController.currentPages.add(addProductN);
     super.onInit();
   }
 

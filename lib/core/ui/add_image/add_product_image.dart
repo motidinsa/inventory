@@ -26,9 +26,9 @@ class AddProductImage extends StatelessWidget {
               fontWeight: bold(), fontSize: 16, color: Colors.grey.shade600),
         ),
         sizedBox(width: 20),
-        Obx(() {
-          if (getProductImagePath() != null) {
-            return Column(
+        // Obx(() {
+          if (getProductImagePath() != null)
+             Column(
               children: [
                 ClipRRect(
                   borderRadius: smoothBorderRadius(radius: 15),
@@ -60,9 +60,9 @@ class AddProductImage extends StatelessWidget {
                   ],
                 )
               ],
-            );
-          }
-          return ElevatedButton(
+            )
+
+          else ElevatedButton(
             onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),
@@ -72,8 +72,8 @@ class AddProductImage extends StatelessWidget {
             child: const Column(
               children: [Icon(Icons.add), Text('Add image')],
             ),
-          );
-        }),
+          )
+        // }),
       ],
     );
   }

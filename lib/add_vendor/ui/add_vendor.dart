@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
+import 'package:my_inventory/core/ui/my_custom_text_field.dart';
 
 class AddVendor extends StatelessWidget {
   const AddVendor({super.key});
@@ -26,37 +26,37 @@ class AddVendor extends StatelessWidget {
                     )
                   ],
                 ),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Vendor Name',
                   leadingIconData: Icons.account_balance,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Address',
                   leadingIconData: Icons.place_outlined,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'City',
                   leadingIconData: Icons.access_time_filled_sharp,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Phone number',
                   leadingIconData: Icons.phone,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Email',
                   leadingIconData: Icons.email_outlined,
                   redirectFrom: 'Add Vendor',
                 ),
                 sizedBox(height: 15),
-                const CustomTextField(
+                const MyCustomTextField(
                   title: 'Contact person',
                   leadingIconData: Icons.person,
                   redirectFrom: 'Add Vendor',

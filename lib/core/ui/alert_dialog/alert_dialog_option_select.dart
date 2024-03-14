@@ -14,7 +14,7 @@ import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 
 import '../../controller/app_controller.dart';
@@ -75,7 +75,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                     if (itemList?.isNotEmpty ?? title == searchProductsN())
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: ProductTextField(
+                        child: CustomTextField(
                           title: title,
                           index: listIndex,
                         ),

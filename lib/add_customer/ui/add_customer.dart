@@ -5,7 +5,7 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
+import 'package:my_inventory/core/ui/my_custom_text_field.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 
 class AddCustomer extends StatelessWidget {
@@ -55,7 +55,7 @@ class AddCustomer extends StatelessWidget {
                 ElevatedCard(
                   child: ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => CustomTextField(
+                    itemBuilder: (ctx, index) => MyCustomTextField(
                       title: titles[index],
                       leadingIconData: Icons.account_balance,
                       redirectFrom: addCustomerN(),

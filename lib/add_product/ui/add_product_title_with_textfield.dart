@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class AddProductTitleWithTextField extends StatelessWidget {
   final String title;
@@ -32,7 +32,7 @@ class AddProductTitleWithTextField extends StatelessWidget {
         sizedBox(width: 5),
         Expanded(
           child: Center(
-            child: ProductTextField(
+            child: CustomTextField(
               title: title,
               // labelText: descriptionN,
             ),

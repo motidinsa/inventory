@@ -6,7 +6,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
-import 'package:my_inventory/core/ui/product/product_text_field.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
@@ -40,7 +40,7 @@ class ProductList extends StatelessWidget {
               return ListView(
                 children: [
                   sizedBox(height: 15),
-                  ProductTextField(
+                  CustomTextField(
                     title: productListN(),
                   ),
                   // sizedBox(height: 15),
