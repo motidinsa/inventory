@@ -7,6 +7,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/core/ui/add_image/image_select_option.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -22,13 +23,13 @@ import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart'
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
-  final List? itemList;
+  // final List itemList;
   final String? productId;
 
   const AlertDialogOptionSelect(
       {super.key,
       required this.title,
-      this.itemList,
+      // required this.itemList,
       this.listIndex,
       this.productId});
 
@@ -55,24 +56,26 @@ class AlertDialogOptionSelect extends StatelessWidget {
         content: SizedBox(
           width: title != selectSourceN ? double.maxFinite : null,
           child: title == selectSourceN
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AddImageSourceButton(
-                      sourceLocation: galleryN,
-                      productId: productId,
-                    ),
-                    sizedBox(width: 20),
-                    AddImageSourceButton(
-                      sourceLocation: cameraN,
-                      productId: productId,
-                    ),
-                  ],
-                )
+              ? ImageSelectOption()
+          // Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           AddImageSourceButton(
+          //             sourceLocation: galleryN,
+          //             productId: productId,
+          //           ),
+          //           sizedBox(width: 20),
+          //           AddImageSourceButton(
+          //             sourceLocation: cameraN,
+          //             productId: productId,
+          //           ),
+          //         ],
+          //       )
               : ListView(
                   shrinkWrap: true,
                   children: [
-                    if (itemList?.isNotEmpty ?? title == searchProductsN())
+                    // if (itemList?.isNotEmpty ?? title == searchProductsN())
+                    if (getAlertDialogLength()!=0)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: CustomTextField(
@@ -85,46 +88,46 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           reverse: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            ProductDatabaseModel? product;
-                            CategoryDatabaseModel? category;
-                            UnitOfMeasurementDatabaseModel? unitOfMeasurement;
-                            final AppController appController = Get.find();
-                            String currentPage = appController.currentPages.last;
-                            if (currentPage == salesN()) {
-                              SalesController salesController = Get.find();
-                              product = salesController
-                                  .searchProductFoundResult[index];
-                            } else if (currentPage == addProductN) {
-                              AddProductController addProductController =
-                                  Get.find();
-                              if (title == selectCategoryN) {
-                                category = addProductController
-                                    .categoryListFoundResult[index];
-                              } else if (title == selectUomSN) {
-                                unitOfMeasurement = addProductController
-                                    .unitOfMeasurementListFoundResult[index];
-                              }
-                            } else if (currentPage == editProductN) {
-                              EditProductController editProductController =
-                                  Get.find();
-                              if (title == selectCategoryN) {
-                                category = editProductController
-                                    .categoryListFoundResult[index];
-                              } else if (title == selectUomSN) {
-                                unitOfMeasurement = editProductController
-                                    .unitOfMeasurementListFoundResult[index];
-                              }
-                            } else if (currentPage == purchaseN()) {
-                              PurchaseController purchaseController =
-                                  Get.find();
-                              product = purchaseController
-                                  .searchProductFoundResult[index];
-                            }
+                            // ProductDatabaseModel? product;
+                            // CategoryDatabaseModel? category;
+                            // UnitOfMeasurementDatabaseModel? unitOfMeasurement;
+                            // final AppController appController = Get.find();
+                            // String currentPage = appController.currentPages.last;
+                            // if (currentPage == salesN()) {
+                            //   SalesController salesController = Get.find();
+                            //   product = salesController
+                            //       .searchProductFoundResult[index];
+                            // } else if (currentPage == addProductN) {
+                            //   AddProductController addProductController =
+                            //       Get.find();
+                            //   if (title == selectCategoryN) {
+                            //     category = addProductController
+                            //         .categoryListFoundResult[index];
+                            //   } else if (title == selectUomSN) {
+                            //     unitOfMeasurement = addProductController
+                            //         .unitOfMeasurementListFoundResult[index];
+                            //   }
+                            // } else if (currentPage == editProductN) {
+                            //   EditProductController editProductController =
+                            //       Get.find();
+                            //   if (title == selectCategoryN) {
+                            //     category = editProductController
+                            //         .categoryListFoundResult[index];
+                            //   } else if (title == selectUomSN) {
+                            //     unitOfMeasurement = editProductController
+                            //         .unitOfMeasurementListFoundResult[index];
+                            //   }
+                            // } else if (currentPage == purchaseN()) {
+                            //   PurchaseController purchaseController =
+                            //       Get.find();
+                            //   product = purchaseController
+                            //       .searchProductFoundResult[index];
+                            // }
                             return AlertDialogOptionItem(
                               title: title,
-                              product: product,
-                              category: product == null ? category : null,
-                              unitOfMeasurement: unitOfMeasurement,
+                              // product: product,
+                              // category: product == null ? category : null,
+                              // unitOfMeasurement: unitOfMeasurement,
                               index:
                                   [purchaseN(), salesN()].contains(currentPage)
                                       ? listIndex

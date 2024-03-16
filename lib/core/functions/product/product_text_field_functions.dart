@@ -68,7 +68,7 @@ onTextFieldPressed(
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
-    onAddProductTextFieldPressed(title: title!, context: context);
+    onAddProductTextFieldPressed(title: title!);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldPressed(title: title!, context: context);
   } else if (currentPage == salesN()) {

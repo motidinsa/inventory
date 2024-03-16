@@ -3,10 +3,16 @@ import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
+
+import '../../../add_product/controller/add_product_controller.dart';
+import '../../../edit_product/controller/edit_controller.dart';
+import '../../../purchase/controller/purchase_controller.dart';
+import '../../../sales/controller/sales_controller.dart';
 
 getAlertDialogLength({String? title}) {
   final AppController appController = Get.find();
@@ -42,4 +48,38 @@ onAlertDialogOptionSelect(
         productModel: productModel!, index: index!);
   }
   Get.back();
+}
+
+getAlertDialogOptionLists({String? title}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesN()) {
+    SalesController salesController = Get.find();
+    return salesController.searchProductFoundResult;
+  } else if (currentPage == addProductN) {
+    AddProductController addProductController = Get.find();
+    if (title == selectCategoryN) {
+      return addProductController.categoryListFoundResult;
+    } else if (title == selectUomSN) {
+      {
+        // for (UnitOfMeasurementDatabaseModel e in addProductController.unitOfMeasurementListFoundResult) e.id : e.name };
+        return {
+          for (var item
+              in addProductController.unitOfMeasurementListFoundResult)
+            item.id: item.value
+        };
+        // return addProductController.unitOfMeasurementListFoundResult;
+      }
+    } else if (currentPage == editProductN) {
+      EditProductController editProductController = Get.find();
+      if (title == selectCategoryN) {
+        return editProductController.categoryListFoundResult;
+      } else if (title == selectUomSN) {
+        return editProductController.unitOfMeasurementListFoundResult;
+      }
+    } else if (currentPage == purchaseN()) {
+      PurchaseController purchaseController = Get.find();
+      return purchaseController.searchProductFoundResult;
+    }
+  }
+  getAlertDialogOptionName() {}
 }

@@ -21,14 +21,15 @@ class MyDrawer extends StatelessWidget {
               expansionDuration: Duration(milliseconds: 300),
               contentseparator: 4,
               theme: ExpandedTileThemeData(
-                  headerColor: Colors.transparent,
+                  headerColor: Colors.green.shade50,
                   headerPadding: EdgeInsets.symmetric(horizontal: 24),
                   contentBackgroundColor: Colors.transparent,
+                  headerSplashColor: Colors.transparent,
                   contentPadding: EdgeInsets.symmetric(horizontal: 16)),
               controller: ExpandedTileController(),
               title: const ListTile(
-                leading: Icon(Icons.account_balance),
-                title: Text("this is the title"),
+                leading: Icon(Icons.add_chart),
+                title: Text('Reports'),
                 contentPadding: EdgeInsets.zero,
               ),
               content: Padding(
@@ -49,7 +50,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

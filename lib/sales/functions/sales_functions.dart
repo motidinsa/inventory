@@ -57,7 +57,7 @@ onSalesSearchProductAlertDialogOptionSelect(
   });
 }
 
-getSalesAlertDialogProductLength() {
+int getSalesAlertDialogProductLength() {
   SalesController salesController = Get.find();
   return salesController.searchProductFoundResult.length;
 }

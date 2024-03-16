@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
@@ -74,6 +78,7 @@ onSalesProductSelect({
   if (title == salesN()) {
     SalesController salesController = Get.find();
     salesController.searchProductFoundResult(salesController.products);
+
     Get.dialog(AlertDialogOptionSelect(
       title: searchProductsN(),
       listIndex: index,
@@ -104,8 +109,7 @@ onPurchaseProductSelect({
   }
 }
 
-onAddProductTextFieldPressed(
-    {required String title, required BuildContext context}) {
+onAddProductTextFieldPressed({required String title}) async {
   final AddProductController addProductController = Get.find();
   Map<String, List> itemsWithList = {
     categoryN: addProductController.categoryListFoundResult,
@@ -113,25 +117,18 @@ onAddProductTextFieldPressed(
   };
 
   if (itemsWithList.keys.contains(title)) {
-    // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    // var uomBox =
-    //     Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    // addProductController.categoryListFoundResult(categoryBox.values.toList());
-    // addProductController
-    //     .unitOfMeasurementListFoundResult(uomBox.values.toList());
-    // showDialog(
-    //   context: context,
-    //   builder: (BuildContext context) {
-    //     return AlertDialogOptionSelect(
-    //       title: title == categoryN ? selectCategoryN : selectUomSN,
-    //       itemList: itemsWithList[title]!,
-    //     );
-    //   },
-    // ).then(
-    //   (value) async {
-    //     await unFocus();
-    //   },
-    // );
+    var categoryList = await isar.categoryDatabaseModels.where().findAll();
+    var uomList = await isar.unitOfMeasurementDatabaseModels.where().findAll();
+    addProductController.categoryListFoundResult(categoryList);
+    addProductController.unitOfMeasurementListFoundResult(uomList);
+    Get.dialog(AlertDialogOptionSelect(
+      title: title == categoryN ? selectCategoryN : selectUomSN,
+      // itemList: itemsWithList[title]!,
+    )).then(
+      (value) async {
+        await unFocus();
+      },
+    );
   }
 }
 

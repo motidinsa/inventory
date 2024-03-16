@@ -291,7 +291,7 @@ onAddIconPressed({String? type}) {
       Get.dialog(
         AlertDialogOptionSelect(
           title: type,
-          itemList: itemList,
+          // itemList: itemList,
         ),
       );
     });
@@ -329,7 +329,8 @@ onImageSourceButtonPressed(
       editProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
-    } else if (productId != null) {
+    }
+    else if (productId != null) {
       var productBox = Hive.box<ProductDatabaseModel>('products');
       ProductDatabaseModel? currentProduct = productBox.get(productId);
       currentProduct!.localImagePath = value?.path;

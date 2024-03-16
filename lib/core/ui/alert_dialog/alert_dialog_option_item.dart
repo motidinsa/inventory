@@ -7,18 +7,20 @@ import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart'
 
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
+  final String name;
+  final String id;
   final int? index;
-  final ProductDatabaseModel? product;
-  final CategoryDatabaseModel? category;
-  final UnitOfMeasurementDatabaseModel? unitOfMeasurement;
+  // final ProductDatabaseModel? product;
+  // final CategoryDatabaseModel? category;
+  // final UnitOfMeasurementDatabaseModel? unitOfMeasurement;
 
   const AlertDialogOptionItem({
     super.key,
     required this.title,
-    this.product,
+    required this.name,
     this.index,
-    this.category,
-    this.unitOfMeasurement,
+    required this.id,
+    // this.unitOfMeasurement,
   });
 
   @override
@@ -26,10 +28,7 @@ class AlertDialogOptionItem extends StatelessWidget {
     return ListTile(
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
-        child: Text(
-          category?.categoryName ??
-              product?.productName ??
-              unitOfMeasurement!.name,
+        child: Text(name,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
@@ -41,11 +40,9 @@ class AlertDialogOptionItem extends StatelessWidget {
       onTap: () => onAlertDialogOptionSelect(
         title: title,
         index: index,
-        data: category?.categoryName ??
-            product?.productName ??
-            unitOfMeasurement!.name,
-        productModel: product,
-        id: category?.categoryId ?? product?.id.toString() ?? unitOfMeasurement!.uomId,
+        data: name,
+        // productModel: product,
+        id: id,
       ),
     );
   }
