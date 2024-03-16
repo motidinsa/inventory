@@ -23,6 +23,7 @@ import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart'
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
+
   // final List itemList;
   final String? productId;
 
@@ -57,25 +58,25 @@ class AlertDialogOptionSelect extends StatelessWidget {
           width: title != selectSourceN ? double.maxFinite : null,
           child: title == selectSourceN
               ? ImageSelectOption()
-          // Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           AddImageSourceButton(
-          //             sourceLocation: galleryN,
-          //             productId: productId,
-          //           ),
-          //           sizedBox(width: 20),
-          //           AddImageSourceButton(
-          //             sourceLocation: cameraN,
-          //             productId: productId,
-          //           ),
-          //         ],
-          //       )
+              // Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           AddImageSourceButton(
+              //             sourceLocation: galleryN,
+              //             productId: productId,
+              //           ),
+              //           sizedBox(width: 20),
+              //           AddImageSourceButton(
+              //             sourceLocation: cameraN,
+              //             productId: productId,
+              //           ),
+              //         ],
+              //       )
               : ListView(
                   shrinkWrap: true,
                   children: [
                     // if (itemList?.isNotEmpty ?? title == searchProductsN())
-                    if (getAlertDialogLength()!=0)
+                    if (getAlertDialogOptionLists(title: title).length != 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: CustomTextField(
@@ -123,27 +124,31 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             //   product = purchaseController
                             //       .searchProductFoundResult[index];
                             // }
+                            // Map a;
+                            // a.l
                             return AlertDialogOptionItem(
                               title: title,
-                              // product: product,
-                              // category: product == null ? category : null,
-                              // unitOfMeasurement: unitOfMeasurement,
-                              index:
-                                  [purchaseN(), salesN()].contains(currentPage)
-                                      ? listIndex
-                                      : index,
+                              index: [
+                                purchaseN(),
+                                salesN()
+                              ].contains(AppController.to.currentPages.last)
+                                  ? listIndex
+                                  : null,
+                              name: getAlertDialogOptionName(
+                                  title: title, index: index),
+                              id: '',
                             );
                           },
-                          itemCount: getAlertDialogLength(
+                          itemCount: getAlertDialogOptionLists(
                             title: title,
-                          ),
+                          ).length,
                           separatorBuilder: (BuildContext context, int index) =>
                               Divider(
                             color: Colors.grey.shade300,
                             height: 0,
                           ),
                         )),
-                    if (itemList?.isEmpty ?? itemList != null)
+                    if (getAlertDialogOptionLists(title: title).length == 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 8),
