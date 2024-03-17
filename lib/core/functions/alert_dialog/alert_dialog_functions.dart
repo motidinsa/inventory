@@ -1,20 +1,17 @@
 import 'package:get/get.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
-
+import 'package:my_inventory/edit_product/controller/edit_controller.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
-import 'package:my_inventory/sales/model/sales_model.dart';
-
-import '../../../add_product/controller/add_product_controller.dart';
-import '../../../edit_product/controller/edit_controller.dart';
-import '../../../purchase/controller/purchase_controller.dart';
-import '../../../sales/controller/sales_controller.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 // getAlertDialogLength({String? title}) {
 //   final AppController appController = Get.find();
@@ -89,13 +86,13 @@ getAlertDialogOptionName({required int index, String? title}) {
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (title == selectCategoryN) {
-      return (addProductController.categoryListFoundResult[index].value
+      return (addProductController.categoryListFoundResult[index]
               as CategoryDatabaseModel)
           .categoryName;
     } else if (title == selectUomSN) {
       {
         return (addProductController.unitOfMeasurementListFoundResult[index]
-                 as UnitOfMeasurementDatabaseModel)
+                as UnitOfMeasurementDatabaseModel)
             .name;
       }
     } else if (currentPage == editProductN) {

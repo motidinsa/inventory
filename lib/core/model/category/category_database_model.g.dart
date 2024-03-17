@@ -77,7 +77,12 @@ int _categoryDatabaseModelEstimateSize(
   bytesCount += 3 + object.categoryId.length * 3;
   bytesCount += 3 + object.categoryName.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
-  bytesCount += 3 + object.lastModifiedByUserId.length * 3;
+  {
+    final value = object.lastModifiedByUserId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -109,8 +114,8 @@ CategoryDatabaseModel _categoryDatabaseModelDeserialize(
   object.dateCreated = reader.readDateTime(offsets[3]);
   object.id = id;
   object.isAppWriteSynced = reader.readBoolOrNull(offsets[4]);
-  object.lastDateModified = reader.readDateTime(offsets[5]);
-  object.lastModifiedByUserId = reader.readString(offsets[6]);
+  object.lastDateModified = reader.readDateTimeOrNull(offsets[5]);
+  object.lastModifiedByUserId = reader.readStringOrNull(offsets[6]);
   return object;
 }
 
@@ -132,9 +137,9 @@ P _categoryDatabaseModelDeserializeProp<P>(
     case 4:
       return (reader.readBoolOrNull(offset)) as P;
     case 5:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -792,7 +797,25 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime value) {
+      QAfterFilterCondition> lastDateModifiedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'lastDateModified',
@@ -803,7 +826,7 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastDateModifiedGreaterThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -817,7 +840,7 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastDateModifiedLessThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -831,8 +854,8 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastDateModifiedBetween(
-    DateTime lower,
-    DateTime upper, {
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -848,8 +871,26 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastModifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastModifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -863,7 +904,7 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -879,7 +920,7 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -895,8 +936,8 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1305,14 +1346,14 @@ extension CategoryDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<CategoryDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<CategoryDatabaseModel, DateTime?, QQueryOperations>
       lastDateModifiedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastDateModified');
     });
   }
 
-  QueryBuilder<CategoryDatabaseModel, String, QQueryOperations>
+  QueryBuilder<CategoryDatabaseModel, String?, QQueryOperations>
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');

@@ -1,17 +1,21 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
+import 'package:my_inventory/main.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -60,9 +64,7 @@ getFormattedNumberWithoutComa(num) {
   return num.toString();
 }
 
-onActionButtonPressed(
-    {required String redirectFrom,
-    String? productId}) async {
+onActionButtonPressed({required String redirectFrom, String? productId}) async {
   AppController appController = Get.find();
   await unFocus();
   if (redirectFrom == productDetailN) {
@@ -80,54 +82,46 @@ onActionButtonPressed(
     if (addItemController.formKey.currentState!.validate()) {
       final AppController appController = Get.find();
       String currentPage = appController.currentPages.last;
+      DateTime now = DateTime.now();
+      String id = generateDatabaseId(time: now);
       if (redirectFrom == categoryNameN) {
-        // DateTime now = DateTime.now();
-        // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-        // String id = generateDatabaseId(time: now);
-        // await categoryBox.put(
-        //   id,
-        //   CategoryDatabaseModel(
-        //     categoryName: addItemController.addedText.value,
-        //     dateCreated: now,
-        //     dateModified: now,
-        //     createdByUserId: appController.userId.value,
-        //     categoryId: id,
-        //   ),
-        // );
-      //   if (currentPage == addProductN) {
-      //     AddProductController addProductController = Get.find();
-      //     addProductController
-      //         .categoryListFoundResult(categoryBox.values.toList());
-      //   } else if (currentPage == editProductN) {
-      //     EditProductController editProductController = Get.find();
-      //     editProductController
-      //         .categoryListFoundResult(categoryBox.values.toList());
-      //   }
-      // } else if (redirectFrom == uomNameN) {
-      //   DateTime now = DateTime.now();
-      //   var uomBox =
-      //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-      //   String id = generateDatabaseId(time: now);
-      //   await uomBox.put(
-      //     id,
-      //     UnitOfMeasurementDatabaseModel(
-      //       name: addItemController.addedText.value,
-      //       dateCreated: now,
-      //       dateModified: now,
-      //       createdByUserId: appController.userId.value,
-      //       uomId: id,
-      //     ),
-      //   );
-      //
-      //   if (currentPage == addProductN) {
-      //     AddProductController addProductController = Get.find();
-      //     addProductController
-      //         .unitOfMeasurementListFoundResult(uomBox.values.toList());
-      //   } else if (currentPage == editProductN) {
-      //     EditProductController editProductController = Get.find();
-      //     editProductController
-      //         .unitOfMeasurementListFoundResult(uomBox.values.toList());
-      //   }
+        await isar.writeTxn(() async {
+          await isar.categoryDatabaseModels.put(
+            CategoryDatabaseModel()
+              ..categoryName = addItemController.addedText.value
+              ..dateCreated = now
+              ..createdByUserId = appController.userId.value
+              ..categoryId = id,
+          );
+        });
+        if (currentPage == addProductN) {
+          AddProductController addProductController = Get.find();
+          addProductController.categoryListFoundResult(
+              isar.categoryDatabaseModels.where().findAllSync());
+        } else if (currentPage == editProductN) {
+          EditProductController editProductController = Get.find();
+          editProductController.categoryListFoundResult(
+              isar.categoryDatabaseModels.where().findAllSync());
+        }
+      } else if (redirectFrom == uomNameN) {
+        await isar.writeTxn(() async {
+          await isar.unitOfMeasurementDatabaseModels.put(
+            UnitOfMeasurementDatabaseModel()
+              ..name = addItemController.addedText.value
+              ..dateCreated = now
+              ..createdByUserId = appController.userId.value
+              ..uomId = id,
+          );
+        });
+        if (currentPage == addProductN) {
+          AddProductController addProductController = Get.find();
+          addProductController.unitOfMeasurementListFoundResult(
+              isar.unitOfMeasurementDatabaseModels.where().findAllSync());
+        } else if (currentPage == editProductN) {
+          EditProductController editProductController = Get.find();
+          editProductController.unitOfMeasurementListFoundResult(
+              isar.unitOfMeasurementDatabaseModels.where().findAllSync());
+        }
       }
       Get.back();
     } else {
@@ -152,7 +146,7 @@ onActionButtonPressed(
   }
 }
 
-titleToData({required String title,  int? index}) {
+titleToData({required String title, int? index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   String? value;
@@ -171,12 +165,7 @@ titleToData({required String title,  int? index}) {
       value = salesController.emptyString.value;
     }
   } else if (currentPage == addProductN) {
-    AddProductController addProductController = Get.find();
-    var items = {
-      categoryN: addProductController.productInfo.value.categoryName,
-      uomSN: addProductController.productInfo.value.unitOfMeasurementName,
-    };
-    return items[title];
+    return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
     if (title == purchaseN()) {
@@ -268,7 +257,6 @@ onAddIconPressed({String? type}) {
     Get.dialog(
       AddItem(
         type: type!,
-        currentPage: currentPage,
       ),
     ).then((value) {
       RxList? itemList;
@@ -291,7 +279,6 @@ onAddIconPressed({String? type}) {
       Get.dialog(
         AlertDialogOptionSelect(
           title: type,
-          // itemList: itemList,
         ),
       );
     });
@@ -306,15 +293,14 @@ onAddImagePressed({String? productId}) {
 }
 
 onImageSourceButtonPressed(
-    {
-    required String sourceLocation,
-    String? productId}) async {
+    {required String sourceLocation, String? productId}) async {
   final ImagePicker picker = ImagePicker();
   await picker
       .pickImage(
           source: sourceLocation == galleryN
               ? ImageSource.gallery
-              : ImageSource.camera,imageQuality: 50)
+              : ImageSource.camera,
+          imageQuality: 50)
       .then((value) async {
     final AppController appController = Get.find();
     String currentPage = appController.currentPages.last;
@@ -323,14 +309,12 @@ onImageSourceButtonPressed(
       addProductController.productInfo.update((val) {
         val?.localImagePath = value?.path;
       });
-
     } else if (currentPage == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
-    }
-    else if (productId != null) {
+    } else if (productId != null) {
       var productBox = Hive.box<ProductDatabaseModel>('products');
       ProductDatabaseModel? currentProduct = productBox.get(productId);
       currentProduct!.localImagePath = value?.path;
@@ -410,4 +394,3 @@ mapValidation({
   }
   return null;
 }
-

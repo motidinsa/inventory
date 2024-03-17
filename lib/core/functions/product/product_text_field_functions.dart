@@ -8,7 +8,7 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 
-import '../../controller/app_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 titleToHint({String? title}) {
   String? value;

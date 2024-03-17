@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
@@ -12,8 +11,6 @@ import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import 'package:my_inventory/core/controller/add_item_controller.dart';
-
 onAddProductTextFieldChange({
   String? title,
   required String data,
@@ -21,17 +18,16 @@ onAddProductTextFieldChange({
 }) {
   AddProductController addProductController = Get.find();
   if (title == selectCategoryN) {
-    // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    // addProductController.categoryListFoundResult(categoryBox.values
-    //     .where((category) =>
-    //         category.categoryName.toLowerCase().contains(data.toLowerCase()))
-    //     .toList());
+    addProductController.categoryListFoundResult(isar.categoryDatabaseModels
+        .filter()
+        .categoryNameContains(data, caseSensitive: false)
+        .findAllSync());
   } else if (title == selectUomSN) {
-    // var uomBox =
-    //     Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    // addProductController.unitOfMeasurementListFoundResult(uomBox.values
-    //     .where((uom) => uom.name.toLowerCase().contains(data.toLowerCase()))
-    //     .toList());
+    addProductController.unitOfMeasurementListFoundResult(isar
+        .unitOfMeasurementDatabaseModels
+        .filter()
+        .nameContains(data, caseSensitive: false)
+        .findAllSync());
   }
 }
 
@@ -123,7 +119,6 @@ onAddProductTextFieldPressed({required String title}) async {
     addProductController.unitOfMeasurementListFoundResult(uomList);
     Get.dialog(AlertDialogOptionSelect(
       title: title == categoryN ? selectCategoryN : selectUomSN,
-      // itemList: itemsWithList[title]!,
     )).then(
       (value) async {
         await unFocus();
@@ -143,5 +138,15 @@ onAddProductAlertDialogOptionSelect(
       product?.unitOfMeasurementName = data;
       product?.unitOfMeasurementId = id;
     }
+    addProductController.update();
   });
+}
+
+onAddProductGetData({required String title}) {
+  AddProductController addProductController = Get.find();
+  if (title == categoryN) {
+    return addProductController.productInfo.value.categoryName;
+  } else if (title == uomSN) {
+    return addProductController.productInfo.value.unitOfMeasurementName;
+  }
 }

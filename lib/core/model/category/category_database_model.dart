@@ -8,8 +8,8 @@ class CategoryDatabaseModel {
   late String categoryName;
   late String categoryId;
   late String createdByUserId;
-  late String lastModifiedByUserId;
+  String? lastModifiedByUserId;
   late DateTime dateCreated;
-  late DateTime lastDateModified;
+  DateTime? lastDateModified;
   bool? isAppWriteSynced;
 }

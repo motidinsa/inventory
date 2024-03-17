@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/styles/styles.dart';
-
 class AddItem extends StatelessWidget {
   final String type;
-  final String currentPage;
 
-  const AddItem({super.key, required this.type, required this.currentPage});
+  const AddItem({
+    super.key,
+    required this.type,
+  });
   @override
   Widget build(BuildContext context) {
     String title = type == selectCategoryN ? addCategoryNameN : addUomNameN;
@@ -51,7 +52,6 @@ class AddItem extends StatelessWidget {
                   ),
                   ActionButton(
                     redirectFrom: labelText,
-                    currentPage: currentPage,
                   )
                 ],
               ),

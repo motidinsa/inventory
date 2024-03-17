@@ -8,7 +8,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 
-import '../../controller/app_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 getSubtotal() {
   final AppController appController = Get.find();

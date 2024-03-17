@@ -10,6 +10,6 @@ class UnitOfMeasurementDatabaseModel {
   late String createdByUserId;
   String? lastModifiedByUserId;
   late DateTime dateCreated;
-  late DateTime lastDateModified;
+  DateTime? lastDateModified;
   bool? isAppWriteSynced;
 }

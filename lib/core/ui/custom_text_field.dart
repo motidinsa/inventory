@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
-import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-
-import 'package:my_inventory/core/functions/product/product_functions.dart';
-
-import '../controller/app_controller.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -45,17 +40,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
     if ([categoryNameN, uomNameN].contains(widget.title)) {
       focusNode.requestFocus();
     }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     textEditingController.value = textEditingController.value.copyWith(
       text: titleToData(
         title: widget.title,
         index: widget.index,
       ),
     );
+    // });
+
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,

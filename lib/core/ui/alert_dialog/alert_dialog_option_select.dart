@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_inventory/core/ui/add_image/add_image_source_button.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-
-import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/ui/add_image/image_select_option.dart';
-import 'package:my_inventory/edit_product/controller/edit_controller.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import '../../controller/app_controller.dart';
-import '../../model/category/category_database_model.dart';
-import '../../model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
-
-  // final List itemList;
   final String? productId;
 
   const AlertDialogOptionSelect(
-      {super.key,
-      required this.title,
-      // required this.itemList,
-      this.listIndex,
-      this.productId});
+      {super.key, required this.title, this.listIndex, this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -57,25 +42,10 @@ class AlertDialogOptionSelect extends StatelessWidget {
         content: SizedBox(
           width: title != selectSourceN ? double.maxFinite : null,
           child: title == selectSourceN
-              ? ImageSelectOption()
-              // Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: [
-              //           AddImageSourceButton(
-              //             sourceLocation: galleryN,
-              //             productId: productId,
-              //           ),
-              //           sizedBox(width: 20),
-              //           AddImageSourceButton(
-              //             sourceLocation: cameraN,
-              //             productId: productId,
-              //           ),
-              //         ],
-              //       )
+              ? const ImageSelectOption()
               : ListView(
                   shrinkWrap: true,
                   children: [
-                    // if (itemList?.isNotEmpty ?? title == searchProductsN())
                     if (getAlertDialogOptionLists(title: title).length != 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -89,43 +59,6 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           reverse: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            // ProductDatabaseModel? product;
-                            // CategoryDatabaseModel? category;
-                            // UnitOfMeasurementDatabaseModel? unitOfMeasurement;
-                            // final AppController appController = Get.find();
-                            // String currentPage = appController.currentPages.last;
-                            // if (currentPage == salesN()) {
-                            //   SalesController salesController = Get.find();
-                            //   product = salesController
-                            //       .searchProductFoundResult[index];
-                            // } else if (currentPage == addProductN) {
-                            //   AddProductController addProductController =
-                            //       Get.find();
-                            //   if (title == selectCategoryN) {
-                            //     category = addProductController
-                            //         .categoryListFoundResult[index];
-                            //   } else if (title == selectUomSN) {
-                            //     unitOfMeasurement = addProductController
-                            //         .unitOfMeasurementListFoundResult[index];
-                            //   }
-                            // } else if (currentPage == editProductN) {
-                            //   EditProductController editProductController =
-                            //       Get.find();
-                            //   if (title == selectCategoryN) {
-                            //     category = editProductController
-                            //         .categoryListFoundResult[index];
-                            //   } else if (title == selectUomSN) {
-                            //     unitOfMeasurement = editProductController
-                            //         .unitOfMeasurementListFoundResult[index];
-                            //   }
-                            // } else if (currentPage == purchaseN()) {
-                            //   PurchaseController purchaseController =
-                            //       Get.find();
-                            //   product = purchaseController
-                            //       .searchProductFoundResult[index];
-                            // }
-                            // Map a;
-                            // a.l
                             return AlertDialogOptionItem(
                               title: title,
                               index: [

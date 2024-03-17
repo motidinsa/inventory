@@ -1,4 +1,3 @@
-import 'package:hive/hive.dart';
 
 getProductCategoryName({String? id}) {
   // var categoryBox = Hive.box<CategoryDatabaseModel>('category');

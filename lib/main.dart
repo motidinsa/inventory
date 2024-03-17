@@ -1,6 +1,5 @@
 // import 'package:appwrite/appwrite.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
@@ -12,7 +11,7 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'core/ui/drawer/my_drawer.dart';
+import 'package:my_inventory/core/ui/drawer/my_drawer.dart';
 
 late Isar isar;
 
@@ -78,7 +77,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          drawer: Drawer(
+          drawer: const Drawer(
             child: MyDrawer(),
           ),
           body: Homepage(),

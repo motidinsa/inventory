@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/name_constants.dart';
-import '../../constants/widget_constants.dart';
-import 'add_image_source_button.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/ui/add_image/add_image_source_button.dart';
 
 class ImageSelectOption extends StatelessWidget {
   const ImageSelectOption({super.key});
@@ -12,11 +12,11 @@ class ImageSelectOption extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AddImageSourceButton(
+        const AddImageSourceButton(
           sourceLocation: galleryN,
         ),
         sizedBox(width: 20),
-        AddImageSourceButton(
+        const AddImageSourceButton(
           sourceLocation: cameraN,
         ),
       ],

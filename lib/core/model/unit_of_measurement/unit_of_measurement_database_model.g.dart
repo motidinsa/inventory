@@ -112,7 +112,7 @@ UnitOfMeasurementDatabaseModel _unitOfMeasurementDatabaseModelDeserialize(
   object.dateCreated = reader.readDateTime(offsets[1]);
   object.id = id;
   object.isAppWriteSynced = reader.readBoolOrNull(offsets[2]);
-  object.lastDateModified = reader.readDateTime(offsets[3]);
+  object.lastDateModified = reader.readDateTimeOrNull(offsets[3]);
   object.lastModifiedByUserId = reader.readStringOrNull(offsets[4]);
   object.name = reader.readString(offsets[5]);
   object.uomId = reader.readString(offsets[6]);
@@ -133,7 +133,7 @@ P _unitOfMeasurementDatabaseModelDeserializeProp<P>(
     case 2:
       return (reader.readBoolOrNull(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
       return (reader.readStringOrNull(offset)) as P;
     case 5:
@@ -525,7 +525,25 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime value) {
+      QAfterFilterCondition> lastDateModifiedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'lastDateModified',
@@ -536,7 +554,7 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterFilterCondition> lastDateModifiedGreaterThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -550,7 +568,7 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterFilterCondition> lastDateModifiedLessThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -564,8 +582,8 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterFilterCondition> lastDateModifiedBetween(
-    DateTime lower,
-    DateTime upper, {
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1327,7 +1345,7 @@ extension UnitOfMeasurementDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<UnitOfMeasurementDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<UnitOfMeasurementDatabaseModel, DateTime?, QQueryOperations>
       lastDateModifiedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastDateModified');

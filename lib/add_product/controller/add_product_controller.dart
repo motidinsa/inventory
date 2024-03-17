@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
-
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/main.dart';
 
 class AddProductController extends GetxController {
@@ -17,19 +17,14 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
-    // var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-    // var uomBox =
-    //     Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-    // var defaultUnit =
-    //     uomBox.values.firstWhere((element) => element.name == 'Pcs');
-    // productInfo.update((val) {
-    //   val?.unitOfMeasurementId = defaultUnit.uomId;
-    // });
-    // productInfo.update((val) {
-    //   val?.unitOfMeasurementName = defaultUnit.name;
-    // });
-    // categoryListFoundResult(categoryBox.values.toList());
-    // unitOfMeasurementListFoundResult(uomBox.values.toList());
+    var defaultUnit = isar.unitOfMeasurementDatabaseModels
+        .filter()
+        .nameEqualTo('Pcs')
+        .findFirstSync();
+    productInfo.update((val) {
+      val?.unitOfMeasurementId = defaultUnit!.uomId;
+      val?.unitOfMeasurementName = defaultUnit!.name;
+    });
     appController.currentPages.add(addProductN);
     super.onInit();
   }
