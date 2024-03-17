@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
-import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
-import 'package:my_inventory/main.dart';
+import '../../core/model/product/product_database_model.dart';
+import '../../main.dart';
+import 'mini_product_detail.dart';
 
 class ProductList extends StatelessWidget {
   ProductList({super.key});
@@ -25,14 +24,14 @@ class ProductList extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: StreamBuilder<List<ProductDatabaseModel>>(
-            stream: isar.productDatabaseModels.where().watch(fireImmediately: true),
+            stream:
+                isar.productDatabaseModels.where().watch(fireImmediately: true),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 AlertDialog(
                   content: Text(snapshot.error.toString()),
                 );
-              }
-              else if (snapshot.connectionState == ConnectionState.waiting) {
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
@@ -50,35 +49,14 @@ class ProductList extends StatelessWidget {
                       shrinkWrap: true,
                       reverse: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) =>
-                          Text(snapshot.data![index].productName),
+                      itemBuilder: (ctx, index) => MiniProductDetail(
+                        productModel: snapshot.data![index],
+                        index: index,
+                      ),
                       itemCount: snapshot.data!.length,
                       separatorBuilder: (ctx, index) => sizedBox(height: 20),
                     ),
                   ),
-                  ValueListenableBuilder<Box<ProductDatabaseModel>>(
-                    valueListenable:
-                        Hive.box<ProductDatabaseModel>('products').listenable(),
-                    builder: (context, box, _) {
-                      return Obx(() => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              reverse: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (ctx, index) => MiniProductDetail(
-                                productModel:
-                                    productListController.productList[index],
-                                index: index,
-                              ),
-                              itemCount:
-                                  productListController.productList.length,
-                              separatorBuilder: (ctx, index) =>
-                                  sizedBox(height: 20),
-                            ),
-                          ));
-                    },
-                  )
                 ],
               );
             }),

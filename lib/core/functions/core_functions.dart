@@ -73,11 +73,11 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
     var productsBox = Hive.box<ProductDatabaseModel>('products');
     ProductListController productListController = Get.find();
     await productsBox.delete(productId);
-    productListController.productList(productsBox.values
-        .where((product) => product.productName
-            .toLowerCase()
-            .contains(productListController.searchedText.toLowerCase()))
-        .toList());
+    // productListController.productList(productsBox.values
+    //     .where((product) => product.productName
+    //         .toLowerCase()
+    //         .contains(productListController.searchedText.toLowerCase()))
+    //     .toList());
     Get.back();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();

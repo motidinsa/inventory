@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/styles/styles.dart';
-
 import 'package:my_inventory/core/functions/product/product_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class AddProductImage extends StatelessWidget {
   final String currentPage;
@@ -26,42 +26,40 @@ class AddProductImage extends StatelessWidget {
         ),
         sizedBox(width: 20),
         // Obx(() {
-          if (getProductImagePath() != null)
-             Column(
-              children: [
-                ClipRRect(
-                  borderRadius: smoothBorderRadius(radius: 15),
-                  child: Image.file(
-                    File(getProductImagePath()),
-                    width: 120,
+        if (getProductImagePath() != null)
+          Column(
+            children: [
+              ClipRRect(
+                borderRadius: smoothBorderRadius(radius: 15),
+                child: Obx(() => Image.file(
+                      File(getProductImagePath()),
+                      width: 120,
+                    )),
+              ),
+              sizedBox(height: 5),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => onImageDeleteButtonPressed(),
+                    style: TextButton.styleFrom(foregroundColor: Colors.red),
+                    child: const Text(
+                      deleteN,
+                      style: TextStyle(color: Colors.red),
+                    ),
                   ),
-                ),
-                sizedBox(height: 5),
-                Row(
-                  children: [
-                    TextButton(
-                      onPressed: () =>
-                          onImageDeleteButtonPressed(),
-                      style: TextButton.styleFrom(foregroundColor: Colors.red),
-                      child: const Text(
-                        deleteN,
-                        style: TextStyle(color: Colors.red),
-                      ),
+                  TextButton(
+                    onPressed: () => onAddImagePressed(),
+                    child: const Text(
+                      changeN,
+                      // style: TextStyle(color: Colors.red),
                     ),
-                    TextButton(
-                      onPressed: () =>
-                          onAddImagePressed(),
-                      child: const Text(
-                        changeN,
-                        // style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            )
-
-          else ElevatedButton(
+                  ),
+                ],
+              )
+            ],
+          )
+        else
+          ElevatedButton(
             onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),

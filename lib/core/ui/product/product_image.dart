@@ -9,27 +9,32 @@ class ProductImage extends StatelessWidget {
   final String productId;
   final String currentPage;
   final String? localImagePath;
+  final double imageWidth;
 
   const ProductImage(
       {super.key,
       this.localImagePath,
       required this.productId,
-      required this.currentPage});
-
-  final double imageWidth = 100;
+      required this.currentPage,
+      this.imageWidth = 75});
 
   @override
   Widget build(BuildContext context) {
     return localImagePath != null
-        ? ClipRRect(
-            borderRadius: smoothBorderRadius(radius: 12),
-            child: Image.file(
-              File(localImagePath!),
-              width: imageWidth,
-            ),
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: smoothBorderRadius(radius: 12),
+                child: Image.file(
+                  File(localImagePath!),
+                  width: imageWidth,
+                ),
+              ),
+            ],
           )
         : Container(
-            width: imageWidth,
+            width: 100,
             padding: const EdgeInsets.only(top: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

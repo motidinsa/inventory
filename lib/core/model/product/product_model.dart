@@ -13,7 +13,7 @@ class ProductModel {
   String unitOfMeasurementName;
   String? modifiedByUserId;
   DateTime dateCreated;
-  DateTime lastDateModified;
+  DateTime? lastDateModified;
   String? localImagePath;
 
   ProductModel({

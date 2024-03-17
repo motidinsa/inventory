@@ -6,8 +6,9 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/product/product_image.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
-import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 import 'package:smooth_corner/smooth_corner.dart';
+
+import '../../product_detail/functions/product_detail_functions.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
@@ -34,12 +35,14 @@ class MiniProductDetail extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Row(
             children: [
-              ProductImage(
-                productId: productModel.productId,
-                currentPage: productListN(),
-                localImagePath: productModel.localImagePath,
+              Expanded(
+                child: ProductImage(
+                  productId: productModel.productId,
+                  currentPage: productListN(),
+                  localImagePath: productModel.localImagePath,
+                ),
               ),
-              sizedBox(width: 15),
+              sizedBox(width: 20),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,58 +60,43 @@ class MiniProductDetail extends StatelessWidget {
                     ),
                     sizedBox(height: 10),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SmoothContainer(
-                              padding: const EdgeInsets.all(10),
-                              color: Colors.green.shade200,
-                              smoothness: 1,
-                              side: const BorderSide(
-                                  color: Colors.white, width: 1.5),
-                              borderRadius: BorderRadius.circular(12),
-                              alignment: Alignment.center,
-                              child: Text(
-                                '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
-                                  id: productModel.unitOfMeasurementId,
-                                )}',
-                                style: TextStyle(
-                                    color: Colors.white, fontWeight: bold()),
-                              ),
-                            ),
-                          ],
-                        ),
-                        sizedBox(width: 10),
-                        Expanded(
+                        SmoothContainer(
+                          padding: const EdgeInsets.all(10),
+                          color: Colors.green.shade200,
+                          smoothness: 1,
+                          side:
+                              const BorderSide(color: Colors.white, width: 1.5),
+                          borderRadius: BorderRadius.circular(12),
+                          alignment: Alignment.center,
                           child: Text(
-                            'ETB ${getFormattedNumberWithComa(productModel.price)}',
-                            textAlign: TextAlign.end,
+                            '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
+                              id: productModel.unitOfMeasurementId,
+                            )}',
                             style: TextStyle(
-                              fontWeight: bold(),
-                              fontSize: 17,
-                            ),
+                                color: Colors.white, fontWeight: bold()),
                           ),
                         ),
-                        sizedBox(width: 10),
                       ],
                     ),
-                    if (productModel.description != null) ...[
-                      sizedBox(height: 5),
-                      ProductDetailSingleDescription(
-                        title: descriptionN,
-                        description: productModel.description!,
-                      )
-                    ],
-                    sizedBox(height: 10),
-                    ProductDetailSingleDescription(
-                      title: reorderQuantityN,
-                      description: productModel.reorderQuantity.toString(),
-                    )
                   ],
                 ),
               ),
+              sizedBox(width: 10),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'ETB ${getFormattedNumberWithComa(productModel.price)}',
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontWeight: bold(),
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
