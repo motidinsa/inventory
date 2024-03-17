@@ -10,7 +10,9 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/category/log_category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
@@ -93,6 +95,15 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
               ..createdByUserId = appController.userId.value
               ..categoryId = id,
           );
+          await isar.logCategoryDatabaseModels.put(
+            LogCategoryDatabaseModel()
+              ..categoryName = addItemController.addedText.value
+              ..dateCreated = now
+              ..createdByUserId = appController.userId.value
+              ..categoryId = id
+              ..lastDateModified = now
+              ..lastModifiedByUserId = appController.userId.value,
+          );
         });
         if (currentPage == addProductN) {
           AddProductController addProductController = Get.find();
@@ -111,6 +122,15 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
               ..dateCreated = now
               ..createdByUserId = appController.userId.value
               ..uomId = id,
+          );
+          await isar.logUnitOfMeasurementDatabaseModels.put(
+            LogUnitOfMeasurementDatabaseModel()
+              ..name = addItemController.addedText.value
+              ..dateCreated = now
+              ..createdByUserId = appController.userId.value
+              ..uomId = id
+              ..lastDateModified = now
+              ..lastModifiedByUserId = appController.userId.value,
           );
         });
         if (currentPage == addProductN) {
@@ -142,7 +162,7 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
     }
-    Get.back();
+    // Get.back();
   }
 }
 

@@ -13,20 +13,6 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-// getAlertDialogLength({String? title}) {
-//   final AppController appController = Get.find();
-//   String currentPage = appController.currentPages.last;
-//   if (currentPage == salesN()) {
-//     return getSalesAlertDialogProductLength();
-//   } else if (currentPage == addProductN) {
-//     return getAddProductAlertDialogLength(title: title!);
-//   } else if (currentPage == editProductN) {
-//     return getEditProductAlertDialogLength(title: title!);
-//   } else if (currentPage == purchaseN()) {
-//     return getPurchaseAlertDialogProductLength();
-//   }
-// }
-
 onAlertDialogOptionSelect(
     {required String title,
     required String id,
@@ -112,6 +98,47 @@ getAlertDialogOptionName({required int index, String? title}) {
         return (purchaseController.searchProductFoundResult[index]
                 as ProductDatabaseModel)
             .productName;
+      }
+    }
+  }
+}
+
+getAlertDialogOptionId({required int index, String? title}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesN()) {
+    SalesController salesController = Get.find();
+    return (salesController.searchProductFoundResult[index].value
+            as ProductDatabaseModel)
+        .productId;
+  } else if (currentPage == addProductN) {
+    AddProductController addProductController = Get.find();
+    if (title == selectCategoryN) {
+      return (addProductController.categoryListFoundResult[index]
+              as CategoryDatabaseModel)
+          .categoryId;
+    } else if (title == selectUomSN) {
+      {
+        return (addProductController.unitOfMeasurementListFoundResult[index]
+                as UnitOfMeasurementDatabaseModel)
+            .uomId;
+      }
+    } else if (currentPage == editProductN) {
+      EditProductController editProductController = Get.find();
+      if (title == selectCategoryN) {
+        return (editProductController.categoryListFoundResult[index].value
+                as CategoryDatabaseModel)
+            .categoryId;
+      } else if (title == selectUomSN) {
+        {
+          return (editProductController.unitOfMeasurementListFoundResult[index]
+                  .value as UnitOfMeasurementDatabaseModel)
+              .uomId;
+        }
+      } else if (currentPage == purchaseN()) {
+        PurchaseController purchaseController = Get.find();
+        return (purchaseController.searchProductFoundResult[index]
+                as ProductDatabaseModel)
+            .productId;
       }
     }
   }

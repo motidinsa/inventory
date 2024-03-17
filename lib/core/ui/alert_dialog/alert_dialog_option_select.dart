@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/add_image/image_select_option.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
-
-import 'package:my_inventory/core/controller/app_controller.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
@@ -69,7 +68,8 @@ class AlertDialogOptionSelect extends StatelessWidget {
                                   : null,
                               name: getAlertDialogOptionName(
                                   title: title, index: index),
-                              id: '',
+                              id: getAlertDialogOptionId(
+                                  title: title, index: index),
                             );
                           },
                           itemCount: getAlertDialogOptionLists(

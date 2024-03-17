@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_database_model.dart';
+part of 'log_product_database_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,14 +9,14 @@ part of 'product_database_model.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetProductDatabaseModelCollection on Isar {
-  IsarCollection<ProductDatabaseModel> get productDatabaseModels =>
+extension GetLogProductDatabaseModelCollection on Isar {
+  IsarCollection<LogProductDatabaseModel> get logProductDatabaseModels =>
       this.collection();
 }
 
-const ProductDatabaseModelSchema = CollectionSchema(
-  name: r'ProductDatabaseModel',
-  id: -2069923927146959234,
+const LogProductDatabaseModelSchema = CollectionSchema(
+  name: r'LogProductDatabaseModel',
+  id: 3994390997897504138,
   properties: {
     r'categoryId': PropertySchema(
       id: 0,
@@ -104,22 +104,22 @@ const ProductDatabaseModelSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _productDatabaseModelEstimateSize,
-  serialize: _productDatabaseModelSerialize,
-  deserialize: _productDatabaseModelDeserialize,
-  deserializeProp: _productDatabaseModelDeserializeProp,
+  estimateSize: _logProductDatabaseModelEstimateSize,
+  serialize: _logProductDatabaseModelSerialize,
+  deserialize: _logProductDatabaseModelDeserialize,
+  deserializeProp: _logProductDatabaseModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _productDatabaseModelGetId,
-  getLinks: _productDatabaseModelGetLinks,
-  attach: _productDatabaseModelAttach,
+  getId: _logProductDatabaseModelGetId,
+  getLinks: _logProductDatabaseModelGetLinks,
+  attach: _logProductDatabaseModelAttach,
   version: '3.1.0+1',
 );
 
-int _productDatabaseModelEstimateSize(
-  ProductDatabaseModel object,
+int _logProductDatabaseModelEstimateSize(
+  LogProductDatabaseModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -137,12 +137,7 @@ int _productDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  {
-    final value = object.lastModifiedByUserId;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.lastModifiedByUserId.length * 3;
   {
     final value = object.localImagePath;
     if (value != null) {
@@ -167,8 +162,8 @@ int _productDatabaseModelEstimateSize(
   return bytesCount;
 }
 
-void _productDatabaseModelSerialize(
-  ProductDatabaseModel object,
+void _logProductDatabaseModelSerialize(
+  LogProductDatabaseModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -192,13 +187,13 @@ void _productDatabaseModelSerialize(
   writer.writeString(offsets[16], object.userAssignedProductId);
 }
 
-ProductDatabaseModel _productDatabaseModelDeserialize(
+LogProductDatabaseModel _logProductDatabaseModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = ProductDatabaseModel();
+  final object = LogProductDatabaseModel();
   object.categoryId = reader.readStringOrNull(offsets[0]);
   object.cost = reader.readDouble(offsets[1]);
   object.createdByUserId = reader.readString(offsets[2]);
@@ -206,8 +201,8 @@ ProductDatabaseModel _productDatabaseModelDeserialize(
   object.description = reader.readStringOrNull(offsets[4]);
   object.id = id;
   object.isAppWriteSynced = reader.readBoolOrNull(offsets[5]);
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[6]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[7]);
+  object.lastDateModified = reader.readDateTime(offsets[6]);
+  object.lastModifiedByUserId = reader.readString(offsets[7]);
   object.localImagePath = reader.readStringOrNull(offsets[8]);
   object.onlineImagePath = reader.readStringOrNull(offsets[9]);
   object.price = reader.readDouble(offsets[10]);
@@ -220,7 +215,7 @@ ProductDatabaseModel _productDatabaseModelDeserialize(
   return object;
 }
 
-P _productDatabaseModelDeserializeProp<P>(
+P _logProductDatabaseModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -240,9 +235,9 @@ P _productDatabaseModelDeserializeProp<P>(
     case 5:
       return (reader.readBoolOrNull(offset)) as P;
     case 6:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 7:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
       return (reader.readStringOrNull(offset)) as P;
     case 9:
@@ -266,23 +261,23 @@ P _productDatabaseModelDeserializeProp<P>(
   }
 }
 
-Id _productDatabaseModelGetId(ProductDatabaseModel object) {
+Id _logProductDatabaseModelGetId(LogProductDatabaseModel object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _productDatabaseModelGetLinks(
-    ProductDatabaseModel object) {
+List<IsarLinkBase<dynamic>> _logProductDatabaseModelGetLinks(
+    LogProductDatabaseModel object) {
   return [];
 }
 
-void _productDatabaseModelAttach(
-    IsarCollection<dynamic> col, Id id, ProductDatabaseModel object) {
+void _logProductDatabaseModelAttach(
+    IsarCollection<dynamic> col, Id id, LogProductDatabaseModel object) {
   object.id = id;
 }
 
-extension ProductDatabaseModelQueryWhereSort
-    on QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QWhere> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhere>
+extension LogProductDatabaseModelQueryWhereSort
+    on QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QWhere> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterWhere>
       anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -290,10 +285,10 @@ extension ProductDatabaseModelQueryWhereSort
   }
 }
 
-extension ProductDatabaseModelQueryWhere
-    on QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QWhereClause> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhereClause>
-      idEqualTo(Id id) {
+extension LogProductDatabaseModelQueryWhere on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QWhereClause> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -302,8 +297,8 @@ extension ProductDatabaseModelQueryWhere
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhereClause>
-      idNotEqualTo(Id id) {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -325,8 +320,8 @@ extension ProductDatabaseModelQueryWhere
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhereClause>
-      idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -334,8 +329,8 @@ extension ProductDatabaseModelQueryWhere
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhereClause>
-      idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -343,8 +338,8 @@ extension ProductDatabaseModelQueryWhere
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterWhereClause>
-      idBetween(
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -361,9 +356,9 @@ extension ProductDatabaseModelQueryWhere
   }
 }
 
-extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
-    ProductDatabaseModel, QFilterCondition> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+extension LogProductDatabaseModelQueryFilter on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QFilterCondition> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -372,7 +367,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -381,7 +376,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -395,7 +390,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdGreaterThan(
     String? value, {
     bool include = false,
@@ -411,7 +406,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdLessThan(
     String? value, {
     bool include = false,
@@ -427,7 +422,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdBetween(
     String? lower,
     String? upper, {
@@ -447,7 +442,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -461,7 +456,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -475,7 +470,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       categoryIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -487,7 +482,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       categoryIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -499,7 +494,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -509,7 +504,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -519,7 +514,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> costEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -533,7 +528,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> costGreaterThan(
     double value, {
     bool include = false,
@@ -549,7 +544,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> costLessThan(
     double value, {
     bool include = false,
@@ -565,7 +560,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> costBetween(
     double lower,
     double upper, {
@@ -585,7 +580,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -599,7 +594,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdGreaterThan(
     String value, {
     bool include = false,
@@ -615,7 +610,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdLessThan(
     String value, {
     bool include = false,
@@ -631,7 +626,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdBetween(
     String lower,
     String upper, {
@@ -651,7 +646,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -665,7 +660,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -679,7 +674,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       createdByUserIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -691,7 +686,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       createdByUserIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -703,7 +698,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -713,7 +708,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> createdByUserIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -723,7 +718,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> dateCreatedEqualTo(DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -733,7 +728,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> dateCreatedGreaterThan(
     DateTime value, {
     bool include = false,
@@ -747,7 +742,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> dateCreatedLessThan(
     DateTime value, {
     bool include = false,
@@ -761,7 +756,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> dateCreatedBetween(
     DateTime lower,
     DateTime upper, {
@@ -779,7 +774,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -788,7 +783,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -797,7 +792,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -811,7 +806,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionGreaterThan(
     String? value, {
     bool include = false,
@@ -827,7 +822,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionLessThan(
     String? value, {
     bool include = false,
@@ -843,7 +838,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionBetween(
     String? lower,
     String? upper, {
@@ -863,7 +858,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -877,7 +872,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -891,7 +886,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       descriptionContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -903,7 +898,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       descriptionMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -915,7 +910,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -925,7 +920,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> descriptionIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -935,7 +930,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -945,7 +940,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
@@ -959,7 +954,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
@@ -973,7 +968,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
@@ -991,7 +986,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1000,7 +995,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1009,7 +1004,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedEqualTo(bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1019,26 +1014,8 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'lastDateModified',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'lastDateModified',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'lastDateModified',
@@ -1047,9 +1024,9 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastDateModifiedGreaterThan(
-    DateTime? value, {
+    DateTime value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1061,9 +1038,9 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastDateModifiedLessThan(
-    DateTime? value, {
+    DateTime value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1075,10 +1052,10 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastDateModifiedBetween(
-    DateTime? lower,
-    DateTime? upper, {
+    DateTime lower,
+    DateTime upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1093,27 +1070,9 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastModifiedByUserIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'lastModifiedByUserId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'lastModifiedByUserId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1125,9 +1084,9 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1141,9 +1100,9 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1157,10 +1116,10 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1177,7 +1136,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1191,7 +1150,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1205,7 +1164,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1217,7 +1176,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1229,7 +1188,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1239,7 +1198,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1249,7 +1208,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1258,7 +1217,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1267,7 +1226,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1281,7 +1240,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathGreaterThan(
     String? value, {
     bool include = false,
@@ -1297,7 +1256,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathLessThan(
     String? value, {
     bool include = false,
@@ -1313,7 +1272,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathBetween(
     String? lower,
     String? upper, {
@@ -1333,7 +1292,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1347,7 +1306,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1361,7 +1320,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       localImagePathContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1373,7 +1332,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       localImagePathMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1385,7 +1344,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1395,7 +1354,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> localImagePathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1405,7 +1364,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1414,7 +1373,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1423,7 +1382,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1437,7 +1396,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathGreaterThan(
     String? value, {
     bool include = false,
@@ -1453,7 +1412,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathLessThan(
     String? value, {
     bool include = false,
@@ -1469,7 +1428,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathBetween(
     String? lower,
     String? upper, {
@@ -1489,7 +1448,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1503,7 +1462,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1517,7 +1476,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       onlineImagePathContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1529,7 +1488,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       onlineImagePathMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1541,7 +1500,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1551,7 +1510,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> onlineImagePathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1561,7 +1520,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> priceEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1575,7 +1534,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> priceGreaterThan(
     double value, {
     bool include = false,
@@ -1591,7 +1550,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> priceLessThan(
     double value, {
     bool include = false,
@@ -1607,7 +1566,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> priceBetween(
     double lower,
     double upper, {
@@ -1627,7 +1586,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1641,7 +1600,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdGreaterThan(
     String value, {
     bool include = false,
@@ -1657,7 +1616,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdLessThan(
     String value, {
     bool include = false,
@@ -1673,7 +1632,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdBetween(
     String lower,
     String upper, {
@@ -1693,7 +1652,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1707,7 +1666,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1721,7 +1680,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       productIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1733,7 +1692,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       productIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1745,7 +1704,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1755,7 +1714,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1765,7 +1724,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1779,7 +1738,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameGreaterThan(
     String value, {
     bool include = false,
@@ -1795,7 +1754,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameLessThan(
     String value, {
     bool include = false,
@@ -1811,7 +1770,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameBetween(
     String lower,
     String upper, {
@@ -1831,7 +1790,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1845,7 +1804,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1859,7 +1818,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       productNameContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1871,7 +1830,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       productNameMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1883,7 +1842,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1893,7 +1852,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> productNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1903,7 +1862,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> quantityOnHandEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1917,7 +1876,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> quantityOnHandGreaterThan(
     double value, {
     bool include = false,
@@ -1933,7 +1892,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> quantityOnHandLessThan(
     double value, {
     bool include = false,
@@ -1949,7 +1908,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> quantityOnHandBetween(
     double lower,
     double upper, {
@@ -1969,7 +1928,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> reorderQuantityEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1983,7 +1942,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> reorderQuantityGreaterThan(
     double value, {
     bool include = false,
@@ -1999,7 +1958,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> reorderQuantityLessThan(
     double value, {
     bool include = false,
@@ -2015,7 +1974,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> reorderQuantityBetween(
     double lower,
     double upper, {
@@ -2035,7 +1994,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -2049,7 +2008,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdGreaterThan(
     String value, {
     bool include = false,
@@ -2065,7 +2024,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdLessThan(
     String value, {
     bool include = false,
@@ -2081,7 +2040,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdBetween(
     String lower,
     String upper, {
@@ -2101,7 +2060,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -2115,7 +2074,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -2129,7 +2088,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       unitOfMeasurementIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2141,7 +2100,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       unitOfMeasurementIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2153,7 +2112,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -2163,7 +2122,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> unitOfMeasurementIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -2173,7 +2132,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -2182,7 +2141,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -2191,7 +2150,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -2205,7 +2164,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdGreaterThan(
     String? value, {
     bool include = false,
@@ -2221,7 +2180,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdLessThan(
     String? value, {
     bool include = false,
@@ -2237,7 +2196,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdBetween(
     String? lower,
     String? upper, {
@@ -2257,7 +2216,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -2271,7 +2230,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -2285,7 +2244,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       userAssignedProductIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2297,7 +2256,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
           QAfterFilterCondition>
       userAssignedProductIdMatches(String pattern,
           {bool caseSensitive = true}) {
@@ -2310,7 +2269,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -2320,7 +2279,7 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> userAssignedProductIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -2331,246 +2290,246 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
   }
 }
 
-extension ProductDatabaseModelQueryObject on QueryBuilder<ProductDatabaseModel,
-    ProductDatabaseModel, QFilterCondition> {}
+extension LogProductDatabaseModelQueryObject on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QFilterCondition> {}
 
-extension ProductDatabaseModelQueryLinks on QueryBuilder<ProductDatabaseModel,
-    ProductDatabaseModel, QFilterCondition> {}
+extension LogProductDatabaseModelQueryLinks on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QFilterCondition> {}
 
-extension ProductDatabaseModelQuerySortBy
-    on QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QSortBy> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+extension LogProductDatabaseModelQuerySortBy
+    on QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QSortBy> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCategoryId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCategoryIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCreatedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByDescriptionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLastDateModifiedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLocalImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'localImagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByLocalImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'localImagePath', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByOnlineImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'onlineImagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByOnlineImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'onlineImagePath', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'price', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByPriceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'price', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByProductName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productName', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByProductNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productName', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByQuantityOnHand() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantityOnHand', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByQuantityOnHandDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantityOnHand', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByReorderQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reorderQuantity', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByReorderQuantityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reorderQuantity', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByUnitOfMeasurementId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'unitOfMeasurementId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByUnitOfMeasurementIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'unitOfMeasurementId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByUserAssignedProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userAssignedProductId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByUserAssignedProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userAssignedProductId', Sort.desc);
@@ -2578,254 +2537,254 @@ extension ProductDatabaseModelQuerySortBy
   }
 }
 
-extension ProductDatabaseModelQuerySortThenBy
-    on QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QSortThenBy> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+extension LogProductDatabaseModelQuerySortThenBy on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QSortThenBy> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCategoryId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCategoryIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCreatedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByDescriptionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLastDateModifiedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLocalImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'localImagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByLocalImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'localImagePath', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByOnlineImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'onlineImagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByOnlineImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'onlineImagePath', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'price', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByPriceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'price', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByProductName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productName', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByProductNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productName', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByQuantityOnHand() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantityOnHand', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByQuantityOnHandDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantityOnHand', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByReorderQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reorderQuantity', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByReorderQuantityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reorderQuantity', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByUnitOfMeasurementId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'unitOfMeasurementId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByUnitOfMeasurementIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'unitOfMeasurementId', Sort.desc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByUserAssignedProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userAssignedProductId', Sort.asc);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByUserAssignedProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userAssignedProductId', Sort.desc);
@@ -2833,23 +2792,23 @@ extension ProductDatabaseModelQuerySortThenBy
   }
 }
 
-extension ProductDatabaseModelQueryWhereDistinct
-    on QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct> {
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+extension LogProductDatabaseModelQueryWhereDistinct on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QDistinct> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByCategoryId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'categoryId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cost');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByCreatedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'createdByUserId',
@@ -2857,35 +2816,35 @@ extension ProductDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'dateCreated');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByDescription({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'description', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isAppWriteSynced');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastDateModified');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByLastModifiedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastModifiedByUserId',
@@ -2893,7 +2852,7 @@ extension ProductDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByLocalImagePath({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'localImagePath',
@@ -2901,7 +2860,7 @@ extension ProductDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByOnlineImagePath({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'onlineImagePath',
@@ -2909,42 +2868,42 @@ extension ProductDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'price');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByProductId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'productId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByProductName({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'productName', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByQuantityOnHand() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'quantityOnHand');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByReorderQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'reorderQuantity');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByUnitOfMeasurementId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'unitOfMeasurementId',
@@ -2952,7 +2911,7 @@ extension ProductDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByUserAssignedProductId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'userAssignedProductId',
@@ -2961,125 +2920,127 @@ extension ProductDatabaseModelQueryWhereDistinct
   }
 }
 
-extension ProductDatabaseModelQueryProperty on QueryBuilder<
-    ProductDatabaseModel, ProductDatabaseModel, QQueryProperty> {
-  QueryBuilder<ProductDatabaseModel, int, QQueryOperations> idProperty() {
+extension LogProductDatabaseModelQueryProperty on QueryBuilder<
+    LogProductDatabaseModel, LogProductDatabaseModel, QQueryProperty> {
+  QueryBuilder<LogProductDatabaseModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       categoryIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'categoryId');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, double, QQueryOperations> costProperty() {
+  QueryBuilder<LogProductDatabaseModel, double, QQueryOperations>
+      costProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cost');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
       createdByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'createdByUserId');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, DateTime, QQueryOperations>
       dateCreatedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dateCreated');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, bool?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, bool?, QQueryOperations>
       isAppWriteSyncedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isAppWriteSynced');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, DateTime?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, DateTime, QQueryOperations>
       lastDateModifiedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastDateModified');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       localImagePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'localImagePath');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       onlineImagePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'onlineImagePath');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, double, QQueryOperations> priceProperty() {
+  QueryBuilder<LogProductDatabaseModel, double, QQueryOperations>
+      priceProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'price');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
       productIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'productId');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
       productNameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'productName');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, double, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, double, QQueryOperations>
       quantityOnHandProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'quantityOnHand');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, double, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, double, QQueryOperations>
       reorderQuantityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'reorderQuantity');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
       unitOfMeasurementIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'unitOfMeasurementId');
     });
   }
 
-  QueryBuilder<ProductDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       userAssignedProductIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'userAssignedProductId');

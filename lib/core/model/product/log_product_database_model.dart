@@ -1,9 +1,9 @@
 import 'package:isar/isar.dart';
 
-part 'product_database_model.g.dart';
+part 'log_product_database_model.g.dart';
 
 @collection
-class ProductDatabaseModel {
+class LogProductDatabaseModel {
   Id id = Isar.autoIncrement;
   late String productId;
   late String productName;
@@ -16,9 +16,9 @@ class ProductDatabaseModel {
   late double reorderQuantity;
   late String unitOfMeasurementId;
   late String createdByUserId;
-  String? lastModifiedByUserId;
+  late String lastModifiedByUserId;
   late DateTime dateCreated;
-  DateTime? lastDateModified;
+  late DateTime lastDateModified;
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;
