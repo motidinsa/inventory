@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
@@ -11,13 +10,15 @@ import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
+import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
-import 'package:my_inventory/edit_product/controller/edit_controller.dart';
+import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/main.dart';
+import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -66,18 +67,18 @@ getFormattedNumberWithoutComa(num) {
   return num.toString();
 }
 
-onActionButtonPressed({required String redirectFrom, String? productId}) async {
-  AppController appController = Get.find();
+onActionButtonPressed({required String redirectFrom}) async {
   await unFocus();
   if (redirectFrom == productDetailN) {
-    var productsBox = Hive.box<ProductDatabaseModel>('products');
-    // ProductListController productListController = Get.find();
-    await productsBox.delete(productId);
-    // productListController.productList(productsBox.values
-    //     .where((product) => product.productName
-    //         .toLowerCase()
-    //         .contains(productListController.searchedText.toLowerCase()))
-    //     .toList());
+    await isar.writeTxn(() async {
+      await isar.productDatabaseModels.delete(ProductDetailController.to.id);
+      await isar.deletedProductDatabaseModels.put(
+        DeletedProductDatabaseModel()
+          ..productId = ProductDetailController.to.productId
+          ..deletedDate = DateTime.now()
+          ..deletedByUserId = AppController.to.userId.value,
+      );
+    });
     Get.back();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
@@ -147,7 +148,7 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
     } else {
       return;
     }
-  } else if (appController.formKey.currentState!.validate()) {
+  } else if (AppController.to.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN) {
       AddProductController addProductController = Get.find();
       addProductController.isSubmitButtonPressed(true);
@@ -162,7 +163,6 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
     }
-    // Get.back();
   }
 }
 
@@ -202,8 +202,8 @@ titleToData({required String title, int? index}) {
       value = purchaseController.emptyString.value;
     }
   } else if (currentPage == productListN()) {
-    ProductListController productListController = Get.find();
-    value = productListController.emptyValue.value;
+    // ProductListController productListController = Get.find();
+    // value = productListController.emptyValue.value;
   } else if (currentPage == editProductN) {
     EditProductController editProductController = Get.find();
     if (title == productN) {
@@ -306,7 +306,9 @@ onAddIconPressed({String? type}) {
 }
 
 onAddImagePressed({int? id}) {
-  ProductListController.to.selectedId = id;
+  if (id != null) {
+    ProductListController.to.selectedId = id;
+  }
   Get.dialog(const AlertDialogOptionSelect(
     title: selectSourceN,
   )).then((value) => unFocus());

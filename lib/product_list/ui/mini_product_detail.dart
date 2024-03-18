@@ -10,6 +10,7 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 
+
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
   final int index;
@@ -23,10 +24,13 @@ class MiniProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onMiniProductDetailPressed(
-        productDatabaseModel: productModel,
-        index: index,
-      ),
+      onTap: () {
+
+        onMiniProductDetailPressed(
+          productDatabaseModel: productModel,
+          index: index,
+        );
+      },
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         shape: smoothRectangleBorder(radius: 12),

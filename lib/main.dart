@@ -14,6 +14,8 @@ import 'package:my_inventory/core/ui/drawer/my_drawer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
+
 late Isar isar;
 
 void main() async {
@@ -24,6 +26,7 @@ void main() async {
     [
       ProductDatabaseModelSchema,
       LogProductDatabaseModelSchema,
+      DeletedProductDatabaseModelSchema,
       CategoryDatabaseModelSchema,
       LogCategoryDatabaseModelSchema,
       UnitOfMeasurementDatabaseModelSchema,

@@ -5,12 +5,12 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
-// import 'package:my_inventory/core/model/product/product_model/main.dart';
-
+import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/main.dart';
+import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 
 class EditProductController extends GetxController {
   final ProductDatabaseModel productDatabaseModel;
@@ -91,8 +91,31 @@ class EditProductController extends GetxController {
       dbProduct?.userAssignedProductId =
           productInfo.value.userAssignedProductId;
       await isar.productDatabaseModels.put(dbProduct!);
+      await isar.logProductDatabaseModels.put(
+        LogProductDatabaseModel()
+          ..productId = productDatabaseModel.productId
+          ..productName = productInfo.value.name
+          ..description = productInfo.value.description
+          ..categoryId = productInfo.value.categoryId
+          ..userAssignedProductId = productInfo.value.userAssignedProductId
+          ..cost = getValidNumValue(productInfo.value.cost)
+          ..price = getValidNumValue(productInfo.value.price)
+          ..quantityOnHand = getValidNumValue(productInfo.value.quantityOnHand)
+          ..reorderQuantity =
+              getValidNumValue(productInfo.value.reorderQuantity)
+          ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
+          ..createdByUserId = productDatabaseModel.createdByUserId
+          ..lastModifiedByUserId = appController.userId.value
+          ..dateCreated = productInfo.value.dateCreated
+          ..lastDateModified = now
+          ..localImagePath = productInfo.value.localImagePath
+          ..onlineImagePath = productDatabaseModel.onlineImagePath,
+      );
     });
-
+    ProductListController.to.productList(isar.productDatabaseModels
+        .filter()
+        .productNameContains(ProductListController.to.searchedText.value)
+        .findAllSync());
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,

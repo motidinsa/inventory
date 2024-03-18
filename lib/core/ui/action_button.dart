@@ -8,12 +8,10 @@ import 'package:my_inventory/core/model/action_button_enum.dart';
 class ActionButton extends StatelessWidget {
   final String redirectFrom;
   final String? currentPage;
-  final String? productId;
   final ActionButtonType? actionButtonType;
 
   ActionButton(
       {super.key,
-      this.productId,
       required this.redirectFrom,
       this.actionButtonType,
       this.currentPage});
@@ -30,7 +28,7 @@ class ActionButton extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => onActionButtonPressed(
                   redirectFrom: redirectFrom,
-                  productId: productId,),
+                  ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(

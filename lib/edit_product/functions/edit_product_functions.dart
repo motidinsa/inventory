@@ -4,7 +4,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/edit_product/controller/edit_controller.dart';
+import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';

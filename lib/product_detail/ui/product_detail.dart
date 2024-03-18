@@ -20,8 +20,8 @@ class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
   final int index;
   final DateFormat dateFormatter = DateFormat("MMM d, y");
-  final ProductDetailController productDetailController =
-      Get.put(ProductDetailController());
+
+  // final ProductDetailController productDetailController =
 
   ProductDetail(
       {super.key, required this.productDatabaseModel, required this.index});
@@ -38,6 +38,12 @@ class ProductDetail extends StatelessWidget {
       reorderQuantityN: productDatabaseModel.reorderQuantity,
       uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),
     };
+    Get.put(
+      ProductDetailController(
+        id: productDatabaseModel.id,
+        productId: productDatabaseModel.productId,
+      ),
+    );
     return BodyWrapper(
       pageName: productDetailN,
       body: ListView(
@@ -179,7 +185,7 @@ class ProductDetail extends StatelessWidget {
           ActionButton(
             redirectFrom: productDetailN,
             actionButtonType: ActionButtonType.delete,
-            productId: productDatabaseModel.productId,
+            // productId: productDatabaseModel.productId,
           ),
         ],
       ),
