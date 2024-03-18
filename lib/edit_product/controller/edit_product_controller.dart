@@ -52,14 +52,11 @@ class EditProductController extends GetxController {
       categoryName: categoryName,
       cost: productDatabaseModel.cost.toString(),
       price: productDatabaseModel.price.toString(),
-      modifiedByUserId: appController.userId.value,
-      dateCreated: productDatabaseModel.dateCreated,
-      lastDateModified: productDatabaseModel.lastDateModified,
       quantityOnHand: productDatabaseModel.quantityOnHand.toString(),
       reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
       unitOfMeasurementId: productDatabaseModel.unitOfMeasurementId,
       unitOfMeasurementName: uomName,
-      id: productDatabaseModel.id,
+      // id: productDatabaseModel.id,
       userAssignedProductId: productDatabaseModel.userAssignedProductId,
     ).obs;
     super.onInit();
@@ -80,7 +77,7 @@ class EditProductController extends GetxController {
       dbProduct?.price = getValidNumValue(productInfo.value.price);
       dbProduct?.createdByUserId = appController.userId.value;
       dbProduct?.lastModifiedByUserId = appController.userId.value;
-      dbProduct?.dateCreated = productInfo.value.dateCreated;
+      dbProduct?.dateCreated = productDatabaseModel.dateCreated;
       dbProduct?.lastDateModified = now;
       dbProduct?.quantityOnHand =
           getValidNumValue(productInfo.value.quantityOnHand);
@@ -105,9 +102,9 @@ class EditProductController extends GetxController {
               getValidNumValue(productInfo.value.reorderQuantity)
           ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
           ..createdByUserId = productDatabaseModel.createdByUserId
-          ..lastModifiedByUserId = appController.userId.value
-          ..dateCreated = productInfo.value.dateCreated
-          ..lastDateModified = now
+          ..modifiedByUserId = appController.userId.value
+          ..dateCreated = productDatabaseModel.dateCreated
+          ..dateModified = now
           ..localImagePath = productInfo.value.localImagePath
           ..onlineImagePath = productDatabaseModel.onlineImagePath,
       );

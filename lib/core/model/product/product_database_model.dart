@@ -5,6 +5,7 @@ part 'product_database_model.g.dart';
 @collection
 class ProductDatabaseModel {
   Id id = Isar.autoIncrement;
+  late String userId;
   late String productId;
   late String productName;
   String? description;

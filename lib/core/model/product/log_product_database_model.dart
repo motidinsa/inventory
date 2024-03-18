@@ -5,6 +5,7 @@ part 'log_product_database_model.g.dart';
 @collection
 class LogProductDatabaseModel {
   Id id = Isar.autoIncrement;
+  late String userId;
   late String productId;
   late String productName;
   String? description;
@@ -16,9 +17,9 @@ class LogProductDatabaseModel {
   late double reorderQuantity;
   late String unitOfMeasurementId;
   late String createdByUserId;
-  late String lastModifiedByUserId;
+  late String modifiedByUserId;
   late DateTime dateCreated;
-  late DateTime lastDateModified;
+  late DateTime dateModified;
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;

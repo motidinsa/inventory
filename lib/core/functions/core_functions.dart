@@ -102,8 +102,8 @@ onActionButtonPressed({required String redirectFrom}) async {
               ..dateCreated = now
               ..createdByUserId = appController.userId.value
               ..categoryId = id
-              ..lastDateModified = now
-              ..lastModifiedByUserId = appController.userId.value,
+              ..dateModified = now
+              ..modifiedByUserId = appController.userId.value,
           );
         });
         if (currentPage == addProductN) {
@@ -130,8 +130,8 @@ onActionButtonPressed({required String redirectFrom}) async {
               ..dateCreated = now
               ..createdByUserId = appController.userId.value
               ..uomId = id
-              ..lastDateModified = now
-              ..lastModifiedByUserId = appController.userId.value,
+              ..dateModified = now
+              ..modifiedByUserId = appController.userId.value,
           );
         });
         if (currentPage == addProductN) {
@@ -187,20 +187,20 @@ titleToData({required String title, int? index}) {
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
-    PurchaseController purchaseController = Get.find();
-    if (title == purchaseN()) {
-      value = purchaseController.purchaseModels[index!].value.productName;
-    } else if (title == quantityN()) {
-      value = purchaseController.purchaseModels[index!].value.quantity;
-    } else if (title == priceN()) {
-      value = purchaseController.purchaseModels[index!].value.cost;
-    } else if (title == discountN()) {
-      value = purchaseController.discount.value;
-    } else if (title == searchProductsN()) {
-      value = purchaseController.emptyString.value;
-    } else if (title == defaultN) {
-      value = purchaseController.emptyString.value;
-    }
+    // PurchaseController purchaseController = Get.find();
+    // if (title == purchaseN()) {
+    //   value = purchaseController.purchaseModels[index!].value.productName;
+    // } else if (title == quantityN()) {
+    //   value = purchaseController.purchaseModels[index!].value.quantity;
+    // } else if (title == priceN()) {
+    //   value = purchaseController.purchaseModels[index!].value.cost;
+    // } else if (title == discountN()) {
+    //   value = purchaseController.discount.value;
+    // } else if (title == searchProductsN()) {
+    //   value = purchaseController.emptyString.value;
+    // } else if (title == defaultN) {
+    //   value = purchaseController.emptyString.value;
+    // }
   } else if (currentPage == productListN()) {
     // ProductListController productListController = Get.find();
     // value = productListController.emptyValue.value;
@@ -345,10 +345,8 @@ onImageSourceButtonPressed({
         await isar.productDatabaseModels.put(dbProduct!);
       });
       ProductListController.to.selectedId = null;
-      // var productBox = Hive.box<ProductDatabaseModel>('products');
-      // ProductDatabaseModel? currentProduct = productBox.get(productId);
-      // currentProduct!.localImagePath = value?.path;
-      // productBox.put(productId, currentProduct);
+      ProductListController.to
+          .productList(isar.productDatabaseModels.where().findAllSync());
     }
 
     Get.back();

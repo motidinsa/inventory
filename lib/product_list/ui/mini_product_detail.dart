@@ -52,7 +52,6 @@ class MiniProductDetail extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       productModel.productName,
-                      // overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontWeight: bold(),
                           fontSize: 17,

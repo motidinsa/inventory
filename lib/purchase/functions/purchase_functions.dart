@@ -61,8 +61,8 @@ onPurchaseSearchProductAlertDialogOptionSelect(
     {required ProductDatabaseModel productModel, required int index}) {
   final PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index].update((purchase) {
-    purchase?.productName = productModel.productName;
-    purchase?.productId = productModel.productId;
+    // purchase?.productName = productModel.productName;
+    purchase?.productId = productModel.id;
     purchase?.cost =
         emptyIfDefaultValue(getFormattedNumberWithoutComa(productModel.cost));
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {

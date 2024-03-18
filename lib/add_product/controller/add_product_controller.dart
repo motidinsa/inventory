@@ -38,13 +38,10 @@ class AddProductController extends GetxController {
     userAssignedProductId: '',
     cost: '',
     price: '',
-    dateCreated: DateTime.now(),
-    lastDateModified: DateTime.now(),
     quantityOnHand: '',
     reorderQuantity: '',
     unitOfMeasurementId: '',
     unitOfMeasurementName: '',
-    id: 0,
   ).obs;
 
   onAddProductSaveButtonPressed() async {
@@ -57,7 +54,7 @@ class AddProductController extends GetxController {
       ..cost = getValidNumValue(productInfo.value.cost)
       ..price = getValidNumValue(productInfo.value.price)
       ..createdByUserId = appController.userId.value
-      ..dateCreated = productInfo.value.dateCreated
+      ..dateCreated = now
       ..quantityOnHand = getValidNumValue(productInfo.value.quantityOnHand)
       ..reorderQuantity = getValidNumValue(productInfo.value.reorderQuantity)
       ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
@@ -72,7 +69,7 @@ class AddProductController extends GetxController {
       ..cost = getValidNumValue(productInfo.value.cost)
       ..price = getValidNumValue(productInfo.value.price)
       ..createdByUserId = appController.userId.value
-      ..dateCreated = productInfo.value.dateCreated
+      ..dateCreated = now
       ..quantityOnHand = getValidNumValue(productInfo.value.quantityOnHand)
       ..reorderQuantity = getValidNumValue(productInfo.value.reorderQuantity)
       ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
@@ -80,8 +77,8 @@ class AddProductController extends GetxController {
       ..userAssignedProductId =
           nullIfEmpty(productInfo.value.userAssignedProductId)
       ..productId = generateDatabaseId(time: now)
-      ..lastDateModified = now
-      ..lastModifiedByUserId = appController.userId.value;
+      ..dateModified = now
+      ..modifiedByUserId = appController.userId.value;
 
     await isar.writeTxn(() async {
       await isar.productDatabaseModels.put(dbProduct);

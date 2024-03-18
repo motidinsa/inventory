@@ -1,6 +1,5 @@
 class ProductModel {
   String name;
-  int id;
   String? description;
   String? categoryId;
   String? categoryName;
@@ -11,9 +10,6 @@ class ProductModel {
   String reorderQuantity;
   String unitOfMeasurementId;
   String unitOfMeasurementName;
-  String? modifiedByUserId;
-  DateTime dateCreated;
-  DateTime? lastDateModified;
   String? localImagePath;
 
   ProductModel({
@@ -26,11 +22,7 @@ class ProductModel {
     required this.price,
     required this.quantityOnHand,
     required this.reorderQuantity,
-    required this.dateCreated,
-    required this.lastDateModified,
     this.localImagePath,
-    required this.id,
-    this.modifiedByUserId,
     required this.unitOfMeasurementId,
     required this.unitOfMeasurementName,
   });

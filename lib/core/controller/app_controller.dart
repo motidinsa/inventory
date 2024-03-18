@@ -35,8 +35,8 @@ class AppController extends GetxController {
             ..name = element
             ..uomId = generateDatabaseId(time: now, identifier: element)
             ..dateCreated = now
-            ..lastDateModified = now
-            ..lastModifiedByUserId = userId.value,
+            ..dateModified = now
+            ..modifiedByUserId = userId.value,
         );
       }
       await isar.writeTxn(() async {

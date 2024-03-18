@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/purchase/model/purchase_model.dart';
+import 'package:my_inventory/core/model/purchase/purchase_model.dart';
+
+import '../../main.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
@@ -15,42 +18,36 @@ class PurchaseController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var purchaseModels = [
     PurchaseModel(
-      date: DateTime.now(),
-      dateAdded: DateTime.now(),
-      dateModified: DateTime.now(),
-      productId: '',
-      productName: '',
+      productId: 0,
       quantity: '',
-      reference: '',
       totalAmount: 0,
       cost: '',
-      id: '',
+      purchaseDate: DateTime.now(),
     ).obs
   ].obs;
 
   @override
   void onInit() {
-    products = Hive.box<ProductDatabaseModel>('products').values.toList();
-    searchProductFoundResult(
-        Hive.box<ProductDatabaseModel>('products').values.toList());
+    products = isar.productDatabaseModels.where().findAllSync();
+    searchProductFoundResult(products);
     super.onInit();
   }
 
   addPurchaseProduct() {
-    purchaseModels.add(
-      PurchaseModel(
-        date: DateTime.now(),
-        dateAdded: DateTime.now(),
-        dateModified: DateTime.now(),
-        productId: '',
-        productName: '',
-        quantity: '',
-        reference: '',
-        totalAmount: 0,
-        cost: '',
-        id: '',
-      ).obs,
-    );
+    // purchaseModels.add(
+    //   PurchaseModel(
+    //     date: DateTime.now(),
+    //     dateAdded: DateTime.now(),
+    //     dateModified: DateTime.now(),
+    //     productId: '',
+    //     productName: '',
+    //     quantity: '',
+    //     reference: '',
+    //     totalAmount: 0,
+    //     cost: '',
+    //     id: '',
+    //   ).obs,
+    // );
   }
 
   savePurchaseProductToDB() async {
@@ -58,6 +55,7 @@ class PurchaseController extends GetxController {
     // var salesBox = Hive.box<SalesModel>('sales');
     // var productsBox = Hive.box<ProductModel>('products');
     // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+    // List
     // for (var element in purchaseModels) {
     //   String key = dateFormatter.format(DateTime.now());
     //   await salesBox.put(
@@ -87,36 +85,36 @@ class PurchaseController extends GetxController {
     // Get.back();
 
     isLocalSaveLoading(true);
-    var purchasesBox = Hive.box<PurchaseModel>('purchases');
-    var productsBox = Hive.box<ProductDatabaseModel>('products');
-    final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
-    for (var element in purchaseModels) {
-      String key = dateFormatter.format(DateTime.now());
-      await purchasesBox.put(
-        key,
-        PurchaseModel(
-          id: key,
-          date: element.value.date,
-          dateAdded: now,
-          dateModified: now,
-          cost: element.value.cost,
-          totalAmount: element.value.totalAmount,
-          productId: element.value.productId,
-          customerId: element.value.customerId,
-          customerName: element.value.customerName,
-          productName: element.value.productName,
-          quantity: element.value.quantity,
-          reference: element.value.reference,
-          vendorId: element.value.vendorId,
-          vendorName: element.value.vendorName,
-        ),
-      );
+    // var purchasesBox = Hive.box<PurchaseModel>('purchases');
+    // var productsBox = Hive.box<ProductDatabaseModel>('products');
+    // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
+    // for (var element in purchaseModels) {
+    //   String key = dateFormatter.format(DateTime.now());
+    //   await purchasesBox.put(
+    //     key,
+    //     PurchaseModel(
+    //       id: key,
+    //       date: element.value.date,
+    //       dateAdded: now,
+    //       dateModified: now,
+    //       cost: element.value.cost,
+    //       totalAmount: element.value.totalAmount,
+    //       productId: element.value.productId,
+    //       customerId: element.value.customerId,
+    //       customerName: element.value.customerName,
+    //       productName: element.value.productName,
+    //       quantity: element.value.quantity,
+    //       reference: element.value.reference,
+    //       vendorId: element.value.vendorId,
+    //       vendorName: element.value.vendorName,
+    //     ),
+    //   );
 
-      var currentProduct = productsBox.get(element.value.productId);
-      currentProduct!.quantityOnHand = (currentProduct.quantityOnHand +
-          double.parse(element.value.quantity));
-      await productsBox.put(element.value.productId, currentProduct);
-    }
+      // var currentProduct = productsBox.get(element.value.productId);
+      // currentProduct!.quantityOnHand = (currentProduct.quantityOnHand +
+      //     double.parse(element.value.quantity));
+      // await productsBox.put(element.value.productId, currentProduct);
+    // }
 
     isLocalSaveLoading(false);
   }
