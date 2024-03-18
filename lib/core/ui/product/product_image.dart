@@ -6,7 +6,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductImage extends StatelessWidget {
-  final String productId;
+  final int id;
   final String currentPage;
   final String? localImagePath;
   final double imageWidth;
@@ -14,24 +14,19 @@ class ProductImage extends StatelessWidget {
   const ProductImage(
       {super.key,
       this.localImagePath,
-      required this.productId,
+      required this.id,
       required this.currentPage,
       this.imageWidth = 75});
 
   @override
   Widget build(BuildContext context) {
     return localImagePath != null
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ClipRRect(
-                borderRadius: smoothBorderRadius(radius: 12),
-                child: Image.file(
-                  File(localImagePath!),
-                  width: imageWidth,
-                ),
-              ),
-            ],
+        ? ClipRRect(
+            borderRadius: smoothBorderRadius(radius: 12),
+            child: Image.file(
+              File(localImagePath!),
+              width: imageWidth,
+            ),
           )
         : Container(
             width: 100,
@@ -47,7 +42,7 @@ class ProductImage extends StatelessWidget {
                 if (currentPage != productDetailN)
                   TextButton(
                     onPressed: () => onAddImagePressed(
-                      productId: productId,
+                      id: id,
                     ),
                     style: TextButton.styleFrom(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),

@@ -25,41 +25,41 @@ class AddProductImage extends StatelessWidget {
               fontWeight: bold(), fontSize: 16, color: Colors.grey.shade600),
         ),
         sizedBox(width: 20),
-        // Obx(() {
-        if (getProductImagePath() != null)
-          Column(
-            children: [
-              ClipRRect(
-                borderRadius: smoothBorderRadius(radius: 15),
-                child: Obx(() => Image.file(
-                      File(getProductImagePath()),
-                      width: 120,
-                    )),
-              ),
-              sizedBox(height: 5),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () => onImageDeleteButtonPressed(),
-                    style: TextButton.styleFrom(foregroundColor: Colors.red),
-                    child: const Text(
-                      deleteN,
-                      style: TextStyle(color: Colors.red),
-                    ),
+        Obx(() {
+          if (getProductImagePath() != null) {
+            return Column(
+              children: [
+                ClipRRect(
+                  borderRadius: smoothBorderRadius(radius: 15),
+                  child: Image.file(
+                    File(getProductImagePath()),
+                    width: 120,
                   ),
-                  TextButton(
-                    onPressed: () => onAddImagePressed(),
-                    child: const Text(
-                      changeN,
-                      // style: TextStyle(color: Colors.red),
+                ),
+                sizedBox(height: 5),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () => onImageDeleteButtonPressed(),
+                      style: TextButton.styleFrom(foregroundColor: Colors.red),
+                      child: const Text(
+                        deleteN,
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ],
-          )
-        else
-          ElevatedButton(
+                    TextButton(
+                      onPressed: () => onAddImagePressed(),
+                      child: const Text(
+                        changeN,
+                        // style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            );
+          }
+          return ElevatedButton(
             onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 12),
@@ -69,7 +69,9 @@ class AddProductImage extends StatelessWidget {
             child: const Column(
               children: [Icon(Icons.add), Text('Add image')],
             ),
-          )
+          );
+        })
+
         // }),
       ],
     );

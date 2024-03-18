@@ -13,10 +13,9 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
-  final String? productId;
 
   const AlertDialogOptionSelect(
-      {super.key, required this.title, this.listIndex, this.productId});
+      {super.key, required this.title, this.listIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -53,34 +52,36 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           index: listIndex,
                         ),
                       ),
-                    Obx(() => ListView.separated(
-                          shrinkWrap: true,
-                          reverse: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return AlertDialogOptionItem(
-                              title: title,
-                              index: [
-                                purchaseN(),
-                                salesN()
-                              ].contains(AppController.to.currentPages.last)
-                                  ? listIndex
-                                  : null,
-                              name: getAlertDialogOptionName(
-                                  title: title, index: index),
-                              id: getAlertDialogOptionId(
-                                  title: title, index: index),
-                            );
-                          },
-                          itemCount: getAlertDialogOptionLists(
+                    Obx(
+                      () => ListView.separated(
+                        shrinkWrap: true,
+                        reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return AlertDialogOptionItem(
                             title: title,
-                          ).length,
-                          separatorBuilder: (BuildContext context, int index) =>
-                              Divider(
-                            color: Colors.grey.shade300,
-                            height: 0,
-                          ),
-                        )),
+                            index: [
+                              purchaseN(),
+                              salesN()
+                            ].contains(AppController.to.currentPages.last)
+                                ? listIndex
+                                : null,
+                            name: getAlertDialogOptionName(
+                                title: title, index: index),
+                            id: getAlertDialogOptionId(
+                                title: title, index: index),
+                          );
+                        },
+                        itemCount: getAlertDialogOptionLists(
+                          title: title,
+                        ).length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Divider(
+                          color: Colors.grey.shade300,
+                          height: 0,
+                        ),
+                      ),
+                    ),
                     if (getAlertDialogOptionLists(title: title).length == 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(

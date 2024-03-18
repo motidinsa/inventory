@@ -45,20 +45,18 @@ getAlertDialogOptionLists({String? title}) {
     if (title == selectCategoryN) {
       return addProductController.categoryListFoundResult;
     } else if (title == selectUomSN) {
-      {
-        return addProductController.unitOfMeasurementListFoundResult;
-      }
-    } else if (currentPage == editProductN) {
-      EditProductController editProductController = Get.find();
-      if (title == selectCategoryN) {
-        return editProductController.categoryListFoundResult;
-      } else if (title == selectUomSN) {
-        return editProductController.unitOfMeasurementListFoundResult;
-      }
-    } else if (currentPage == purchaseN()) {
-      PurchaseController purchaseController = Get.find();
-      return purchaseController.searchProductFoundResult;
+      return addProductController.unitOfMeasurementListFoundResult;
     }
+  } else if (currentPage == editProductN) {
+    EditProductController editProductController = Get.find();
+    if (title == selectCategoryN) {
+      return editProductController.categoryListFoundResult;
+    } else if (title == selectUomSN) {
+      return editProductController.unitOfMeasurementListFoundResult;
+    }
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    return purchaseController.searchProductFoundResult;
   }
 }
 
@@ -76,30 +74,26 @@ getAlertDialogOptionName({required int index, String? title}) {
               as CategoryDatabaseModel)
           .categoryName;
     } else if (title == selectUomSN) {
-      {
-        return (addProductController.unitOfMeasurementListFoundResult[index]
-                as UnitOfMeasurementDatabaseModel)
-            .name;
-      }
-    } else if (currentPage == editProductN) {
-      EditProductController editProductController = Get.find();
-      if (title == selectCategoryN) {
-        return (editProductController.categoryListFoundResult[index].value
-                as CategoryDatabaseModel)
-            .categoryName;
-      } else if (title == selectUomSN) {
-        {
-          return (editProductController.unitOfMeasurementListFoundResult[index]
-                  .value as UnitOfMeasurementDatabaseModel)
-              .name;
-        }
-      } else if (currentPage == purchaseN()) {
-        PurchaseController purchaseController = Get.find();
-        return (purchaseController.searchProductFoundResult[index]
-                as ProductDatabaseModel)
-            .productName;
-      }
+      return (addProductController.unitOfMeasurementListFoundResult[index]
+              as UnitOfMeasurementDatabaseModel)
+          .name;
     }
+  } else if (currentPage == editProductN) {
+    EditProductController editProductController = Get.find();
+    if (title == selectCategoryN) {
+      return (editProductController.categoryListFoundResult[index]
+              as CategoryDatabaseModel)
+          .categoryName;
+    } else if (title == selectUomSN) {
+      return (editProductController.unitOfMeasurementListFoundResult[index]
+              as UnitOfMeasurementDatabaseModel)
+          .name;
+    }
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    return (purchaseController.searchProductFoundResult[index]
+            as ProductDatabaseModel)
+        .productName;
   }
 }
 
@@ -117,29 +111,25 @@ getAlertDialogOptionId({required int index, String? title}) {
               as CategoryDatabaseModel)
           .categoryId;
     } else if (title == selectUomSN) {
-      {
-        return (addProductController.unitOfMeasurementListFoundResult[index]
-                as UnitOfMeasurementDatabaseModel)
-            .uomId;
-      }
-    } else if (currentPage == editProductN) {
-      EditProductController editProductController = Get.find();
-      if (title == selectCategoryN) {
-        return (editProductController.categoryListFoundResult[index].value
-                as CategoryDatabaseModel)
-            .categoryId;
-      } else if (title == selectUomSN) {
-        {
-          return (editProductController.unitOfMeasurementListFoundResult[index]
-                  .value as UnitOfMeasurementDatabaseModel)
-              .uomId;
-        }
-      } else if (currentPage == purchaseN()) {
-        PurchaseController purchaseController = Get.find();
-        return (purchaseController.searchProductFoundResult[index]
-                as ProductDatabaseModel)
-            .productId;
-      }
+      return (addProductController.unitOfMeasurementListFoundResult[index]
+              as UnitOfMeasurementDatabaseModel)
+          .uomId;
     }
+  } else if (currentPage == editProductN) {
+    EditProductController editProductController = Get.find();
+    if (title == selectCategoryN) {
+      return (editProductController.categoryListFoundResult[index]
+              as CategoryDatabaseModel)
+          .categoryId;
+    } else if (title == selectUomSN) {
+      return (editProductController.unitOfMeasurementListFoundResult[index]
+              as UnitOfMeasurementDatabaseModel)
+          .uomId;
+    }
+  } else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    return (purchaseController.searchProductFoundResult[index]
+            as ProductDatabaseModel)
+        .productId;
   }
 }

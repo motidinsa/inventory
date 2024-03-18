@@ -5,7 +5,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../functions/product/product_functions.dart';
+import 'package:my_inventory/core/functions/product/product_functions.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;

@@ -6,11 +6,11 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/main.dart';
 
 class AppController extends GetxController {
-  static AppController get to => Get.find();
   final formKey = GlobalKey<FormState>();
   var userId = ''.obs;
   List<String> currentPages = [];
 
+  static AppController get to => Get.find();
   @override
   Future<void> onInit() async {
     super.onInit();

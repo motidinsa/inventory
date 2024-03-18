@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
-
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-
-import 'package:my_inventory/core/controller/app_controller.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -60,19 +58,15 @@ onTextFieldChange({
   }
 }
 
-onTextFieldPressed(
-    {
-    String? title,
-    int? index,
-    required BuildContext context}) {
+onTextFieldPressed({String? title, int? index, required BuildContext context}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {
     onAddProductTextFieldPressed(title: title!);
   } else if (currentPage == editProductN) {
-    onEditProductTextFieldPressed(title: title!, context: context);
+    onEditProductTextFieldPressed(title: title!);
   } else if (currentPage == salesN()) {
-    onSalesProductSelect( title: title, index: index);
+    onSalesProductSelect(title: title, index: index);
   } else if (currentPage == purchaseN()) {
     onPurchaseProductSelect(title: title, index: index);
   }

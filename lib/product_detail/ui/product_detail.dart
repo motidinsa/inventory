@@ -14,7 +14,7 @@ import 'package:my_inventory/edit_product/ui/edit_product.dart';
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
-import '../controller/product_detail_controller.dart';
+import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
@@ -97,7 +97,7 @@ class ProductDetail extends StatelessWidget {
                 Row(
                   children: [
                     ProductImage(
-                      productId: productDatabaseModel.productId,
+                      id: productDatabaseModel.id,
                       currentPage: productDetailN,
                       localImagePath: productDatabaseModel.localImagePath,
                       imageWidth: 120,

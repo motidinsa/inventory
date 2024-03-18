@@ -1,4 +1,3 @@
-// import 'package:appwrite/appwrite.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,10 +23,10 @@ void main() async {
   isar = await Isar.open(
     [
       ProductDatabaseModelSchema,
-      CategoryDatabaseModelSchema,
-      UnitOfMeasurementDatabaseModelSchema,
       LogProductDatabaseModelSchema,
+      CategoryDatabaseModelSchema,
       LogCategoryDatabaseModelSchema,
+      UnitOfMeasurementDatabaseModelSchema,
       LogUnitOfMeasurementDatabaseModelSchema
     ],
     directory: dir.path,
@@ -35,31 +34,8 @@ void main() async {
   // await Isar.initialize();
   // await initializeDatabase();
   Get.put(AppController());
-  // Stream<void> userChanged = isar.users.watchLazy();
-  // userChanged.listen(
-  //   (event) {
-  //     // Executed when data event is received
-  //     print('Contact added');
-  //   },
-  //   onError: (err) {
-  //     // Executed when error is received
-  //     print('Error: ${err}');
-  //   },
-  //   cancelOnError:
-  //       false, // The subscription is automatically canceled when the first error event is delivered – default is true
-  //   onDone: () {
-  //     // Executed when done event is recieved
-  //     print('Done!');
-  //   },
-  // );
   runApp(const MyApp());
-  // final dir = await getApplicationDocumentsDirectory();
-  // var isar = await Isar.open(
-  //   [CustomerDatabaseModelSchema],
-  //   directory: dir.path,
-  // );
-  // AppController a = Get.put(AppController());
-  // a.isar = isar;
+
   // Client client = Client();
   //
   // client

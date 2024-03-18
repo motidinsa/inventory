@@ -1,9 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/edit_product/controller/edit_controller.dart';
+
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/main.dart';
 
 onEditProductFocusChange({
   required String title,
@@ -32,14 +37,25 @@ onEditProductFocusChange({
   });
 }
 
-onEditProductTextFieldPressed(
-    {required String title, required BuildContext context}) {
+onEditProductTextFieldPressed({required String title}) {
   final EditProductController editProductController = Get.find();
   Map<String, List> itemsWithList = {
     categoryN: editProductController.categoryListFoundResult,
     uomSN: editProductController.unitOfMeasurementListFoundResult,
   };
-
+  if (itemsWithList.keys.contains(title)) {
+    var categoryList = isar.categoryDatabaseModels.where().findAllSync();
+    var uomList = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
+    editProductController.categoryListFoundResult(categoryList);
+    editProductController.unitOfMeasurementListFoundResult(uomList);
+    Get.dialog(AlertDialogOptionSelect(
+      title: title == categoryN ? selectCategoryN : selectUomSN,
+    )).then(
+      (value) async {
+        await unFocus();
+      },
+    );
+  }
   // if (itemsWithList.keys.contains(title)) {
   //   var categoryBox = Hive.box<CategoryDatabaseModel>('category');
   //   var uomBox =
@@ -108,4 +124,5 @@ onEditProductAlertDialogOptionSelect(
       product?.unitOfMeasurementName = data;
     }
   });
+  editProductController.update();
 }

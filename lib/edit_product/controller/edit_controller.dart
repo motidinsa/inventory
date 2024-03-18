@@ -3,16 +3,14 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 // import 'package:my_inventory/core/model/product/product_model/main.dart';
 
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/product_list/controller/product_list_controller.dart';
-
-import '../../core/functions/core_functions.dart';
-import '../../main.dart';
+import 'package:my_inventory/main.dart';
 
 class EditProductController extends GetxController {
   final ProductDatabaseModel productDatabaseModel;
@@ -71,7 +69,6 @@ class EditProductController extends GetxController {
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
     // var productsBox = Hive.box<ProductDatabaseModel>('products');
-    ProductListController productListController = Get.find();
     DateTime now = DateTime.now();
     await isar.writeTxn(() async {
       final dbProduct =
@@ -95,26 +92,6 @@ class EditProductController extends GetxController {
           productInfo.value.userAssignedProductId;
       await isar.productDatabaseModels.put(dbProduct!);
     });
-    // await productsBox.put(
-    //   productInfo.value.id,
-    //   ProductDatabaseModel(
-    //     productName: productInfo.value.name,
-    //     description: productInfo.value.description,
-    //     categoryId: productInfo.value.categoryId,
-    //     productId: productInfo.value.productId,
-    //     cost: getValidNumValue(productInfo.value.cost),
-    //     price: getValidNumValue(productInfo.value.price),
-    //     createdByUserId: appController.userId.value,
-    //     modifiedByUserId: productInfo.value.modifiedByUserId,
-    //     dateCreated: productInfo.value.dateCreated,
-    //     dateModified: productInfo.value.dateModified,
-    //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-    //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-    //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-    //     localImagePath: productInfo.value.localImagePath,
-    //     id: productInfo.value.id,
-    //   ),
-    // );
 
     // if (productInfo.value.localImagePath != null) {
     //   try {
@@ -125,7 +102,6 @@ class EditProductController extends GetxController {
     //     log(e.type.message);
     //   }
     // }
-    // productListController.productList(productsBox.values.toList());
     isLocalSaveLoading(false);
 
     Get.back();

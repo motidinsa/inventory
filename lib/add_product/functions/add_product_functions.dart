@@ -105,7 +105,7 @@ onPurchaseProductSelect({
   }
 }
 
-onAddProductTextFieldPressed({required String title}) async {
+onAddProductTextFieldPressed({required String title}) {
   final AddProductController addProductController = Get.find();
   Map<String, List> itemsWithList = {
     categoryN: addProductController.categoryListFoundResult,
@@ -113,8 +113,8 @@ onAddProductTextFieldPressed({required String title}) async {
   };
 
   if (itemsWithList.keys.contains(title)) {
-    var categoryList = await isar.categoryDatabaseModels.where().findAll();
-    var uomList = await isar.unitOfMeasurementDatabaseModels.where().findAll();
+    var categoryList = isar.categoryDatabaseModels.where().findAllSync();
+    var uomList = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
     addProductController.categoryListFoundResult(categoryList);
     addProductController.unitOfMeasurementListFoundResult(uomList);
     Get.dialog(AlertDialogOptionSelect(
@@ -138,8 +138,8 @@ onAddProductAlertDialogOptionSelect(
       product?.unitOfMeasurementName = data;
       product?.unitOfMeasurementId = id;
     }
-    addProductController.update();
   });
+  addProductController.update();
 }
 
 onAddProductGetData({required String title}) {

@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/styles/styles.dart';
-
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class AddImageSourceButton extends StatelessWidget {
   final String sourceLocation;
-  final String? productId;
 
-  const AddImageSourceButton(
-      {super.key,
-      required this.sourceLocation,
-      this.productId});
+  const AddImageSourceButton({super.key, required this.sourceLocation});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ElevatedButton(
-        onPressed: () => onImageSourceButtonPressed(
-            sourceLocation: sourceLocation,
-            productId: productId),
+        onPressed: () =>
+            onImageSourceButtonPressed(sourceLocation: sourceLocation),
         style: ElevatedButton.styleFrom(
           shape: smoothRectangleBorder(radius: 12),
           padding: const EdgeInsets.all(10),

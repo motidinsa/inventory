@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
-import '../../main.dart';
+import 'package:my_inventory/main.dart';
 
 getProductCategoryName({String? id}) {
   if (id != null) {

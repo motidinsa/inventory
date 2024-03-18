@@ -71,7 +71,7 @@ onActionButtonPressed({required String redirectFrom, String? productId}) async {
   await unFocus();
   if (redirectFrom == productDetailN) {
     var productsBox = Hive.box<ProductDatabaseModel>('products');
-    ProductListController productListController = Get.find();
+    // ProductListController productListController = Get.find();
     await productsBox.delete(productId);
     // productListController.productList(productsBox.values
     //     .where((product) => product.productName
@@ -305,15 +305,16 @@ onAddIconPressed({String? type}) {
   }
 }
 
-onAddImagePressed({String? productId}) {
-  Get.dialog(AlertDialogOptionSelect(
+onAddImagePressed({int? id}) {
+  ProductListController.to.selectedId = id;
+  Get.dialog(const AlertDialogOptionSelect(
     title: selectSourceN,
-    productId: productId,
   )).then((value) => unFocus());
 }
 
-onImageSourceButtonPressed(
-    {required String sourceLocation, String? productId}) async {
+onImageSourceButtonPressed({
+  required String sourceLocation,
+}) async {
   final ImagePicker picker = ImagePicker();
   await picker
       .pickImage(
@@ -326,7 +327,7 @@ onImageSourceButtonPressed(
     String currentPage = appController.currentPages.last;
     if (currentPage == addProductN) {
       AddProductController addProductController = Get.find();
-      addProductController.productInfo.update((val) {
+      addProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
     } else if (currentPage == editProductN) {
@@ -334,11 +335,18 @@ onImageSourceButtonPressed(
       editProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
-    } else if (productId != null) {
-      var productBox = Hive.box<ProductDatabaseModel>('products');
-      ProductDatabaseModel? currentProduct = productBox.get(productId);
-      currentProduct!.localImagePath = value?.path;
-      productBox.put(productId, currentProduct);
+    } else if (ProductListController.to.selectedId != null) {
+      await isar.writeTxn(() async {
+        final dbProduct = await isar.productDatabaseModels
+            .get(ProductListController.to.selectedId!);
+        dbProduct?.localImagePath = value?.path;
+        await isar.productDatabaseModels.put(dbProduct!);
+      });
+      ProductListController.to.selectedId = null;
+      // var productBox = Hive.box<ProductDatabaseModel>('products');
+      // ProductDatabaseModel? currentProduct = productBox.get(productId);
+      // currentProduct!.localImagePath = value?.path;
+      // productBox.put(productId, currentProduct);
     }
 
     Get.back();
