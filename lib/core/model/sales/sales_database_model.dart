@@ -1,14 +1,16 @@
+
 import 'package:isar/isar.dart';
 
-part 'purchase_database_model.g.dart';
+part 'sales_database_model.g.dart';
 
 @collection
-class PurchaseDatabaseModel {
+class SalesDatabaseModel {
   Id id = Isar.autoIncrement;
   late String userId;
   late String productId;
-  late String purchaseId;
-  late DateTime purchaseDate;
+  late String salesId;
+  late String groupSalesId;
+  late DateTime salesDate;
   late DateTime dateCreated;
   DateTime? lastDateModified;
   String? lastModifiedByUserId;
@@ -16,5 +18,5 @@ class PurchaseDatabaseModel {
   String? vendorId;
   late double quantity;
   late double totalAmount;
-  late double cost;
+  late double price;
 }

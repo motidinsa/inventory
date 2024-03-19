@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
+
+import 'package:my_inventory/main.dart';
 
 onSalesTextFieldChange({
   String? title,
@@ -45,16 +48,32 @@ onSalesProductFocusChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {required ProductDatabaseModel productModel, required int index}) {
+    {required int listIndex,required String productId}) {
+
+  ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
+      .filter()
+      .productIdEqualTo(productId)
+      .findFirstSync()!;
   final SalesController salesController = Get.find();
-  salesController.salesModels[index].update((sales) {
-    sales?.productName = productModel.productName;
-    sales?.productId = productModel.productId;
-    sales?.price = productModel.price.toString();
+
+  salesController.salesModels[listIndex].update((sales) {
+    sales?.productName = productDatabaseModel.productName;
+    sales?.productId = productDatabaseModel.productId;
+    sales?.price = productDatabaseModel.price.toString();
     if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
-      sales.totalAmount = double.parse(sales.quantity) * productModel.price;
+      sales.totalAmount = double.parse(sales.quantity) * productDatabaseModel.price;
     }
   });
+
+
+  // salesController.salesModels[index].update((sales) {
+  //   sales?.productName = productModel.productName;
+  //   sales?.productId = productModel.productId;
+  //   sales?.price = productModel.price.toString();
+  //   if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+  //     sales.totalAmount = double.parse(sales.quantity) * productModel.price;
+  //   }
+  // });
 }
 
 int getSalesAlertDialogProductLength() {

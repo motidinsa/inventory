@@ -7,14 +7,12 @@ import 'package:my_inventory/core/model/action_button_enum.dart';
 
 class ActionButton extends StatelessWidget {
   final String redirectFrom;
-  final String? currentPage;
   final ActionButtonType? actionButtonType;
 
   ActionButton(
       {super.key,
       required this.redirectFrom,
-      this.actionButtonType,
-      this.currentPage});
+      this.actionButtonType,});
 
   final AppController appController = Get.find();
 

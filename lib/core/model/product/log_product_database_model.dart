@@ -23,4 +23,6 @@ class LogProductDatabaseModel {
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;
+  late String addedFrom;
+  late String modifiedFrom;
 }

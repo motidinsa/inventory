@@ -5,12 +5,12 @@ class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String name;
   final String id;
-  final int? index;
+  final int? listIndex;
   const AlertDialogOptionItem({
     super.key,
     required this.title,
     required this.name,
-    this.index,
+    this.listIndex,
     required this.id,
   });
 
@@ -31,7 +31,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       titleAlignment: ListTileTitleAlignment.center,
       onTap: () => onAlertDialogOptionSelect(
         title: title,
-        index: index,
+        index: listIndex,
         data: name,
         id: id,
       ),

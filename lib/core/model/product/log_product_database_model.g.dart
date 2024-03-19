@@ -18,93 +18,103 @@ const LogProductDatabaseModelSchema = CollectionSchema(
   name: r'LogProductDatabaseModel',
   id: 3994390997897504138,
   properties: {
-    r'categoryId': PropertySchema(
+    r'addedFrom': PropertySchema(
       id: 0,
+      name: r'addedFrom',
+      type: IsarType.string,
+    ),
+    r'categoryId': PropertySchema(
+      id: 1,
       name: r'categoryId',
       type: IsarType.string,
     ),
     r'cost': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'cost',
       type: IsarType.double,
     ),
     r'createdByUserId': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'dateModified': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'dateModified',
       type: IsarType.dateTime,
     ),
     r'description': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'description',
       type: IsarType.string,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'localImagePath': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'localImagePath',
       type: IsarType.string,
     ),
     r'modifiedByUserId': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'modifiedByUserId',
       type: IsarType.string,
     ),
+    r'modifiedFrom': PropertySchema(
+      id: 10,
+      name: r'modifiedFrom',
+      type: IsarType.string,
+    ),
     r'onlineImagePath': PropertySchema(
-      id: 9,
+      id: 11,
       name: r'onlineImagePath',
       type: IsarType.string,
     ),
     r'price': PropertySchema(
-      id: 10,
+      id: 12,
       name: r'price',
       type: IsarType.double,
     ),
     r'productId': PropertySchema(
-      id: 11,
+      id: 13,
       name: r'productId',
       type: IsarType.string,
     ),
     r'productName': PropertySchema(
-      id: 12,
+      id: 14,
       name: r'productName',
       type: IsarType.string,
     ),
     r'quantityOnHand': PropertySchema(
-      id: 13,
+      id: 15,
       name: r'quantityOnHand',
       type: IsarType.double,
     ),
     r'reorderQuantity': PropertySchema(
-      id: 14,
+      id: 16,
       name: r'reorderQuantity',
       type: IsarType.double,
     ),
     r'unitOfMeasurementId': PropertySchema(
-      id: 15,
+      id: 17,
       name: r'unitOfMeasurementId',
       type: IsarType.string,
     ),
     r'userAssignedProductId': PropertySchema(
-      id: 16,
+      id: 18,
       name: r'userAssignedProductId',
       type: IsarType.string,
     ),
     r'userId': PropertySchema(
-      id: 17,
+      id: 19,
       name: r'userId',
       type: IsarType.string,
     )
@@ -129,6 +139,7 @@ int _logProductDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedFrom.length * 3;
   {
     final value = object.categoryId;
     if (value != null) {
@@ -149,6 +160,7 @@ int _logProductDatabaseModelEstimateSize(
     }
   }
   bytesCount += 3 + object.modifiedByUserId.length * 3;
+  bytesCount += 3 + object.modifiedFrom.length * 3;
   {
     final value = object.onlineImagePath;
     if (value != null) {
@@ -174,24 +186,26 @@ void _logProductDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.categoryId);
-  writer.writeDouble(offsets[1], object.cost);
-  writer.writeString(offsets[2], object.createdByUserId);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeDateTime(offsets[4], object.dateModified);
-  writer.writeString(offsets[5], object.description);
-  writer.writeBool(offsets[6], object.isAppWriteSynced);
-  writer.writeString(offsets[7], object.localImagePath);
-  writer.writeString(offsets[8], object.modifiedByUserId);
-  writer.writeString(offsets[9], object.onlineImagePath);
-  writer.writeDouble(offsets[10], object.price);
-  writer.writeString(offsets[11], object.productId);
-  writer.writeString(offsets[12], object.productName);
-  writer.writeDouble(offsets[13], object.quantityOnHand);
-  writer.writeDouble(offsets[14], object.reorderQuantity);
-  writer.writeString(offsets[15], object.unitOfMeasurementId);
-  writer.writeString(offsets[16], object.userAssignedProductId);
-  writer.writeString(offsets[17], object.userId);
+  writer.writeString(offsets[0], object.addedFrom);
+  writer.writeString(offsets[1], object.categoryId);
+  writer.writeDouble(offsets[2], object.cost);
+  writer.writeString(offsets[3], object.createdByUserId);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeDateTime(offsets[5], object.dateModified);
+  writer.writeString(offsets[6], object.description);
+  writer.writeBool(offsets[7], object.isAppWriteSynced);
+  writer.writeString(offsets[8], object.localImagePath);
+  writer.writeString(offsets[9], object.modifiedByUserId);
+  writer.writeString(offsets[10], object.modifiedFrom);
+  writer.writeString(offsets[11], object.onlineImagePath);
+  writer.writeDouble(offsets[12], object.price);
+  writer.writeString(offsets[13], object.productId);
+  writer.writeString(offsets[14], object.productName);
+  writer.writeDouble(offsets[15], object.quantityOnHand);
+  writer.writeDouble(offsets[16], object.reorderQuantity);
+  writer.writeString(offsets[17], object.unitOfMeasurementId);
+  writer.writeString(offsets[18], object.userAssignedProductId);
+  writer.writeString(offsets[19], object.userId);
 }
 
 LogProductDatabaseModel _logProductDatabaseModelDeserialize(
@@ -201,25 +215,27 @@ LogProductDatabaseModel _logProductDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = LogProductDatabaseModel();
-  object.categoryId = reader.readStringOrNull(offsets[0]);
-  object.cost = reader.readDouble(offsets[1]);
-  object.createdByUserId = reader.readString(offsets[2]);
-  object.dateCreated = reader.readDateTime(offsets[3]);
-  object.dateModified = reader.readDateTime(offsets[4]);
-  object.description = reader.readStringOrNull(offsets[5]);
+  object.addedFrom = reader.readString(offsets[0]);
+  object.categoryId = reader.readStringOrNull(offsets[1]);
+  object.cost = reader.readDouble(offsets[2]);
+  object.createdByUserId = reader.readString(offsets[3]);
+  object.dateCreated = reader.readDateTime(offsets[4]);
+  object.dateModified = reader.readDateTime(offsets[5]);
+  object.description = reader.readStringOrNull(offsets[6]);
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[6]);
-  object.localImagePath = reader.readStringOrNull(offsets[7]);
-  object.modifiedByUserId = reader.readString(offsets[8]);
-  object.onlineImagePath = reader.readStringOrNull(offsets[9]);
-  object.price = reader.readDouble(offsets[10]);
-  object.productId = reader.readString(offsets[11]);
-  object.productName = reader.readString(offsets[12]);
-  object.quantityOnHand = reader.readDouble(offsets[13]);
-  object.reorderQuantity = reader.readDouble(offsets[14]);
-  object.unitOfMeasurementId = reader.readString(offsets[15]);
-  object.userAssignedProductId = reader.readStringOrNull(offsets[16]);
-  object.userId = reader.readString(offsets[17]);
+  object.isAppWriteSynced = reader.readBoolOrNull(offsets[7]);
+  object.localImagePath = reader.readStringOrNull(offsets[8]);
+  object.modifiedByUserId = reader.readString(offsets[9]);
+  object.modifiedFrom = reader.readString(offsets[10]);
+  object.onlineImagePath = reader.readStringOrNull(offsets[11]);
+  object.price = reader.readDouble(offsets[12]);
+  object.productId = reader.readString(offsets[13]);
+  object.productName = reader.readString(offsets[14]);
+  object.quantityOnHand = reader.readDouble(offsets[15]);
+  object.reorderQuantity = reader.readDouble(offsets[16]);
+  object.unitOfMeasurementId = reader.readString(offsets[17]);
+  object.userAssignedProductId = reader.readStringOrNull(offsets[18]);
+  object.userId = reader.readString(offsets[19]);
   return object;
 }
 
@@ -231,40 +247,44 @@ P _logProductDatabaseModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
-    case 1:
-      return (reader.readDouble(offset)) as P;
-    case 2:
       return (reader.readString(offset)) as P;
+    case 1:
+      return (reader.readStringOrNull(offset)) as P;
+    case 2:
+      return (reader.readDouble(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
       return (reader.readDateTime(offset)) as P;
     case 5:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 6:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 8:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 9:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 10:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
-    case 12:
-      return (reader.readString(offset)) as P;
-    case 13:
-      return (reader.readDouble(offset)) as P;
-    case 14:
-      return (reader.readDouble(offset)) as P;
-    case 15:
-      return (reader.readString(offset)) as P;
-    case 16:
       return (reader.readStringOrNull(offset)) as P;
+    case 12:
+      return (reader.readDouble(offset)) as P;
+    case 13:
+      return (reader.readString(offset)) as P;
+    case 14:
+      return (reader.readString(offset)) as P;
+    case 15:
+      return (reader.readDouble(offset)) as P;
+    case 16:
+      return (reader.readDouble(offset)) as P;
     case 17:
+      return (reader.readString(offset)) as P;
+    case 18:
+      return (reader.readStringOrNull(offset)) as P;
+    case 19:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -368,6 +388,144 @@ extension LogProductDatabaseModelQueryWhere on QueryBuilder<
 
 extension LogProductDatabaseModelQueryFilter on QueryBuilder<
     LogProductDatabaseModel, LogProductDatabaseModel, QFilterCondition> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+          QAfterFilterCondition>
+      addedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+          QAfterFilterCondition>
+      addedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> addedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
       QAfterFilterCondition> categoryIdIsNull() {
     return QueryBuilder.apply(this, (query) {
@@ -1369,6 +1527,144 @@ extension LogProductDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'modifiedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'modifiedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+          QAfterFilterCondition>
+      modifiedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+          QAfterFilterCondition>
+      modifiedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'modifiedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel,
+      QAfterFilterCondition> modifiedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'modifiedFrom',
         value: '',
       ));
     });
@@ -2447,6 +2743,20 @@ extension LogProductDatabaseModelQueryLinks on QueryBuilder<
 extension LogProductDatabaseModelQuerySortBy
     on QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QSortBy> {
   QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      sortByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      sortByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       sortByCategoryId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.asc);
@@ -2569,6 +2879,20 @@ extension LogProductDatabaseModelQuerySortBy
       sortByModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'modifiedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      sortByModifiedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      sortByModifiedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.desc);
     });
   }
 
@@ -2701,6 +3025,20 @@ extension LogProductDatabaseModelQuerySortBy
 
 extension LogProductDatabaseModelQuerySortThenBy on QueryBuilder<
     LogProductDatabaseModel, LogProductDatabaseModel, QSortThenBy> {
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      thenByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      thenByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByCategoryId() {
     return QueryBuilder.apply(this, (query) {
@@ -2842,6 +3180,20 @@ extension LogProductDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      thenByModifiedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
+      thenByModifiedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QAfterSortBy>
       thenByOnlineImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'onlineImagePath', Sort.asc);
@@ -2971,6 +3323,13 @@ extension LogProductDatabaseModelQuerySortThenBy on QueryBuilder<
 extension LogProductDatabaseModelQueryWhereDistinct on QueryBuilder<
     LogProductDatabaseModel, LogProductDatabaseModel, QDistinct> {
   QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
+      distinctByAddedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedFrom', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
       distinctByCategoryId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'categoryId', caseSensitive: caseSensitive);
@@ -3033,6 +3392,13 @@ extension LogProductDatabaseModelQueryWhereDistinct on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'modifiedByUserId',
           caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, LogProductDatabaseModel, QDistinct>
+      distinctByModifiedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'modifiedFrom', caseSensitive: caseSensitive);
     });
   }
 
@@ -3111,6 +3477,13 @@ extension LogProductDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
+      addedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedFrom');
+    });
+  }
+
   QueryBuilder<LogProductDatabaseModel, String?, QQueryOperations>
       categoryIdProperty() {
     return QueryBuilder.apply(this, (query) {
@@ -3171,6 +3544,13 @@ extension LogProductDatabaseModelQueryProperty on QueryBuilder<
       modifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'modifiedByUserId');
+    });
+  }
+
+  QueryBuilder<LogProductDatabaseModel, String, QQueryOperations>
+      modifiedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'modifiedFrom');
     });
   }
 

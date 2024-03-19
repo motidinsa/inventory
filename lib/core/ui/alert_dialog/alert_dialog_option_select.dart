@@ -60,7 +60,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return AlertDialogOptionItem(
                             title: title,
-                            index: [
+                            listIndex: [
                               purchaseN(),
                               salesN()
                             ].contains(AppController.to.currentPages.last)

@@ -174,33 +174,31 @@ titleToData({required String title, int? index}) {
     SalesController salesController = Get.find();
     if (title == salesN()) {
       value = salesController.salesModels[index!].value.productName;
-    } else if (title == quantityN()) {
-      value = emptyIfDefaultValue(
-          salesController.salesModels[index!].value.quantity);
-    } else if (title == discountN()) {
-      value = salesController.discount.value;
-    } else if (title == searchProductsN()) {
-      value = salesController.emptyString.value;
-    } else if (title == defaultN) {
-      value = salesController.emptyString.value;
     }
+    // else if (title == quantityN()) {
+    //   value = emptyIfDefaultValue(
+    //       salesController.salesModels[index!].value.quantity);
+    // }
+    // else if (title == discountN()) {
+    //   value = salesController.discount.value;
+    // }
+    // else if (title == searchProductsN()) {
+    //   value = salesController.emptyString.value;
+    // }
+    // else if (title == defaultN) {
+    //   value = salesController.emptyString.value;
+    // }
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
-  } else if (currentPage == purchaseN()) {
-    // PurchaseController purchaseController = Get.find();
-    // if (title == purchaseN()) {
-    //   value = purchaseController.purchaseModels[index!].value.productName;
-    // } else if (title == quantityN()) {
-    //   value = purchaseController.purchaseModels[index!].value.quantity;
-    // } else if (title == priceN()) {
-    //   value = purchaseController.purchaseModels[index!].value.cost;
-    // } else if (title == discountN()) {
-    //   value = purchaseController.discount.value;
-    // } else if (title == searchProductsN()) {
-    //   value = purchaseController.emptyString.value;
-    // } else if (title == defaultN) {
-    //   value = purchaseController.emptyString.value;
-    // }
+  }
+  else if (currentPage == purchaseN()) {
+    PurchaseController purchaseController = Get.find();
+    if (title == purchaseN()) {
+      value = purchaseController.purchaseModels[index!].value.productName;
+    }
+    else if (title == costN) {
+      value = purchaseController.purchaseModels[index!].value.cost;
+    }
   } else if (currentPage == productListN()) {
     // ProductListController productListController = Get.find();
     // value = productListController.emptyValue.value;
@@ -266,8 +264,7 @@ nullIfEmpty(String? data) {
 }
 
 onAddIconPressed({String? type}) {
-  final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
+  String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();

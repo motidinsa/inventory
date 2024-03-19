@@ -32,7 +32,7 @@ onPurchaseTextFieldChange({
           purchase.totalAmount = 0;
         }
       }
-    } else if (title == priceN()) {
+    } else if (title == costN) {
       if (data.isEmpty) {
         purchase?.cost = '';
         purchase?.totalAmount = 0;
@@ -59,17 +59,22 @@ onPurchaseProductFocusChange({
   }
 }
 
-onPurchaseSearchProductAlertDialogOptionSelect({required int index,required String productId,required String productName}) {
+onPurchaseSearchProductAlertDialogOptionSelect(
+    {required int listIndex, required String productId}) {
   final PurchaseController purchaseController = Get.find();
-  purchaseController.purchaseModels[index].update((purchase) {
-    // purchase?.productName = productModel.productName;
+
+  ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
+      .filter()
+      .productIdEqualTo(productId)
+      .findFirstSync()!;
+  purchaseController.purchaseModels[listIndex].update((purchase) {
     purchase?.productId = productId;
-    purchase?.productName = productName;
-    purchase?.cost =
-        emptyIfDefaultValue(getFormattedNumberWithoutComa(productModel.cost));
+    purchase?.productName = productDatabaseModel.productName;
+    purchase?.cost = emptyIfDefaultValue(
+        getFormattedNumberWithoutComa(productDatabaseModel.cost));
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
       purchase.totalAmount =
-          double.parse(purchase.quantity) * productModel.price;
+          double.parse(purchase.quantity) * productDatabaseModel.cost;
     }
   });
 }

@@ -13,4 +13,6 @@ class LogUnitOfMeasurementDatabaseModel {
   late DateTime dateCreated;
   late DateTime dateModified;
   bool? isAppWriteSynced;
+  late String addedFrom;
+  late String modifiedFrom;
 }

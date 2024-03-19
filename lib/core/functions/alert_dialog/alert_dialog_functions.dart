@@ -23,14 +23,14 @@ onAlertDialogOptionSelect(
   String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     onSalesSearchProductAlertDialogOptionSelect(
-        productModel: productModel!, index: index!);
+        listIndex: index!, productId: id);
   } else if (currentPage == addProductN) {
-    onAddProductAlertDialogOptionSelect(title: title, data: data!, id: id);
+    onAddProductAlertDialogOptionSelect(title: title, data: data, id: id);
   } else if (currentPage == editProductN) {
-    onEditProductAlertDialogOptionSelect(title: title, data: data!, id: id);
+    onEditProductAlertDialogOptionSelect(title: title, data: data, id: id);
   } else if (currentPage == purchaseN()) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        index: index!, productName: data, productId: id);
+        listIndex: index!, productId: id);
   }
   Get.back();
 }
@@ -64,7 +64,7 @@ getAlertDialogOptionName({required int index, String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    return (salesController.searchProductFoundResult[index].value
+    return (salesController.searchProductFoundResult[index]
             as ProductDatabaseModel)
         .productName;
   } else if (currentPage == addProductN) {
@@ -101,7 +101,7 @@ getAlertDialogOptionId({required int index, String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    return (salesController.searchProductFoundResult[index].value
+    return (salesController.searchProductFoundResult[index]
             as ProductDatabaseModel)
         .productId;
   } else if (currentPage == addProductN) {

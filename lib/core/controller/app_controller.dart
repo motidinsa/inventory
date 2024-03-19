@@ -11,6 +11,7 @@ class AppController extends GetxController {
   List<String> currentPages = [];
 
   static AppController get to => Get.find();
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -27,7 +28,8 @@ class AppController extends GetxController {
             ..createdByUserId = userId.value
             ..name = element
             ..uomId = generateDatabaseId(time: now, identifier: element)
-            ..dateCreated = now,
+            ..dateCreated = now
+            ..userId = userId.value,
         );
         logUomModels.add(
           LogUnitOfMeasurementDatabaseModel()
@@ -36,7 +38,8 @@ class AppController extends GetxController {
             ..uomId = generateDatabaseId(time: now, identifier: element)
             ..dateCreated = now
             ..dateModified = now
-            ..modifiedByUserId = userId.value,
+            ..modifiedByUserId = userId.value
+            ..userId = userId.value,
         );
       }
       await isar.writeTxn(() async {

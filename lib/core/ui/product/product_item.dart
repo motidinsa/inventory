@@ -46,7 +46,7 @@ class ProductItem extends StatelessWidget {
                 flex: currentPage == purchaseN() ? 4 : 3,
                 child: currentPage == purchaseN()
                     ? CustomTextField(
-                        title: priceN(),
+                        title: costN,
                         index: index,
                       )
                     : Text(

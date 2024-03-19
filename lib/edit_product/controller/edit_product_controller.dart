@@ -106,7 +106,8 @@ class EditProductController extends GetxController {
           ..dateCreated = productDatabaseModel.dateCreated
           ..dateModified = now
           ..localImagePath = productInfo.value.localImagePath
-          ..onlineImagePath = productDatabaseModel.onlineImagePath,
+          ..onlineImagePath = productDatabaseModel.onlineImagePath
+          ..userId = AppController.to.userId.value,
       );
     });
     ProductListController.to.productList(isar.productDatabaseModels

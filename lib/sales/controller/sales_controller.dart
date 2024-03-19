@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/sales/model/sales_model.dart';
+
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/main.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
@@ -34,9 +38,12 @@ class SalesController extends GetxController {
 
   @override
   void onInit() {
-    products = Hive.box<ProductDatabaseModel>('products').values.toList();
-    searchProductFoundResult =
-        Hive.box<ProductDatabaseModel>('products').values.toList().obs;
+    AppController.to.currentPages.add(salesN());
+    products = isar.productDatabaseModels.where().findAllSync();
+    searchProductFoundResult(products);
+    // products = Hive.box<ProductDatabaseModel>('products').values.toList();
+    // searchProductFoundResult =
+    //     Hive.box<ProductDatabaseModel>('products').values.toList().obs;
     super.onInit();
   }
 

@@ -18,43 +18,53 @@ const LogUnitOfMeasurementDatabaseModelSchema = CollectionSchema(
   name: r'LogUnitOfMeasurementDatabaseModel',
   id: 53693424210590354,
   properties: {
-    r'createdByUserId': PropertySchema(
+    r'addedFrom': PropertySchema(
       id: 0,
+      name: r'addedFrom',
+      type: IsarType.string,
+    ),
+    r'createdByUserId': PropertySchema(
+      id: 1,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'dateModified': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'dateModified',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'modifiedByUserId': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'modifiedByUserId',
       type: IsarType.string,
     ),
+    r'modifiedFrom': PropertySchema(
+      id: 6,
+      name: r'modifiedFrom',
+      type: IsarType.string,
+    ),
     r'name': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'name',
       type: IsarType.string,
     ),
     r'uomId': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'uomId',
       type: IsarType.string,
     ),
     r'userId': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'userId',
       type: IsarType.string,
     )
@@ -79,8 +89,10 @@ int _logUnitOfMeasurementDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedFrom.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
   bytesCount += 3 + object.modifiedByUserId.length * 3;
+  bytesCount += 3 + object.modifiedFrom.length * 3;
   bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 + object.uomId.length * 3;
   bytesCount += 3 + object.userId.length * 3;
@@ -93,14 +105,16 @@ void _logUnitOfMeasurementDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.createdByUserId);
-  writer.writeDateTime(offsets[1], object.dateCreated);
-  writer.writeDateTime(offsets[2], object.dateModified);
-  writer.writeBool(offsets[3], object.isAppWriteSynced);
-  writer.writeString(offsets[4], object.modifiedByUserId);
-  writer.writeString(offsets[5], object.name);
-  writer.writeString(offsets[6], object.uomId);
-  writer.writeString(offsets[7], object.userId);
+  writer.writeString(offsets[0], object.addedFrom);
+  writer.writeString(offsets[1], object.createdByUserId);
+  writer.writeDateTime(offsets[2], object.dateCreated);
+  writer.writeDateTime(offsets[3], object.dateModified);
+  writer.writeBool(offsets[4], object.isAppWriteSynced);
+  writer.writeString(offsets[5], object.modifiedByUserId);
+  writer.writeString(offsets[6], object.modifiedFrom);
+  writer.writeString(offsets[7], object.name);
+  writer.writeString(offsets[8], object.uomId);
+  writer.writeString(offsets[9], object.userId);
 }
 
 LogUnitOfMeasurementDatabaseModel _logUnitOfMeasurementDatabaseModelDeserialize(
@@ -110,15 +124,17 @@ LogUnitOfMeasurementDatabaseModel _logUnitOfMeasurementDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = LogUnitOfMeasurementDatabaseModel();
-  object.createdByUserId = reader.readString(offsets[0]);
-  object.dateCreated = reader.readDateTime(offsets[1]);
-  object.dateModified = reader.readDateTime(offsets[2]);
+  object.addedFrom = reader.readString(offsets[0]);
+  object.createdByUserId = reader.readString(offsets[1]);
+  object.dateCreated = reader.readDateTime(offsets[2]);
+  object.dateModified = reader.readDateTime(offsets[3]);
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[3]);
-  object.modifiedByUserId = reader.readString(offsets[4]);
-  object.name = reader.readString(offsets[5]);
-  object.uomId = reader.readString(offsets[6]);
-  object.userId = reader.readString(offsets[7]);
+  object.isAppWriteSynced = reader.readBoolOrNull(offsets[4]);
+  object.modifiedByUserId = reader.readString(offsets[5]);
+  object.modifiedFrom = reader.readString(offsets[6]);
+  object.name = reader.readString(offsets[7]);
+  object.uomId = reader.readString(offsets[8]);
+  object.userId = reader.readString(offsets[9]);
   return object;
 }
 
@@ -132,18 +148,22 @@ P _logUnitOfMeasurementDatabaseModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 2:
       return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
       return (reader.readString(offset)) as P;
     case 7:
+      return (reader.readString(offset)) as P;
+    case 8:
+      return (reader.readString(offset)) as P;
+    case 9:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -260,6 +280,160 @@ extension LogUnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
     LogUnitOfMeasurementDatabaseModel,
     LogUnitOfMeasurementDatabaseModel,
     QFilterCondition> {
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+          LogUnitOfMeasurementDatabaseModel, QAfterFilterCondition>
+      addedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+          LogUnitOfMeasurementDatabaseModel, QAfterFilterCondition>
+      addedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> addedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<
       LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel,
@@ -788,6 +962,160 @@ extension LogUnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'modifiedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+          LogUnitOfMeasurementDatabaseModel, QAfterFilterCondition>
+      modifiedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'modifiedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+          LogUnitOfMeasurementDatabaseModel, QAfterFilterCondition>
+      modifiedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'modifiedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> modifiedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'modifiedFrom',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel, QAfterFilterCondition> nameEqualTo(
     String value, {
@@ -1232,6 +1560,20 @@ extension LogUnitOfMeasurementDatabaseModelQuerySortBy on QueryBuilder<
     LogUnitOfMeasurementDatabaseModel,
     QSortBy> {
   QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> sortByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> sortByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel, QAfterSortBy> sortByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.asc);
@@ -1314,6 +1656,22 @@ extension LogUnitOfMeasurementDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> sortByModifiedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterSortBy> sortByModifiedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1360,6 +1718,20 @@ extension LogUnitOfMeasurementDatabaseModelQuerySortThenBy on QueryBuilder<
     LogUnitOfMeasurementDatabaseModel,
     LogUnitOfMeasurementDatabaseModel,
     QSortThenBy> {
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> thenByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> thenByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel, QAfterSortBy> thenByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
@@ -1457,6 +1829,22 @@ extension LogUnitOfMeasurementDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel, QAfterSortBy> thenByModifiedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
+      QAfterSortBy> thenByModifiedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedFrom', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1506,6 +1894,15 @@ extension LogUnitOfMeasurementDatabaseModelQueryWhereDistinct on QueryBuilder<
   QueryBuilder<
       LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel,
+      QDistinct> distinctByAddedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedFrom', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
       QDistinct> distinctByCreatedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'createdByUserId',
@@ -1549,6 +1946,15 @@ extension LogUnitOfMeasurementDatabaseModelQueryWhereDistinct on QueryBuilder<
   QueryBuilder<
       LogUnitOfMeasurementDatabaseModel,
       LogUnitOfMeasurementDatabaseModel,
+      QDistinct> distinctByModifiedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'modifiedFrom', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<
+      LogUnitOfMeasurementDatabaseModel,
+      LogUnitOfMeasurementDatabaseModel,
       QDistinct> distinctByName({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
@@ -1586,6 +1992,13 @@ extension LogUnitOfMeasurementDatabaseModelQueryProperty on QueryBuilder<
   }
 
   QueryBuilder<LogUnitOfMeasurementDatabaseModel, String, QQueryOperations>
+      addedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedFrom');
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel, String, QQueryOperations>
       createdByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'createdByUserId');
@@ -1617,6 +2030,13 @@ extension LogUnitOfMeasurementDatabaseModelQueryProperty on QueryBuilder<
       modifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'modifiedByUserId');
+    });
+  }
+
+  QueryBuilder<LogUnitOfMeasurementDatabaseModel, String, QQueryOperations>
+      modifiedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'modifiedFrom');
     });
   }
 

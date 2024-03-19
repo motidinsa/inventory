@@ -8,6 +8,7 @@ import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
 import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/purchase/purchase_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/drawer/my_drawer.dart';
@@ -26,6 +27,7 @@ void main() async {
     [
       ProductDatabaseModelSchema,
       LogProductDatabaseModelSchema,
+      PurchaseDatabaseModelSchema,
       DeletedProductDatabaseModelSchema,
       CategoryDatabaseModelSchema,
       LogCategoryDatabaseModelSchema,
