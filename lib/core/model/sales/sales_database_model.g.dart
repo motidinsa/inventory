@@ -33,50 +33,50 @@ const SalesDatabaseModelSchema = CollectionSchema(
       name: r'groupSalesId',
       type: IsarType.string,
     ),
-    r'lastDateModified': PropertySchema(
+    r'isAppWriteSynced': PropertySchema(
       id: 3,
+      name: r'isAppWriteSynced',
+      type: IsarType.bool,
+    ),
+    r'lastDateModified': PropertySchema(
+      id: 4,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'price': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'price',
       type: IsarType.double,
     ),
     r'productId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'productId',
       type: IsarType.string,
     ),
     r'quantity': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'quantity',
       type: IsarType.double,
     ),
     r'salesDate': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'salesDate',
       type: IsarType.dateTime,
     ),
     r'salesId': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'salesId',
       type: IsarType.string,
     ),
     r'totalAmount': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'totalAmount',
       type: IsarType.double,
-    ),
-    r'userId': PropertySchema(
-      id: 11,
-      name: r'userId',
-      type: IsarType.string,
     ),
     r'vendorId': PropertySchema(
       id: 12,
@@ -113,7 +113,6 @@ int _salesDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.productId.length * 3;
   bytesCount += 3 + object.salesId.length * 3;
-  bytesCount += 3 + object.userId.length * 3;
   {
     final value = object.vendorId;
     if (value != null) {
@@ -132,15 +131,15 @@ void _salesDatabaseModelSerialize(
   writer.writeLong(offsets[0], object.customerId);
   writer.writeDateTime(offsets[1], object.dateCreated);
   writer.writeString(offsets[2], object.groupSalesId);
-  writer.writeDateTime(offsets[3], object.lastDateModified);
-  writer.writeString(offsets[4], object.lastModifiedByUserId);
-  writer.writeDouble(offsets[5], object.price);
-  writer.writeString(offsets[6], object.productId);
-  writer.writeDouble(offsets[7], object.quantity);
-  writer.writeDateTime(offsets[8], object.salesDate);
-  writer.writeString(offsets[9], object.salesId);
-  writer.writeDouble(offsets[10], object.totalAmount);
-  writer.writeString(offsets[11], object.userId);
+  writer.writeBool(offsets[3], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[4], object.lastDateModified);
+  writer.writeString(offsets[5], object.lastModifiedByUserId);
+  writer.writeDouble(offsets[6], object.price);
+  writer.writeString(offsets[7], object.productId);
+  writer.writeDouble(offsets[8], object.quantity);
+  writer.writeDateTime(offsets[9], object.salesDate);
+  writer.writeString(offsets[10], object.salesId);
+  writer.writeDouble(offsets[11], object.totalAmount);
   writer.writeString(offsets[12], object.vendorId);
 }
 
@@ -150,21 +149,22 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = SalesDatabaseModel();
-  object.customerId = reader.readLongOrNull(offsets[0]);
-  object.dateCreated = reader.readDateTime(offsets[1]);
-  object.groupSalesId = reader.readString(offsets[2]);
+  final object = SalesDatabaseModel(
+    customerId: reader.readLongOrNull(offsets[0]),
+    dateCreated: reader.readDateTime(offsets[1]),
+    groupSalesId: reader.readString(offsets[2]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[4]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[5]),
+    price: reader.readDouble(offsets[6]),
+    productId: reader.readString(offsets[7]),
+    quantity: reader.readDouble(offsets[8]),
+    salesDate: reader.readDateTime(offsets[9]),
+    salesId: reader.readString(offsets[10]),
+    totalAmount: reader.readDouble(offsets[11]),
+    vendorId: reader.readStringOrNull(offsets[12]),
+  );
   object.id = id;
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[3]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[4]);
-  object.price = reader.readDouble(offsets[5]);
-  object.productId = reader.readString(offsets[6]);
-  object.quantity = reader.readDouble(offsets[7]);
-  object.salesDate = reader.readDateTime(offsets[8]);
-  object.salesId = reader.readString(offsets[9]);
-  object.totalAmount = reader.readDouble(offsets[10]);
-  object.userId = reader.readString(offsets[11]);
-  object.vendorId = reader.readStringOrNull(offsets[12]);
+  object.isAppWriteSynced = reader.readBoolOrNull(offsets[3]);
   return object;
 }
 
@@ -182,23 +182,23 @@ P _salesDatabaseModelDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 5:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 7:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
-      return (reader.readDateTime(offset)) as P;
-    case 9:
-      return (reader.readString(offset)) as P;
-    case 10:
       return (reader.readDouble(offset)) as P;
-    case 11:
+    case 9:
+      return (reader.readDateTime(offset)) as P;
+    case 10:
       return (reader.readString(offset)) as P;
+    case 11:
+      return (reader.readDouble(offset)) as P;
     case 12:
       return (reader.readStringOrNull(offset)) as P;
     default:
@@ -620,6 +620,34 @@ extension SalesDatabaseModelQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      isAppWriteSyncedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isAppWriteSynced',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      isAppWriteSyncedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isAppWriteSynced',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      isAppWriteSyncedEqualTo(bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isAppWriteSynced',
+        value: value,
       ));
     });
   }
@@ -1379,142 +1407,6 @@ extension SalesDatabaseModelQueryFilter
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
       vendorIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1720,6 +1612,20 @@ extension SalesDatabaseModelQuerySortBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortByIsAppWriteSyncedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       sortByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.asc);
@@ -1832,20 +1738,6 @@ extension SalesDatabaseModelQuerySortBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       sortByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -1915,6 +1807,20 @@ extension SalesDatabaseModelQuerySortThenBy
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenByIsAppWriteSyncedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.desc);
     });
   }
 
@@ -2031,20 +1937,6 @@ extension SalesDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       thenByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -2079,6 +1971,13 @@ extension SalesDatabaseModelQueryWhereDistinct
       distinctByGroupSalesId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'groupSalesId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
+      distinctByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isAppWriteSynced');
     });
   }
 
@@ -2140,13 +2039,6 @@ extension SalesDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
-      distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
       distinctByVendorId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'vendorId', caseSensitive: caseSensitive);
@@ -2180,6 +2072,13 @@ extension SalesDatabaseModelQueryProperty
       groupSalesIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'groupSalesId');
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, bool?, QQueryOperations>
+      isAppWriteSyncedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isAppWriteSynced');
     });
   }
 
@@ -2234,12 +2133,6 @@ extension SalesDatabaseModelQueryProperty
       totalAmountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'totalAmount');
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, String, QQueryOperations> userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 

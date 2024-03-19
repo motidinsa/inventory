@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -65,7 +66,6 @@ class EditProductController extends GetxController {
   onEditProductSaveButtonPressed() async {
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
-    // var productsBox = Hive.box<ProductDatabaseModel>('products');
     DateTime now = DateTime.now();
     await isar.writeTxn(() async {
       final dbProduct =
@@ -88,27 +88,25 @@ class EditProductController extends GetxController {
       dbProduct?.userAssignedProductId =
           productInfo.value.userAssignedProductId;
       await isar.productDatabaseModels.put(dbProduct!);
-      await isar.logProductDatabaseModels.put(
-        LogProductDatabaseModel()
-          ..productId = productDatabaseModel.productId
-          ..productName = productInfo.value.name
-          ..description = productInfo.value.description
-          ..categoryId = productInfo.value.categoryId
-          ..userAssignedProductId = productInfo.value.userAssignedProductId
-          ..cost = getValidNumValue(productInfo.value.cost)
-          ..price = getValidNumValue(productInfo.value.price)
-          ..quantityOnHand = getValidNumValue(productInfo.value.quantityOnHand)
-          ..reorderQuantity =
-              getValidNumValue(productInfo.value.reorderQuantity)
-          ..unitOfMeasurementId = productInfo.value.unitOfMeasurementId
-          ..createdByUserId = productDatabaseModel.createdByUserId
-          ..modifiedByUserId = appController.userId.value
-          ..dateCreated = productDatabaseModel.dateCreated
-          ..dateModified = now
-          ..localImagePath = productInfo.value.localImagePath
-          ..onlineImagePath = productDatabaseModel.onlineImagePath
-          ..userId = AppController.to.userId.value,
-      );
+      await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
+        productId: productDatabaseModel.productId,
+        productName: productInfo.value.name,
+        description: productInfo.value.description,
+        categoryId: productInfo.value.categoryId,
+        userAssignedProductId: productInfo.value.userAssignedProductId,
+        cost: getValidNumValue(productInfo.value.cost),
+        price: getValidNumValue(productInfo.value.price),
+        quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+        reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+        createdByUserId: productDatabaseModel.createdByUserId,
+        modifiedByUserId: appController.userId.value,
+        dateCreated: productDatabaseModel.dateCreated,
+        dateModified: now,
+        localImagePath: productInfo.value.localImagePath,
+        onlineImagePath: productDatabaseModel.onlineImagePath,
+        addedFrom: editProductDC,
+      ));
     });
     ProductListController.to.productList(isar.productDatabaseModels
         .filter()

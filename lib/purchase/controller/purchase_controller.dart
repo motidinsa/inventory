@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
-
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/main.dart';
+
+import '../../core/constants/database_constants.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
@@ -102,37 +103,38 @@ class PurchaseController extends GetxController {
         currentProduct.lastModifiedByUserId = AppController.to.userId.value;
 
         await isar.productDatabaseModels.put(currentProduct);
-        await isar.purchaseDatabaseModels.put(PurchaseDatabaseModel()
-          ..userId = AppController.to.userId.value
-          ..productId = purchaseModel.value.productId
-          ..purchaseId = key
-          ..purchaseDate = purchaseModel.value.purchaseDate
-          ..dateCreated = now
-          ..customerId = purchaseModel.value.customerId
-          ..vendorId = purchaseModel.value.vendorId
-          ..quantity = double.parse(purchaseModel.value.quantity)
-          ..totalAmount = purchaseModel.value.totalAmount
-          ..cost = double.parse(purchaseModel.value.cost));
-
-        await isar.logProductDatabaseModels.put(
-          LogProductDatabaseModel()
-            ..productName = currentProduct.productName
-            ..description = currentProduct.description
-            ..categoryId = currentProduct.categoryId
-            ..cost = double.parse(purchaseModel.value.cost)
-            ..price = currentProduct.price
-            ..createdByUserId = currentProduct.createdByUserId
-            ..dateCreated = currentProduct.dateCreated
-            ..quantityOnHand = currentQty
-            ..reorderQuantity = currentProduct.reorderQuantity
-            ..unitOfMeasurementId = currentProduct.unitOfMeasurementId
-            ..localImagePath = currentProduct.localImagePath
-            ..userAssignedProductId = currentProduct.userAssignedProductId
-            ..productId = currentProduct.productId
-            ..dateModified = now
-            ..modifiedByUserId = AppController.to.userId.value
-            ..userId = AppController.to.userId.value,
+        await isar.purchaseDatabaseModels.put(
+          PurchaseDatabaseModel(
+            productId: purchaseModel.value.productId,
+            purchaseId: key,
+            purchaseDate: purchaseModel.value.purchaseDate,
+            dateCreated: now,
+            customerId: purchaseModel.value.customerId,
+            vendorId: purchaseModel.value.vendorId,
+            quantity: double.parse(purchaseModel.value.quantity),
+            totalAmount: purchaseModel.value.totalAmount,
+            cost: double.parse(purchaseModel.value.cost),
+          ),
         );
+
+        await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
+          productName: currentProduct.productName,
+          description: currentProduct.description,
+          categoryId: currentProduct.categoryId,
+          cost: double.parse(purchaseModel.value.cost),
+          price: currentProduct.price,
+          createdByUserId: currentProduct.createdByUserId,
+          dateCreated: currentProduct.dateCreated,
+          quantityOnHand: currentQty,
+          reorderQuantity: currentProduct.reorderQuantity,
+          unitOfMeasurementId: currentProduct.unitOfMeasurementId,
+          localImagePath: currentProduct.localImagePath,
+          userAssignedProductId: currentProduct.userAssignedProductId,
+          productId: currentProduct.productId,
+          dateModified: now,
+          modifiedByUserId: AppController.to.userId.value,
+          addedFrom: purchaseDC,
+        ));
       });
     });
     isLocalSaveLoading(false);

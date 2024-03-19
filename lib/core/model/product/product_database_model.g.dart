@@ -102,11 +102,6 @@ const ProductDatabaseModelSchema = CollectionSchema(
       id: 16,
       name: r'userAssignedProductId',
       type: IsarType.string,
-    ),
-    r'userId': PropertySchema(
-      id: 17,
-      name: r'userId',
-      type: IsarType.string,
     )
   },
   estimateSize: _productDatabaseModelEstimateSize,
@@ -169,7 +164,6 @@ int _productDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -196,7 +190,6 @@ void _productDatabaseModelSerialize(
   writer.writeDouble(offsets[14], object.reorderQuantity);
   writer.writeString(offsets[15], object.unitOfMeasurementId);
   writer.writeString(offsets[16], object.userAssignedProductId);
-  writer.writeString(offsets[17], object.userId);
 }
 
 ProductDatabaseModel _productDatabaseModelDeserialize(
@@ -205,26 +198,26 @@ ProductDatabaseModel _productDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = ProductDatabaseModel();
-  object.categoryId = reader.readStringOrNull(offsets[0]);
-  object.cost = reader.readDouble(offsets[1]);
-  object.createdByUserId = reader.readString(offsets[2]);
-  object.dateCreated = reader.readDateTime(offsets[3]);
-  object.description = reader.readStringOrNull(offsets[4]);
+  final object = ProductDatabaseModel(
+    categoryId: reader.readStringOrNull(offsets[0]),
+    cost: reader.readDouble(offsets[1]),
+    createdByUserId: reader.readString(offsets[2]),
+    dateCreated: reader.readDateTime(offsets[3]),
+    description: reader.readStringOrNull(offsets[4]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
+    localImagePath: reader.readStringOrNull(offsets[8]),
+    onlineImagePath: reader.readStringOrNull(offsets[9]),
+    price: reader.readDouble(offsets[10]),
+    productId: reader.readString(offsets[11]),
+    productName: reader.readString(offsets[12]),
+    quantityOnHand: reader.readDouble(offsets[13]),
+    reorderQuantity: reader.readDouble(offsets[14]),
+    unitOfMeasurementId: reader.readString(offsets[15]),
+    userAssignedProductId: reader.readStringOrNull(offsets[16]),
+  );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[5]);
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[6]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[7]);
-  object.localImagePath = reader.readStringOrNull(offsets[8]);
-  object.onlineImagePath = reader.readStringOrNull(offsets[9]);
-  object.price = reader.readDouble(offsets[10]);
-  object.productId = reader.readString(offsets[11]);
-  object.productName = reader.readString(offsets[12]);
-  object.quantityOnHand = reader.readDouble(offsets[13]);
-  object.reorderQuantity = reader.readDouble(offsets[14]);
-  object.unitOfMeasurementId = reader.readString(offsets[15]);
-  object.userAssignedProductId = reader.readStringOrNull(offsets[16]);
-  object.userId = reader.readString(offsets[17]);
   return object;
 }
 
@@ -269,8 +262,6 @@ P _productDatabaseModelDeserializeProp<P>(
       return (reader.readString(offset)) as P;
     case 16:
       return (reader.readStringOrNull(offset)) as P;
-    case 17:
-      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -2339,144 +2330,6 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
       ));
     });
   }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension ProductDatabaseModelQueryObject on QueryBuilder<ProductDatabaseModel,
@@ -2722,20 +2575,6 @@ extension ProductDatabaseModelQuerySortBy
       sortByUserAssignedProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userAssignedProductId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
-      sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
-      sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
     });
   }
 }
@@ -2993,20 +2832,6 @@ extension ProductDatabaseModelQuerySortThenBy
       return query.addSortBy(r'userAssignedProductId', Sort.desc);
     });
   }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
-      thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
-      thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension ProductDatabaseModelQueryWhereDistinct
@@ -3135,13 +2960,6 @@ extension ProductDatabaseModelQueryWhereDistinct
           caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
-      distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
-    });
-  }
 }
 
 extension ProductDatabaseModelQueryProperty on QueryBuilder<
@@ -3266,13 +3084,6 @@ extension ProductDatabaseModelQueryProperty on QueryBuilder<
       userAssignedProductIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'userAssignedProductId');
-    });
-  }
-
-  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 }

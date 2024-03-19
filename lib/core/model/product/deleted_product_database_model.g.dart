@@ -18,29 +18,29 @@ const DeletedProductDatabaseModelSchema = CollectionSchema(
   name: r'DeletedProductDatabaseModel',
   id: 1334188350302011835,
   properties: {
-    r'deletedByUserId': PropertySchema(
+    r'addedFrom': PropertySchema(
       id: 0,
+      name: r'addedFrom',
+      type: IsarType.string,
+    ),
+    r'deletedByUserId': PropertySchema(
+      id: 1,
       name: r'deletedByUserId',
       type: IsarType.string,
     ),
     r'deletedDate': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'deletedDate',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'productId': PropertySchema(
-      id: 3,
-      name: r'productId',
-      type: IsarType.string,
-    ),
-    r'userId': PropertySchema(
       id: 4,
-      name: r'userId',
+      name: r'productId',
       type: IsarType.string,
     )
   },
@@ -64,9 +64,9 @@ int _deletedProductDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedFrom.length * 3;
   bytesCount += 3 + object.deletedByUserId.length * 3;
   bytesCount += 3 + object.productId.length * 3;
-  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -76,11 +76,11 @@ void _deletedProductDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.deletedByUserId);
-  writer.writeDateTime(offsets[1], object.deletedDate);
-  writer.writeBool(offsets[2], object.isAppWriteSynced);
-  writer.writeString(offsets[3], object.productId);
-  writer.writeString(offsets[4], object.userId);
+  writer.writeString(offsets[0], object.addedFrom);
+  writer.writeString(offsets[1], object.deletedByUserId);
+  writer.writeDateTime(offsets[2], object.deletedDate);
+  writer.writeBool(offsets[3], object.isAppWriteSynced);
+  writer.writeString(offsets[4], object.productId);
 }
 
 DeletedProductDatabaseModel _deletedProductDatabaseModelDeserialize(
@@ -89,13 +89,14 @@ DeletedProductDatabaseModel _deletedProductDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = DeletedProductDatabaseModel();
-  object.deletedByUserId = reader.readString(offsets[0]);
-  object.deletedDate = reader.readDateTime(offsets[1]);
+  final object = DeletedProductDatabaseModel(
+    addedFrom: reader.readString(offsets[0]),
+    deletedByUserId: reader.readString(offsets[1]),
+    deletedDate: reader.readDateTime(offsets[2]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[3]),
+    productId: reader.readString(offsets[4]),
+  );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[2]);
-  object.productId = reader.readString(offsets[3]);
-  object.userId = reader.readString(offsets[4]);
   return object;
 }
 
@@ -109,11 +110,11 @@ P _deletedProductDatabaseModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readDateTime(offset)) as P;
-    case 2:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 3:
       return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readDateTime(offset)) as P;
+    case 3:
+      return (reader.readBoolOrNull(offset)) as P;
     case 4:
       return (reader.readString(offset)) as P;
     default:
@@ -220,6 +221,144 @@ extension DeletedProductDatabaseModelQueryFilter on QueryBuilder<
     DeletedProductDatabaseModel,
     DeletedProductDatabaseModel,
     QFilterCondition> {
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+          QAfterFilterCondition>
+      addedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+          QAfterFilterCondition>
+      addedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterFilterCondition> addedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
       QAfterFilterCondition> deletedByUserIdEqualTo(
     String value, {
@@ -635,144 +774,6 @@ extension DeletedProductDatabaseModelQueryFilter on QueryBuilder<
       ));
     });
   }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension DeletedProductDatabaseModelQueryObject on QueryBuilder<
@@ -787,6 +788,20 @@ extension DeletedProductDatabaseModelQueryLinks on QueryBuilder<
 
 extension DeletedProductDatabaseModelQuerySortBy on QueryBuilder<
     DeletedProductDatabaseModel, DeletedProductDatabaseModel, QSortBy> {
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterSortBy> sortByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterSortBy> sortByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
       QAfterSortBy> sortByDeletedByUserId() {
     return QueryBuilder.apply(this, (query) {
@@ -842,24 +857,24 @@ extension DeletedProductDatabaseModelQuerySortBy on QueryBuilder<
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterSortBy> sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterSortBy> sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension DeletedProductDatabaseModelQuerySortThenBy on QueryBuilder<
     DeletedProductDatabaseModel, DeletedProductDatabaseModel, QSortThenBy> {
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterSortBy> thenByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QAfterSortBy> thenByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
       QAfterSortBy> thenByDeletedByUserId() {
     return QueryBuilder.apply(this, (query) {
@@ -929,24 +944,17 @@ extension DeletedProductDatabaseModelQuerySortThenBy on QueryBuilder<
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterSortBy> thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QAfterSortBy> thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension DeletedProductDatabaseModelQueryWhereDistinct on QueryBuilder<
     DeletedProductDatabaseModel, DeletedProductDatabaseModel, QDistinct> {
+  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
+      QDistinct> distinctByAddedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedFrom', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
       QDistinct> distinctByDeletedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -975,13 +983,6 @@ extension DeletedProductDatabaseModelQueryWhereDistinct on QueryBuilder<
       return query.addDistinctBy(r'productId', caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<DeletedProductDatabaseModel, DeletedProductDatabaseModel,
-      QDistinct> distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
-    });
-  }
 }
 
 extension DeletedProductDatabaseModelQueryProperty on QueryBuilder<
@@ -990,6 +991,13 @@ extension DeletedProductDatabaseModelQueryProperty on QueryBuilder<
       idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<DeletedProductDatabaseModel, String, QQueryOperations>
+      addedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedFrom');
     });
   }
 
@@ -1018,13 +1026,6 @@ extension DeletedProductDatabaseModelQueryProperty on QueryBuilder<
       productIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'productId');
-    });
-  }
-
-  QueryBuilder<DeletedProductDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 }

@@ -76,11 +76,12 @@ QuantityCostDatabaseModel _quantityCostDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = QuantityCostDatabaseModel();
+  final object = QuantityCostDatabaseModel(
+    purchaseId: reader.readString(offsets[0]),
+    quantity: reader.readDouble(offsets[1]),
+    salesId: reader.readString(offsets[2]),
+  );
   object.id = id;
-  object.purchaseId = reader.readString(offsets[0]);
-  object.quantity = reader.readDouble(offsets[1]);
-  object.salesId = reader.readString(offsets[2]);
   return object;
 }
 

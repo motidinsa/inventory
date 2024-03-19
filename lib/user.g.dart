@@ -73,10 +73,11 @@ User _userDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = User();
-  object.age = reader.readLongOrNull(offsets[0]);
+  final object = User(
+    age: reader.readLongOrNull(offsets[0]),
+    name: reader.readStringOrNull(offsets[1]),
+  );
   object.id = id;
-  object.name = reader.readStringOrNull(offsets[1]);
   return object;
 }
 

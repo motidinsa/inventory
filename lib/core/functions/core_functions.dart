@@ -23,6 +23,8 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
+import '../constants/database_constants.dart';
+
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
 bool isNumeric(String input) {
@@ -72,12 +74,12 @@ onActionButtonPressed({required String redirectFrom}) async {
   if (redirectFrom == productDetailN) {
     await isar.writeTxn(() async {
       await isar.productDatabaseModels.delete(ProductDetailController.to.id);
-      await isar.deletedProductDatabaseModels.put(
-        DeletedProductDatabaseModel()
-          ..productId = ProductDetailController.to.productId
-          ..deletedDate = DateTime.now()
-          ..deletedByUserId = AppController.to.userId.value,
-      );
+      await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
+        productId: ProductDetailController.to.productId,
+        deletedDate: DateTime.now(),
+        deletedByUserId: AppController.to.userId.value,
+        addedFrom: productDetailDC,
+      ));
     });
     Get.back();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
@@ -89,22 +91,21 @@ onActionButtonPressed({required String redirectFrom}) async {
       String id = generateDatabaseId(time: now);
       if (redirectFrom == categoryNameN) {
         await isar.writeTxn(() async {
-          await isar.categoryDatabaseModels.put(
-            CategoryDatabaseModel()
-              ..categoryName = addItemController.addedText.value
-              ..dateCreated = now
-              ..createdByUserId = appController.userId.value
-              ..categoryId = id,
-          );
-          await isar.logCategoryDatabaseModels.put(
-            LogCategoryDatabaseModel()
-              ..categoryName = addItemController.addedText.value
-              ..dateCreated = now
-              ..createdByUserId = appController.userId.value
-              ..categoryId = id
-              ..dateModified = now
-              ..modifiedByUserId = appController.userId.value,
-          );
+          await isar.categoryDatabaseModels.put(CategoryDatabaseModel(
+            categoryName: addItemController.addedText.value,
+            dateCreated: now,
+            createdByUserId: appController.userId.value,
+            categoryId: id,
+          ));
+          await isar.logCategoryDatabaseModels.put(LogCategoryDatabaseModel(
+              categoryName: addItemController.addedText.value,
+              dateCreated: now,
+              createdByUserId: appController.userId.value,
+              categoryId: id,
+              dateModified: now,
+              modifiedByUserId: appController.userId.value,
+              addedFrom:
+                  currentPage == addProductN ? addProductDC : editProductDC));
         });
         if (currentPage == addProductN) {
           AddProductController addProductController = Get.find();
@@ -117,22 +118,24 @@ onActionButtonPressed({required String redirectFrom}) async {
         }
       } else if (redirectFrom == uomNameN) {
         await isar.writeTxn(() async {
-          await isar.unitOfMeasurementDatabaseModels.put(
-            UnitOfMeasurementDatabaseModel()
-              ..name = addItemController.addedText.value
-              ..dateCreated = now
-              ..createdByUserId = appController.userId.value
-              ..uomId = id,
-          );
+          await isar.unitOfMeasurementDatabaseModels
+              .put(UnitOfMeasurementDatabaseModel(
+            name: addItemController.addedText.value,
+            dateCreated: now,
+            createdByUserId: appController.userId.value,
+            uomId: id,
+          ));
           await isar.logUnitOfMeasurementDatabaseModels.put(
-            LogUnitOfMeasurementDatabaseModel()
-              ..name = addItemController.addedText.value
-              ..dateCreated = now
-              ..createdByUserId = appController.userId.value
-              ..uomId = id
-              ..dateModified = now
-              ..modifiedByUserId = appController.userId.value,
-          );
+              LogUnitOfMeasurementDatabaseModel(
+                  name: addItemController.addedText.value,
+                  dateCreated: now,
+                  createdByUserId: appController.userId.value,
+                  uomId: id,
+                  dateModified: now,
+                  modifiedByUserId: appController.userId.value,
+                  addedFrom: currentPage == addProductN
+                      ? addProductDC
+                      : editProductDC));
         });
         if (currentPage == addProductN) {
           AddProductController addProductController = Get.find();
@@ -190,13 +193,11 @@ titleToData({required String title, int? index}) {
     // }
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
-  }
-  else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
     if (title == purchaseN()) {
       value = purchaseController.purchaseModels[index!].value.productName;
-    }
-    else if (title == costN) {
+    } else if (title == costN) {
       value = purchaseController.purchaseModels[index!].value.cost;
     }
   } else if (currentPage == productListN()) {

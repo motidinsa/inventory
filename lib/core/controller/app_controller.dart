@@ -5,6 +5,8 @@ import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurem
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/main.dart';
 
+import '../constants/database_constants.dart';
+
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();
   var userId = ''.obs;
@@ -24,23 +26,22 @@ class AppController extends GetxController {
       for (var element in defaultUnitOfMeasurement) {
         DateTime now = DateTime.now();
         uomModels.add(
-          UnitOfMeasurementDatabaseModel()
-            ..createdByUserId = userId.value
-            ..name = element
-            ..uomId = generateDatabaseId(time: now, identifier: element)
-            ..dateCreated = now
-            ..userId = userId.value,
+          UnitOfMeasurementDatabaseModel(
+            createdByUserId: userId.value,
+            name: element,
+            uomId: generateDatabaseId(time: now, identifier: element),
+            dateCreated: now,
+          ),
         );
-        logUomModels.add(
-          LogUnitOfMeasurementDatabaseModel()
-            ..createdByUserId = userId.value
-            ..name = element
-            ..uomId = generateDatabaseId(time: now, identifier: element)
-            ..dateCreated = now
-            ..dateModified = now
-            ..modifiedByUserId = userId.value
-            ..userId = userId.value,
-        );
+        logUomModels.add(LogUnitOfMeasurementDatabaseModel(
+          createdByUserId: userId.value,
+          name: element,
+          uomId: generateDatabaseId(time: now, identifier: element),
+          dateCreated: now,
+          dateModified: now,
+          modifiedByUserId: userId.value,
+          addedFrom: initialDC,
+        ));
       }
       await isar.writeTxn(() async {
         await isar.unitOfMeasurementDatabaseModels.putAll(uomModels);

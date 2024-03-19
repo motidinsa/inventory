@@ -1,4 +1,3 @@
-
 import 'package:isar/isar.dart';
 
 part 'quantity_cost_database_model.g.dart';
@@ -6,7 +5,13 @@ part 'quantity_cost_database_model.g.dart';
 @collection
 class QuantityCostDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String salesId;
-  late String purchaseId;
-  late double quantity;
+  String salesId;
+  String purchaseId;
+  double quantity;
+
+  QuantityCostDatabaseModel({
+    required this.salesId,
+    required this.purchaseId,
+    required this.quantity,
+  });
 }

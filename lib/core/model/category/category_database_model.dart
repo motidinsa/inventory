@@ -5,12 +5,21 @@ part 'category_database_model.g.dart';
 @collection
 class CategoryDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String userId;
-  late String categoryName;
-  late String categoryId;
-  late String createdByUserId;
+  String categoryName;
+  String categoryId;
+  String createdByUserId;
   String? lastModifiedByUserId;
-  late DateTime dateCreated;
+  DateTime dateCreated;
   DateTime? lastDateModified;
   bool? isAppWriteSynced;
+
+  CategoryDatabaseModel({
+    required this.categoryName,
+    required this.categoryId,
+    required this.createdByUserId,
+    this.lastModifiedByUserId,
+    required this.dateCreated,
+    this.lastDateModified,
+    this.isAppWriteSynced,
+  });
 }

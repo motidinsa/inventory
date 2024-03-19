@@ -5,16 +5,29 @@ part 'purchase_database_model.g.dart';
 @collection
 class PurchaseDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String userId;
-  late String productId;
-  late String purchaseId;
-  late DateTime purchaseDate;
-  late DateTime dateCreated;
+  String productId;
+  String purchaseId;
+  DateTime purchaseDate;
+  DateTime dateCreated;
   DateTime? lastDateModified;
   String? lastModifiedByUserId;
   int? customerId;
   String? vendorId;
-  late double quantity;
-  late double totalAmount;
-  late double cost;
+  double quantity;
+  double totalAmount;
+  double cost;
+
+  PurchaseDatabaseModel({
+    required this.productId,
+    required this.purchaseId,
+    required this.purchaseDate,
+    required this.dateCreated,
+    this.lastDateModified,
+    this.lastModifiedByUserId,
+    this.customerId,
+    this.vendorId,
+    required this.quantity,
+    required this.totalAmount,
+    required this.cost,
+  });
 }

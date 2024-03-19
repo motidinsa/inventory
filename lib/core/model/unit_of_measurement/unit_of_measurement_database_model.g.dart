@@ -52,11 +52,6 @@ const UnitOfMeasurementDatabaseModelSchema = CollectionSchema(
       id: 6,
       name: r'uomId',
       type: IsarType.string,
-    ),
-    r'userId': PropertySchema(
-      id: 7,
-      name: r'userId',
-      type: IsarType.string,
     )
   },
   estimateSize: _unitOfMeasurementDatabaseModelEstimateSize,
@@ -88,7 +83,6 @@ int _unitOfMeasurementDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 + object.uomId.length * 3;
-  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -105,7 +99,6 @@ void _unitOfMeasurementDatabaseModelSerialize(
   writer.writeString(offsets[4], object.lastModifiedByUserId);
   writer.writeString(offsets[5], object.name);
   writer.writeString(offsets[6], object.uomId);
-  writer.writeString(offsets[7], object.userId);
 }
 
 UnitOfMeasurementDatabaseModel _unitOfMeasurementDatabaseModelDeserialize(
@@ -114,16 +107,16 @@ UnitOfMeasurementDatabaseModel _unitOfMeasurementDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = UnitOfMeasurementDatabaseModel();
-  object.createdByUserId = reader.readString(offsets[0]);
-  object.dateCreated = reader.readDateTime(offsets[1]);
+  final object = UnitOfMeasurementDatabaseModel(
+    createdByUserId: reader.readString(offsets[0]),
+    dateCreated: reader.readDateTime(offsets[1]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[2]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[3]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[4]),
+    name: reader.readString(offsets[5]),
+    uomId: reader.readString(offsets[6]),
+  );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[2]);
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[3]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[4]);
-  object.name = reader.readString(offsets[5]);
-  object.uomId = reader.readString(offsets[6]);
-  object.userId = reader.readString(offsets[7]);
   return object;
 }
 
@@ -147,8 +140,6 @@ P _unitOfMeasurementDatabaseModelDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
-    case 7:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1039,144 +1030,6 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
       ));
     });
   }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension UnitOfMeasurementDatabaseModelQueryObject on QueryBuilder<
@@ -1286,20 +1139,6 @@ extension UnitOfMeasurementDatabaseModelQuerySortBy on QueryBuilder<
       QAfterSortBy> sortByUomIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'uomId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterSortBy> sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterSortBy> sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
     });
   }
 }
@@ -1419,20 +1258,6 @@ extension UnitOfMeasurementDatabaseModelQuerySortThenBy on QueryBuilder<
       return query.addSortBy(r'uomId', Sort.desc);
     });
   }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterSortBy> thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QAfterSortBy> thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension UnitOfMeasurementDatabaseModelQueryWhereDistinct on QueryBuilder<
@@ -1485,13 +1310,6 @@ extension UnitOfMeasurementDatabaseModelQueryWhereDistinct on QueryBuilder<
       QDistinct> distinctByUomId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'uomId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
-      QDistinct> distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
     });
   }
 }
@@ -1553,13 +1371,6 @@ extension UnitOfMeasurementDatabaseModelQueryProperty on QueryBuilder<
       uomIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'uomId');
-    });
-  }
-
-  QueryBuilder<UnitOfMeasurementDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 }

@@ -68,13 +68,8 @@ const PurchaseDatabaseModelSchema = CollectionSchema(
       name: r'totalAmount',
       type: IsarType.double,
     ),
-    r'userId': PropertySchema(
-      id: 10,
-      name: r'userId',
-      type: IsarType.string,
-    ),
     r'vendorId': PropertySchema(
-      id: 11,
+      id: 10,
       name: r'vendorId',
       type: IsarType.string,
     )
@@ -107,7 +102,6 @@ int _purchaseDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.productId.length * 3;
   bytesCount += 3 + object.purchaseId.length * 3;
-  bytesCount += 3 + object.userId.length * 3;
   {
     final value = object.vendorId;
     if (value != null) {
@@ -133,8 +127,7 @@ void _purchaseDatabaseModelSerialize(
   writer.writeString(offsets[7], object.purchaseId);
   writer.writeDouble(offsets[8], object.quantity);
   writer.writeDouble(offsets[9], object.totalAmount);
-  writer.writeString(offsets[10], object.userId);
-  writer.writeString(offsets[11], object.vendorId);
+  writer.writeString(offsets[10], object.vendorId);
 }
 
 PurchaseDatabaseModel _purchaseDatabaseModelDeserialize(
@@ -143,20 +136,20 @@ PurchaseDatabaseModel _purchaseDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = PurchaseDatabaseModel();
-  object.cost = reader.readDouble(offsets[0]);
-  object.customerId = reader.readLongOrNull(offsets[1]);
-  object.dateCreated = reader.readDateTime(offsets[2]);
+  final object = PurchaseDatabaseModel(
+    cost: reader.readDouble(offsets[0]),
+    customerId: reader.readLongOrNull(offsets[1]),
+    dateCreated: reader.readDateTime(offsets[2]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[3]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[4]),
+    productId: reader.readString(offsets[5]),
+    purchaseDate: reader.readDateTime(offsets[6]),
+    purchaseId: reader.readString(offsets[7]),
+    quantity: reader.readDouble(offsets[8]),
+    totalAmount: reader.readDouble(offsets[9]),
+    vendorId: reader.readStringOrNull(offsets[10]),
+  );
   object.id = id;
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[3]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[4]);
-  object.productId = reader.readString(offsets[5]);
-  object.purchaseDate = reader.readDateTime(offsets[6]);
-  object.purchaseId = reader.readString(offsets[7]);
-  object.quantity = reader.readDouble(offsets[8]);
-  object.totalAmount = reader.readDouble(offsets[9]);
-  object.userId = reader.readString(offsets[10]);
-  object.vendorId = reader.readStringOrNull(offsets[11]);
   return object;
 }
 
@@ -188,8 +181,6 @@ P _purchaseDatabaseModelDeserializeProp<P>(
     case 9:
       return (reader.readDouble(offset)) as P;
     case 10:
-      return (reader.readString(offset)) as P;
-    case 11:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1240,144 +1231,6 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
       QAfterFilterCondition> vendorIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1683,20 +1536,6 @@ extension PurchaseDatabaseModelQuerySortBy
   }
 
   QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
-      sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
-      sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
       sortByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -1868,20 +1707,6 @@ extension PurchaseDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
-      thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
-      thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
       thenByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -1970,13 +1795,6 @@ extension PurchaseDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
-      distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
       distinctByVendorId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'vendorId', caseSensitive: caseSensitive);
@@ -2058,13 +1876,6 @@ extension PurchaseDatabaseModelQueryProperty on QueryBuilder<
       totalAmountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'totalAmount');
-    });
-  }
-
-  QueryBuilder<PurchaseDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 

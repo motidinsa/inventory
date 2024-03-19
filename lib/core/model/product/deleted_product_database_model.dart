@@ -5,9 +5,17 @@ part 'deleted_product_database_model.g.dart';
 @collection
 class DeletedProductDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String userId;
-  late String productId;
-  late DateTime deletedDate;
-  late String deletedByUserId;
+  String productId;
+  DateTime deletedDate;
+  String deletedByUserId;
   bool? isAppWriteSynced;
+  String addedFrom;
+
+  DeletedProductDatabaseModel({
+    required this.productId,
+    required this.deletedDate,
+    required this.deletedByUserId,
+    this.isAppWriteSynced,
+    required this.addedFrom,
+  });
 }

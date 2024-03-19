@@ -52,11 +52,6 @@ const CategoryDatabaseModelSchema = CollectionSchema(
       id: 6,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
-    ),
-    r'userId': PropertySchema(
-      id: 7,
-      name: r'userId',
-      type: IsarType.string,
     )
   },
   estimateSize: _categoryDatabaseModelEstimateSize,
@@ -88,7 +83,6 @@ int _categoryDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -105,7 +99,6 @@ void _categoryDatabaseModelSerialize(
   writer.writeBool(offsets[4], object.isAppWriteSynced);
   writer.writeDateTime(offsets[5], object.lastDateModified);
   writer.writeString(offsets[6], object.lastModifiedByUserId);
-  writer.writeString(offsets[7], object.userId);
 }
 
 CategoryDatabaseModel _categoryDatabaseModelDeserialize(
@@ -114,16 +107,16 @@ CategoryDatabaseModel _categoryDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = CategoryDatabaseModel();
-  object.categoryId = reader.readString(offsets[0]);
-  object.categoryName = reader.readString(offsets[1]);
-  object.createdByUserId = reader.readString(offsets[2]);
-  object.dateCreated = reader.readDateTime(offsets[3]);
+  final object = CategoryDatabaseModel(
+    categoryId: reader.readString(offsets[0]),
+    categoryName: reader.readString(offsets[1]),
+    createdByUserId: reader.readString(offsets[2]),
+    dateCreated: reader.readDateTime(offsets[3]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[5]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
+  );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[4]);
-  object.lastDateModified = reader.readDateTimeOrNull(offsets[5]);
-  object.lastModifiedByUserId = reader.readStringOrNull(offsets[6]);
-  object.userId = reader.readString(offsets[7]);
   return object;
 }
 
@@ -148,8 +141,6 @@ P _categoryDatabaseModelDeserializeProp<P>(
       return (reader.readDateTimeOrNull(offset)) as P;
     case 6:
       return (reader.readStringOrNull(offset)) as P;
-    case 7:
-      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1035,144 +1026,6 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
       ));
     });
   }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension CategoryDatabaseModelQueryObject on QueryBuilder<
@@ -1278,20 +1131,6 @@ extension CategoryDatabaseModelQuerySortBy
       sortByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
-      sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
-      sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
     });
   }
 }
@@ -1409,20 +1248,6 @@ extension CategoryDatabaseModelQuerySortThenBy
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
-      thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
-      thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension CategoryDatabaseModelQueryWhereDistinct
@@ -1475,13 +1300,6 @@ extension CategoryDatabaseModelQueryWhereDistinct
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastModifiedByUserId',
           caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QDistinct>
-      distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
     });
   }
 }
@@ -1540,13 +1358,6 @@ extension CategoryDatabaseModelQueryProperty on QueryBuilder<
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');
-    });
-  }
-
-  QueryBuilder<CategoryDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 }

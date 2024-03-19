@@ -5,24 +5,43 @@ part 'log_product_database_model.g.dart';
 @collection
 class LogProductDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String userId;
-  late String productId;
-  late String productName;
+  String productId;
+  String productName;
   String? description;
   String? categoryId;
   String? userAssignedProductId;
-  late double cost;
-  late double price;
-  late double quantityOnHand;
-  late double reorderQuantity;
-  late String unitOfMeasurementId;
-  late String createdByUserId;
-  late String modifiedByUserId;
-  late DateTime dateCreated;
-  late DateTime dateModified;
+  double cost;
+  double price;
+  double quantityOnHand;
+  double reorderQuantity;
+  String unitOfMeasurementId;
+  String createdByUserId;
+  String modifiedByUserId;
+  DateTime dateCreated;
+  DateTime dateModified;
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;
-  late String addedFrom;
-  late String modifiedFrom;
+  String addedFrom;
+
+  LogProductDatabaseModel({
+    required this.productId,
+    required this.productName,
+    this.description,
+    this.categoryId,
+    this.userAssignedProductId,
+    required this.cost,
+    required this.price,
+    required this.quantityOnHand,
+    required this.reorderQuantity,
+    required this.unitOfMeasurementId,
+    required this.createdByUserId,
+    required this.modifiedByUserId,
+    required this.dateCreated,
+    required this.dateModified,
+    this.isAppWriteSynced,
+    this.localImagePath,
+    this.onlineImagePath,
+    required this.addedFrom,
+  });
 }

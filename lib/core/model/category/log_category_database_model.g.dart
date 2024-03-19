@@ -18,44 +18,44 @@ const LogCategoryDatabaseModelSchema = CollectionSchema(
   name: r'LogCategoryDatabaseModel',
   id: 8938234845724194005,
   properties: {
-    r'categoryId': PropertySchema(
+    r'addedFrom': PropertySchema(
       id: 0,
+      name: r'addedFrom',
+      type: IsarType.string,
+    ),
+    r'categoryId': PropertySchema(
+      id: 1,
       name: r'categoryId',
       type: IsarType.string,
     ),
     r'categoryName': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'categoryName',
       type: IsarType.string,
     ),
     r'createdByUserId': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'dateModified': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'dateModified',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'modifiedByUserId': PropertySchema(
-      id: 6,
-      name: r'modifiedByUserId',
-      type: IsarType.string,
-    ),
-    r'userId': PropertySchema(
       id: 7,
-      name: r'userId',
+      name: r'modifiedByUserId',
       type: IsarType.string,
     )
   },
@@ -79,11 +79,11 @@ int _logCategoryDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedFrom.length * 3;
   bytesCount += 3 + object.categoryId.length * 3;
   bytesCount += 3 + object.categoryName.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
   bytesCount += 3 + object.modifiedByUserId.length * 3;
-  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -93,14 +93,14 @@ void _logCategoryDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.categoryId);
-  writer.writeString(offsets[1], object.categoryName);
-  writer.writeString(offsets[2], object.createdByUserId);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeDateTime(offsets[4], object.dateModified);
-  writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeString(offsets[6], object.modifiedByUserId);
-  writer.writeString(offsets[7], object.userId);
+  writer.writeString(offsets[0], object.addedFrom);
+  writer.writeString(offsets[1], object.categoryId);
+  writer.writeString(offsets[2], object.categoryName);
+  writer.writeString(offsets[3], object.createdByUserId);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeDateTime(offsets[5], object.dateModified);
+  writer.writeBool(offsets[6], object.isAppWriteSynced);
+  writer.writeString(offsets[7], object.modifiedByUserId);
 }
 
 LogCategoryDatabaseModel _logCategoryDatabaseModelDeserialize(
@@ -109,16 +109,17 @@ LogCategoryDatabaseModel _logCategoryDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = LogCategoryDatabaseModel();
-  object.categoryId = reader.readString(offsets[0]);
-  object.categoryName = reader.readString(offsets[1]);
-  object.createdByUserId = reader.readString(offsets[2]);
-  object.dateCreated = reader.readDateTime(offsets[3]);
-  object.dateModified = reader.readDateTime(offsets[4]);
+  final object = LogCategoryDatabaseModel(
+    addedFrom: reader.readString(offsets[0]),
+    categoryId: reader.readString(offsets[1]),
+    categoryName: reader.readString(offsets[2]),
+    createdByUserId: reader.readString(offsets[3]),
+    dateCreated: reader.readDateTime(offsets[4]),
+    dateModified: reader.readDateTime(offsets[5]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[6]),
+    modifiedByUserId: reader.readString(offsets[7]),
+  );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[5]);
-  object.modifiedByUserId = reader.readString(offsets[6]);
-  object.userId = reader.readString(offsets[7]);
   return object;
 }
 
@@ -136,13 +137,13 @@ P _logCategoryDatabaseModelDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
       return (reader.readDateTime(offset)) as P;
     case 5:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 7:
       return (reader.readString(offset)) as P;
     default:
@@ -247,6 +248,144 @@ extension LogCategoryDatabaseModelQueryWhere on QueryBuilder<
 
 extension LogCategoryDatabaseModelQueryFilter on QueryBuilder<
     LogCategoryDatabaseModel, LogCategoryDatabaseModel, QFilterCondition> {
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedFrom',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+          QAfterFilterCondition>
+      addedFromContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedFrom',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+          QAfterFilterCondition>
+      addedFromMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedFrom',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
+      QAfterFilterCondition> addedFromIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedFrom',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
       QAfterFilterCondition> categoryIdEqualTo(
     String value, {
@@ -994,144 +1133,6 @@ extension LogCategoryDatabaseModelQueryFilter on QueryBuilder<
       ));
     });
   }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'userId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-          QAfterFilterCondition>
-      userIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'userId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-          QAfterFilterCondition>
-      userIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'userId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel,
-      QAfterFilterCondition> userIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'userId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension LogCategoryDatabaseModelQueryObject on QueryBuilder<
@@ -1142,6 +1143,20 @@ extension LogCategoryDatabaseModelQueryLinks on QueryBuilder<
 
 extension LogCategoryDatabaseModelQuerySortBy on QueryBuilder<
     LogCategoryDatabaseModel, LogCategoryDatabaseModel, QSortBy> {
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
+      sortByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
+      sortByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
       sortByCategoryId() {
     return QueryBuilder.apply(this, (query) {
@@ -1239,24 +1254,24 @@ extension LogCategoryDatabaseModelQuerySortBy on QueryBuilder<
       return query.addSortBy(r'modifiedByUserId', Sort.desc);
     });
   }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
-      sortByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
-      sortByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension LogCategoryDatabaseModelQuerySortThenBy on QueryBuilder<
     LogCategoryDatabaseModel, LogCategoryDatabaseModel, QSortThenBy> {
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
+      thenByAddedFrom() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
+      thenByAddedFromDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedFrom', Sort.desc);
+    });
+  }
+
   QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
       thenByCategoryId() {
     return QueryBuilder.apply(this, (query) {
@@ -1368,24 +1383,17 @@ extension LogCategoryDatabaseModelQuerySortThenBy on QueryBuilder<
       return query.addSortBy(r'modifiedByUserId', Sort.desc);
     });
   }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
-      thenByUserId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QAfterSortBy>
-      thenByUserIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'userId', Sort.desc);
-    });
-  }
 }
 
 extension LogCategoryDatabaseModelQueryWhereDistinct on QueryBuilder<
     LogCategoryDatabaseModel, LogCategoryDatabaseModel, QDistinct> {
+  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QDistinct>
+      distinctByAddedFrom({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedFrom', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QDistinct>
       distinctByCategoryId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1436,13 +1444,6 @@ extension LogCategoryDatabaseModelQueryWhereDistinct on QueryBuilder<
           caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<LogCategoryDatabaseModel, LogCategoryDatabaseModel, QDistinct>
-      distinctByUserId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
-    });
-  }
 }
 
 extension LogCategoryDatabaseModelQueryProperty on QueryBuilder<
@@ -1450,6 +1451,13 @@ extension LogCategoryDatabaseModelQueryProperty on QueryBuilder<
   QueryBuilder<LogCategoryDatabaseModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<LogCategoryDatabaseModel, String, QQueryOperations>
+      addedFromProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedFrom');
     });
   }
 
@@ -1499,13 +1507,6 @@ extension LogCategoryDatabaseModelQueryProperty on QueryBuilder<
       modifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'modifiedByUserId');
-    });
-  }
-
-  QueryBuilder<LogCategoryDatabaseModel, String, QQueryOperations>
-      userIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'userId');
     });
   }
 }

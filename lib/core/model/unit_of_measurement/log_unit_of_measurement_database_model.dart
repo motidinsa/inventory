@@ -5,7 +5,6 @@ part 'log_unit_of_measurement_database_model.g.dart';
 @collection
 class LogUnitOfMeasurementDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String userId;
   late String name;
   late String uomId;
   late String createdByUserId;
@@ -14,5 +13,15 @@ class LogUnitOfMeasurementDatabaseModel {
   late DateTime dateModified;
   bool? isAppWriteSynced;
   late String addedFrom;
-  late String modifiedFrom;
+
+  LogUnitOfMeasurementDatabaseModel({
+    required this.name,
+    required this.uomId,
+    required this.createdByUserId,
+    required this.modifiedByUserId,
+    required this.dateCreated,
+    required this.dateModified,
+    this.isAppWriteSynced,
+    required this.addedFrom,
+  });
 }
