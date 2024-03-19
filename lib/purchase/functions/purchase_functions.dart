@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 onPurchaseTextFieldChange({
@@ -57,12 +59,12 @@ onPurchaseProductFocusChange({
   }
 }
 
-onPurchaseSearchProductAlertDialogOptionSelect(
-    {required ProductDatabaseModel productModel, required int index}) {
+onPurchaseSearchProductAlertDialogOptionSelect({required int index,required String productId,required String productName}) {
   final PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index].update((purchase) {
     // purchase?.productName = productModel.productName;
-    purchase?.productId = productModel.id;
+    purchase?.productId = productId;
+    purchase?.productName = productName;
     purchase?.cost =
         emptyIfDefaultValue(getFormattedNumberWithoutComa(productModel.cost));
     if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {

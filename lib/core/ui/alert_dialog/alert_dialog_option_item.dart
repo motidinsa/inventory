@@ -33,7 +33,6 @@ class AlertDialogOptionItem extends StatelessWidget {
         title: title,
         index: index,
         data: name,
-        // productModel: product,
         id: id,
       ),
     );

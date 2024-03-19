@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -58,7 +57,7 @@ onTextFieldChange({
   }
 }
 
-onTextFieldPressed({String? title, int? index, required BuildContext context}) {
+onTextFieldPressed({String? title, int? index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   if (currentPage == addProductN) {

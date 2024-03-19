@@ -1,5 +1,6 @@
 class PurchaseModel {
-  int productId;
+  String productId;
+  String productName;
   DateTime purchaseDate;
   int? customerId;
   String quantity;
@@ -9,6 +10,7 @@ class PurchaseModel {
 
   PurchaseModel({
     required this.productId,
+    required this.productName,
     required this.purchaseDate,
     this.customerId,
     required this.quantity,

@@ -6,8 +6,8 @@ part 'purchase_database_model.g.dart';
 class PurchaseDatabaseModel {
   Id id = Isar.autoIncrement;
   late String userId;
-  late int productId;
-  late int purchaseId;
+  late String productId;
+  late String purchaseId;
   late DateTime purchaseDate;
   late DateTime dateCreated;
   DateTime? lastDateModified;
@@ -16,5 +16,4 @@ class PurchaseDatabaseModel {
   late double quantity;
   late double totalAmount;
   late double cost;
-
 }

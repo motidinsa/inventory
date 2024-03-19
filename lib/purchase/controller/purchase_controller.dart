@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
@@ -18,7 +16,8 @@ class PurchaseController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var purchaseModels = [
     PurchaseModel(
-      productId: 0,
+      productId: '',
+      productName: '',
       quantity: '',
       totalAmount: 0,
       cost: '',
@@ -110,10 +109,10 @@ class PurchaseController extends GetxController {
     //     ),
     //   );
 
-      // var currentProduct = productsBox.get(element.value.productId);
-      // currentProduct!.quantityOnHand = (currentProduct.quantityOnHand +
-      //     double.parse(element.value.quantity));
-      // await productsBox.put(element.value.productId, currentProduct);
+    // var currentProduct = productsBox.get(element.value.productId);
+    // currentProduct!.quantityOnHand = (currentProduct.quantityOnHand +
+    //     double.parse(element.value.quantity));
+    // await productsBox.put(element.value.productId, currentProduct);
     // }
 
     isLocalSaveLoading(false);

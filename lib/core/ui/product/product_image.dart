@@ -21,11 +21,20 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return localImagePath != null
-        ? ClipRRect(
-            borderRadius: smoothBorderRadius(radius: 12),
-            child: Image.file(
-              File(localImagePath!),
-              width: imageWidth,
+        ? SizedBox(
+            width: 100,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: smoothBorderRadius(radius: 12),
+                  child: Image.file(
+                    File(localImagePath!),
+                    width: imageWidth,
+                  ),
+                ),
+              ],
             ),
           )
         : Container(

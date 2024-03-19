@@ -17,7 +17,7 @@ onAlertDialogOptionSelect(
     {required String title,
     required String id,
     ProductDatabaseModel? productModel,
-    String? data,
+    required String data,
     int? index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
@@ -30,7 +30,7 @@ onAlertDialogOptionSelect(
     onEditProductAlertDialogOptionSelect(title: title, data: data!, id: id);
   } else if (currentPage == purchaseN()) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        productModel: productModel!, index: index!);
+        index: index!, productName: data, productId: id);
   }
   Get.back();
 }

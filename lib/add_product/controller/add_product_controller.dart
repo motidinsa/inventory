@@ -3,12 +3,11 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/main.dart';
-
-import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 
 class AddProductController extends GetxController {
   var isLocalSaveLoading = false.obs;
@@ -61,7 +60,8 @@ class AddProductController extends GetxController {
       ..localImagePath = productInfo.value.localImagePath
       ..userAssignedProductId =
           nullIfEmpty(productInfo.value.userAssignedProductId)
-      ..productId = generateDatabaseId(time: now);
+      ..productId = generateDatabaseId(time: now)
+      ..userId = appController.userId.value;
     final logDbProduct = LogProductDatabaseModel()
       ..productName = productInfo.value.name
       ..description = nullIfEmpty(productInfo.value.description)
@@ -78,7 +78,8 @@ class AddProductController extends GetxController {
           nullIfEmpty(productInfo.value.userAssignedProductId)
       ..productId = generateDatabaseId(time: now)
       ..dateModified = now
-      ..modifiedByUserId = appController.userId.value;
+      ..modifiedByUserId = appController.userId.value
+      ..userId = appController.userId.value;
 
     await isar.writeTxn(() async {
       await isar.productDatabaseModels.put(dbProduct);
