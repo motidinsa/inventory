@@ -7,7 +7,10 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/main.dart';
-import 'package:my_inventory/sales/model/sales_model.dart';
+import 'package:my_inventory/core/model/sales/sales_model.dart';
+
+import '../../core/constants/database_constants.dart';
+import '../../core/model/product/log_product_database_model.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
@@ -21,18 +24,13 @@ class SalesController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var salesModels = [
     SalesModel(
-      date: DateTime.now(),
-      dateAdded: DateTime.now(),
-      dateModified: DateTime.now(),
+      salesDate: DateTime.now(),
       customerId: '',
-      customerName: '',
       productId: '',
       productName: '',
       quantity: '',
-      reference: '',
-      totalAmount: 0,
       price: '',
-      id: '',
+      totalAmount: 0,
     ).obs
   ].obs;
 
@@ -47,19 +45,14 @@ class SalesController extends GetxController {
   addSalesProduct() {
     salesModels.add(
       SalesModel(
-        date: DateTime.now(),
-        dateAdded: DateTime.now(),
-        dateModified: DateTime.now(),
-        customerId: '',
-        customerName: '',
-        productId: '',
-        productName: '',
-        quantity: '',
-        reference: '',
-        totalAmount: 0,
-        price: '',
-        id: '',
-      ).obs,
+              salesDate: DateTime.now(),
+              customerId: '',
+              productId: '',
+              productName: '',
+              quantity: '',
+              price: '',
+              totalAmount: 0)
+          .obs,
     );
   }
 
@@ -81,15 +74,25 @@ class SalesController extends GetxController {
               .and()
               .quantityGreaterThan(0))
           .findAllSync();
+      ProductDatabaseModel product = isar.productDatabaseModels
+          .filter()
+          .productIdEqualTo(element.value.productId)
+          .findFirstSync()!;
+      LogProductDatabaseModel logProduct = isar.logProductDatabaseModels
+          .filter()
+          .productIdEqualTo(element.value.productId)
+          .findFirstSync()!;
       double remaining = double.parse(element.value.quantity);
       await isar.writeTxn(() async {
         while (remaining != 0) {
           if (remaining <= purchases.first.quantity) {
-            await isar.quantityCostDatabaseModels.put(QuantityCostDatabaseModel(
-              salesId: salesId,
-              purchaseId: purchases.first.purchaseId,
-              quantity: remaining,
-            ));
+            await isar.quantityCostDatabaseModels.put(
+              QuantityCostDatabaseModel(
+                salesId: salesId,
+                purchaseId: purchases.first.purchaseId,
+                quantity: remaining,
+              ),
+            );
             purchases.first.quantity -= remaining;
             if (purchases.first.quantity > remaining) {
               await isar.purchaseAvailableDatabaseModels.put(purchases.first);
@@ -112,13 +115,27 @@ class SalesController extends GetxController {
             purchases.removeAt(0);
           }
 
-          // String key = dateFormatter.format(DateTime.now());
-
-          // var currentProduct = productsBox.get(element.value.productId);
-          // currentProduct!.quantityOnHand = (currentProduct.quantityOnHand -
-          //     double.parse(element.value.quantity));
-          // await productsBox.put(element.value.productId, currentProduct);
         }
+        product.quantityOnHand -= double.parse(element.value.quantity);
+        product.lastDateModified = now;
+        product.lastModifiedByUserId = AppController.to.userId.value;
+        await isar.productDatabaseModels.put(product);
+        await isar.logProductDatabaseModels.put(
+          LogProductDatabaseModel(
+            productId: logProduct.productId,
+            productName: logProduct.productName,
+            cost: logProduct.cost,
+            price: logProduct.price,
+            quantityOnHand: logProduct.quantityOnHand-double.parse(element.value.quantity),
+            reorderQuantity: logProduct.reorderQuantity,
+            unitOfMeasurementId: logProduct.unitOfMeasurementId,
+            createdByUserId: logProduct.createdByUserId,
+            modifiedByUserId: AppController.to.userId.value,
+            dateCreated: logProduct.dateCreated,
+            dateModified: now,
+            addedFrom: salesDC,
+          ),
+        );
       });
       isLocalSaveLoading(false);
     });

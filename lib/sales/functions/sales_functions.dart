@@ -64,16 +64,6 @@ onSalesSearchProductAlertDialogOptionSelect(
       sales.totalAmount = double.parse(sales.quantity) * productDatabaseModel.price;
     }
   });
-
-
-  // salesController.salesModels[index].update((sales) {
-  //   sales?.productName = productModel.productName;
-  //   sales?.productId = productModel.productId;
-  //   sales?.price = productModel.price.toString();
-  //   if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
-  //     sales.totalAmount = double.parse(sales.quantity) * productModel.price;
-  //   }
-  // });
 }
 
 int getSalesAlertDialogProductLength() {

@@ -80,7 +80,12 @@ onActionButtonPressed({required String redirectFrom}) async {
         deletedByUserId: AppController.to.userId.value,
         addedFrom: productDetailDC,
       ));
+
     });
+    ProductListController.to.productList(isar.productDatabaseModels
+        .filter()
+        .productNameContains(ProductListController.to.searchedText.value)
+        .findAllSync());
     Get.back();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();

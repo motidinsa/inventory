@@ -18,19 +18,19 @@ onAlertDialogOptionSelect(
     required String id,
     ProductDatabaseModel? productModel,
     required String data,
-    int? index}) {
+    int? listIndex}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     onSalesSearchProductAlertDialogOptionSelect(
-        listIndex: index!, productId: id);
+        listIndex: listIndex!, productId: id);
   } else if (currentPage == addProductN) {
     onAddProductAlertDialogOptionSelect(title: title, data: data, id: id);
   } else if (currentPage == editProductN) {
     onEditProductAlertDialogOptionSelect(title: title, data: data, id: id);
   } else if (currentPage == purchaseN()) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        listIndex: index!, productId: id);
+        listIndex: listIndex!, productId: id);
   }
   Get.back();
 }

@@ -46,14 +46,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     textEditingController.value = textEditingController.value.copyWith(
       text: titleToData(
         title: widget.title,
         index: widget.index,
       ),
     );
-    // });
+    });
 
     return TextFormField(
       controller: textEditingController,

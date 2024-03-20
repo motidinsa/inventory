@@ -14,7 +14,6 @@ class PurchaseAvailableDatabaseModel {
   int? customerId;
   String? vendorId;
   double quantity;
-  double totalAmount;
   double cost;
 
   PurchaseAvailableDatabaseModel({
@@ -27,7 +26,6 @@ class PurchaseAvailableDatabaseModel {
     this.customerId,
     this.vendorId,
     required this.quantity,
-    required this.totalAmount,
     required this.cost,
   });
 }

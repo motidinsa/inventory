@@ -69,7 +69,7 @@ getAddProductAlertDialogLength({required String title}) {
 
 onSalesProductSelect({
   String? title,
-  int? index,
+  int? listIndex,
 }) {
   if (title == salesN()) {
     SalesController salesController = Get.find();
@@ -77,7 +77,7 @@ onSalesProductSelect({
 
     Get.dialog(AlertDialogOptionSelect(
       title: searchProductsN(),
-      listIndex: index,
+      listIndex: listIndex,
     )).then(
       (value) async {
         await unFocus();

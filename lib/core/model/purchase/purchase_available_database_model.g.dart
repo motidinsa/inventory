@@ -63,13 +63,8 @@ const PurchaseAvailableDatabaseModelSchema = CollectionSchema(
       name: r'quantity',
       type: IsarType.double,
     ),
-    r'totalAmount': PropertySchema(
-      id: 9,
-      name: r'totalAmount',
-      type: IsarType.double,
-    ),
     r'vendorId': PropertySchema(
-      id: 10,
+      id: 9,
       name: r'vendorId',
       type: IsarType.string,
     )
@@ -126,8 +121,7 @@ void _purchaseAvailableDatabaseModelSerialize(
   writer.writeDateTime(offsets[6], object.purchaseDate);
   writer.writeString(offsets[7], object.purchaseId);
   writer.writeDouble(offsets[8], object.quantity);
-  writer.writeDouble(offsets[9], object.totalAmount);
-  writer.writeString(offsets[10], object.vendorId);
+  writer.writeString(offsets[9], object.vendorId);
 }
 
 PurchaseAvailableDatabaseModel _purchaseAvailableDatabaseModelDeserialize(
@@ -146,8 +140,7 @@ PurchaseAvailableDatabaseModel _purchaseAvailableDatabaseModelDeserialize(
     purchaseDate: reader.readDateTime(offsets[6]),
     purchaseId: reader.readString(offsets[7]),
     quantity: reader.readDouble(offsets[8]),
-    totalAmount: reader.readDouble(offsets[9]),
-    vendorId: reader.readStringOrNull(offsets[10]),
+    vendorId: reader.readStringOrNull(offsets[9]),
   );
   object.id = id;
   return object;
@@ -179,8 +172,6 @@ P _purchaseAvailableDatabaseModelDeserializeProp<P>(
     case 8:
       return (reader.readDouble(offset)) as P;
     case 9:
-      return (reader.readDouble(offset)) as P;
-    case 10:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1169,72 +1160,6 @@ extension PurchaseAvailableDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterFilterCondition> totalAmountEqualTo(
-    double value, {
-    double epsilon = Query.epsilon,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'totalAmount',
-        value: value,
-        epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterFilterCondition> totalAmountGreaterThan(
-    double value, {
-    bool include = false,
-    double epsilon = Query.epsilon,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'totalAmount',
-        value: value,
-        epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterFilterCondition> totalAmountLessThan(
-    double value, {
-    bool include = false,
-    double epsilon = Query.epsilon,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'totalAmount',
-        value: value,
-        epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterFilterCondition> totalAmountBetween(
-    double lower,
-    double upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    double epsilon = Query.epsilon,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'totalAmount',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
       QAfterFilterCondition> vendorIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1530,20 +1455,6 @@ extension PurchaseAvailableDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterSortBy> sortByTotalAmount() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'totalAmount', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterSortBy> sortByTotalAmountDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'totalAmount', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
       QAfterSortBy> sortByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -1703,20 +1614,6 @@ extension PurchaseAvailableDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterSortBy> thenByTotalAmount() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'totalAmount', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QAfterSortBy> thenByTotalAmountDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'totalAmount', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
       QAfterSortBy> thenByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
@@ -1794,13 +1691,6 @@ extension PurchaseAvailableDatabaseModelQueryWhereDistinct on QueryBuilder<
       QDistinct> distinctByQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'quantity');
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, PurchaseAvailableDatabaseModel,
-      QDistinct> distinctByTotalAmount() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'totalAmount');
     });
   }
 
@@ -1883,13 +1773,6 @@ extension PurchaseAvailableDatabaseModelQueryProperty on QueryBuilder<
       quantityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'quantity');
-    });
-  }
-
-  QueryBuilder<PurchaseAvailableDatabaseModel, double, QQueryOperations>
-      totalAmountProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'totalAmount');
     });
   }
 

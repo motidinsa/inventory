@@ -65,7 +65,7 @@ onTextFieldPressed({String? title, int? index}) {
   } else if (currentPage == editProductN) {
     onEditProductTextFieldPressed(title: title!);
   } else if (currentPage == salesN()) {
-    onSalesProductSelect(title: title, index: index);
+    onSalesProductSelect(title: title, listIndex: index);
   } else if (currentPage == purchaseN()) {
     onPurchaseProductSelect(title: title, index: index);
   }

@@ -31,7 +31,7 @@ class AlertDialogOptionItem extends StatelessWidget {
       titleAlignment: ListTileTitleAlignment.center,
       onTap: () => onAlertDialogOptionSelect(
         title: title,
-        index: listIndex,
+        listIndex: listIndex,
         data: name,
         id: id,
       ),

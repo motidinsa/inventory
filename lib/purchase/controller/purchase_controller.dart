@@ -113,7 +113,6 @@ class PurchaseController extends GetxController {
             customerId: purchaseModel.value.customerId,
             vendorId: purchaseModel.value.vendorId,
             quantity: double.parse(purchaseModel.value.quantity),
-            totalAmount: purchaseModel.value.totalAmount,
             cost: double.parse(purchaseModel.value.cost),
           ),
         );
@@ -126,7 +125,6 @@ class PurchaseController extends GetxController {
             customerId: purchaseModel.value.customerId,
             vendorId: purchaseModel.value.vendorId,
             quantity: double.parse(purchaseModel.value.quantity),
-            totalAmount: purchaseModel.value.totalAmount,
             cost: double.parse(purchaseModel.value.cost),
           ),
         );
