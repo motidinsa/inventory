@@ -1,4 +1,3 @@
-
 appNameN() => 'My Inventory';
 
 addCustomerN() => 'Add customer';
@@ -98,7 +97,7 @@ const String changeN = 'Change';
 const String galleryN = 'Gallery';
 const String cameraN = 'Camera';
 const String addImageN = 'Add image';
-const String noImageFoundN = 'No image found';
+const String noImageN = 'No image';
 const String imageOptionalN = 'Image\n(Optional)';
 const String productDetailN = 'Product detail';
 const String editProductN = 'Edit product';

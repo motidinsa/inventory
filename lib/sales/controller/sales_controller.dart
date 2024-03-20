@@ -11,8 +11,8 @@ import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:my_inventory/main.dart';
 
-import '../../core/constants/database_constants.dart';
-import '../../core/model/product/log_product_database_model.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
+import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();

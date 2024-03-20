@@ -10,7 +10,7 @@ import 'package:my_inventory/core/model/purchase/purchase_available_database_mod
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
 import 'package:my_inventory/main.dart';
 
-import '../../core/constants/database_constants.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();

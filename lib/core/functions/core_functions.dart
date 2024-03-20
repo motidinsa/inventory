@@ -23,7 +23,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../constants/database_constants.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 

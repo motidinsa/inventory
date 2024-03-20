@@ -11,10 +11,9 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/core/ui/product/product_image.dart';
 import 'package:my_inventory/edit_product/ui/edit_product.dart';
+import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
-
-import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
@@ -102,11 +101,13 @@ class ProductDetail extends StatelessWidget {
                 sizedBox(height: 15),
                 Row(
                   children: [
-                    ProductImage(
-                      id: productDatabaseModel.id,
-                      currentPage: productDetailN,
-                      localImagePath: productDatabaseModel.localImagePath,
-                      imageWidth: 120,
+                    Expanded(
+                      child: ProductImage(
+                        id: productDatabaseModel.id,
+                        currentPage: productDetailN,
+                        localImagePath: productDatabaseModel.localImagePath,
+                        imageWidth: 120,
+                      ),
                     ),
                     sizedBox(width: 15),
                     Expanded(

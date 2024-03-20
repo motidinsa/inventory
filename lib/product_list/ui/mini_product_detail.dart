@@ -33,7 +33,7 @@ class MiniProductDetail extends StatelessWidget {
         shape: smoothRectangleBorder(radius: 12),
         elevation: 3,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
           child: Row(
             children: [
               ProductImage(
@@ -58,7 +58,7 @@ class MiniProductDetail extends StatelessWidget {
                               color: Colors.grey.shade800),
                         ),
                       ),
-                      sizedBox(height: 10),
+                      sizedBox(height: 5),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [

@@ -16,9 +16,10 @@ import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart'
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/ui/drawer/my_drawer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'package:my_inventory/core/ui/title_with_submenu.dart';
 
 late Isar isar;
 
@@ -71,7 +72,11 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           drawer: const Drawer(
-            child: MyDrawer(),
+            child: SafeArea(
+              child: TitleWithSubMenu(
+                title: 'Report',
+              ),
+            ),
           ),
           body: Homepage(),
         ),
