@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'purchase_database_model.dart';
+part of 'purchase_all_database_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,14 +9,14 @@ part of 'purchase_database_model.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetPurchaseDatabaseModelCollection on Isar {
-  IsarCollection<PurchaseDatabaseModel> get purchaseDatabaseModels =>
+extension GetPurchaseAllDatabaseModelCollection on Isar {
+  IsarCollection<PurchaseAllDatabaseModel> get purchaseAllDatabaseModels =>
       this.collection();
 }
 
-const PurchaseDatabaseModelSchema = CollectionSchema(
-  name: r'PurchaseDatabaseModel',
-  id: 3191605170477083841,
+const PurchaseAllDatabaseModelSchema = CollectionSchema(
+  name: r'PurchaseAllDatabaseModel',
+  id: 5808505839300405048,
   properties: {
     r'cost': PropertySchema(
       id: 0,
@@ -74,22 +74,22 @@ const PurchaseDatabaseModelSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _purchaseDatabaseModelEstimateSize,
-  serialize: _purchaseDatabaseModelSerialize,
-  deserialize: _purchaseDatabaseModelDeserialize,
-  deserializeProp: _purchaseDatabaseModelDeserializeProp,
+  estimateSize: _purchaseAllDatabaseModelEstimateSize,
+  serialize: _purchaseAllDatabaseModelSerialize,
+  deserialize: _purchaseAllDatabaseModelDeserialize,
+  deserializeProp: _purchaseAllDatabaseModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _purchaseDatabaseModelGetId,
-  getLinks: _purchaseDatabaseModelGetLinks,
-  attach: _purchaseDatabaseModelAttach,
+  getId: _purchaseAllDatabaseModelGetId,
+  getLinks: _purchaseAllDatabaseModelGetLinks,
+  attach: _purchaseAllDatabaseModelAttach,
   version: '3.1.0+1',
 );
 
-int _purchaseDatabaseModelEstimateSize(
-  PurchaseDatabaseModel object,
+int _purchaseAllDatabaseModelEstimateSize(
+  PurchaseAllDatabaseModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -111,8 +111,8 @@ int _purchaseDatabaseModelEstimateSize(
   return bytesCount;
 }
 
-void _purchaseDatabaseModelSerialize(
-  PurchaseDatabaseModel object,
+void _purchaseAllDatabaseModelSerialize(
+  PurchaseAllDatabaseModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -130,13 +130,13 @@ void _purchaseDatabaseModelSerialize(
   writer.writeString(offsets[10], object.vendorId);
 }
 
-PurchaseDatabaseModel _purchaseDatabaseModelDeserialize(
+PurchaseAllDatabaseModel _purchaseAllDatabaseModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = PurchaseDatabaseModel(
+  final object = PurchaseAllDatabaseModel(
     cost: reader.readDouble(offsets[0]),
     customerId: reader.readLongOrNull(offsets[1]),
     dateCreated: reader.readDateTime(offsets[2]),
@@ -153,7 +153,7 @@ PurchaseDatabaseModel _purchaseDatabaseModelDeserialize(
   return object;
 }
 
-P _purchaseDatabaseModelDeserializeProp<P>(
+P _purchaseAllDatabaseModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -187,23 +187,23 @@ P _purchaseDatabaseModelDeserializeProp<P>(
   }
 }
 
-Id _purchaseDatabaseModelGetId(PurchaseDatabaseModel object) {
+Id _purchaseAllDatabaseModelGetId(PurchaseAllDatabaseModel object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _purchaseDatabaseModelGetLinks(
-    PurchaseDatabaseModel object) {
+List<IsarLinkBase<dynamic>> _purchaseAllDatabaseModelGetLinks(
+    PurchaseAllDatabaseModel object) {
   return [];
 }
 
-void _purchaseDatabaseModelAttach(
-    IsarCollection<dynamic> col, Id id, PurchaseDatabaseModel object) {
+void _purchaseAllDatabaseModelAttach(
+    IsarCollection<dynamic> col, Id id, PurchaseAllDatabaseModel object) {
   object.id = id;
 }
 
-extension PurchaseDatabaseModelQueryWhereSort
-    on QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QWhere> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhere>
+extension PurchaseAllDatabaseModelQueryWhereSort on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QWhere> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterWhere>
       anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -211,10 +211,10 @@ extension PurchaseDatabaseModelQueryWhereSort
   }
 }
 
-extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
-    PurchaseDatabaseModel, QWhereClause> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhereClause>
-      idEqualTo(Id id) {
+extension PurchaseAllDatabaseModelQueryWhere on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QWhereClause> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -223,8 +223,8 @@ extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhereClause>
-      idNotEqualTo(Id id) {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -246,8 +246,8 @@ extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhereClause>
-      idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -255,8 +255,8 @@ extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhereClause>
-      idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -264,8 +264,8 @@ extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterWhereClause>
-      idBetween(
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -282,9 +282,9 @@ extension PurchaseDatabaseModelQueryWhere on QueryBuilder<PurchaseDatabaseModel,
   }
 }
 
-extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
-    PurchaseDatabaseModel, PurchaseDatabaseModel, QFilterCondition> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+extension PurchaseAllDatabaseModelQueryFilter on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QFilterCondition> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> costEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -298,7 +298,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> costGreaterThan(
     double value, {
     bool include = false,
@@ -314,7 +314,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> costLessThan(
     double value, {
     bool include = false,
@@ -330,7 +330,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> costBetween(
     double lower,
     double upper, {
@@ -350,7 +350,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -359,7 +359,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -368,7 +368,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -378,7 +378,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdGreaterThan(
     int? value, {
     bool include = false,
@@ -392,7 +392,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdLessThan(
     int? value, {
     bool include = false,
@@ -406,7 +406,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> customerIdBetween(
     int? lower,
     int? upper, {
@@ -424,7 +424,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> dateCreatedEqualTo(DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -434,7 +434,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> dateCreatedGreaterThan(
     DateTime value, {
     bool include = false,
@@ -448,7 +448,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> dateCreatedLessThan(
     DateTime value, {
     bool include = false,
@@ -462,7 +462,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> dateCreatedBetween(
     DateTime lower,
     DateTime upper, {
@@ -480,7 +480,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -490,7 +490,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
@@ -504,7 +504,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
@@ -518,7 +518,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
@@ -536,7 +536,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -545,7 +545,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -554,7 +554,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -564,7 +564,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedGreaterThan(
     DateTime? value, {
     bool include = false,
@@ -578,7 +578,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedLessThan(
     DateTime? value, {
     bool include = false,
@@ -592,7 +592,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastDateModifiedBetween(
     DateTime? lower,
     DateTime? upper, {
@@ -610,7 +610,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -619,7 +619,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -628,7 +628,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -642,7 +642,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
     String? value, {
     bool include = false,
@@ -658,7 +658,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
     String? value, {
     bool include = false,
@@ -674,7 +674,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
     String? lower,
     String? upper, {
@@ -694,7 +694,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -708,7 +708,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -722,7 +722,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -734,7 +734,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -746,7 +746,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -756,7 +756,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -766,7 +766,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -780,7 +780,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdGreaterThan(
     String value, {
     bool include = false,
@@ -796,7 +796,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdLessThan(
     String value, {
     bool include = false,
@@ -812,7 +812,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdBetween(
     String lower,
     String upper, {
@@ -832,7 +832,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -846,7 +846,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -860,7 +860,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       productIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -872,7 +872,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       productIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -884,7 +884,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -894,7 +894,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> productIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -904,7 +904,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseDateEqualTo(DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -914,7 +914,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseDateGreaterThan(
     DateTime value, {
     bool include = false,
@@ -928,7 +928,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseDateLessThan(
     DateTime value, {
     bool include = false,
@@ -942,7 +942,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseDateBetween(
     DateTime lower,
     DateTime upper, {
@@ -960,7 +960,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -974,7 +974,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdGreaterThan(
     String value, {
     bool include = false,
@@ -990,7 +990,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdLessThan(
     String value, {
     bool include = false,
@@ -1006,7 +1006,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdBetween(
     String lower,
     String upper, {
@@ -1026,7 +1026,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1040,7 +1040,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1054,7 +1054,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       purchaseIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1066,7 +1066,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       purchaseIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1078,7 +1078,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1088,7 +1088,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> purchaseIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1098,7 +1098,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> quantityEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1112,7 +1112,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> quantityGreaterThan(
     double value, {
     bool include = false,
@@ -1128,7 +1128,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> quantityLessThan(
     double value, {
     bool include = false,
@@ -1144,7 +1144,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> quantityBetween(
     double lower,
     double upper, {
@@ -1164,7 +1164,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> totalAmountEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1178,7 +1178,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> totalAmountGreaterThan(
     double value, {
     bool include = false,
@@ -1194,7 +1194,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> totalAmountLessThan(
     double value, {
     bool include = false,
@@ -1210,7 +1210,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> totalAmountBetween(
     double lower,
     double upper, {
@@ -1230,7 +1230,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1239,7 +1239,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1248,7 +1248,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1262,7 +1262,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdGreaterThan(
     String? value, {
     bool include = false,
@@ -1278,7 +1278,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdLessThan(
     String? value, {
     bool include = false,
@@ -1294,7 +1294,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdBetween(
     String? lower,
     String? upper, {
@@ -1314,7 +1314,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1328,7 +1328,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1342,7 +1342,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       vendorIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1354,7 +1354,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
           QAfterFilterCondition>
       vendorIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1366,7 +1366,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1376,7 +1376,7 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel,
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> vendorIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1387,162 +1387,162 @@ extension PurchaseDatabaseModelQueryFilter on QueryBuilder<
   }
 }
 
-extension PurchaseDatabaseModelQueryObject on QueryBuilder<
-    PurchaseDatabaseModel, PurchaseDatabaseModel, QFilterCondition> {}
+extension PurchaseAllDatabaseModelQueryObject on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QFilterCondition> {}
 
-extension PurchaseDatabaseModelQueryLinks on QueryBuilder<PurchaseDatabaseModel,
-    PurchaseDatabaseModel, QFilterCondition> {}
+extension PurchaseAllDatabaseModelQueryLinks on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QFilterCondition> {}
 
-extension PurchaseDatabaseModelQuerySortBy
-    on QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QSortBy> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+extension PurchaseAllDatabaseModelQuerySortBy on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QSortBy> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByCustomerIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByLastDateModifiedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByPurchaseDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseDate', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByPurchaseDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseDate', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByPurchaseId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByPurchaseIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantity', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByQuantityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantity', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByTotalAmount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'totalAmount', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByTotalAmountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'totalAmount', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByVendorIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.desc);
@@ -1550,170 +1550,170 @@ extension PurchaseDatabaseModelQuerySortBy
   }
 }
 
-extension PurchaseDatabaseModelQuerySortThenBy
-    on QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QSortThenBy> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+extension PurchaseAllDatabaseModelQuerySortThenBy on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QSortThenBy> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByCustomerIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByLastDateModifiedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastDateModified', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByProductId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByProductIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'productId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByPurchaseDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseDate', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByPurchaseDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseDate', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByPurchaseId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByPurchaseIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'purchaseId', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantity', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByQuantityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'quantity', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByTotalAmount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'totalAmount', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByTotalAmountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'totalAmount', Sort.desc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByVendorId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.asc);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QAfterSortBy>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByVendorIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'vendorId', Sort.desc);
@@ -1721,37 +1721,37 @@ extension PurchaseDatabaseModelQuerySortThenBy
   }
 }
 
-extension PurchaseDatabaseModelQueryWhereDistinct
-    on QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct> {
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+extension PurchaseAllDatabaseModelQueryWhereDistinct on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct> {
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cost');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'customerId');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'dateCreated');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByLastDateModified() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastDateModified');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByLastModifiedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastModifiedByUserId',
@@ -1759,42 +1759,42 @@ extension PurchaseDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByProductId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'productId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByPurchaseDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'purchaseDate');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByPurchaseId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'purchaseId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByQuantity() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'quantity');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByTotalAmount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'totalAmount');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, PurchaseDatabaseModel, QDistinct>
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
       distinctByVendorId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'vendorId', caseSensitive: caseSensitive);
@@ -1802,84 +1802,85 @@ extension PurchaseDatabaseModelQueryWhereDistinct
   }
 }
 
-extension PurchaseDatabaseModelQueryProperty on QueryBuilder<
-    PurchaseDatabaseModel, PurchaseDatabaseModel, QQueryProperty> {
-  QueryBuilder<PurchaseDatabaseModel, int, QQueryOperations> idProperty() {
+extension PurchaseAllDatabaseModelQueryProperty on QueryBuilder<
+    PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QQueryProperty> {
+  QueryBuilder<PurchaseAllDatabaseModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, double, QQueryOperations> costProperty() {
+  QueryBuilder<PurchaseAllDatabaseModel, double, QQueryOperations>
+      costProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cost');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, int?, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, int?, QQueryOperations>
       customerIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'customerId');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, DateTime, QQueryOperations>
       dateCreatedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dateCreated');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, DateTime?, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, DateTime?, QQueryOperations>
       lastDateModifiedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastDateModified');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, String?, QQueryOperations>
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, String, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, String, QQueryOperations>
       productIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'productId');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, DateTime, QQueryOperations>
       purchaseDateProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'purchaseDate');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, String, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, String, QQueryOperations>
       purchaseIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'purchaseId');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, double, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, double, QQueryOperations>
       quantityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'quantity');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, double, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, double, QQueryOperations>
       totalAmountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'totalAmount');
     });
   }
 
-  QueryBuilder<PurchaseDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<PurchaseAllDatabaseModel, String?, QQueryOperations>
       vendorIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'vendorId');

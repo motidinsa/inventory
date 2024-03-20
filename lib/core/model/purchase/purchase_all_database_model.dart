@@ -1,9 +1,9 @@
 import 'package:isar/isar.dart';
 
-part 'purchase_database_model.g.dart';
+part 'purchase_all_database_model.g.dart';
 
 @collection
-class PurchaseDatabaseModel {
+class PurchaseAllDatabaseModel {
   Id id = Isar.autoIncrement;
   String productId;
   String purchaseId;
@@ -17,7 +17,7 @@ class PurchaseDatabaseModel {
   double totalAmount;
   double cost;
 
-  PurchaseDatabaseModel({
+  PurchaseAllDatabaseModel({
     required this.productId,
     required this.purchaseId,
     required this.purchaseDate,
