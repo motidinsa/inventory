@@ -12,10 +12,9 @@ class SalesDatabaseModel {
   DateTime dateCreated;
   DateTime? lastDateModified;
   String? lastModifiedByUserId;
-  int? customerId;
+  String? customerId;
   String? vendorId;
   double quantity;
-  double totalAmount;
   double price;
   bool? isAppWriteSynced;
 
@@ -30,7 +29,6 @@ class SalesDatabaseModel {
     this.customerId,
     this.vendorId,
     required this.quantity,
-    required this.totalAmount,
     required this.price,
   });
 }

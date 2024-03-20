@@ -5,9 +5,11 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
+import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
-import 'package:my_inventory/main.dart';
+import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
+import 'package:my_inventory/main.dart';
 
 import '../../core/constants/database_constants.dart';
 import '../../core/model/product/log_product_database_model.dart';
@@ -17,6 +19,8 @@ class SalesController extends GetxController {
   List<ProductDatabaseModel> products = [];
   var searchProductFoundResult = [].obs;
   RxString subtotal = ''.obs;
+  RxString customerId = ''.obs;
+  RxString vendorId = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
   RxString customerName = defaultN.obs;
@@ -45,44 +49,44 @@ class SalesController extends GetxController {
   addSalesProduct() {
     salesModels.add(
       SalesModel(
-              salesDate: DateTime.now(),
-              customerId: '',
-              productId: '',
-              productName: '',
-              quantity: '',
-              price: '',
-              totalAmount: 0)
-          .obs,
+        salesDate: DateTime.now(),
+        customerId: customerId.value,
+        vendorId: vendorId.value,
+        productId: '',
+        productName: '',
+        quantity: '',
+        price: '',
+        totalAmount: 0,
+      ).obs,
     );
   }
 
   saveSalesProductToDB() async {
     isLocalSaveLoading(true);
-    // var salesBox = Hive.box<SalesModel>('sales');
-    // var productsBox = Hive.box<ProductDatabaseModel>('products');
-    // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
-// var temp = {}
-
-    salesModels.asMap().forEach((index, element) async {
+    List<SalesDatabaseModel> salesDatabaseModels = [];
+    String groupSalesId =
+        generateDatabaseId(time: DateTime.now(), identifier: 'group');
+    for (int i = 0; i < salesModels.length; i++) {
+      SalesModel salesModel = salesModels[i].value;
       DateTime now = DateTime.now();
-      String salesId = generateDatabaseId(time: now, identifier: index);
+      String salesId = generateDatabaseId(time: now, identifier: i);
       List<PurchaseAvailableDatabaseModel> purchases = isar
           .purchaseAvailableDatabaseModels
           .filter()
           .group((q) => q
-              .productIdEqualTo(element.value.productId)
+              .productIdEqualTo(salesModel.productId)
               .and()
               .quantityGreaterThan(0))
           .findAllSync();
       ProductDatabaseModel product = isar.productDatabaseModels
           .filter()
-          .productIdEqualTo(element.value.productId)
+          .productIdEqualTo(salesModel.productId)
           .findFirstSync()!;
       LogProductDatabaseModel logProduct = isar.logProductDatabaseModels
           .filter()
-          .productIdEqualTo(element.value.productId)
+          .productIdEqualTo(salesModel.productId)
           .findFirstSync()!;
-      double remaining = double.parse(element.value.quantity);
+      double remaining = double.parse(salesModel.quantity);
       await isar.writeTxn(() async {
         while (remaining != 0) {
           if (remaining <= purchases.first.quantity) {
@@ -93,15 +97,16 @@ class SalesController extends GetxController {
                 quantity: remaining,
               ),
             );
-            purchases.first.quantity -= remaining;
+
             if (purchases.first.quantity > remaining) {
+              purchases.first.quantity -= remaining;
               await isar.purchaseAvailableDatabaseModels.put(purchases.first);
             } else {
               await isar.purchaseAvailableDatabaseModels
                   .delete(purchases.first.id);
             }
             remaining = 0;
-          } else if (double.parse(element.value.quantity) >
+          } else if (double.parse(salesModel.quantity) >
               purchases.first.quantity) {
             remaining -= purchases.first.quantity;
 
@@ -114,19 +119,33 @@ class SalesController extends GetxController {
                 .delete(purchases.first.id);
             purchases.removeAt(0);
           }
-
         }
-        product.quantityOnHand -= double.parse(element.value.quantity);
+        double quantityOnHand =
+            product.quantityOnHand - double.parse(salesModel.quantity);
+        product.quantityOnHand = quantityOnHand;
         product.lastDateModified = now;
         product.lastModifiedByUserId = AppController.to.userId.value;
         await isar.productDatabaseModels.put(product);
+        salesDatabaseModels.add(
+          SalesDatabaseModel(
+            productId: salesModel.productId,
+            salesId: salesId,
+            groupSalesId: groupSalesId,
+            salesDate: salesModel.salesDate,
+            dateCreated: now,
+            quantity: double.parse(salesModel.quantity),
+            price: double.parse(salesModel.price),
+            customerId: salesModel.customerId,
+            vendorId: salesModel.vendorId,
+          ),
+        );
         await isar.logProductDatabaseModels.put(
           LogProductDatabaseModel(
             productId: logProduct.productId,
             productName: logProduct.productName,
             cost: logProduct.cost,
             price: logProduct.price,
-            quantityOnHand: logProduct.quantityOnHand-double.parse(element.value.quantity),
+            quantityOnHand: quantityOnHand,
             reorderQuantity: logProduct.reorderQuantity,
             unitOfMeasurementId: logProduct.unitOfMeasurementId,
             createdByUserId: logProduct.createdByUserId,
@@ -137,7 +156,18 @@ class SalesController extends GetxController {
           ),
         );
       });
-      isLocalSaveLoading(false);
+    }
+    await isar.writeTxn(() async {
+      isar.salesDatabaseModels.putAll(salesDatabaseModels);
+      isar.groupSalesDatabaseModels.put(
+        GroupSalesDatabaseModel(
+          groupSalesId: groupSalesId,
+          discount:
+              isNumeric(discount.value) ? double.parse(discount.value) : 0,
+        ),
+      );
     });
+
+    isLocalSaveLoading(false);
   }
 }

@@ -15,6 +15,7 @@ class SalesModel {
     this.customerId,
     required this.quantity,
     required this.price,
-    this.vendorId,required this.totalAmount,
+    this.vendorId,
+    required this.totalAmount,
   });
 }

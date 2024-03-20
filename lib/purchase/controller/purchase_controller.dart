@@ -89,16 +89,17 @@ class PurchaseController extends GetxController {
     // Get.back();
 
     isLocalSaveLoading(true);
-    purchaseModels.asMap().forEach((index, purchaseModel) async {
-      String key = generateDatabaseId(time: now, identifier: index);
+    for (int i = 0; i < purchaseModels.length; i++) {
+      PurchaseModel purchaseModel = purchaseModels[i].value;
+      String key = generateDatabaseId(time: now, identifier: i);
       await isar.writeTxn(() async {
         ProductDatabaseModel? currentProduct = await isar.productDatabaseModels
             .filter()
-            .productIdEqualTo(purchaseModel.value.productId)
+            .productIdEqualTo(purchaseModel.productId)
             .findFirst();
         double currentQty = currentProduct!.quantityOnHand +
-            double.parse(purchaseModel.value.quantity);
-        currentProduct.cost = double.parse(purchaseModel.value.cost);
+            double.parse(purchaseModel.quantity);
+        currentProduct.cost = double.parse(purchaseModel.cost);
         currentProduct.quantityOnHand = currentQty;
         currentProduct.lastDateModified = now;
         currentProduct.lastModifiedByUserId = AppController.to.userId.value;
@@ -106,26 +107,26 @@ class PurchaseController extends GetxController {
         await isar.productDatabaseModels.put(currentProduct);
         await isar.purchaseAvailableDatabaseModels.put(
           PurchaseAvailableDatabaseModel(
-            productId: purchaseModel.value.productId,
+            productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseModel.value.purchaseDate,
+            purchaseDate: purchaseModel.purchaseDate,
             dateCreated: now,
-            customerId: purchaseModel.value.customerId,
-            vendorId: purchaseModel.value.vendorId,
-            quantity: double.parse(purchaseModel.value.quantity),
-            cost: double.parse(purchaseModel.value.cost),
+            customerId: purchaseModel.customerId,
+            vendorId: purchaseModel.vendorId,
+            quantity: double.parse(purchaseModel.quantity),
+            cost: double.parse(purchaseModel.cost),
           ),
         );
         await isar.purchaseAllDatabaseModels.put(
           PurchaseAllDatabaseModel(
-            productId: purchaseModel.value.productId,
+            productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseModel.value.purchaseDate,
+            purchaseDate: purchaseModel.purchaseDate,
             dateCreated: now,
-            customerId: purchaseModel.value.customerId,
-            vendorId: purchaseModel.value.vendorId,
-            quantity: double.parse(purchaseModel.value.quantity),
-            cost: double.parse(purchaseModel.value.cost),
+            customerId: purchaseModel.customerId,
+            vendorId: purchaseModel.vendorId,
+            quantity: double.parse(purchaseModel.quantity),
+            cost: double.parse(purchaseModel.cost),
           ),
         );
 
@@ -133,7 +134,7 @@ class PurchaseController extends GetxController {
           productName: currentProduct.productName,
           description: currentProduct.description,
           categoryId: currentProduct.categoryId,
-          cost: double.parse(purchaseModel.value.cost),
+          cost: double.parse(purchaseModel.cost),
           price: currentProduct.price,
           createdByUserId: currentProduct.createdByUserId,
           dateCreated: currentProduct.dateCreated,
@@ -148,7 +149,10 @@ class PurchaseController extends GetxController {
           addedFrom: purchaseDC,
         ));
       });
-    });
+    }
+    // purchaseModels.asMap().forEach((index, purchaseModel) async {
+    //
+    // });
     isLocalSaveLoading(false);
     Get.back();
   }

@@ -11,7 +11,9 @@ import 'package:my_inventory/core/model/product/log_product_database_model.dart'
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
+import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
+import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/drawer/my_drawer.dart';
@@ -26,11 +28,13 @@ void main() async {
   final dir = await getApplicationDocumentsDirectory();
   isar = await Isar.open(
     [
-      QuantityCostDatabaseModelSchema,
       ProductDatabaseModelSchema,
+      QuantityCostDatabaseModelSchema,
       LogProductDatabaseModelSchema,
       PurchaseAvailableDatabaseModelSchema,
       PurchaseAllDatabaseModelSchema,
+      SalesDatabaseModelSchema,
+      GroupSalesDatabaseModelSchema,
       DeletedProductDatabaseModelSchema,
       CategoryDatabaseModelSchema,
       LogCategoryDatabaseModelSchema,
