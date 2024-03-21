@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -86,7 +87,12 @@ minimizePadding({String? title}) {
     selectUomSN,
     discountN(),
     categoryNameN,
-    uomNameN
+    uomNameN,
+    customerNameN(),
+    phoneNumberN(),
+    addressN(),
+    cityN(),
+    emailN()
   ];
   return !items.contains(title);
 }
@@ -94,6 +100,24 @@ minimizePadding({String? title}) {
 hasSuffix({String? title}) {
   var items = [quantityOnHandN, reorderQuantityN];
   return items.contains(title);
+}
+hasPrefix({String? title}) {
+  var items = [customerNameN(),
+    phoneNumberN(),
+    addressN(),
+    cityN(),
+    emailN()];
+  return items.contains(title);
+}
+profileTitleToIcon({required String title}) {
+  var items = {
+    customerNameN():Icons.person,
+    phoneNumberN():Icons.call,
+    addressN():Icons.location_on,
+    cityN():Icons.location_city,
+    emailN():Icons.mail,
+  };
+  return Icon(items[title],size: 26,);
 }
 
 hasSearchIcon({String? title}) {

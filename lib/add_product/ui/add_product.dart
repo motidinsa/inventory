@@ -30,7 +30,7 @@ class AddProduct extends StatelessWidget {
 
   final AddProductController addProductController =
       Get.put(AddProductController());
-  final AppController appController = Get.find();
+  // final AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class AddProduct extends StatelessWidget {
         return BodyWrapper(
           pageName: addProductN,
           body: Form(
-            key: appController.formKey,
+            key: AppController.to.formKey,
             child: ListView(
               children: [
                 sizedBox(height: 20),

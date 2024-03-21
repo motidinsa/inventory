@@ -5,26 +5,17 @@ import 'package:my_inventory/core/model/customer/customer_model.dart';
 
 import 'package:my_inventory/main.dart';
 
+import '../../core/constants/name_constants.dart';
+
 class AddCustomerController extends GetxController {
   AppController appController = Get.find();
   var customerDetailList = CustomerModel(
     name: '',
-    phoneNumber: '',
-    address: '',
-    city: '',
-    email: '',
   ).obs;
 
-  addCustomerToDB() async {
-    final newUser = CustomerDatabaseModel()
-      ..name = customerDetailList.value.name
-      ..phone = customerDetailList.value.phoneNumber
-      ..address = customerDetailList.value.address
-      ..city = customerDetailList.value.city
-      ..email = customerDetailList.value.email;
-
-    await isar.writeTxn(() async {
-      await isar.customerDatabaseModels.put(newUser); // insert & update
-    });
+  @override
+  void onInit() {
+    appController.currentPages.add(addCustomerN());
+    super.onInit();
   }
 }

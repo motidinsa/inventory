@@ -183,19 +183,6 @@ titleToData({required String title, int? index}) {
     if (title == salesN()) {
       value = salesController.salesModels[index!].value.productName;
     }
-    // else if (title == quantityN()) {
-    //   value = emptyIfDefaultValue(
-    //       salesController.salesModels[index!].value.quantity);
-    // }
-    // else if (title == discountN()) {
-    //   value = salesController.discount.value;
-    // }
-    // else if (title == searchProductsN()) {
-    //   value = salesController.emptyString.value;
-    // }
-    // else if (title == defaultN) {
-    //   value = salesController.emptyString.value;
-    // }
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
@@ -205,10 +192,7 @@ titleToData({required String title, int? index}) {
     } else if (title == costN) {
       value = purchaseController.purchaseModels[index!].value.cost;
     }
-  } else if (currentPage == productListN()) {
-    // ProductListController productListController = Get.find();
-    // value = productListController.emptyValue.value;
-  } else if (currentPage == editProductN) {
+  }  else if (currentPage == editProductN) {
     EditProductController editProductController = Get.find();
     if (title == productN) {
       value = editProductController.productInfo.value.name;

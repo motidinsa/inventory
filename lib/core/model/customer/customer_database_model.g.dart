@@ -82,12 +82,7 @@ int _customerDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  {
-    final value = object.name;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.name.length * 3;
   {
     final value = object.phone;
     if (value != null) {
@@ -116,13 +111,14 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = CustomerDatabaseModel();
-  object.address = reader.readStringOrNull(offsets[0]);
-  object.city = reader.readStringOrNull(offsets[1]);
-  object.email = reader.readStringOrNull(offsets[2]);
+  final object = CustomerDatabaseModel(
+    address: reader.readStringOrNull(offsets[0]),
+    city: reader.readStringOrNull(offsets[1]),
+    email: reader.readStringOrNull(offsets[2]),
+    name: reader.readString(offsets[3]),
+    phone: reader.readStringOrNull(offsets[4]),
+  );
   object.id = id;
-  object.name = reader.readStringOrNull(offsets[3]);
-  object.phone = reader.readStringOrNull(offsets[4]);
   return object;
 }
 
@@ -140,7 +136,7 @@ P _customerDatabaseModelDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
       return (reader.readStringOrNull(offset)) as P;
     default:
@@ -770,26 +766,8 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> nameIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'name',
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> nameIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'name',
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> nameEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -803,7 +781,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> nameGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -819,7 +797,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> nameLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -835,8 +813,8 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> nameBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1315,8 +1293,7 @@ extension CustomerDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
-      nameProperty() {
+  QueryBuilder<CustomerDatabaseModel, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });

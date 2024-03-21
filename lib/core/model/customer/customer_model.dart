@@ -1,15 +1,15 @@
 class CustomerModel {
-    String name;
-    String? address;
-    String? city;
-    String phoneNumber;
-    String? email;
+  String name;
+  String? phoneNumber;
+  String? address;
+  String? city;
+  String? email;
 
   CustomerModel({
     required this.name,
     this.address,
     this.city,
-    required this.phoneNumber,
+     this.phoneNumber,
     this.email,
   });
 }
