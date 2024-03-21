@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -9,8 +10,6 @@ import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dar
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
 import 'package:my_inventory/main.dart';
-
-import 'package:my_inventory/core/constants/database_constants.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
@@ -41,6 +40,7 @@ class PurchaseController extends GetxController {
   }
 
   addPurchaseProduct() {
+    unFocus();
     purchaseModels.add(
       PurchaseModel(
         productId: '',
@@ -55,39 +55,6 @@ class PurchaseController extends GetxController {
 
   savePurchaseProductToDB() async {
     DateTime now = DateTime.now();
-    // isLocalSaveLoading(false);
-    // var salesBox = Hive.box<SalesModel>('sales');
-    // var productsBox = Hive.box<ProductModel>('products');
-    // final DateFormat dateFormatter = DateFormat('yyyyMMdd_HmsS');
-    // List
-    // for (var element in purchaseModels) {
-    //   String key = dateFormatter.format(DateTime.now());
-    //   await salesBox.put(
-    //     key,
-    //     SalesModel(
-    //       id: key,
-    //       date: element.value.date,
-    //       dateAdded: now,
-    //       dateModified: now,
-    //       price: element.value.price,
-    //       totalAmount: element.value.totalAmount,
-    //       productId: element.value.productId,
-    //       customerId: element.value.customerId,
-    //       customerName: element.value.customerName,
-    //       productName: element.value.productName,
-    //       quantity: element.value.quantity,
-    //       reference: element.value.reference,
-    //     ),
-    //   );
-    //
-    //   var currentProduct = productsBox.get(element.value.productId);
-    //   currentProduct!.quantityOnHand -= element.value.quantity;
-    //   productsBox.put(element.value.productId, currentProduct);
-    // }
-
-    // isLocalSaveLoading(false);
-    // Get.back();
-
     isLocalSaveLoading(true);
     for (int i = 0; i < purchaseModels.length; i++) {
       PurchaseModel purchaseModel = purchaseModels[i].value;

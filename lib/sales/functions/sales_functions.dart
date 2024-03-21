@@ -3,9 +3,8 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
 import 'package:my_inventory/main.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 onSalesTextFieldChange({
   String? title,
@@ -48,22 +47,33 @@ onSalesProductFocusChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {required int listIndex,required String productId}) {
-
+    {required int listIndex, required String productId}) {
   ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
       .filter()
       .productIdEqualTo(productId)
       .findFirstSync()!;
   final SalesController salesController = Get.find();
+  bool productExists = salesController.salesModels.any((salesModel) =>
+      salesModel.value.productId == productDatabaseModel.productId);
 
-  salesController.salesModels[listIndex].update((sales) {
-    sales?.productName = productDatabaseModel.productName;
-    sales?.productId = productDatabaseModel.productId;
-    sales?.price = productDatabaseModel.price.toString();
-    if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
-      sales.totalAmount = double.parse(sales.quantity) * productDatabaseModel.price;
-    }
-  });
+  if (!productExists) {
+    salesController.salesModels[listIndex].update((sales) {
+      sales?.productName = productDatabaseModel.productName;
+      sales?.productId = productDatabaseModel.productId;
+      sales?.price = productDatabaseModel.price.toString();
+      if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+        sales.totalAmount =
+            double.parse(sales.quantity) * productDatabaseModel.price;
+      }
+    });
+  } else {
+    salesController.salesModels.removeAt(listIndex);
+    Get.showSnackbar(GetSnackBar(
+      message: 'Product already exists',
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 3),
+    ));
+  }
 }
 
 int getSalesAlertDialogProductLength() {
