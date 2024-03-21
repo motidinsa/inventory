@@ -7,11 +7,15 @@ import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase/ui/purchase.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 
+import '../../customer_list/ui/customer_list.dart';
+
 navigateFromHomepage({required String title, bool? isAddIcon}) async {
   AppController appController = Get.find();
   if (title == customerN()) {
     if (isAddIcon == true) {
       Get.to(() => AddCustomer());
+    } else {
+      Get.to(() => CustomerList());
     }
   } else if (title == salesN()) {
     Get.to(() => Sales());

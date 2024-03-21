@@ -8,7 +8,8 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../../add_customer/functions/add_customer_functions.dart';
+import '../../add_customer/functions/add_customer_functions.dart';
+import '../../customer_list/functions/customer_list_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -23,13 +24,15 @@ titleToHint({String? title}) {
   } else if (title == uomSN) {
     value = selectItemN();
   } else if (title == productListN()) {
-    value = searchByProductNameOrIdN();
+    value = searchByProductNameN();
+  } else if (title == customerListN) {
+    value = searchByCustomerNameN;
   } else if (title == salesN()) {
     value = selectItemN();
   } else if (title == purchaseN()) {
     value = selectItemN();
   } else if (title == searchProductsN()) {
-    value = searchByProductNameOrIdN();
+    value = searchByProductNameN();
   } else if (title == selectCategoryN) {
     value = searchByCategoryNameN();
   } else if (title == selectUomSN) {
@@ -57,6 +60,8 @@ onTextFieldChange({
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == productListN()) {
     onProductListTextFieldChange(data: data);
+  } else if (currentPage == customerListN) {
+    onCustomerListTextFieldChange(data: data);
   }
 }
 
@@ -94,7 +99,8 @@ minimizePadding({String? title}) {
     phoneNumberN(),
     addressN(),
     cityN(),
-    emailN()
+    emailN(),
+    customerListN
   ];
   return !items.contains(title);
 }
@@ -134,6 +140,7 @@ hasSearchIcon({String? title}) {
     searchProductsN(),
     selectCategoryN,
     selectUomSN,
+    customerListN
   ];
   return items.contains(title);
 }

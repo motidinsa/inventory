@@ -3,7 +3,6 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-
 import 'package:my_inventory/main.dart';
 
 class ProductListController extends GetxController {
@@ -14,7 +13,7 @@ class ProductListController extends GetxController {
 
   static ProductListController get to => Get.find();
   @override
-  Future<void> onInit() async {
+  void onInit() {
     productList(isar.productDatabaseModels.where().findAllSync());
     AppController.to.currentPages.add(productListN());
     super.onInit();

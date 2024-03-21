@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/functions/product/product_functions.dart';
-import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
+import 'package:my_inventory/core/functions/custom_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
+import '../functions/product/product_functions.dart';
 import '../functions/validations.dart';
 
 class CustomTextField extends StatefulWidget {

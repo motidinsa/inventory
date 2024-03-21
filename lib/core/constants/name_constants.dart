@@ -68,7 +68,8 @@ pcsN() => 'Pcs';
 
 productListN() => 'Product list';
 
-searchByProductNameOrIdN() => 'Search by product name or ID';
+searchByProductNameN() => 'Search by product name';
+const String searchByCustomerNameN = 'Search by customer name';
 
 searchByCategoryNameN() => 'Search by category name';
 
@@ -110,3 +111,4 @@ const String addUomNameN = 'Add unit of measurement';
 const String categoryNameN = 'Category name';
 const String uomNameN = 'Unit of measurement name';
 const String imageN = 'image';
+const String customerListN = 'Customer list';
