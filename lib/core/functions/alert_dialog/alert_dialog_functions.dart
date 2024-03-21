@@ -32,7 +32,7 @@ onAlertDialogOptionSelect(
     onPurchaseSearchProductAlertDialogOptionSelect(
         listIndex: listIndex!, productId: id);
   }
-  Get.back();
+  // Get.back();
 }
 
 getAlertDialogOptionLists({String? title}) {

@@ -6,6 +6,8 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/product/product_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
+import '../functions/validations.dart';
+
 class CustomTextField extends StatefulWidget {
   final String title;
   final String? labelText;
@@ -123,7 +125,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         labelText: widget.labelText,
         alignLabelWithHint: true,
       ),
-      validator: (value) => mapValidation(
+      validator: (value) => validateInput(
         data: textEditingController.text,
         title: widget.title,
       ),
