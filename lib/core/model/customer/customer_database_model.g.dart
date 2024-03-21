@@ -28,18 +28,43 @@ const CustomerDatabaseModelSchema = CollectionSchema(
       name: r'city',
       type: IsarType.string,
     ),
-    r'email': PropertySchema(
+    r'customerId': PropertySchema(
       id: 2,
+      name: r'customerId',
+      type: IsarType.string,
+    ),
+    r'dateCreated': PropertySchema(
+      id: 3,
+      name: r'dateCreated',
+      type: IsarType.dateTime,
+    ),
+    r'email': PropertySchema(
+      id: 4,
       name: r'email',
       type: IsarType.string,
     ),
+    r'isAppWriteSynced': PropertySchema(
+      id: 5,
+      name: r'isAppWriteSynced',
+      type: IsarType.bool,
+    ),
+    r'lastDateModified': PropertySchema(
+      id: 6,
+      name: r'lastDateModified',
+      type: IsarType.dateTime,
+    ),
+    r'lastModifiedByUserId': PropertySchema(
+      id: 7,
+      name: r'lastModifiedByUserId',
+      type: IsarType.dateTime,
+    ),
     r'name': PropertySchema(
-      id: 3,
+      id: 8,
       name: r'name',
       type: IsarType.string,
     ),
     r'phone': PropertySchema(
-      id: 4,
+      id: 9,
       name: r'phone',
       type: IsarType.string,
     )
@@ -76,6 +101,7 @@ int _customerDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  bytesCount += 3 + object.customerId.length * 3;
   {
     final value = object.email;
     if (value != null) {
@@ -100,9 +126,14 @@ void _customerDatabaseModelSerialize(
 ) {
   writer.writeString(offsets[0], object.address);
   writer.writeString(offsets[1], object.city);
-  writer.writeString(offsets[2], object.email);
-  writer.writeString(offsets[3], object.name);
-  writer.writeString(offsets[4], object.phone);
+  writer.writeString(offsets[2], object.customerId);
+  writer.writeDateTime(offsets[3], object.dateCreated);
+  writer.writeString(offsets[4], object.email);
+  writer.writeBool(offsets[5], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[6], object.lastDateModified);
+  writer.writeDateTime(offsets[7], object.lastModifiedByUserId);
+  writer.writeString(offsets[8], object.name);
+  writer.writeString(offsets[9], object.phone);
 }
 
 CustomerDatabaseModel _customerDatabaseModelDeserialize(
@@ -114,9 +145,14 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
   final object = CustomerDatabaseModel(
     address: reader.readStringOrNull(offsets[0]),
     city: reader.readStringOrNull(offsets[1]),
-    email: reader.readStringOrNull(offsets[2]),
-    name: reader.readString(offsets[3]),
-    phone: reader.readStringOrNull(offsets[4]),
+    customerId: reader.readString(offsets[2]),
+    dateCreated: reader.readDateTime(offsets[3]),
+    email: reader.readStringOrNull(offsets[4]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
+    lastModifiedByUserId: reader.readDateTimeOrNull(offsets[7]),
+    name: reader.readString(offsets[8]),
+    phone: reader.readStringOrNull(offsets[9]),
   );
   object.id = id;
   return object;
@@ -134,10 +170,20 @@ P _customerDatabaseModelDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
-    case 3:
       return (reader.readString(offset)) as P;
+    case 3:
+      return (reader.readDateTime(offset)) as P;
     case 4:
+      return (reader.readStringOrNull(offset)) as P;
+    case 5:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 6:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 7:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 8:
+      return (reader.readString(offset)) as P;
+    case 9:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -554,6 +600,200 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'customerId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+          QAfterFilterCondition>
+      customerIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'customerId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+          QAfterFilterCondition>
+      customerIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'customerId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'customerId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> customerIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'customerId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> dateCreatedEqualTo(DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dateCreated',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> dateCreatedGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dateCreated',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> dateCreatedLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dateCreated',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> dateCreatedBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dateCreated',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> emailIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -757,6 +997,182 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> isAppWriteSyncedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isAppWriteSynced',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> isAppWriteSyncedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isAppWriteSynced',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> isAppWriteSyncedEqualTo(bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isAppWriteSynced',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastDateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lastDateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'lastDateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'lastDateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastDateModifiedBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'lastDateModified',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastModifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastModifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lastModifiedByUserId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'lastModifiedByUserId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'lastModifiedByUserId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'lastModifiedByUserId',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1097,6 +1513,34 @@ extension CustomerDatabaseModelQuerySortBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByCustomerId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'customerId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByCustomerIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'customerId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByDateCreated() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateCreated', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByDateCreatedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateCreated', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       sortByEmail() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.asc);
@@ -1107,6 +1551,48 @@ extension CustomerDatabaseModelQuerySortBy
       sortByEmailDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByIsAppWriteSyncedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastDateModified', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastDateModifiedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastDateModified', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastModifiedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastModifiedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
@@ -1170,6 +1656,34 @@ extension CustomerDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByCustomerId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'customerId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByCustomerIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'customerId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByDateCreated() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateCreated', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByDateCreatedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateCreated', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       thenByEmail() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.asc);
@@ -1194,6 +1708,48 @@ extension CustomerDatabaseModelQuerySortThenBy
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByIsAppWriteSyncedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isAppWriteSynced', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastDateModified', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastDateModifiedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastDateModified', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastModifiedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastModifiedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
@@ -1243,9 +1799,44 @@ extension CustomerDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByCustomerId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'customerId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByDateCreated() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dateCreated');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
       distinctByEmail({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'email', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByIsAppWriteSynced() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isAppWriteSynced');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByLastDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'lastDateModified');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByLastModifiedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'lastModifiedByUserId');
     });
   }
 
@@ -1286,10 +1877,45 @@ extension CustomerDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
+  QueryBuilder<CustomerDatabaseModel, String, QQueryOperations>
+      customerIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'customerId');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, DateTime, QQueryOperations>
+      dateCreatedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dateCreated');
+    });
+  }
+
   QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
       emailProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'email');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, bool?, QQueryOperations>
+      isAppWriteSyncedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isAppWriteSynced');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, DateTime?, QQueryOperations>
+      lastDateModifiedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'lastDateModified');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, DateTime?, QQueryOperations>
+      lastModifiedByUserIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'lastModifiedByUserId');
     });
   }
 

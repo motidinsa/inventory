@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
@@ -22,8 +24,6 @@ import 'package:my_inventory/product_detail/controller/product_detail_controller
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
-
-import 'package:my_inventory/core/constants/database_constants.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -80,7 +80,6 @@ onActionButtonPressed({required String redirectFrom}) async {
         deletedByUserId: AppController.to.userId.value,
         addedFrom: productDetailDC,
       ));
-
     });
     ProductListController.to.productList(isar.productDatabaseModels
         .filter()
@@ -170,6 +169,9 @@ onActionButtonPressed({required String redirectFrom}) async {
     } else if (redirectFrom == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
+    } else if (redirectFrom == addCustomerN()) {
+      AddCustomerController addCustomerController = Get.find();
+      addCustomerController.onAddCustomerSaveButtonPressed();
     }
   }
 }
@@ -192,7 +194,7 @@ titleToData({required String title, int? index}) {
     } else if (title == costN) {
       value = purchaseController.purchaseModels[index!].value.cost;
     }
-  }  else if (currentPage == editProductN) {
+  } else if (currentPage == editProductN) {
     EditProductController editProductController = Get.find();
     if (title == productN) {
       value = editProductController.productInfo.value.name;

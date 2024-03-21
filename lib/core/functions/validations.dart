@@ -11,7 +11,8 @@ validateInput({
     uomNameN,
     quantityN(),
     purchaseN(),
-    salesN()
+    salesN(),
+    customerNameN()
   ];
   List<String> numberKeyboardLists = [
     costN,

@@ -6,6 +6,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
 import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
@@ -16,10 +17,9 @@ import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart'
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/ui/title_with_submenu.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
-
-import 'package:my_inventory/core/ui/title_with_submenu.dart';
 
 late Isar isar;
 
@@ -40,7 +40,8 @@ void main() async {
       CategoryDatabaseModelSchema,
       LogCategoryDatabaseModelSchema,
       UnitOfMeasurementDatabaseModelSchema,
-      LogUnitOfMeasurementDatabaseModelSchema
+      LogUnitOfMeasurementDatabaseModelSchema,
+      CustomerDatabaseModelSchema
     ],
     directory: dir.path,
   );

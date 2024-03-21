@@ -8,6 +8,8 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
+import '../../../add_customer/functions/add_customer_functions.dart';
+
 titleToHint({String? title}) {
   String? value;
   if (title == productN) {
@@ -97,27 +99,33 @@ minimizePadding({String? title}) {
   return !items.contains(title);
 }
 
+maxPadding({String? title}) {
+  var items = [customerNameN(), phoneNumberN(), addressN(), cityN(), emailN()];
+  return !items.contains(title);
+}
+
 hasSuffix({String? title}) {
   var items = [quantityOnHandN, reorderQuantityN];
   return items.contains(title);
 }
+
 hasPrefix({String? title}) {
-  var items = [customerNameN(),
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN()];
+  var items = [customerNameN(), phoneNumberN(), addressN(), cityN(), emailN()];
   return items.contains(title);
 }
+
 profileTitleToIcon({required String title}) {
   var items = {
-    customerNameN():Icons.person,
-    phoneNumberN():Icons.call,
-    addressN():Icons.location_on,
-    cityN():Icons.location_city,
-    emailN():Icons.mail,
+    customerNameN(): Icons.person,
+    phoneNumberN(): Icons.call,
+    addressN(): Icons.location_on,
+    cityN(): Icons.location_city,
+    emailN(): Icons.mail,
   };
-  return Icon(items[title],size: 26,);
+  return Icon(
+    items[title],
+    size: 26,
+  );
 }
 
 hasSearchIcon({String? title}) {
@@ -146,6 +154,8 @@ onFocusChange({
       onPurchaseProductFocusChange(title: title, data: data);
     } else if (currentPage == editProductN) {
       onEditProductFocusChange(title: title, data: data);
+    } else if (currentPage == addCustomerN()) {
+      onAddCustomerFocusChange(title: title, data: data);
     }
   }
 }

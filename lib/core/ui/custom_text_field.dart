@@ -49,12 +49,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    textEditingController.value = textEditingController.value.copyWith(
-      text: titleToData(
-        title: widget.title,
-        index: widget.index,
-      ),
-    );
+      textEditingController.value = textEditingController.value.copyWith(
+        text: titleToData(
+          title: widget.title,
+          index: widget.index,
+        ),
+      );
     });
 
     return TextFormField(
@@ -80,7 +80,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         isDense: true,
         isCollapsed: true,
         errorMaxLines: 5,
-        prefixIcon: hasPrefix(title: widget.title)?profileTitleToIcon(title: widget.title):null,
+        prefixIcon: hasPrefix(title: widget.title)
+            ? profileTitleToIcon(title: widget.title)
+            : null,
         suffixIcon: hasOption(title: widget.title)
             ? const Icon(
                 Icons.arrow_drop_down_rounded,
@@ -112,7 +114,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
             horizontal: minimizePadding(title: widget.title) ? 10 : 30,
-            vertical: minimizePadding(title: widget.title) ? 10 : 15),
+            vertical: minimizePadding(title: widget.title)
+                ? 10
+                : maxPadding(title: widget.title)
+                    ? 15
+                    : 20),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
         ),
