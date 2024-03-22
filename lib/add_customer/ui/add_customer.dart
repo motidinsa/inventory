@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
-
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
-import 'package:my_inventory/core/ui/elevated_card.dart';
-import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
+
+import '../../core/ui/elevated_card.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
@@ -39,11 +39,6 @@ class AddCustomer extends StatelessWidget {
                   title: titles[index],
                   labelText: titles[index],
                 ),
-                //     MyCustomTextField(
-                //   title: titles[index],
-                //   leadingIconData: Icons.account_balance,
-                //   redirectFrom: addCustomerN(),
-                // ),
                 shrinkWrap: true,
                 itemCount: titles.length,
                 separatorBuilder: (ctx, index) => sizedBox(height: 15),

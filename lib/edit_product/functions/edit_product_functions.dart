@@ -55,30 +55,6 @@ onEditProductTextFieldPressed({required String title}) {
       },
     );
   }
-  // if (itemsWithList.keys.contains(title)) {
-  //   var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-  //   var uomBox =
-  //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-  //   editProductController.categoryListFoundResult(categoryBox.values.toList());
-  //   editProductController
-  //       .unitOfMeasurementListFoundResult(uomBox.values.toList());
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialogOptionSelect(
-  //         title: title == categoryN ? selectCategoryN : selectUomSN,
-  //         itemList: itemsWithList[title]!,
-  //       );
-  //     },
-  //   ).then(
-  //     (value) async {
-  //       await unFocus();
-  //       // if (title == transactionName()) {
-  //       //   Get.delete<OtherTransactionAddController>();
-  //       // }
-  //     },
-  //   );
-  // }
 }
 
 getEditProductAlertDialogLength({required String title}) {
@@ -96,19 +72,18 @@ onEditProductTextFieldChange({
   int? index,
 }) {
   EditProductController editProductController = Get.find();
-  // if (title == selectCategoryN) {
-  //   var categoryBox = Hive.box<CategoryDatabaseModel>('category');
-  //   editProductController.categoryListFoundResult(categoryBox.values
-  //       .where((category) =>
-  //           category.categoryName.toLowerCase().contains(data.toLowerCase()))
-  //       .toList());
-  // } else if (title == selectUomSN) {
-  //   var uomBox =
-  //       Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-  //   editProductController.unitOfMeasurementListFoundResult(uomBox.values
-  //       .where((uom) => uom.name.toLowerCase().contains(data.toLowerCase()))
-  //       .toList());
-  // }
+  if (title == selectCategoryN) {
+    editProductController.categoryListFoundResult(isar.categoryDatabaseModels
+        .filter()
+        .categoryNameContains(data, caseSensitive: false)
+        .findAllSync());
+  } else if (title == selectUomSN) {
+    editProductController.unitOfMeasurementListFoundResult(isar
+        .unitOfMeasurementDatabaseModels
+        .filter()
+        .nameContains(data, caseSensitive: false)
+        .findAllSync());
+  }
 }
 
 onEditProductAlertDialogOptionSelect(

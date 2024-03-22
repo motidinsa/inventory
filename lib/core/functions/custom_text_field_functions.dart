@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
-import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
+import '../../edit_customer/functions/edit_customer_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -120,7 +121,9 @@ hasPrefix({String? title}) {
   return items.contains(title);
 }
 
-profileTitleToIcon({required String title, Color? iconColor}) {
+profileTitleToIcon({
+  required String title,
+}) {
   var items = {
     customerNameN(): Icons.person,
     phoneNumberN(): Icons.call,
@@ -131,7 +134,7 @@ profileTitleToIcon({required String title, Color? iconColor}) {
   return Icon(
     items[title],
     size: 26,
-    color: iconColor,
+    color: Colors.grey.shade700,
   );
 }
 
@@ -164,6 +167,8 @@ onFocusChange({
       onEditProductFocusChange(title: title, data: data);
     } else if (currentPage == addCustomerN()) {
       onAddCustomerFocusChange(title: title, data: data);
+    } else if (currentPage == editCustomerN) {
+      onEditCustomerFocusChange(title: title, data: data);
     }
   }
 }

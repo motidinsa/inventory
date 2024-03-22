@@ -48,14 +48,14 @@ const CustomerDatabaseModelSchema = CollectionSchema(
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
-    r'lastDateModified': PropertySchema(
-      id: 6,
-      name: r'lastDateModified',
-      type: IsarType.dateTime,
-    ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'lastModifiedByUserId',
+      type: IsarType.string,
+    ),
+    r'lastModifiedDate': PropertySchema(
+      id: 7,
+      name: r'lastModifiedDate',
       type: IsarType.dateTime,
     ),
     r'name': PropertySchema(
@@ -108,6 +108,12 @@ int _customerDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  {
+    final value = object.lastModifiedByUserId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.name.length * 3;
   {
     final value = object.phone;
@@ -130,8 +136,8 @@ void _customerDatabaseModelSerialize(
   writer.writeDateTime(offsets[3], object.dateCreated);
   writer.writeString(offsets[4], object.email);
   writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[6], object.lastDateModified);
-  writer.writeDateTime(offsets[7], object.lastModifiedByUserId);
+  writer.writeString(offsets[6], object.lastModifiedByUserId);
+  writer.writeDateTime(offsets[7], object.lastModifiedDate);
   writer.writeString(offsets[8], object.name);
   writer.writeString(offsets[9], object.phone);
 }
@@ -149,8 +155,8 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
     dateCreated: reader.readDateTime(offsets[3]),
     email: reader.readStringOrNull(offsets[4]),
     isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
-    lastModifiedByUserId: reader.readDateTimeOrNull(offsets[7]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
+    lastModifiedDate: reader.readDateTimeOrNull(offsets[7]),
     name: reader.readString(offsets[8]),
     phone: reader.readStringOrNull(offsets[9]),
   );
@@ -178,7 +184,7 @@ P _customerDatabaseModelDeserializeProp<P>(
     case 5:
       return (reader.readBoolOrNull(offset)) as P;
     case 6:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 8:
@@ -1034,80 +1040,6 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'lastDateModified',
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'lastDateModified',
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedEqualTo(DateTime? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'lastDateModified',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedGreaterThan(
-    DateTime? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'lastDateModified',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedLessThan(
-    DateTime? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'lastDateModified',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastDateModifiedBetween(
-    DateTime? lower,
-    DateTime? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'lastDateModified',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1126,45 +1058,201 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> lastModifiedByUserIdEqualTo(DateTime? value) {
+      QAfterFilterCondition> lastModifiedByUserIdEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'lastModifiedByUserId',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
-    DateTime? value, {
+    String? value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'lastModifiedByUserId',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
-    DateTime? value, {
+    String? value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'lastModifiedByUserId',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'lastModifiedByUserId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'lastModifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'lastModifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+          QAfterFilterCondition>
+      lastModifiedByUserIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'lastModifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+          QAfterFilterCondition>
+      lastModifiedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'lastModifiedByUserId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lastModifiedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedByUserIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'lastModifiedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastModifiedDate',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastModifiedDate',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lastModifiedDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'lastModifiedDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'lastModifiedDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> lastModifiedDateBetween(
     DateTime? lower,
     DateTime? upper, {
     bool includeLower = true,
@@ -1172,7 +1260,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'lastModifiedByUserId',
+        property: r'lastModifiedDate',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1569,20 +1657,6 @@ extension CustomerDatabaseModelQuerySortBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      sortByLastDateModified() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastDateModified', Sort.asc);
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      sortByLastDateModifiedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastDateModified', Sort.desc);
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
@@ -1593,6 +1667,20 @@ extension CustomerDatabaseModelQuerySortBy
       sortByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastModifiedDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByLastModifiedDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedDate', Sort.desc);
     });
   }
 
@@ -1726,20 +1814,6 @@ extension CustomerDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      thenByLastDateModified() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastDateModified', Sort.asc);
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      thenByLastDateModifiedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lastDateModified', Sort.desc);
-    });
-  }
-
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
@@ -1750,6 +1824,20 @@ extension CustomerDatabaseModelQuerySortThenBy
       thenByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastModifiedDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByLastModifiedDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastModifiedDate', Sort.desc);
     });
   }
 
@@ -1827,16 +1915,17 @@ extension CustomerDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
-      distinctByLastDateModified() {
+      distinctByLastModifiedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'lastDateModified');
+      return query.addDistinctBy(r'lastModifiedByUserId',
+          caseSensitive: caseSensitive);
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
-      distinctByLastModifiedByUserId() {
+      distinctByLastModifiedDate() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'lastModifiedByUserId');
+      return query.addDistinctBy(r'lastModifiedDate');
     });
   }
 
@@ -1905,17 +1994,17 @@ extension CustomerDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, DateTime?, QQueryOperations>
-      lastDateModifiedProperty() {
+  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+      lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'lastDateModified');
+      return query.addPropertyName(r'lastModifiedByUserId');
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, DateTime?, QQueryOperations>
-      lastModifiedByUserIdProperty() {
+      lastModifiedDateProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'lastModifiedByUserId');
+      return query.addPropertyName(r'lastModifiedDate');
     });
   }
 

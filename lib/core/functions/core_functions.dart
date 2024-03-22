@@ -17,14 +17,16 @@ import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurem
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
+import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
+import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/main.dart';
+import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
-import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
+import '../../edit_customer/functions/edit_customer_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -162,6 +164,8 @@ onActionButtonPressed({required String redirectFrom}) async {
     } else if (redirectFrom == addCustomerN()) {
       AddCustomerController addCustomerController = Get.find();
       addCustomerController.onAddCustomerSaveButtonPressed();
+    } else if (redirectFrom == editCustomerN) {
+      EditCustomerController.to.onEditCustomerSaveButtonPressed();
     }
   }
 }
@@ -217,6 +221,8 @@ titleToData({required String title, int? index}) {
     } else if (title == uomNameN) {
       value = editProductController.emptyText.value;
     }
+  } else if (currentPage == editCustomerN) {
+    value = getEditCustomerData(title: title);
   }
   return value;
 }

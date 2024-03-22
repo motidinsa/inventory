@@ -12,8 +12,8 @@ class CustomerDatabaseModel {
   String? city;
   String? email;
   DateTime dateCreated;
-  DateTime? lastDateModified;
-  DateTime? lastModifiedByUserId;
+  DateTime? lastModifiedDate;
+  String? lastModifiedByUserId;
   bool? isAppWriteSynced;
 
   CustomerDatabaseModel({
@@ -24,8 +24,8 @@ class CustomerDatabaseModel {
     this.city,
     this.email,
     required this.dateCreated,
-    this.lastDateModified,
-    this.lastModifiedByUserId,
+    this.lastModifiedDate,
     this.isAppWriteSynced,
+    this.lastModifiedByUserId,
   });
 }
