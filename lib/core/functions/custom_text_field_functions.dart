@@ -40,6 +40,8 @@ titleToHint({String? title}) {
     value = searchUomSN;
   } else if (title == defaultN) {
     value = defaultN;
+  } else if (title == searchCustomersN) {
+    value = searchByCustomerNameN;
   }
   return value;
 }
@@ -101,7 +103,8 @@ minimizePadding({String? title}) {
     addressN(),
     cityN(),
     emailN(),
-    customerListN
+    customerListN,
+    searchCustomersN,
   ];
   return !items.contains(title);
 }
@@ -144,7 +147,8 @@ hasSearchIcon({String? title}) {
     searchProductsN(),
     selectCategoryN,
     selectUomSN,
-    customerListN
+    customerListN,
+    searchCustomersN
   ];
   return items.contains(title);
 }

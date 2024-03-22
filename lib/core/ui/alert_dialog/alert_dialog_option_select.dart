@@ -53,34 +53,34 @@ class AlertDialogOptionSelect extends StatelessWidget {
                         ),
                       ),
                     Obx(
-                      () => ListView.separated(
-                        shrinkWrap: true,
-                        reverse: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return AlertDialogOptionItem(
-                            title: title,
-                            listIndex: [
-                              purchaseN(),
-                              salesN()
-                            ].contains(AppController.to.currentPages.last)
-                                ? listIndex
-                                : null,
-                            name: getAlertDialogOptionName(
-                                title: title, index: index),
-                            id: getAlertDialogOptionId(
-                                title: title, index: index),
-                          );
-                        },
-                        itemCount: getAlertDialogOptionLists(
-                          title: title,
-                        ).length,
-                        separatorBuilder: (BuildContext context, int index) =>
-                            Divider(
-                          color: Colors.grey.shade300,
-                          height: 0,
-                        ),
-                      ),
+                      () => getAlertDialogOptionLists(
+                                title: title,
+                              ).length ==
+                              0
+                          ? sizedBox(height: 8)
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              reverse: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return AlertDialogOptionItem(
+                                  title: title,
+                                  listIndex: [
+                                    purchaseN(),
+                                    salesN()
+                                  ].contains(AppController.to.currentPages.last)
+                                      ? listIndex
+                                      : null,
+                                  name: getAlertDialogOptionName(
+                                      title: title, index: index),
+                                  id: getAlertDialogOptionId(
+                                      title: title, index: index),
+                                );
+                              },
+                              itemCount: getAlertDialogOptionLists(
+                                title: title,
+                              ).length,
+                            ),
                     ),
                     if (getAlertDialogOptionLists(title: title).length == 0)
                       Padding(
@@ -98,20 +98,23 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           ),
                         ),
                       ),
-                    if (title != searchProductsN())
+                    if (![searchCustomersN, searchProductsN()].contains(title))
                       Align(
                         child: IconButton(
                             onPressed: () => onAddIconPressed(
                                   type: title,
                                 ),
+                            style: IconButton.styleFrom(
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                padding: EdgeInsets.zero),
                             icon: const Icon(
                               Icons.add,
                               color: Colors.green,
                               size: 27,
                             )),
-                      )
-                    else
-                      sizedBox(height: 20)
+                      ),
+                    // else
+                    sizedBox(height: 8)
                   ],
                 ),
         ),

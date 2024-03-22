@@ -72,14 +72,16 @@ searchByProductNameN() => 'Search by product name';
 const String searchByCustomerNameN = 'Search by customer name';
 
 searchByCategoryNameN() => 'Search by category name';
+// const String searchByCustomerNameN = 'Search by category name';
 
 const String searchUomSN = 'Search unit of measurement';
 
 searchProductsN() => 'Search products';
-
+const String searchCustomersN = 'Search customers';
 quantityN() => 'Quantity';
 
 const String selectCategoryN = 'Select category';
+
 
 const String selectUomSN = 'Select unit of measurement';
 

@@ -27,7 +27,7 @@ class Sales extends StatelessWidget {
           key: appController.formKey,
           child: ListView(
             children: [
-              const ElevatedCard(
+               ElevatedCard(
                 horizontalMargin: 10,
                 verticalMargin: 20,
                 blurRadius: 10,
@@ -36,18 +36,9 @@ class Sales extends StatelessWidget {
                   page: PageName.sales,
                 ),
               ),
-              // sizedBox(height: 5),
-              // const Divider(
-              //   thickness: 2,
-              //   color: Colors.black,
-              // ),
               ProductTableTitles(
                 currentPage: salesN(),
               ),
-              // const Divider(
-              //   thickness: 2,
-              //   color: Colors.black,
-              // ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

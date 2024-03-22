@@ -371,3 +371,9 @@ getKeyboardType({required String title}) {
   }
   return TextInputType.name;
 }
+getSelectedDate(){
+  String currentPage = AppController.to.currentPages.last;
+if(currentPage == salesN()){
+  return SalesController.to.salesDate.value;
+}
+}

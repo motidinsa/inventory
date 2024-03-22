@@ -39,7 +39,9 @@ getAlertDialogOptionLists({String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    return salesController.searchProductFoundResult;
+    return title == searchProductsN()
+        ? salesController.searchProductFoundResult
+        : salesController.searchCustomerFoundResult;
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (title == selectCategoryN) {
@@ -64,14 +66,13 @@ getAlertDialogOptionName({required int index, String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     SalesController salesController = Get.find();
-    return (salesController.searchProductFoundResult[index]
-            as ProductDatabaseModel)
-        .productName;
+    return title == searchProductsN()
+        ? salesController.searchProductFoundResult[index].productName
+        : salesController.searchCustomerFoundResult[index].name;
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (title == selectCategoryN) {
-      return (addProductController.categoryListFoundResult[index]
-              as CategoryDatabaseModel)
+      return (addProductController.categoryListFoundResult[index])
           .categoryName;
     } else if (title == selectUomSN) {
       return (addProductController.unitOfMeasurementListFoundResult[index]

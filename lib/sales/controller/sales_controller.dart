@@ -13,13 +13,16 @@ import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:my_inventory/main.dart';
 
+import '../../core/model/customer/customer_database_model.dart';
+
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
-  List<ProductDatabaseModel> products = [];
-  var searchProductFoundResult = [].obs;
+  RxList<ProductDatabaseModel> searchProductFoundResult = <ProductDatabaseModel>[].obs;
+  RxList<CustomerDatabaseModel> searchCustomerFoundResult = <CustomerDatabaseModel>[].obs;
   RxString subtotal = ''.obs;
   RxString customerId = ''.obs;
   RxString vendorId = ''.obs;
+  Rx<DateTime> salesDate = DateTime.now().obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
   RxString customerName = defaultN.obs;
@@ -27,7 +30,6 @@ class SalesController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var salesModels = [
     SalesModel(
-      salesDate: DateTime.now(),
       customerId: '',
       productId: '',
       productName: '',
@@ -37,11 +39,13 @@ class SalesController extends GetxController {
     ).obs
   ].obs;
 
+
+  static SalesController get to => Get.find();
   @override
   void onInit() {
     AppController.to.currentPages.add(salesN());
-    products = isar.productDatabaseModels.where().findAllSync();
-    searchProductFoundResult(products);
+    searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
+    searchCustomerFoundResult(isar.customerDatabaseModels.where().findAllSync());
     super.onInit();
   }
 
@@ -49,7 +53,6 @@ class SalesController extends GetxController {
     unFocus();
     salesModels.add(
       SalesModel(
-        salesDate: DateTime.now(),
         customerId: customerId.value,
         vendorId: vendorId.value,
         productId: '',
@@ -131,7 +134,7 @@ class SalesController extends GetxController {
             productId: salesModel.productId,
             salesId: salesId,
             groupSalesId: groupSalesId,
-            salesDate: salesModel.salesDate,
+            salesDate:salesDate.value,
             dateCreated: now,
             quantity: double.parse(salesModel.quantity),
             price: double.parse(salesModel.price),

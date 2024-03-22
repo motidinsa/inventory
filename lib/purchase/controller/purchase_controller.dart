@@ -18,6 +18,7 @@ class PurchaseController extends GetxController {
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
+  Rx<DateTime> purchaseDate=DateTime.now().obs;
   RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
   var purchaseModels = [
@@ -27,7 +28,6 @@ class PurchaseController extends GetxController {
       quantity: '',
       totalAmount: 0,
       cost: '',
-      purchaseDate: DateTime.now(),
     ).obs
   ].obs;
 
@@ -48,7 +48,6 @@ class PurchaseController extends GetxController {
         quantity: '',
         totalAmount: 0,
         cost: '',
-        purchaseDate: DateTime.now(),
       ).obs,
     );
   }
@@ -76,7 +75,7 @@ class PurchaseController extends GetxController {
           PurchaseAvailableDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseModel.purchaseDate,
+            purchaseDate:purchaseDate.value,
             dateCreated: now,
             customerId: purchaseModel.customerId,
             vendorId: purchaseModel.vendorId,
@@ -88,7 +87,7 @@ class PurchaseController extends GetxController {
           PurchaseAllDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseModel.purchaseDate,
+            purchaseDate: purchaseDate.value,
             dateCreated: now,
             customerId: purchaseModel.customerId,
             vendorId: purchaseModel.vendorId,

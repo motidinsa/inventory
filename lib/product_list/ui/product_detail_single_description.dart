@@ -23,28 +23,34 @@ class ProductDetailSingleDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      textAlign: textAlign ?? TextAlign.start,
-      text: TextSpan(
-        text: '$title:   ',
-        style: TextStyle(
-          fontWeight: bold(),
-          fontSize: titleFontSize ?? 16,
-          color: titleColor ?? Colors.grey.shade700,
-        ),
-        children: <TextSpan>[
-          TextSpan(
-            text: isNumeric(description)
-                ? getFormattedNumberWithComa(double.parse(description))
-                : description,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        RichText(
+          textAlign: textAlign ?? TextAlign.start,
+          text: TextSpan(
+            text: '$title:   ',
             style: TextStyle(
-              color: dataColor ?? Colors.grey.shade500,
-              fontStyle: FontStyle.italic,
-              fontSize: dataFontSize ?? 16,
+              fontWeight: bold(),
+              fontSize: titleFontSize ?? 16,
+              color: titleColor ?? Colors.grey.shade700,
             ),
+            children: <TextSpan>[
+              TextSpan(
+                text: isNumeric(description)
+                    ? getFormattedNumberWithComa(double.parse(description))
+                    : description,
+                style: TextStyle(
+                  color: dataColor ?? Colors.grey.shade500,
+                  fontStyle: FontStyle.italic,
+                  fontSize: dataFontSize ?? 16
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

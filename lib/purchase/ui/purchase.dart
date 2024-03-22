@@ -29,7 +29,7 @@ class Purchase extends StatelessWidget {
           key: appController.formKey,
           child: ListView(
             children: [
-              const ElevatedCard(
+               ElevatedCard(
                 horizontalMargin: 10,
                 verticalMargin: 20,
                 blurRadius: 10,

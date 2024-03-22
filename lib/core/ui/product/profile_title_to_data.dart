@@ -23,13 +23,16 @@ class ProfileTitleToData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: alignment ?? MainAxisAlignment.start,
+      mainAxisAlignment: alignment ?? MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
       children: [
         titleToIcon(title: title),
         sizedBox(width: 15),
         ProductDetailSingleDescription(
           title: title,
           description: data,
+          titleColor: titleColor,
+          dataColor: dataColor,
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -14,10 +15,10 @@ onSalesTextFieldChange({
 }) {
   SalesController salesController = Get.find();
   if (title == searchProductsN()) {
-    salesController.searchProductFoundResult(salesController.products
-        .where((product) =>
-            product.productName.toLowerCase().contains(data.toLowerCase()))
-        .toList());
+    salesController.searchProductFoundResult(isar.productDatabaseModels
+        .filter()
+        .productNameContains(data, caseSensitive: false)
+        .findAllSync());
   } else if (title == quantityN()) {
     salesController.salesModels[index!].update((sales) {
       if (data.isEmpty) {
@@ -34,6 +35,11 @@ onSalesTextFieldChange({
     });
   } else if (title == discountN()) {
     salesController.discount(data);
+  }else if (title == searchCustomersN) {
+    salesController.searchCustomerFoundResult(isar.customerDatabaseModels
+        .filter()
+        .nameContains(data, caseSensitive: false)
+        .findAllSync());
   }
 }
 

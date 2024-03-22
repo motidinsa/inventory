@@ -5,6 +5,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/main.dart';
@@ -71,13 +73,25 @@ onSalesProductSelect({
   String? title,
   int? listIndex,
 }) {
+  SalesController salesController = Get.find();
   if (title == salesN()) {
-    SalesController salesController = Get.find();
-    salesController.searchProductFoundResult(salesController.products);
+
+    salesController.searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
 
     Get.dialog(AlertDialogOptionSelect(
       title: searchProductsN(),
       listIndex: listIndex,
+    )).then(
+      (value) async {
+        await unFocus();
+      },
+    );
+  }else if (title == defaultN) {
+    salesController.searchCustomerFoundResult(isar.customerDatabaseModels.where().findAllSync());
+    // salesController.searchCustomerFoundResult([]);
+
+    Get.dialog(AlertDialogOptionSelect(
+      title: searchCustomersN,
     )).then(
       (value) async {
         await unFocus();

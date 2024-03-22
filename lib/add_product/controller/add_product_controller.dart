@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/log_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
@@ -14,7 +15,7 @@ import 'package:my_inventory/core/constants/database_constants.dart';
 class AddProductController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var isSubmitButtonPressed = false.obs;
-  var categoryListFoundResult = [].obs;
+  RxList<CategoryDatabaseModel> categoryListFoundResult = <CategoryDatabaseModel>[].obs;
   var unitOfMeasurementListFoundResult = [].obs;
   final AppController appController = Get.find();
 
