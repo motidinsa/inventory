@@ -8,8 +8,8 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../add_customer/functions/add_customer_functions.dart';
-import '../../customer_list/functions/customer_list_functions.dart';
+import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
+import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -120,7 +120,7 @@ hasPrefix({String? title}) {
   return items.contains(title);
 }
 
-profileTitleToIcon({required String title}) {
+profileTitleToIcon({required String title, Color? iconColor}) {
   var items = {
     customerNameN(): Icons.person,
     phoneNumberN(): Icons.call,
@@ -131,6 +131,7 @@ profileTitleToIcon({required String title}) {
   return Icon(
     items[title],
     size: 26,
+    color: iconColor,
   );
 }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -73,7 +72,7 @@ onSalesSearchProductAlertDialogOptionSelect(
     if (productId != salesController.salesModels[listIndex].value.productId) {
       Get.closeCurrentSnackbar();
       salesController.salesModels.removeAt(listIndex);
-      Get.showSnackbar(GetSnackBar(
+      Get.showSnackbar(const GetSnackBar(
         messageText: Text(
           'Product already exists',
           style: TextStyle(

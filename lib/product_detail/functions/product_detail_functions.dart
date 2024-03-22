@@ -1,8 +1,15 @@
+import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
+import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
+import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-
 import 'package:my_inventory/main.dart';
+
+import 'package:my_inventory/core/constants/database_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/product_list/controller/product_list_controller.dart';
+import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 
 getProductCategoryName({String? id}) {
   if (id != null) {
@@ -17,12 +24,27 @@ getProductCategoryName({String? id}) {
 }
 
 getUomName({required String id}) {
-  // var uomBox = Hive.box<UnitOfMeasurementDatabaseModel>('unit_of_measurement');
-  // return uomBox.get(id)!.name;
   String? name = isar.unitOfMeasurementDatabaseModels
       .filter()
       .uomIdEqualTo(id)
       .findFirstSync()
       ?.name;
   return name;
+}
+
+deleteProduct() async {
+  await isar.writeTxn(() async {
+    await isar.productDatabaseModels.delete(ProductDetailController.to.isarId);
+    await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
+      productId: ProductDetailController.to.productId,
+      deletedDate: DateTime.now(),
+      deletedByUserId: AppController.to.userId.value,
+      addedFrom: productDetailDC,
+    ));
+  });
+  ProductListController.to.productList(isar.productDatabaseModels
+      .filter()
+      .productNameContains(ProductListController.to.searchedText.value)
+      .findAllSync());
+  Get.back();
 }

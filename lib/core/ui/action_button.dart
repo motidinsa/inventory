@@ -9,10 +9,11 @@ class ActionButton extends StatelessWidget {
   final String redirectFrom;
   final ActionButtonType? actionButtonType;
 
-  ActionButton(
-      {super.key,
-      required this.redirectFrom,
-      this.actionButtonType,});
+  ActionButton({
+    super.key,
+    required this.redirectFrom,
+    this.actionButtonType,
+  });
 
   final AppController appController = Get.find();
 
@@ -25,8 +26,8 @@ class ActionButton extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () => onActionButtonPressed(
-                  redirectFrom: redirectFrom,
-                  ),
+                redirectFrom: redirectFrom,
+              ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(

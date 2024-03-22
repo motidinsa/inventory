@@ -2,13 +2,13 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-class ProductDetailController extends GetxController {
+class CustomerDetailController extends GetxController {
   final int isarId;
-  final String productId;
+  final String customerId;
 
-  ProductDetailController({required this.isarId, required this.productId});
+  CustomerDetailController({required this.isarId, required this.customerId});
 
-  static ProductDetailController get to => Get.find();
+  static CustomerDetailController get to => Get.find();
 
   @override
   void onInit() {

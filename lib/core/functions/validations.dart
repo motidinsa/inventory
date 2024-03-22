@@ -1,5 +1,5 @@
-import '../constants/name_constants.dart';
-import 'core_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 validateInput({
   required String title,

@@ -5,10 +5,10 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 
-import '../../core/ui/body_wrapper.dart';
-import '../../core/ui/custom_text_field.dart';
-import '../../core/ui/elevated_card.dart';
-import '../controller/add_customer_controller.dart';
+import 'package:my_inventory/core/ui/body_wrapper.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});

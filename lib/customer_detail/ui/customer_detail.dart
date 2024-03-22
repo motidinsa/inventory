@@ -3,46 +3,42 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/model/action_button_enum.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
-import 'package:my_inventory/core/ui/product/product_image.dart';
-import 'package:my_inventory/edit_product/ui/edit_product.dart';
-import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
-import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
-class ProductDetail extends StatelessWidget {
-  final ProductDatabaseModel productDatabaseModel;
+import 'package:my_inventory/core/model/action_button_enum.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/action_button.dart';
+import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
+import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
+
+class CustomerDetail extends StatelessWidget {
+  final CustomerDatabaseModel customerDatabaseModel;
   final int index;
   final DateFormat dateFormatter = DateFormat("MMM d, y");
 
-  ProductDetail(
-      {super.key, required this.productDatabaseModel, required this.index});
+  CustomerDetail(
+      {super.key, required this.customerDatabaseModel, required this.index});
 
   @override
   Widget build(BuildContext context) {
     var titleToData = {
-      categoryN:
-          getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
-      productIdN: productDatabaseModel.userAssignedProductId ?? '',
-      costN: productDatabaseModel.cost,
-      priceN(): productDatabaseModel.price,
-      quantityOnHandN: productDatabaseModel.quantityOnHand,
-      reorderQuantityN: productDatabaseModel.reorderQuantity,
-      uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),
+      customerNameN(): customerDatabaseModel.name,
+      phoneNumberN(): customerDatabaseModel.phone ?? '',
+      addressN(): customerDatabaseModel.address ?? '',
+      cityN(): customerDatabaseModel.city ?? '',
+      emailN(): customerDatabaseModel.email ?? ''
     };
     Get.put(
-      ProductDetailController(
-        isarId: productDatabaseModel.id,
-        productId: productDatabaseModel.productId,
+      CustomerDetailController(
+        isarId: customerDatabaseModel.id,
+        customerId: customerDatabaseModel.customerId,
       ),
     );
     return BodyWrapper(
-      pageName: productDetailN,
+      pageName: customerDetailN,
       body: ListView(
         children: [
           sizedBox(height: 20),
@@ -56,9 +52,9 @@ class ProductDetail extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Get.to(() => EditProduct(
-                              productDatabaseModel: productDatabaseModel,
-                            ));
+                        // Get.to(() => EditProduct(
+                        //   productDatabaseModel: productDatabaseModel,
+                        // ));
                       },
                       child: Row(
                         children: [
@@ -87,7 +83,7 @@ class ProductDetail extends StatelessWidget {
                       child: ProductDetailSingleDescription(
                         title: 'Date added',
                         description: dateFormatter
-                            .format(productDatabaseModel.dateCreated),
+                            .format(customerDatabaseModel.dateCreated),
                         dataColor: Colors.green.shade800,
                         titleColor: Colors.grey.shade700,
                         textAlign: TextAlign.end,
@@ -96,52 +92,7 @@ class ProductDetail extends StatelessWidget {
                     ),
                   ],
                 ),
-                sizedBox(height: 15),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ProductImage(
-                        id: productDatabaseModel.id,
-                        currentPage: productDetailN,
-                        localImagePath: productDatabaseModel.localImagePath,
-                        imageWidth: 120,
-                      ),
-                    ),
-                    sizedBox(width: 15),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              productDatabaseModel.productName,
-                              style: TextStyle(
-                                fontWeight: bold(),
-                                fontSize: 18,
-                                color: Colors.grey.shade800,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                            sizedBox(height: 10),
-                            ProductDetailSingleDescription(
-                              title: descriptionN,
-                              description:
-                                  productDatabaseModel.description ?? '',
-                              titleColor: Colors.green.shade800,
-                              dataColor: Colors.grey.shade600,
-                              titleFontSize: 18,
-                              // dataFontSize: 17,
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                // sizedBox(height: 10),
+                sizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Card(
@@ -163,9 +114,9 @@ class ProductDetail extends StatelessWidget {
                           List keys = titleToData.keys.toList();
                           String title = keys[index];
                           String data = titleToData[title].toString();
-                          return ProductDetailSingleDescription(
+                          return ProfileSingleDetail(
                             title: title,
-                            description: data,
+                            data: data,
                             titleFontSize: 18,
                             dataFontSize: 17,
                             titleColor: Colors.green.shade800,
@@ -182,7 +133,7 @@ class ProductDetail extends StatelessWidget {
             ),
           ),
           ActionButton(
-            redirectFrom: productDetailN,
+            redirectFrom: customerDetailN,
             actionButtonType: ActionButtonType.delete,
             // productId: productDatabaseModel.productId,
           ),

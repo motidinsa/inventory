@@ -12,7 +12,6 @@ import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
-import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
@@ -20,10 +19,12 @@ import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/main.dart';
-import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
+
+import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
+import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -72,20 +73,9 @@ getFormattedNumberWithoutComa(num) {
 onActionButtonPressed({required String redirectFrom}) async {
   await unFocus();
   if (redirectFrom == productDetailN) {
-    await isar.writeTxn(() async {
-      await isar.productDatabaseModels.delete(ProductDetailController.to.id);
-      await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
-        productId: ProductDetailController.to.productId,
-        deletedDate: DateTime.now(),
-        deletedByUserId: AppController.to.userId.value,
-        addedFrom: productDetailDC,
-      ));
-    });
-    ProductListController.to.productList(isar.productDatabaseModels
-        .filter()
-        .productNameContains(ProductListController.to.searchedText.value)
-        .findAllSync());
-    Get.back();
+    deleteProduct();
+  } else if (redirectFrom == customerDetailN) {
+    deleteCustomer();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {

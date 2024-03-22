@@ -112,3 +112,4 @@ const String categoryNameN = 'Category name';
 const String uomNameN = 'Unit of measurement name';
 const String imageN = 'image';
 const String customerListN = 'Customer list';
+const String customerDetailN = 'Customer detail';
