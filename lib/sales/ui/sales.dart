@@ -22,48 +22,50 @@ class Sales extends StatelessWidget {
   Widget build(BuildContext context) {
     return BodyWrapper(
       pageName: salesN(),
-      body: Obx(() {
-        return Form(
-          key: appController.formKey,
-          child: ListView(
-            children: [
-               ElevatedCard(
-                horizontalMargin: 10,
-                verticalMargin: 20,
-                blurRadius: 10,
-                horizontalPadding: 20,
-                child: ProductProfileInfo(
-                  page: PageName.sales,
-                ),
+      body: Form(
+        key: appController.formKey,
+        child: ListView(
+          children: [
+            ElevatedCard(
+              horizontalMargin: 10,
+              verticalMargin: 20,
+              blurRadius: 10,
+              horizontalPadding: 20,
+              child: GetBuilder<SalesController>(
+                builder: (_) {
+                  return ProductProfileInfo(
+                    page: PageName.sales,
+                  );
+                }
               ),
-              ProductTableTitles(
+            ),
+            ProductTableTitles(
+              currentPage: salesN(),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, index) => ProductItem(
+                index: index,
                 currentPage: salesN(),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) => ProductItem(
-                  index: index,
-                  currentPage: salesN(),
-                ),
-                itemCount: salesController.salesModels.length,
-              ),
-              Center(
-                child: IconButton(
-                  onPressed: () => salesController.addSalesProduct(),
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.green,
-                    size: 27,
-                  ),
+              itemCount: salesController.salesModels.length,
+            ),
+            Center(
+              child: IconButton(
+                onPressed: () => salesController.addSalesProduct(),
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.green,
+                  size: 27,
                 ),
               ),
-              ProductPriceSummary(currentPage: salesN()),
-              ActionButton(redirectFrom: salesN())
-            ],
-          ),
-        );
-      }),
+            ),
+            ProductPriceSummary(currentPage: salesN()),
+            ActionButton(redirectFrom: salesN())
+          ],
+        ),
+      ),
     );
   }
 }

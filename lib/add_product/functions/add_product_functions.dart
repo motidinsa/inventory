@@ -75,8 +75,8 @@ onSalesProductSelect({
 }) {
   SalesController salesController = Get.find();
   if (title == salesN()) {
-
-    salesController.searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
+    salesController.searchProductFoundResult(
+        isar.productDatabaseModels.where().findAllSync());
 
     Get.dialog(AlertDialogOptionSelect(
       title: searchProductsN(),
@@ -86,15 +86,14 @@ onSalesProductSelect({
         await unFocus();
       },
     );
-  }else if (title == defaultN) {
-    salesController.searchCustomerFoundResult(isar.customerDatabaseModels.where().findAllSync());
-    // salesController.searchCustomerFoundResult([]);
-
+  } else if (title == noneN) {
+    salesController.searchCustomerFoundResult(
+        isar.customerDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(
       title: searchCustomersN,
     )).then(
-      (value) async {
-        await unFocus();
+      (value) {
+        unFocus();
       },
     );
   }
@@ -106,14 +105,14 @@ onPurchaseProductSelect({
 }) {
   if (title == purchaseN()) {
     PurchaseController purchaseController = Get.find();
-    purchaseController.searchProductFoundResult =
-        purchaseController.products.obs;
+    purchaseController.searchProductFoundResult(
+        isar.productDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(
       title: searchProductsN(),
       listIndex: index,
     )).then(
-      (value) async {
-        await unFocus();
+      (value) {
+         unFocus();
       },
     );
   }
@@ -142,15 +141,17 @@ onAddProductTextFieldPressed({required String title}) {
 }
 
 onAddProductAlertDialogOptionSelect(
-    {required String title, required String data, required String id}) {
+    {required String title, required String data, required int isarId}) {
   final AddProductController addProductController = Get.find();
   addProductController.productInfo.update((product) {
+    ProductDatabaseModel productDatabaseModel =
+        isar.productDatabaseModels.getSync(isarId)!;
     if (title == selectCategoryN) {
       product?.categoryName = data;
-      product?.categoryId = id;
+      product?.categoryId = productDatabaseModel.categoryId;
     } else if (title == selectUomSN) {
       product?.unitOfMeasurementName = data;
-      product?.unitOfMeasurementId = id;
+      product?.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
     }
   });
   addProductController.update();

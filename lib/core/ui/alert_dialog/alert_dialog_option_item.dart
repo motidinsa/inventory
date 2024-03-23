@@ -4,14 +4,14 @@ import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.
 class AlertDialogOptionItem extends StatelessWidget {
   final String title;
   final String name;
-  final String id;
+  final int isarId;
   final int? listIndex;
   const AlertDialogOptionItem({
     super.key,
     required this.title,
     required this.name,
     this.listIndex,
-    required this.id,
+    required this.isarId,
   });
 
   @override
@@ -33,7 +33,7 @@ class AlertDialogOptionItem extends StatelessWidget {
         title: title,
         listIndex: listIndex,
         data: name,
-        id: id,
+        isarId: isarId,
       ),
     );
   }

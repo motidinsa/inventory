@@ -15,10 +15,10 @@ onPurchaseTextFieldChange({
   purchaseController.purchaseModels[index!].update((purchase) {
     if (title == searchProductsN()) {
       PurchaseController purchaseController = Get.find();
-      purchaseController.searchProductFoundResult(purchaseController.products
-          .where((product) =>
-              product.productName.toLowerCase().contains(data.toLowerCase()))
-          .toList());
+      purchaseController.searchProductFoundResult(isar.productDatabaseModels
+          .filter()
+          .productNameContains(data, caseSensitive: false)
+          .findAllSync());
     } else if (title == quantityN()) {
       if (data.isEmpty) {
         purchase?.quantity = '';
@@ -60,15 +60,13 @@ onPurchaseProductFocusChange({
 }
 
 onPurchaseSearchProductAlertDialogOptionSelect(
-    {required int listIndex, required String productId}) {
+    {required int listIndex, required int isarId}) {
   final PurchaseController purchaseController = Get.find();
 
   ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
-      .filter()
-      .productIdEqualTo(productId)
-      .findFirstSync()!;
+      .getSync(isarId)!;
   purchaseController.purchaseModels[listIndex].update((purchase) {
-    purchase?.productId = productId;
+    purchase?.productId = productDatabaseModel.productId;
     purchase?.productName = productDatabaseModel.productName;
     purchase?.cost = emptyIfDefaultValue(
         getFormattedNumberWithoutComa(productDatabaseModel.cost));

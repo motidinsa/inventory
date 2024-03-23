@@ -27,6 +27,7 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import '../../edit_customer/functions/edit_customer_functions.dart';
+import '../../sales/functions/sales_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -175,10 +176,7 @@ titleToData({required String title, int? index}) {
   String currentPage = appController.currentPages.last;
   String? value;
   if (currentPage == salesN()) {
-    SalesController salesController = Get.find();
-    if (title == salesN()) {
-      value = salesController.salesModels[index!].value.productName;
-    }
+    value = onSalesTitleToData(title: title, index: index);
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
@@ -342,12 +340,10 @@ titleToIcon({required String title}) {
   IconData? iconData;
   if (title == dateN) {
     iconData = Icons.calendar_month_rounded;
-  } else if (title == refN) {
-    // iconData = Icons.contra;
-  } else if (title == telN) {
+  } else if (title == phoneNumberN()) {
     iconData = Icons.phone;
-  } else if (title == emailN()) {
-    iconData = Icons.email_outlined;
+  } else if (title == addressN()) {
+    iconData = Icons.location_on;
   }
   return iconData != null
       ? Icon(iconData, color: Colors.grey.shade600)
@@ -371,9 +367,10 @@ getKeyboardType({required String title}) {
   }
   return TextInputType.name;
 }
-getSelectedDate(){
+
+getSelectedDate() {
   String currentPage = AppController.to.currentPages.last;
-if(currentPage == salesN()){
-  return SalesController.to.salesDate.value;
-}
+  if (currentPage == salesN()) {
+    return SalesController.to.salesDate.value;
+  }
 }

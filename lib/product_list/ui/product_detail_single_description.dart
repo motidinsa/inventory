@@ -33,14 +33,16 @@ class ProductDetailSingleDescription extends StatelessWidget {
             text: '$title:   ',
             style: TextStyle(
               fontWeight: bold(),
-              fontSize: titleFontSize ?? 16,
+              fontSize: titleFontSize ?? 17,
               color: titleColor ?? Colors.grey.shade700,
             ),
             children: <TextSpan>[
               TextSpan(
-                text: isNumeric(description)
-                    ? getFormattedNumberWithComa(double.parse(description))
-                    : description,
+                text:
+                // isNumeric(description)
+                //     ? getFormattedNumberWithComa(double.parse(description))
+                //     :
+                description,
                 style: TextStyle(
                   color: dataColor ?? Colors.grey.shade500,
                   fontStyle: FontStyle.italic,

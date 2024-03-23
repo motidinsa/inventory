@@ -5,7 +5,6 @@ class SalesModel {
   String quantity;
   double totalAmount;
   String price;
-  String? vendorId;
 
   SalesModel({
     required this.productId,
@@ -13,7 +12,6 @@ class SalesModel {
     this.customerId,
     required this.quantity,
     required this.price,
-    this.vendorId,
     required this.totalAmount,
   });
 }

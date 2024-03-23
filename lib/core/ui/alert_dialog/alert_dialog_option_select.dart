@@ -73,7 +73,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                                       : null,
                                   name: getAlertDialogOptionName(
                                       title: title, index: index),
-                                  id: getAlertDialogOptionId(
+                                  isarId: getAlertDialogOptionId(
                                       title: title, index: index),
                                 );
                               },

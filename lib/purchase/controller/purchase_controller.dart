@@ -13,8 +13,8 @@ import 'package:my_inventory/main.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
-  List<ProductDatabaseModel> products = [];
-  var searchProductFoundResult = [].obs;
+  // List<ProductDatabaseModel> products = [];
+  RxList<ProductDatabaseModel> searchProductFoundResult = <ProductDatabaseModel>[].obs;
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
@@ -34,8 +34,7 @@ class PurchaseController extends GetxController {
   @override
   void onInit() {
     AppController.to.currentPages.add(purchaseN());
-    products = isar.productDatabaseModels.where().findAllSync();
-    searchProductFoundResult(products);
+    searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
     super.onInit();
   }
 

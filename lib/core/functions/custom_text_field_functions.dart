@@ -38,8 +38,8 @@ titleToHint({String? title}) {
     value = searchByCategoryNameN();
   } else if (title == selectUomSN) {
     value = searchUomSN;
-  } else if (title == defaultN) {
-    value = defaultN;
+  } else if (title == noneN) {
+    value = noneN;
   } else if (title == searchCustomersN) {
     value = searchByCustomerNameN;
   }
@@ -83,7 +83,7 @@ onTextFieldPressed({String? title, int? index}) {
 }
 
 hasOption({String? title}) {
-  var itemsWithOption = [categoryN, uomSN, salesN(), purchaseN(), defaultN];
+  var itemsWithOption = [categoryN, uomSN, salesN(), purchaseN(), noneN];
   return itemsWithOption.contains(title);
 }
 

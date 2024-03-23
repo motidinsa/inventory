@@ -16,7 +16,7 @@ class AddProductController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var isSubmitButtonPressed = false.obs;
   RxList<CategoryDatabaseModel> categoryListFoundResult = <CategoryDatabaseModel>[].obs;
-  var unitOfMeasurementListFoundResult = [].obs;
+  RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
   final AppController appController = Get.find();
 
   @override

@@ -72,11 +72,6 @@ const SalesDatabaseModelSchema = CollectionSchema(
       id: 10,
       name: r'salesId',
       type: IsarType.string,
-    ),
-    r'vendorId': PropertySchema(
-      id: 11,
-      name: r'vendorId',
-      type: IsarType.string,
     )
   },
   estimateSize: _salesDatabaseModelEstimateSize,
@@ -114,12 +109,6 @@ int _salesDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.productId.length * 3;
   bytesCount += 3 + object.salesId.length * 3;
-  {
-    final value = object.vendorId;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
   return bytesCount;
 }
 
@@ -140,7 +129,6 @@ void _salesDatabaseModelSerialize(
   writer.writeDouble(offsets[8], object.quantity);
   writer.writeDateTime(offsets[9], object.salesDate);
   writer.writeString(offsets[10], object.salesId);
-  writer.writeString(offsets[11], object.vendorId);
 }
 
 SalesDatabaseModel _salesDatabaseModelDeserialize(
@@ -160,7 +148,6 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
     quantity: reader.readDouble(offsets[8]),
     salesDate: reader.readDateTime(offsets[9]),
     salesId: reader.readString(offsets[10]),
-    vendorId: reader.readStringOrNull(offsets[11]),
   );
   object.id = id;
   object.isAppWriteSynced = reader.readBoolOrNull(offsets[3]);
@@ -196,8 +183,6 @@ P _salesDatabaseModelDeserializeProp<P>(
       return (reader.readDateTime(offset)) as P;
     case 10:
       return (reader.readString(offset)) as P;
-    case 11:
-      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1416,160 +1401,6 @@ extension SalesDatabaseModelQueryFilter
       ));
     });
   }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'vendorId',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'vendorId',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'vendorId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'vendorId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'vendorId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'vendorId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      vendorIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'vendorId',
-        value: '',
-      ));
-    });
-  }
 }
 
 extension SalesDatabaseModelQueryObject
@@ -1731,20 +1562,6 @@ extension SalesDatabaseModelQuerySortBy
       sortBySalesIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'salesId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByVendorId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'vendorId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByVendorIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'vendorId', Sort.desc);
     });
   }
 }
@@ -1918,20 +1735,6 @@ extension SalesDatabaseModelQuerySortThenBy
       return query.addSortBy(r'salesId', Sort.desc);
     });
   }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByVendorId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'vendorId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByVendorIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'vendorId', Sort.desc);
-    });
-  }
 }
 
 extension SalesDatabaseModelQueryWhereDistinct
@@ -2011,13 +1814,6 @@ extension SalesDatabaseModelQueryWhereDistinct
       distinctBySalesId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'salesId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
-      distinctByVendorId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'vendorId', caseSensitive: caseSensitive);
     });
   }
 }
@@ -2102,13 +1898,6 @@ extension SalesDatabaseModelQueryProperty
   QueryBuilder<SalesDatabaseModel, String, QQueryOperations> salesIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'salesId');
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, String?, QQueryOperations>
-      vendorIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'vendorId');
     });
   }
 }

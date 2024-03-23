@@ -9,6 +9,8 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/main.dart';
 
+import '../../core/model/product/product_database_model.dart';
+
 onEditProductFocusChange({
   required String title,
   required String data,
@@ -87,14 +89,16 @@ onEditProductTextFieldChange({
 }
 
 onEditProductAlertDialogOptionSelect(
-    {required String title, required String data, required String id}) {
+    {required String title, required String data, required int isarId}) {
   final EditProductController editProductController = Get.find();
   editProductController.productInfo.update((product) {
+    ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
+        .getSync(isarId)!;
     if (title == selectCategoryN) {
       product?.categoryName = data;
-      product?.categoryId = id;
+      product?.categoryId = productDatabaseModel.categoryId;
     } else if (title == selectUomSN) {
-      product?.unitOfMeasurementId = id;
+      product?.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
       product?.unitOfMeasurementName = data;
     }
   });

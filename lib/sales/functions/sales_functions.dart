@@ -8,6 +8,24 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
+ onSalesTitleToData({required String title, int? index}){
+
+  SalesController salesController = Get.find();
+  if (title == salesN()) {
+    return salesController.salesModels[index!].value.productName;
+  }else if(title == noneN){
+   return salesController.customerName??'';
+  }
+}
+onSalesAlertDialogOption({required String title,required int index}){
+  SalesController salesController = Get.find();
+  if(title == searchProductsN()){
+    return salesController.searchProductFoundResult[index].id;
+  }else if(title == searchCustomersN){
+    return salesController.searchCustomerFoundResult[index].id;
+  }
+
+}
 onSalesTextFieldChange({
   String? title,
   required String data,
@@ -54,46 +72,57 @@ onSalesProductFocusChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {required int listIndex, required String productId}) {
-  ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
-      .filter()
-      .productIdEqualTo(productId)
-      .findFirstSync()!;
+    { int? listIndex, required int isarId,required String title}) {
   final SalesController salesController = Get.find();
-  bool productExists = salesController.salesModels.any((salesModel) =>
-      salesModel.value.productId == productDatabaseModel.productId);
+ if(title == searchProductsN()){
+   ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
+       .getSync(isarId)!;
 
-  if (!productExists) {
-    salesController.salesModels[listIndex].update((sales) {
-      sales?.productName = productDatabaseModel.productName;
-      sales?.productId = productDatabaseModel.productId;
-      sales?.price = productDatabaseModel.price.toString();
-      if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
-        sales.totalAmount =
-            double.parse(sales.quantity) * productDatabaseModel.price;
-      }
-    });
-    Get.back();
-  } else {
-    if (productId != salesController.salesModels[listIndex].value.productId) {
-      Get.closeCurrentSnackbar();
-      salesController.salesModels.removeAt(listIndex);
-      Get.showSnackbar(const GetSnackBar(
-        messageText: Text(
-          'Product already exists',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,color: Colors.white,fontSize: 16
-          ),
-        ),
-        duration: Duration(seconds: 2),
-        margin: EdgeInsets.all(10),
-        borderRadius: 10,
-      ));
-      Get.key.currentState?.pop();
-    } else {
-      Get.back();
-    }
-  }
+   bool productExists = salesController.salesModels.any((salesModel) =>
+   salesModel.value.productId == productDatabaseModel.productId);
+
+   if (!productExists) {
+     salesController.salesModels[listIndex!].update((sales) {
+       sales?.productName = productDatabaseModel.productName;
+       sales?.productId = productDatabaseModel.productId;
+       sales?.price = productDatabaseModel.price.toString();
+       if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+         sales.totalAmount =
+             double.parse(sales.quantity) * productDatabaseModel.price;
+       }
+     });
+     Get.back();
+   } else {
+     if (productDatabaseModel.productId != salesController.salesModels[listIndex!].value.productId) {
+       Get.closeCurrentSnackbar();
+       salesController.salesModels.removeAt(listIndex!);
+       Get.showSnackbar(const GetSnackBar(
+         messageText: Text(
+           'Product already exists',
+           style: TextStyle(
+               fontWeight: FontWeight.bold,color: Colors.white,fontSize: 16
+           ),
+         ),
+         duration: Duration(seconds: 2),
+         margin: EdgeInsets.all(10),
+         borderRadius: 10,
+       ));
+       Get.key.currentState?.pop();
+     } else {
+       Get.back();
+     }
+   }
+ }else if(title == searchCustomersN){
+   CustomerDatabaseModel customerDatabaseModel = isar.customerDatabaseModels
+       .getSync(isarId)!;
+   salesController.customerId = customerDatabaseModel.customerId;
+   salesController.customerName = customerDatabaseModel.name;
+   salesController.customerPhone = customerDatabaseModel.phone;
+   salesController.customerAddress = customerDatabaseModel.address;
+   salesController.update();
+   Get.back();
+ }
+
 }
 
 int getSalesAlertDialogProductLength() {

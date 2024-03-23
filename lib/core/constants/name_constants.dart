@@ -90,7 +90,7 @@ subtotalN() => 'Subtotal';
 discountN() => 'Discount';
 
 totalN() => 'Total';
-const String defaultN = 'Default';
+const String noneN = 'None';
 const String dateN = 'Date';
 const String refN = 'Ref';
 const String telN = 'Tel';
@@ -116,3 +116,4 @@ const String imageN = 'image';
 const String customerListN = 'Customer list';
 const String customerDetailN = 'Customer detail';
 const String editCustomerN = 'Edit customer';
+// const String noneN = 'None';

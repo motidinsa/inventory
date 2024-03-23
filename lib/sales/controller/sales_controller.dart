@@ -17,15 +17,19 @@ import '../../core/model/customer/customer_database_model.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
-  RxList<ProductDatabaseModel> searchProductFoundResult = <ProductDatabaseModel>[].obs;
-  RxList<CustomerDatabaseModel> searchCustomerFoundResult = <CustomerDatabaseModel>[].obs;
+  RxList<ProductDatabaseModel> searchProductFoundResult =
+      <ProductDatabaseModel>[].obs;
+  RxList<CustomerDatabaseModel> searchCustomerFoundResult =
+      <CustomerDatabaseModel>[].obs;
   RxString subtotal = ''.obs;
-  RxString customerId = ''.obs;
-  RxString vendorId = ''.obs;
+  String? customerId;
+  String? customerName;
+  String? customerPhone;
+  String? customerAddress;
   Rx<DateTime> salesDate = DateTime.now().obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
-  RxString customerName = defaultN.obs;
+
   RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
   var salesModels = [
@@ -39,13 +43,14 @@ class SalesController extends GetxController {
     ).obs
   ].obs;
 
-
   static SalesController get to => Get.find();
+
   @override
   void onInit() {
     AppController.to.currentPages.add(salesN());
     searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
-    searchCustomerFoundResult(isar.customerDatabaseModels.where().findAllSync());
+    searchCustomerFoundResult(
+        isar.customerDatabaseModels.where().findAllSync());
     super.onInit();
   }
 
@@ -53,8 +58,7 @@ class SalesController extends GetxController {
     unFocus();
     salesModels.add(
       SalesModel(
-        customerId: customerId.value,
-        vendorId: vendorId.value,
+        customerId: customerId,
         productId: '',
         productName: '',
         quantity: '',
@@ -134,12 +138,11 @@ class SalesController extends GetxController {
             productId: salesModel.productId,
             salesId: salesId,
             groupSalesId: groupSalesId,
-            salesDate:salesDate.value,
+            salesDate: salesDate.value,
             dateCreated: now,
             quantity: double.parse(salesModel.quantity),
             price: double.parse(salesModel.price),
             customerId: salesModel.customerId,
-            vendorId: salesModel.vendorId,
           ),
         );
         await isar.logProductDatabaseModels.put(

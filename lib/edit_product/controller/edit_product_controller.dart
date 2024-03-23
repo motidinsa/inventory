@@ -24,8 +24,8 @@ class EditProductController extends GetxController {
   var isLocalSaveLoading = false.obs;
   var isOnlineSaveLoading = false.obs;
 
-  var categoryListFoundResult = [].obs;
-  var unitOfMeasurementListFoundResult = [].obs;
+  RxList<CategoryDatabaseModel> categoryListFoundResult = <CategoryDatabaseModel>[].obs;
+  RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
   final formKey = GlobalKey<FormState>();
 
   @override
