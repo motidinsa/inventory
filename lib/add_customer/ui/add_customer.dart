@@ -12,8 +12,6 @@ import '../../core/ui/elevated_card.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
-
-  final AppController aa = Get.find();
   final List<String> titles = [
     customerNameN(),
     phoneNumberN(),

@@ -10,6 +10,7 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
+import '../../add_vendor/functions/add_vendor_functions.dart';
 import '../../edit_customer/functions/edit_customer_functions.dart';
 
 titleToHint({String? title}) {
@@ -99,6 +100,8 @@ minimizePadding({String? title}) {
     categoryNameN,
     uomNameN,
     customerNameN(),
+    vendorNameN,
+    contactPersonN,
     phoneNumberN(),
     addressN(),
     cityN(),
@@ -110,7 +113,15 @@ minimizePadding({String? title}) {
 }
 
 maxPadding({String? title}) {
-  var items = [customerNameN(), phoneNumberN(), addressN(), cityN(), emailN()];
+  var items = [
+    vendorNameN,
+    contactPersonN,
+    customerNameN(),
+    phoneNumberN(),
+    addressN(),
+    cityN(),
+    emailN()
+  ];
   return !items.contains(title);
 }
 
@@ -120,7 +131,15 @@ hasSuffix({String? title}) {
 }
 
 hasPrefix({String? title}) {
-  var items = [customerNameN(), phoneNumberN(), addressN(), cityN(), emailN()];
+  var items = [
+    vendorNameN,
+    customerNameN(),
+    phoneNumberN(),
+    addressN(),
+    cityN(),
+    emailN(),
+    contactPersonN
+  ];
   return items.contains(title);
 }
 
@@ -128,7 +147,9 @@ profileTitleToIcon({
   required String title,
 }) {
   var items = {
+    vendorNameN: Icons.account_balance_rounded,
     customerNameN(): Icons.person,
+    contactPersonN: Icons.person,
     phoneNumberN(): Icons.call,
     addressN(): Icons.location_on,
     cityN(): Icons.location_city,
@@ -171,6 +192,8 @@ onFocusChange({
       onEditProductFocusChange(title: title, data: data);
     } else if (currentPage == addCustomerN()) {
       onAddCustomerFocusChange(title: title, data: data);
+    } else if (currentPage == addVendorN) {
+      onAddVendorFocusChange(title: title, data: data);
     } else if (currentPage == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);
     }

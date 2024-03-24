@@ -13,6 +13,7 @@ class AddCustomerController extends GetxController {
     name: '',
   ).obs;
 
+  static AddCustomerController get to => Get.find();
   @override
   void onInit() {
     appController.currentPages.add(addCustomerN());
@@ -20,7 +21,6 @@ class AddCustomerController extends GetxController {
   }
 
   onAddCustomerSaveButtonPressed() async {
-    // isLocalSaveLoading(true);
     DateTime now = DateTime.now();
     String customerId = generateDatabaseId(time: now);
     final dbCustomer = CustomerDatabaseModel(
@@ -37,7 +37,6 @@ class AddCustomerController extends GetxController {
       await isar.customerDatabaseModels.put(dbCustomer);
       // await isar.logProductDatabaseModels.put(logDbProduct);
     });
-    // isLocalSaveLoading(false);
     Get.back();
   }
 }

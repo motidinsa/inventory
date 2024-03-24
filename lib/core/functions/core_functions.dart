@@ -26,6 +26,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
+import '../../add_vendor/controller/add_vendor_controller.dart';
 import '../../edit_customer/functions/edit_customer_functions.dart';
 import '../../sales/functions/sales_functions.dart';
 
@@ -163,8 +164,9 @@ onActionButtonPressed({required String redirectFrom}) async {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
     } else if (redirectFrom == addCustomerN()) {
-      AddCustomerController addCustomerController = Get.find();
-      addCustomerController.onAddCustomerSaveButtonPressed();
+      AddCustomerController.to.onAddCustomerSaveButtonPressed();
+    } else if (redirectFrom == addVendorN) {
+      AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
     }

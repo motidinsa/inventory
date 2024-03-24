@@ -116,4 +116,6 @@ const String imageN = 'image';
 const String customerListN = 'Customer list';
 const String customerDetailN = 'Customer detail';
 const String editCustomerN = 'Edit customer';
-// const String noneN = 'None';
+const String addVendorN = 'Add vendor';
+const String contactPersonN = 'Contact person';
+const String vendorNameN = 'Vendor name';

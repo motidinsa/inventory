@@ -21,6 +21,8 @@ import 'package:my_inventory/core/ui/title_with_submenu.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'core/model/vendor/vendor_database_model.dart';
+
 late Isar isar;
 
 void main() async {
@@ -41,7 +43,8 @@ void main() async {
       LogCategoryDatabaseModelSchema,
       UnitOfMeasurementDatabaseModelSchema,
       LogUnitOfMeasurementDatabaseModelSchema,
-      CustomerDatabaseModelSchema
+      CustomerDatabaseModelSchema,
+      VendorDatabaseModelSchema
     ],
     directory: dir.path,
   );
