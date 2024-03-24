@@ -12,6 +12,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import '../../add_vendor/functions/add_vendor_functions.dart';
 import '../../edit_customer/functions/edit_customer_functions.dart';
+import '../../vendor_list/functions/vendor_list_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -29,6 +30,8 @@ titleToHint({String? title}) {
     value = searchByProductNameN();
   } else if (title == customerListN) {
     value = searchByCustomerNameN;
+  }else if (title == vendorListN) {
+    value = searchByVendorNameN;
   } else if (title == salesN()) {
     value = selectItemN();
   } else if (title == purchaseN()) {
@@ -66,6 +69,8 @@ onTextFieldChange({
     onProductListTextFieldChange(data: data);
   } else if (currentPage == customerListN) {
     onCustomerListTextFieldChange(data: data);
+  }else if (currentPage == vendorListN) {
+    onVendorListTextFieldChange(data: data);
   }
 }
 
@@ -107,6 +112,7 @@ minimizePadding({String? title}) {
     cityN(),
     emailN(),
     customerListN,
+    vendorListN,
     searchCustomersN,
   ];
   return !items.contains(title);
@@ -169,6 +175,7 @@ hasSearchIcon({String? title}) {
     selectCategoryN,
     selectUomSN,
     customerListN,
+    vendorListN,
     searchCustomersN
   ];
   return items.contains(title);

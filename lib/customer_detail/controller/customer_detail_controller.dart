@@ -12,7 +12,7 @@ class CustomerDetailController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(productDetailN);
+    AppController.to.currentPages.add(customerDetailN);
     super.onInit();
   }
 }

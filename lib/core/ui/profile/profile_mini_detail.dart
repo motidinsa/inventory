@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -25,7 +27,9 @@ class ProfileMiniDetail extends StatelessWidget {
           child: Row(
             children: [
               Icon(
-                Icons.person,
+                AppController.to.currentPages.last == customerListN
+                    ? Icons.person
+                    : Icons.account_balance_rounded,
                 size: 28,
                 color: Colors.grey.shade700,
               ),
@@ -33,7 +37,8 @@ class ProfileMiniDetail extends StatelessWidget {
               Expanded(
                 child: Text(
                   name,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               )
             ],

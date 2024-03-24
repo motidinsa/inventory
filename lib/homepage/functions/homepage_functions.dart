@@ -10,6 +10,7 @@ import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/customer_list/ui/customer_list.dart';
 
 import '../../add_vendor/ui/add_vendor.dart';
+import '../../vendor_list/ui/vendor_list.dart';
 
 navigateFromHomepage({required String title, bool? isAddIcon}) async {
   AppController appController = Get.find();
@@ -34,8 +35,8 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
     if (isAddIcon == true) {
       Get.to(() => AddVendor());
     }
-    // else {
-    //   Get.to(() => CustomerList());
-    // }
+    else {
+      Get.to(() => VendorList());
+    }
   }
 }

@@ -29,6 +29,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import '../../add_vendor/controller/add_vendor_controller.dart';
 import '../../edit_customer/functions/edit_customer_functions.dart';
 import '../../sales/functions/sales_functions.dart';
+import '../../vendor_detail/functions/vendor_detail_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -80,6 +81,8 @@ onActionButtonPressed({required String redirectFrom}) async {
     deleteProduct();
   } else if (redirectFrom == customerDetailN) {
     deleteCustomer();
+  }else if (redirectFrom == vendorDetailN) {
+    deleteVendor();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {

@@ -70,6 +70,7 @@ productListN() => 'Product list';
 
 searchByProductNameN() => 'Search by product name';
 const String searchByCustomerNameN = 'Search by customer name';
+const String searchByVendorNameN = 'Search by vendor name';
 
 searchByCategoryNameN() => 'Search by category name';
 // const String searchByCustomerNameN = 'Search by category name';
@@ -114,7 +115,9 @@ const String categoryNameN = 'Category name';
 const String uomNameN = 'Unit of measurement name';
 const String imageN = 'image';
 const String customerListN = 'Customer list';
+const String vendorListN = 'Vendor list';
 const String customerDetailN = 'Customer detail';
+const String vendorDetailN = 'Vendor detail';
 const String editCustomerN = 'Edit customer';
 const String addVendorN = 'Add vendor';
 const String contactPersonN = 'Contact person';
