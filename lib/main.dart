@@ -76,10 +76,8 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           drawer: const Drawer(
-            child: SafeArea(
-              child: TitleWithSubMenu(
-                title: 'Report',
-              ),
+            child: TitleWithSubMenu(
+              title: 'Report',
             ),
           ),
           body: Homepage(),
