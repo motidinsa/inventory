@@ -43,6 +43,12 @@ class AlertDialogOptionSelect extends StatelessWidget {
               ? const ImageSelectOption()
               : ListView(
                   shrinkWrap: true,
+                  physics: getAlertDialogOptionLists(
+                            title: title,
+                          ).length ==
+                          0
+                      ? NeverScrollableScrollPhysics()
+                      : ClampingScrollPhysics(),
                   children: [
                     if (getAlertDialogOptionLists(title: title).length != 0)
                       Padding(
@@ -53,43 +59,36 @@ class AlertDialogOptionSelect extends StatelessWidget {
                         ),
                       ),
                     Obx(
-                      () => getAlertDialogOptionLists(
-                                title: title,
-                              ).length ==
-                              0
-                          ? sizedBox(height: 8)
-                          : ListView.builder(
-                              shrinkWrap: true,
-                              reverse: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return AlertDialogOptionItem(
-                                  title: title,
-                                  listIndex: [
-                                    purchaseN(),
-                                    salesN()
-                                  ].contains(AppController.to.currentPages.last)
-                                      ? listIndex
-                                      : null,
-                                  name: getAlertDialogOptionName(
-                                      title: title, index: index),
-                                  isarId: getAlertDialogOptionId(
-                                      title: title, index: index),
-                                );
-                              },
-                              itemCount: getAlertDialogOptionLists(
-                                title: title,
-                              ).length,
-                            ),
+                      () => ListView.builder(
+                        shrinkWrap: true,
+                        reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return AlertDialogOptionItem(
+                            title: title,
+                            listIndex: [
+                              purchaseN(),
+                              salesN()
+                            ].contains(AppController.to.currentPages.last)
+                                ? listIndex
+                                : null,
+                            name: getAlertDialogOptionName(
+                                title: title, index: index),
+                            isarId: getAlertDialogOptionId(
+                                title: title, index: index),
+                          );
+                        },
+                        itemCount: getAlertDialogOptionLists(
+                          title: title,
+                        ).length,
+                      ),
                     ),
                     if (getAlertDialogOptionLists(title: title).length == 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 8),
                         child: Text(
-                          title == selectCategoryN
-                              ? noCategoryAvailableSN
-                              : noUomAvailableSN,
+                          getEmptyMessage(title: title),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 17,
@@ -98,6 +97,11 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           ),
                         ),
                       ),
+                    if (getAlertDialogOptionLists(
+                          title: title,
+                        ).length ==
+                        0)
+                      sizedBox(height: 8),
                     if (![searchCustomersN, searchProductsN()].contains(title))
                       Align(
                         child: IconButton(

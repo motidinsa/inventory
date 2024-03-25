@@ -91,7 +91,7 @@ subtotalN() => 'Subtotal';
 discountN() => 'Discount';
 
 totalN() => 'Total';
-const String noneN = 'None';
+const String selectN = 'Select';
 const String dateN = 'Date';
 const String refN = 'Ref';
 const String telN = 'Tel';
@@ -107,6 +107,12 @@ const String productDetailN = 'Product detail';
 const String editProductN = 'Edit product';
 const String noCategoryAvailableSN =
     'There is no category available. Click the + icon to add new category';
+const String noProductAvailableSN =
+    'There is no product available. Please add product first';
+const String noCustomerAvailableSN =
+    'There is no customer available. Please add customer first';
+const String noVendorAvailableSN =
+    'There is no vendor available. Please add vendor first';
 const String noUomAvailableSN =
     'There is no unit of measurement available. Click the + icon to add new unit of measurement';
 const String addCategoryNameN = 'Add category';

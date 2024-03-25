@@ -112,3 +112,12 @@ getAlertDialogOptionId({required int index, required String title}) {
     return purchaseController.searchProductFoundResult[index].id;
   }
 }
+getEmptyMessage({required String title}){
+  if(title == selectCategoryN){
+    return noCategoryAvailableSN;
+  }else if(title == searchCustomersN){
+    return noCustomerAvailableSN;
+  }else if(title == selectUomSN){
+    return noUomAvailableSN;
+  }
+}

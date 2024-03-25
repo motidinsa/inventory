@@ -86,7 +86,7 @@ onSalesProductSelect({
         await unFocus();
       },
     );
-  } else if (title == noneN) {
+  } else if (title == selectN) {
     salesController.searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(

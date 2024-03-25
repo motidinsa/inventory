@@ -18,8 +18,12 @@ class PurchaseController extends GetxController {
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
-  Rx<DateTime> purchaseDate=DateTime.now().obs;
-  RxString emptyString = ''.obs;
+  String? vendorId;
+  String? vendorName;
+  String? vendorPhone;
+  String? vendorAddress;
+  String? vendorContactPerson;
+  Rx<DateTime> purchaseDate = DateTime.now().obs;
   var isLocalSaveLoading = false.obs;
   var purchaseModels = [
     PurchaseModel(
@@ -30,6 +34,8 @@ class PurchaseController extends GetxController {
       cost: '',
     ).obs
   ].obs;
+
+  static PurchaseController get to => Get.find();
 
   @override
   void onInit() {

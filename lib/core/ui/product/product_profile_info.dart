@@ -57,7 +57,7 @@ class ProductProfileInfo extends StatelessWidget {
             sizedBox(width: 20),
             Expanded(
               child: CustomTextField(
-                title: noneN,
+                title: selectN,
               ),
             ),
             if (getProfileId() != null) ...[

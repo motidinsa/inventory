@@ -377,5 +377,7 @@ getSelectedDate() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.salesDate.value;
+  }else if (currentPage == purchaseN()) {
+    return PurchaseController.to.purchaseDate.value;
   }
 }
