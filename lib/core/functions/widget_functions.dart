@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 appBar({required String pageName}) {
-  var pageNameToFunction = {
-    addProductN: () => Get.delete<AddProductController>()
-  };
+
   return AppBar(
     title: Text(
       pageName,
@@ -21,8 +20,8 @@ appBar({required String pageName}) {
     shadowColor: Colors.grey,
     backgroundColor: const Color(0xffDCEEDE),
     leading: IconButton(
-      onPressed: () {
-        pageNameToFunction[pageName];
+      onPressed: ()  {
+         // AppController.to.currentPages.removeLast();
         Get.back();
       },
       icon: Icon(

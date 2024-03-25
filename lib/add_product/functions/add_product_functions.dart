@@ -8,6 +8,7 @@ import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
@@ -103,8 +104,8 @@ onPurchaseProductSelect({
   String? title,
   int? index,
 }) {
+  PurchaseController purchaseController = Get.find();
   if (title == purchaseN()) {
-    PurchaseController purchaseController = Get.find();
     purchaseController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(
@@ -112,7 +113,17 @@ onPurchaseProductSelect({
       listIndex: index,
     )).then(
       (value) {
-         unFocus();
+        unFocus();
+      },
+    );
+  } else if (title == selectN) {
+    purchaseController.searchVendorFoundResult(
+        isar.vendorDatabaseModels.where().findAllSync());
+    Get.dialog(AlertDialogOptionSelect(
+      title: searchVendorsN,
+    )).then(
+      (value) {
+        unFocus();
       },
     );
   }
@@ -133,8 +144,7 @@ onAddProductTextFieldPressed({required String title}) {
     Get.dialog(AlertDialogOptionSelect(
       title: title == categoryN ? selectCategoryN : selectUomSN,
     )).then(
-      (value) async {
-        await unFocus();
+      (value)  { unFocus();
       },
     );
   }

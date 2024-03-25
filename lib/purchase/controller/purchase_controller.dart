@@ -11,10 +11,14 @@ import 'package:my_inventory/core/model/purchase/purchase_available_database_mod
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
 import 'package:my_inventory/main.dart';
 
+import '../../core/model/vendor/vendor_database_model.dart';
+
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
-  // List<ProductDatabaseModel> products = [];
-  RxList<ProductDatabaseModel> searchProductFoundResult = <ProductDatabaseModel>[].obs;
+  RxList<ProductDatabaseModel> searchProductFoundResult =
+      <ProductDatabaseModel>[].obs;
+  RxList<VendorDatabaseModel> searchVendorFoundResult =
+      <VendorDatabaseModel>[].obs;
   RxString subtotal = ''.obs;
   RxString discount = ''.obs;
   RxString total = ''.obs;
@@ -80,7 +84,7 @@ class PurchaseController extends GetxController {
           PurchaseAvailableDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate:purchaseDate.value,
+            purchaseDate: purchaseDate.value,
             dateCreated: now,
             customerId: purchaseModel.customerId,
             vendorId: purchaseModel.vendorId,

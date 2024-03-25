@@ -30,7 +30,7 @@ titleToHint({String? title}) {
     value = searchByProductNameN();
   } else if (title == customerListN) {
     value = searchByCustomerNameN;
-  }else if (title == vendorListN) {
+  } else if (title == vendorListN) {
     value = searchByVendorNameN;
   } else if (title == salesN()) {
     value = selectItemN();
@@ -46,6 +46,8 @@ titleToHint({String? title}) {
     value = selectN;
   } else if (title == searchCustomersN) {
     value = searchByCustomerNameN;
+  }else if (title == searchVendorsN) {
+    value = searchByVendorNameN;
   }
   return value;
 }
@@ -69,7 +71,7 @@ onTextFieldChange({
     onProductListTextFieldChange(data: data);
   } else if (currentPage == customerListN) {
     onCustomerListTextFieldChange(data: data);
-  }else if (currentPage == vendorListN) {
+  } else if (currentPage == vendorListN) {
     onVendorListTextFieldChange(data: data);
   }
 }
@@ -114,6 +116,7 @@ minimizePadding({String? title}) {
     customerListN,
     vendorListN,
     searchCustomersN,
+    searchVendorsN
   ];
   return !items.contains(title);
 }
@@ -176,7 +179,8 @@ hasSearchIcon({String? title}) {
     selectUomSN,
     customerListN,
     vendorListN,
-    searchCustomersN
+    searchCustomersN,
+    searchVendorsN
   ];
   return items.contains(title);
 }

@@ -79,6 +79,7 @@ const String searchUomSN = 'Search unit of measurement';
 
 searchProductsN() => 'Search products';
 const String searchCustomersN = 'Search customers';
+const String searchVendorsN = 'Search vendors';
 quantityN() => 'Quantity';
 
 const String selectCategoryN = 'Select category';
