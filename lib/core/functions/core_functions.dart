@@ -26,10 +26,13 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../add_vendor/controller/add_vendor_controller.dart';
-import '../../edit_customer/functions/edit_customer_functions.dart';
-import '../../sales/functions/sales_functions.dart';
-import '../../vendor_detail/functions/vendor_detail_functions.dart';
+import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -172,6 +175,8 @@ onActionButtonPressed({required String redirectFrom}) async {
       AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
+    }else if (redirectFrom == editVendorN) {
+      EditVendorController.to.onEditVendorSaveButtonPressed();
     }
   }
 }
@@ -181,16 +186,11 @@ titleToData({required String title, int? index}) {
   String currentPage = appController.currentPages.last;
   String? value;
   if (currentPage == salesN()) {
-    value = onSalesTitleToData(title: title, index: index);
+    return onSalesTitleToData(title: title, index: index);
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
-    PurchaseController purchaseController = Get.find();
-    if (title == purchaseN()) {
-      value = purchaseController.purchaseModels[index!].value.productName;
-    } else if (title == costN) {
-      value = purchaseController.purchaseModels[index!].value.cost;
-    }
+   return onPurchaseTitleToData(title: title, index: index);
   } else if (currentPage == editProductN) {
     EditProductController editProductController = Get.find();
     if (title == productN) {
@@ -225,7 +225,9 @@ titleToData({required String title, int? index}) {
       value = editProductController.emptyText.value;
     }
   } else if (currentPage == editCustomerN) {
-    value = getEditCustomerData(title: title);
+   return getEditCustomerData(title: title);
+  }else if (currentPage == editVendorN) {
+   return getEditVendorData(title: title);
   }
   return value;
 }
@@ -349,6 +351,8 @@ titleToIcon({required String title}) {
     iconData = Icons.phone;
   } else if (title == addressN()) {
     iconData = Icons.location_on;
+  }else if (title == contactPersonN) {
+    iconData = Icons.person;
   }
   return iconData != null
       ? Icon(iconData, color: Colors.grey.shade600)

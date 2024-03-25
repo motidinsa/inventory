@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/controller/app_controller.dart';
-import '../../core/model/customer/customer_database_model.dart';
-import '../../core/model/customer/customer_model.dart';
-import '../../customer_list/controller/customer_list_controller.dart';
-import '../../main.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/model/customer/customer_model.dart';
+import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
+import 'package:my_inventory/main.dart';
 
 class EditCustomerController extends GetxController {
   final CustomerDatabaseModel customerDatabaseModel;

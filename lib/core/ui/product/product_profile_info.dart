@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
@@ -7,8 +6,8 @@ import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
 
-import '../../functions/core_functions.dart';
-import '../../functions/profile/profile_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   final PageName page;
@@ -52,10 +51,10 @@ class ProductProfileInfo extends StatelessWidget {
             sizedBox(width: 15),
             Text(
               page == PageName.sales ? customerN() : vendorN(),
-              style: TextStyle(fontSize: 17),
+              style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
-            Expanded(
+            const Expanded(
               child: CustomTextField(
                 title: selectN,
               ),
@@ -88,6 +87,14 @@ class ProductProfileInfo extends StatelessWidget {
           ProfileTitleToData(
             title: addressN(),
             data: getProfileAddress()!,
+            dataColor: Colors.green.shade800,
+          ),
+        ],
+        if (getContactPerson() != null) ...[
+          sizedBox(height: 10),
+          ProfileTitleToData(
+            title: contactPersonN,
+            data: getContactPerson()!,
             dataColor: Colors.green.shade800,
           ),
         ]

@@ -10,9 +10,10 @@ import 'package:my_inventory/product_list/functions/product_list_functions.dart'
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../add_vendor/functions/add_vendor_functions.dart';
-import '../../edit_customer/functions/edit_customer_functions.dart';
-import '../../vendor_list/functions/vendor_list_functions.dart';
+import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
+import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
+import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -207,6 +208,8 @@ onFocusChange({
       onAddVendorFocusChange(title: title, data: data);
     } else if (currentPage == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);
+    }else if (currentPage == editVendorN) {
+      onEditVendorFocusChange(title: title, data: data);
     }
   }
 }

@@ -9,17 +9,17 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+class EditVendor extends StatelessWidget {
+  final VendorDatabaseModel vendorDatabaseModel;
 
-class EditCustomer extends StatelessWidget {
-  final CustomerDatabaseModel customerDatabaseModel;
-
-  EditCustomer({super.key, required this.customerDatabaseModel});
+  EditVendor({super.key, required this.vendorDatabaseModel});
 
   final List<String> titleList = [
-    customerNameN(),
+    vendorNameN,
     phoneNumberN(),
+    contactPersonN,
     addressN(),
     cityN(),
     emailN()
@@ -29,7 +29,7 @@ class EditCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(
-        EditCustomerController(customerDatabaseModel: customerDatabaseModel));
+        EditVendorController(vendorDatabaseModel: vendorDatabaseModel));
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidgetBuilder: (_) {
@@ -40,7 +40,7 @@ class EditCustomer extends StatelessWidget {
         );
       },
       child: BodyWrapper(
-        pageName: editCustomerN,
+        pageName: editVendorN,
         body: Form(
           key: appController.formKey,
           child: ListView(
@@ -59,7 +59,7 @@ class EditCustomer extends StatelessWidget {
                 ),
               ),
               ActionButton(
-                redirectFrom: editCustomerN,
+                redirectFrom: editVendorN,
               ),
             ],
           ),

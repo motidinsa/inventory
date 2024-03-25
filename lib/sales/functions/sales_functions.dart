@@ -14,7 +14,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
   if (title == salesN()) {
     return salesController.salesModels[index!].value.productName;
   }else if(title == selectN){
-   return salesController.customerName??'';
+   return salesController.customerName;
   }
 }
 onSalesAlertDialogOption({required String title,required int index}){
@@ -95,7 +95,7 @@ onSalesSearchProductAlertDialogOptionSelect(
    } else {
      if (productDatabaseModel.productId != salesController.salesModels[listIndex!].value.productId) {
        Get.closeCurrentSnackbar();
-       salesController.salesModels.removeAt(listIndex!);
+       salesController.salesModels.removeAt(listIndex);
        Get.showSnackbar(const GetSnackBar(
          messageText: Text(
            'Product already exists',

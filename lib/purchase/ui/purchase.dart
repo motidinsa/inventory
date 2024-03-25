@@ -29,12 +29,14 @@ class Purchase extends StatelessWidget {
           key: appController.formKey,
           child: ListView(
             children: [
-               ElevatedCard(
+              ElevatedCard(
                 horizontalMargin: 10,
                 verticalMargin: 20,
                 blurRadius: 10,
                 horizontalPadding: 20,
-                child: ProductProfileInfo(page: PageName.purchase),
+                child: GetBuilder<PurchaseController>(builder: (_) {
+                  return ProductProfileInfo(page: PageName.purchase);
+                }),
               ),
               ProductTableTitles(
                 currentPage: purchaseN(),

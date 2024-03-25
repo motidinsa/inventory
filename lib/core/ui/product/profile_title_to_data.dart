@@ -28,7 +28,6 @@ class ProfileTitleToData extends StatelessWidget {
       children: [
         titleToIcon(title: title),
         sizedBox(width: 15),
-        // Text(data)
         ProductDetailSingleDescription(
           title: title,
           description: data,

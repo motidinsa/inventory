@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/customer/customer_model.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/main.dart';
 
-import '../../core/model/vendor/vendor_database_model.dart';
-import '../../core/model/vendor/vendor_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_model.dart';
 
 class AddVendorController extends GetxController {
   AppController appController = Get.find();

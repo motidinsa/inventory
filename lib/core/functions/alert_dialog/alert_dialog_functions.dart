@@ -16,7 +16,7 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../../../main.dart';
+import 'package:my_inventory/main.dart';
 
 onAlertDialogOptionSelect(
     {required String title,
@@ -36,7 +36,7 @@ onAlertDialogOptionSelect(
         title: title, data: data, isarId: isarId);
   } else if (currentPage == purchaseN()) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex!, isarId: isarId);
+        listIndex: listIndex, isarId: isarId,title: title);
   }
 }
 
@@ -106,7 +106,9 @@ getAlertDialogOptionName({required int index, String? title}) {
     }
   } else if (currentPage == purchaseN()) {
     PurchaseController purchaseController = Get.find();
-    return purchaseController.searchProductFoundResult[index].productName;
+    return title == searchProductsN()
+        ? purchaseController.searchProductFoundResult[index].productName
+        : purchaseController.searchVendorFoundResult[index].name;
   }
 }
 
@@ -114,6 +116,8 @@ getAlertDialogOptionId({required int index, required String title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return onSalesAlertDialogOption(title: title, index: index);
+  }if (currentPage == purchaseN()) {
+    return onPurchaseAlertDialogOption(title: title, index: index);
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
     if (title == selectCategoryN) {

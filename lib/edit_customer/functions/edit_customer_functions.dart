@@ -22,19 +22,18 @@ onEditCustomerFocusChange({
   });
 }
 
-String getEditCustomerData({required String title}) {
-  String? value;
+String? getEditCustomerData({required String title}) {
   EditCustomerController editCustomerController = Get.find();
   if (title == customerNameN()) {
-    value = editCustomerController.customerInfo.value.name;
+    return editCustomerController.customerInfo.value.name;
   } else if (title == phoneNumberN()) {
-    value = editCustomerController.customerInfo.value.phoneNumber;
+    return editCustomerController.customerInfo.value.phoneNumber;
   } else if (title == addressN()) {
-    value = editCustomerController.customerInfo.value.address;
+    return editCustomerController.customerInfo.value.address;
   } else if (title == cityN()) {
-    value = editCustomerController.customerInfo.value.city;
+    return editCustomerController.customerInfo.value.city;
   } else if (title == emailN()) {
-    value = editCustomerController.customerInfo.value.email;
+    return editCustomerController.customerInfo.value.email;
   }
-  return value ?? '';
+  return null;
 }

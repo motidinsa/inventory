@@ -11,7 +11,7 @@ import 'package:my_inventory/core/model/purchase/purchase_available_database_mod
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
 import 'package:my_inventory/main.dart';
 
-import '../../core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();

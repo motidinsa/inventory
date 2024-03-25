@@ -5,10 +5,11 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 
 import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
-import '../../../sales/controller/sales_controller.dart';
-import '../../../vendor_detail/ui/vendor_detail.dart';
-import '../../../vendor_list/controller/vendor_list_controller.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/vendor_detail/ui/vendor_detail.dart';
+import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
 onSingleProfileDetailPressed({required int index}) {
   unFocus();
@@ -38,6 +39,8 @@ String? getProfilePhone() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.customerPhone;
+  }else if (currentPage == purchaseN()) {
+    return PurchaseController.to.vendorPhone;
   }
   return null;
 }
@@ -46,6 +49,15 @@ String? getProfileAddress() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.customerAddress;
+  }else if (currentPage == purchaseN()) {
+    return PurchaseController.to.vendorAddress;
+  }
+  return null;
+}
+String? getContactPerson() {
+  String currentPage = AppController.to.currentPages.last;
+   if (currentPage == purchaseN()) {
+    return PurchaseController.to.vendorContactPerson;
   }
   return null;
 }

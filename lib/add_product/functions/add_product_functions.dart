@@ -90,7 +90,7 @@ onSalesProductSelect({
   } else if (title == selectN) {
     salesController.searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());
-    Get.dialog(AlertDialogOptionSelect(
+    Get.dialog(const AlertDialogOptionSelect(
       title: searchCustomersN,
     )).then(
       (value) {
@@ -119,7 +119,7 @@ onPurchaseProductSelect({
   } else if (title == selectN) {
     purchaseController.searchVendorFoundResult(
         isar.vendorDatabaseModels.where().findAllSync());
-    Get.dialog(AlertDialogOptionSelect(
+    Get.dialog(const AlertDialogOptionSelect(
       title: searchVendorsN,
     )).then(
       (value) {

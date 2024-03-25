@@ -8,7 +8,7 @@ import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import '../../core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
