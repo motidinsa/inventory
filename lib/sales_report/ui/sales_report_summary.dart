@@ -14,14 +14,14 @@ class SalesReportSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
       child: Card(
         surfaceTintColor: Colors.white,
         shape: smoothRectangleBorder(
             radius: 15, side: const BorderSide(color: Colors.green, width: .5)),
         elevation: 3,
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

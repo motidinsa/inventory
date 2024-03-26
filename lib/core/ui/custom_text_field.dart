@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -57,7 +58,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
             '',
       );
     });
-
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,
