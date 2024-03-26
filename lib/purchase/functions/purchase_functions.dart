@@ -3,21 +3,23 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
-import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-onPurchaseTitleToData({required String title, int? index}){
-
+onPurchaseTitleToData({required String title, int? index}) {
   PurchaseController purchaseController = Get.find();
   if (title == purchaseN()) {
-    return  purchaseController.purchaseModels[index!].value.productName;
+    return purchaseController.purchaseModels[index!].value.productName;
   } else if (title == costN) {
     return purchaseController.purchaseModels[index!].value.cost;
-  }else if(title == selectN){
+  } else if (title == selectN) {
     return purchaseController.vendorName;
+  } else if (title == quantityN()) {
+    return purchaseController.purchaseModels[index!].value.quantity;
   }
 }
+
 onPurchaseTextFieldChange({
   String? title,
   required String data,
@@ -70,21 +72,22 @@ onPurchaseProductFocusChange({
     purchaseController.discount(data);
   }
 }
-onPurchaseAlertDialogOption({required String title,required int index}){
+
+onPurchaseAlertDialogOption({required String title, required int index}) {
   PurchaseController purchaseController = Get.find();
-  if(title == searchProductsN()){
+  if (title == searchProductsN()) {
     return purchaseController.searchProductFoundResult[index].id;
-  }else if(title == searchVendorsN){
+  } else if (title == searchVendorsN) {
     return purchaseController.searchVendorFoundResult[index].id;
   }
-
 }
+
 onPurchaseSearchProductAlertDialogOptionSelect(
-    { int? listIndex, required int isarId,required String title}) {
+    {int? listIndex, required int isarId, required String title}) {
   final PurchaseController purchaseController = Get.find();
-  if(title == searchProductsN()){
-    ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
-        .getSync(isarId)!;
+  if (title == searchProductsN()) {
+    ProductDatabaseModel productDatabaseModel =
+        isar.productDatabaseModels.getSync(isarId)!;
     purchaseController.purchaseModels[listIndex!].update((purchase) {
       purchase?.productId = productDatabaseModel.productId;
       purchase?.productName = productDatabaseModel.productName;
@@ -95,18 +98,17 @@ onPurchaseSearchProductAlertDialogOptionSelect(
             double.parse(purchase.quantity) * productDatabaseModel.cost;
       }
     });
-  }else if(title == searchVendorsN){
-    VendorDatabaseModel vendorDatabaseModel = isar.vendorDatabaseModels
-        .getSync(isarId)!;
+  } else if (title == searchVendorsN) {
+    VendorDatabaseModel vendorDatabaseModel =
+        isar.vendorDatabaseModels.getSync(isarId)!;
     purchaseController.vendorId = vendorDatabaseModel.vendorId;
     purchaseController.vendorName = vendorDatabaseModel.name;
     purchaseController.vendorPhone = vendorDatabaseModel.phone;
     purchaseController.vendorAddress = vendorDatabaseModel.address;
     purchaseController.vendorContactPerson = vendorDatabaseModel.contactPerson;
     purchaseController.update();
-    Get.back();
   }
-
+  Get.back();
 }
 
 getPurchaseAlertDialogProductLength() {

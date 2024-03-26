@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/sales_report/ui/sales_report.dart';
 
 class TitleWithSubMenu extends StatelessWidget {
   final String title;
@@ -23,19 +25,24 @@ class TitleWithSubMenu extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               sizedBox(height: 10),
               ListTile(
                 title: const Text('Sales report'),
                 leading: const Icon(Icons.all_inclusive_outlined),
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const SalesReport());
+                },
               ),
               // sizedBox(height: 5),
               ListTile(
                 title: const Text('Purchase report'),
                 leading: const Icon(Icons.add),
-                onTap: () {},
+                onTap: () {
+                  // Get.to(()=>Sal)
+                },
               ),
             ],
           ),

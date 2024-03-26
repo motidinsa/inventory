@@ -84,7 +84,6 @@ quantityN() => 'Quantity';
 
 const String selectCategoryN = 'Select category';
 
-
 const String selectUomSN = 'Select unit of measurement';
 
 subtotalN() => 'Subtotal';
@@ -131,3 +130,5 @@ const String addVendorN = 'Add vendor';
 const String contactPersonN = 'Contact person';
 const String vendorNameN = 'Vendor name';
 const String editN = 'Edit';
+const String salesReportN = 'Sales report';
+const String purchaseReportN = 'Purchase report';

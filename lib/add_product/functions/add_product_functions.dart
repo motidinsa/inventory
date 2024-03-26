@@ -144,7 +144,8 @@ onAddProductTextFieldPressed({required String title}) {
     Get.dialog(AlertDialogOptionSelect(
       title: title == categoryN ? selectCategoryN : selectUomSN,
     )).then(
-      (value)  { unFocus();
+      (value) {
+        unFocus();
       },
     );
   }
@@ -154,16 +155,19 @@ onAddProductAlertDialogOptionSelect(
     {required String title, required String data, required int isarId}) {
   final AddProductController addProductController = Get.find();
   addProductController.productInfo.update((product) {
-    ProductDatabaseModel productDatabaseModel =
-        isar.productDatabaseModels.getSync(isarId)!;
     if (title == selectCategoryN) {
+      CategoryDatabaseModel categoryDatabaseModel =
+          isar.categoryDatabaseModels.getSync(isarId)!;
       product?.categoryName = data;
-      product?.categoryId = productDatabaseModel.categoryId;
+      product?.categoryId = categoryDatabaseModel.categoryId;
     } else if (title == selectUomSN) {
+      UnitOfMeasurementDatabaseModel uomDatabaseModel =
+          isar.unitOfMeasurementDatabaseModels.getSync(isarId)!;
       product?.unitOfMeasurementName = data;
-      product?.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
+      product?.unitOfMeasurementId = uomDatabaseModel.uomId;
     }
   });
+  Get.back();
   addProductController.update();
 }
 
