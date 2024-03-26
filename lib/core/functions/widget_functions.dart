@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/homepage/ui/homepage.dart';
+
+import '../controller/app_controller.dart';
 
 appBar({required String pageName}) {
 
@@ -18,8 +22,14 @@ appBar({required String pageName}) {
     backgroundColor: const Color(0xffDCEEDE),
     leading: IconButton(
       onPressed: ()  {
-         // AppController.to.currentPages.removeLast();
-        Get.back();
+        // String currentPage = AppController.to.currentPages.last;
+        // if(currentPage == salesReportN){
+        //   AppController.to.currentPages.removeLast();
+        //   Get.off(Homepage());
+        // }
+        // else{
+          Get.back();
+        // }
       },
       icon: Icon(
         Icons.close,
