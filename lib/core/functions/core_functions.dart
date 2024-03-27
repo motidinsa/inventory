@@ -34,6 +34,8 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
 
+import '../../edit_product/functions/edit_product_functions.dart';
+
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
 bool isNumeric(String input) {
@@ -84,7 +86,7 @@ onActionButtonPressed({required String redirectFrom}) async {
     deleteProduct();
   } else if (redirectFrom == customerDetailN) {
     deleteCustomer();
-  }else if (redirectFrom == vendorDetailN) {
+  } else if (redirectFrom == vendorDetailN) {
     deleteVendor();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
@@ -175,7 +177,7 @@ onActionButtonPressed({required String redirectFrom}) async {
       AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
-    }else if (redirectFrom == editVendorN) {
+    } else if (redirectFrom == editVendorN) {
       EditVendorController.to.onEditVendorSaveButtonPressed();
     }
   }
@@ -190,44 +192,15 @@ titleToData({required String title, int? index}) {
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
   } else if (currentPage == purchaseN()) {
-   return onPurchaseTitleToData(title: title, index: index);
+    return onPurchaseTitleToData(title: title, index: index);
   } else if (currentPage == editProductN) {
-    EditProductController editProductController = Get.find();
-    if (title == productN) {
-      value = editProductController.productInfo.value.name;
-    } else if (title == descriptionN) {
-      value = editProductController.productInfo.value.description;
-    } else if (title == productIdN) {
-      value = editProductController.productInfo.value.userAssignedProductId;
-    } else if (title == costN) {
-      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.cost));
-    } else if (title == priceN()) {
-      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.price));
-    } else if (title == quantityOnHandN) {
-      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.quantityOnHand));
-    } else if (title == reorderQuantityN) {
-      value = emptyIfDefaultValue(getFormattedNumberWithoutComa(
-          editProductController.productInfo.value.reorderQuantity));
-    } else if (title == uomSN) {
-      value = editProductController.productInfo.value.unitOfMeasurementName;
-    } else if (title == categoryN) {
-      value = editProductController.productInfo.value.categoryName;
-    } else if (title == selectCategoryN) {
-      value = editProductController.emptyText.value;
-    } else if (title == selectUomSN) {
-      value = editProductController.emptyText.value;
-    } else if (title == categoryNameN) {
-      value = editProductController.emptyText.value;
-    } else if (title == uomNameN) {
-      value = editProductController.emptyText.value;
-    }
+    return getEditProductData(
+      title: title,
+    );
   } else if (currentPage == editCustomerN) {
-   return getEditCustomerData(title: title);
-  }else if (currentPage == editVendorN) {
-   return getEditVendorData(title: title);
+    return getEditCustomerData(title: title);
+  } else if (currentPage == editVendorN) {
+    return getEditVendorData(title: title);
   }
   return value;
 }
@@ -351,7 +324,7 @@ titleToIcon({required String title}) {
     iconData = Icons.phone;
   } else if (title == addressN()) {
     iconData = Icons.location_on;
-  }else if (title == contactPersonN) {
+  } else if (title == contactPersonN) {
     iconData = Icons.person;
   }
   return iconData != null
@@ -381,7 +354,7 @@ getSelectedDate() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.salesDate.value;
-  }else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN()) {
     return PurchaseController.to.purchaseDate.value;
   }
 }

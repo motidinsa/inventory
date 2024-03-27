@@ -18,7 +18,7 @@ class EditCustomer extends StatelessWidget {
   EditCustomer({super.key, required this.customerDatabaseModel});
 
   final List<String> titleList = [
-    customerNameN(),
+    customerNameN,
     phoneNumberN(),
     addressN(),
     cityN(),

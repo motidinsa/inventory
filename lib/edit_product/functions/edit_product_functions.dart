@@ -104,3 +104,38 @@ onEditProductAlertDialogOptionSelect(
   });
   editProductController.update();
 }
+String? getEditProductData({required String title}) {
+  EditProductController editProductController = Get.find();
+  if (title == productN) {
+    return editProductController.productInfo.value.name;
+  } else if (title == descriptionN) {
+    return editProductController.productInfo.value.description;
+  } else if (title == productIdN) {
+    return editProductController.productInfo.value.userAssignedProductId;
+  } else if (title == costN) {
+    return  emptyIfDefaultValue(getFormattedNumberWithoutComa(
+        editProductController.productInfo.value.cost));
+  } else if (title == priceN()) {
+  return emptyIfDefaultValue(getFormattedNumberWithoutComa(
+        editProductController.productInfo.value.price));
+  } else if (title == quantityOnHandN) {
+    return emptyIfDefaultValue(getFormattedNumberWithoutComa(
+        editProductController.productInfo.value.quantityOnHand));
+  } else if (title == reorderQuantityN) {
+    return emptyIfDefaultValue(getFormattedNumberWithoutComa(
+        editProductController.productInfo.value.reorderQuantity));
+  } else if (title == uomSN) {
+    return editProductController.productInfo.value.unitOfMeasurementName;
+  } else if (title == categoryN) {
+    return editProductController.productInfo.value.categoryName;
+  } else if (title == selectCategoryN) {
+    return editProductController.emptyText.value;
+  } else if (title == selectUomSN) {
+    return editProductController.emptyText.value;
+  } else if (title == categoryNameN) {
+    return editProductController.emptyText.value;
+  } else if (title == uomNameN) {
+    return editProductController.emptyText.value;
+  }
+  return null;
+}

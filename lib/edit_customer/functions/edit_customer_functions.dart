@@ -8,7 +8,7 @@ onEditCustomerFocusChange({
 }) {
   final EditCustomerController editCustomerController = Get.find();
   editCustomerController.customerInfo.update((customer) {
-    if (title == customerNameN()) {
+    if (title == customerNameN) {
       customer?.name = data;
     } else if (title == phoneNumberN()) {
       customer?.phoneNumber = data;
@@ -24,7 +24,7 @@ onEditCustomerFocusChange({
 
 String? getEditCustomerData({required String title}) {
   EditCustomerController editCustomerController = Get.find();
-  if (title == customerNameN()) {
+  if (title == customerNameN) {
     return editCustomerController.customerInfo.value.name;
   } else if (title == phoneNumberN()) {
     return editCustomerController.customerInfo.value.phoneNumber;

@@ -13,7 +13,7 @@ class CustomTextField extends StatefulWidget {
   final String? suffixText;
   final int? index;
 
-  const CustomTextField({
+     CustomTextField({
     super.key,
     required this.title,
     this.labelText,
@@ -50,9 +50,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
-          title: widget.title,
-          index: widget.index,
-        ),
+              title: widget.title,
+              index: widget.index,
+            ),
       );
     });
     return TextFormField(

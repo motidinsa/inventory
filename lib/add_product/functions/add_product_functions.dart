@@ -177,5 +177,7 @@ onAddProductGetData({required String title}) {
     return addProductController.productInfo.value.categoryName;
   } else if (title == uomSN) {
     return addProductController.productInfo.value.unitOfMeasurementName;
+  }else if (title == productN) {
+    return addProductController.productInfo.value.name;
   }
 }

@@ -8,7 +8,7 @@ onAddCustomerFocusChange({
 }) {
   final AddCustomerController addCustomerController = Get.find();
   addCustomerController.customerDetail.update((customer) {
-    if (title == customerNameN()) {
+    if (title == customerNameN) {
       customer?.name = data;
     } else if (title == phoneNumberN()) {
       customer?.phoneNumber = data;

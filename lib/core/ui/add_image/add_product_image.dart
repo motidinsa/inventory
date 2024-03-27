@@ -19,12 +19,12 @@ class AddProductImage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          imageOptionalN,
+          imageN.capitalizeFirst!,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontWeight: bold(), fontSize: 16, color: Colors.grey.shade600),
+              fontWeight: bold(), fontSize: 16, color: Colors.grey.shade800),
         ),
-        sizedBox(width: 20),
+        sizedBox(width: 40),
         Obx(() {
           if (getProductImagePath() != null) {
             return Column(
