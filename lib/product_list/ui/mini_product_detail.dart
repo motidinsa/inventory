@@ -41,10 +41,10 @@ class MiniProductDetail extends StatelessWidget {
                 currentPage: productListN(),
                 localImagePath: productModel.localImagePath,
               ),
-              sizedBox(width: 10),
+              sizedBox(width: 20),
               Expanded(
                 child: Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

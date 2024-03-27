@@ -4,12 +4,13 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/sales_report/constants/sales_report_constants.dart';
-import 'package:my_inventory/sales_report/model/sales_report_model.dart';
 
-class SalesReportData extends StatelessWidget {
-  final SalesReportModel salesReportModel;
+import '../model/purchase_report_model.dart';
 
-  const SalesReportData({super.key, required this.salesReportModel});
+class PurchaseReportData extends StatelessWidget {
+  final PurchaseReportModel purchaseReportModel;
+
+  const PurchaseReportData({super.key, required this.purchaseReportModel});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: dateWidthSR,
               child: Text(
-                DateFormat('MMM d').format(salesReportModel.salesDate),
+                DateFormat('MMM d').format(purchaseReportModel.purchaseDate),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -38,7 +39,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: itemWidthSR,
               child: Text(
-                salesReportModel.productName,
+                purchaseReportModel.productName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -50,7 +51,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: qtyWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.quantity),
+                getFormattedNumberWithComa(purchaseReportModel.quantity),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -62,7 +63,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: totalCostWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.totalCost),
+                getFormattedNumberWithComa(purchaseReportModel.unitCost),
                 textAlign: TextAlign.center,
                 // overflow: TextOverflow.fade,
                 style: TextStyle(
@@ -75,20 +76,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: totalPriceWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.totalPrice),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: bold(),
-                    fontSize: 17,
-                    color: Colors.grey.shade800),
-              ),
-            ),
-            sizedBox(width: spacingWidthSR),
-            SizedBox(
-              width: profitSR,
-              child: Text(
-                getFormattedNumberWithComa(
-                    salesReportModel.totalPrice - salesReportModel.totalCost),
+                getFormattedNumberWithComa(purchaseReportModel.totalCost),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
