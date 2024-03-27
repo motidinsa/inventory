@@ -22,7 +22,7 @@ titleToHint({String? title}) {
   } else if (title == descriptionN) {
     value = writeYourdescriptionN;
   } else if (title == categoryN) {
-    value = optionalN();
+    value = selectN;
   } else if (title == productIdN) {
     value = optionalN();
   } else if (title == uomSN) {
@@ -34,9 +34,9 @@ titleToHint({String? title}) {
   } else if (title == vendorListN) {
     value = searchByVendorNameN;
   } else if (title == salesN()) {
-    value = selectItemN();
+    value = selectN;
   } else if (title == purchaseN()) {
-    value = selectItemN();
+    value = selectN;
   } else if (title == searchProductsN()) {
     value = searchByProductNameN();
   } else if (title == selectCategoryN) {
@@ -47,7 +47,7 @@ titleToHint({String? title}) {
     value = selectN;
   } else if (title == searchCustomersN) {
     value = searchByCustomerNameN;
-  }else if (title == searchVendorsN) {
+  } else if (title == searchVendorsN) {
     value = searchByVendorNameN;
   }
   return value;
@@ -107,7 +107,7 @@ minimizePadding({String? title}) {
     discountN(),
     categoryNameN,
     uomNameN,
-    customerNameN(),
+    customerNameN,
     vendorNameN,
     contactPersonN,
     phoneNumberN(),
@@ -117,7 +117,12 @@ minimizePadding({String? title}) {
     customerListN,
     vendorListN,
     searchCustomersN,
-    searchVendorsN
+    searchVendorsN,
+    if ([addProductN, editProductN]
+        .contains(AppController.to.currentPages.last))
+      costN,
+    priceN(),
+    productIdN
   ];
   return !items.contains(title);
 }
@@ -126,7 +131,7 @@ maxPadding({String? title}) {
   var items = [
     vendorNameN,
     contactPersonN,
-    customerNameN(),
+    customerNameN,
     phoneNumberN(),
     addressN(),
     cityN(),
@@ -143,7 +148,7 @@ hasSuffix({String? title}) {
 hasPrefix({String? title}) {
   var items = [
     vendorNameN,
-    customerNameN(),
+    customerNameN,
     phoneNumberN(),
     addressN(),
     cityN(),
@@ -158,7 +163,7 @@ profileTitleToIcon({
 }) {
   var items = {
     vendorNameN: Icons.account_balance_rounded,
-    customerNameN(): Icons.person,
+    customerNameN: Icons.person,
     contactPersonN: Icons.person,
     phoneNumberN(): Icons.call,
     addressN(): Icons.location_on,
@@ -208,7 +213,7 @@ onFocusChange({
       onAddVendorFocusChange(title: title, data: data);
     } else if (currentPage == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);
-    }else if (currentPage == editVendorN) {
+    } else if (currentPage == editVendorN) {
       onEditVendorFocusChange(title: title, data: data);
     }
   }

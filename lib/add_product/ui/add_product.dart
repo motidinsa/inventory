@@ -30,6 +30,7 @@ class AddProduct extends StatelessWidget {
 
   final AddProductController addProductController =
       Get.put(AddProductController());
+
   // final AppController appController = Get.find();
 
   @override
@@ -50,48 +51,46 @@ class AddProduct extends StatelessWidget {
           child: ListView(
             children: [
               sizedBox(height: 20),
-              GetBuilder<AddProductController>(
-                builder: (context) {
-                  return ElevatedCard(
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) => [0, 1].contains(index)
-                          ? CustomTextField(
-                        title: titleList[index],
-                        labelText: titleList[index],
-                      )
-                          : index == 2
-                          ? const AddProductImage(
-                        currentPage: addProductN,
-                      )
-                          : index == 5
-                          ? Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Expanded(
-                            child: AddProductPriceInput(
-                              title: costN,
-                            ),
-                          ),
-                          sizedBox(width: 20),
-                          Expanded(
-                            child: AddProductPriceInput(
-                              title: priceN(),
-                            ),
-                          ),
-                        ],
-                      )
-                          : AddProductTitleWithTextField(
-                        title: titleList[index],
-                        currentPage: addProductN,
-                      ),
-                      separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                      itemCount: titleList.length,
-                    ),
-                  );
-                }
-              ),
+              GetBuilder<AddProductController>(builder: (context) {
+                return ElevatedCard(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) => [0, 1,4].contains(index)
+                        ? CustomTextField(
+                            title: titleList[index],
+                            labelText: titleList[index],
+                          )
+                        : index == 2
+                            ? const AddProductImage(
+                                currentPage: addProductN,
+                              )
+                            : index == 5
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Expanded(
+                                        child: AddProductPriceInput(
+                                          title: costN,
+                                        ),
+                                      ),
+                                      sizedBox(width: 20),
+                                      Expanded(
+                                        child: AddProductPriceInput(
+                                          title: priceN(),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : AddProductTitleWithTextField(
+                                    title: titleList[index],
+                                    currentPage: addProductN,
+                                  ),
+                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                    itemCount: titleList.length,
+                  ),
+                );
+              }),
               ActionButton(
                 redirectFrom: addProductN,
               ),

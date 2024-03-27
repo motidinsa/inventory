@@ -179,17 +179,5 @@ onAddProductGetData({required String title}) {
     return addProductController.productInfo.value.unitOfMeasurementName;
   }else if (title == productN) {
     return addProductController.productInfo.value.name;
-  }else if (title == descriptionN) {
-    return addProductController.productInfo.value.description;
-  }else if (title == productIdN) {
-    return addProductController.productInfo.value.userAssignedProductId;
-  }else if (title == costN) {
-    return addProductController.productInfo.value.cost;
-  }else if (title == priceN()) {
-    return addProductController.productInfo.value.price;
-  }else if (title == quantityOnHandN) {
-    return addProductController.productInfo.value.quantityOnHand;
-  }else if (title == reorderQuantityN) {
-    return addProductController.productInfo.value.reorderQuantity;
   }
 }

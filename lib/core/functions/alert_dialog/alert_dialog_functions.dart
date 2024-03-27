@@ -147,5 +147,7 @@ getEmptyMessage({required String title}) {
     return noUomAvailableSN;
   } else if (title == searchVendorsN) {
     return noVendorAvailableSN;
+  }else if (title == searchProductsN()) {
+    return noProductAvailableSN;
   }
 }

@@ -54,7 +54,7 @@ class ProductProfileInfo extends StatelessWidget {
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
-            const Expanded(
+             Expanded(
               child: CustomTextField(
                 title: selectN,
               ),
@@ -62,7 +62,7 @@ class ProductProfileInfo extends StatelessWidget {
             if (getProfileId() != null) ...[
               sizedBox(width: 2),
               IconButton(
-                onPressed: () =>onProfileCancelPressed(),
+                onPressed: () => onProfileCancelPressed(),
                 icon: Icon(
                   Icons.cancel,
                   color: Colors.red.shade600,

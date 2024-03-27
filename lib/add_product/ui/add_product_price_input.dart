@@ -13,15 +13,16 @@ class AddProductPriceInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          title,
-          style: TextStyle(
-              fontWeight: bold(), fontSize: 16, color: Colors.grey.shade800),
-        ),
-        sizedBox(width: 10),
+        // Text(
+        //   title,
+        //   style: TextStyle(
+        //       fontWeight: bold(), fontSize: 16, color: Colors.grey.shade800),
+        // ),
+        // sizedBox(width: 10),
         Expanded(
           child: CustomTextField(
             title: title,
+            labelText: title,
           ),
         ),
       ],

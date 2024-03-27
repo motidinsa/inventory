@@ -94,27 +94,6 @@ class VendorDetail extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (vendorDatabaseModel.lastModifiedDate != null) ...[
-                  sizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        child: ProductDetailSingleDescription(
-                          title: 'Last modified',
-                          description: dateFormatter
-                              .format(vendorDatabaseModel.lastModifiedDate!),
-                          dataColor: Colors.green.shade800,
-                          titleColor: Colors.grey.shade700,
-                          textAlign: TextAlign.end,
-                          titleFontSize: 17,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-                sizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Card(

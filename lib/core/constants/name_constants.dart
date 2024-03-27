@@ -4,7 +4,7 @@ addCustomerN() => 'Add customer';
 
 const String addProductN = 'Add product';
 
-customerNameN() => 'Customer name';
+const String customerNameN = 'Customer name';
 
 phoneNumberN() => 'Phone number';
 
@@ -102,7 +102,6 @@ const String galleryN = 'Gallery';
 const String cameraN = 'Camera';
 const String addImageN = 'Add image';
 const String noImageN = 'No image';
-const String imageOptionalN = 'Image\n(Optional)';
 const String productDetailN = 'Product detail';
 const String editProductN = 'Edit product';
 const String noCategoryAvailableSN =

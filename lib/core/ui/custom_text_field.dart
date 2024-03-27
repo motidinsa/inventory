@@ -15,7 +15,7 @@ class CustomTextField extends StatefulWidget {
   final String? suffixText;
   final int? index;
 
-  const CustomTextField({
+     CustomTextField({
     super.key,
     required this.title,
     this.labelText,
@@ -54,8 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         text: titleToData(
               title: widget.title,
               index: widget.index,
-            ) ??
-            '',
+            ),
       );
     });
     return TextFormField(

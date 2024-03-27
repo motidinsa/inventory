@@ -20,7 +20,7 @@ class Sales extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => BodyWrapper(
+    return BodyWrapper(
       pageName: salesN(),
       body: Form(
         key: appController.formKey,
@@ -33,7 +33,7 @@ class Sales extends StatelessWidget {
               horizontalPadding: 20,
               child: GetBuilder<SalesController>(
                   builder: (_) {
-                    return ProductProfileInfo(
+                    return   ProductProfileInfo(
                       page: PageName.sales,
                     );
                   }
@@ -66,6 +66,6 @@ class Sales extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }
