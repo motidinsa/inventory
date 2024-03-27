@@ -12,6 +12,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // key: AppController.to.key,
       appBar: AppBar(
         title: const Text(
           'XYZ Company',
@@ -27,6 +28,7 @@ class Homepage extends StatelessWidget {
             // color: primaryColor(),
           ),
           onPressed: () {
+            // AppController.to.key.currentState?.openDrawer();
             Scaffold.of(context).openDrawer();
             print(appController.currentPages);
           },
@@ -44,7 +46,7 @@ class Homepage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const Drawer(),
+      // drawer: const Drawer(),
       body: ListView(
         children: [
           sizedBox(height: 10),

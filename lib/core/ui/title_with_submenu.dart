@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
 import 'package:my_inventory/sales_report/ui/sales_report.dart';
 
@@ -27,38 +28,41 @@ class TitleWithSubMenu extends StatelessWidget {
               Text(
                 title,
                 style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               sizedBox(height: 10),
               ListTile(
+                shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Sales report',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                 ),
                 leading: const Icon(
                   Icons.point_of_sale,
-                  size: 28,
+                  size: 26,
                 ),
                 onTap: () {
                   Get.to(() => const SalesReport());
+                  Scaffold.of(context).closeDrawer();
                 },
               ),
-              // sizedBox(height: 5),
               ListTile(
+                shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Purchase report',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                 ),
                 leading: const Icon(
                   Icons.shopping_cart_rounded,
-                  size: 28,
+                  size: 26,
                 ),
                 onTap: () {
                   Get.to(() => const PurchaseReport());
+                  Scaffold.of(context).closeDrawer();
                 },
               ),
             ],

@@ -107,7 +107,7 @@ class ProductDetail extends StatelessWidget {
                         imageWidth: 120,
                       ),
                     ),
-                    sizedBox(width: 15),
+                    sizedBox(width: 10),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

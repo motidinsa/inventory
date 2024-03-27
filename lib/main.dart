@@ -18,9 +18,10 @@ import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-import 'package:my_inventory/drawer/ui/my_drawer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'drawer/ui/my_drawer.dart';
 
 late Isar isar;
 
@@ -73,10 +74,13 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
         ),
-        home: Scaffold(
-          drawer: const MyDrawer(),
-          body: Homepage(),
-        ),
+        home: GetBuilder<AppController>(builder: (context) {
+          return Scaffold(
+            // key: AppController.to.key,
+            drawer: const MyDrawer(),
+            body: Homepage(),
+          );
+        }),
       );
     });
   }

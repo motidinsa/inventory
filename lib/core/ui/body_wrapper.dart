@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/widget_functions.dart';
-
-import '../constants/name_constants.dart';
 
 class BodyWrapper extends StatelessWidget {
   final Widget body;
@@ -29,9 +25,7 @@ class BodyWrapper extends StatelessWidget {
           backgroundColor: Colors.green.shade50,
           body: SafeArea(
             child: Scaffold(
-              appBar: appBar(
-                pageName: pageName,
-              ),
+              appBar: appBar(pageName: pageName, context: context),
               body: body,
             ),
           ),

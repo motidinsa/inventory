@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/sales_report/constants/sales_report_constants.dart';
 
 import '../model/purchase_report_model.dart';
@@ -30,7 +29,7 @@ class PurchaseReportData extends StatelessWidget {
                 DateFormat('MMM d').format(purchaseReportModel.purchaseDate),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: bold(),
+                    // fontWeight: bold(),
                     fontSize: 17,
                     color: Colors.grey.shade800),
               ),
@@ -42,7 +41,7 @@ class PurchaseReportData extends StatelessWidget {
                 purchaseReportModel.productName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: bold(),
+                    // fontWeight: bold(),
                     fontSize: 17,
                     color: Colors.grey.shade800),
               ),
@@ -54,7 +53,7 @@ class PurchaseReportData extends StatelessWidget {
                 getFormattedNumberWithComa(purchaseReportModel.quantity),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: bold(),
+                    // fontWeight: bold(),
                     fontSize: 17,
                     color: Colors.grey.shade800),
               ),
@@ -67,7 +66,7 @@ class PurchaseReportData extends StatelessWidget {
                 textAlign: TextAlign.center,
                 // overflow: TextOverflow.fade,
                 style: TextStyle(
-                    fontWeight: bold(),
+                    // fontWeight: bold(),
                     fontSize: 17,
                     color: Colors.grey.shade800),
               ),
@@ -79,7 +78,7 @@ class PurchaseReportData extends StatelessWidget {
                 getFormattedNumberWithComa(purchaseReportModel.totalCost),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: bold(),
+                    // fontWeight: bold(),
                     fontSize: 17,
                     color: Colors.grey.shade800),
               ),
