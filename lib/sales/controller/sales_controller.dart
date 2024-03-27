@@ -12,7 +12,7 @@ import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
-import 'package:my_inventory/main.dart';
+import 'package:my_inventory/main_database_model.dart';
 
 class SalesController extends GetxController {
   DateTime now = DateTime.now();
@@ -172,7 +172,7 @@ class SalesController extends GetxController {
         ),
       );
     });
-    Get.back();
+
     isLocalSaveLoading(false);
   }
 }

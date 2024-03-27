@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
-
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   final PageName page;
@@ -62,7 +61,7 @@ class ProductProfileInfo extends StatelessWidget {
             if (getProfileId() != null) ...[
               sizedBox(width: 2),
               IconButton(
-                onPressed: () =>onProfileCancelPressed(),
+                onPressed: () => onProfileCancelPressed(),
                 icon: Icon(
                   Icons.cancel,
                   color: Colors.red.shade600,

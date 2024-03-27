@@ -14,10 +14,6 @@ onSalesTitleToData({required String title, int? index}) {
     return salesController.salesModels[index!].value.productName;
   } else if (title == selectN) {
     return salesController.customerName;
-  } else if (title == quantityN()) {
-    return salesController.salesModels[index!].value.quantity;
-  } else if (title == discountN()) {
-    return salesController.discount.value;
   }
 }
 

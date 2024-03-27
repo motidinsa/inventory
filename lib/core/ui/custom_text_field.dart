@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/custom_text_field_functions.dart';
-import 'package:my_inventory/core/styles/styles.dart';
-
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/validations.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -52,10 +50,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
-              title: widget.title,
-              index: widget.index,
-            ) ??
-            '',
+          title: widget.title,
+          index: widget.index,
+        ),
       );
     });
     return TextFormField(
