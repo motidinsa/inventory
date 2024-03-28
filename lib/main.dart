@@ -21,7 +21,7 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'drawer/ui/my_drawer.dart';
+import 'package:my_inventory/drawer/ui/my_drawer.dart';
 
 late Isar isar;
 

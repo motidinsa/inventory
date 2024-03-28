@@ -24,7 +24,7 @@ class VendorList extends StatelessWidget {
         child: Obx(() => ListView(
           children: [
             sizedBox(height: 15),
-             CustomTextField(
+             const CustomTextField(
               title: vendorListN,
             ),
             // sizedBox(height: 15),

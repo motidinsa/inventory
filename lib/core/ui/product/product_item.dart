@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
@@ -16,56 +17,102 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      shape: smoothRectangleBorder(radius: 12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-        child: Obx(
-          () => Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 8,
-                child: CustomTextField(
-                  title: currentPage,
-                  index: index,
-                ),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 5,
+      ),
+      child: Slidable(
+        key: ValueKey(index),
+        startActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          extentRatio: .25,
+          dismissible: DismissiblePane(onDismissed: () {
+            print('object');
+          }),
+          children: [
+            SlidableAction(
+              onPressed: (context) {},
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+              borderRadius: smoothBorderRadius(radius: 12),
+              padding: EdgeInsets.zero,
+            ),
+          ],
+        ),
+        endActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          extentRatio: .25,
+          dismissible: DismissiblePane(onDismissed: () {
+            print('object');
+          }),
+          children: [
+            SlidableAction(
+              onPressed: (context) {},
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+              borderRadius: smoothBorderRadius(radius: 12),
+              padding: EdgeInsets.zero,
+            ),
+          ],
+        ),
+        child: Card(
+          elevation: 2,
+          // margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          shape: smoothRectangleBorder(radius: 12),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            child: Obx(
+              () => Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 8,
+                    child: CustomTextField(
+                      title: currentPage,
+                      index: index,
+                    ),
+                  ),
+                  sizedBox(width: 10),
+                  Expanded(
+                    flex: 3,
+                    child: CustomTextField(
+                      title: quantityN(),
+                      index: index,
+                    ),
+                  ),
+                  sizedBox(width: 10),
+                  Expanded(
+                    flex: currentPage == purchaseN() ? 4 : 3,
+                    child: currentPage == purchaseN()
+                        ? CustomTextField(
+                            title: costN,
+                            index: index,
+                          )
+                        : Text(
+                            getFormattedNumberWithComa(
+                                getProductPrice(index: index)),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                  ),
+                  sizedBox(width: 10),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      getFormattedNumberWithComa(
+                          getProductTotalPrice(index: index)),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
-              sizedBox(width: 10),
-              Expanded(
-                flex: 3,
-                child: CustomTextField(
-                  title: quantityN(),
-                  index: index,
-                ),
-              ),
-              sizedBox(width: 10),
-              Expanded(
-                flex: currentPage == purchaseN() ? 4 : 3,
-                child: currentPage == purchaseN()
-                    ? CustomTextField(
-                        title: costN,
-                        index: index,
-                      )
-                    : Text(
-                        getFormattedNumberWithComa(getProductPrice( index: index)),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-              ),
-              sizedBox(width: 10),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  getFormattedNumberWithComa(getProductTotalPrice( index: index)),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

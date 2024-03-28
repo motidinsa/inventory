@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+
 import 'package:my_inventory/sales_report/constants/sales_report_constants.dart';
-import 'package:my_inventory/sales_report/model/sales_report_model.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
-class SalesReportData extends StatelessWidget {
-  final SalesReportModel salesReportModel;
-
-  const SalesReportData({super.key, required this.salesReportModel});
+class ReportHeader extends StatelessWidget {
+  const ReportHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +15,22 @@ class SalesReportData extends StatelessWidget {
       margin: const EdgeInsets.symmetric(
         horizontal: 0,
       ),
+      shape: smoothRectangleBorder(
+          radius: 0,
+          side: const BorderSide(
+            color: Colors.green,
+            width: 1.5,
+          )),
+      elevation: 4,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               width: dateWidthSR,
               child: Text(
-                DateFormat('MMM d').format(salesReportModel.salesDate),
+                'Date',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -38,7 +42,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: itemWidthSR,
               child: Text(
-                salesReportModel.productName,
+                'Item',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -50,7 +54,7 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: qtyWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.quantity),
+                'Qty',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -62,9 +66,10 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: totalCostWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.totalCost),
+                AppController.to.currentPages.last == salesReportN
+                    ? 'T.cost'
+                    : 'U.cost',
                 textAlign: TextAlign.center,
-                // overflow: TextOverflow.fade,
                 style: TextStyle(
                     fontWeight: bold(),
                     fontSize: 17,
@@ -75,7 +80,9 @@ class SalesReportData extends StatelessWidget {
             SizedBox(
               width: totalPriceWidthSR,
               child: Text(
-                getFormattedNumberWithComa(salesReportModel.totalPrice),
+                AppController.to.currentPages.last == salesReportN
+                    ? 'T.price'
+                    : 'T.cost',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -83,19 +90,20 @@ class SalesReportData extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
-            SizedBox(
-              width: profitSR,
-              child: Text(
-                getFormattedNumberWithComa(
-                    salesReportModel.totalPrice - salesReportModel.totalCost),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: bold(),
-                    fontSize: 17,
-                    color: Colors.grey.shade800),
-              ),
-            ),
+            if (AppController.to.currentPages.last == salesReportN) ...[
+              sizedBox(width: spacingWidthSR),
+              SizedBox(
+                width: profitSR,
+                child: Text(
+                  'Profit',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: bold(),
+                      fontSize: 17,
+                      color: Colors.grey.shade800),
+                ),
+              )
+            ],
           ],
         ),
       ),

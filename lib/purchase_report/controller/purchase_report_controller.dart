@@ -6,7 +6,7 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
 import 'package:my_inventory/main.dart';
 
-import '../model/purchase_report_model.dart';
+import 'package:my_inventory/purchase_report/model/purchase_report_model.dart';
 
 class PurchaseReportController extends GetxController {
   DateTime now = DateTime.now();

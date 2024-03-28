@@ -9,15 +9,15 @@ class DateRangeSelection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('data'),
+            const Text('data'),
             Column(
               children: [
                 TextButton(
                   onPressed: () {},
-                  child: Text('From'),
+                  child: const Text('From'),
                 ), TextButton(
                   onPressed: () {},
-                  child: Text('To'),
+                  child: const Text('To'),
                 ),
               ],
             )

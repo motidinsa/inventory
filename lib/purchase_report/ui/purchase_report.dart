@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
-import 'package:my_inventory/purchase_report/ui/purchase_report_data.dart';
-import 'package:my_inventory/purchase_report/ui/purchase_report_header.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report_summary.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
 
-import '../controller/purchase_report_controller.dart';
-import '../functions/purchase_functions.dart';
+import 'package:my_inventory/core/ui/report/report_data.dart';
+import 'package:my_inventory/core/ui/report/report_header.dart';
+import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
+import 'package:my_inventory/purchase_report/functions/purchase_functions.dart';
 
 class PurchaseReport extends StatelessWidget {
   const PurchaseReport({super.key});
@@ -29,14 +29,13 @@ class PurchaseReport extends StatelessWidget {
                     width: getTableWidth(),
                     margin: const EdgeInsets.symmetric(vertical: 3),
                     child: StickyHeader(
-                      header: const PurchaseReportHeader(),
+                      header: const ReportHeader(),
                       content: ListView.separated(
                         shrinkWrap: true,
                         reverse: true,
                         // physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => PurchaseReportData(
-                          purchaseReportModel: PurchaseReportController
-                              .to.purchaseReportModels[index],
+                        itemBuilder: (context, index) => ReportData(
+                          index: index,
                         ),
                         itemCount: PurchaseReportController
                             .to.purchaseReportModels.length,

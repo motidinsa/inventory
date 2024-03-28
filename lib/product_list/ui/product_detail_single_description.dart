@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class ProductDetailSingleDescription extends StatelessWidget {
   final String title;
@@ -24,35 +24,27 @@ class ProductDetailSingleDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          child: RichText(
-            textAlign: textAlign ?? TextAlign.start,
-            text: TextSpan(
-              text: '$title:   ',
-              style: TextStyle(
-                fontWeight: bold(),
-                fontSize: titleFontSize ?? 17,
-                color: titleColor ?? Colors.grey.shade700,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: isNumeric(description)
-                      ? getFormattedNumberWithComa(double.parse(description))
-                      : description,
-                  style: TextStyle(
-                      color: dataColor ?? Colors.grey.shade500,
-                      fontStyle: FontStyle.italic,
-                      fontSize: dataFontSize ?? 16),
-                ),
-              ],
-            ),
-          ),
+    return RichText(
+      textAlign: textAlign ?? TextAlign.start,
+      text: TextSpan(
+        text: '$title:   ',
+        style: TextStyle(
+          fontWeight: bold(),
+          fontSize: titleFontSize ?? 17,
+          color: titleColor ?? Colors.grey.shade700,
         ),
-      ],
+        children: <TextSpan>[
+          TextSpan(
+            text: isNumeric(description)
+                ? getFormattedNumberWithComa(double.parse(description))
+                : description,
+            style: TextStyle(
+                color: dataColor ?? Colors.grey.shade500,
+                fontStyle: FontStyle.italic,
+                fontSize: dataFontSize ?? 16),
+          ),
+        ],
+      ),
     );
   }
 }

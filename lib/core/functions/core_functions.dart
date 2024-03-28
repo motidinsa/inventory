@@ -34,7 +34,7 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
 
-import '../../edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 

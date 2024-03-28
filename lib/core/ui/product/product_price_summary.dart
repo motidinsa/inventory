@@ -48,10 +48,10 @@ class ProductPriceSummary extends StatelessWidget {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: getFormattedNumberWithComa(double.parse(
-                                    getSubtotal(
-                                    ),
+                                    getSubtotal(),
                                   )),
-                                  style: TextStyle(color: Colors.grey.shade600),
+                                  style:
+                                      TextStyle(color: Colors.green.shade800),
                                 ),
                                 // TextSpan(text: ' world!'),
                               ],
@@ -78,9 +78,9 @@ class ProductPriceSummary extends StatelessWidget {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: getFormattedNumberWithComa(double.parse(
-                                    getTotal())),
-                                style: TextStyle(color: Colors.grey.shade600),
+                                text: getFormattedNumberWithComa(
+                                    double.parse(getTotal())),
+                                style: TextStyle(color: Colors.green.shade800),
                               ),
                               // TextSpan(text: ' world!'),
                             ],

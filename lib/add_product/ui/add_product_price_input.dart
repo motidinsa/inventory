@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class AddProductPriceInput extends StatelessWidget {
