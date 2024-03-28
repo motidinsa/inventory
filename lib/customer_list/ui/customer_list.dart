@@ -23,7 +23,7 @@ class CustomerList extends StatelessWidget {
         child: Obx(() => ListView(
               children: [
                 sizedBox(height: 15),
-                  CustomTextField(
+                  const CustomTextField(
                   title: customerListN,
                 ),
                 // sizedBox(height: 15),

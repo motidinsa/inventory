@@ -7,7 +7,6 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 class ProductItem extends StatelessWidget {
   final int index;

@@ -3,8 +3,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-import '../../constants/report_constants.dart';
-import '../../functions/report/report_functions.dart';
+import 'package:my_inventory/core/constants/report_constants.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 class ReportData extends StatelessWidget {
   final int index;
@@ -40,6 +40,7 @@ class ReportData extends StatelessWidget {
               child: Text(
                 getReportItem(index: index),
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
               ),
             ),

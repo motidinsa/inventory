@@ -54,7 +54,7 @@ class ProductProfileInfo extends StatelessWidget {
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
-             Expanded(
+             const Expanded(
               child: CustomTextField(
                 title: selectN,
               ),

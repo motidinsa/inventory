@@ -1,9 +1,7 @@
 const double dateWidthR = 60;
 const double itemWidthR = 100;
-const double qtyWidthR = 45;
-const double totalCostWidthR = 80;
-const double totalPriceWidthR = 80;
+const double qtyWidthR = 43;
+const double totalCostWidthR = 70;
+const double totalPriceWidthR = 75;
 const double profitR = 70;
 const double spacingWidthR = 10;
-const double totalWidthSR = 545;
-const double totalWidthPR = 465;

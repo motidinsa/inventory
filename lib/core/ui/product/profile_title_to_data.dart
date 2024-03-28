@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 
-import '../../functions/profile/profile_functions.dart';
+import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 
 class ProfileTitleToData extends StatelessWidget {
   final String title;

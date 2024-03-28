@@ -6,7 +6,7 @@ import 'package:my_inventory/sales_report/controller/sales_report_controller.dar
 
 import 'package:my_inventory/core/functions/core_functions.dart';
 
-import '../../constants/report_constants.dart';
+import 'package:my_inventory/core/constants/report_constants.dart';
 
 double getReportWidth() {
   if (AppController.to.currentPages.last == salesReportN) {

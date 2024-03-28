@@ -5,7 +5,7 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../constants/report_constants.dart';
+import 'package:my_inventory/core/constants/report_constants.dart';
 
 class ReportHeader extends StatelessWidget {
   const ReportHeader({super.key});

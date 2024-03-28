@@ -9,7 +9,7 @@ import 'package:sticky_headers/sticky_headers.dart';
 import 'package:my_inventory/core/ui/report/report_data.dart';
 import 'package:my_inventory/core/ui/report/report_header.dart';
 
-import '../../core/functions/report/report_functions.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 class SalesReport extends StatelessWidget {
   const SalesReport({super.key});
