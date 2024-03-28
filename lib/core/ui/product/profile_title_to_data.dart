@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
+
+import '../../functions/profile/profile_functions.dart';
 
 class ProfileTitleToData extends StatelessWidget {
   final String title;
@@ -28,11 +31,14 @@ class ProfileTitleToData extends StatelessWidget {
       children: [
         titleToIcon(title: title),
         sizedBox(width: 15),
-        ProductDetailSingleDescription(
-          title: title,
-          description: data,
-          titleColor: titleColor,
-          dataColor: dataColor,
+        GestureDetector(
+          onTap: ()=>onProfileDatePressed(),
+          child: ProductDetailSingleDescription(
+            title: title,
+            description: data,
+            titleColor: titleColor,
+            dataColor: dataColor,
+          ),
         ),
       ],
     );

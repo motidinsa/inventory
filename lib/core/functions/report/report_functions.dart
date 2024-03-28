@@ -4,26 +4,27 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 
-import 'package:my_inventory/sales_report/constants/sales_report_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+
+import '../../constants/report_constants.dart';
 
 double getReportWidth() {
   if (AppController.to.currentPages.last == salesReportN) {
-    return dateWidthSR +
-        itemWidthSR +
-        qtyWidthSR +
-        totalCostWidthSR +
-        totalPriceWidthSR +
-        profitSR +
-        spacingWidthSR * 5 +
+    return dateWidthR +
+        itemWidthR +
+        qtyWidthR +
+        totalCostWidthR +
+        totalPriceWidthR +
+        profitR +
+        spacingWidthR * 5 +
         20;
   }
-  return dateWidthSR +
-      itemWidthSR +
-      qtyWidthSR +
-      totalCostWidthSR +
-      totalPriceWidthSR +
-      spacingWidthSR * 4 +
+  return dateWidthR +
+      itemWidthR +
+      qtyWidthR +
+      totalCostWidthR +
+      totalPriceWidthR +
+      spacingWidthR * 4 +
       20;
 }
 

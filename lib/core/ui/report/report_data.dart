@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/functions/report_functions.dart';
-import 'package:my_inventory/sales_report/constants/sales_report_constantnctions.dart';
+
+import '../../constants/report_constants.dart';
+import '../../functions/report/report_functions.dart';
 
 class ReportData extends StatelessWidget {
   final int index;
@@ -23,7 +24,7 @@ class ReportData extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: dateWidthSR,
+              width: dateWidthR,
               child: Text(
                 getReportDate(index: index),
                 textAlign: TextAlign.center,
@@ -33,27 +34,27 @@ class ReportData extends StatelessWidget {
                 ),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: itemWidthSR,
+              width: itemWidthR,
               child: Text(
                 getReportItem(index: index),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: qtyWidthSR,
+              width: qtyWidthR,
               child: Text(
                 getReportQty(index: index),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: totalCostWidthSR,
+              width: totalCostWidthR,
               child: Text(
                 getReportCost(index: index),
                 textAlign: TextAlign.center,
@@ -61,9 +62,9 @@ class ReportData extends StatelessWidget {
                 style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: totalPriceWidthSR,
+              width: totalPriceWidthR,
               child: Text(
                 getReportPrice(index: index),
                 textAlign: TextAlign.center,
@@ -71,9 +72,9 @@ class ReportData extends StatelessWidget {
               ),
             ),
             if (AppController.to.currentPages.last == salesReportN) ...[
-              sizedBox(width: spacingWidthSR),
+              sizedBox(width: spacingWidthR),
               SizedBox(
-                width: profitSR,
+                width: profitR,
                 child: Text(
                   getReportProfit(index: index),
                   textAlign: TextAlign.center,

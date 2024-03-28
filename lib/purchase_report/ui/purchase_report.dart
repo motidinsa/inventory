@@ -8,7 +8,8 @@ import 'package:sticky_headers/sticky_headers/widget.dart';
 import 'package:my_inventory/core/ui/report/report_data.dart';
 import 'package:my_inventory/core/ui/report/report_header.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
-import 'package:my_inventory/purchase_report/functions/purchase_functions.dart';
+
+import '../../core/functions/report/report_functions.dart';
 
 class PurchaseReport extends StatelessWidget {
   const PurchaseReport({super.key});
@@ -26,7 +27,7 @@ class PurchaseReport extends StatelessWidget {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Container(
-                    width: getTableWidth(),
+                    width: getReportWidth(),
                     margin: const EdgeInsets.symmetric(vertical: 3),
                     child: StickyHeader(
                       header: const ReportHeader(),

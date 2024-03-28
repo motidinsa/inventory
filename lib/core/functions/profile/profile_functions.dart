@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
@@ -39,7 +40,7 @@ String? getProfilePhone() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.customerPhone;
-  }else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN()) {
     return PurchaseController.to.vendorPhone;
   }
   return null;
@@ -49,14 +50,15 @@ String? getProfileAddress() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     return SalesController.to.customerAddress;
-  }else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN()) {
     return PurchaseController.to.vendorAddress;
   }
   return null;
 }
+
 String? getContactPerson() {
   String currentPage = AppController.to.currentPages.last;
-   if (currentPage == purchaseN()) {
+  if (currentPage == purchaseN()) {
     return PurchaseController.to.vendorContactPerson;
   }
   return null;
@@ -66,9 +68,28 @@ onProfileCancelPressed() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN()) {
     SalesController.to.customerId = null;
-    SalesController.to.customerName = null;
+    SalesController.to.customerName = '';
     SalesController.to.customerPhone = null;
     SalesController.to.customerAddress = null;
     SalesController.to.update();
+  }
+}
+
+onProfileDatePressed() {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesN()) {
+    showDatePicker(
+      context: Get.context!,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    ).then((value) {
+      if(value!=null) {
+        SalesController.to.salesDate = value;
+        SalesController.to.update();
+      }
+
+
+    });
   }
 }

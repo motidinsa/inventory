@@ -7,6 +7,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 class ProductItem extends StatelessWidget {
   final int index;
@@ -22,13 +23,12 @@ class ProductItem extends StatelessWidget {
         horizontal: 5,
       ),
       child: Slidable(
-        key: ValueKey(index),
+        key: UniqueKey(),
         startActionPane: ActionPane(
           motion: const DrawerMotion(),
           extentRatio: .25,
-          dismissible: DismissiblePane(onDismissed: () {
-            print('object');
-          }),
+          dismissible:
+              DismissiblePane(onDismissed: () => onProductDelete(index: index)),
           children: [
             SlidableAction(
               onPressed: (context) {},
@@ -44,9 +44,8 @@ class ProductItem extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const DrawerMotion(),
           extentRatio: .25,
-          dismissible: DismissiblePane(onDismissed: () {
-            print('object');
-          }),
+          dismissible:
+              DismissiblePane(onDismissed: () => onProductDelete(index: index)),
           children: [
             SlidableAction(
               onPressed: (context) {},
@@ -61,7 +60,6 @@ class ProductItem extends StatelessWidget {
         ),
         child: Card(
           elevation: 2,
-          // margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           shape: smoothRectangleBorder(radius: 12),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),

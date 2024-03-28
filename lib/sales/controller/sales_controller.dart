@@ -26,7 +26,7 @@ class SalesController extends GetxController {
   String? customerName;
   String? customerPhone;
   String? customerAddress;
-  Rx<DateTime> salesDate = DateTime.now().obs;
+  DateTime salesDate = DateTime.now();
   RxString discount = ''.obs;
   RxString total = ''.obs;
 
@@ -138,7 +138,7 @@ class SalesController extends GetxController {
             productId: salesModel.productId,
             salesId: salesId,
             groupSalesId: groupSalesId,
-            salesDate: salesDate.value,
+            salesDate: salesDate,
             dateCreated: now,
             quantity: double.parse(salesModel.quantity),
             price: double.parse(salesModel.price),

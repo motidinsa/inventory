@@ -54,7 +54,7 @@ class ProductProfileInfo extends StatelessWidget {
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
-            const Expanded(
+             Expanded(
               child: CustomTextField(
                 title: selectN,
               ),
@@ -82,23 +82,6 @@ class ProductProfileInfo extends StatelessWidget {
             dataColor: Colors.green.shade800,
           )
         ],
-        if (getProfileAddress() != null) ...[
-          sizedBox(height: 10),
-          ProfileTitleToData(
-            title: addressN(),
-            data: getProfileAddress()!,
-            dataColor: Colors.green.shade800,
-          ),
-        ],
-        if (getContactPerson() != null) ...[
-          sizedBox(height: 10),
-          ProfileTitleToData(
-            title: contactPersonN,
-            data: getContactPerson()!,
-            dataColor: Colors.green.shade800,
-          ),
-        ]
-        // const Text('Email: xyz@gmail.com'),
       ],
     );
   }

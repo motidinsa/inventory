@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-import 'package:my_inventory/sales_report/constants/sales_report_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import '../../constants/report_constants.dart';
 
 class ReportHeader extends StatelessWidget {
   const ReportHeader({super.key});
@@ -28,7 +29,7 @@ class ReportHeader extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: dateWidthSR,
+              width: dateWidthR,
               child: Text(
                 'Date',
                 textAlign: TextAlign.center,
@@ -38,9 +39,9 @@ class ReportHeader extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: itemWidthSR,
+              width: itemWidthR,
               child: Text(
                 'Item',
                 textAlign: TextAlign.center,
@@ -50,9 +51,9 @@ class ReportHeader extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: qtyWidthSR,
+              width: qtyWidthR,
               child: Text(
                 'Qty',
                 textAlign: TextAlign.center,
@@ -62,9 +63,9 @@ class ReportHeader extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: totalCostWidthSR,
+              width: totalCostWidthR,
               child: Text(
                 AppController.to.currentPages.last == salesReportN
                     ? 'T.cost'
@@ -76,9 +77,9 @@ class ReportHeader extends StatelessWidget {
                     color: Colors.grey.shade800),
               ),
             ),
-            sizedBox(width: spacingWidthSR),
+            sizedBox(width: spacingWidthR),
             SizedBox(
-              width: totalPriceWidthSR,
+              width: totalPriceWidthR,
               child: Text(
                 AppController.to.currentPages.last == salesReportN
                     ? 'T.price'
@@ -91,9 +92,9 @@ class ReportHeader extends StatelessWidget {
               ),
             ),
             if (AppController.to.currentPages.last == salesReportN) ...[
-              sizedBox(width: spacingWidthSR),
+              sizedBox(width: spacingWidthR),
               SizedBox(
-                width: profitSR,
+                width: profitR,
                 child: Text(
                   'Profit',
                   textAlign: TextAlign.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/functions/core_functions.dart';
@@ -35,7 +36,7 @@ class ProductDetailSingleDescription extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: isNumeric(description)
+            text: isNumeric(description) && title!=phoneNumberN()
                 ? getFormattedNumberWithComa(double.parse(description))
                 : description,
             style: TextStyle(

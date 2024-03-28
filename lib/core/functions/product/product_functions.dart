@@ -94,3 +94,10 @@ onImageDeleteButtonPressed() {
     });
   }
 }
+onProductDelete({required int index}){
+  if(AppController.to.currentPages.last == salesN()){
+    SalesController.to.salesModels.removeAt(index);
+  }else{
+    PurchaseController.to.purchaseModels.removeAt(index);
+  }
+}
