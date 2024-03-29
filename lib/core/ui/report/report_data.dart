@@ -25,12 +25,13 @@ class ReportData extends StatelessWidget {
             SizedBox(
               width: getReportDateWidth(),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: purchaseSpacing),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: purchaseSpacing),
                 child: Text(
                   getReportDate(index: index),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 16,
                     color: Colors.grey.shade800,
                     fontWeight: FontWeight.w500,
                   ),
@@ -47,7 +48,7 @@ class ReportData extends StatelessWidget {
                   // 'fjreiuf freifre fref',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
                 ),
               ),
             ),
@@ -60,7 +61,7 @@ class ReportData extends StatelessWidget {
                   getReportQty(index: index),
                   // '992',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
                 ),
               ),
             ),
@@ -71,10 +72,10 @@ class ReportData extends StatelessWidget {
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
                   getReportCost(index: index),
-                  // '99,999',
+                  // '999,999',
                   textAlign: TextAlign.center,
                   // overflow: TextOverflow.fade,
-                  style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
                 ),
               ),
             ),
@@ -84,10 +85,13 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  getReportPrice(index: index),
-                  // '999,999',
+                  // getReportPrice(index: index),
+                  '999,999',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 17, color: Colors.grey.shade800),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey.shade800,
+                  ),
                 ),
               ),
             ),
@@ -102,7 +106,7 @@ class ReportData extends StatelessWidget {
                     '99,999',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 16,
                       color: Colors.green.shade800,
                       fontWeight: FontWeight.bold,
                     ),

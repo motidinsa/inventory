@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/custom_text_field_functions.dart';
-
 import 'package:my_inventory/core/styles/styles.dart';
 
 class ProfileSingleDetail extends StatelessWidget {
   final String title;
-  final String data;
+  final String? data;
   final double? titleFontSize;
   final double? dataFontSize;
   final Color? titleColor;
@@ -16,7 +15,7 @@ class ProfileSingleDetail extends StatelessWidget {
   const ProfileSingleDetail(
       {super.key,
       required this.title,
-      required this.data,
+      this.data,
       this.titleFontSize,
       this.dataFontSize,
       this.titleColor,
@@ -26,32 +25,35 @@ class ProfileSingleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment:
+          data == null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         profileTitleToIcon(
           title: title,
         ),
         sizedBox(width: 15),
         Expanded(
-          child: RichText(
-            textAlign: textAlign ?? TextAlign.start,
-            text: TextSpan(
-              text: '$title:   ',
-              style: TextStyle(
-                fontWeight: bold(),
-                fontSize: titleFontSize ?? 16,
-                color: titleColor ?? Colors.grey.shade700,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: data,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(title,
                   style: TextStyle(
-                    color: dataColor ?? Colors.grey.shade500,
-                    fontStyle: FontStyle.italic,
-                    fontSize: dataFontSize ?? 16,
-                  ),
-                ),
+                    fontWeight: bold(),
+                    fontSize: titleFontSize ?? 16,
+                    color: titleColor ?? Colors.grey.shade700,
+                  )),
+              if (data != null) ...[
+                sizedBox(height: 5),
+                Text(data!,
+                    style: TextStyle(
+                      color: dataColor ?? Colors.grey.shade500,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: dataFontSize ?? 16,
+                    ))
               ],
-            ),
+            ],
           ),
         ),
       ],
