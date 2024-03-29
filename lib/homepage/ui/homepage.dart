@@ -28,7 +28,6 @@ class Homepage extends StatelessWidget {
             // color: primaryColor(),
           ),
           onPressed: () {
-            // AppController.to.key.currentState?.openDrawer();
             Scaffold.of(context).openDrawer();
             print(appController.currentPages);
           },

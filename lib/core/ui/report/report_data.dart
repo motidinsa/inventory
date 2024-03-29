@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/report_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-
-import 'package:my_inventory/core/constants/report_constants.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 class ReportData extends StatelessWidget {

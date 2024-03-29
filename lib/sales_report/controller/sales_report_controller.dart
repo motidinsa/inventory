@@ -8,13 +8,11 @@ import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/main.dart';
-
 import 'package:my_inventory/sales_report/model/sales_report_model.dart';
 
 class SalesReportController extends GetxController {
   DateTime now = DateTime.now();
   List<SalesReportModel> salesReportModels = [];
-  List<SalesDatabaseModel> salesDatabaseModels = [];
   double subtotal = 0;
   double discount = 0;
 
@@ -23,13 +21,14 @@ class SalesReportController extends GetxController {
   @override
   void onInit() {
     AppController.to.currentPages.add(salesReportN);
-    salesDatabaseModels.addAll(isar.salesDatabaseModels.where().findAllSync());
-    for (var element in salesDatabaseModels) {
+    String? currentGroupSalesId;
+    for (var element in isar.salesDatabaseModels.where().findAllSync()) {
       List<QuantityCostDatabaseModel> quantityCostDatabaseModels = isar
           .quantityCostDatabaseModels
           .filter()
           .salesIdEqualTo(element.salesId)
           .findAllSync();
+
       for (var quantityCostElement in quantityCostDatabaseModels) {
         double totalCost = quantityCostElement.quantity *
             isar.purchaseAllDatabaseModels
@@ -51,13 +50,16 @@ class SalesReportController extends GetxController {
         ));
         subtotal += totalPrice - totalCost;
       }
-      discount += isar.groupSalesDatabaseModels
-          .filter()
-          .groupSalesIdEqualTo(element.groupSalesId)
-          .findFirstSync()!
-          .discount;
+      if (currentGroupSalesId != element.groupSalesId) {
+        discount += isar.groupSalesDatabaseModels
+            .filter()
+            .groupSalesIdEqualTo(element.groupSalesId)
+            .findFirstSync()!
+            .discount;
+      }
+      currentGroupSalesId = element.groupSalesId;
     }
-    salesDatabaseModels.clear();
+    salesReportModels = salesReportModels.reversed.toList();
     super.onInit();
   }
 }

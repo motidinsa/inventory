@@ -9,8 +9,6 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/main.dart';
 
-import 'package:my_inventory/core/model/product/product_database_model.dart';
-
 onEditProductFocusChange({
   required String title,
   required String data,
@@ -92,18 +90,22 @@ onEditProductAlertDialogOptionSelect(
     {required String title, required String data, required int isarId}) {
   final EditProductController editProductController = Get.find();
   editProductController.productInfo.update((product) {
-    ProductDatabaseModel productDatabaseModel = isar.productDatabaseModels
-        .getSync(isarId)!;
     if (title == selectCategoryN) {
+      CategoryDatabaseModel categoryDatabaseModel =
+          isar.categoryDatabaseModels.getSync(isarId)!;
       product?.categoryName = data;
-      product?.categoryId = productDatabaseModel.categoryId;
+      product?.categoryId = categoryDatabaseModel.categoryId;
     } else if (title == selectUomSN) {
-      product?.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
+      UnitOfMeasurementDatabaseModel uomDatabaseModel =
+          isar.unitOfMeasurementDatabaseModels.getSync(isarId)!;
+      product?.unitOfMeasurementId = uomDatabaseModel.uomId;
       product?.unitOfMeasurementName = data;
     }
   });
+  Get.back();
   editProductController.update();
 }
+
 String? getEditProductData({required String title}) {
   EditProductController editProductController = Get.find();
   if (title == productN) {
@@ -113,10 +115,10 @@ String? getEditProductData({required String title}) {
   } else if (title == productIdN) {
     return editProductController.productInfo.value.userAssignedProductId;
   } else if (title == costN) {
-    return  emptyIfDefaultValue(getFormattedNumberWithoutComa(
+    return emptyIfDefaultValue(getFormattedNumberWithoutComa(
         editProductController.productInfo.value.cost));
   } else if (title == priceN()) {
-  return emptyIfDefaultValue(getFormattedNumberWithoutComa(
+    return emptyIfDefaultValue(getFormattedNumberWithoutComa(
         editProductController.productInfo.value.price));
   } else if (title == quantityOnHandN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(

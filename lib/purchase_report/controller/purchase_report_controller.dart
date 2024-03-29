@@ -5,13 +5,11 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
 import 'package:my_inventory/main.dart';
-
 import 'package:my_inventory/purchase_report/model/purchase_report_model.dart';
 
 class PurchaseReportController extends GetxController {
   DateTime now = DateTime.now();
   List<PurchaseReportModel> purchaseReportModels = [];
-  // List<PurchaseAllDatabaseModel> purchaseDatabaseModels = [];
   double totalCost = 0;
   static PurchaseReportController get to => Get.find();
 
@@ -35,6 +33,7 @@ class PurchaseReportController extends GetxController {
       );
       totalCost += totalCostAmount;
     }
+    purchaseReportModels = purchaseReportModels.reversed.toList();
     super.onInit();
   }
 }

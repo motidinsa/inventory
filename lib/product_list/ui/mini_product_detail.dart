@@ -29,7 +29,7 @@ class MiniProductDetail extends StatelessWidget {
         );
       },
       child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 0),
         shape: smoothRectangleBorder(radius: 12),
         elevation: 3,
         child: Padding(
@@ -43,62 +43,120 @@ class MiniProductDetail extends StatelessWidget {
               ),
               sizedBox(width: 20),
               Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Text(
-                          productModel.productName,
-                          style: TextStyle(
-                              fontWeight: bold(),
-                              fontSize: 17,
-                              color: Colors.grey.shade800),
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        productModel.productName,
+                        style: TextStyle(
+                            fontWeight: bold(),
+                            fontSize: 17,
+                            color: Colors.grey.shade800),
                       ),
-                      sizedBox(height: 5),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SmoothContainer(
-                            padding: const EdgeInsets.all(10),
-                            color: Colors.green.shade200,
-                            smoothness: 1,
-                            side: const BorderSide(
-                                color: Colors.white, width: 1.5),
-                            borderRadius: BorderRadius.circular(12),
-                            alignment: Alignment.center,
-                            child: Text(
-                              '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
-                                id: productModel.unitOfMeasurementId,
-                              )}',
-                              style: TextStyle(
-                                  color: Colors.white, fontWeight: bold()),
+                    ),
+                    sizedBox(height: 5),
+                    Row(
+                      // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SmoothContainer(
+                          padding: const EdgeInsets.all(10),
+                          color: Colors.green.shade200,
+                          smoothness: 1,
+                          side:
+                              const BorderSide(color: Colors.white, width: 1.5),
+                          borderRadius: BorderRadius.circular(12),
+                          alignment: Alignment.center,
+                          child: Text(
+                            '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
+                              id: productModel.unitOfMeasurementId,
+                            )}',
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: bold()),
+                          ),
+                        ),
+                        sizedBox(width: 10),
+                        Expanded(
+                          child: SizedBox(
+                            // height: 35,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                'ETB ${getFormattedNumberWithComa(productModel.price)}',
+                                // textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: bold(),
+                                  fontSize: 17,
+                                ),
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
-              sizedBox(width: 15),
-              Expanded(
-                // flex: 4,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Text(
-                    'ETB ${getFormattedNumberWithComa(productModel.price)}',
-                    // textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: bold(),
-                      fontSize: 17,
-                    ),
-                  ),
-                ),
-              )
+              // Expanded(
+              //   child: Align(
+              //     alignment: Alignment.centerLeft,
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.only(left: 8),
+              //           child: Text(
+              //             productModel.productName,
+              //             style: TextStyle(
+              //                 fontWeight: bold(),
+              //                 fontSize: 17,
+              //                 color: Colors.grey.shade800),
+              //           ),
+              //         ),
+              //         sizedBox(height: 5),
+              //         Row(
+              //           mainAxisSize: MainAxisSize.min,
+              //           children: [
+              //             SmoothContainer(
+              //               padding: const EdgeInsets.all(10),
+              //               color: Colors.green.shade200,
+              //               smoothness: 1,
+              //               side: const BorderSide(
+              //                   color: Colors.white, width: 1.5),
+              //               borderRadius: BorderRadius.circular(12),
+              //               alignment: Alignment.center,
+              //               child: Text(
+              //                 '${getFormattedNumberWithComa(productModel.quantityOnHand)} ${getUomName(
+              //                   id: productModel.unitOfMeasurementId,
+              //                 )}',
+              //                 style: TextStyle(
+              //                     color: Colors.white, fontWeight: bold()),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // sizedBox(width: 15),
+              //
+              // Expanded(
+              //   // flex: 4,
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(right: 10),
+              //     child: Text(
+              //       'ETB ${getFormattedNumberWithComa(productModel.price)}',
+              //       // textAlign: TextAlign.center,
+              //       style: TextStyle(
+              //         fontWeight: bold(),
+              //         fontSize: 17,
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),
