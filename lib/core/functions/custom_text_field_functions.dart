@@ -49,6 +49,8 @@ titleToHint({String? title}) {
     value = searchByCustomerNameN;
   } else if (title == searchVendorsN) {
     value = searchByVendorNameN;
+  } else if ([fromN, toN].contains(title)) {
+    value = selectN;
   }
   return value;
 }
@@ -92,10 +94,26 @@ onTextFieldPressed({String? title, int? index}) {
 }
 
 hasOption({String? title}) {
-  var itemsWithOption = [categoryN, uomSN, salesN(), purchaseN(), selectN];
+  var itemsWithOption = [
+    categoryN,
+    uomSN,
+    salesN(),
+    purchaseN(),
+    selectN,
+  ];
   return itemsWithOption.contains(title);
 }
-
+readOnly({String? title}){
+  var itemsWithOption = [
+    categoryN,
+    uomSN,
+    salesN(),
+    purchaseN(),
+    selectN,
+    fromN,toN
+  ];
+  return itemsWithOption.contains(title);
+}
 minimizePadding({String? title}) {
   var items = [
     productN,

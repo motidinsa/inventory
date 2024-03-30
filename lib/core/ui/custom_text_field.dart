@@ -61,7 +61,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: getKeyboardType(title: widget.title),
       maxLines: widget.labelText == descriptionN ? 2 : 1,
-      readOnly: hasOption(title: widget.title),
+      readOnly: readOnly(title: widget.title),
       onChanged: (data) => onTextFieldChange(
         title: widget.title,
         data: data,

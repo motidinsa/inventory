@@ -131,3 +131,6 @@ const String vendorNameN = 'Vendor name';
 const String editN = 'Edit';
 const String salesReportN = 'Sales report';
 const String purchaseReportN = 'Purchase report';
+const String filterN = 'Filter';
+const String fromN = 'From';
+const String toN = 'To';

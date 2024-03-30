@@ -15,6 +15,8 @@ onPurchaseTitleToData({required String title, int? index}) {
     return purchaseController.purchaseModels[index!].value.cost;
   } else if (title == selectN) {
     return purchaseController.vendorName;
+  }else if (title == quantityN()) {
+    return purchaseController.purchaseModels[index!].value.quantity;
   }
 }
 
