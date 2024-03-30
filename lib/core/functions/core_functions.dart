@@ -6,10 +6,12 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
 import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
@@ -19,22 +21,19 @@ import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
+import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-
-import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
-import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
-import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
-import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
-
-import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -179,7 +178,10 @@ onActionButtonPressed({required String redirectFrom}) async {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
     } else if (redirectFrom == editVendorN) {
       EditVendorController.to.onEditVendorSaveButtonPressed();
+    } else if (redirectFrom == dateSelect) {
+      onFilterSelect();
     }
+    Get.back();
   }
 }
 
@@ -201,6 +203,8 @@ titleToData({required String title, int? index}) {
     return getEditCustomerData(title: title);
   } else if (currentPage == editVendorN) {
     return getEditVendorData(title: title);
+  } else if ([salesReportN, purchaseReportN].contains(currentPage)) {
+    return getReportSelectedDate(title: title);
   }
   return value;
 }

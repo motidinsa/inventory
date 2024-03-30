@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
-
-import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
-import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
-import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
+
+import '../../sales/functions/sales_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -90,6 +90,8 @@ onTextFieldPressed({String? title, int? index}) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentPage == purchaseN()) {
     onPurchaseProductSelect(title: title, index: index);
+  } else if (currentPage == salesReportN) {
+    onSalesReportFilterSelect(title: title!);
   }
 }
 
@@ -103,17 +105,20 @@ hasOption({String? title}) {
   ];
   return itemsWithOption.contains(title);
 }
-readOnly({String? title}){
+
+readOnly({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
     salesN(),
     purchaseN(),
     selectN,
-    fromN,toN
+    fromN,
+    toN
   ];
   return itemsWithOption.contains(title);
 }
+
 minimizePadding({String? title}) {
   var items = [
     productN,
@@ -180,7 +185,7 @@ profileTitleToIcon({
   required String title,
 }) {
   var items = {
-    vendorNameN: Icons.account_balance_rounded,
+    vendorNameN: Icons.corporate_fare_rounded,
     customerNameN: Icons.person,
     contactPersonN: Icons.person,
     phoneNumberN(): Icons.call,

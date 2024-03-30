@@ -1,1 +1,1 @@
-enum ActionButtonType { save, delete }
+enum ActionButtonType { save, delete, filter }

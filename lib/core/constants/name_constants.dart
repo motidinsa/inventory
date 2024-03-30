@@ -134,3 +134,4 @@ const String purchaseReportN = 'Purchase report';
 const String filterN = 'Filter';
 const String fromN = 'From';
 const String toN = 'To';
+const String dateSelect = 'date_select';

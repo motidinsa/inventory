@@ -28,7 +28,7 @@ class ProfileMiniDetail extends StatelessWidget {
               Icon(
                 AppController.to.currentPages.last == customerListN
                     ? Icons.person
-                    : Icons.account_balance_rounded,
+                    : Icons.corporate_fare_rounded,
                 size: 28,
                 color: Colors.grey.shade700,
               ),

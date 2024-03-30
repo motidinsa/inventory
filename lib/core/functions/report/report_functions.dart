@@ -115,3 +115,27 @@ double getReportProfitWidth() {
       ? Get.mediaQuery.size.width * purchaseWidthRatio[5]
       : Get.mediaQuery.size.width * salesWidthRatio[5];
 }
+
+String? getReportSelectedDate({required String title}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
+    if (title == fromN && SalesReportController.to.startDate != null) {
+      return DateFormat('dd/MM/yy').format(SalesReportController.to.startDate!);
+    } else if (title == toN && SalesReportController.to.endDate != null) {
+      return DateFormat('dd/MM/yy').format(SalesReportController.to.endDate!);
+    }
+  }
+  return null;
+}
+
+onFilterSelect() {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
+    final SalesReportController salesReportController = Get.find();
+    salesReportController.onSalesReportFilterPressed();
+    salesReportController.displayStartDate = salesReportController.startDate;
+    salesReportController.displayEndDate = salesReportController.endDate;
+  } else {
+    // onPurchaseReportFilterSelect();
+  }
+}

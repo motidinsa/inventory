@@ -1,42 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/action_button_enum.dart';
+import 'package:my_inventory/core/ui/action_button.dart';
+import 'package:my_inventory/core/ui/report/date_range_selection.dart';
+import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 
+import '../../purchase_report/controller/purchase_report_controller.dart';
 import '../constants/name_constants.dart';
 import '../constants/widget_constants.dart';
-import 'custom_text_field.dart';
 
 class DateFilter extends StatelessWidget {
   const DateFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              fromN,
-              style: TextStyle(
-                color: Colors.green.shade800,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            sizedBox(height: 10),
-            SizedBox(
-                width: 100, child: CustomTextField(title: fromN)),
-          ],
-        ),
-        sizedBox(width: 15),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(toN),
-            SizedBox(
-                width: 100, child: CustomTextField(title: toN)),
-          ],
-        ),
-      ],
+    return Form(
+      key: AppController.to.formKey,
+      child: Column(
+        children: [
+          if (AppController.to.currentPages.last == salesReportN)
+            GetBuilder<SalesReportController>(builder: (context) {
+              return DateRangeSelection();
+            })
+          else
+            GetBuilder<PurchaseReportController>(builder: (context) {
+              return DateRangeSelection();
+            }),
+          sizedBox(height: 5),
+          ActionButton(
+            redirectFrom: dateSelect,
+            actionButtonType: ActionButtonType.filter,
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          )
+        ],
+      ),
     );
   }
 }

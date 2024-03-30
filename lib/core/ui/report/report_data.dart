@@ -85,8 +85,8 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  // getReportPrice(index: index),
-                  '999,999',
+                  getReportPrice(index: index),
+                  // '999,999',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -102,8 +102,8 @@ class ReportData extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: purchaseSpacing),
                   child: Text(
-                    // getReportProfit(index: index),
-                    '99,999',
+                    getReportProfit(index: index),
+                    // '99,999',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,

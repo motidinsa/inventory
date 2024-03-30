@@ -15,6 +15,10 @@ class SalesReportController extends GetxController {
   List<SalesReportModel> salesReportModels = [];
   double subtotal = 0;
   double discount = 0;
+  DateTime? startDate;
+  DateTime? endDate;
+  DateTime? displayStartDate;
+  DateTime? displayEndDate;
 
   static SalesReportController get to => Get.find();
 
@@ -22,7 +26,10 @@ class SalesReportController extends GetxController {
   void onInit() {
     AppController.to.currentPages.add(salesReportN);
     String? currentGroupSalesId;
-    for (var element in isar.salesDatabaseModels.where().findAllSync()) {
+    for (var element in isar.salesDatabaseModels
+        .where()
+        .sortBySalesDateDesc()
+        .findAllSync()) {
       List<QuantityCostDatabaseModel> quantityCostDatabaseModels = isar
           .quantityCostDatabaseModels
           .filter()
@@ -59,7 +66,56 @@ class SalesReportController extends GetxController {
       }
       currentGroupSalesId = element.groupSalesId;
     }
-    salesReportModels = salesReportModels.reversed.toList();
     super.onInit();
+  }
+
+  onSalesReportFilterPressed() {
+    String? currentGroupSalesId;
+    salesReportModels.clear();
+    subtotal = 0;
+    discount = 0;
+    for (var element in isar.salesDatabaseModels
+        .filter()
+        .salesDateBetween(startDate!, endDate!.add(Duration(days: 1)),
+            includeUpper: false)
+        .sortBySalesDateDesc()
+        .findAllSync()) {
+      List<QuantityCostDatabaseModel> quantityCostDatabaseModels = isar
+          .quantityCostDatabaseModels
+          .filter()
+          .salesIdEqualTo(element.salesId)
+          .findAllSync();
+
+      for (var quantityCostElement in quantityCostDatabaseModels) {
+        double totalCost = quantityCostElement.quantity *
+            isar.purchaseAllDatabaseModels
+                .filter()
+                .purchaseIdEqualTo(quantityCostElement.purchaseId)
+                .findFirstSync()!
+                .cost;
+        double totalPrice = quantityCostElement.quantity * element.price;
+        salesReportModels.add(SalesReportModel(
+          salesDate: element.salesDate,
+          quantity: quantityCostElement.quantity,
+          productName: isar.productDatabaseModels
+              .filter()
+              .productIdEqualTo(element.productId)
+              .findFirstSync()!
+              .productName,
+          totalCost: totalCost,
+          totalPrice: totalPrice,
+        ));
+        subtotal += totalPrice - totalCost;
+      }
+      if (currentGroupSalesId != element.groupSalesId) {
+        discount += isar.groupSalesDatabaseModels
+            .filter()
+            .groupSalesIdEqualTo(element.groupSalesId)
+            .findFirstSync()!
+            .discount;
+      }
+      currentGroupSalesId = element.groupSalesId;
+    }
+    update();
   }
 }

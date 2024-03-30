@@ -42,9 +42,7 @@ class ProductProfileInfo extends StatelessWidget {
         Row(
           children: [
             Icon(
-              page == PageName.sales
-                  ? Icons.person
-                  : Icons.account_balance_rounded,
+              page == PageName.sales ? Icons.person : Icons.corporate_fare,
               size: 28,
               color: Colors.grey.shade700,
             ),
@@ -54,7 +52,7 @@ class ProductProfileInfo extends StatelessWidget {
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
-             const Expanded(
+            Expanded(
               child: CustomTextField(
                 title: selectN,
               ),
@@ -73,7 +71,6 @@ class ProductProfileInfo extends StatelessWidget {
             ]
           ],
         ),
-
         if (getProfilePhone() != null) ...[
           sizedBox(height: 20),
           ProfileTitleToData(

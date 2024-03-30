@@ -8,19 +8,21 @@ import 'package:my_inventory/core/model/action_button_enum.dart';
 class ActionButton extends StatelessWidget {
   final String redirectFrom;
   final ActionButtonType? actionButtonType;
+  final EdgeInsetsGeometry? padding;
 
-  ActionButton({
-    super.key,
-    required this.redirectFrom,
-    this.actionButtonType,
-  });
+  ActionButton(
+      {super.key,
+      required this.redirectFrom,
+      this.actionButtonType,
+      this.padding});
 
   final AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       child: Row(
         children: [
           Expanded(
@@ -35,15 +37,21 @@ class ActionButton extends StatelessWidget {
                     15,
                   ),
                 ),
-                backgroundColor: actionButtonType == null
-                    ? Colors.green.shade100
-                    : Colors.red.shade400,
+                backgroundColor: actionButtonType == ActionButtonType.delete
+                    ? Colors.red.shade400
+                    : Colors.green.shade100,
               ),
               child: Text(
-                actionButtonType == null ? saveN() : 'Delete',
+                actionButtonType == null
+                    ? saveN()
+                    : actionButtonType == ActionButtonType.filter
+                        ? filterN
+                        : 'Delete',
                 style: TextStyle(
                     fontSize: 16,
-                    color: actionButtonType != null ? Colors.white : null),
+                    color: actionButtonType == ActionButtonType.delete
+                        ? Colors.white
+                        : null),
               ),
             ),
           ),

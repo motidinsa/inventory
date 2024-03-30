@@ -18,7 +18,7 @@ class ItemType extends StatelessWidget {
     required this.title,
   });
   final Map<String, IconData> nameToIconItemType = {
-    salesN(): FontAwesomeIcons.tags,
+    salesN(): Icons.point_of_sale,
     purchasingN(): Icons.shopping_cart,
     inventoryN(): FontAwesomeIcons.box,
     inventoryN(): FontAwesomeIcons.box,
