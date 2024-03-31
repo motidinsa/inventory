@@ -66,13 +66,14 @@ class ProductDetail extends StatelessWidget {
                             'Edit',
                             style: TextStyle(
                                 color: Colors.green.shade700,
-                                fontSize: 17,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                           sizedBox(width: 20),
                           Icon(
                             Icons.edit,
                             color: Colors.green.shade700,
+                            size: 20,
                           ),
                         ],
                       ),

@@ -8,8 +8,6 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../sales_report/controller/sales_report_controller.dart';
-
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();
   if (title == salesN()) {
@@ -159,22 +157,4 @@ getSalesTotal() {
     salesController.total(total.toString());
   }
   return salesController.total.value;
-}
-
-onSalesReportFilterSelect({required String title}) {
-  showDatePicker(
-    context: Get.context!,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(2000),
-    lastDate: DateTime(2100),
-  ).then((value) {
-    if (value != null) {
-      if (title == fromN) {
-        SalesReportController.to.startDate = value;
-      } else {
-        SalesReportController.to.endDate = value;
-      }
-      SalesReportController.to.update();
-    }
-  });
 }

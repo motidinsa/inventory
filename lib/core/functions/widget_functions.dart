@@ -59,6 +59,7 @@ appBar({required String pageName, required BuildContext context}) {
                 return [
                   PopupMenuItem<int>(
                     enabled: false,
+                    padding: EdgeInsets.zero,
                     value: 0,
                     child: DateFilter(),
                   ),

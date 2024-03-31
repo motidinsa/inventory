@@ -9,9 +9,8 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
-import 'package:my_inventory/main.dart';
-
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/main.dart';
 
 class PurchaseController extends GetxController {
   DateTime now = DateTime.now();
@@ -27,7 +26,7 @@ class PurchaseController extends GetxController {
   String? vendorPhone;
   String? vendorAddress;
   String? vendorContactPerson;
-  Rx<DateTime> purchaseDate = DateTime.now().obs;
+  DateTime purchaseDate = DateTime.now();
   var isLocalSaveLoading = false.obs;
   var purchaseModels = [
     PurchaseModel(
@@ -84,7 +83,7 @@ class PurchaseController extends GetxController {
           PurchaseAvailableDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseDate.value,
+            purchaseDate: purchaseDate,
             dateCreated: now,
             customerId: purchaseModel.customerId,
             vendorId: purchaseModel.vendorId,
@@ -96,7 +95,7 @@ class PurchaseController extends GetxController {
           PurchaseAllDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseDate.value,
+            purchaseDate: purchaseDate,
             dateCreated: now,
             customerId: purchaseModel.customerId,
             vendorId: purchaseModel.vendorId,

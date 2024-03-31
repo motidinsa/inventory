@@ -13,7 +13,7 @@ class CustomTextField extends StatefulWidget {
   final String? suffixText;
   final int? index;
 
-   const CustomTextField({
+  const CustomTextField({
     super.key,
     required this.title,
     this.labelText,

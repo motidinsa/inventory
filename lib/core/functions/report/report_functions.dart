@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -124,6 +125,14 @@ String? getReportSelectedDate({required String title}) {
     } else if (title == toN && SalesReportController.to.endDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.endDate!);
     }
+  } else {
+    if (title == fromN && PurchaseReportController.to.startDate != null) {
+      return DateFormat('dd/MM/yy')
+          .format(PurchaseReportController.to.startDate!);
+    } else if (title == toN && PurchaseReportController.to.endDate != null) {
+      return DateFormat('dd/MM/yy')
+          .format(PurchaseReportController.to.endDate!);
+    }
   }
   return null;
 }
@@ -132,10 +141,44 @@ onFilterSelect() {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesReportN) {
     final SalesReportController salesReportController = Get.find();
-    salesReportController.onSalesReportFilterPressed();
+
     salesReportController.displayStartDate = salesReportController.startDate;
     salesReportController.displayEndDate = salesReportController.endDate;
+    salesReportController.onSalesReportFilterPressed();
   } else {
-    // onPurchaseReportFilterSelect();
+    final PurchaseReportController purchaseReportController = Get.find();
+
+    purchaseReportController.displayStartDate =
+        purchaseReportController.startDate;
+    purchaseReportController.displayEndDate = purchaseReportController.endDate;
+    purchaseReportController.onPurchaseReportFilterPressed();
   }
+}
+
+onReportFilterSelect({required String title}) {
+  showDatePicker(
+    context: Get.context!,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2100),
+  ).then((value) {
+    if (value != null) {
+      String currentPage = AppController.to.currentPages.last;
+      if (currentPage == salesReportN) {
+        if (title == fromN) {
+          SalesReportController.to.startDate = value;
+        } else {
+          SalesReportController.to.endDate = value;
+        }
+        SalesReportController.to.update();
+      } else {
+        if (title == fromN) {
+          PurchaseReportController.to.startDate = value;
+        } else {
+          PurchaseReportController.to.endDate = value;
+        }
+        PurchaseReportController.to.update();
+      }
+    }
+  });
 }

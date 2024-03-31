@@ -5,6 +5,7 @@ import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
@@ -90,8 +91,8 @@ onTextFieldPressed({String? title, int? index}) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentPage == purchaseN()) {
     onPurchaseProductSelect(title: title, index: index);
-  } else if (currentPage == salesReportN) {
-    onSalesReportFilterSelect(title: title!);
+  } else if ([salesReportN, purchaseReportN].contains(currentPage)) {
+    onReportFilterSelect(title: title!);
   }
 }
 
@@ -141,6 +142,8 @@ minimizePadding({String? title}) {
     vendorListN,
     searchCustomersN,
     searchVendorsN,
+    // toN,
+    // fromN,
     if ([addProductN, editProductN]
         .contains(AppController.to.currentPages.last))
       costN,

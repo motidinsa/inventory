@@ -94,7 +94,7 @@ onProfileCancelPressed() {
 
 onProfileDatePressed() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if ([salesN(), purchaseN()].contains(currentPage)) {
     showDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),
@@ -102,8 +102,13 @@ onProfileDatePressed() {
       lastDate: DateTime(2100),
     ).then((value) {
       if (value != null) {
-        SalesController.to.salesDate = value;
-        SalesController.to.update();
+        if (currentPage == salesN()) {
+          SalesController.to.salesDate = value;
+          SalesController.to.update();
+        } else {
+          PurchaseController.to.purchaseDate = value;
+          PurchaseController.to.update();
+        }
       }
     });
   }

@@ -359,6 +359,6 @@ getSelectedDate() {
   if (currentPage == salesN()) {
     return SalesController.to.salesDate;
   } else if (currentPage == purchaseN()) {
-    return PurchaseController.to.purchaseDate.value;
+    return PurchaseController.to.purchaseDate;
   }
 }

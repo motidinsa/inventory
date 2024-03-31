@@ -29,7 +29,7 @@ class PurchaseReportSummary extends StatelessWidget {
                   text: 'Total cost: ',
                   style: TextStyle(
                       fontWeight: bold(),
-                      fontSize: 20,
+                      fontSize: 19,
                       color: Colors.grey.shade800,
                       fontStyle: FontStyle.italic),
                   // style: DefaultTextStyle.of(context).style,
