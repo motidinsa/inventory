@@ -142,8 +142,8 @@ minimizePadding({String? title}) {
     vendorListN,
     searchCustomersN,
     searchVendorsN,
-    // toN,
-    // fromN,
+    toN,
+    fromN,
     if ([addProductN, editProductN]
         .contains(AppController.to.currentPages.last))
       costN,

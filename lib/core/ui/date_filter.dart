@@ -17,23 +17,26 @@ class DateFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: AppController.to.formKey,
-      child: Column(
-        children: [
-          if (AppController.to.currentPages.last == salesReportN)
-            GetBuilder<SalesReportController>(builder: (context) {
-              return DateRangeSelection();
-            })
-          else
-            GetBuilder<PurchaseReportController>(builder: (context) {
-              return DateRangeSelection();
-            }),
-          sizedBox(height: 5),
-          ActionButton(
-            redirectFrom: dateSelect,
-            actionButtonType: ActionButtonType.filter,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          children: [
+            if (AppController.to.currentPages.last == salesReportN)
+              GetBuilder<SalesReportController>(builder: (context) {
+                return DateRangeSelection();
+              })
+            else
+              GetBuilder<PurchaseReportController>(builder: (context) {
+                return DateRangeSelection();
+              }),
+            sizedBox(height: 15),
+            ActionButton(
+              redirectFrom: dateSelect,
+              actionButtonType: ActionButtonType.filter,
+              padding: EdgeInsets.symmetric( horizontal: 20),
+            )
+          ],
+        ),
       ),
     );
   }

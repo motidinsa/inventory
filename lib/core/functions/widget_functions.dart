@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -33,10 +34,12 @@ appBar({required String pageName, required BuildContext context}) {
         ? [
             PopupMenuButton(
               position: PopupMenuPosition.under,
-              shape: smoothRectangleBorder(),
+              shape: smoothRectangleBorder(radius: 15),
               tooltip: '',
+              constraints:
+                  const BoxConstraints(maxWidth: 400),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   children: [
                     Text(
@@ -57,7 +60,7 @@ appBar({required String pageName, required BuildContext context}) {
               ),
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem<int>(
+                  const PopupMenuItem<int>(
                     enabled: false,
                     padding: EdgeInsets.zero,
                     value: 0,

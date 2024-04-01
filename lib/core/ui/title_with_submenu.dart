@@ -35,13 +35,10 @@ class TitleWithSubMenu extends StatelessWidget {
                 shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Sales report',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
                 ),
                 leading: const Icon(
                   Icons.point_of_sale,
-                  size: 26,
+                  size: 24,
                 ),
                 onTap: () {
                   Get.to(() => const SalesReport());
@@ -52,13 +49,10 @@ class TitleWithSubMenu extends StatelessWidget {
                 shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Purchase report',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
                 ),
                 leading: const Icon(
                   Icons.shopping_cart_rounded,
-                  size: 26,
+                  size: 24,
                 ),
                 onTap: () {
                   Get.to(() => const PurchaseReport());

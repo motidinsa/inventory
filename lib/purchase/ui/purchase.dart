@@ -19,7 +19,6 @@ class Purchase extends StatelessWidget {
 
   final PurchaseController purchaseController = Get.put(PurchaseController());
   final AppController appController = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
