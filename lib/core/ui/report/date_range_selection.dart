@@ -12,25 +12,12 @@ class DateRangeSelection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Text(
-            //   fromN,
-            //   style: TextStyle(
-            //     color: Colors.green.shade800,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // sizedBox(height: 10),
-            SizedBox(
-                width: 130,
-                child: CustomTextField(
-                  title: fromN,
-                  labelText: fromN,
-                )),
-          ],
-        ),
+        SizedBox(
+            width: 130,
+            child: CustomTextField(
+              title: fromN,
+              labelText: fromN,
+            )),
         sizedBox(width: 25),
         Column(
           mainAxisSize: MainAxisSize.min,

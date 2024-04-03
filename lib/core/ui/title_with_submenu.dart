@@ -16,7 +16,7 @@ class TitleWithSubMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
+      elevation: 2,
       surfaceTintColor: Colors.white,
       child: SafeArea(
         child: Padding(

@@ -128,7 +128,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
         labelText: widget.labelText,
-        alignLabelWithHint: true,
+        // label: Text(widget.labelText!,textAlign: TextAlign.center,)
+        // alignLabelWithHint: true,
       ),
       validator: (value) => validateInput(
         data: textEditingController.text,
