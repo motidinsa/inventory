@@ -115,7 +115,8 @@ readOnly({String? title}) {
     purchaseN(),
     selectN,
     fromN,
-    toN
+    toN,
+    creditN
   ];
   return itemsWithOption.contains(title);
 }
@@ -144,6 +145,9 @@ minimizePadding({String? title}) {
     searchVendorsN,
     toN,
     fromN,
+    cashN,
+    transferN,
+    creditN,
     if ([addProductN, editProductN]
         .contains(AppController.to.currentPages.last))
       costN,
@@ -161,9 +165,14 @@ maxPadding({String? title}) {
     phoneNumberN(),
     addressN(),
     cityN(),
-    emailN()
+    emailN(),
   ];
   return !items.contains(title);
+}
+
+paymentOptionPadding({String? title}) {
+  var items = [cashN, transferN, creditN];
+  return items.contains(title);
 }
 
 hasSuffix({String? title}) {

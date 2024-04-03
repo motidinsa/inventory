@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
@@ -11,6 +12,7 @@ import 'package:my_inventory/core/ui/product/product_price_summary.dart';
 import 'package:my_inventory/core/ui/product/product_profile_info.dart';
 import 'package:my_inventory/core/ui/product/product_table_titles.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/sales/ui/payment_options.dart';
 
 class Sales extends StatelessWidget {
   Sales({super.key});
@@ -60,6 +62,8 @@ class Sales extends StatelessWidget {
               ),
             ),
             ProductPriceSummary(currentPage: salesN()),
+            sizedBox(height: 5),
+            PaymentOptions(),
             ActionButton(redirectFrom: salesN())
           ],
         ),

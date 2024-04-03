@@ -31,7 +31,7 @@ class DateFilter extends StatelessWidget {
               }),
             sizedBox(height: 15),
             ActionButton(
-              redirectFrom: dateSelect,
+              redirectFrom: dateSelectN,
               actionButtonType: ActionButtonType.filter,
               padding: EdgeInsets.symmetric( horizontal: 20),
             )

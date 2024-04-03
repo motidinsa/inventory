@@ -16,6 +16,8 @@ onSalesTitleToData({required String title, int? index}) {
     return salesController.customerName;
   } else if (title == quantityN()) {
     return salesController.salesModels[index!].value.quantity;
+  }else if (title == creditN) {
+    return salesController.credit.value;
   }
 }
 

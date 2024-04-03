@@ -111,12 +111,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
-            horizontal: minimizePadding(title: widget.title) ? 10 : 30,
-            vertical: minimizePadding(title: widget.title)
+            horizontal: paymentOptionPadding(title: widget.title)
+                ? 20:minimizePadding(title: widget.title) ? 10 : 30,
+            vertical: paymentOptionPadding(title: widget.title)
+                ? 10: minimizePadding(title: widget.title)
                 ? 10
                 : maxPadding(title: widget.title)
                     ? 15
-                    : 20),
+
+                        : 20),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
         ),
@@ -128,8 +131,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
         labelText: widget.labelText,
-        // label: Text(widget.labelText!,textAlign: TextAlign.center,)
-        // alignLabelWithHint: true,
+        // label: focusNode.hasFocus?Text(widget.labelText??'',):Center(child: Text(widget.labelText??'',))
+        alignLabelWithHint: true,
       ),
       validator: (value) => validateInput(
         data: textEditingController.text,

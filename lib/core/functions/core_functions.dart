@@ -178,7 +178,7 @@ onActionButtonPressed({required String redirectFrom}) async {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
     } else if (redirectFrom == editVendorN) {
       EditVendorController.to.onEditVendorSaveButtonPressed();
-    } else if (redirectFrom == dateSelect) {
+    } else if (redirectFrom == dateSelectN) {
       onFilterSelect();
     }
     Get.back();

@@ -28,8 +28,11 @@ class SalesController extends GetxController {
   DateTime salesDate = DateTime.now();
   RxString discount = ''.obs;
   RxString total = ''.obs;
+  RxString cash = ''.obs;
+  RxString transfer = ''.obs;
+  RxString credit = '0'.obs;
 
-  RxString emptyString = ''.obs;
+  // RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
   var salesModels = [
     SalesModel(
