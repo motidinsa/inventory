@@ -28,7 +28,7 @@ class SalesController extends GetxController {
   DateTime salesDate = DateTime.now();
   RxString discount = ''.obs;
   RxString total = ''.obs;
-  RxString cash = ''.obs;
+  String cash = '';
   RxString transfer = ''.obs;
   RxString credit = '0'.obs;
 

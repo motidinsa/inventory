@@ -42,15 +42,15 @@ class Sales extends StatelessWidget {
             ProductTableTitles(
               currentPage: salesN(),
             ),
-            Obx(() => ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => ProductItem(
-                    index: index,
-                    currentPage: salesN(),
-                  ),
-                  itemCount: salesController.salesModels.length,
-                )),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, index) => ProductItem(
+                index: index,
+                currentPage: salesN(),
+              ),
+              itemCount: salesController.salesModels.length,
+            ),
             Center(
               child: IconButton(
                 onPressed: () => salesController.addSalesProduct(),

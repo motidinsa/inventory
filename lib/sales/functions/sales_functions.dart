@@ -16,6 +16,10 @@ onSalesTitleToData({required String title, int? index}) {
     return salesController.customerName;
   } else if (title == quantityN()) {
     return salesController.salesModels[index!].value.quantity;
+  } else if (title == cashN) {
+    return salesController.cash;
+  }else if (title == transferN) {
+    return salesController.transfer.value;
   }else if (title == creditN) {
     return salesController.credit.value;
   }
@@ -46,15 +50,18 @@ onSalesTextFieldChange({
       if (data.isEmpty) {
         sales?.quantity = '';
         sales?.totalAmount = 0;
+        salesController.cash = '';
       } else {
         sales?.quantity = data;
         if (isNumeric(sales!.quantity) && isNumeric(sales.price)) {
           sales.totalAmount = double.parse(data) * double.parse(sales.price);
+          salesController.cash = sales.totalAmount.toString();
         } else {
           sales.totalAmount = 0;
         }
       }
-    });
+
+    });salesController.update();
   } else if (title == discountN()) {
     salesController.discount(data);
   } else if (title == searchCustomersN) {
