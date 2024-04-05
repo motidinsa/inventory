@@ -12,6 +12,7 @@ import 'package:my_inventory/edit_product/functions/edit_product_functions.dart'
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
 import '../../sales/functions/sales_functions.dart';
@@ -65,6 +66,7 @@ onTextFieldChange({
   String currentPage = appController.currentPages.last;
   if (currentPage == salesN()) {
     onSalesTextFieldChange(data: data, index: index, title: title);
+    SalesController.to.update();
   } else if (currentPage == addProductN) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == editProductN) {

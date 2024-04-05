@@ -15,55 +15,78 @@ class PaymentOptions extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Payment mode'),
-              sizedBox(height: 10),
-              GetBuilder<SalesController>(
-                builder: (context) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text(cashN),
-                            sizedBox(height: 5),
-                            CustomTextField(
-                              title: cashN,
-                            ),
-                          ],
-                        ),
-                      ),
-                      sizedBox(width: 15),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text(transferN),
-                            sizedBox(height: 5),
-                            CustomTextField(
-                              title: transferN,
-                            ),
-                          ],
-                        ),
-                      ),
-                      sizedBox(width: 15),
-                      Expanded(
-                        child:  Column(
-                          children: [
-                            Text(creditN),
-                            sizedBox(height: 5),
-                            CustomTextField(
-                              title: creditN,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                }
+              Text(
+                'Payment mode',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.green.shade800,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              sizedBox(height: 10),
+              GetBuilder<SalesController>(builder: (context) {
+                return Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            cashN,
+                            style: TextStyle(
+                              color: Colors.green.shade800,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          sizedBox(height: 5),
+                          CustomTextField(
+                            title: cashN,
+                          ),
+                        ],
+                      ),
+                    ),
+                    sizedBox(width: 15),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            transferN,
+                            style: TextStyle(
+                              color: Colors.green.shade800,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          sizedBox(height: 5),
+                          CustomTextField(
+                            title: transferN,
+                          ),
+                        ],
+                      ),
+                    ),
+                    sizedBox(width: 15),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            creditN,
+                            style: TextStyle(
+                              color: Colors.green.shade800,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          sizedBox(height: 5),
+                          CustomTextField(
+                            title: creditN,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }),
             ],
           ),
         ),

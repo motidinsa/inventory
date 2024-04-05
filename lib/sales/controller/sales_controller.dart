@@ -12,6 +12,7 @@ import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
+import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
 import 'package:my_inventory/main.dart';
 
 class SalesController extends GetxController {
@@ -29,8 +30,8 @@ class SalesController extends GetxController {
   RxString discount = ''.obs;
   RxString total = ''.obs;
   String cash = '';
-  RxString transfer = ''.obs;
-  RxString credit = '0'.obs;
+  String transfer = '';
+  String credit = '0';
 
   // RxString emptyString = ''.obs;
   var isLocalSaveLoading = false.obs;
@@ -75,6 +76,8 @@ class SalesController extends GetxController {
     List<SalesDatabaseModel> salesDatabaseModels = [];
     String groupSalesId =
         generateDatabaseId(time: DateTime.now(), identifier: 'group');
+    String salesPaymentId =
+        generateDatabaseId(time: DateTime.now(), identifier: 'p_id');
     for (int i = 0; i < salesModels.length; i++) {
       SalesModel salesModel = salesModels[i].value;
       DateTime now = DateTime.now();
@@ -137,15 +140,15 @@ class SalesController extends GetxController {
         await isar.productDatabaseModels.put(product);
         salesDatabaseModels.add(
           SalesDatabaseModel(
-            productId: salesModel.productId,
-            salesId: salesId,
-            groupSalesId: groupSalesId,
-            salesDate: salesDate,
-            dateCreated: now,
-            quantity: double.parse(salesModel.quantity),
-            price: double.parse(salesModel.price),
-            customerId: salesModel.customerId,
-          ),
+              productId: salesModel.productId,
+              salesId: salesId,
+              groupSalesId: groupSalesId,
+              salesDate: salesDate,
+              dateCreated: now,
+              quantity: double.parse(salesModel.quantity),
+              price: double.parse(salesModel.price),
+              customerId: salesModel.customerId,
+              salesPaymentId: salesPaymentId),
         );
         await isar.logProductDatabaseModels.put(
           LogProductDatabaseModel(
@@ -172,6 +175,16 @@ class SalesController extends GetxController {
           groupSalesId: groupSalesId,
           discount:
               isNumeric(discount.value) ? double.parse(discount.value) : 0,
+        ),
+      );
+      isar.salesPaymentDatabaseModels.put(
+        SalesPaymentDatabaseModel(
+          cash: double.parse(cash),
+          transfer: double.parse(transfer),
+          credit: double.parse(credit),
+          customerId: customerId,
+          groupSalesId: groupSalesId,
+          salesPaymentId: salesPaymentId,
         ),
       );
     });

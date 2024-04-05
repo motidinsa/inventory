@@ -72,6 +72,11 @@ const SalesDatabaseModelSchema = CollectionSchema(
       id: 10,
       name: r'salesId',
       type: IsarType.string,
+    ),
+    r'salesPaymentId': PropertySchema(
+      id: 11,
+      name: r'salesPaymentId',
+      type: IsarType.string,
     )
   },
   estimateSize: _salesDatabaseModelEstimateSize,
@@ -109,6 +114,7 @@ int _salesDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.productId.length * 3;
   bytesCount += 3 + object.salesId.length * 3;
+  bytesCount += 3 + object.salesPaymentId.length * 3;
   return bytesCount;
 }
 
@@ -129,6 +135,7 @@ void _salesDatabaseModelSerialize(
   writer.writeDouble(offsets[8], object.quantity);
   writer.writeDateTime(offsets[9], object.salesDate);
   writer.writeString(offsets[10], object.salesId);
+  writer.writeString(offsets[11], object.salesPaymentId);
 }
 
 SalesDatabaseModel _salesDatabaseModelDeserialize(
@@ -141,6 +148,7 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
     customerId: reader.readStringOrNull(offsets[0]),
     dateCreated: reader.readDateTime(offsets[1]),
     groupSalesId: reader.readString(offsets[2]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[3]),
     lastDateModified: reader.readDateTimeOrNull(offsets[4]),
     lastModifiedByUserId: reader.readStringOrNull(offsets[5]),
     price: reader.readDouble(offsets[6]),
@@ -148,9 +156,9 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
     quantity: reader.readDouble(offsets[8]),
     salesDate: reader.readDateTime(offsets[9]),
     salesId: reader.readString(offsets[10]),
+    salesPaymentId: reader.readString(offsets[11]),
   );
   object.id = id;
-  object.isAppWriteSynced = reader.readBoolOrNull(offsets[3]);
   return object;
 }
 
@@ -182,6 +190,8 @@ P _salesDatabaseModelDeserializeProp<P>(
     case 9:
       return (reader.readDateTime(offset)) as P;
     case 10:
+      return (reader.readString(offset)) as P;
+    case 11:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1401,6 +1411,142 @@ extension SalesDatabaseModelQueryFilter
       ));
     });
   }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'salesPaymentId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'salesPaymentId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'salesPaymentId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'salesPaymentId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      salesPaymentIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'salesPaymentId',
+        value: '',
+      ));
+    });
+  }
 }
 
 extension SalesDatabaseModelQueryObject
@@ -1562,6 +1708,20 @@ extension SalesDatabaseModelQuerySortBy
       sortBySalesIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'salesId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortBySalesPaymentId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'salesPaymentId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortBySalesPaymentIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'salesPaymentId', Sort.desc);
     });
   }
 }
@@ -1735,6 +1895,20 @@ extension SalesDatabaseModelQuerySortThenBy
       return query.addSortBy(r'salesId', Sort.desc);
     });
   }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenBySalesPaymentId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'salesPaymentId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenBySalesPaymentIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'salesPaymentId', Sort.desc);
+    });
+  }
 }
 
 extension SalesDatabaseModelQueryWhereDistinct
@@ -1814,6 +1988,14 @@ extension SalesDatabaseModelQueryWhereDistinct
       distinctBySalesId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'salesId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
+      distinctBySalesPaymentId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'salesPaymentId',
+          caseSensitive: caseSensitive);
     });
   }
 }
@@ -1898,6 +2080,13 @@ extension SalesDatabaseModelQueryProperty
   QueryBuilder<SalesDatabaseModel, String, QQueryOperations> salesIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'salesId');
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, String, QQueryOperations>
+      salesPaymentIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'salesPaymentId');
     });
   }
 }

@@ -23,6 +23,8 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:my_inventory/drawer/ui/my_drawer.dart';
 
+import 'core/model/sales/sales_payment_database_model.dart';
+
 late Isar isar;
 
 void main() async {
@@ -37,6 +39,7 @@ void main() async {
       PurchaseAvailableDatabaseModelSchema,
       PurchaseAllDatabaseModelSchema,
       SalesDatabaseModelSchema,
+      SalesPaymentDatabaseModelSchema,
       GroupSalesDatabaseModelSchema,
       DeletedProductDatabaseModelSchema,
       CategoryDatabaseModelSchema,

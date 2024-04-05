@@ -16,6 +16,7 @@ class SalesDatabaseModel {
   double quantity;
   double price;
   bool? isAppWriteSynced;
+  String salesPaymentId;
 
   SalesDatabaseModel({
     required this.productId,
@@ -28,5 +29,7 @@ class SalesDatabaseModel {
     this.customerId,
     required this.quantity,
     required this.price,
+    required this.salesPaymentId,
+    this.isAppWriteSynced,
   });
 }
