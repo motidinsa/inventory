@@ -8,7 +8,6 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/functions/product/product_functions.dart';
 
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();

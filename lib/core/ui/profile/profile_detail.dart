@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
 
-import '../../../product_list/ui/product_detail_single_description.dart';
-import '../../constants/name_constants.dart';
-import '../../constants/widget_constants.dart';
-import '../../functions/profile/profile_functions.dart';
-import '../../model/action_button_enum.dart';
-import '../../styles/styles.dart';
-import '../action_button.dart';
-import '../elevated_card.dart';
+import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/functions/profile/profile_functions.dart';
+import 'package:my_inventory/core/model/action_button_enum.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/action_button.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
 
 class ProfileDetail extends StatelessWidget {
   const ProfileDetail({

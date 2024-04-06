@@ -10,11 +10,13 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
-import '../../../customer_detail/ui/customer_detail.dart';
-import '../../../edit_customer/ui/edit_customer.dart';
-import '../../../edit_vendor/ui/edit_vendor.dart';
-import '../../../vendor_detail/controller/vendor_detail_controller.dart';
-import '../../../vendor_detail/ui/vendor_detail.dart';
+import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
+import 'package:my_inventory/edit_customer/ui/edit_customer.dart';
+import 'package:my_inventory/edit_vendor/ui/edit_vendor.dart';
+import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
+import 'package:my_inventory/vendor_detail/ui/vendor_detail.dart';
+
+import '../../packages/custom_date_picker.dart';
 
 onProfileEditPressed() {
   if (AppController.to.currentPages.last == customerDetailN) {
@@ -95,22 +97,12 @@ onProfileCancelPressed() {
 onProfileDatePressed() {
   String currentPage = AppController.to.currentPages.last;
   if ([salesN(), purchaseN()].contains(currentPage)) {
-    showDatePicker(
+    showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
-    ).then((value) {
-      if (value != null) {
-        if (currentPage == salesN()) {
-          SalesController.to.salesDate = value;
-          SalesController.to.update();
-        } else {
-          PurchaseController.to.purchaseDate = value;
-          PurchaseController.to.update();
-        }
-      }
-    });
+    );
   }
 }
 

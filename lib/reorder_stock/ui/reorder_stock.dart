@@ -5,16 +5,13 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/report/report_data.dart';
-import 'package:my_inventory/core/ui/report/report_header.dart';
 import 'package:my_inventory/payment_report/ui/payment_report_header.dart';
-import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
-import 'package:my_inventory/purchase_report/ui/purchase_report_summary.dart';
 
-import '../../core/ui/report/report_selected_date_summary.dart';
-import '../controller/reorder_stock_controller.dart';
+import 'package:my_inventory/reorder_stock/controller/reorder_stock_controller.dart';
+import 'package:my_inventory/reorder_stock/ui/reorder_stock_header.dart';
 
-class PaymentReport extends StatelessWidget {
-  const PaymentReport({super.key});
+class ReorderStock extends StatelessWidget {
+  const ReorderStock({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class PaymentReport extends StatelessWidget {
 
     return GetBuilder<ReorderStockController>(builder: (context) {
       return BodyWrapper(
-        pageName: paymentReportN,
+        pageName: reorderQuantityN,
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -39,7 +36,7 @@ class PaymentReport extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 2),
-                              child: PaymentReportHeader(),
+                              child: ReorderStockHeader(),
                             ),
                           ),
                           sliver: SliverList.separated(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -59,27 +60,29 @@ class TitleWithSubMenu extends StatelessWidget {
                   Get.to(() => const PurchaseReport());
                   Scaffold.of(context).closeDrawer();
                 },
-              ),  ListTile(
-                shape: smoothRectangleBorder(radius: 12),
-                title: const Text(
-                  'Inventory report',
-                ),
-                leading: const Icon(
-                  Icons.shopping_cart_rounded,
-                  size: 24,
-                ),
-                onTap: () {
-                  Get.to(() => const PurchaseReport());
-                  Scaffold.of(context).closeDrawer();
-                },
-              ),  ListTile(
+              ),
+              // ListTile(
+              //   shape: smoothRectangleBorder(radius: 12),
+              //   title: const Text(
+              //     'Inventory report',
+              //   ),
+              //   leading: const Icon(
+              //     Icons.shelves,
+              //     size: 24,
+              //   ),
+              //   onTap: () {
+              //     Get.to(() => const PurchaseReport());
+              //     Scaffold.of(context).closeDrawer();
+              //   },
+              // ),
+              ListTile(
                 shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Payment report',
                 ),
-                leading: const Icon(
-                  Icons.shopping_cart_rounded,
-                  size: 24,
+                leading: FaIcon(
+                  FontAwesomeIcons.coins,
+                  size: 19,
                 ),
                 onTap: () {
                   Get.to(() => const PaymentReport());

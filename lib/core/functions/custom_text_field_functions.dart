@@ -15,7 +15,7 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
-import '../../sales/functions/sales_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 titleToHint({String? title}) {
   String? value;
@@ -93,7 +93,7 @@ onTextFieldPressed({String? title, int? index}) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentPage == purchaseN()) {
     onPurchaseProductSelect(title: title, index: index);
-  } else if ([salesReportN, purchaseReportN].contains(currentPage)) {
+  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentPage)) {
     onReportFilterSelect(title: title!);
   }
 }

@@ -23,7 +23,7 @@ class CustomerDetail extends StatelessWidget {
         customerId: customerDatabaseModel.customerId,
       ),
     );
-    return BodyWrapper(
+    return const BodyWrapper(
       pageName: customerDetailN,
       body: ProfileDetail(),
     );

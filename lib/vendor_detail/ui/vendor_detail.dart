@@ -6,7 +6,7 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 
-import '../../core/ui/profile/profile_detail.dart';
+import 'package:my_inventory/core/ui/profile/profile_detail.dart';
 
 class VendorDetail extends StatelessWidget {
   final VendorDatabaseModel vendorDatabaseModel;
@@ -24,7 +24,7 @@ class VendorDetail extends StatelessWidget {
         vendorId: vendorDatabaseModel.vendorId,
       ),
     );
-    return BodyWrapper(
+    return const BodyWrapper(
       pageName: vendorDetailN,
       body: ProfileDetail(),
     );

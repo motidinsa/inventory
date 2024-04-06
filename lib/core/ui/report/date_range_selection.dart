@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/name_constants.dart';
-import '../../constants/widget_constants.dart';
-import '../custom_text_field.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class DateRangeSelection extends StatelessWidget {
   const DateRangeSelection({super.key});
@@ -12,14 +12,14 @@ class DateRangeSelection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
+         SizedBox(
             width: 130,
             child: CustomTextField(
               title: fromN,
               labelText: fromN,
             )),
         sizedBox(width: 25),
-        Column(
+         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Text(toN,

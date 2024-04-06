@@ -76,7 +76,7 @@ class SalesReportController extends GetxController {
     discount = 0;
     for (var element in isar.salesDatabaseModels
         .filter()
-        .salesDateBetween(startDate!, endDate!.add(Duration(days: 1)),
+        .salesDateBetween(startDate!, endDate!.add(const Duration(days: 1)),
             includeUpper: false)
         .sortBySalesDateDesc()
         .findAllSync()) {

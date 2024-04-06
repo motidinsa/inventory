@@ -4,6 +4,7 @@ import 'package:my_inventory/add_product/ui/add_product.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase/ui/purchase.dart';
+import 'package:my_inventory/reorder_stock/ui/reorder_stock.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 
 import 'package:my_inventory/customer_list/ui/customer_list.dart';
@@ -35,5 +36,9 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
     else {
       Get.to(() => VendorList());
     }
+  }else if (title == reorderStockN()) {
+
+      Get.to(() => ReorderStock());
+
   }
 }

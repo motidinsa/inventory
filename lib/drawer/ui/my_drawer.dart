@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:my_inventory/core/ui/title_with_submenu.dart';
 
-import '../../core/constants/widget_constants.dart';
-import '../../core/styles/styles.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -28,7 +28,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text(
                   'Export',
                 ),
-                leading: FaIcon(FontAwesomeIcons.fileExport,size: 22,),
+                leading: const FaIcon(FontAwesomeIcons.fileExport,size: 22,),
                 onTap: () {
                 },
               ),
@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text(
                   'Import',
                 ),
-                leading: FaIcon(FontAwesomeIcons.fileImport,size: 22,),
+                leading: const FaIcon(FontAwesomeIcons.fileImport,size: 22,),
                 onTap: () {
                 },
               ),

@@ -49,7 +49,7 @@ class PurchaseReportController extends GetxController {
     totalCost = 0;
     for (var element in isar.purchaseAllDatabaseModels
         .filter()
-        .purchaseDateBetween(startDate!, endDate!.add(Duration(days: 1)),
+        .purchaseDateBetween(startDate!, endDate!.add(const Duration(days: 1)),
             includeUpper: false)
         .sortByPurchaseDateDesc()
         .findAllSync()) {

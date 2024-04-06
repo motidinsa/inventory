@@ -3,7 +3,7 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 
 class PurchaseReportSummary extends StatelessWidget {
   final double totalCost;

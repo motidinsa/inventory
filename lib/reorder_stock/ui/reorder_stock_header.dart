@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 
-class ReportHeader extends StatelessWidget {
-  const ReportHeader({super.key});
+class ReorderStockHeader extends StatelessWidget {
+  const ReorderStockHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +29,11 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: purchaseSpacing),
                 child: Text(
-                  'Date',
+                  'No.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: bold(),
-                      fontSize: 17,
+                      fontSize: 16,
                       color: Colors.grey.shade800),
                 ),
               ),
@@ -46,11 +44,11 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  'Item',
+                  'Product',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: bold(),
-                      fontSize: 17,
+                      fontSize: 16,
                       color: Colors.grey.shade800),
                 ),
               ),
@@ -61,11 +59,11 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  'Qty',
+                  'Reorder Qty',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: bold(),
-                      fontSize: 17,
+                      fontSize: 16,
                       color: Colors.grey.shade800),
                 ),
               ),
@@ -75,52 +73,15 @@ class ReportHeader extends StatelessWidget {
               width: getReportFourthWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
-                child: Text(
-                  AppController.to.currentPages.last == salesReportN
-                      ? 'T.cost'
-                      : 'U.cost',
+                child: Text('Qty on hand',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: bold(),
-                      fontSize: 17,
+                      fontSize: 16,
                       color: Colors.grey.shade800),
                 ),
               ),
             ),
-            // sizedBox(width: spacingWidthR),
-            SizedBox(
-              width: getReportFifthWidth(),
-              child: Padding(
-                padding: const EdgeInsets.only(right: purchaseSpacing),
-                child: Text(
-                  AppController.to.currentPages.last == salesReportN
-                      ? 'T.price'
-                      : 'T.cost',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: bold(),
-                      fontSize: 17,
-                      color: Colors.grey.shade800),
-                ),
-              ),
-            ),
-            if (AppController.to.currentPages.last == salesReportN) ...[
-              // sizedBox(width: spacingWidthR),
-              SizedBox(
-                width: getReportSixthWidth(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: purchaseSpacing),
-                  child: Text(
-                    'Profit',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: bold(),
-                        fontSize: 17,
-                        color: Colors.grey.shade800),
-                  ),
-                ),
-              )
-            ],
           ],
         ),
       ),

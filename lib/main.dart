@@ -23,7 +23,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:my_inventory/drawer/ui/my_drawer.dart';
 
-import 'core/model/sales/sales_payment_database_model.dart';
+import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
 
 late Isar isar;
 

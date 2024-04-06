@@ -203,7 +203,7 @@ titleToData({required String title, int? index}) {
     return getEditCustomerData(title: title);
   } else if (currentPage == editVendorN) {
     return getEditVendorData(title: title);
-  } else if ([salesReportN, purchaseReportN].contains(currentPage)) {
+  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentPage)) {
     return getReportSelectedDate(title: title);
   }
   return value;

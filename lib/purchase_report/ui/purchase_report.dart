@@ -9,7 +9,7 @@ import 'package:my_inventory/core/ui/report/report_header.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report_summary.dart';
 
-import '../../core/ui/report/report_selected_date_summary.dart';
+import 'package:my_inventory/core/ui/report/report_selected_date_summary.dart';
 
 class PurchaseReport extends StatelessWidget {
   const PurchaseReport({super.key});

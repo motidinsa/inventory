@@ -40,7 +40,7 @@ class ReportData extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportItemWidth(),
+              width: getReportSecondWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
@@ -54,7 +54,7 @@ class ReportData extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportQtyWidth(),
+              width: getReportThirdWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
@@ -67,7 +67,7 @@ class ReportData extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportCostWidth(),
+              width: getReportFourthWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
@@ -80,41 +80,43 @@ class ReportData extends StatelessWidget {
               ),
             ),
             // sizedBox(width: spacingWidthR),
-            SizedBox(
-              width: getReportPriceWidth(),
-              child: Padding(
-                padding: const EdgeInsets.only(right: purchaseSpacing),
-                child: Text(
-                  getFifthData(index: index),
-                  // '999,999',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade800,
-                  ),
-                ),
-              ),
-            ),
-            if ([salesReportN, paymentReportN]
-                .contains(AppController.to.currentPages.last)) ...[
-              // sizedBox(width: spacingWidthR),
+            if (AppController.to.currentPages.last != reorderQuantityN) ...[
               SizedBox(
-                width: getReportProfitWidth(),
+                width: getReportFifthWidth(),
                 child: Padding(
                   padding: const EdgeInsets.only(right: purchaseSpacing),
                   child: Text(
-                    getSixthData(index: index),
-                    // '99,999',
+                    getFifthData(index: index),
+                    // '999,999',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.green.shade800,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade800,
                     ),
                   ),
                 ),
-              )
-            ],
+              ),
+              if ([salesReportN, paymentReportN]
+                  .contains(AppController.to.currentPages.last)) ...[
+                // sizedBox(width: spacingWidthR),
+                SizedBox(
+                  width: getReportSixthWidth(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: purchaseSpacing),
+                    child: Text(
+                      getSixthData(index: index),
+                      // '99,999',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.green.shade800,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ]
           ],
         ),
       ),

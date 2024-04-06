@@ -4,11 +4,12 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/report/date_range_selection.dart';
+import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 
-import '../../purchase_report/controller/purchase_report_controller.dart';
-import '../constants/name_constants.dart';
-import '../constants/widget_constants.dart';
+import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/constants/widget_constants.dart';
 
 class DateFilter extends StatelessWidget {
   const DateFilter({super.key});
@@ -25,15 +26,18 @@ class DateFilter extends StatelessWidget {
               GetBuilder<SalesReportController>(builder: (context) {
                 return DateRangeSelection();
               })
-            else
+            else if (AppController.to.currentPages.last == purchaseReportN)
               GetBuilder<PurchaseReportController>(builder: (context) {
+                return DateRangeSelection();
+              })   else if (AppController.to.currentPages.last == paymentReportN)
+              GetBuilder<PaymentReportController>(builder: (context) {
                 return DateRangeSelection();
               }),
             sizedBox(height: 15),
             ActionButton(
               redirectFrom: dateSelectN,
               actionButtonType: ActionButtonType.filter,
-              padding: EdgeInsets.symmetric( horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
             )
           ],
         ),

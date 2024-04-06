@@ -5,13 +5,11 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/report/report_data.dart';
-import 'package:my_inventory/core/ui/report/report_header.dart';
 import 'package:my_inventory/payment_report/ui/payment_report_header.dart';
-import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report_summary.dart';
 
-import '../../core/ui/report/report_selected_date_summary.dart';
-import '../controller/payment_report_controller.dart';
+import 'package:my_inventory/core/ui/report/report_selected_date_summary.dart';
+import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 
 class PaymentReport extends StatelessWidget {
   const PaymentReport({super.key});

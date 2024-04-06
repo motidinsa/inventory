@@ -3,8 +3,8 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/ui/custom_text_field.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class PaymentOptions extends StatelessWidget {
   const PaymentOptions({super.key});
@@ -42,7 +42,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                          CustomTextField(
+                           CustomTextField(
                             title: cashN,
                           ),
                         ],
@@ -60,7 +60,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                          CustomTextField(
+                           CustomTextField(
                             title: transferN,
                           ),
                         ],
@@ -78,7 +78,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                          CustomTextField(
+                           CustomTextField(
                             title: creditN,
                           ),
                         ],

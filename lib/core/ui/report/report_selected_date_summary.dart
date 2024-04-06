@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 
-import '../../styles/styles.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class ReportSelectedDateSummary extends StatelessWidget {
   final DateTime startDate;

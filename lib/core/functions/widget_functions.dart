@@ -1,4 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -6,8 +5,8 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
-import '../styles/styles.dart';
-import '../ui/date_filter.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/date_filter.dart';
 
 appBar({required String pageName, required BuildContext context}) {
   return AppBar(
@@ -29,7 +28,7 @@ appBar({required String pageName, required BuildContext context}) {
         color: Colors.grey.shade800,
       ),
     ),
-    actions: [salesReportN, purchaseReportN]
+    actions: [salesReportN, purchaseReportN,paymentReportN]
             .contains(AppController.to.currentPages.last)
         ? [
             PopupMenuButton(

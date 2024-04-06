@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-import '../../core/model/customer/customer_database_model.dart';
-import '../../main.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/main.dart';
 
 class CustomerDetailController extends GetxController {
   final int isarId;

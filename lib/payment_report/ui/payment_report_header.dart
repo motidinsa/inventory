@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/functions/report/report_functions.dart';
@@ -42,7 +40,7 @@ class PaymentReportHeader extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportItemWidth(),
+              width: getReportSecondWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
@@ -57,7 +55,7 @@ class PaymentReportHeader extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportQtyWidth(),
+              width: getReportThirdWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
@@ -72,7 +70,7 @@ class PaymentReportHeader extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportCostWidth(),
+              width: getReportFourthWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text('Transfer',
@@ -86,7 +84,7 @@ class PaymentReportHeader extends StatelessWidget {
             ),
             // sizedBox(width: spacingWidthR),
             SizedBox(
-              width: getReportPriceWidth(),
+              width: getReportFifthWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text('Credit',
@@ -98,7 +96,7 @@ class PaymentReportHeader extends StatelessWidget {
                 ),
               ),
             ),SizedBox(
-              width: getReportProfitWidth(),
+              width: getReportSixthWidth(),
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text('Total',

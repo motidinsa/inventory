@@ -63,7 +63,7 @@ class Sales extends StatelessWidget {
             ),
             ProductPriceSummary(currentPage: salesN()),
             sizedBox(height: 5),
-            PaymentOptions(),
+             PaymentOptions(),
             ActionButton(redirectFrom: salesN())
           ],
         ),
