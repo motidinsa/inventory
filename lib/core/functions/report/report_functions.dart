@@ -7,6 +7,8 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 
+import '../../../payment_report/controller/payment_report_controller.dart';
+
 const List<double> purchaseWidthRatio = [0.2, 0.28, 0.12, 0.2, 0.2];
 const List<double> salesWidthRatio = [0.17, 0.2, 0.1, 0.18, 0.19, 0.16];
 const double purchaseSpacing = 3;
@@ -32,53 +34,90 @@ double getReportWidth() {
   //     20;
 }
 
-String getReportDate({required int index}) {
-  if (AppController.to.currentPages.last == salesReportN) {
+String getFirstData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
     return DateFormat('MMM d')
         .format(SalesReportController.to.salesReportModels[index].salesDate);
+  } else if (currentPage == purchaseReportN) {
+    return DateFormat('MMM d').format(
+        PurchaseReportController.to.purchaseReportModels[index].purchaseDate);
+  } else if (currentPage == paymentReportN) {
+    return DateFormat('MMM d').format(
+        PaymentReportController.to.paymentReportModels[index].paymentDate);
   }
-  return DateFormat('MMM d').format(
-      PurchaseReportController.to.purchaseReportModels[index].purchaseDate);
+  return '';
 }
 
-String getReportItem({required int index}) {
-  if (AppController.to.currentPages.last == salesReportN) {
+String getSecondData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
     return SalesReportController.to.salesReportModels[index].productName;
+  } else if (currentPage == purchaseReportN) {
+    return PurchaseReportController.to.purchaseReportModels[index].productName;
+  } else if (currentPage == paymentReportN) {
+    return PaymentReportController.to.paymentReportModels[index].customerName;
   }
-  return PurchaseReportController.to.purchaseReportModels[index].productName;
+
+  return '';
 }
 
-String getReportQty({required int index}) {
-  if (AppController.to.currentPages.last == salesReportN) {
+String getThirdData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].quantity);
+  } else if (currentPage == purchaseReportN) {
+    return getFormattedNumberWithComa(
+        PurchaseReportController.to.purchaseReportModels[index].quantity);
+  } else if (currentPage == paymentReportN) {
+    return getFormattedNumberWithComa(
+        PaymentReportController.to.paymentReportModels[index].cash);
   }
-  return getFormattedNumberWithComa(
-      PurchaseReportController.to.purchaseReportModels[index].quantity);
+  return '';
 }
 
-String getReportCost({required int index}) {
-  if (AppController.to.currentPages.last == salesReportN) {
+String getFourthData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalCost);
+  } else if (currentPage == purchaseReportN) {
+    return getFormattedNumberWithComa(
+        PurchaseReportController.to.purchaseReportModels[index].unitCost);
+  } else if (currentPage == paymentReportN) {
+    return getFormattedNumberWithComa(
+        PaymentReportController.to.paymentReportModels[index].transfer);
   }
-  return getFormattedNumberWithComa(
-      PurchaseReportController.to.purchaseReportModels[index].unitCost);
+  return '';
 }
 
-String getReportPrice({required int index}) {
-  if (AppController.to.currentPages.last == salesReportN) {
+String getFifthData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalPrice);
+  } else if (currentPage == purchaseReportN) {
+    return getFormattedNumberWithComa(
+        PurchaseReportController.to.purchaseReportModels[index].totalCost);
+  } else if (currentPage == paymentReportN) {
+    return getFormattedNumberWithComa(
+        PaymentReportController.to.paymentReportModels[index].credit);
   }
-  return getFormattedNumberWithComa(
-      PurchaseReportController.to.purchaseReportModels[index].totalCost);
+  return '';
 }
 
-String getReportProfit({required int index}) {
-  return getFormattedNumberWithComa(
-      SalesReportController.to.salesReportModels[index].totalPrice -
-          SalesReportController.to.salesReportModels[index].totalCost);
+String getSixthData({required int index}) {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == salesReportN) {
+    return getFormattedNumberWithComa(
+        SalesReportController.to.salesReportModels[index].totalPrice -
+            SalesReportController.to.salesReportModels[index].totalCost);
+  } else if (currentPage == paymentReportN) {
+    return getFormattedNumberWithComa(
+        PaymentReportController.to.paymentReportModels[index].total);
+  }
+  return '';
 }
 
 double getReportDateWidth() {
@@ -182,3 +221,5 @@ onReportFilterSelect({required String title}) {
     }
   });
 }
+
+getFirstHeaderElement() {}

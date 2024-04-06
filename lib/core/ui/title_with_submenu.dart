@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/payment_report/ui/payment_report.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
 import 'package:my_inventory/sales_report/ui/sales_report.dart';
 
@@ -56,6 +57,32 @@ class TitleWithSubMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   Get.to(() => const PurchaseReport());
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),  ListTile(
+                shape: smoothRectangleBorder(radius: 12),
+                title: const Text(
+                  'Inventory report',
+                ),
+                leading: const Icon(
+                  Icons.shopping_cart_rounded,
+                  size: 24,
+                ),
+                onTap: () {
+                  Get.to(() => const PurchaseReport());
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),  ListTile(
+                shape: smoothRectangleBorder(radius: 12),
+                title: const Text(
+                  'Payment report',
+                ),
+                leading: const Icon(
+                  Icons.shopping_cart_rounded,
+                  size: 24,
+                ),
+                onTap: () {
+                  Get.to(() => const PaymentReport());
                   Scaffold.of(context).closeDrawer();
                 },
               ),

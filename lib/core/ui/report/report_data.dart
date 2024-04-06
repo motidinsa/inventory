@@ -28,7 +28,7 @@ class ReportData extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: purchaseSpacing),
                 child: Text(
-                  getReportDate(index: index),
+                  getFirstData(index: index),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -44,7 +44,7 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  getReportItem(index: index),
+                  getSecondData(index: index),
                   // 'fjreiuf freifre fref',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  getReportQty(index: index),
+                  getThirdData(index: index),
                   // '992',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
@@ -71,7 +71,7 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  getReportCost(index: index),
+                  getFourthData(index: index),
                   // '999,999',
                   textAlign: TextAlign.center,
                   // overflow: TextOverflow.fade,
@@ -85,7 +85,7 @@ class ReportData extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  getReportPrice(index: index),
+                  getFifthData(index: index),
                   // '999,999',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -95,14 +95,15 @@ class ReportData extends StatelessWidget {
                 ),
               ),
             ),
-            if (AppController.to.currentPages.last == salesReportN) ...[
+            if ([salesReportN, paymentReportN]
+                .contains(AppController.to.currentPages.last)) ...[
               // sizedBox(width: spacingWidthR),
               SizedBox(
                 width: getReportProfitWidth(),
                 child: Padding(
                   padding: const EdgeInsets.only(right: purchaseSpacing),
                   child: Text(
-                    getReportProfit(index: index),
+                    getSixthData(index: index),
                     // '99,999',
                     textAlign: TextAlign.center,
                     style: TextStyle(

@@ -48,8 +48,13 @@ const SalesPaymentDatabaseModelSchema = CollectionSchema(
       name: r'salesPaymentId',
       type: IsarType.string,
     ),
-    r'transfer': PropertySchema(
+    r'total': PropertySchema(
       id: 6,
+      name: r'total',
+      type: IsarType.double,
+    ),
+    r'transfer': PropertySchema(
+      id: 7,
       name: r'transfer',
       type: IsarType.double,
     )
@@ -74,12 +79,7 @@ int _salesPaymentDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.customerId;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.customerId.length * 3;
   bytesCount += 3 + object.groupSalesId.length * 3;
   bytesCount += 3 + object.salesPaymentId.length * 3;
   return bytesCount;
@@ -97,7 +97,8 @@ void _salesPaymentDatabaseModelSerialize(
   writer.writeString(offsets[3], object.groupSalesId);
   writer.writeBool(offsets[4], object.isAppWriteSynced);
   writer.writeString(offsets[5], object.salesPaymentId);
-  writer.writeDouble(offsets[6], object.transfer);
+  writer.writeDouble(offsets[6], object.total);
+  writer.writeDouble(offsets[7], object.transfer);
 }
 
 SalesPaymentDatabaseModel _salesPaymentDatabaseModelDeserialize(
@@ -109,11 +110,12 @@ SalesPaymentDatabaseModel _salesPaymentDatabaseModelDeserialize(
   final object = SalesPaymentDatabaseModel(
     cash: reader.readDouble(offsets[0]),
     credit: reader.readDouble(offsets[1]),
-    customerId: reader.readStringOrNull(offsets[2]),
+    customerId: reader.readString(offsets[2]),
     groupSalesId: reader.readString(offsets[3]),
     isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
     salesPaymentId: reader.readString(offsets[5]),
-    transfer: reader.readDouble(offsets[6]),
+    total: reader.readDouble(offsets[6]),
+    transfer: reader.readDouble(offsets[7]),
   );
   object.id = id;
   return object;
@@ -131,7 +133,7 @@ P _salesPaymentDatabaseModelDeserializeProp<P>(
     case 1:
       return (reader.readDouble(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
@@ -139,6 +141,8 @@ P _salesPaymentDatabaseModelDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
+      return (reader.readDouble(offset)) as P;
+    case 7:
       return (reader.readDouble(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -375,26 +379,8 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> customerIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'customerId',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> customerIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'customerId',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -408,7 +394,7 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -424,7 +410,7 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -440,8 +426,8 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -891,6 +877,72 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> totalEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'total',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> totalGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'total',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> totalLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'total',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> totalBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'total',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> transferEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1050,6 +1102,20 @@ extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByTotal() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'total', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByTotalDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'total', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> sortByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'transfer', Sort.asc);
@@ -1165,6 +1231,20 @@ extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByTotal() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'total', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByTotalDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'total', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> thenByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'transfer', Sort.asc);
@@ -1225,6 +1305,13 @@ extension SalesPaymentDatabaseModelQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
+      distinctByTotal() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'total');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
       distinctByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'transfer');
@@ -1254,7 +1341,7 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<SalesPaymentDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<SalesPaymentDatabaseModel, String, QQueryOperations>
       customerIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'customerId');
@@ -1279,6 +1366,13 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
       salesPaymentIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'salesPaymentId');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, double, QQueryOperations>
+      totalProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'total');
     });
   }
 

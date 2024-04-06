@@ -177,16 +177,20 @@ class SalesController extends GetxController {
               isNumeric(discount.value) ? double.parse(discount.value) : 0,
         ),
       );
-      isar.salesPaymentDatabaseModels.put(
-        SalesPaymentDatabaseModel(
-          cash: double.parse(cash),
-          transfer: double.parse(transfer),
-          credit: double.parse(credit),
-          customerId: customerId,
-          groupSalesId: groupSalesId,
-          salesPaymentId: salesPaymentId,
-        ),
-      );
+      if ((transfer.isNotEmpty && transfer != '0') ||
+          (cash.isNotEmpty && cash != '0')) {
+        isar.salesPaymentDatabaseModels.put(
+          SalesPaymentDatabaseModel(
+            cash: double.parse(cash),
+            transfer: double.parse(transfer),
+            credit: double.parse(credit),
+            customerId: customerId!,
+            groupSalesId: groupSalesId,
+            salesPaymentId: salesPaymentId,
+            total: double.parse(total.value),
+          ),
+        );
+      }
     });
 
     isLocalSaveLoading(false);

@@ -8,7 +8,8 @@ class SalesPaymentDatabaseModel {
   double cash;
   double transfer;
   double credit;
-  String? customerId;
+  double total;
+  String customerId;
   String salesPaymentId;
   String groupSalesId;
   bool? isAppWriteSynced;
@@ -17,7 +18,8 @@ class SalesPaymentDatabaseModel {
     required this.cash,
     required this.transfer,
     required this.credit,
-    this.customerId,
+    required this.total,
+    required this.customerId,
     required this.salesPaymentId,
     required this.groupSalesId,
     this.isAppWriteSynced,
