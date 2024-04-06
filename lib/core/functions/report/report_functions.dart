@@ -11,6 +11,7 @@ import '../../../payment_report/controller/payment_report_controller.dart';
 
 const List<double> purchaseWidthRatio = [0.2, 0.28, 0.12, 0.2, 0.2];
 const List<double> salesWidthRatio = [0.17, 0.2, 0.1, 0.18, 0.19, 0.16];
+const List<double> reorderQtyWidthRatio = [0.2, 0.4, 0.2, 0.2];
 const double purchaseSpacing = 3;
 
 double getReportWidth() {
@@ -45,6 +46,8 @@ String getFirstData({required int index}) {
   } else if (currentPage == paymentReportN) {
     return DateFormat('MMM d').format(
         PaymentReportController.to.paymentReportModels[index].paymentDate);
+  } else if (currentPage == reorderQuantityN) {
+    return (index + 1).toString();
   }
   return '';
 }
@@ -120,10 +123,16 @@ String getSixthData({required int index}) {
   return '';
 }
 
-double getReportDateWidth() {
-  return AppController.to.currentPages.last == purchaseReportN
-      ? Get.mediaQuery.size.width * purchaseWidthRatio[0]
-      : Get.mediaQuery.size.width * salesWidthRatio[0];
+double getReportFirstWidth() {
+  String currentPage = AppController.to.currentPages.last;
+  if (currentPage == purchaseReportN) {
+    return Get.mediaQuery.size.width * purchaseWidthRatio[0];
+  } else if (currentPage == salesReportN) {
+    return Get.mediaQuery.size.width * salesWidthRatio[0];
+  } else if (currentPage == reorderQuantityN) {
+    return Get.mediaQuery.size.width * reorderQtyWidthRatio[0];
+  }
+  return 0;
 }
 
 double getReportItemWidth() {

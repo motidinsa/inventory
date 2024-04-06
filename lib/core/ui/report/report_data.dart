@@ -23,7 +23,7 @@ class ReportData extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: getReportDateWidth(),
+              width: getReportFirstWidth(),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: purchaseSpacing),

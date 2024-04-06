@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import '../../core/constants/name_constants.dart';
 
 class PurchaseReportSummary extends StatelessWidget {
   final double totalCost;
@@ -26,7 +29,7 @@ class PurchaseReportSummary extends StatelessWidget {
             children: [
               RichText(
                 text: TextSpan(
-                  text: 'Total cost: ',
+                  text: 'Total ${AppController.to.currentPages.last==purchaseReportN?'cost: ':':  '}',
                   style: TextStyle(
                       fontWeight: bold(),
                       fontSize: 19,

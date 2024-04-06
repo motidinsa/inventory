@@ -27,7 +27,7 @@ class PaymentReportHeader extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: getReportDateWidth(),
+              width: getReportFirstWidth(),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: purchaseSpacing),
                 child: Text(
