@@ -10,6 +10,7 @@ import 'package:my_inventory/sales_report/controller/sales_report_controller.dar
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 
+import '../../../inventory_report/controller/inventory_report_controller.dart';
 import '../../packages/custom_date_picker.dart';
 
 const List<double> purchaseWidthRatio = [0.2, 0.28, 0.12, 0.2, 0.2];
@@ -22,6 +23,13 @@ const List<double> paymentReportWidthRatio = [
   0.16,
   0.16,
   0.16
+];
+const List<double> inventoryReportWidthRatio = [
+  0.1,
+  0.3,
+  0.15,
+  0.2,
+  0.25,
 ];
 // const List<double> reorderQtyWidthRatio =  [0.25, 0.25, 0.25, 0.25];
 const double purchaseSpacing = 3;
@@ -58,7 +66,7 @@ String getFirstData({required int index}) {
   } else if (currentPage == paymentReportN) {
     return DateFormat('MMM d').format(
         PaymentReportController.to.paymentReportModels[index].paymentDate);
-  } else if (currentPage == reorderQuantityN) {
+  } else if ([reorderQuantityN, inventoryReportN].contains(currentPage)) {
     return (index + 1).toString();
   }
   return '';
@@ -74,6 +82,9 @@ String getSecondData({required int index}) {
     return PaymentReportController.to.paymentReportModels[index].customerName;
   } else if (currentPage == reorderQuantityN) {
     return ReorderStockController.to.productDatabaseModels[index].productName;
+  } else if (currentPage == inventoryReportN) {
+    return InventoryReportController
+        .to.productDatabaseModels[index].productName;
   }
 
   return '';
@@ -91,9 +102,11 @@ String getThirdData({required int index}) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].cash);
   } else if (currentPage == reorderQuantityN) {
-    return getFormattedNumberWithComa( ReorderStockController
-        .to.productDatabaseModels[index].reorderQuantity
-        );
+    return getFormattedNumberWithComa(
+        ReorderStockController.to.productDatabaseModels[index].reorderQuantity);
+  } else if (currentPage == inventoryReportN) {
+    return getFormattedNumberWithComa(InventoryReportController
+        .to.productDatabaseModels[index].quantityOnHand);
   }
   return '';
 }
@@ -110,8 +123,11 @@ String getFourthData({required int index}) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].transfer);
   } else if (currentPage == reorderQuantityN) {
-    return getFormattedNumberWithComa(ReorderStockController.to.productDatabaseModels[index].quantityOnHand
-        );
+    return getFormattedNumberWithComa(
+        ReorderStockController.to.productDatabaseModels[index].quantityOnHand);
+  } else if (currentPage == inventoryReportN) {
+    return getFormattedNumberWithComa(InventoryReportController.to.productDatabaseModels[index].cost)
+;
   }
   return '';
 }
@@ -127,6 +143,10 @@ String getFifthData({required int index}) {
   } else if (currentPage == paymentReportN) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].credit);
+  } else if (currentPage == inventoryReportN) {
+    return getFormattedNumberWithComa(InventoryReportController
+        .to.productDatabaseModels[index].quantityOnHand *
+        InventoryReportController.to.productDatabaseModels[index].cost);
   }
   return '';
 }
@@ -156,6 +176,8 @@ double getReportFirstWidth() {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[0];
   } else if (currentPage == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[0];
+  } else if (currentPage == inventoryReportN) {
+    return Get.mediaQuery.size.width * inventoryReportWidthRatio[0];
   }
   return 0;
 }
@@ -172,6 +194,8 @@ double getReportSecondWidth() {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[1];
   } else if (currentPage == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[1];
+  } else if (currentPage == inventoryReportN) {
+    return Get.mediaQuery.size.width * inventoryReportWidthRatio[1];
   }
   return 0;
 }
@@ -188,6 +212,8 @@ double getReportThirdWidth() {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[2];
   } else if (currentPage == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[2];
+  } else if (currentPage == inventoryReportN) {
+    return Get.mediaQuery.size.width * inventoryReportWidthRatio[2];
   }
   return 0;
 }
@@ -203,7 +229,9 @@ double getReportFourthWidth() {
   } else if (currentPage == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[3];
   } else if (currentPage == reorderQuantityN) {
-    return Get.mediaQuery.size.width * reorderQtyWidthRatio[4];
+    return Get.mediaQuery.size.width * reorderQtyWidthRatio[3];
+  } else if (currentPage == inventoryReportN) {
+    return Get.mediaQuery.size.width * inventoryReportWidthRatio[3];
   }
   return 0;
 }
@@ -218,6 +246,8 @@ double getReportFifthWidth() {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[4];
   } else if (currentPage == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[4];
+  } else if (currentPage == inventoryReportN) {
+    return Get.mediaQuery.size.width * inventoryReportWidthRatio[4];
   }
   return 0;
 }
@@ -244,7 +274,7 @@ String? getReportSelectedDate({required String title}) {
     } else if (title == toN && SalesReportController.to.endDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.endDate!);
     }
-  } else if(currentPage==purchaseReportN){
+  } else if (currentPage == purchaseReportN) {
     if (title == fromN && PurchaseReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.startDate!);
@@ -252,13 +282,12 @@ String? getReportSelectedDate({required String title}) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.endDate!);
     }
-  }else if(currentPage==paymentReportN){
+  } else if (currentPage == paymentReportN) {
     if (title == fromN && PaymentReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PaymentReportController.to.startDate!);
     } else if (title == toN && PaymentReportController.to.endDate != null) {
-      return DateFormat('dd/MM/yy')
-          .format(PaymentReportController.to.endDate!);
+      return DateFormat('dd/MM/yy').format(PaymentReportController.to.endDate!);
     }
   }
   return null;
@@ -272,14 +301,14 @@ onFilterSelect() {
     salesReportController.displayStartDate = salesReportController.startDate;
     salesReportController.displayEndDate = salesReportController.endDate;
     salesReportController.onSalesReportFilterPressed();
-  } else if(currentPage == purchaseReportN){
+  } else if (currentPage == purchaseReportN) {
     final PurchaseReportController purchaseReportController = Get.find();
 
     purchaseReportController.displayStartDate =
         purchaseReportController.startDate;
     purchaseReportController.displayEndDate = purchaseReportController.endDate;
     purchaseReportController.onPurchaseReportFilterPressed();
-  }else if(currentPage == paymentReportN){
+  } else if (currentPage == paymentReportN) {
     final PaymentReportController paymentReportController = Get.find();
 
     paymentReportController.displayStartDate =

@@ -7,6 +7,8 @@ import 'package:my_inventory/payment_report/ui/payment_report.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
 import 'package:my_inventory/sales_report/ui/sales_report.dart';
 
+import '../../inventory_report/ui/inventory_report.dart';
+
 class TitleWithSubMenu extends StatelessWidget {
   final String title;
 
@@ -61,21 +63,20 @@ class TitleWithSubMenu extends StatelessWidget {
                   Scaffold.of(context).closeDrawer();
                 },
               ),
-              // ListTile(
-              //   shape: smoothRectangleBorder(radius: 12),
-              //   title: const Text(
-              //     'Inventory report',
-              //   ),
-              //   leading: const Icon(
-              //     Icons.shelves,
-              //     size: 24,
-              //   ),
-              //   onTap: () {
-              //     Get.to(() => const PurchaseReport());
-              //     Scaffold.of(context).closeDrawer();
-              //   },
-              // ),
               ListTile(
+                shape: smoothRectangleBorder(radius: 12),
+                title: const Text(
+                  'Inventory report',
+                ),
+                leading: Icon(
+                  Icons.shelves,
+                  size: 24,
+                ),
+                onTap: () {
+                  Get.to(() => const InventoryReport());
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),ListTile(
                 shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Payment report',

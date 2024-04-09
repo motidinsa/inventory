@@ -132,6 +132,7 @@ const String editN = 'Edit';
 const String salesReportN = 'Sales report';
 const String purchaseReportN = 'Purchase report';
 const String paymentReportN = 'Payment report';
+const String inventoryReportN = 'Inventory report';
 const String filterN = 'Filter';
 const String fromN = 'From';
 const String toN = 'To';
