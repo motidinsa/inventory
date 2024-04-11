@@ -28,6 +28,7 @@ import 'package:my_inventory/drawer/ui/my_drawer.dart';
 import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
 
 import 'app_module.dart';
+import 'core/app_bindings.dart';
 import 'core/routes/routes.dart';
 
 late Isar isar;
@@ -58,7 +59,7 @@ void main() async {
   );
   // await Isar.initialize();
   // await initializeDatabase();
-  Get.put(AppController());
+  // Get.put(AppController());
   runApp(ModularApp(module: AppModule(), child: MyApp()));
 
   // Client client = Client();
@@ -84,14 +85,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: RouteName.homepage,
         getPages: routes,
-        // home: GetBuilder<AppController>(builder: (context) {
-        //
-        //   return Scaffold(
-        //     // key: AppController.to.key,
-        //     drawer: const MyDrawer(),
-        //     body: Homepage(),
-        //   );
-        // }),
+        initialBinding: ApplicationBindings(),
       );
     });
   }

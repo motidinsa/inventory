@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -10,7 +11,7 @@ import 'package:my_inventory/homepage/ui/item_type.dart';
 class Homepage extends StatelessWidget {
   Homepage({super.key});
 
-  final AppController appController = Get.find();
+  final AppController appController = Modular.get();
 
   @override
   Widget build(BuildContext context) {

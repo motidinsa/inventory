@@ -13,9 +13,9 @@ import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
 class EditCustomer extends StatelessWidget {
-  final CustomerDatabaseModel customerDatabaseModel;
+  // final CustomerDatabaseModel customerDatabaseModel;
 
-  EditCustomer({super.key, required this.customerDatabaseModel});
+  EditCustomer({super.key, });
 
   final List<String> titleList = [
     customerNameN,
@@ -28,8 +28,8 @@ class EditCustomer extends StatelessWidget {
   final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
-    Get.put(
-        EditCustomerController(customerDatabaseModel: customerDatabaseModel));
+    // Get.put(
+    //     EditCustomerController(customerDatabaseModel: customerDatabaseModel));
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidgetBuilder: (_) {
