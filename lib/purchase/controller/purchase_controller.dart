@@ -41,7 +41,7 @@ class PurchaseController extends GetxController {
   static PurchaseController get to => Get.find();
 
   @override
-  void onInit() {
+  void onInit() {  final Isar isar = Get.find();
     AppController.to.currentPages.add(purchaseN());
     searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
     super.onInit();
@@ -61,7 +61,7 @@ class PurchaseController extends GetxController {
   }
 
   savePurchaseProductToDB() async {
-    DateTime now = DateTime.now();
+    DateTime now = DateTime.now();  final Isar isar = Get.find();
     isLocalSaveLoading(true);
     for (int i = 0; i < purchaseModels.length; i++) {
       PurchaseModel purchaseModel = purchaseModels[i].value;

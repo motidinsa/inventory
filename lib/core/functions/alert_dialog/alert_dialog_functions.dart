@@ -70,6 +70,7 @@ getAlertDialogOptionLists({String? title}) {
 }
 
 getAllAlertDialogOptionLists({String? title}) {
+  final Isar isar = Get.find();
   if (title == selectCategoryN) {
     return isar.categoryDatabaseModels.where().findAllSync();
   } else if (title == selectUomSN) {

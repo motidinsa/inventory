@@ -37,7 +37,7 @@ onEditProductFocusChange({
 }
 
 onEditProductTextFieldPressed({required String title}) {
-  final EditProductController editProductController = Get.find();
+  final EditProductController editProductController = Get.find();  final Isar isar = Get.find();
   Map<String, List> itemsWithList = {
     categoryN: editProductController.categoryListFoundResult,
     uomSN: editProductController.unitOfMeasurementListFoundResult,
@@ -71,7 +71,7 @@ onEditProductTextFieldChange({
   required String data,
   int? index,
 }) {
-  EditProductController editProductController = Get.find();
+  EditProductController editProductController = Get.find();  final Isar isar = Get.find();
   if (title == selectCategoryN) {
     editProductController.categoryListFoundResult(isar.categoryDatabaseModels
         .filter()
@@ -88,7 +88,7 @@ onEditProductTextFieldChange({
 
 onEditProductAlertDialogOptionSelect(
     {required String title, required String data, required int isarId}) {
-  final EditProductController editProductController = Get.find();
+  final EditProductController editProductController = Get.find();  final Isar isar = Get.find();
   editProductController.productInfo.update((product) {
     if (title == selectCategoryN) {
       CategoryDatabaseModel categoryDatabaseModel =

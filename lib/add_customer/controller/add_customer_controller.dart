@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_model.dart';
@@ -21,6 +22,7 @@ class AddCustomerController extends GetxController {
   }
 
   onAddCustomerSaveButtonPressed() async {
+    Isar isar = Get.find();
     DateTime now = DateTime.now();
     String customerId = generateDatabaseId(time: now);
     final dbCustomer = CustomerDatabaseModel(

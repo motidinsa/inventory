@@ -40,7 +40,7 @@ onSalesTextFieldChange({
   required String data,
   int? index,
 }) {
-  SalesController salesController = Get.find();
+  SalesController salesController = Get.find();final Isar isar = Get.find();
   if (title == searchProductsN()) {
     salesController.searchProductFoundResult(isar.productDatabaseModels
         .filter()
@@ -113,7 +113,7 @@ onSalesProductFocusChange({
 
 onSalesSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
-  final SalesController salesController = Get.find();
+  final SalesController salesController = Get.find();final Isar isar = Get.find();
   if (title == searchProductsN()) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;

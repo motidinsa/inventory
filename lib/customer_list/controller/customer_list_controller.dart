@@ -13,6 +13,7 @@ class CustomerListController extends GetxController {
   static CustomerListController get to => Get.find();
   @override
   void onInit() {
+    final Isar isar = Get.find();
     customerList(isar.customerDatabaseModels.where().findAllSync());
     AppController.to.currentPages.add(customerListN);
     super.onInit();

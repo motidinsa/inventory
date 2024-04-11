@@ -21,7 +21,7 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
-    var defaultUnit = isar.unitOfMeasurementDatabaseModels
+    var defaultUnit = Get.find<Isar>().unitOfMeasurementDatabaseModels
         .filter()
         .nameEqualTo('Pcs')
         .findFirstSync();
@@ -47,6 +47,7 @@ class AddProductController extends GetxController {
   ).obs;
 
   onAddProductSaveButtonPressed() async {
+    Isar isar = Get.find();
     isLocalSaveLoading(true);
     DateTime now = DateTime.now();
     final dbProduct = ProductDatabaseModel(

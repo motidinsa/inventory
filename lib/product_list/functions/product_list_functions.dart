@@ -10,7 +10,7 @@ onProductListTextFieldChange({
   required String data,
 }) {
   ProductListController productListController = Get.find();
-  productListController.searchedText(data);
+  productListController.searchedText(data);  final Isar isar = Get.find();
   productListController.productList(isar.productDatabaseModels.filter().productNameContains(data,caseSensitive: false).findAllSync());
 }
 

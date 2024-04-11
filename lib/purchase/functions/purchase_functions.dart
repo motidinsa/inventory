@@ -28,7 +28,7 @@ onPurchaseTextFieldChange({
   PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index!].update((purchase) {
     if (title == searchProductsN()) {
-      PurchaseController purchaseController = Get.find();
+      PurchaseController purchaseController = Get.find();  final Isar isar = Get.find();
       purchaseController.searchProductFoundResult(isar.productDatabaseModels
           .filter()
           .productNameContains(data, caseSensitive: false)
@@ -84,7 +84,7 @@ onPurchaseAlertDialogOption({required String title, required int index}) {
 
 onPurchaseSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
-  final PurchaseController purchaseController = Get.find();
+  final PurchaseController purchaseController = Get.find();final Isar isar = Get.find();
   if (title == searchProductsN()) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;

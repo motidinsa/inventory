@@ -50,7 +50,7 @@ class SalesController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(salesN());
+    AppController.to.currentPages.add(salesN());final Isar isar = Get.find();
     searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
     searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());
@@ -73,7 +73,7 @@ class SalesController extends GetxController {
 
   saveSalesProductToDB() async {
     isLocalSaveLoading(true);
-    List<SalesDatabaseModel> salesDatabaseModels = [];
+    List<SalesDatabaseModel> salesDatabaseModels = [];final Isar isar = Get.find();
     String groupSalesId =
         generateDatabaseId(time: DateTime.now(), identifier: 'group');
     String salesPaymentId =

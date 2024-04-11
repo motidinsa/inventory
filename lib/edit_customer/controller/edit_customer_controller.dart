@@ -11,7 +11,7 @@ import 'package:my_inventory/main.dart';
 
 class EditCustomerController extends GetxController {
   final CustomerDatabaseModel customerDatabaseModel;
-
+  final Isar isar = Get.find();
   EditCustomerController({required this.customerDatabaseModel});
 
   late Rx<CustomerModel> customerInfo;

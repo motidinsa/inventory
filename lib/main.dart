@@ -31,35 +31,33 @@ import 'app_module.dart';
 import 'core/app_bindings.dart';
 import 'core/routes/routes.dart';
 
-late Isar isar;
+// late Isar isar;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final dir = await getApplicationDocumentsDirectory();
-  isar = await Isar.open(
-    [
-      ProductDatabaseModelSchema,
-      QuantityCostDatabaseModelSchema,
-      LogProductDatabaseModelSchema,
-      PurchaseAvailableDatabaseModelSchema,
-      PurchaseAllDatabaseModelSchema,
-      SalesDatabaseModelSchema,
-      SalesPaymentDatabaseModelSchema,
-      GroupSalesDatabaseModelSchema,
-      DeletedProductDatabaseModelSchema,
-      CategoryDatabaseModelSchema,
-      LogCategoryDatabaseModelSchema,
-      UnitOfMeasurementDatabaseModelSchema,
-      LogUnitOfMeasurementDatabaseModelSchema,
-      CustomerDatabaseModelSchema,
-      VendorDatabaseModelSchema
-    ],
-    directory: dir.path,
-  );
-  // await Isar.initialize();
-  // await initializeDatabase();
-  // Get.put(AppController());
+  await Get.putAsync<Isar>(() async {
+    final dir = await getApplicationDocumentsDirectory();
+    return await Isar.open(
+      [
+        ProductDatabaseModelSchema,
+        QuantityCostDatabaseModelSchema,
+        LogProductDatabaseModelSchema,
+        PurchaseAvailableDatabaseModelSchema,
+        PurchaseAllDatabaseModelSchema,
+        SalesDatabaseModelSchema,
+        SalesPaymentDatabaseModelSchema,
+        GroupSalesDatabaseModelSchema,
+        DeletedProductDatabaseModelSchema,
+        CategoryDatabaseModelSchema,
+        LogCategoryDatabaseModelSchema,
+        UnitOfMeasurementDatabaseModelSchema,
+        LogUnitOfMeasurementDatabaseModelSchema,
+        CustomerDatabaseModelSchema,
+        VendorDatabaseModelSchema
+      ],
+      directory: dir.path,
+    );
+  });
   runApp(ModularApp(module: AppModule(), child: MyApp()));
 
   // Client client = Client();

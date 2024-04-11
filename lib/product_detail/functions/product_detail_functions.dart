@@ -12,7 +12,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/product_detail/controller/product_detail_controller.dart';
 
 getProductCategoryName({String? id}) {
-  if (id != null) {
+  if (id != null) {  final Isar isar = Get.find();
     String? name = isar.categoryDatabaseModels
         .filter()
         .categoryIdEqualTo(id)
@@ -23,7 +23,7 @@ getProductCategoryName({String? id}) {
   }
 }
 
-getUomName({required String id}) {
+getUomName({required String id}) {  final Isar isar = Get.find();
   String? name = isar.unitOfMeasurementDatabaseModels
       .filter()
       .uomIdEqualTo(id)
@@ -32,7 +32,7 @@ getUomName({required String id}) {
   return name;
 }
 
-deleteProduct() async {
+deleteProduct() async {  final Isar isar = Get.find();
   await isar.writeTxn(() async {
     await isar.productDatabaseModels.delete(ProductDetailController.to.isarId);
     await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(

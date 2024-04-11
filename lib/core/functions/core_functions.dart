@@ -81,6 +81,7 @@ getFormattedNumberWithoutComa(num) {
 
 onActionButtonPressed({required String redirectFrom}) async {
   await unFocus();
+  final Isar isar = Get.find();
   if (redirectFrom == productDetailN) {
     deleteProduct();
   } else if (redirectFrom == customerDetailN) {
@@ -285,6 +286,7 @@ onImageSourceButtonPressed({
   required String sourceLocation,
 }) async {
   final ImagePicker picker = ImagePicker();
+  final Isar isar = Get.find();
   await picker
       .pickImage(
           source: sourceLocation == galleryN

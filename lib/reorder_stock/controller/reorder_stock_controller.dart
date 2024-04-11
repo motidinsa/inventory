@@ -12,7 +12,7 @@ class ReorderStockController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(reorderQuantityN);
+    AppController.to.currentPages.add(reorderQuantityN);final Isar isar = Get.find();
     for (var element in isar.productDatabaseModels
         .filter()
         .quantityOnHandGreaterThan(0)

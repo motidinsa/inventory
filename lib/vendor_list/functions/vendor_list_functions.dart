@@ -9,7 +9,7 @@ onVendorListTextFieldChange({
   required String data,
 }) {
   VendorListController vendorListController = Get.find();
-  vendorListController.searchedText(data);
+  vendorListController.searchedText(data);final Isar isar = Get.find();
   vendorListController.vendorList(isar.vendorDatabaseModels
       .filter()
       .nameContains(data, caseSensitive: false)

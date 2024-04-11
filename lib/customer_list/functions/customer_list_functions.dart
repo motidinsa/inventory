@@ -9,6 +9,7 @@ onCustomerListTextFieldChange({
   required String data,
 }) {
   CustomerListController customerListController = Get.find();
+  final Isar isar = Get.find();
   customerListController.searchedText(data);
   customerListController.customerList(isar.customerDatabaseModels
       .filter()

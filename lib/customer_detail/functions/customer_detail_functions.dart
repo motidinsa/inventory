@@ -7,6 +7,7 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/main.dart';
 
 deleteCustomer() async {
+  final Isar isar = Get.find();
   await isar.writeTxn(() async {
     await isar.customerDatabaseModels
         .delete(CustomerDetailController.to.isarId);

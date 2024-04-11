@@ -20,7 +20,7 @@ class PurchaseReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(purchaseReportN);
+    AppController.to.currentPages.add(purchaseReportN);  final Isar isar = Get.find();
     for (var element in isar.purchaseAllDatabaseModels
         .where()
         .sortByPurchaseDateDesc()
@@ -46,7 +46,7 @@ class PurchaseReportController extends GetxController {
 
   onPurchaseReportFilterPressed() {
     purchaseReportModels.clear();
-    totalCost = 0;
+    totalCost = 0;  final Isar isar = Get.find();
     for (var element in isar.purchaseAllDatabaseModels
         .filter()
         .purchaseDateBetween(startDate!, endDate!.add(const Duration(days: 1)),

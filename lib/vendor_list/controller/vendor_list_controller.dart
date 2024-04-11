@@ -13,7 +13,7 @@ class VendorListController extends GetxController {
 
   static VendorListController get to => Get.find();
   @override
-  void onInit() {
+  void onInit() {final Isar isar = Get.find();
     vendorList(isar.vendorDatabaseModels.where().findAllSync());
     AppController.to.currentPages.add(vendorListN);
     super.onInit();

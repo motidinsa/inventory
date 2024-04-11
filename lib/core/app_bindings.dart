@@ -30,28 +30,8 @@ class ApplicationBindings implements Bindings {
   ApplicationBindings();
 
   @override
-  Future<void> dependencies() async {
-    final dir = await getApplicationDocumentsDirectory();
+  void dependencies()  {
     Get.lazyPut(() => AppController());
-    Get.putAsync(() async => await Isar.open(
-      [
-      ProductDatabaseModelSchema,
-      QuantityCostDatabaseModelSchema,
-      LogProductDatabaseModelSchema,
-      PurchaseAvailableDatabaseModelSchema,
-      PurchaseAllDatabaseModelSchema,
-      SalesDatabaseModelSchema,
-      SalesPaymentDatabaseModelSchema,
-      GroupSalesDatabaseModelSchema,
-      DeletedProductDatabaseModelSchema,
-      CategoryDatabaseModelSchema,
-      LogCategoryDatabaseModelSchema,
-      UnitOfMeasurementDatabaseModelSchema,
-      LogUnitOfMeasurementDatabaseModelSchema,
-      CustomerDatabaseModelSchema,
-      VendorDatabaseModelSchema
-      ],
-      directory: dir.path,
-    ));
+
   }
 }

@@ -31,6 +31,7 @@ class EditProductController extends GetxController {
   @override
   void onInit() {
     appController.currentPages.add(editProductN);
+    final Isar isar = Get.find();
     String? categoryName;
     late String uomName;
     if (productDatabaseModel.categoryId != null) {
@@ -66,7 +67,7 @@ class EditProductController extends GetxController {
   onEditProductSaveButtonPressed() async {
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
-    DateTime now = DateTime.now();
+    DateTime now = DateTime.now();  final Isar isar = Get.find();
     await isar.writeTxn(() async {
       final dbProduct =
           await isar.productDatabaseModels.get(productDatabaseModel.id);

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
@@ -23,6 +24,7 @@ class AddVendorController extends GetxController {
 
   onAddVendorSaveButtonPressed() async {
     DateTime now = DateTime.now();
+    final Isar isar = Get.find();
     String customerId = generateDatabaseId(time: now);
     final dbVendor = VendorDatabaseModel(
       name: vendorDetail.value.name,

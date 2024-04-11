@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
@@ -16,6 +17,7 @@ class CustomerDetailController extends GetxController {
   @override
   void onInit() {
     AppController.to.currentPages.add(customerDetailN);
+    final Isar isar = Get.find();
     customerDatabaseModel = isar.customerDatabaseModels.getSync(isarId)!;
     super.onInit();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
@@ -17,6 +18,7 @@ class AppController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     currentPages.add('Homepage');
+    final Isar isar = Get.find();
     final uomLength = isar.unitOfMeasurementDatabaseModels.countSync();
     if (uomLength == 0) {
       List<String> defaultUnitOfMeasurement = ['Pcs', 'Kg', 'Liter'];

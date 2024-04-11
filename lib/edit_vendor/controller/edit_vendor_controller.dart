@@ -36,7 +36,7 @@ class EditVendorController extends GetxController {
   }
 
   onEditVendorSaveButtonPressed() async {
-    isLocalSaveLoading(true);
+    isLocalSaveLoading(true);  final Isar isar = Get.find();
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
     await isar.writeTxn(() async {
       final dbVendor =

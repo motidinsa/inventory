@@ -21,7 +21,7 @@ class PaymentReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(paymentReportN);
+    AppController.to.currentPages.add(paymentReportN);  final Isar isar = Get.find();
     for (var element in isar.salesPaymentDatabaseModels.where().findAllSync().reversed) {
       paymentReportModels.add(
         PaymentReportModel(
@@ -48,7 +48,7 @@ class PaymentReportController extends GetxController {
 
   onPaymentReportFilterPressed() {
     paymentReportModels.clear();
-    totalCost = 0;
+    totalCost = 0;  final Isar isar = Get.find();
     for (var element in isar.salesDatabaseModels
         .filter()
         .salesDateBetween(startDate!, endDate!.add(const Duration(days: 1)),

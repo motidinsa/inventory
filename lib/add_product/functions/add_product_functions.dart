@@ -20,6 +20,7 @@ onAddProductTextFieldChange({
   int? index,
 }) {
   AddProductController addProductController = Get.find();
+  Isar isar = Get.find();
   if (title == selectCategoryN) {
     addProductController.categoryListFoundResult(isar.categoryDatabaseModels
         .filter()
@@ -74,7 +75,8 @@ onSalesProductSelect({
   String? title,
   int? listIndex,
 }) {
-  SalesController salesController = Get.find();
+  final SalesController salesController = Get.find();
+  final Isar isar = Get.find();
   if (title == salesN()) {
     salesController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
@@ -105,6 +107,7 @@ onPurchaseProductSelect({
   int? index,
 }) {
   PurchaseController purchaseController = Get.find();
+  final Isar isar = Get.find();
   if (title == purchaseN()) {
     purchaseController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
@@ -131,6 +134,7 @@ onPurchaseProductSelect({
 
 onAddProductTextFieldPressed({required String title}) {
   final AddProductController addProductController = Get.find();
+  final Isar isar = Get.find();
   Map<String, List> itemsWithList = {
     categoryN: addProductController.categoryListFoundResult,
     uomSN: addProductController.unitOfMeasurementListFoundResult,
@@ -154,6 +158,7 @@ onAddProductTextFieldPressed({required String title}) {
 onAddProductAlertDialogOptionSelect(
     {required String title, required String data, required int isarId}) {
   final AddProductController addProductController = Get.find();
+  final Isar isar = Get.find();
   addProductController.productInfo.update((product) {
     if (title == selectCategoryN) {
       CategoryDatabaseModel categoryDatabaseModel =

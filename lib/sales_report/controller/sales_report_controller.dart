@@ -25,7 +25,7 @@ class SalesReportController extends GetxController {
   @override
   void onInit() {
     AppController.to.currentPages.add(salesReportN);
-    String? currentGroupSalesId;
+    String? currentGroupSalesId;final Isar isar = Get.find();
     for (var element in isar.salesDatabaseModels
         .where()
         .sortBySalesDateDesc()
@@ -73,7 +73,7 @@ class SalesReportController extends GetxController {
     String? currentGroupSalesId;
     salesReportModels.clear();
     subtotal = 0;
-    discount = 0;
+    discount = 0;final Isar isar = Get.find();
     for (var element in isar.salesDatabaseModels
         .filter()
         .salesDateBetween(startDate!, endDate!.add(const Duration(days: 1)),

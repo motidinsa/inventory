@@ -6,7 +6,7 @@ import 'package:my_inventory/main.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 
-deleteVendor() async {
+deleteVendor() async {final Isar isar = Get.find();
   await isar.writeTxn(() async {
     await isar.vendorDatabaseModels.delete(VendorDetailController.to.isarId);
     // await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
