@@ -96,3 +96,4 @@ const String dateSelectN = 'date_select';
 const String cashN = 'Cash';
 const String transferN = 'Transfer';
 const String creditN = 'Credit';
+const String noCustomerFoundN = 'No customer found';

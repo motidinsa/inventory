@@ -27,20 +27,31 @@ class CustomerList extends StatelessWidget {
               // sizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  // reverse: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => ProfileMiniDetail(
-                    name: Get.find<CustomerListController>()
-                        .customerList[index]
-                        .name,
-                    index: index,
-                  ),
-                  itemCount:
-                      Get.find<CustomerListController>().customerList.length,
-                  separatorBuilder: (ctx, index) => sizedBox(height: 15),
-                ),
+                child: Get.find<CustomerListController>().customerList.isEmpty
+                    ? Center(
+                        child: Text(
+                          noCustomerFoundN,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.grey.shade700),
+                        ),
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        // reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => ProfileMiniDetail(
+                          name: Get.find<CustomerListController>()
+                              .customerList[index]
+                              .name,
+                          index: index,
+                        ),
+                        itemCount: Get.find<CustomerListController>()
+                            .customerList
+                            .length,
+                        separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                      ),
               ),
             ],
           ),
