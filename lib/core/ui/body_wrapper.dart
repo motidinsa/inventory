@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/widget_functions.dart';
 

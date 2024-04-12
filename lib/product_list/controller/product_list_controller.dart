@@ -3,7 +3,6 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/main.dart';
 
 class ProductListController extends GetxController {
   var emptyValue = ''.obs;
@@ -15,7 +14,7 @@ class ProductListController extends GetxController {
   @override
   void onInit() {  final Isar isar = Get.find();
     productList(isar.productDatabaseModels.where().findAllSync());
-    AppController.to.currentPages.add(productListN());
+    AppController.to.currentPages.add(productListN);
     super.onInit();
   }
 }

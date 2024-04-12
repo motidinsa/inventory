@@ -7,7 +7,7 @@ import 'package:my_inventory/payment_report/ui/payment_report.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
 import 'package:my_inventory/sales_report/ui/sales_report.dart';
 
-import '../../inventory_report/ui/inventory_report.dart';
+import 'package:my_inventory/inventory_report/ui/inventory_report.dart';
 
 class TitleWithSubMenu extends StatelessWidget {
   final String title;
@@ -68,7 +68,7 @@ class TitleWithSubMenu extends StatelessWidget {
                 title: const Text(
                   'Inventory report',
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.shelves,
                   size: 24,
                 ),
@@ -81,7 +81,7 @@ class TitleWithSubMenu extends StatelessWidget {
                 title: const Text(
                   'Payment report',
                 ),
-                leading: FaIcon(
+                leading: const FaIcon(
                   FontAwesomeIcons.coins,
                   size: 19,
                 ),

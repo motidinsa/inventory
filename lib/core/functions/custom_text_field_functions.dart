@@ -26,10 +26,10 @@ titleToHint({String? title}) {
   } else if (title == categoryN) {
     value = selectN;
   } else if (title == productIdN) {
-    value = optionalN();
+    value = optionalN;
   } else if (title == uomSN) {
     value = selectItemN;
-  } else if (title == productListN()) {
+  } else if (title == productListN) {
     value = searchByproductNameN;
   } else if (title == customerListN) {
     value = searchByCustomerNameN;
@@ -39,10 +39,10 @@ titleToHint({String? title}) {
     value = selectN;
   } else if (title == purchaseN) {
     value = selectN;
-  } else if (title == searchProductsN()) {
+  } else if (title == searchProductsN) {
     value = searchByproductNameN;
   } else if (title == selectCategoryN) {
-    value = searchByCategoryNameN();
+    value = searchByCategoryNameN;
   } else if (title == selectUomSN) {
     value = searchUomSN;
   } else if (title == selectN) {
@@ -73,7 +73,7 @@ onTextFieldChange({
     onEditProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == purchaseN) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == productListN()) {
+  } else if (currentPage == productListN) {
     onProductListTextFieldChange(data: data);
   } else if (currentPage == customerListN) {
     onCustomerListTextFieldChange(data: data);
@@ -127,11 +127,11 @@ minimizePadding({String? title}) {
   var items = [
     productN,
     descriptionN,
-    searchProductsN(),
-    productListN(),
+    searchProductsN,
+    productListN,
     selectCategoryN,
     selectUomSN,
-    discountN(),
+    discountN,
     categoryNameN,
     uomNameN,
     customerNameN,
@@ -213,8 +213,8 @@ profileTitleToIcon({
 
 hasSearchIcon({String? title}) {
   var items = [
-    productListN(),
-    searchProductsN(),
+    productListN,
+    searchProductsN,
     selectCategoryN,
     selectUomSN,
     customerListN,

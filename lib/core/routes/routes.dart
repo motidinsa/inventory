@@ -7,12 +7,10 @@ import 'package:my_inventory/add_customer/ui/add_customer.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
-import '../../customer_list/ui/customer_list.dart';
-import '../../drawer/ui/my_drawer.dart';
-import '../../edit_customer/ui/edit_customer.dart';
-import '../../homepage/ui/homepage.dart';
-import '../controller/app_controller.dart';
+import 'package:my_inventory/customer_list/ui/customer_list.dart';
+import 'package:my_inventory/drawer/ui/my_drawer.dart';
+import 'package:my_inventory/homepage/ui/homepage.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 List<GetPage> routes = [
   GetPage(
@@ -22,7 +20,7 @@ List<GetPage> routes = [
           })),
   GetPage(
       name: RouteName.customerList,
-      page: () => CustomerList(),
+      page: () => const CustomerList(),
       binding: BindingsBuilder.put(() => CustomerListController())),
   GetPage(
       name: RouteName.addCustomer,

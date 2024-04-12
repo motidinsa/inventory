@@ -7,7 +7,6 @@ import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dar
 import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales_report/model/sales_report_model.dart';
 
 class SalesReportController extends GetxController {

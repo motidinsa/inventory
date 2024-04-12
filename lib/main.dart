@@ -1,44 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/category/log_category_database_model.dart';
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/core/model/product/deleted_product_database_model.dart';
-import 'package:my_inventory/core/model/product/log_product_database_model.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
-import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
-import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
-import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
-import 'package:my_inventory/core/model/sales/sales_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
-import 'package:my_inventory/homepage/ui/homepage.dart';
-import 'package:my_inventory/user.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'package:my_inventory/drawer/ui/my_drawer.dart';
-
-import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
-
-import 'app_module.dart';
-import 'core/app_bindings.dart';
-import 'core/database/initialize.dart';
-import 'core/routes/routes.dart';
+import 'package:my_inventory/core/app_bindings.dart';
+import 'package:my_inventory/core/database/initialize.dart';
+import 'package:my_inventory/core/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDatabase();
-  runApp(MyApp());
-
- 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

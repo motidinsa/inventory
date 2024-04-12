@@ -8,18 +8,17 @@ import 'package:smooth_corner/smooth_corner.dart';
 class ItemSelect extends StatelessWidget {
   final String title;
   final IconData iconData;
-  final bool? isDetailButton;
+  final bool? hasDetailIcon;
 
   const ItemSelect({
     super.key,
     required this.title,
     required this.iconData,
-    this.isDetailButton,
+    this.hasDetailIcon,
   });
 
   @override
   Widget build(BuildContext context) {
-    bool isReportPage = title == reportsN;
     return Card(
       color: Colors.green.shade50,
       elevation: title == reportsN ? 4 : null,
@@ -39,12 +38,10 @@ class ItemSelect extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: isReportPage ? 19 : 17,
-                      fontWeight: isReportPage ? bold() : null,
-                      fontStyle: isReportPage ? FontStyle.italic : null,
-                      color: isReportPage ? Colors.grey.shade800 : null,
+                      fontSize: 17,
                     ),
                   ),
+                  if(hasDetailIcon!=true)
                   IconButton(
                     style: IconButton.styleFrom(
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -53,11 +50,6 @@ class ItemSelect extends StatelessWidget {
                         navigateFromHomepage(title: title, isAddIcon: true),
                     icon: Icon(
                       iconData,
-                      size: isDetailButton == true
-                          ? 20
-                          : title == reportsN
-                              ? 26
-                              : null,
                     ),
                   ),
                 ],

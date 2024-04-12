@@ -6,7 +6,6 @@ import 'package:my_inventory/core/model/customer/customer_model.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/main.dart';
 
 class AddCustomerController extends GetxController {
   AppController appController = Get.find();

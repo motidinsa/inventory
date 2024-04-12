@@ -6,7 +6,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_model.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
 class EditVendorController extends GetxController {

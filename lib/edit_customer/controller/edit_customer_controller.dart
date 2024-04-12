@@ -7,7 +7,6 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_model.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/main.dart';
 
 class EditCustomerController extends GetxController {
   final CustomerDatabaseModel customerDatabaseModel;

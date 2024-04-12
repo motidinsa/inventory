@@ -8,7 +8,6 @@ import 'package:my_inventory/core/model/product/log_product_database_model.dart'
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/main.dart';
 
 import 'package:my_inventory/core/constants/database_constants.dart';
 

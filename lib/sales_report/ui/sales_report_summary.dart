@@ -35,7 +35,7 @@ class SalesReportSummary extends StatelessWidget {
               sizedBox(height: 10),
               RichText(
                 text: TextSpan(
-                  text: '${subtotalN()}: ',
+                  text: '$subtotalN: ',
                   style: TextStyle(
                       fontWeight: bold(),
                       fontSize: 18,
@@ -56,7 +56,7 @@ class SalesReportSummary extends StatelessWidget {
               sizedBox(height: 10),
               RichText(
                 text: TextSpan(
-                  text: '${discountN()}: ',
+                  text: '$discountN: ',
                   style: TextStyle(
                       fontWeight: bold(),
                       fontSize: 18,
@@ -77,7 +77,7 @@ class SalesReportSummary extends StatelessWidget {
               sizedBox(height: 10),
               RichText(
                 text: TextSpan(
-                  text: '${totalN()}: ',
+                  text: '$totalN: ',
                   style: TextStyle(
                     fontWeight: bold(),
                     fontSize: 18,

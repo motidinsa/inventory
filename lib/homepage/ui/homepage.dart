@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -16,7 +15,6 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: AppController.to.key,
       appBar: AppBar(
         title: const Text(
           'XYZ Company',
@@ -80,7 +78,6 @@ class Homepage extends StatelessWidget {
             // return exPath;
 
             Scaffold.of(context).openDrawer();
-            print(appController.currentPages);
             // String? result;
             // try {
             //   // setState(() {
@@ -124,30 +121,23 @@ class Homepage extends StatelessWidget {
         children: [
           sizedBox(height: 10),
           ItemType(
+            title: salesN,
             addItemName: customerN,
             detailPageName: salesN,
-            title: salesN,
           ),
           sizedBox(height: 30),
           ItemType(
-            addItemName: 'Vendor',
-            detailPageName: 'Purchase',
-            title: 'Purchasing',
+            title: purchasingN,
+            addItemName: vendorN,
+            detailPageName: purchaseN,
           ),
           sizedBox(height: 30),
           ItemType(
-            addItemName: 'Product',
-            detailPageName: 'Reorder Stock',
-            title: 'Inventory',
+            title: inventoryN,
+            addItemName: productN,
+            detailPageName: reorderStockN,
           ),
           sizedBox(height: 20),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          //   child: ItemSelect(
-          //     title: reportsN,
-          //     iconData: Icons.summarize_outlined,
-          //   ),
-          // )
         ],
       ),
     );

@@ -37,7 +37,7 @@ class Purchase extends StatelessWidget {
                   return ProductProfileInfo(page: PageName.purchase);
                 }),
               ),
-              ProductTableTitles(
+              const ProductTableTitles(
                 currentPage: purchaseN,
               ),
               ListView.builder(
@@ -50,7 +50,7 @@ class Purchase extends StatelessWidget {
                 itemCount: purchaseController.purchaseModels.length,
               ),
               addIconButton(),
-              ProductPriceSummary(currentPage: purchaseN),
+              const ProductPriceSummary(currentPage: purchaseN),
               ActionButton(redirectFrom: purchaseN)
             ],
           ),

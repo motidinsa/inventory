@@ -4,7 +4,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 onPurchaseTitleToData({required String title, int? index}) {
@@ -15,7 +14,7 @@ onPurchaseTitleToData({required String title, int? index}) {
     return purchaseController.purchaseModels[index!].value.cost;
   } else if (title == selectN) {
     return purchaseController.vendorName;
-  }else if (title == quantityN()) {
+  }else if (title == quantityN) {
     return purchaseController.purchaseModels[index!].value.quantity;
   }
 }
@@ -27,13 +26,13 @@ onPurchaseTextFieldChange({
 }) {
   PurchaseController purchaseController = Get.find();
   purchaseController.purchaseModels[index!].update((purchase) {
-    if (title == searchProductsN()) {
+    if (title == searchProductsN) {
       PurchaseController purchaseController = Get.find();  final Isar isar = Get.find();
       purchaseController.searchProductFoundResult(isar.productDatabaseModels
           .filter()
           .productNameContains(data, caseSensitive: false)
           .findAllSync());
-    } else if (title == quantityN()) {
+    } else if (title == quantityN) {
       if (data.isEmpty) {
         purchase?.quantity = '';
         purchase?.totalAmount = 0;
@@ -68,14 +67,14 @@ onPurchaseProductFocusChange({
   required String data,
 }) {
   final PurchaseController purchaseController = Get.find();
-  if (title == discountN()) {
+  if (title == discountN) {
     purchaseController.discount(data);
   }
 }
 
 onPurchaseAlertDialogOption({required String title, required int index}) {
   PurchaseController purchaseController = Get.find();
-  if (title == searchProductsN()) {
+  if (title == searchProductsN) {
     return purchaseController.searchProductFoundResult[index].id;
   } else if (title == searchVendorsN) {
     return purchaseController.searchVendorFoundResult[index].id;
@@ -85,7 +84,7 @@ onPurchaseAlertDialogOption({required String title, required int index}) {
 onPurchaseSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
   final PurchaseController purchaseController = Get.find();final Isar isar = Get.find();
-  if (title == searchProductsN()) {
+  if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;
     purchaseController.purchaseModels[listIndex!].update((purchase) {

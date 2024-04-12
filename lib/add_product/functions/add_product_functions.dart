@@ -10,7 +10,6 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
@@ -82,7 +81,7 @@ onSalesProductSelect({
         isar.productDatabaseModels.where().findAllSync());
 
     Get.dialog(AlertDialogOptionSelect(
-      title: searchProductsN(),
+      title: searchProductsN,
       listIndex: listIndex,
     )).then(
       (value) async {
@@ -112,7 +111,7 @@ onPurchaseProductSelect({
     purchaseController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(
-      title: searchProductsN(),
+      title: searchProductsN,
       listIndex: index,
     )).then(
       (value) {

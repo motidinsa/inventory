@@ -9,8 +9,6 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
 class EditCustomer extends StatelessWidget {
   // final CustomerDatabaseModel customerDatabaseModel;

@@ -24,14 +24,14 @@ class DateFilter extends StatelessWidget {
           children: [
             if (AppController.to.currentPages.last == salesReportN)
               GetBuilder<SalesReportController>(builder: (context) {
-                return DateRangeSelection();
+                return const DateRangeSelection();
               })
             else if (AppController.to.currentPages.last == purchaseReportN)
               GetBuilder<PurchaseReportController>(builder: (context) {
-                return DateRangeSelection();
+                return const DateRangeSelection();
               })   else if (AppController.to.currentPages.last == paymentReportN)
               GetBuilder<PaymentReportController>(builder: (context) {
-                return DateRangeSelection();
+                return const DateRangeSelection();
               }),
             sizedBox(height: 15),
             ActionButton(

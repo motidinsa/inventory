@@ -4,7 +4,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-import 'package:my_inventory/main.dart';
 
 class VendorDetailController extends GetxController {
   final int isarId;

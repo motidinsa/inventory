@@ -16,7 +16,6 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import 'package:my_inventory/main.dart';
 
 onAlertDialogOptionSelect(
     {required String title,
@@ -44,7 +43,7 @@ getAlertDialogOptionLists({String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN) {
     SalesController salesController = Get.find();
-    return title == searchProductsN()
+    return title == searchProductsN
         ? salesController.searchProductFoundResult
         : salesController.searchCustomerFoundResult;
   } else if (currentPage == addProductN) {
@@ -63,7 +62,7 @@ getAlertDialogOptionLists({String? title}) {
     }
   } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
-    return title == searchProductsN()
+    return title == searchProductsN
         ? purchaseController.searchProductFoundResult
         : purchaseController.searchVendorFoundResult;
   }
@@ -79,7 +78,7 @@ getAllAlertDialogOptionLists({String? title}) {
     return isar.customerDatabaseModels.where().findAllSync();
   } else if (title == searchVendorsN) {
     return isar.vendorDatabaseModels.where().findAllSync();
-  } else if (title == searchProductsN()) {
+  } else if (title == searchProductsN) {
     return isar.productDatabaseModels.where().findAllSync();
   }
 }
@@ -88,7 +87,7 @@ getAlertDialogOptionName({required int index, String? title}) {
   String currentPage = AppController.to.currentPages.last;
   if (currentPage == salesN) {
     SalesController salesController = Get.find();
-    return title == searchProductsN()
+    return title == searchProductsN
         ? salesController.searchProductFoundResult[index].productName
         : salesController.searchCustomerFoundResult[index].name;
   } else if (currentPage == addProductN) {
@@ -107,7 +106,7 @@ getAlertDialogOptionName({required int index, String? title}) {
     }
   } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
-    return title == searchProductsN()
+    return title == searchProductsN
         ? purchaseController.searchProductFoundResult[index].productName
         : purchaseController.searchVendorFoundResult[index].name;
   }
@@ -148,7 +147,7 @@ getEmptyMessage({required String title}) {
     return noUomAvailableSN;
   } else if (title == searchVendorsN) {
     return noVendorAvailableSN;
-  }else if (title == searchProductsN()) {
+  }else if (title == searchProductsN) {
     return noProductAvailableSN;
   }
 }

@@ -7,16 +7,15 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../payment_report/controller/payment_report_controller.dart';
-import '../../purchase/controller/purchase_controller.dart';
-import '../../purchase_report/controller/purchase_report_controller.dart';
-import '../../sales/controller/sales_controller.dart';
-import '../../sales_report/controller/sales_report_controller.dart';
-import '../constants/name_constants.dart';
-import '../controller/app_controller.dart';
+import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 // The M3 sizes are coming from the tokens, but are hand coded,
 // as the current token DB does not contain landscape versions.

@@ -26,7 +26,6 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
@@ -344,7 +343,7 @@ getKeyboardType({required String title}) {
     priceN,
     quantityOnHandN,
     reorderQuantityN,
-    quantityN()
+    quantityN
   ];
   if (numberKeyboardLists.contains(title)) {
     return TextInputType.number;

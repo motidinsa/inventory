@@ -5,7 +5,6 @@ import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/main.dart';
 
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();

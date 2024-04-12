@@ -39,7 +39,7 @@ class Sales extends StatelessWidget {
                 );
               }),
             ),
-            ProductTableTitles(
+            const ProductTableTitles(
               currentPage: salesN,
             ),
             ListView.builder(
@@ -61,9 +61,9 @@ class Sales extends StatelessWidget {
                 ),
               ),
             ),
-            ProductPriceSummary(currentPage: salesN),
+            const ProductPriceSummary(currentPage: salesN),
             sizedBox(height: 5),
-             PaymentOptions(),
+             const PaymentOptions(),
             ActionButton(redirectFrom: salesN)
           ],
         ),

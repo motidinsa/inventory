@@ -21,7 +21,6 @@ class ItemType extends StatelessWidget {
     salesN: Icons.point_of_sale,
     purchasingN: Icons.shopping_cart,
     inventoryN: FontAwesomeIcons.box,
-    inventoryN: FontAwesomeIcons.box,
   };
   final List fontawesomeIcons = [salesN, inventoryN];
   @override
@@ -32,7 +31,6 @@ class ItemType extends StatelessWidget {
         borderRadius: smoothBorderRadius(radius: 15),
         side: const BorderSide(
           color: Colors.green,
-          // width: .5,
         ),
       ),
       elevation: 8,
@@ -74,8 +72,8 @@ class ItemType extends StatelessWidget {
             sizedBox(height: 10),
             ItemSelect(
               title: detailPageName,
-              iconData: Icons.arrow_forward_ios_outlined,
-              isDetailButton: true,
+              iconData: Icons.add,
+              hasDetailIcon: detailPageName == reorderStockN?true:null,
             ),
           ],
         ),

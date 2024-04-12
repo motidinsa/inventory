@@ -102,7 +102,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (![searchCustomersN, searchProductsN(), searchVendorsN]
+                      if (![searchCustomersN, searchProductsN, searchVendorsN]
                           .contains(title))
                         Align(
                           child: IconButton(

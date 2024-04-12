@@ -5,7 +5,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/main.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 
@@ -15,7 +14,7 @@ onSalesTitleToData({required String title, int? index}) {
     return salesController.salesModels[index!].value.productName;
   } else if (title == selectN) {
     return salesController.customerName;
-  } else if (title == quantityN()) {
+  } else if (title == quantityN) {
     return salesController.salesModels[index!].value.quantity;
   } else if (title == cashN) {
     return salesController.cash != '0' ? salesController.cash : '';
@@ -28,7 +27,7 @@ onSalesTitleToData({required String title, int? index}) {
 
 onSalesAlertDialogOption({required String title, required int index}) {
   SalesController salesController = Get.find();
-  if (title == searchProductsN()) {
+  if (title == searchProductsN) {
     return salesController.searchProductFoundResult[index].id;
   } else if (title == searchCustomersN) {
     return salesController.searchCustomerFoundResult[index].id;
@@ -41,12 +40,12 @@ onSalesTextFieldChange({
   int? index,
 }) {
   SalesController salesController = Get.find();final Isar isar = Get.find();
-  if (title == searchProductsN()) {
+  if (title == searchProductsN) {
     salesController.searchProductFoundResult(isar.productDatabaseModels
         .filter()
         .productNameContains(data, caseSensitive: false)
         .findAllSync());
-  } else if (title == quantityN()) {
+  } else if (title == quantityN) {
     salesController.salesModels[index!].update((sales) {
       if (data.isEmpty) {
         sales?.quantity = '';
@@ -66,7 +65,7 @@ onSalesTextFieldChange({
       }
     });
     salesController.update();
-  } else if (title == discountN()) {
+  } else if (title == discountN) {
     salesController.discount(data);
   } else if (title == cashN) {
     salesController.cash = data;
@@ -106,7 +105,7 @@ onSalesProductFocusChange({
   required String data,
 }) {
   final SalesController salesController = Get.find();
-  if (title == discountN()) {
+  if (title == discountN) {
     salesController.discount(data);
   }
 }
@@ -114,7 +113,7 @@ onSalesProductFocusChange({
 onSalesSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
   final SalesController salesController = Get.find();final Isar isar = Get.find();
-  if (title == searchProductsN()) {
+  if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;
 

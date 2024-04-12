@@ -30,48 +30,23 @@ const String uomSN = 'Unit of measurement';
 const String enterProductNameN =  'Enter product name';
 const String writeYourDescriptionN = 'Write your description';
 const String idN = 'ID';
-
-optionalN() => 'Optional';
-const String cityN = 'City';
-
-pcsN() => 'Pcs';
-const String cityN = 'City';
-
-productListN() => 'Product list';
-const String cityN = 'City';
-searchByproductNameN => '
-Search by product name
-';
-
-const String cityN = 'City';
+const String optionalN = 'Optional';
+const String pcsN = 'Pcs';
+const String productListN = 'Product list';
+const String searchByproductNameN = 'Search by product name';
 const String searchByCustomerNameN = 'Search by customer name';
 const String searchByVendorNameN = 'Search by vendor name';
-
-searchByCategoryNameN() => 'Search by category name';
-const String cityN = 'City';
-// const String searchByCustomerNameN = 'Search by category name';
-
+const String searchByCategoryNameN = 'Search by category name';
 const String searchUomSN = 'Search unit of measurement';
-
-searchProductsN() => 'Search products';
-const String cityN = 'City';
+const String searchProductsN = 'Search products';
 const String searchCustomersN = 'Search customers';
 const String searchVendorsN = 'Search vendors';
-
-quantityN() => 'Quantity';
-const String cityN = 'City';
+const String quantityN = 'Quantity';
 const String selectCategoryN = 'Select category';
-
 const String selectUomSN = 'Select unit of measurement';
-
-subtotalN() => 'Subtotal';
-const String cityN = 'City';
-
-discountN() => 'Discount';
-const String cityN = 'City';
-
-totalN() => 'Total';
-const String cityN = 'City';
+const String subtotalN = 'Subtotal';
+const String discountN = 'Discount';
+const String totalN =  'Total';
 const String selectN = 'Select';
 const String dateN = 'Date';
 const String refN = 'Ref';

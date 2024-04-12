@@ -16,14 +16,14 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
-      pageName: productListN(),
+      pageName: productListN,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Obx(() => ListView(
               children: [
                 sizedBox(height: 15),
-                CustomTextField(
-                  title: productListN(),
+                const CustomTextField(
+                  title: productListN,
                 ),
                 // sizedBox(height: 15),
                 Padding(

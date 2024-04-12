@@ -7,7 +7,6 @@ import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
-import 'package:my_inventory/main.dart';
 
 onEditProductFocusChange({
   required String title,

@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/main.dart';
 
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 

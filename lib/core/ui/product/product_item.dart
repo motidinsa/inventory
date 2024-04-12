@@ -43,7 +43,7 @@ class ProductItem extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: CustomTextField(
-                    title: quantityN(),
+                    title: quantityN,
                     index: index,
                   ),
                 ),

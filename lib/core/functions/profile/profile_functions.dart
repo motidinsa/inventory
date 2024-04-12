@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -11,15 +10,14 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
-import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/edit_customer/ui/edit_customer.dart';
 import 'package:my_inventory/edit_vendor/ui/edit_vendor.dart';
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 import 'package:my_inventory/vendor_detail/ui/vendor_detail.dart';
 
-import '../../model/customer/customer_database_model.dart';
-import '../../model/vendor/vendor_database_model.dart';
-import '../../packages/custom_date_picker.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/core/packages/custom_date_picker.dart';
 
 onProfileEditPressed() {
   if (AppController.to.currentPages.last == customerDetailN) {

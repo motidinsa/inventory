@@ -5,14 +5,11 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/report/report_data.dart';
-import 'package:my_inventory/core/ui/report/report_header.dart';
-import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report_summary.dart';
 
-import 'package:my_inventory/core/ui/report/report_selected_date_summary.dart';
 
-import '../controller/inventory_report_controller.dart';
-import 'inventory_report_header.dart';
+import 'package:my_inventory/inventory_report/controller/inventory_report_controller.dart';
+import 'package:my_inventory/inventory_report/ui/inventory_report_header.dart';
 
 class InventoryReport extends StatelessWidget {
   const InventoryReport({super.key});
@@ -68,7 +65,7 @@ class InventoryReport extends StatelessWidget {
                       ? MainAxisAlignment.spaceBetween
                       : MainAxisAlignment.end,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     PurchaseReportSummary(
                       totalCost:InventoryReportController.to.totalCost,
                     ),

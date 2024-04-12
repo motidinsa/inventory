@@ -8,7 +8,6 @@ import 'package:my_inventory/purchase/ui/purchase.dart';
 import 'package:my_inventory/reorder_stock/ui/reorder_stock.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 
-import 'package:my_inventory/customer_list/ui/customer_list.dart';
 
 import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
@@ -16,31 +15,29 @@ import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 navigateFromHomepage({required String title, bool? isAddIcon}) async {
   if (title == customerN) {
     if (isAddIcon == true) {
-      Get.to(() => AddCustomer());
+      Get.toNamed(RouteName.addCustomer);
     } else {
       Get.toNamed(RouteName.customerList);
-      // Get.to(() => CustomerList());
     }
   } else if (title == salesN) {
-    Get.to(() => Sales());
+    Get.toNamed(RouteName.sales);
   } else if (title == productN) {
     if (isAddIcon == true) {
-      Get.to(() => AddProduct());
+      Get.toNamed(RouteName.addProduct);
     } else {
-      Get.to(() => ProductList());
+      Get.toNamed(RouteName.productList);
     }
   } else if (title == purchaseN) {
-    Get.to(() => Purchase());
+    Get.toNamed(RouteName.purchase);
   } else if (title == vendorN) {
     if (isAddIcon == true) {
-      Get.to(() => AddVendor());
+      Get.toNamed(RouteName.addVendor);
     }
     else {
-      Get.to(() => VendorList());
+      Get.toNamed(RouteName.vendorList);
     }
   }else if (title == reorderStockN) {
-
-      Get.to(() => ReorderStock());
+      Get.toNamed(RouteName.reorderStock);
 
   }
 }

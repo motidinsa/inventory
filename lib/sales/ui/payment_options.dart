@@ -42,7 +42,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                           CustomTextField(
+                           const CustomTextField(
                             title: cashN,
                           ),
                         ],
@@ -60,7 +60,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                           CustomTextField(
+                           const CustomTextField(
                             title: transferN,
                           ),
                         ],
@@ -78,7 +78,7 @@ class PaymentOptions extends StatelessWidget {
                             ),
                           ),
                           sizedBox(height: 5),
-                           CustomTextField(
+                           const CustomTextField(
                             title: creditN,
                           ),
                         ],

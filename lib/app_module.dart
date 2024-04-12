@@ -21,11 +21,11 @@ class AppModule extends Module {
     r.child('/y', child: (_) => Homepage());
     r.child(
       '/customer',
-      child: (_) => CustomerList(),
+      child: (_) => const CustomerList(),
       // guards: [
       //   GuardT(),
       // ],
     );
-    r.wildcard(child: (_) => Center(child: Text('none')));
+    r.wildcard(child: (_) => const Center(child: Text('none')));
   }
 }

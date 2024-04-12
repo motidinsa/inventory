@@ -38,7 +38,7 @@ class ProductPriceSummary extends StatelessWidget {
                         if (currentPage == salesN)
                           RichText(
                             text: TextSpan(
-                              text: '${subtotalN()}: ',
+                              text: '$subtotalN: ',
                               style: TextStyle(
                                   fontWeight: bold(),
                                   fontSize: 18,
@@ -61,15 +61,15 @@ class ProductPriceSummary extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: currentPage == salesN
-                                ? CustomTextField(
-                                    title: discountN(),
-                                    labelText: discountN(),
+                                ? const CustomTextField(
+                                    title: discountN,
+                                    labelText: discountN,
                                   )
                                 : null,
                           ),
                         RichText(
                           text: TextSpan(
-                            text: '${totalN()}: ',
+                            text: '$totalN: ',
                             style: TextStyle(
                               fontWeight: bold(),
                               fontSize: 18,
