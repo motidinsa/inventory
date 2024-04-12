@@ -17,7 +17,7 @@ class AddCustomerController extends GetxController {
   static AddCustomerController get to => Get.find();
   @override
   void onInit() {
-    appController.currentPages.add(addCustomerN());
+    appController.currentPages.add(addCustomerN);
     super.onInit();
   }
 

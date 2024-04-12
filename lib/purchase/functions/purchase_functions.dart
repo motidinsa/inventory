@@ -9,7 +9,7 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
 onPurchaseTitleToData({required String title, int? index}) {
   PurchaseController purchaseController = Get.find();
-  if (title == purchaseN()) {
+  if (title == purchaseN) {
     return purchaseController.purchaseModels[index!].value.productName;
   } else if (title == costN) {
     return purchaseController.purchaseModels[index!].value.cost;

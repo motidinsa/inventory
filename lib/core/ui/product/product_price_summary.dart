@@ -35,7 +35,7 @@ class ProductPriceSummary extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
                       children: [
-                        if (currentPage == salesN())
+                        if (currentPage == salesN)
                           RichText(
                             text: TextSpan(
                               text: '${subtotalN()}: ',
@@ -57,10 +57,10 @@ class ProductPriceSummary extends StatelessWidget {
                               ],
                             ),
                           ),
-                        if (currentPage == salesN())
+                        if (currentPage == salesN)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: currentPage == salesN()
+                            child: currentPage == salesN
                                 ? CustomTextField(
                                     title: discountN(),
                                     labelText: discountN(),

@@ -52,9 +52,9 @@ class ProductTableTitles extends StatelessWidget {
                 )),
             sizedBox(width: 10),
             Expanded(
-              flex: currentPage == purchaseN() ? 4 : 3,
+              flex: currentPage == purchaseN ? 4 : 3,
               child: Text(
-                currentPage == salesN() ? 'Price' : 'Cost',
+                currentPage == salesN ? 'Price' : 'Cost',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),

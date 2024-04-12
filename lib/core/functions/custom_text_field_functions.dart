@@ -20,27 +20,27 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 titleToHint({String? title}) {
   String? value;
   if (title == productN) {
-    value = enterProductNameN();
+    value = enterProductNameN;
   } else if (title == descriptionN) {
-    value = writeYourdescriptionN;
+    value = writeYourDescriptionN;
   } else if (title == categoryN) {
     value = selectN;
   } else if (title == productIdN) {
     value = optionalN();
   } else if (title == uomSN) {
-    value = selectItemN();
+    value = selectItemN;
   } else if (title == productListN()) {
-    value = searchByProductNameN();
+    value = searchByproductNameN;
   } else if (title == customerListN) {
     value = searchByCustomerNameN;
   } else if (title == vendorListN) {
     value = searchByVendorNameN;
-  } else if (title == salesN()) {
+  } else if (title == salesN) {
     value = selectN;
-  } else if (title == purchaseN()) {
+  } else if (title == purchaseN) {
     value = selectN;
   } else if (title == searchProductsN()) {
-    value = searchByProductNameN();
+    value = searchByproductNameN;
   } else if (title == selectCategoryN) {
     value = searchByCategoryNameN();
   } else if (title == selectUomSN) {
@@ -64,14 +64,14 @@ onTextFieldChange({
 }) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
   } else if (currentPage == addProductN) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentPage == productListN()) {
     onProductListTextFieldChange(data: data);
@@ -89,9 +89,9 @@ onTextFieldPressed({String? title, int? index}) {
     onAddProductTextFieldPressed(title: title!);
   } else if (currentPage == editProductN) {
     onEditProductTextFieldPressed(title: title!);
-  } else if (currentPage == salesN()) {
+  } else if (currentPage == salesN) {
     onSalesProductSelect(title: title, listIndex: index);
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     onPurchaseProductSelect(title: title, index: index);
   } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentPage)) {
     onReportFilterSelect(title: title!);
@@ -102,8 +102,8 @@ hasOption({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    salesN(),
-    purchaseN(),
+    salesN,
+    purchaseN,
     selectN,
   ];
   return itemsWithOption.contains(title);
@@ -113,8 +113,8 @@ readOnly({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    salesN(),
-    purchaseN(),
+    salesN,
+    purchaseN,
     selectN,
     fromN,
     toN,
@@ -137,10 +137,10 @@ minimizePadding({String? title}) {
     customerNameN,
     vendorNameN,
     contactPersonN,
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN(),
+    phoneNumberN,
+    addressN,
+    cityN,
+    emailN,
     customerListN,
     vendorListN,
     searchCustomersN,
@@ -150,7 +150,7 @@ minimizePadding({String? title}) {
     if ([addProductN, editProductN]
         .contains(AppController.to.currentPages.last))
       costN,
-    priceN(),
+    priceN,
     productIdN
   ];
   return !items.contains(title);
@@ -161,10 +161,10 @@ maxPadding({String? title}) {
     vendorNameN,
     contactPersonN,
     customerNameN,
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN(),
+    phoneNumberN,
+    addressN,
+    cityN,
+    emailN,
   ];
   return !items.contains(title);
 }
@@ -183,10 +183,10 @@ hasPrefix({String? title}) {
   var items = [
     vendorNameN,
     customerNameN,
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN(),
+    phoneNumberN,
+    addressN,
+    cityN,
+    emailN,
     contactPersonN
   ];
   return items.contains(title);
@@ -199,10 +199,10 @@ profileTitleToIcon({
     vendorNameN: Icons.corporate_fare_rounded,
     customerNameN: Icons.person,
     contactPersonN: Icons.person,
-    phoneNumberN(): Icons.call,
-    addressN(): Icons.location_on,
-    cityN(): Icons.location_city,
-    emailN(): Icons.mail,
+    phoneNumberN: Icons.call,
+    addressN: Icons.location_on,
+    cityN: Icons.location_city,
+    emailN: Icons.mail,
   };
   return Icon(
     items[title],
@@ -235,13 +235,13 @@ onFocusChange({
     String currentPage = appController.currentPages.last;
     if (currentPage == addProductN) {
       onAddProductFocusChange(title: title, data: data);
-    } else if (currentPage == salesN()) {
+    } else if (currentPage == salesN) {
       onSalesProductFocusChange(title: title, data: data);
-    } else if (currentPage == purchaseN()) {
+    } else if (currentPage == purchaseN) {
       onPurchaseProductFocusChange(title: title, data: data);
     } else if (currentPage == editProductN) {
       onEditProductFocusChange(title: title, data: data);
-    } else if (currentPage == addCustomerN()) {
+    } else if (currentPage == addCustomerN) {
       onAddCustomerFocusChange(title: title, data: data);
     } else if (currentPage == addVendorN) {
       onAddVendorFocusChange(title: title, data: data);

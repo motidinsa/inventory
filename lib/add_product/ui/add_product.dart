@@ -77,7 +77,7 @@ class AddProduct extends StatelessWidget {
                                       sizedBox(width: 20),
                                       Expanded(
                                         child: AddProductPriceInput(
-                                          title: priceN(),
+                                          title: priceN,
                                         ),
                                       ),
                                     ],

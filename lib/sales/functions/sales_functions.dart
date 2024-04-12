@@ -11,7 +11,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();
-  if (title == salesN()) {
+  if (title == salesN) {
     return salesController.salesModels[index!].value.productName;
   } else if (title == selectN) {
     return salesController.customerName;

@@ -11,15 +11,15 @@ onAddVendorFocusChange({
   addVendorController.vendorDetail.update((vendor) {
     if (title == vendorNameN) {
       vendor?.name = data;
-    } else if (title == phoneNumberN()) {
+    } else if (title == phoneNumberN) {
       vendor?.phoneNumber = data;
     } else if (title == contactPersonN) {
       vendor?.contactPerson = data;
-    }else if (title == addressN()) {
+    }else if (title == addressN) {
       vendor?.address = data;
-    } else if (title == cityN()) {
+    } else if (title == cityN) {
       vendor?.city = data;
-    } else if (title == emailN()) {
+    } else if (title == emailN) {
       vendor?.email = data;
     }
   });

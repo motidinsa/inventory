@@ -48,7 +48,7 @@ class ProductProfileInfo extends StatelessWidget {
             ),
             sizedBox(width: 15),
             Text(
-              page == PageName.sales ? customerN() : vendorN(),
+              page == PageName.sales ? customerN : vendorN,
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),
@@ -74,7 +74,7 @@ class ProductProfileInfo extends StatelessWidget {
         if (getProfilePhone() != null) ...[
           sizedBox(height: 20),
           ProfileTitleToData(
-            title: phoneNumberN(),
+            title: phoneNumberN,
             data: getProfilePhone()!,
             dataColor: Colors.green.shade800,
           )

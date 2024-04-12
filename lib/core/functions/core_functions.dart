@@ -162,16 +162,16 @@ onActionButtonPressed({required String redirectFrom}) async {
       AddProductController addProductController = Get.find();
       addProductController.isSubmitButtonPressed(true);
       addProductController.onAddProductSaveButtonPressed();
-    } else if (redirectFrom == salesN()) {
+    } else if (redirectFrom == salesN) {
       SalesController salesController = Get.find();
       salesController.saveSalesProductToDB();
-    } else if (redirectFrom == purchaseN()) {
+    } else if (redirectFrom == purchaseN) {
       PurchaseController purchaseController = Get.find();
       purchaseController.savePurchaseProductToDB();
     } else if (redirectFrom == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
-    } else if (redirectFrom == addCustomerN()) {
+    } else if (redirectFrom == addCustomerN) {
       AddCustomerController.to.onAddCustomerSaveButtonPressed();
     } else if (redirectFrom == addVendorN) {
       AddVendorController.to.onAddVendorSaveButtonPressed();
@@ -190,11 +190,11 @@ titleToData({required String title, int? index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
   String? value;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return onSalesTitleToData(title: title, index: index);
   } else if (currentPage == addProductN) {
     return onAddProductGetData(title: title);
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return onPurchaseTitleToData(title: title, index: index);
   } else if (currentPage == editProductN) {
     return getEditProductData(
@@ -236,8 +236,8 @@ nullIfEmpty(String? data) {
 
 onAddIconPressed({String? type}) {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
-  } else if (currentPage == purchaseN()) {
+  if (currentPage == salesN) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     purchaseController.addPurchaseProduct();
   } else {
@@ -326,9 +326,9 @@ titleToIcon({required String title}) {
   IconData? iconData;
   if (title == dateN) {
     iconData = Icons.calendar_month_rounded;
-  } else if (title == phoneNumberN()) {
+  } else if (title == phoneNumberN) {
     iconData = Icons.phone;
-  } else if (title == addressN()) {
+  } else if (title == addressN) {
     iconData = Icons.location_on;
   } else if (title == contactPersonN) {
     iconData = Icons.person;
@@ -341,16 +341,16 @@ titleToIcon({required String title}) {
 getKeyboardType({required String title}) {
   final List<String> numberKeyboardLists = [
     costN,
-    priceN(),
+    priceN,
     quantityOnHandN,
     reorderQuantityN,
     quantityN()
   ];
   if (numberKeyboardLists.contains(title)) {
     return TextInputType.number;
-  } else if (title == phoneNumberN()) {
+  } else if (title == phoneNumberN) {
     return TextInputType.phone;
-  } else if (title == emailN()) {
+  } else if (title == emailN) {
     return TextInputType.emailAddress;
   }
   return TextInputType.name;
@@ -358,9 +358,9 @@ getKeyboardType({required String title}) {
 
 getSelectedDate() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return SalesController.to.salesDate;
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return PurchaseController.to.purchaseDate;
   }
 }

@@ -50,7 +50,7 @@ class SalesController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(salesN());final Isar isar = Get.find();
+    AppController.to.currentPages.add(salesN);final Isar isar = Get.find();
     searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
     searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());

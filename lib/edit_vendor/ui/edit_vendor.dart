@@ -18,11 +18,11 @@ class EditVendor extends StatelessWidget {
 
   final List<String> titleList = [
     vendorNameN,
-    phoneNumberN(),
+    phoneNumberN,
     contactPersonN,
-    addressN(),
-    cityN(),
-    emailN()
+    addressN,
+    cityN,
+    emailN
   ];
 
   final AppController appController = Get.find();

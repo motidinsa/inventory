@@ -14,14 +14,14 @@ import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
 navigateFromHomepage({required String title, bool? isAddIcon}) async {
-  if (title == customerN()) {
+  if (title == customerN) {
     if (isAddIcon == true) {
       Get.to(() => AddCustomer());
     } else {
       Get.toNamed(RouteName.customerList);
       // Get.to(() => CustomerList());
     }
-  } else if (title == salesN()) {
+  } else if (title == salesN) {
     Get.to(() => Sales());
   } else if (title == productN) {
     if (isAddIcon == true) {
@@ -29,16 +29,16 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
     } else {
       Get.to(() => ProductList());
     }
-  } else if (title == purchaseN()) {
+  } else if (title == purchaseN) {
     Get.to(() => Purchase());
-  } else if (title == vendorN()) {
+  } else if (title == vendorN) {
     if (isAddIcon == true) {
       Get.to(() => AddVendor());
     }
     else {
       Get.to(() => VendorList());
     }
-  }else if (title == reorderStockN()) {
+  }else if (title == reorderStockN) {
 
       Get.to(() => ReorderStock());
 

@@ -473,10 +473,10 @@ class _DatePickerDialogState extends State<DatePickerDialog>
 
   void _handleDateChanged(DateTime date) {
     String currentPage = AppController.to.currentPages.last;
-    if (currentPage == salesN()) {
+    if (currentPage == salesN) {
       SalesController.to.salesDate = date;
       SalesController.to.update();
-    } else if(currentPage == purchaseN()){
+    } else if(currentPage == purchaseN){
       PurchaseController.to.purchaseDate = date;
       PurchaseController.to.update();
     }

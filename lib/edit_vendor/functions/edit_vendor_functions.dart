@@ -7,13 +7,13 @@ String? getEditVendorData({required String title}) {
   EditVendorController editVendorController = Get.find();
   if (title == vendorNameN) {
     return editVendorController.vendorInfo.value.name;
-  } else if (title == phoneNumberN()) {
+  } else if (title == phoneNumberN) {
     return editVendorController.vendorInfo.value.phoneNumber;
-  } else if (title == addressN()) {
+  } else if (title == addressN) {
     return editVendorController.vendorInfo.value.address;
-  } else if (title == cityN()) {
+  } else if (title == cityN) {
     return editVendorController.vendorInfo.value.city;
-  } else if (title == emailN()) {
+  } else if (title == emailN) {
     return editVendorController.vendorInfo.value.email;
   } else if (title == contactPersonN) {
     return editVendorController.vendorInfo.value.contactPerson;
@@ -28,15 +28,15 @@ onEditVendorFocusChange({
   editVendorController.vendorInfo.update((vendor) {
     if (title == vendorNameN) {
       vendor?.name = data;
-    } else if (title == phoneNumberN()) {
+    } else if (title == phoneNumberN) {
       vendor?.phoneNumber = data;
     } else if (title == contactPersonN) {
       vendor?.contactPerson = data;
-    } else if (title == addressN()) {
+    } else if (title == addressN) {
       vendor?.address = data;
-    } else if (title == cityN()) {
+    } else if (title == cityN) {
       vendor?.city = data;
-    } else if (title == emailN()) {
+    } else if (title == emailN) {
       vendor?.email = data;
     }
   });

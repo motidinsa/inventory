@@ -43,7 +43,7 @@ class ActionButton extends StatelessWidget {
               ),
               child: Text(
                 actionButtonType == null
-                    ? saveN()
+                    ? saveN
                     : actionButtonType == ActionButtonType.filter
                         ? filterN
                         : 'Delete',

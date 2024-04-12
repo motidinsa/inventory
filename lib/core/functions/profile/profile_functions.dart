@@ -55,7 +55,7 @@ onSingleProfileDetailPressed({required int index}) {
 
 String? getProfileId() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return SalesController.to.customerId;
   }
   return null;
@@ -63,9 +63,9 @@ String? getProfileId() {
 
 String? getProfilePhone() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return SalesController.to.customerPhone;
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return PurchaseController.to.vendorPhone;
   }
   return null;
@@ -73,9 +73,9 @@ String? getProfilePhone() {
 
 String? getProfileAddress() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return SalesController.to.customerAddress;
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return PurchaseController.to.vendorAddress;
   }
   return null;
@@ -83,7 +83,7 @@ String? getProfileAddress() {
 
 String? getContactPerson() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseN()) {
+  if (currentPage == purchaseN) {
     return PurchaseController.to.vendorContactPerson;
   }
   return null;
@@ -91,7 +91,7 @@ String? getContactPerson() {
 
 onProfileCancelPressed() {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     SalesController.to.customerId = null;
     SalesController.to.customerName = '';
     SalesController.to.customerPhone = null;
@@ -102,7 +102,7 @@ onProfileCancelPressed() {
 
 onProfileDatePressed() {
   String currentPage = AppController.to.currentPages.last;
-  if ([salesN(), purchaseN()].contains(currentPage)) {
+  if ([salesN, purchaseN].contains(currentPage)) {
     showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),
@@ -126,15 +126,15 @@ String getProfileDetailDateAdded() {
 
 List<String> profileTitles() {
   if(Get.currentRoute == RouteName.customerDetail){
-    return [customerNameN, phoneNumberN(), addressN(), cityN(), emailN()];
+    return [customerNameN, phoneNumberN, addressN, cityN, emailN];
   }else if(Get.currentRoute == RouteName.vendorDetail){
     return [
       vendorNameN,
-      phoneNumberN(),
+      phoneNumberN,
       contactPersonN,
-      addressN(),
-      cityN(),
-      emailN()
+      addressN,
+      cityN,
+      emailN
     ];
   }
   return [];
@@ -149,13 +149,13 @@ String? getProfileTitleToData({required String title}) {
     CustomerDatabaseModel customerDatabaseModel = Get.arguments[0];
     if (title == customerNameN) {
       return customerDatabaseModel.name;
-    } else if (title == phoneNumberN()) {
+    } else if (title == phoneNumberN) {
       return customerDatabaseModel.phone;
-    } else if (title == addressN()) {
+    } else if (title == addressN) {
       return customerDatabaseModel.address;
-    } else if (title == cityN()) {
+    } else if (title == cityN) {
       return customerDatabaseModel.city;
-    } else if (title == emailN()) {
+    } else if (title == emailN) {
       return customerDatabaseModel.email;
     }
   }else if(currentPage == RouteName.vendorDetail){
@@ -166,19 +166,19 @@ String? getProfileTitleToData({required String title}) {
       return 'CustomerDetailController.to.customerDatabaseModel.name';
     } else if (title == contactPersonN) {
       return VendorDetailController.to.vendorDatabaseModel.contactPerson;
-    } else if (title == phoneNumberN()) {
+    } else if (title == phoneNumberN) {
       return currentPage == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.phone
           : CustomerDetailController.to.customerDatabaseModel.phone;
-    } else if (title == addressN()) {
+    } else if (title == addressN) {
       return currentPage == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.address
           : CustomerDetailController.to.customerDatabaseModel.address;
-    } else if (title == cityN()) {
+    } else if (title == cityN) {
       return currentPage == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.city
           : CustomerDetailController.to.customerDatabaseModel.city;
-    } else if (title == emailN()) {
+    } else if (title == emailN) {
       return currentPage == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.email
           : CustomerDetailController.to.customerDatabaseModel.email;

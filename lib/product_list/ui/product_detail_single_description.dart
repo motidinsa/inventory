@@ -36,7 +36,7 @@ class ProductDetailSingleDescription extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: isNumeric(description) && title!=phoneNumberN()
+            text: isNumeric(description) && title!=phoneNumberN
                 ? getFormattedNumberWithComa(double.parse(description))
                 : description,
             style: TextStyle(

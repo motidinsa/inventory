@@ -30,7 +30,7 @@ class ProductDetail extends StatelessWidget {
           getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
       productIdN: productDatabaseModel.userAssignedProductId ?? '',
       costN: productDatabaseModel.cost,
-      priceN(): productDatabaseModel.price,
+      priceN: productDatabaseModel.price,
       quantityOnHandN: productDatabaseModel.quantityOnHand,
       reorderQuantityN: productDatabaseModel.reorderQuantity,
       uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),

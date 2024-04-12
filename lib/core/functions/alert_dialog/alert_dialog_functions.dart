@@ -25,7 +25,7 @@ onAlertDialogOptionSelect(
     int? listIndex}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     onSalesSearchProductAlertDialogOptionSelect(
         listIndex: listIndex, isarId: isarId, title: title);
   } else if (currentPage == addProductN) {
@@ -34,7 +34,7 @@ onAlertDialogOptionSelect(
   } else if (currentPage == editProductN) {
     onEditProductAlertDialogOptionSelect(
         title: title, data: data, isarId: isarId);
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     onPurchaseSearchProductAlertDialogOptionSelect(
         listIndex: listIndex, isarId: isarId,title: title);
   }
@@ -42,7 +42,7 @@ onAlertDialogOptionSelect(
 
 getAlertDialogOptionLists({String? title}) {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     SalesController salesController = Get.find();
     return title == searchProductsN()
         ? salesController.searchProductFoundResult
@@ -61,7 +61,7 @@ getAlertDialogOptionLists({String? title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult;
     }
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     return title == searchProductsN()
         ? purchaseController.searchProductFoundResult
@@ -86,7 +86,7 @@ getAllAlertDialogOptionLists({String? title}) {
 
 getAlertDialogOptionName({required int index, String? title}) {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     SalesController salesController = Get.find();
     return title == searchProductsN()
         ? salesController.searchProductFoundResult[index].productName
@@ -105,7 +105,7 @@ getAlertDialogOptionName({required int index, String? title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult[index].name;
     }
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     return title == searchProductsN()
         ? purchaseController.searchProductFoundResult[index].productName
@@ -115,9 +115,9 @@ getAlertDialogOptionName({required int index, String? title}) {
 
 getAlertDialogOptionId({required int index, required String title}) {
   String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return onSalesAlertDialogOption(title: title, index: index);
-  }if (currentPage == purchaseN()) {
+  }if (currentPage == purchaseN) {
     return onPurchaseAlertDialogOption(title: title, index: index);
   } else if (currentPage == addProductN) {
     AddProductController addProductController = Get.find();
@@ -133,7 +133,7 @@ getAlertDialogOptionId({required int index, required String title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult[index].id;
     }
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.searchProductFoundResult[index].id;
   }

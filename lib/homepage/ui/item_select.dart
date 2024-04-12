@@ -19,10 +19,10 @@ class ItemSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isReportPage = title == reportsN();
+    bool isReportPage = title == reportsN;
     return Card(
       color: Colors.green.shade50,
-      elevation: title == reportsN() ? 4 : null,
+      elevation: title == reportsN ? 4 : null,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: ListTile(
         onTap: () => navigateFromHomepage(title: title),
@@ -55,7 +55,7 @@ class ItemSelect extends StatelessWidget {
                       iconData,
                       size: isDetailButton == true
                           ? 20
-                          : title == reportsN()
+                          : title == reportsN
                               ? 26
                               : null,
                     ),

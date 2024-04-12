@@ -49,8 +49,8 @@ class ProductItem extends StatelessWidget {
                 ),
                 sizedBox(width: 10),
                 Expanded(
-                  flex: currentPage == purchaseN() ? 4 : 3,
-                  child: currentPage == purchaseN()
+                  flex: currentPage == purchaseN ? 4 : 3,
+                  child: currentPage == purchaseN
                       ? CustomTextField(
                           title: costN,
                           index: index,

@@ -23,7 +23,7 @@ class Sales extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
-      pageName: salesN(),
+      pageName: salesN,
       body: Form(
         key: appController.formKey,
         child: ListView(
@@ -40,14 +40,14 @@ class Sales extends StatelessWidget {
               }),
             ),
             ProductTableTitles(
-              currentPage: salesN(),
+              currentPage: salesN,
             ),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (ctx, index) => ProductItem(
                 index: index,
-                currentPage: salesN(),
+                currentPage: salesN,
               ),
               itemCount: salesController.salesModels.length,
             ),
@@ -61,10 +61,10 @@ class Sales extends StatelessWidget {
                 ),
               ),
             ),
-            ProductPriceSummary(currentPage: salesN()),
+            ProductPriceSummary(currentPage: salesN),
             sizedBox(height: 5),
              PaymentOptions(),
-            ActionButton(redirectFrom: salesN())
+            ActionButton(redirectFrom: salesN)
           ],
         ),
       ),

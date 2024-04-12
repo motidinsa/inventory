@@ -21,6 +21,7 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
+import 'package:my_inventory/user.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:my_inventory/drawer/ui/my_drawer.dart';
@@ -29,43 +30,15 @@ import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart'
 
 import 'app_module.dart';
 import 'core/app_bindings.dart';
+import 'core/database/initialize.dart';
 import 'core/routes/routes.dart';
-
-// late Isar isar;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Get.putAsync<Isar>(() async {
-    final dir = await getApplicationDocumentsDirectory();
-    return await Isar.open(
-      [
-        ProductDatabaseModelSchema,
-        QuantityCostDatabaseModelSchema,
-        LogProductDatabaseModelSchema,
-        PurchaseAvailableDatabaseModelSchema,
-        PurchaseAllDatabaseModelSchema,
-        SalesDatabaseModelSchema,
-        SalesPaymentDatabaseModelSchema,
-        GroupSalesDatabaseModelSchema,
-        DeletedProductDatabaseModelSchema,
-        CategoryDatabaseModelSchema,
-        LogCategoryDatabaseModelSchema,
-        UnitOfMeasurementDatabaseModelSchema,
-        LogUnitOfMeasurementDatabaseModelSchema,
-        CustomerDatabaseModelSchema,
-        VendorDatabaseModelSchema
-      ],
-      directory: dir.path,
-    );
-  });
-  runApp(ModularApp(module: AppModule(), child: MyApp()));
+  await initializeDatabase();
+  runApp(MyApp());
 
-  // Client client = Client();
-  //
-  // client
-  //     .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
-  //     .setProject('65c1e7733a536752855d')
-  //     ;
+ 
 }
 
 class MyApp extends StatelessWidget {
@@ -75,7 +48,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DevicePreview(builder: (context) {
       return GetMaterialApp(
-        title: appNameN(),
+        title: appNameN,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),

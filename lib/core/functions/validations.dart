@@ -10,19 +10,19 @@ validateInput({
     categoryNameN,
     uomNameN,
     quantityN(),
-    purchaseN(),
-    salesN(),
+    purchaseN,
+    salesN,
     customerNameN,
     fromN,
     toN
   ];
   List<String> numberKeyboardLists = [
     costN,
-    priceN(),
+    priceN,
     quantityOnHandN,
     reorderQuantityN,
     quantityN(),
-    purchaseN(),
+    purchaseN,
   ];
   if (nonEmptyTitles.contains(title)) {
     if (data.isEmpty) {

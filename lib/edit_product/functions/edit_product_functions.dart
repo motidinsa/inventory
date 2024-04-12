@@ -23,7 +23,7 @@ onEditProductFocusChange({
       product?.userAssignedProductId = data;
     } else if (title == costN) {
       product?.cost = data;
-    } else if (title == priceN()) {
+    } else if (title == priceN) {
       product?.price = data;
     } else if (title == quantityOnHandN) {
       product?.quantityOnHand = data;
@@ -117,7 +117,7 @@ String? getEditProductData({required String title}) {
   } else if (title == costN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
         editProductController.productInfo.value.cost));
-  } else if (title == priceN()) {
+  } else if (title == priceN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
         editProductController.productInfo.value.price));
   } else if (title == quantityOnHandN) {

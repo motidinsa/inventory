@@ -22,7 +22,7 @@ class Purchase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
-      pageName: purchaseN(),
+      pageName: purchaseN,
       body: Obx(() {
         return Form(
           key: appController.formKey,
@@ -38,20 +38,20 @@ class Purchase extends StatelessWidget {
                 }),
               ),
               ProductTableTitles(
-                currentPage: purchaseN(),
+                currentPage: purchaseN,
               ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (ctx, index) => ProductItem(
                   index: index,
-                  currentPage: purchaseN(),
+                  currentPage: purchaseN,
                 ),
                 itemCount: purchaseController.purchaseModels.length,
               ),
               addIconButton(),
-              ProductPriceSummary(currentPage: purchaseN()),
-              ActionButton(redirectFrom: purchaseN())
+              ProductPriceSummary(currentPage: purchaseN),
+              ActionButton(redirectFrom: purchaseN)
             ],
           ),
         );

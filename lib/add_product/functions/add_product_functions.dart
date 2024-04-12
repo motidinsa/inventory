@@ -49,7 +49,7 @@ onAddProductFocusChange({
       product?.userAssignedProductId = data;
     } else if (title == costN) {
       product?.cost = data;
-    } else if (title == priceN()) {
+    } else if (title == priceN) {
       product?.price = data;
     } else if (title == quantityOnHandN) {
       product?.quantityOnHand = data;
@@ -77,7 +77,7 @@ onSalesProductSelect({
 }) {
   final SalesController salesController = Get.find();
   final Isar isar = Get.find();
-  if (title == salesN()) {
+  if (title == salesN) {
     salesController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
 
@@ -108,7 +108,7 @@ onPurchaseProductSelect({
 }) {
   PurchaseController purchaseController = Get.find();
   final Isar isar = Get.find();
-  if (title == purchaseN()) {
+  if (title == purchaseN) {
     purchaseController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(

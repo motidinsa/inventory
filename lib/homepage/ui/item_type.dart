@@ -18,12 +18,12 @@ class ItemType extends StatelessWidget {
     required this.title,
   });
   final Map<String, IconData> nameToIconItemType = {
-    salesN(): Icons.point_of_sale,
-    purchasingN(): Icons.shopping_cart,
-    inventoryN(): FontAwesomeIcons.box,
-    inventoryN(): FontAwesomeIcons.box,
+    salesN: Icons.point_of_sale,
+    purchasingN: Icons.shopping_cart,
+    inventoryN: FontAwesomeIcons.box,
+    inventoryN: FontAwesomeIcons.box,
   };
-  final List fontawesomeIcons = [salesN(), inventoryN()];
+  final List fontawesomeIcons = [salesN, inventoryN];
   @override
   Widget build(BuildContext context) {
     return Card(

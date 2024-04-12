@@ -19,10 +19,10 @@ class EditCustomer extends StatelessWidget {
 
   final List<String> titleList = [
     customerNameN,
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN()
+    phoneNumberN,
+    addressN,
+    cityN,
+    emailN
   ];
 
   final AppController appController = Get.find();

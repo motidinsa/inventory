@@ -57,7 +57,7 @@ class EditCustomerController extends GetxController {
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,
-    //         album: appNameN());
+    //         album: appNameN);
     //     File(productInfo.value.localImagePath!).delete();
     //   } on GalException catch (e) {
     //     log(e.type.message);

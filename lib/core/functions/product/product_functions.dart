@@ -12,9 +12,9 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 getSubtotal() {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return getSalesSubtotal();
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return getPurchaseSubtotal();
   }
 }
@@ -22,9 +22,9 @@ getSubtotal() {
 getTotal() {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     return getSalesTotal();
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     return getPurchaseTotal();
   }
 }
@@ -32,11 +32,11 @@ getTotal() {
 getProductPrice({required int index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     SalesController salesController = Get.find();
     String currentPrice = salesController.salesModels[index].value.price;
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.purchaseModels[index].value.cost;
   }
@@ -45,10 +45,10 @@ getProductPrice({required int index}) {
 getProductTotalPrice({required int index}) {
   final AppController appController = Get.find();
   String currentPage = appController.currentPages.last;
-  if (currentPage == salesN()) {
+  if (currentPage == salesN) {
     SalesController salesController = Get.find();
     return salesController.salesModels[index].value.totalAmount;
-  } else if (currentPage == purchaseN()) {
+  } else if (currentPage == purchaseN) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.purchaseModels[index].value.totalAmount;
   }
@@ -95,7 +95,7 @@ onImageDeleteButtonPressed() {
   }
 }
 onProductDelete({required int index}){
-  if(AppController.to.currentPages.last == salesN()){
+  if(AppController.to.currentPages.last == salesN){
     SalesController.to.salesModels.removeAt(index);
   }else{
     PurchaseController.to.purchaseModels.removeAt(index);

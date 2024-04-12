@@ -14,17 +14,17 @@ class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
   final List<String> titles = [
     customerNameN,
-    phoneNumberN(),
-    addressN(),
-    cityN(),
-    emailN()
+    phoneNumberN,
+    addressN,
+    cityN,
+    emailN
   ];
 
   @override
   Widget build(BuildContext context) {
     Get.put(AddCustomerController());
     return BodyWrapper(
-      pageName: addCustomerN(),
+      pageName: addCustomerN,
       body: Form(
         key: AppController.to.formKey,
         child: ListView(
@@ -43,7 +43,7 @@ class AddCustomer extends StatelessWidget {
               ),
             ),
             ActionButton(
-              redirectFrom: addCustomerN(),
+              redirectFrom: addCustomerN,
             ),
           ],
         ),

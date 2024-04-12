@@ -1,96 +1,77 @@
-appNameN() => 'My Inventory';
-
-addCustomerN() => 'Add customer';
-
+const String appNameN = 'My Inventory';
+const String addCustomerN = 'Add customer';
 const String addProductN = 'Add product';
-
 const String customerNameN = 'Customer name';
-
-phoneNumberN() => 'Phone number';
-
-addressN() => 'Address';
-
-cityN() => 'City';
-
-emailN() => 'Email';
-
-saveN() => 'Save';
-
-salesN() => 'Sales';
-
-purchasingN() => 'Purchasing';
-
-inventoryN() => 'Inventory';
-
-reportsN() => 'Reports';
-
-customerN() => 'Customer';
-
-vendorN() => 'Vendor';
-
-purchaseN() => 'Purchase';
-
+const String phoneNumberN = 'Phone number';
+const String addressN = 'Address';
+const String cityN = 'City';
+const String emailN = 'Email';
+const String saveN = 'Save';
+const String salesN = 'Sales';
+const String purchasingN = 'Purchasing';
+const String inventoryN = 'Inventory';
+const String reportsN = 'Reports';
+const String customerN = 'Customer';
+const String vendorN = 'Vendor';
+const String purchaseN = 'Purchase';
 const String productN = 'Product';
-
-reorderStockN() => 'Reorder Stock';
-
-productNameN() => 'Product name';
-
+const String reorderStockN = 'Reorder Stock';
+const String productNameN = 'Product name';
 const String descriptionN = 'Description';
-
 const String categoryN = 'Category';
-
-selectItemN() => 'Select item';
-
+const String selectItemN = 'Select item';
 const String productIdN = 'Product ID';
-
 const String costN = 'Cost';
-
-priceN() => 'Price';
-
-etbN() => 'ETB';
-
+const String priceN = 'Price';
+const String etbN = 'ETB';
 const String quantityOnHandN = 'Quantity on hand';
-
 const String reorderQuantityN = 'Reorder quantity';
-
 const String uomSN = 'Unit of measurement';
-
-enterProductNameN() => 'Enter product name';
-
-const String writeYourdescriptionN = 'Write your description';
-
-idN() => 'ID';
+const String enterProductNameN =  'Enter product name';
+const String writeYourDescriptionN = 'Write your description';
+const String idN = 'ID';
 
 optionalN() => 'Optional';
+const String cityN = 'City';
 
 pcsN() => 'Pcs';
+const String cityN = 'City';
 
 productListN() => 'Product list';
+const String cityN = 'City';
+searchByproductNameN => '
+Search by product name
+';
 
-searchByProductNameN() => 'Search by product name';
+const String cityN = 'City';
 const String searchByCustomerNameN = 'Search by customer name';
 const String searchByVendorNameN = 'Search by vendor name';
 
 searchByCategoryNameN() => 'Search by category name';
+const String cityN = 'City';
 // const String searchByCustomerNameN = 'Search by category name';
 
 const String searchUomSN = 'Search unit of measurement';
 
 searchProductsN() => 'Search products';
+const String cityN = 'City';
 const String searchCustomersN = 'Search customers';
 const String searchVendorsN = 'Search vendors';
-quantityN() => 'Quantity';
 
+quantityN() => 'Quantity';
+const String cityN = 'City';
 const String selectCategoryN = 'Select category';
 
 const String selectUomSN = 'Select unit of measurement';
 
 subtotalN() => 'Subtotal';
+const String cityN = 'City';
 
 discountN() => 'Discount';
+const String cityN = 'City';
 
 totalN() => 'Total';
+const String cityN = 'City';
 const String selectN = 'Select';
 const String dateN = 'Date';
 const String refN = 'Ref';

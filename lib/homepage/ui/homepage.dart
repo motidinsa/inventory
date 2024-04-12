@@ -11,7 +11,7 @@ import 'package:my_inventory/homepage/ui/item_type.dart';
 class Homepage extends StatelessWidget {
   Homepage({super.key});
 
-  final AppController appController = Modular.get();
+  final AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class Homepage extends StatelessWidget {
             // try {
             //   await Gal.putImage(
             //       '/data/user/0/com.inventory.my_inventory/app_flutter/default.isar',
-            //       album: appNameN());
+            //       album: appNameN);
             // } on GalException catch (e) {
             //   log(e.type.message);
             // }
@@ -124,9 +124,9 @@ class Homepage extends StatelessWidget {
         children: [
           sizedBox(height: 10),
           ItemType(
-            addItemName: customerN(),
-            detailPageName: salesN(),
-            title: salesN(),
+            addItemName: customerN,
+            detailPageName: salesN,
+            title: salesN,
           ),
           sizedBox(height: 30),
           ItemType(
@@ -144,7 +144,7 @@ class Homepage extends StatelessWidget {
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           //   child: ItemSelect(
-          //     title: reportsN(),
+          //     title: reportsN,
           //     iconData: Icons.summarize_outlined,
           //   ),
           // )

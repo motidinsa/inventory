@@ -15,11 +15,11 @@ class AddVendor extends StatelessWidget {
 
   final List<String> titles = [
     vendorNameN,
-    phoneNumberN(),
+    phoneNumberN,
     contactPersonN,
-    addressN(),
-    cityN(),
-    emailN()
+    addressN,
+    cityN,
+    emailN
   ];
 
   @override
