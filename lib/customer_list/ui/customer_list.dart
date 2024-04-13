@@ -17,17 +17,19 @@ class CustomerList extends StatelessWidget {
       pageName: customerListN,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Obx(
-          () => ListView(
+        child: GetBuilder<CustomerListController>(
+            builder: (customerListController) {
+          return ListView(
             children: [
               sizedBox(height: 15),
-              const CustomTextField(
-                title: customerListN,
-              ),
+              if (customerListController.isEmpty != true)
+                const CustomTextField(
+                  title: customerListN,
+                ),
               // sizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                child: Get.find<CustomerListController>().customerList.isEmpty
+                child: customerListController.customerList.isEmpty
                     ? Center(
                         child: Text(
                           noCustomerFoundN,
@@ -42,20 +44,16 @@ class CustomerList extends StatelessWidget {
                         // reverse: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) => ProfileMiniDetail(
-                          name: Get.find<CustomerListController>()
-                              .customerList[index]
-                              .name,
+                          name: customerListController.customerList[index].name,
                           index: index,
                         ),
-                        itemCount: Get.find<CustomerListController>()
-                            .customerList
-                            .length,
+                        itemCount: customerListController.customerList.length,
                         separatorBuilder: (ctx, index) => sizedBox(height: 15),
                       ),
               ),
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

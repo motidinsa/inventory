@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 
-import '../../core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 
 class CustomerListRepository {
   static final Isar _isar = Get.find();

@@ -17,6 +17,8 @@ import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
+import '../routes/route_names.dart';
+
 titleToHint({String? title}) {
   String? value;
   if (title == productN) {
@@ -62,22 +64,21 @@ onTextFieldChange({
   required String data,
   int? index,
 }) {
-  final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesN) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
-  } else if (currentPage == addProductN) {
+  } else if (currentRoute == addProductN) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == editProductN) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == purchaseN) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
-  } else if (currentPage == productListN) {
+  } else if (currentRoute == productListN) {
     onProductListTextFieldChange(data: data);
-  } else if (currentPage == customerListN) {
+  } else if (currentRoute == RouteName.customerList) {
     onCustomerListTextFieldChange(data: data);
-  } else if (currentPage == vendorListN) {
+  } else if (currentRoute == vendorListN) {
     onVendorListTextFieldChange(data: data);
   }
 }

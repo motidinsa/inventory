@@ -49,10 +49,10 @@ class EditCustomerController extends GetxController {
       dbCustomer?.lastModifiedDate = DateTime.now();
       await isar.customerDatabaseModels.put(dbCustomer!);
     });
-    CustomerListController.to.customerList(isar.customerDatabaseModels
+    CustomerListController.to.customerList = isar.customerDatabaseModels
         .filter()
         .nameContains(CustomerListController.to.searchedText.value)
-        .findAllSync());
+        .findAllSync();
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,

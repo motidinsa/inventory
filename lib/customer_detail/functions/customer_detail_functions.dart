@@ -17,9 +17,9 @@ deleteCustomer() async {
     //   addedFrom: productDetailDC,
     // ));
   });
-  CustomerListController.to.customerList(isar.customerDatabaseModels
+  CustomerListController.to.customerList = isar.customerDatabaseModels
       .filter()
       .nameContains(CustomerListController.to.searchedText.value)
-      .findAllSync());
+      .findAllSync();
   Get.back();
 }
