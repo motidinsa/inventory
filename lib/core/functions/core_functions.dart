@@ -17,6 +17,7 @@ import 'package:my_inventory/core/model/category/log_category_database_model.dar
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
 import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
@@ -33,6 +34,8 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
+
+import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -79,7 +82,7 @@ getFormattedNumberWithoutComa(num) {
 }
 
 onActionButtonPressed({required String redirectFrom}) async {
-  await unFocus();
+  // await unFocus();
   final Isar isar = Get.find();
   if (redirectFrom == productDetailN) {
     deleteProduct();
@@ -171,7 +174,7 @@ onActionButtonPressed({required String redirectFrom}) async {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
     } else if (redirectFrom == addCustomerN) {
-      AddCustomerController.to.onAddCustomerSaveButtonPressed();
+      onAddCustomerSaveButtonPressed();
     } else if (redirectFrom == addVendorN) {
       AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
@@ -181,7 +184,7 @@ onActionButtonPressed({required String redirectFrom}) async {
     } else if (redirectFrom == dateSelectN) {
       onFilterSelect();
     }
-    Get.back();
+    // Get.back();
   }
 }
 
@@ -196,14 +199,13 @@ titleToData({required String title, int? index}) {
   } else if (currentPage == purchaseN) {
     return onPurchaseTitleToData(title: title, index: index);
   } else if (currentPage == editProductN) {
-    return getEditProductData(
-      title: title,
-    );
+    return getEditProductData(title: title);
   } else if (currentPage == editCustomerN) {
     return getEditCustomerData(title: title);
   } else if (currentPage == editVendorN) {
     return getEditVendorData(title: title);
-  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentPage)) {
+  } else if ([salesReportN, purchaseReportN, paymentReportN]
+      .contains(currentPage)) {
     return getReportSelectedDate(title: title);
   }
   return value;
@@ -362,4 +364,12 @@ getSelectedDate() {
   } else if (currentPage == purchaseN) {
     return PurchaseController.to.purchaseDate;
   }
+}
+
+bool isActionButtonLoading() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addCustomer) {
+    return AddCustomerController.to.isLoading;
+  }
+  return false;
 }

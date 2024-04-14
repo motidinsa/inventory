@@ -17,7 +17,7 @@ import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
-import '../routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 titleToHint({String? title}) {
   String? value;

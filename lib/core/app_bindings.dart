@@ -3,6 +3,7 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 
 
 
+
 class ApplicationBindings implements Bindings {
   ApplicationBindings();
 

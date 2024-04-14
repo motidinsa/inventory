@@ -41,18 +41,26 @@ class ActionButton extends StatelessWidget {
                     ? Colors.red.shade400
                     : Colors.green.shade100,
               ),
-              child: Text(
-                actionButtonType == null
-                    ? saveN
-                    : actionButtonType == ActionButtonType.filter
-                        ? filterN
-                        : 'Delete',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: actionButtonType == ActionButtonType.delete
-                        ? Colors.white
-                        : null),
-              ),
+              child: isActionButtonLoading()
+                  ? const SizedBox(
+                      width: 23,
+                      height: 23,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                      ),
+                    )
+                  : Text(
+                      actionButtonType == null
+                          ? saveN
+                          : actionButtonType == ActionButtonType.filter
+                              ? filterN
+                              : 'Delete',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: actionButtonType == ActionButtonType.delete
+                              ? Colors.white
+                              : null),
+                    ),
             ),
           ),
         ],

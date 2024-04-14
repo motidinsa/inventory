@@ -97,3 +97,4 @@ const String cashN = 'Cash';
 const String transferN = 'Transfer';
 const String creditN = 'Credit';
 const String noCustomerFoundN = 'No customer found';
+const String successfullyAddedCustomerN = 'Successfully added customer';
