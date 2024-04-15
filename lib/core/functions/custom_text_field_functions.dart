@@ -68,7 +68,9 @@ onTextFieldChange({
   if (currentRoute == salesN) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
-  } else if (currentRoute == addProductN) {
+  } else if (currentRoute == RouteName.addCustomer) {
+    onAddCustomerTextFieldChange(data: data, title: title!,);
+  }else if (currentRoute == addProductN) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == editProductN) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
@@ -242,9 +244,8 @@ onFocusChange({
       onPurchaseProductFocusChange(title: title, data: data);
     } else if (currentPage == editProductN) {
       onEditProductFocusChange(title: title, data: data);
-    } else if (currentPage == addCustomerN) {
-      onAddCustomerFocusChange(title: title, data: data);
-    } else if (currentPage == addVendorN) {
+    }
+    else if (currentPage == addVendorN) {
       onAddVendorFocusChange(title: title, data: data);
     } else if (currentPage == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);

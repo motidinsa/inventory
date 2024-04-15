@@ -8,7 +8,7 @@ import 'package:my_inventory/customer_list/repository/customer_list_repository.d
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-onAddCustomerFocusChange({
+onAddCustomerTextFieldChange({
   required String title,
   required String data,
 }) {

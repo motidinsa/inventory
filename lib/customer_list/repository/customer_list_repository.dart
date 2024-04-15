@@ -7,7 +7,7 @@ class CustomerListRepository {
   static final Isar _isar = Get.find();
 
   static List<CustomerDatabaseModel> getAllCustomers() {
-    return _isar.customerDatabaseModels.where().findAllSync();
+    return _isar.customerDatabaseModels.where().sortByDateCreatedDesc().findAllSync();
   }
 
   static List<CustomerDatabaseModel> searchCustomer({required String data}) {
