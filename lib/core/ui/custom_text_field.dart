@@ -6,6 +6,7 @@ import 'package:my_inventory/core/functions/custom_text_field_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/validations.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/main.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -131,6 +132,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
         labelText: widget.labelText,
+        labelStyle: TextStyle(fontSize: context.responsive<double>(
+          18,
+          xxl: 23,
+          xl: 22,
+          lg: 19,
+          md: 18,
+          sm: 16,
+          xs: 16,
+          xxs: 15,
+        ),),
         // label: focusNode.hasFocus?Text(widget.labelText??'',):Center(child: Text(widget.labelText??'',))
         alignLabelWithHint: true,
       ),
