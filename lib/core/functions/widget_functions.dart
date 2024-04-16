@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
@@ -7,6 +8,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/date_filter.dart';
+import 'package:my_inventory/main.dart';
 
 appBar({required String pageName, required BuildContext context}) {
   return AppBar(
@@ -14,6 +16,16 @@ appBar({required String pageName, required BuildContext context}) {
       pageName,
       style: TextStyle(
         fontWeight: FontWeight.bold,
+        fontSize: context.responsive<double>(
+          18,
+          xxl: 30,
+          xl: 28,
+          lg: 26,
+          md: 24,
+          sm: 22,
+          xs: 20,
+          xxs: 18,
+        ),
         color: const Color(0xff006E1C).withOpacity(.9),
       ),
     ),
@@ -28,15 +40,14 @@ appBar({required String pageName, required BuildContext context}) {
         color: Colors.grey.shade800,
       ),
     ),
-    actions: [salesReportN, purchaseReportN,paymentReportN]
+    actions: [salesReportN, purchaseReportN, paymentReportN]
             .contains(AppController.to.currentPages.last)
         ? [
             PopupMenuButton(
               position: PopupMenuPosition.under,
               shape: smoothRectangleBorder(radius: 15),
               tooltip: '',
-              constraints:
-                  const BoxConstraints(maxWidth: 400),
+              constraints: const BoxConstraints(maxWidth: 400),
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Row(

@@ -9,6 +9,7 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/main.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
@@ -30,25 +31,32 @@ class AddCustomer extends StatelessWidget {
           pageName: addCustomerN,
           body: Form(
             key: AppController.to.formKey,
-            child: ListView(
-              children: [
-                sizedBox(height: 20),
-                ElevatedCard(
-                  child: ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => CustomTextField(
-                      title: titles[index],
-                      labelText: titles[index],
+            child: Center(
+              child: SizedBox(width: context.responsive<double>(
+                Get.mediaQuery.size.width,
+                xxl: 600,
+              ),
+                child: ListView(
+                  children: [
+                    sizedBox(height: 20),
+                    ElevatedCard(
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => CustomTextField(
+                          title: titles[index],
+                          labelText: titles[index],
+                        ),
+                        shrinkWrap: true,
+                        itemCount: titles.length,
+                        separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                      ),
                     ),
-                    shrinkWrap: true,
-                    itemCount: titles.length,
-                    separatorBuilder: (ctx, index) => sizedBox(height: 15),
-                  ),
+                    ActionButton(
+                      redirectFrom: addCustomerN,
+                    ),
+                  ],
                 ),
-                ActionButton(
-                  redirectFrom: addCustomerN,
-                ),
-              ],
+              ),
             ),
           ),
         ),
