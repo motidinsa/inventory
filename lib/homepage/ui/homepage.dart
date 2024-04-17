@@ -1,14 +1,219 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: ,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            // final image = await imageFromAssetBundle('assets/logos/school-logo.png'); // import 'package:printing/printing.dart'
+            final doc =
+                pw.Document(); // import 'package:pdf/widgets.dart' as pw
+            doc.addPage(
+              pw.Page(
+                pageFormat: PdfPageFormat.a4,
+                build: (pw.Context context) {
+                  return pw.Padding(
+                    // recreate the entire UI
+                    padding: const pw.EdgeInsets.all(18.00),
+                    child: pw.Column(
+                      children: [
+                        // pw.Align(
+                        //   alignment: pw.Alignment.topCenter,
+                        //   child: pw.Image(image, width: 100, height: 100), // our school logo for the official PDF
+                        // ),
+                        pw.Text(
+                          'Jackie & Co. Secondary School',
+                          style: const pw.TextStyle(fontSize: 17.00),
+                        ),
+                        pw.SizedBox(height: 10.00),
+                        pw.Align(
+                          alignment: pw.Alignment.topLeft,
+                          child: pw.Row(
+                            mainAxisAlignment:
+                                pw.MainAxisAlignment.spaceBetween,
+                            children: [
+                              pw.Text(
+                                'Name: {widget.studentName}',
+                                style: const pw.TextStyle(fontSize: 15.00),
+                              ),
+                              pw.Text(
+                                'Form 4 West',
+                                style: const pw.TextStyle(fontSize: 15.00),
+                              ),
+                            ],
+                          ),
+                        ),
+                        pw.Divider(),
+                        pw.SizedBox(height: 15.00),
+                        pw.Row(
+                          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                          children: [
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  'Subject',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.SizedBox(height: 5.00),
+                                pw.Text(
+                                  'Maths',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'English',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Kiswahili',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Physics',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Biology',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Chemistry',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Geography',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Spanish',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                              ],
+                            ),
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  'Marks',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.SizedBox(height: 5.00),
+                                pw.Text(
+                                  '[0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'English][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Kiswahili][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Physics][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Biology][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Chemistry][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Geography][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Spanish][0].toString()',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                              ],
+                            ),
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  'Grade',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.SizedBox(height: 5.00),
+                                pw.Text(
+                                  'Maths]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'English][1]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Kiswahili][1]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'widget.studentResults[',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'widget.st Biology',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Chemistry][1]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Geography][1]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                                pw.Text(
+                                  'Spanish][1]',
+                                  style: const pw.TextStyle(fontSize: 15.00),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        pw.SizedBox(height: 30.00),
+                        pw.Row(
+                          mainAxisAlignment: pw.MainAxisAlignment.center,
+                          children: [
+                            pw.Text(
+                              'Grand Total: 2000000}',
+                            ),
+                            pw.SizedBox(width: 15),
+                            pw.Text(
+                              'Mean Grade: 400000}',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            );
+            await Printing.layoutPdf(
+                onLayout: (PdfPageFormat format) async => doc.save());
+            final file = File('example.pdf');
+            await file.writeAsBytes(await doc.save());
+          },
+          child: Icon(Icons.ac_unit_rounded)),
       appBar: AppBar(
         title: const Text(
           'XYZ Company',
