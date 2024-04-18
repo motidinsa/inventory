@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
@@ -194,7 +195,7 @@ class Homepage extends StatelessWidget {
                           mainAxisAlignment: pw.MainAxisAlignment.center,
                           children: [
                             pw.Text(
-                              'Grand Total: 2000000}',
+                              'Grand Total: 2000000',
                             ),
                             pw.SizedBox(width: 15),
                             pw.Text(
@@ -208,10 +209,37 @@ class Homepage extends StatelessWidget {
                 },
               ),
             );
-            await Printing.layoutPdf(
-                onLayout: (PdfPageFormat format) async => doc.save());
-            final file = File('example.pdf');
-            await file.writeAsBytes(await doc.save());
+            //   // final data = useData ? await _currentFile!.readAsBytes() : null;
+            //   final params = SaveFileDialogParams(
+            //     sourceFilePath:
+            //         '/data/data/com.inventory.my_inventory/cache/scaled_bf97b623-512a-4578-93f1-5db5369d8d8e3013635557314530898.jpg',
+            //     // data: data,
+            //     // localOnly: true,
+            //     // fileName: useData ? "untitled" : null
+            //   );
+            //   result = await FlutterFileDialog.saveFile(params: params);
+            //   print(result);
+            // } on PlatformException catch (e) {
+            //   print(e);
+            // } finally {
+            //   // setState(() {
+            //   //   _savedFilePath = result ?? _savedFilePath;
+            //   //   _isBusy = false;
+            //   // });
+            // }
+            Get.to(Scaffold(
+              appBar: AppBar(
+                title: Text('PDF Preview'),
+              ),
+              body: PdfPreview(
+                build: (context) => doc.save(),
+                canDebug: false,
+              ),
+            ));
+            // await Printing.layoutPdf(
+            //     onLayout: (PdfPageFormat format) async => doc.save());
+            // final file = File('example.pdf');
+            // await file.writeAsBytes(await doc.save());
           },
           child: Icon(Icons.ac_unit_rounded)),
       appBar: AppBar(
