@@ -12,6 +12,9 @@ import 'package:my_inventory/drawer/ui/my_drawer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
+import '../../sales/controller/sales_controller.dart';
+import '../../sales/ui/sales.dart';
+
 List<GetPage> routes = [
   GetPage(
       name: RouteName.homepage,
@@ -35,9 +38,9 @@ List<GetPage> routes = [
       // )
   ),
   GetPage(
-      name: RouteName.addCustomer,
-      page: () => AddCustomer(),
-      binding: BindingsBuilder.put(() => AddCustomerController())),
+      name: RouteName.sales,
+      page: () => Sales(),
+      binding: BindingsBuilder.put(() => SalesController())),
   GetPage(
       name: RouteName.addCustomer,
       page: () => AddCustomer(),

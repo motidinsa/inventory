@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_to_pdf/export_delegate.dart';
 import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,11 @@ class Homepage extends StatelessWidget {
       // floatingActionButton: ,
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
+            // final ExportDelegate exportDelegate = ExportDelegate();
+            // ExportFrame(
+            //   frameId: 'someFrameId',
+            //   child: SomeWidget(), // the widget you want to export
+            // )
 
             Get.to(pdftest());
             // await Printing.layoutPdf(

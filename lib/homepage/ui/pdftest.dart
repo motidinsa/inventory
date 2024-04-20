@@ -3,19 +3,31 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:flutter_to_pdf/export_delegate.dart';
+import 'package:flutter_to_pdf/export_frame.dart';
 import 'package:folder_file_saver/folder_file_saver.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../../core/ui/product/product_table_titles.dart';
+
 class pdftest extends StatelessWidget {
-  const pdftest({super.key});
+  // final pw.Page page;
+
+  const pdftest({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final doc = pw.Document(); // import 'package:pdf/widgets.dart' as pw
+    final doc = pw.Document();
+    final ExportDelegate exportDelegate = ExportDelegate();
+
     doc.addPage(
+      // page
       pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
@@ -28,6 +40,8 @@ class pdftest extends StatelessWidget {
                 //   alignment: pw.Alignment.topCenter,
                 //   child: pw.Image(image, width: 100, height: 100), // our school logo for the official PDF
                 // ),
+
+                pw.Row(children: [pw.Text('Date: 13/02/2016')]),
                 pw.Text(
                   ' & Co. Secondary School',
                   style: const pw.TextStyle(fontSize: 17.00),
@@ -202,68 +216,119 @@ class pdftest extends StatelessWidget {
       ),
     );
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('PDF Preview'),
-      ),
-      body: PdfPreview(
-        scrollViewDecoration: BoxDecoration(color: Colors.white),
-        build: (context) => doc.save(),
-        pdfFileName: 'mytest',
-        canDebug: false,
-        pdfPreviewPageDecoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: Offset(0, .5),
-              blurRadius: 1,
-              color: Color(0xFF000000),
-            ),
-          ],
+        backgroundColor: Colors.white,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await exportDelegate
+                .exportToPdfDocument('test')
+                .then((value) async {
+              final params = SaveFileDialogParams(
+                  data: await value.save(), fileName: 'kkk.pdf');
+              await FlutterFileDialog.saveFile(params: params).then((value) {
+                debugPrint('success');
+              }).catchError((error) {});
+            });
+          },
+          child: Text('aa'),
         ),
-        canChangeOrientation: false,
-        canChangePageFormat: false,
-        actionBarTheme: PdfActionBarTheme(
-            backgroundColor: Colors.white, iconColor: Colors.green.shade800),
-        onShared: (context) async {
-          final directory = await getApplicationDocumentsDirectory();
-          await Printing.sharePdf(
-                  bytes: await doc.save(), filename: 'myTest3.pdf')
-              .then((value) {
-            File('/data/data/com.inventory.my_inventory/cache/share/myTest3.pdf')
-                .deleteSync();
-          });
-        },
-        allowSharing: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await Printing.sharePdf(
-                        bytes: await doc.save(), filename: 'myTest3.pdf')
-                ;
-              },
-              icon: Icon(
-                Icons.share,
-              )),
-          IconButton(
-              onPressed: () async {
-
-                final params = SaveFileDialogParams(
-                    data: await doc.save(), fileName: 'kkk.pdf');
-                await FlutterFileDialog.saveFile(params: params).then((value) {
-                  debugPrint('success');
-                }).catchError((error) {});
-
-                // await FolderFileSaver.saveFileIntoCustomDir(
-                //   // filePath:  '${doc.}/default.isar',
-                //   dirNamed: '/',
-                // );
-              },
-              icon: Icon(
-                Icons.download,
-              ))
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text('PDF Preview'),
+        ),
+        body: ExportFrame(
+          frameId: 'test',
+          exportDelegate: exportDelegate,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Text('XYZ comp.'),
+                Align(
+                  child: Text('Date: 17/02/1023'),
+                  alignment: Alignment.centerRight,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  child: Text('Type: Sales'),
+                  alignment: Alignment.centerRight,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('Customer name: Mr. X'),
+                SizedBox(
+                  height: 5,
+                ),
+                ProductTableTitles(currentPage: salesN),
+                Row(
+                  children: [
+                    Text('No.'),
+                    SizedBox(
+                      width: 5,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        )
+        //     PdfPreview(
+        //   scrollViewDecoration: BoxDecoration(color: Colors.white),
+        //   build: (context) => doc.save(),
+        //   pdfFileName: 'mytest',
+        //   canDebug: false,
+        //   pdfPreviewPageDecoration: BoxDecoration(
+        //     color: Colors.white,
+        //     boxShadow: <BoxShadow>[
+        //       BoxShadow(
+        //         offset: Offset(0, .5),
+        //         blurRadius: 1,
+        //         color: Color(0xFF000000),
+        //       ),
+        //     ],
+        //   ),
+        //   canChangeOrientation: false,
+        //   canChangePageFormat: false,
+        //   actionBarTheme: PdfActionBarTheme(
+        //       backgroundColor: Colors.white, iconColor: Colors.green.shade800),
+        //   onShared: (context) async {
+        //     final directory = await getApplicationDocumentsDirectory();
+        //     await Printing.sharePdf(
+        //             bytes: await doc.save(), filename: 'myTest3.pdf')
+        //         .then((value) {
+        //       File('/data/data/com.inventory.my_inventory/cache/share/myTest3.pdf')
+        //           .deleteSync();
+        //     });
+        //   },
+        //   allowSharing: false,
+        //   actions: [
+        //     IconButton(
+        //         onPressed: () async {
+        //           await Printing.sharePdf(
+        //               bytes: await doc.save(), filename: 'myTest3.pdf');
+        //         },
+        //         icon: Icon(
+        //           Icons.share,
+        //         )),
+        //     IconButton(
+        //         onPressed: () async {
+        //           final params = SaveFileDialogParams(
+        //               data: await doc.save(), fileName: 'kkk.pdf');
+        //           await FlutterFileDialog.saveFile(params: params).then((value) {
+        //             debugPrint('success');
+        //           }).catchError((error) {});
+        //
+        //           // await FolderFileSaver.saveFileIntoCustomDir(
+        //           //   // filePath:  '${doc.}/default.isar',
+        //           //   dirNamed: '/',
+        //           // );
+        //         },
+        //         icon: Icon(
+        //           Icons.download,
+        //         ))
+        //   ],
+        // ),
+        );
   }
 }
