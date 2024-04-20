@@ -1,4 +1,10 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:folder_file_saver/folder_file_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -205,11 +211,12 @@ class pdftest extends StatelessWidget {
         build: (context) => doc.save(),
         pdfFileName: 'mytest',
         canDebug: false,
-        pdfPreviewPageDecoration: BoxDecoration( color: Colors.white,
+        pdfPreviewPageDecoration: BoxDecoration(
+          color: Colors.white,
           boxShadow: <BoxShadow>[
             BoxShadow(
-              offset: Offset(0, 2),
-              blurRadius: 5,
+              offset: Offset(0, .5),
+              blurRadius: 1,
               color: Color(0xFF000000),
             ),
           ],
@@ -218,9 +225,40 @@ class pdftest extends StatelessWidget {
         canChangePageFormat: false,
         actionBarTheme: PdfActionBarTheme(
             backgroundColor: Colors.white, iconColor: Colors.green.shade800),
+        onShared: (context) async {
+          final directory = await getApplicationDocumentsDirectory();
+          await Printing.sharePdf(
+                  bytes: await doc.save(), filename: 'myTest3.pdf')
+              .then((value) {
+            File('/data/data/com.inventory.my_inventory/cache/share/myTest3.pdf')
+                .deleteSync();
+          });
+        },
+        allowSharing: false,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                await Printing.sharePdf(
+                        bytes: await doc.save(), filename: 'myTest3.pdf')
+                ;
+              },
+              icon: Icon(
+                Icons.share,
+              )),
+          IconButton(
+              onPressed: () async {
+
+                final params = SaveFileDialogParams(
+                    data: await doc.save(), fileName: 'kkk.pdf');
+                await FlutterFileDialog.saveFile(params: params).then((value) {
+                  debugPrint('success');
+                }).catchError((error) {});
+
+                // await FolderFileSaver.saveFileIntoCustomDir(
+                //   // filePath:  '${doc.}/default.isar',
+                //   dirNamed: '/',
+                // );
+              },
               icon: Icon(
                 Icons.download,
               ))
