@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_to_pdf/export_delegate.dart';
 import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,8 +31,11 @@ class Homepage extends StatelessWidget {
             //   frameId: 'someFrameId',
             //   child: SomeWidget(), // the widget you want to export
             // )
-
-            Get.to(pdftest());
+            final ByteData bytes = await rootBundle.load('assets/images/company-logo.png');
+            final Uint8List byteList = bytes.buffer.asUint8List();
+            // Get.to(Scaffold(body: Image(image:MemoryImage(byteList),
+            //     fit: BoxFit.fitHeight, height: 100, width: 100, ),));
+            Get.to(pdftest(image: byteList,));
             // await Printing.layoutPdf(
             //     onLayout: (PdfPageFormat format) async => doc.save());
             // final file = File('example.pdf');
