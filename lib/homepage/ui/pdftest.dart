@@ -1657,7 +1657,7 @@ class pdftest extends StatelessWidget {
           children: [
             CircularProgressIndicator(),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Text('Generating pdf')
           ],
@@ -1705,10 +1705,6 @@ class pdftest extends StatelessWidget {
                   debugPrint('success');
                 }).catchError((error) {});
 
-                // await FolderFileSaver.saveFileIntoCustomDir(
-                //   // filePath:  '${doc.}/default.isar',
-                //   dirNamed: '/',
-                // );
               },
               icon: Icon(
                 Icons.download,

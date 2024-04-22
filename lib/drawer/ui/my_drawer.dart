@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:my_inventory/core/ui/title_with_submenu.dart';
@@ -29,7 +33,11 @@ class MyDrawer extends StatelessWidget {
                   'Export',
                 ),
                 leading: const FaIcon(FontAwesomeIcons.fileExport,size: 22,),
-                onTap: () {
+                onTap: () async {
+                  await FolderFileSaver.saveFileIntoCustomDir(
+                    filePath:  '/data/data/com.inventory.my_inventory/app_flutter/default.isar',
+                    dirNamed: '/',
+                  );
                 },
               ),
             ),sizedBox(height: 5),
@@ -42,7 +50,14 @@ class MyDrawer extends StatelessWidget {
                   'Import',
                 ),
                 leading: const FaIcon(FontAwesomeIcons.fileImport,size: 22,),
-                onTap: () {
+                onTap: () async {
+                  FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+                  if (result != null) {
+                    File file = File(result.files.single.path!).copySync('/data/data/com.inventory.my_inventory/app_flutter/default.isar');
+                  } else {
+                    // User canceled the picker
+                  }
                 },
               ),
             )
