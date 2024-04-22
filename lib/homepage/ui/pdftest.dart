@@ -38,7 +38,16 @@ class pdftest extends StatelessWidget {
               children: [
                 p.Row(children: [
                   p.Image(p.MemoryImage(this.image),
-                      fit: p.BoxFit.fitHeight, height: 50, width: 50),
+                      fit: p.BoxFit.fitHeight, height: 70, width: 70),
+                  p.SizedBox(width: 10),
+                  p.Text(
+                    'XYZ company',
+                    style: p.TextStyle(
+                      fontWeight: p.FontWeight.bold,
+                      fontSize: 24,
+                      // color: PdfColor.fromHex('424242'),
+                    ),
+                  )
                 ]),
                 p.Align(
                     child: p.RichText(
@@ -1465,49 +1474,166 @@ class pdftest extends StatelessWidget {
                 p.Row(
                   children: [
                     p.Expanded(
-                      child: p.Container(
-                        padding: p.EdgeInsets.symmetric(vertical: 10),
-                        decoration: p.BoxDecoration(
-                            color: PdfColor.fromHex('e8f5e9'),
-                            borderRadius: p.BorderRadius.circular(12)),
-                        child: p.Column(
-                          children: [
-                            p.Text(
-                              'Payment mode',
-                              style: p.TextStyle(
-                                fontWeight: p.FontWeight.bold,
-                                fontSize: 18,
-                              ),
+                        child: p.Row(
+                            mainAxisSize: p.MainAxisSize.min,
+                            mainAxisAlignment: p.MainAxisAlignment.center,
+                            children: [
+                          p.Container(
+                            padding: p.EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 20),
+                            decoration: p.BoxDecoration(
+                                color: PdfColor.fromHex('e8f5e9'),
+                                borderRadius: p.BorderRadius.circular(12)),
+                            child: p.Column(
+                              crossAxisAlignment: p.CrossAxisAlignment.start,
+                              children: [
+                                p.Text(
+                                  'Payment mode',
+                                  style: p.TextStyle(
+                                    fontWeight: p.FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                p.SizedBox(height: 10),
+                                p.RichText(
+                                  text: p.TextSpan(
+                                    text: 'Cash: ',
+                                    style: p.TextStyle(
+                                      fontWeight: p.FontWeight.bold,
+                                      fontSize: 18,
+                                      color: PdfColor.fromHex('424242'),
+                                    ),
+                                    // style: DefaultTextStyle.of(context).style,
+                                    children: [
+                                      p.TextSpan(
+                                        text: '2,000',
+                                        style: p.TextStyle(
+                                          // color: PdfColor.fromHex('424242'),
+                                          fontSize: 16,
+                                          fontWeight: p.FontWeight.normal,
+                                        ),
+                                      ),
+                                      // TextSpan(text: ' world!'),
+                                    ],
+                                  ),
+                                ),
+                                p.SizedBox(height: 10),
+                                p.RichText(
+                                  text: p.TextSpan(
+                                    text: 'Transfer: ',
+                                    style: p.TextStyle(
+                                      fontWeight: p.FontWeight.bold,
+                                      fontSize: 18,
+                                      color: PdfColor.fromHex('424242'),
+                                    ),
+                                    // style: DefaultTextStyle.of(context).style,
+                                    children: [
+                                      p.TextSpan(
+                                        text: '3,000',
+                                        style: p.TextStyle(
+                                          // color: PdfColor.fromHex('424242'),
+                                          fontSize: 16,
+                                          fontWeight: p.FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                p.SizedBox(height: 10),
+                                p.RichText(
+                                  text: p.TextSpan(
+                                    text: 'Credit: ',
+                                    style: p.TextStyle(
+                                      fontWeight: p.FontWeight.bold,
+                                      fontSize: 18,
+                                      color: PdfColor.fromHex('424242'),
+                                    ),
+                                    // style: DefaultTextStyle.of(context).style,
+                                    children: [
+                                      p.TextSpan(
+                                        text: '3,500',
+                                        style: p.TextStyle(
+                                          // color: PdfColor.fromHex('424242'),
+                                          fontSize: 16,
+                                          fontWeight: p.FontWeight.normal,
+                                        ),
+                                      ),
+                                      // TextSpan(text: ' world!'),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            p.SizedBox(height: 10),
-                            p.Text('Cash: '),
-                            p.SizedBox(height: 10),
-                            p.Text('Transfer: '),
-                            p.SizedBox(height: 10),
-                            p.Text('Credit: '),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
+                        ])),
                     // p.
                     p.Expanded(
                       child: p.Container(
-                        // decoration: p.BoxDecoration(
-                        //     color: PdfColor.fromHex('c8e6c9'),
-                        //     borderRadius: p.BorderRadius.circular(12)),
                         child: p.Column(
                           children: [
-                            p.Text(
-                              'Subtotal',
-                              style: p.TextStyle(
-                                fontWeight: p.FontWeight.bold,
-                                fontSize: 18,
+                            p.RichText(
+                              text: p.TextSpan(
+                                text: 'Subtotal: ',
+                                style: p.TextStyle(
+                                  fontWeight: p.FontWeight.bold,
+                                  fontSize: 18,
+                                  color: PdfColor.fromHex('424242'),
+                                ),
+                                children: [
+                                  p.TextSpan(
+                                    text: '10,000',
+                                    style: p.TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             p.SizedBox(height: 10),
-                            p.Text('Discount: '),
+                            p.RichText(
+                              text: p.TextSpan(
+                                text: 'Discount: ',
+                                style: p.TextStyle(
+                                  fontWeight: p.FontWeight.bold,
+                                  fontSize: 18,
+                                  color: PdfColor.fromHex('ef5350'),
+                                ),
+                                children: [
+                                  p.TextSpan(
+                                    text: '300',
+                                    style: p.TextStyle(
+                                      // color: PdfColor.fromHex('424242'),
+                                      fontSize: 16,
+                                      // fontWeight: p.FontWeight.normal,
+                                    ),
+                                  ),
+                                  // TextSpan(text: ' world!'),
+                                ],
+                              ),
+                            ),
                             p.SizedBox(height: 10),
-                            p.Text('Total: '),
+                            p.RichText(
+                              text: p.TextSpan(
+                                text: 'Total: ',
+                                style: p.TextStyle(
+                                  fontWeight: p.FontWeight.bold,
+                                  fontSize: 18,
+                                  color: PdfColor.fromHex('424242'),
+                                ),
+                                // style: DefaultTextStyle.of(context).style,
+                                children: [
+                                  p.TextSpan(
+                                    text: '9,700',
+                                    style: p.TextStyle(
+                                      // color: PdfColor.fromHex('424242'),
+                                      fontSize: 16,
+                                      // fontWeight: p.FontWeight.normal,
+                                    ),
+                                  ),
+                                  // TextSpan(text: ' world!'),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -1520,24 +1646,22 @@ class pdftest extends StatelessWidget {
         }));
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await exportDelegate.exportToPdfDocument('test').then((value) async {
-            final params = SaveFileDialogParams(
-                data: await value.save(), fileName: 'kkk.pdf');
-            await FlutterFileDialog.saveFile(params: params).then((value) {
-              debugPrint('success');
-            }).catchError((error) {});
-          });
-        },
-        child: Text('aa'),
-      ),
       appBar: AppBar(
         title: Text('PDF Preview'),
       ),
       body: PdfPreview(
         scrollViewDecoration: BoxDecoration(color: Colors.white),
         build: (context) => doc.save(),
+        loadingWidget: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(
+              height: 10,
+            ),
+            Text('Generating pdf')
+          ],
+        ),
         pdfFileName: 'mytest',
         canDebug: false,
         pdfPreviewPageDecoration: BoxDecoration(
