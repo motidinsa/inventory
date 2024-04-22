@@ -12,8 +12,8 @@ import 'package:my_inventory/drawer/ui/my_drawer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-import '../../sales/controller/sales_controller.dart';
-import '../../sales/ui/sales.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/sales/ui/sales.dart';
 
 List<GetPage> routes = [
   GetPage(

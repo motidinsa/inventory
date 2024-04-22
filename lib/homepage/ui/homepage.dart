@@ -1,21 +1,12 @@
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_to_pdf/export_delegate.dart';
-import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 import 'package:my_inventory/homepage/ui/pdftest.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:permission_handler/permission_handler.dart';
-import 'package:printing/printing.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -56,7 +47,7 @@ class Homepage extends StatelessWidget {
             // await Permission.photos.request();
             // print(status.name);
           },
-          child: Icon(Icons.ac_unit_rounded)),
+          child: const Icon(Icons.ac_unit_rounded)),
       appBar: AppBar(
         title: const Text(
           'XYZ Company',

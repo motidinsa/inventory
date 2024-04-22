@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:pdf/pdf.dart';
 
-import '../../model/sales/sales_model.dart';
+import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:pdf/widgets.dart' as p;
 
 List<p.Widget> generateSalesData() {
@@ -13,14 +13,14 @@ List<p.Widget> generateSalesData() {
     salesData.add(
       p.Container(
         color: i.isOdd ? PdfColor.fromHex('eeeeee') : null,
-        padding: p.EdgeInsets.symmetric(vertical: 10),
+        padding: const p.EdgeInsets.symmetric(vertical: 10),
         child: p.Row(
           children: [
             p.Expanded(
               child: p.Text(
                 '${i + 1}',
                 textAlign: p.TextAlign.center,
-                style: p.TextStyle(
+                style: const p.TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -30,7 +30,7 @@ List<p.Widget> generateSalesData() {
               child: p.Text(
                 salesModel.productName,
                 textAlign: p.TextAlign.center,
-                style: p.TextStyle(
+                style: const p.TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -40,7 +40,7 @@ List<p.Widget> generateSalesData() {
               child: p.Text(
                 salesModel.quantity,
                 textAlign: p.TextAlign.center,
-                style: p.TextStyle(
+                style: const p.TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -50,7 +50,7 @@ List<p.Widget> generateSalesData() {
               child: p.Text(
                 salesModel.price,
                 textAlign: p.TextAlign.center,
-                style: p.TextStyle(
+                style: const p.TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -60,7 +60,7 @@ List<p.Widget> generateSalesData() {
               child: p.Text(
                 salesModel.totalAmount.toString(),
                 textAlign: p.TextAlign.center,
-                style: p.TextStyle(
+                style: const p.TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -82,7 +82,7 @@ p.Widget generateSalesPaymentMode() {
       mainAxisAlignment: p.MainAxisAlignment.center,
       children: [
         p.Container(
-          padding: p.EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          padding: const p.EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           decoration: p.BoxDecoration(
               color: PdfColor.fromHex('e8f5e9'),
               borderRadius: p.BorderRadius.circular(12)),
@@ -190,7 +190,7 @@ p.Widget generatePriceSummary() {
               children: [
                 p.TextSpan(
                   text: salesController.subtotal.value,
-                  style: p.TextStyle(
+                  style: const p.TextStyle(
                     fontSize: 16,
                   ),
                 ),
@@ -209,7 +209,7 @@ p.Widget generatePriceSummary() {
               children: [
                 p.TextSpan(
                   text: salesController.discount.value,
-                  style: p.TextStyle(
+                  style: const p.TextStyle(
                     fontSize: 16,
                   ),
                 ),
@@ -228,7 +228,7 @@ p.Widget generatePriceSummary() {
               children: [
                 p.TextSpan(
                   text: salesController.total.value,
-                  style: p.TextStyle(
+                  style: const p.TextStyle(
                     fontSize: 16,
                   ),
                 ),

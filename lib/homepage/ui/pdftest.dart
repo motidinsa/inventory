@@ -1,19 +1,14 @@
 import 'dart:io';
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:flutter_to_pdf/export_delegate.dart';
-import 'package:flutter_to_pdf/export_frame.dart';
-import 'package:folder_file_saver/folder_file_saver.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as p;
 
-import '../../core/ui/product/product_table_titles.dart';
 
 class pdftest extends StatelessWidget {
   final Uint8List image;
@@ -30,14 +25,14 @@ class pdftest extends StatelessWidget {
     //   File('assets/images/company-logo.png').readAsBytesSync(),
     // );
     doc.addPage(p.MultiPage(
-        margin: p.EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+        margin: const p.EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         pageFormat: PdfPageFormat.a4,
         build: (p.Context context) {
           return [
             p.Column(
               children: [
                 p.Row(children: [
-                  p.Image(p.MemoryImage(this.image),
+                  p.Image(p.MemoryImage(image),
                       fit: p.BoxFit.fitHeight, height: 70, width: 70),
                   p.SizedBox(width: 10),
                   p.Text(
@@ -131,8 +126,8 @@ class pdftest extends StatelessWidget {
                 ),
                 p.SizedBox(height: 10),
                 p.Container(
-                  color: PdfColor(.91, .96, .91),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  color: const PdfColor(.91, .96, .91),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -195,7 +190,7 @@ class pdftest extends StatelessWidget {
                 ),
                 p.SizedBox(height: 10),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -203,7 +198,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -213,7 +208,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x ntrhiu ggiitu',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -223,7 +218,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -233,7 +228,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -243,7 +238,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -254,7 +249,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -262,7 +257,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -272,7 +267,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -282,7 +277,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -292,7 +287,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -302,7 +297,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -311,7 +306,7 @@ class pdftest extends StatelessWidget {
                   ),
                 ),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -319,7 +314,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -329,7 +324,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -339,7 +334,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -349,7 +344,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -359,123 +354,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.SizedBox(height: 5),
-                p.Container(
-                  color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -486,7 +365,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -494,7 +373,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -504,7 +383,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -514,7 +393,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -524,7 +403,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -534,7 +413,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -543,7 +422,7 @@ class pdftest extends StatelessWidget {
                   ),
                 ),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -551,7 +430,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -561,7 +440,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -571,7 +450,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -581,7 +460,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -591,123 +470,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.SizedBox(height: 5),
-                p.Container(
-                  color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -718,7 +481,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -726,7 +489,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -736,7 +499,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -746,7 +509,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -756,7 +519,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -766,7 +529,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -775,7 +538,7 @@ class pdftest extends StatelessWidget {
                   ),
                 ),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -783,7 +546,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -793,7 +556,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -803,7 +566,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -813,7 +576,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -823,123 +586,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.SizedBox(height: 5),
-                p.Container(
-                  color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -950,7 +597,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -958,7 +605,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -968,7 +615,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -978,7 +625,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -988,7 +635,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -998,7 +645,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1007,7 +654,7 @@ class pdftest extends StatelessWidget {
                   ),
                 ),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -1015,7 +662,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1025,7 +672,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1035,7 +682,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1045,7 +692,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1055,123 +702,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.SizedBox(height: 5),
-                p.Container(
-                  color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1182,7 +713,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -1190,7 +721,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1200,7 +731,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1210,7 +741,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1220,7 +751,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1230,7 +761,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1239,7 +770,7 @@ class pdftest extends StatelessWidget {
                   ),
                 ),
                 p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -1247,7 +778,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1257,7 +788,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1267,7 +798,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1277,7 +808,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1287,123 +818,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.SizedBox(height: 5),
-                p.Container(
-                  color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                p.Container(
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
-                  child: p.Row(
-                    children: [
-                      p.Expanded(
-                        // flex: ,
-                        child: p.Text(
-                          '1',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 4,
-                        child: p.Text(
-                          'delo motor oil 2x',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '30',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '3,453',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      p.Expanded(
-                        flex: 2,
-                        child: p.Text(
-                          '12,477',
-                          textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1414,7 +829,7 @@ class pdftest extends StatelessWidget {
                 p.SizedBox(height: 5),
                 p.Container(
                   color: PdfColor.fromHex('eeeeee'),
-                  padding: p.EdgeInsets.symmetric(vertical: 10),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
                   child: p.Row(
                     children: [
                       p.Expanded(
@@ -1422,7 +837,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '1',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1432,7 +847,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           'delo motor oil 2x',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1442,7 +857,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '30',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1452,7 +867,7 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '3,453',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1462,7 +877,587 @@ class pdftest extends StatelessWidget {
                         child: p.Text(
                           '12,477',
                           textAlign: p.TextAlign.center,
-                          style: p.TextStyle(
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.Container(
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.SizedBox(height: 5),
+                p.Container(
+                  color: PdfColor.fromHex('eeeeee'),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.Container(
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.SizedBox(height: 5),
+                p.Container(
+                  color: PdfColor.fromHex('eeeeee'),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.Container(
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.SizedBox(height: 5),
+                p.Container(
+                  color: PdfColor.fromHex('eeeeee'),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.Container(
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.SizedBox(height: 5),
+                p.Container(
+                  color: PdfColor.fromHex('eeeeee'),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.Container(
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                p.SizedBox(height: 5),
+                p.Container(
+                  color: PdfColor.fromHex('eeeeee'),
+                  padding: const p.EdgeInsets.symmetric(vertical: 10),
+                  child: p.Row(
+                    children: [
+                      p.Expanded(
+                        // flex: ,
+                        child: p.Text(
+                          '1',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 4,
+                        child: p.Text(
+                          'delo motor oil 2x',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '30',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '3,453',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      p.Expanded(
+                        flex: 2,
+                        child: p.Text(
+                          '12,477',
+                          textAlign: p.TextAlign.center,
+                          style: const p.TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -1479,7 +1474,7 @@ class pdftest extends StatelessWidget {
                             mainAxisAlignment: p.MainAxisAlignment.center,
                             children: [
                           p.Container(
-                            padding: p.EdgeInsets.symmetric(
+                            padding: const p.EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 20),
                             decoration: p.BoxDecoration(
                                 color: PdfColor.fromHex('e8f5e9'),
@@ -1579,7 +1574,7 @@ class pdftest extends StatelessWidget {
                                   fontSize: 18,
                                   color: PdfColor.fromHex('424242'),
                                 ),
-                                children: [
+                                children: const [
                                   p.TextSpan(
                                     text: '10,000',
                                     style: p.TextStyle(
@@ -1598,7 +1593,7 @@ class pdftest extends StatelessWidget {
                                   fontSize: 18,
                                   color: PdfColor.fromHex('ef5350'),
                                 ),
-                                children: [
+                                children: const [
                                   p.TextSpan(
                                     text: '300',
                                     style: p.TextStyle(
@@ -1621,7 +1616,7 @@ class pdftest extends StatelessWidget {
                                   color: PdfColor.fromHex('424242'),
                                 ),
                                 // style: DefaultTextStyle.of(context).style,
-                                children: [
+                                children: const [
                                   p.TextSpan(
                                     text: '9,700',
                                     style: p.TextStyle(
@@ -1647,12 +1642,12 @@ class pdftest extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('PDF Preview'),
+        title: const Text('PDF Preview'),
       ),
       body: PdfPreview(
-        scrollViewDecoration: BoxDecoration(color: Colors.white),
+        scrollViewDecoration: const BoxDecoration(color: Colors.white),
         build: (context) => doc.save(),
-        loadingWidget: Column(
+        loadingWidget: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(),
@@ -1664,7 +1659,7 @@ class pdftest extends StatelessWidget {
         ),
         pdfFileName: 'mytest',
         canDebug: false,
-        pdfPreviewPageDecoration: BoxDecoration(
+        pdfPreviewPageDecoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -1694,7 +1689,7 @@ class pdftest extends StatelessWidget {
                 await Printing.sharePdf(
                     bytes: await doc.save(), filename: 'myTest3.pdf');
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.share,
               )),
           IconButton(
@@ -1706,7 +1701,7 @@ class pdftest extends StatelessWidget {
                 }).catchError((error) {});
 
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.download,
               ))
         ],
