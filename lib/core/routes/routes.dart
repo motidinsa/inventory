@@ -14,13 +14,16 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
+import 'package:my_inventory/signup/ui/signup.dart';
 
 List<GetPage> routes = [
   GetPage(
-      name: RouteName.homepage,
-      page: () => GetBuilder<AppController>(builder: (context) {
-            return const Scaffold(drawer: MyDrawer(), body: Homepage());
-          })),
+    name: RouteName.homepage,
+    // page: () => GetBuilder<AppController>(builder: (context) {
+    //   return const Scaffold(drawer: MyDrawer(), body: Homepage());
+    // }),
+    page: () => SignUp(),
+  ),
   GetPage(
       name: RouteName.customerList,
       page: () => const CustomerList(),
@@ -30,12 +33,12 @@ List<GetPage> routes = [
       page: () => AddCustomer(),
       binding: BindingsBuilder.put(() => AddCustomerController())),
   GetPage(
-      name: RouteName.customerDetail,
-      page: () => CustomerDetail(),
-      // binding: BindingsBuilder.put(() => EditCustomerController(
-      //       customerDatabaseModel: customerDatabaseModel,
-      //     )
-      // )
+    name: RouteName.customerDetail,
+    page: () => CustomerDetail(),
+    // binding: BindingsBuilder.put(() => EditCustomerController(
+    //       customerDatabaseModel: customerDatabaseModel,
+    //     )
+    // )
   ),
   GetPage(
       name: RouteName.sales,

@@ -9,12 +9,17 @@ class ActionButton extends StatelessWidget {
   final String redirectFrom;
   final ActionButtonType? actionButtonType;
   final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+  final Color? textColor;
 
-  ActionButton(
-      {super.key,
-      required this.redirectFrom,
-      this.actionButtonType,
-      this.padding});
+  ActionButton({
+    super.key,
+    required this.redirectFrom,
+    this.actionButtonType,
+    this.padding,
+    this.backgroundColor,
+    this.textColor,
+  });
 
   final AppController appController = Get.find();
 
@@ -37,9 +42,10 @@ class ActionButton extends StatelessWidget {
                     15,
                   ),
                 ),
-                backgroundColor: actionButtonType == ActionButtonType.delete
-                    ? Colors.red.shade400
-                    : Colors.green.shade100,
+                backgroundColor: backgroundColor ??
+                    (actionButtonType == ActionButtonType.delete
+                        ? Colors.red.shade400
+                        : Colors.green.shade100),
               ),
               child: isActionButtonLoading()
                   ? const SizedBox(
@@ -57,9 +63,9 @@ class ActionButton extends StatelessWidget {
                               : 'Delete',
                       style: TextStyle(
                           fontSize: 16,
-                          color: actionButtonType == ActionButtonType.delete
+                          color: textColor??(actionButtonType == ActionButtonType.delete
                               ? Colors.white
-                              : null),
+                              : null)),
                     ),
             ),
           ),
