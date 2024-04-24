@@ -2,12 +2,15 @@ import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
+
+import '../../../sales/functions/sales_helper_functions.dart';
 
 getSubtotal() {
   final AppController appController = Get.find();
@@ -31,12 +34,12 @@ getTotal() {
 
 getProductPrice({required int index}) {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
-    String currentPrice = salesController.salesModels[index].value.price;
+    String currentPrice = salesController.salesModels[index].price;
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.purchaseModels[index].value.cost;
   }
@@ -44,11 +47,11 @@ getProductPrice({required int index}) {
 
 getProductTotalPrice({required int index}) {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
-    return salesController.salesModels[index].value.totalAmount;
-  } else if (currentPage == purchaseN) {
+    return salesController.salesModels[index].totalAmount;
+  } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
     return purchaseController.purchaseModels[index].value.totalAmount;
   }

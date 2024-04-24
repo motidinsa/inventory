@@ -51,7 +51,7 @@ class SignUp extends StatelessWidget {
                         child: Text(
                           'Sign up',
                           style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 28,
                               fontWeight: bold(),
                               color: Colors.green.shade800),
                         ),
@@ -67,7 +67,7 @@ class SignUp extends StatelessWidget {
                       ),
                       sizedBox(height: 16),
                       Card(
-                        color: Colors.green.shade100,
+                        color: Colors.grey.shade50,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         child: Padding(
@@ -101,7 +101,7 @@ class SignUp extends StatelessWidget {
                                   onTap: () {},
                                   textAlignVertical: TextAlignVertical.center,
                                   decoration: InputDecoration(
-                                    fillColor: Colors.grey.shade50,
+                                    fillColor: Colors.white70,
                                     filled: true,
                                     errorMaxLines: 2,
                                     border: UnderlineInputBorder(

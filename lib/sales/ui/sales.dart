@@ -17,8 +17,8 @@ import 'package:my_inventory/sales/ui/payment_options.dart';
 class Sales extends StatelessWidget {
   Sales({super.key});
 
-  final SalesController salesController = Get.put(SalesController());
   final AppController appController = Get.find();
+  final SalesController salesController = Get.find();
 
   @override
   Widget build(BuildContext context) {

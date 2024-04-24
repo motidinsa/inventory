@@ -35,19 +35,13 @@ onProfileEditPressed() {
 
 onSingleProfileDetailPressed({required int index}) {
   unFocus();
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == customerListN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.customerList) {
     Get.toNamed(RouteName.customerDetail,
         arguments: [CustomerListController.to.customerList[index], index]);
-    // Get.to(() => CustomerDetail(
-    //       customerDatabaseModel: CustomerListController.to.customerList[index],
-    //       index: index,
-    //     ));
-  } else if (currentPage == vendorListN) {
-    Get.to(() => VendorDetail(
-          vendorDatabaseModel: VendorListController.to.vendorList[index],
-          index: index,
-        ));
+  } else if (currentRoute == RouteName.vendorList) {
+    Get.toNamed(RouteName.vendorDetail,
+        arguments: [VendorListController.to.vendorList[index], index]);
   }
 }
 

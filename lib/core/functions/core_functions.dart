@@ -165,8 +165,8 @@ onActionButtonPressed({required String redirectFrom}) async {
       addProductController.isSubmitButtonPressed(true);
       addProductController.onAddProductSaveButtonPressed();
     } else if (redirectFrom == salesN) {
-      SalesController salesController = Get.find();
-      salesController.saveSalesProductToDB();
+      // SalesController salesController = Get.find();
+      saveSalesProductToDB();
     } else if (redirectFrom == purchaseN) {
       PurchaseController purchaseController = Get.find();
       purchaseController.savePurchaseProductToDB();
@@ -358,10 +358,10 @@ getKeyboardType({required String title}) {
 }
 
 getSelectedDate() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
     return SalesController.to.salesDate;
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     return PurchaseController.to.purchaseDate;
   }
 }

@@ -9,7 +9,7 @@ List<p.Widget> generateSalesData() {
   List<p.Widget> salesData = [];
   SalesController salesController = Get.find();
   for (int i = 0; i < salesController.salesModels.length; i++) {
-    SalesModel salesModel = salesController.salesModels[i].value;
+    SalesModel salesModel = salesController.salesModels[i];
     salesData.add(
       p.Container(
         color: i.isOdd ? PdfColor.fromHex('eeeeee') : null,
@@ -208,7 +208,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.discount.value,
+                  text: salesController.discount,
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
@@ -227,7 +227,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.total.value,
+                  text: salesController.total,
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
