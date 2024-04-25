@@ -60,8 +60,8 @@ double getValidNumValue(String data) {
 
 autoValidateMode() {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == addProductN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();
     if (addProductController.isSubmitButtonPressed.isTrue) {
       return true;
@@ -94,7 +94,7 @@ onActionButtonPressed({required String redirectFrom}) async {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
       final AppController appController = Get.find();
-      String currentPage = appController.currentPages.last;
+      String currentRoute = Get.currentRoute;
       DateTime now = DateTime.now();
       String id = generateDatabaseId(time: now);
       if (redirectFrom == categoryNameN) {
@@ -113,13 +113,13 @@ onActionButtonPressed({required String redirectFrom}) async {
               dateModified: now,
               modifiedByUserId: appController.userId.value,
               addedFrom:
-                  currentPage == addProductN ? addProductDC : editProductDC));
+                  currentRoute == RouteName.addProduct ? addProductDC : editProductDC));
         });
-        if (currentPage == addProductN) {
+        if (currentRoute == RouteName.addProduct) {
           AddProductController addProductController = Get.find();
           addProductController.categoryListFoundResult(
               isar.categoryDatabaseModels.where().findAllSync());
-        } else if (currentPage == editProductN) {
+        } else if (currentRoute == RouteName.editProduct) {
           EditProductController editProductController = Get.find();
           editProductController.categoryListFoundResult(
               isar.categoryDatabaseModels.where().findAllSync());
@@ -141,15 +141,15 @@ onActionButtonPressed({required String redirectFrom}) async {
                   uomId: id,
                   dateModified: now,
                   modifiedByUserId: appController.userId.value,
-                  addedFrom: currentPage == addProductN
+                  addedFrom: currentRoute == RouteName.addProduct
                       ? addProductDC
                       : editProductDC));
         });
-        if (currentPage == addProductN) {
+        if (currentRoute == RouteName.addProduct) {
           AddProductController addProductController = Get.find();
           addProductController.unitOfMeasurementListFoundResult(
               isar.unitOfMeasurementDatabaseModels.where().findAllSync());
-        } else if (currentPage == editProductN) {
+        } else if (currentRoute == RouteName.editProduct) {
           EditProductController editProductController = Get.find();
           editProductController.unitOfMeasurementListFoundResult(
               isar.unitOfMeasurementDatabaseModels.where().findAllSync());
@@ -190,22 +190,22 @@ onActionButtonPressed({required String redirectFrom}) async {
 
 titleToData({required String title, int? index}) {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
+  String currentRoute = Get.currentRoute;
   String? value;
-  if (currentPage == salesN) {
+  if (currentRoute == RouteName.sales) {
     return onSalesTitleToData(title: title, index: index);
-  } else if (currentPage == addProductN) {
+  } else if (currentRoute == RouteName.addProduct) {
     return onAddProductGetData(title: title);
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     return onPurchaseTitleToData(title: title, index: index);
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     return getEditProductData(title: title);
-  } else if (currentPage == editCustomerN) {
+  } else if (currentRoute == editCustomerN) {
     return getEditCustomerData(title: title);
-  } else if (currentPage == editVendorN) {
+  } else if (currentRoute == editVendorN) {
     return getEditVendorData(title: title);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
-      .contains(currentPage)) {
+      .contains(currentRoute)) {
     return getReportSelectedDate(title: title);
   }
   return value;
@@ -236,9 +236,9 @@ nullIfEmpty(String? data) {
 }
 
 onAddIconPressed({String? type}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesN) {
-  } else if (currentPage == purchaseN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
+  } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
     purchaseController.addPurchaseProduct();
   } else {
@@ -249,14 +249,14 @@ onAddIconPressed({String? type}) {
       ),
     ).then((value) {
       RxList? itemList;
-      if (currentPage == addProductN) {
+      if (currentRoute == RouteName.addProduct) {
         AddProductController addProductController = Get.find();
         if (type == selectCategoryN) {
           itemList = addProductController.categoryListFoundResult;
         } else {
           addProductController.unitOfMeasurementListFoundResult;
         }
-      } else if (currentPage == editProductN) {
+      } else if (currentRoute == RouteName.editProduct) {
         EditProductController editProductController = Get.find();
         if (type == selectCategoryN) {
           itemList = editProductController.categoryListFoundResult;
@@ -296,13 +296,13 @@ onImageSourceButtonPressed({
           imageQuality: 50)
       .then((value) async {
     final AppController appController = Get.find();
-    String currentPage = appController.currentPages.last;
-    if (currentPage == addProductN) {
+    String currentRoute = Get.currentRoute;
+    if (currentRoute == RouteName.addProduct) {
       AddProductController addProductController = Get.find();
       addProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;
       });
-    } else if (currentPage == editProductN) {
+    } else if (currentRoute == RouteName.editProduct) {
       EditProductController editProductController = Get.find();
       editProductController.productInfo.update((val) async {
         val?.localImagePath = value?.path;

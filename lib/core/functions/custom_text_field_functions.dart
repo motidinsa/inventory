@@ -65,16 +65,16 @@ onTextFieldChange({
   int? index,
 }) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == salesN) {
+  if (currentRoute == RouteName.sales) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
   } else if (currentRoute == RouteName.addCustomer) {
     onAddCustomerTextFieldChange(data: data, title: title!,);
-  }else if (currentRoute == addProductN) {
+  }else if (currentRoute == RouteName.addProduct) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentRoute == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentRoute == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == productListN) {
     onProductListTextFieldChange(data: data);
@@ -86,17 +86,16 @@ onTextFieldChange({
 }
 
 onTextFieldPressed({String? title, int? index}) {
-  final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == addProductN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
     onAddProductTextFieldPressed(title: title!);
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldPressed(title: title!);
-  } else if (currentPage == salesN) {
+  } else if (currentRoute == RouteName.sales) {
     onSalesProductSelect(title: title, listIndex: index);
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     onPurchaseProductSelect(title: title, index: index);
-  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentPage)) {
+  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentRoute)) {
     onReportFilterSelect(title: title!);
   }
 }
@@ -151,7 +150,7 @@ minimizePadding({String? title}) {
     toN,
     fromN,
     if ([addProductN, editProductN]
-        .contains(AppController.to.currentPages.last))
+        .contains(Get.currentRoute))
       costN,
     priceN,
     productIdN
@@ -235,21 +234,21 @@ onFocusChange({
 }) {
   if (!hasFocus) {
     final AppController appController = Get.find();
-    String currentPage = appController.currentPages.last;
-    if (currentPage == addProductN) {
+    String currentRoute = Get.currentRoute;
+    if (currentRoute == RouteName.addProduct) {
       onAddProductFocusChange(title: title, data: data);
-    } else if (currentPage == salesN) {
+    } else if (currentRoute == RouteName.sales) {
       onSalesProductFocusChange(title: title, data: data);
-    } else if (currentPage == purchaseN) {
+    } else if (currentRoute == RouteName.purchase) {
       onPurchaseProductFocusChange(title: title, data: data);
-    } else if (currentPage == editProductN) {
+    } else if (currentRoute == RouteName.editProduct) {
       onEditProductFocusChange(title: title, data: data);
     }
-    else if (currentPage == addVendorN) {
+    else if (currentRoute == addVendorN) {
       onAddVendorFocusChange(title: title, data: data);
-    } else if (currentPage == editCustomerN) {
+    } else if (currentRoute == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);
-    } else if (currentPage == editVendorN) {
+    } else if (currentRoute == editVendorN) {
       onEditVendorFocusChange(title: title, data: data);
     }
   }

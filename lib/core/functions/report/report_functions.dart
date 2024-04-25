@@ -34,7 +34,7 @@ const List<double> inventoryReportWidthRatio = [
 const double purchaseSpacing = 3;
 
 double getReportWidth() {
-  // if (AppController.to.currentPages.last == salesReportN) {
+  // if (Get.currentRoute == salesReportN) {
   //   return dateWidthR +
   //       itemWidthR +
   //       qtyWidthR +
@@ -55,33 +55,33 @@ double getReportWidth() {
 }
 
 String getFirstData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return DateFormat('MMM d')
         .format(SalesReportController.to.salesReportModels[index].salesDate);
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     return DateFormat('MMM d').format(
         PurchaseReportController.to.purchaseReportModels[index].purchaseDate);
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return DateFormat('MMM d').format(
         PaymentReportController.to.paymentReportModels[index].paymentDate);
-  } else if ([reorderQuantityN, inventoryReportN].contains(currentPage)) {
+  } else if ([reorderQuantityN, inventoryReportN].contains(currentRoute)) {
     return (index + 1).toString();
   }
   return '';
 }
 
 String getSecondData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return SalesReportController.to.salesReportModels[index].productName;
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     return PurchaseReportController.to.purchaseReportModels[index].productName;
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return PaymentReportController.to.paymentReportModels[index].customerName;
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return ReorderStockController.to.productDatabaseModels[index].productName;
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return InventoryReportController
         .to.productDatabaseModels[index].productName;
   }
@@ -90,20 +90,20 @@ String getSecondData({required int index}) {
 }
 
 String getThirdData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].quantity);
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     return getFormattedNumberWithComa(
         PurchaseReportController.to.purchaseReportModels[index].quantity);
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].cash);
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return getFormattedNumberWithComa(
         ReorderStockController.to.productDatabaseModels[index].reorderQuantity);
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return getFormattedNumberWithComa(InventoryReportController
         .to.productDatabaseModels[index].quantityOnHand);
   }
@@ -111,20 +111,20 @@ String getThirdData({required int index}) {
 }
 
 String getFourthData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalCost);
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     return getFormattedNumberWithComa(
         PurchaseReportController.to.purchaseReportModels[index].unitCost);
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].transfer);
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return getFormattedNumberWithComa(
         ReorderStockController.to.productDatabaseModels[index].quantityOnHand);
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return getFormattedNumberWithComa(InventoryReportController.to.productDatabaseModels[index].cost)
 ;
   }
@@ -132,17 +132,17 @@ String getFourthData({required int index}) {
 }
 
 String getFifthData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalPrice);
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     return getFormattedNumberWithComa(
         PurchaseReportController.to.purchaseReportModels[index].totalCost);
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].credit);
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return getFormattedNumberWithComa(InventoryReportController
         .to.productDatabaseModels[index].quantityOnHand *
         InventoryReportController.to.productDatabaseModels[index].cost);
@@ -151,12 +151,12 @@ String getFifthData({required int index}) {
 }
 
 String getSixthData({required int index}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalPrice -
             SalesReportController.to.salesReportModels[index].totalCost);
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return getFormattedNumberWithComa(
         PaymentReportController.to.paymentReportModels[index].total);
   }
@@ -164,116 +164,116 @@ String getSixthData({required int index}) {
 }
 
 double getReportFirstWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[0];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[0];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[0];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[0];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[0];
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return Get.mediaQuery.size.width * inventoryReportWidthRatio[0];
   }
   return 0;
 }
 
 double getReportSecondWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[1];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[1];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[1];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[1];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[1];
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return Get.mediaQuery.size.width * inventoryReportWidthRatio[1];
   }
   return 0;
 }
 
 double getReportThirdWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[2];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[2];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[2];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[2];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[2];
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return Get.mediaQuery.size.width * inventoryReportWidthRatio[2];
   }
   return 0;
 }
 
 double getReportFourthWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[3];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[3];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[3];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[3];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[3];
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return Get.mediaQuery.size.width * inventoryReportWidthRatio[3];
   }
   return 0;
 }
 
 double getReportFifthWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[4];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[4];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[4];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[4];
-  } else if (currentPage == inventoryReportN) {
+  } else if (currentRoute == inventoryReportN) {
     return Get.mediaQuery.size.width * inventoryReportWidthRatio[4];
   }
   return 0;
 }
 
 double getReportSixthWidth() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == purchaseReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[5];
-  } else if (currentPage == salesReportN) {
+  } else if (currentRoute == salesReportN) {
     return Get.mediaQuery.size.width * salesWidthRatio[5];
-  } else if (currentPage == reorderQuantityN) {
+  } else if (currentRoute == reorderQuantityN) {
     return Get.mediaQuery.size.width * reorderQtyWidthRatio[5];
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     return Get.mediaQuery.size.width * paymentReportWidthRatio[5];
   }
   return 0;
 }
 
 String? getReportSelectedDate({required String title}) {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     if (title == fromN && SalesReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.startDate!);
     } else if (title == toN && SalesReportController.to.endDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.endDate!);
     }
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     if (title == fromN && PurchaseReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.startDate!);
@@ -281,7 +281,7 @@ String? getReportSelectedDate({required String title}) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.endDate!);
     }
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     if (title == fromN && PaymentReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PaymentReportController.to.startDate!);
@@ -293,21 +293,21 @@ String? getReportSelectedDate({required String title}) {
 }
 
 onFilterSelect() {
-  String currentPage = AppController.to.currentPages.last;
-  if (currentPage == salesReportN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == salesReportN) {
     final SalesReportController salesReportController = Get.find();
 
     salesReportController.displayStartDate = salesReportController.startDate;
     salesReportController.displayEndDate = salesReportController.endDate;
     salesReportController.onSalesReportFilterPressed();
-  } else if (currentPage == purchaseReportN) {
+  } else if (currentRoute == purchaseReportN) {
     final PurchaseReportController purchaseReportController = Get.find();
 
     purchaseReportController.displayStartDate =
         purchaseReportController.startDate;
     purchaseReportController.displayEndDate = purchaseReportController.endDate;
     purchaseReportController.onPurchaseReportFilterPressed();
-  } else if (currentPage == paymentReportN) {
+  } else if (currentRoute == paymentReportN) {
     final PaymentReportController paymentReportController = Get.find();
 
     paymentReportController.displayStartDate =

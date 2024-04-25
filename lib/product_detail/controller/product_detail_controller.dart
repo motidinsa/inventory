@@ -12,7 +12,7 @@ class ProductDetailController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(productDetailN);
+    AppController.to.currentRoutes.add(productDetailN);
     super.onInit();
   }
 }

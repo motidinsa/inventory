@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
@@ -22,14 +23,14 @@ class DateFilter extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
-            if (AppController.to.currentPages.last == salesReportN)
+            if (Get.currentRoute == salesReportN)
               GetBuilder<SalesReportController>(builder: (context) {
                 return const DateRangeSelection();
               })
-            else if (AppController.to.currentPages.last == purchaseReportN)
+            else if (Get.currentRoute == purchaseReportN)
               GetBuilder<PurchaseReportController>(builder: (context) {
                 return const DateRangeSelection();
-              })   else if (AppController.to.currentPages.last == paymentReportN)
+              })   else if (Get.currentRoute == paymentReportN)
               GetBuilder<PaymentReportController>(builder: (context) {
                 return const DateRangeSelection();
               }),

@@ -55,11 +55,11 @@ getProductTotalPrice({required int index}) {
 
 getProductImagePath() {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == addProductN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.localImagePath;
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     final EditProductController editProductController = Get.find();
     return editProductController.productInfo.value.localImagePath;
   }
@@ -68,11 +68,11 @@ getProductImagePath() {
 
 getSuffix() {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == addProductN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
     final AddProductController addProductController = Get.find();
     return addProductController.productInfo.value.unitOfMeasurementName;
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     final EditProductController editProductController = Get.find();
     return editProductController.productInfo.value.unitOfMeasurementName;
   }
@@ -80,13 +80,13 @@ getSuffix() {
 
 onImageDeleteButtonPressed() {
   final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == addProductN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();
     addProductController.productInfo.update((val) {
       val?.localImagePath = null;
     });
-  } else if (currentPage == editProductN) {
+  } else if (currentRoute == RouteName.editProduct) {
     EditProductController editProductController = Get.find();
     editProductController.productInfo.update((val) {
       val?.localImagePath = null;
@@ -94,7 +94,7 @@ onImageDeleteButtonPressed() {
   }
 }
 onProductDelete({required int index}){
-  if(AppController.to.currentPages.last == salesN){
+  if(Get.currentRoute == RouteName.sales){
     SalesController.to.salesModels.removeAt(index);
   }else{
     PurchaseController.to.purchaseModels.removeAt(index);

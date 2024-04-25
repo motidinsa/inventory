@@ -19,7 +19,7 @@ class PurchaseReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(purchaseReportN);  final Isar isar = Get.find();
+    AppController.to.currentRoutes.add(purchaseReportN);  final Isar isar = Get.find();
     for (var element in isar.purchaseAllDatabaseModels
         .where()
         .sortByPurchaseDateDesc()

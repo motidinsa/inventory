@@ -41,7 +41,7 @@ class PurchaseController extends GetxController {
 
   @override
   void onInit() {  final Isar isar = Get.find();
-    AppController.to.currentPages.add(purchaseN);
+    AppController.to.currentRoutes.add(purchaseN);
     searchProductFoundResult(isar.productDatabaseModels.where().findAllSync());
     super.onInit();
   }

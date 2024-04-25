@@ -9,9 +9,9 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 class AddProductImage extends StatelessWidget {
-  final String currentPage;
+  final String currentRoute;
 
-  const AddProductImage({super.key, required this.currentPage});
+  const AddProductImage({super.key, required this.currentRoute});
 
   @override
   Widget build(BuildContext context) {

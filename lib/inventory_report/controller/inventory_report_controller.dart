@@ -17,7 +17,7 @@ class InventoryReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(inventoryReportN);  final Isar isar = Get.find();
+    AppController.to.currentRoutes.add(inventoryReportN);  final Isar isar = Get.find();
     for (var element in isar.productDatabaseModels
         .where().sortByDateCreatedDesc()
         .findAllSync()) {

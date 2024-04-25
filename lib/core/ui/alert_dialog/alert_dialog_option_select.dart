@@ -72,7 +72,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             listIndex: [
                               purchaseN,
                               salesN
-                            ].contains(AppController.to.currentPages.last)
+                            ].contains(Get.currentRoute)
                                 ? listIndex
                                 : null,
                             name: getAlertDialogOptionName(

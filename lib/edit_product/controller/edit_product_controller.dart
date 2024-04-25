@@ -29,7 +29,7 @@ class EditProductController extends GetxController {
 
   @override
   void onInit() {
-    appController.currentPages.add(editProductN);
+    appController.currentRoutes.add(editProductN);
     final Isar isar = Get.find();
     String? categoryName;
     late String uomName;

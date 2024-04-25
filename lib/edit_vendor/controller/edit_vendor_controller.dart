@@ -22,7 +22,7 @@ class EditVendorController extends GetxController {
   static EditVendorController get to => Get.find();
   @override
   void onInit() {
-    appController.currentPages.add(editVendorN);
+    appController.currentRoutes.add(editVendorN);
     vendorInfo = VendorModel(
       name: vendorDatabaseModel.name,
       phoneNumber: vendorDatabaseModel.phone,

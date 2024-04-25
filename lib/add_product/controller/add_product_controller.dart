@@ -28,7 +28,7 @@ class AddProductController extends GetxController {
       val?.unitOfMeasurementId = defaultUnit!.uomId;
       val?.unitOfMeasurementName = defaultUnit!.name;
     });
-    appController.currentPages.add(addProductN);
+    appController.currentRoutes.add(addProductN);
     super.onInit();
   }
 

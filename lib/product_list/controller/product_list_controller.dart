@@ -14,7 +14,7 @@ class ProductListController extends GetxController {
   @override
   void onInit() {  final Isar isar = Get.find();
     productList(isar.productDatabaseModels.where().findAllSync());
-    AppController.to.currentPages.add(productListN);
+    AppController.to.currentRoutes.add(productListN);
     super.onInit();
   }
 }

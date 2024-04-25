@@ -23,7 +23,7 @@ class SalesReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(salesReportN);
+    AppController.to.currentRoutes.add(salesReportN);
     String? currentGroupSalesId;final Isar isar = Get.find();
     for (var element in isar.salesDatabaseModels
         .where()

@@ -15,7 +15,7 @@ class CustomerDetailController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(customerDetailN);
+    AppController.to.currentRoutes.add(customerDetailN);
     final Isar isar = Get.find();
     customerDatabaseModel = isar.customerDatabaseModels.getSync(isarId)!;
     super.onInit();

@@ -40,7 +40,7 @@ appBar({required String pageName, required BuildContext context}) {
       ),
     ),
     actions: [salesReportN, purchaseReportN, paymentReportN]
-            .contains(AppController.to.currentPages.last)
+            .contains(Get.currentRoute)
         ? [
             PopupMenuButton(
               position: PopupMenuPosition.under,

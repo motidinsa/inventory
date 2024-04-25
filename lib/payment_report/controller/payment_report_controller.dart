@@ -20,7 +20,7 @@ class PaymentReportController extends GetxController {
 
   @override
   void onInit() {
-    AppController.to.currentPages.add(paymentReportN);  final Isar isar = Get.find();
+    AppController.to.currentRoutes.add(paymentReportN);  final Isar isar = Get.find();
     for (var element in isar.salesPaymentDatabaseModels.where().findAllSync().reversed) {
       paymentReportModels.add(
         PaymentReportModel(

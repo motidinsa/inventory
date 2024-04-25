@@ -30,23 +30,25 @@ class Sales extends StatelessWidget {
           children: [
             ElevatedCard(
               horizontalMargin: 10,
-              verticalMargin: 20,
+              verticalMargin: 10,
               blurRadius: 10,
               horizontalPadding: 20,
+              verticalPadding: 15,
               child: GetBuilder<SalesController>(builder: (_) {
-                return ProductProfileInfo(
-                );
+                return ProductProfileInfo();
               }),
             ),
             const ProductTableTitles(
-              currentPage: salesN,
+              currentRoute: salesN,
+            ),
+            SizedBox(
+              height: 5,
             ),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (ctx, index) => ProductItem(
                 index: index,
-                currentPage: salesN,
               ),
               itemCount: salesController.salesModels.length,
             ),
@@ -60,9 +62,9 @@ class Sales extends StatelessWidget {
                 ),
               ),
             ),
-            const ProductPriceSummary(currentPage: salesN),
+            const ProductPriceSummary(),
             sizedBox(height: 5),
-             const PaymentOptions(),
+            const PaymentOptions(),
             ActionButton(redirectFrom: salesN)
           ],
         ),

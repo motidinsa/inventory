@@ -3,21 +3,20 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-class ProductTableTitles extends StatelessWidget {
-  final String currentPage;
+import '../../routes/route_names.dart';
 
-  const ProductTableTitles({super.key, required this.currentPage});
+class ProductTableTitles extends StatelessWidget {
+  final String currentRoute;
+
+  const ProductTableTitles({super.key, required this.currentRoute});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      // horizontalMargin: 10,
-      // verticalMargin: 10,
-      // blurRadius: 10,
-      // horizontalPadding: 20,
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6),
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       shape: smoothRectangleBorder(
-          radius: 0,
+          radius: 12,
           side: const BorderSide(
             color: Colors.green,
             width: 1.5,
@@ -52,9 +51,9 @@ class ProductTableTitles extends StatelessWidget {
                 )),
             sizedBox(width: 10),
             Expanded(
-              flex: currentPage == purchaseN ? 4 : 3,
+              flex: currentRoute == RouteName.purchase ? 4 : 3,
               child: Text(
-                currentPage == salesN ? 'Price' : 'Cost',
+                currentRoute == RouteName.sales ? 'Price' : 'Cost',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: bold(),
@@ -64,15 +63,16 @@ class ProductTableTitles extends StatelessWidget {
             ),
             sizedBox(width: 15),
             Expanded(
-                flex: 3,
-                child: Text(
-                  'Total',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: bold(),
-                      fontSize: 17,
-                      color: Colors.grey.shade800),
-                )),
+              flex: 3,
+              child: Text(
+                'Total',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: bold(),
+                    fontSize: 17,
+                    color: Colors.grey.shade800),
+              ),
+            ),
           ],
         ),
       ),

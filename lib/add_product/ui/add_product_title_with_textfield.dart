@@ -5,10 +5,10 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 class AddProductTitleWithTextField extends StatelessWidget {
   final String title;
-  final String currentPage;
+  final String currentRoute;
 
   AddProductTitleWithTextField(
-      {super.key, required this.title, required this.currentPage});
+      {super.key, required this.title, required this.currentRoute});
 
   final List<String> readOnlyItems = [categoryN, uomSN];
   final List<String> suffixItems = [quantityOnHandN, reorderQuantityN];

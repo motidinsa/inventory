@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -76,7 +77,7 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  AppController.to.currentPages.last == salesReportN
+                  Get.currentRoute == salesReportN
                       ? 'T.cost'
                       : 'U.cost',
                   textAlign: TextAlign.center,
@@ -93,7 +94,7 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  AppController.to.currentPages.last == salesReportN
+                  Get.currentRoute == salesReportN
                       ? 'T.price'
                       : 'T.cost',
                   textAlign: TextAlign.center,
@@ -104,7 +105,7 @@ class ReportHeader extends StatelessWidget {
                 ),
               ),
             ),
-            if (AppController.to.currentPages.last == salesReportN) ...[
+            if (Get.currentRoute == salesReportN) ...[
               // sizedBox(width: spacingWidthR),
               SizedBox(
                 width: getReportSixthWidth(),

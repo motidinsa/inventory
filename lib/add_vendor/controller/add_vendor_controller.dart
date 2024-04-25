@@ -17,7 +17,7 @@ class AddVendorController extends GetxController {
   static AddVendorController get to => Get.find();
   @override
   void onInit() {
-    appController.currentPages.add(addVendorN);
+    appController.currentRoutes.add(addVendorN);
     super.onInit();
   }
 

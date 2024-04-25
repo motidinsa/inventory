@@ -14,7 +14,7 @@ import '../../routes/route_names.dart';
 class ProductProfileInfo extends StatelessWidget {
   ProductProfileInfo({super.key,});
 
-  final DateFormat dateFormatter = DateFormat("MMM d, y");
+  final DateFormat dateFormatter = DateFormat('MMM d, y');
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ProductProfileInfo extends StatelessWidget {
             )
           ],
         ),
-        sizedBox(height: 20),
+        sizedBox(height: 15),
         Row(
           children: [
             Icon(

@@ -7,14 +7,14 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import '../../routes/route_names.dart';
+
 class ProductItem extends StatelessWidget {
   final int index;
-  final String currentPage;
 
   const ProductItem({
     super.key,
     required this.index,
-    required this.currentPage,
   });
 
   @override
@@ -34,7 +34,7 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: CustomTextField(
-                  title: currentPage,
+                  title: currentRoute,
                   index: index,
                 ),
               ),
@@ -48,8 +48,8 @@ class ProductItem extends StatelessWidget {
               ),
               sizedBox(width: 10),
               Expanded(
-                flex: currentPage == purchaseN ? 4 : 3,
-                child: currentPage == purchaseN
+                flex: Get.currentRoute == RouteName.purchase ? 4 : 3,
+                child: Get.currentRoute == RouteName.purchase
                     ? CustomTextField(
                   title: costN,
                   index: index,

@@ -38,19 +38,18 @@ class Purchase extends StatelessWidget {
                 }),
               ),
               const ProductTableTitles(
-                currentPage: purchaseN,
+                currentRoute: purchaseN,
               ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (ctx, index) => ProductItem(
                   index: index,
-                  currentPage: purchaseN,
                 ),
                 itemCount: purchaseController.purchaseModels.length,
               ),
               addIconButton(),
-              const ProductPriceSummary(currentPage: purchaseN),
+              const ProductPriceSummary(),
               ActionButton(redirectFrom: purchaseN)
             ],
           ),

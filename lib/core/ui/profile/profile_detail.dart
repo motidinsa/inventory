@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
 
@@ -105,7 +106,7 @@ class ProfileDetail extends StatelessWidget {
           ),
         ),
         ActionButton(
-          redirectFrom: AppController.to.currentPages.last,
+          redirectFrom: Get.currentRoute,
           actionButtonType: ActionButtonType.delete,
         ),
       ],

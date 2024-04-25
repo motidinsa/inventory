@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -29,7 +31,7 @@ class PurchaseReportSummary extends StatelessWidget {
             children: [
               RichText(
                 text: TextSpan(
-                  text: 'Total ${AppController.to.currentPages.last==purchaseReportN?'cost: ':':  '}',
+                  text: 'Total ${Get.currentRoute==purchaseReportN?'cost: ':':  '}',
                   style: TextStyle(
                       fontWeight: bold(),
                       fontSize: 19,

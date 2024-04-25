@@ -6,7 +6,7 @@ import 'package:my_inventory/core/styles/styles.dart';
 
 class ProductImage extends StatelessWidget {
   final int id;
-  final String currentPage;
+  final String currentRoute;
   final String? localImagePath;
   final double imageWidth;
 
@@ -14,7 +14,7 @@ class ProductImage extends StatelessWidget {
       {super.key,
       this.localImagePath,
       required this.id,
-      required this.currentPage,
+      required this.currentRoute,
       this.imageWidth = 50});
 
   @override

@@ -63,7 +63,7 @@ class AddProduct extends StatelessWidget {
                           )
                         : index == 2
                             ? const AddProductImage(
-                                currentPage: addProductN,
+                                currentRoute: addProductN,
                               )
                             : index == 5
                                 ? Row(
@@ -84,7 +84,7 @@ class AddProduct extends StatelessWidget {
                                   )
                                 : AddProductTitleWithTextField(
                                     title: titleList[index],
-                                    currentPage: addProductN,
+                                    currentRoute: addProductN,
                                   ),
                     separatorBuilder: (ctx, index) => sizedBox(height: 20),
                     itemCount: titleList.length,

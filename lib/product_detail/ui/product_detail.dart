@@ -103,7 +103,7 @@ class ProductDetail extends StatelessWidget {
                     Expanded(
                       child: ProductImage(
                         id: productDatabaseModel.id,
-                        currentPage: productDetailN,
+                        currentRoute: productDetailN,
                         localImagePath: productDatabaseModel.localImagePath,
                         imageWidth: 120,
                       ),

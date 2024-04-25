@@ -23,7 +23,7 @@ class EditCustomerController extends GetxController {
   static EditCustomerController get to => Get.find();
   @override
   void onInit() {
-    appController.currentPages.add(editCustomerN);
+    appController.currentRoutes.add(editCustomerN);
     customerInfo = CustomerModel(
       name: customerDatabaseModel.name,
       phoneNumber: customerDatabaseModel.phone,
