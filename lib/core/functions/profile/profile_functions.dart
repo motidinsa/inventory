@@ -93,8 +93,8 @@ onProfileCancelPressed() {
 }
 
 onProfileDatePressed() {
-  String currentPage = AppController.to.currentPages.last;
-  if ([salesN, purchaseN].contains(currentPage)) {
+  String currentRoute = Get.currentRoute;
+  if ([RouteName.sales, RouteName.purchase].contains(currentRoute)) {
     showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),

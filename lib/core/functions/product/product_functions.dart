@@ -13,27 +13,24 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 import '../../../sales/functions/sales_helper_functions.dart';
 
 getSubtotal() {
-  final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
     return getSalesSubtotal();
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     return getPurchaseSubtotal();
   }
 }
 
 getTotal() {
-  final AppController appController = Get.find();
-  String currentPage = appController.currentPages.last;
-  if (currentPage == salesN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
     return getSalesTotal();
-  } else if (currentPage == purchaseN) {
+  } else if (currentRoute == RouteName.purchase) {
     return getPurchaseTotal();
   }
 }
 
 getProductPrice({required int index}) {
-  final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
@@ -46,7 +43,6 @@ getProductPrice({required int index}) {
 }
 
 getProductTotalPrice({required int index}) {
-  final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();

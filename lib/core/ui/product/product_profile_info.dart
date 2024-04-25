@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
@@ -8,10 +9,10 @@ import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
 
-class ProductProfileInfo extends StatelessWidget {
-  final PageName page;
+import '../../routes/route_names.dart';
 
-  ProductProfileInfo({super.key, required this.page});
+class ProductProfileInfo extends StatelessWidget {
+  ProductProfileInfo({super.key,});
 
   final DateFormat dateFormatter = DateFormat("MMM d, y");
 
@@ -42,13 +43,13 @@ class ProductProfileInfo extends StatelessWidget {
         Row(
           children: [
             Icon(
-              page == PageName.sales ? Icons.person : Icons.corporate_fare,
+              Get.currentRoute == RouteName.sales ? Icons.person : Icons.corporate_fare,
               size: 28,
               color: Colors.grey.shade700,
             ),
             sizedBox(width: 15),
             Text(
-              page == PageName.sales ? customerN : vendorN,
+              Get.currentRoute == RouteName.sales ? customerN : vendorN,
               style: const TextStyle(fontSize: 17),
             ),
             sizedBox(width: 20),

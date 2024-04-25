@@ -35,7 +35,6 @@ class Sales extends StatelessWidget {
               horizontalPadding: 20,
               child: GetBuilder<SalesController>(builder: (_) {
                 return ProductProfileInfo(
-                  page: PageName.sales,
                 );
               }),
             ),

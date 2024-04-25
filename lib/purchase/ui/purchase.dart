@@ -34,7 +34,7 @@ class Purchase extends StatelessWidget {
                 blurRadius: 10,
                 horizontalPadding: 20,
                 child: GetBuilder<PurchaseController>(builder: (_) {
-                  return ProductProfileInfo(page: PageName.purchase);
+                  return ProductProfileInfo();
                 }),
               ),
               const ProductTableTitles(

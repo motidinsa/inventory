@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
@@ -471,29 +472,29 @@ class _DatePickerDialogState extends State<DatePickerDialog>
   }
 
   void _handleDateChanged(DateTime date) {
-    String currentPage = AppController.to.currentPages.last;
-    if (currentPage == salesN) {
+    String currentRoute = Get.currentRoute;
+    if (currentRoute == RouteName.sales) {
       SalesController.to.salesDate = date;
       SalesController.to.update();
-    } else if(currentPage == purchaseN){
+    } else if(currentRoute == purchaseN){
       PurchaseController.to.purchaseDate = date;
       PurchaseController.to.update();
     }
-    else if (currentPage == salesReportN) {
+    else if (currentRoute == salesReportN) {
       if (widget.title == fromN) {
         SalesReportController.to.startDate = date;
       } else {
         SalesReportController.to.endDate = date;
       }
       SalesReportController.to.update();
-    } else if (currentPage == purchaseReportN) {
+    } else if (currentRoute == purchaseReportN) {
       if (widget.title == fromN) {
         PurchaseReportController.to.startDate = date;
       } else {
         PurchaseReportController.to.endDate = date;
       }
       PurchaseReportController.to.update();
-    } else if (currentPage == paymentReportN) {
+    } else if (currentRoute == paymentReportN) {
       if (widget.title == fromN) {
         PaymentReportController.to.startDate = date;
       } else {

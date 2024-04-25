@@ -28,53 +28,51 @@ class ProductItem extends StatelessWidget {
         shape: smoothRectangleBorder(radius: 12),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-          child: Obx(
-            () => Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 8,
-                  child: CustomTextField(
-                    title: currentPage,
-                    index: index,
-                  ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 8,
+                child: CustomTextField(
+                  title: currentPage,
+                  index: index,
                 ),
-                sizedBox(width: 10),
-                Expanded(
-                  flex: 3,
-                  child: CustomTextField(
-                    title: quantityN,
-                    index: index,
-                  ),
+              ),
+              sizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: CustomTextField(
+                  title: quantityN,
+                  index: index,
                 ),
-                sizedBox(width: 10),
-                Expanded(
-                  flex: currentPage == purchaseN ? 4 : 3,
-                  child: currentPage == purchaseN
-                      ? CustomTextField(
-                          title: costN,
-                          index: index,
-                        )
-                      : Text(
-                          getFormattedNumberWithComa(
-                              getProductPrice(index: index)),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16),
-                        ),
+              ),
+              sizedBox(width: 10),
+              Expanded(
+                flex: currentPage == purchaseN ? 4 : 3,
+                child: currentPage == purchaseN
+                    ? CustomTextField(
+                  title: costN,
+                  index: index,
+                )
+                    : Text(
+                  getFormattedNumberWithComa(
+                      getProductPrice(index: index)),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16),
                 ),
-                sizedBox(width: 10),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    getFormattedNumberWithComa(
-                        getProductTotalPrice(index: index)),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+              ),
+              sizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  getFormattedNumberWithComa(
+                      getProductTotalPrice(index: index)),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
