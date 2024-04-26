@@ -17,9 +17,9 @@ class PurchaseController extends GetxController {
       <ProductDatabaseModel>[].obs;
   RxList<VendorDatabaseModel> searchVendorFoundResult =
       <VendorDatabaseModel>[].obs;
-  RxString subtotal = ''.obs;
-  RxString discount = ''.obs;
-  RxString total = ''.obs;
+  String subtotal = '';
+  String discount = '';
+  String total = '';
   String? vendorId;
   String? vendorName;
   String? vendorPhone;
@@ -27,15 +27,15 @@ class PurchaseController extends GetxController {
   String? vendorContactPerson;
   DateTime purchaseDate = DateTime.now();
   var isLocalSaveLoading = false.obs;
-  var purchaseModels = [
+  List<PurchaseModel> purchaseModels = [
     PurchaseModel(
       productId: '',
       productName: '',
       quantity: '',
       totalAmount: 0,
       cost: '',
-    ).obs
-  ].obs;
+    )
+  ];
 
   static PurchaseController get to => Get.find();
 
@@ -55,15 +55,16 @@ class PurchaseController extends GetxController {
         quantity: '',
         totalAmount: 0,
         cost: '',
-      ).obs,
+      ),
     );
+    update();
   }
 
   savePurchaseProductToDB() async {
     DateTime now = DateTime.now();  final Isar isar = Get.find();
     isLocalSaveLoading(true);
     for (int i = 0; i < purchaseModels.length; i++) {
-      PurchaseModel purchaseModel = purchaseModels[i].value;
+      PurchaseModel purchaseModel = purchaseModels[i];
       String key = generateDatabaseId(time: now, identifier: i);
       await isar.writeTxn(() async {
         ProductDatabaseModel? currentProduct = await isar.productDatabaseModels

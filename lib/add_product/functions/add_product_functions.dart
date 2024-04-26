@@ -109,7 +109,7 @@ onPurchaseProductSelect({
 }) {
   PurchaseController purchaseController = Get.find();
   final Isar isar = Get.find();
-  if (title == purchaseN) {
+  if (title == RouteName.purchase) {
     purchaseController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
     Get.dialog(AlertDialogOptionSelect(

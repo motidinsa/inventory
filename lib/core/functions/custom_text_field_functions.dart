@@ -39,7 +39,7 @@ titleToHint({String? title}) {
     value = searchByVendorNameN;
   } else if (title == RouteName.sales) {
     value = selectN;
-  } else if (title == purchaseN) {
+  } else if (title == RouteName.purchase) {
     value = selectN;
   } else if (title == searchProductsN) {
     value = searchByproductNameN;
@@ -105,7 +105,7 @@ hasOption({String? title}) {
     categoryN,
     uomSN,
     RouteName.sales,
-    purchaseN,
+    RouteName.purchase,
     selectN,
   ];
   return itemsWithOption.contains(title);
@@ -116,7 +116,7 @@ readOnly({String? title}) {
     categoryN,
     uomSN,
     RouteName.sales,
-    purchaseN,
+    RouteName.purchase,
     selectN,
     fromN,
     toN,

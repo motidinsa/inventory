@@ -38,7 +38,7 @@ getProductPrice({required int index}) {
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
   } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
-    return purchaseController.purchaseModels[index].value.cost;
+    return purchaseController.purchaseModels[index].cost;
   }
 }
 
@@ -49,7 +49,7 @@ getProductTotalPrice({required int index}) {
     return salesController.salesModels[index].totalAmount;
   } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
-    return purchaseController.purchaseModels[index].value.totalAmount;
+    return purchaseController.purchaseModels[index].totalAmount;
   }
 }
 

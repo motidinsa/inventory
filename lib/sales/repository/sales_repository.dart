@@ -55,11 +55,6 @@ class SalesRepository {
                 quantity: remaining,
               ),
             );
-            // quantityCostDatabaseModel.add(QuantityCostDatabaseModel(
-            //   salesId: salesId,
-            //   purchaseId: purchases.first.purchaseId,
-            //   quantity: remaining,
-            // ));
             if (purchases.first.quantity > remaining) {
               purchases.first.quantity -= remaining;
               await _isar.purchaseAvailableDatabaseModels.put(purchases.first);

@@ -23,38 +23,40 @@ class Purchase extends StatelessWidget {
   Widget build(BuildContext context) {
     return BodyWrapper(
       pageName: purchaseN,
-      body: Obx(() {
-        return Form(
-          key: appController.formKey,
-          child: ListView(
-            children: [
-              ElevatedCard(
-                horizontalMargin: 10,
-                verticalMargin: 20,
-                blurRadius: 10,
-                horizontalPadding: 20,
-                child: GetBuilder<PurchaseController>(builder: (_) {
-                  return ProductProfileInfo();
-                }),
-              ),
-              const ProductTableTitles(
-                currentRoute: purchaseN,
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) => ProductItem(
-                  index: index,
-                ),
-                itemCount: purchaseController.purchaseModels.length,
-              ),
-              addIconButton(),
-              const ProductPriceSummary(),
-              ActionButton(redirectFrom: purchaseN)
-            ],
-          ),
-        );
-      }),
+      body: Form(
+        key: appController.formKey,
+        child: ListView(
+          children: [
+            ElevatedCard(
+              horizontalMargin: 10,
+              verticalMargin: 20,
+              blurRadius: 10,
+              horizontalPadding: 20,
+              child: GetBuilder<PurchaseController>(builder: (_) {
+                return ProductProfileInfo();
+              }),
+            ),
+            const ProductTableTitles(
+              currentRoute: purchaseN,
+            ),
+            GetBuilder<PurchaseController>(
+              builder: (purchaseController) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (ctx, index) => ProductItem(
+                    index: index,
+                  ),
+                  itemCount: purchaseController.purchaseModels.length,
+                );
+              }
+            ),
+            addIconButton(),
+            const ProductPriceSummary(),
+            ActionButton(redirectFrom: purchaseN)
+          ],
+        ),
+      ),
     );
   }
 }

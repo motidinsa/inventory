@@ -43,7 +43,7 @@ class PaymentOptions extends StatelessWidget {
                           ),
                           sizedBox(height: 5),
                              CustomTextField(
-                            title: 'cash_received',
+                            title: cashN,
                           ),
                         ],
                       ),

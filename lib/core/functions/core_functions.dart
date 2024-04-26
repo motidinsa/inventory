@@ -236,8 +236,7 @@ nullIfEmpty(String? data) {
 
 onAddIconPressed({String? type}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
-  } else if (currentRoute == RouteName.purchase) {
+if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
     purchaseController.addPurchaseProduct();
   } else {

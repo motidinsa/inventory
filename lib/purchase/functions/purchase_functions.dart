@@ -6,16 +6,19 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
+import '../../core/model/purchase/purchase_model.dart';
+import '../../core/routes/route_names.dart';
+
 onPurchaseTitleToData({required String title, int? index}) {
   PurchaseController purchaseController = Get.find();
-  if (title == purchaseN) {
-    return purchaseController.purchaseModels[index!].value.productName;
+  if (title == RouteName.purchase) {
+    return purchaseController.purchaseModels[index!].productName;
   } else if (title == costN) {
-    return purchaseController.purchaseModels[index!].value.cost;
+    return purchaseController.purchaseModels[index!].cost;
   } else if (title == selectN) {
     return purchaseController.vendorName;
-  }else if (title == quantityN) {
-    return purchaseController.purchaseModels[index!].value.quantity;
+  } else if (title == quantityN) {
+    return purchaseController.purchaseModels[index!].quantity;
   }
 }
 
@@ -25,9 +28,11 @@ onPurchaseTextFieldChange({
   int? index,
 }) {
   PurchaseController purchaseController = Get.find();
-  purchaseController.purchaseModels[index!].update((purchase) {
+  PurchaseModel purchase = purchaseController.purchaseModels[index!];
+  // purchaseController.purchaseModels[index!].update((purchase) {
     if (title == searchProductsN) {
-      PurchaseController purchaseController = Get.find();  final Isar isar = Get.find();
+      PurchaseController purchaseController = Get.find();
+      final Isar isar = Get.find();
       purchaseController.searchProductFoundResult(isar.productDatabaseModels
           .filter()
           .productNameContains(data, caseSensitive: false)
@@ -45,6 +50,7 @@ onPurchaseTextFieldChange({
           purchase.totalAmount = 0;
         }
       }
+      purchaseController.update();
     } else if (title == costN) {
       if (data.isEmpty) {
         purchase?.cost = '';
@@ -59,7 +65,8 @@ onPurchaseTextFieldChange({
         }
       }
     }
-  });
+    purchaseController.update();
+  // });
 }
 
 onPurchaseProductFocusChange({
@@ -68,7 +75,8 @@ onPurchaseProductFocusChange({
 }) {
   final PurchaseController purchaseController = Get.find();
   if (title == discountN) {
-    purchaseController.discount(data);
+    purchaseController.discount=data;
+    purchaseController.update();
   }
 }
 
@@ -83,11 +91,13 @@ onPurchaseAlertDialogOption({required String title, required int index}) {
 
 onPurchaseSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
-  final PurchaseController purchaseController = Get.find();final Isar isar = Get.find();
+  final PurchaseController purchaseController = Get.find();
+  final Isar isar = Get.find();
   if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;
-    purchaseController.purchaseModels[listIndex!].update((purchase) {
+    PurchaseModel purchase = purchaseController.purchaseModels[listIndex!];
+    // purchaseController.purchaseModels[listIndex!].update((purchase) {
       purchase?.productId = productDatabaseModel.productId;
       purchase?.productName = productDatabaseModel.productName;
       purchase?.cost = emptyIfDefaultValue(
@@ -96,7 +106,8 @@ onPurchaseSearchProductAlertDialogOptionSelect(
         purchase.totalAmount =
             double.parse(purchase.quantity) * productDatabaseModel.cost;
       }
-    });
+    // });
+    purchaseController.update();
   } else if (title == searchVendorsN) {
     VendorDatabaseModel vendorDatabaseModel =
         isar.vendorDatabaseModels.getSync(isarId)!;
@@ -119,8 +130,8 @@ getPurchaseSubtotal() {
   PurchaseController purchaseController = Get.find();
   double total = 0;
   for (var element in purchaseController.purchaseModels) {
-    if (isNumeric(element.value.cost)) {
-      total += double.parse(element.value.cost);
+    if (isNumeric(element.cost)) {
+      total += double.parse(element.cost);
     }
   }
   return total.toString();
@@ -130,7 +141,7 @@ getPurchaseTotal() {
   PurchaseController purchaseController = Get.find();
   double total = 0;
   for (var element in purchaseController.purchaseModels) {
-    total += element.value.totalAmount;
+    total += element.totalAmount;
   }
   return total.toString();
 }

@@ -30,8 +30,8 @@ class SalesController extends GetxController {
 
   String total = '0';
   String cashReceived = '2';
-  // String cashh = '';
-  String transfer = '20';
+  String cash = '';
+  String transfer = '';
   String credit = '0';
 
   var isLocalSaveLoading = false.obs;
