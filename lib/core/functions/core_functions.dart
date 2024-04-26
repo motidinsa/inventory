@@ -189,7 +189,6 @@ onActionButtonPressed({required String redirectFrom}) async {
 }
 
 titleToData({required String title, int? index}) {
-  final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
   String? value;
   if (currentRoute == RouteName.sales) {
@@ -295,7 +294,6 @@ onImageSourceButtonPressed({
               : ImageSource.camera,
           imageQuality: 50)
       .then((value) async {
-    final AppController appController = Get.find();
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.addProduct) {
       AddProductController addProductController = Get.find();

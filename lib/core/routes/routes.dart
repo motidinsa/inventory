@@ -19,12 +19,12 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/ui/purchase.dart';
-
-import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
+
+import '../../sales/controller/sales_controller.dart';
 
 List<GetPage> routes = [
   GetPage(

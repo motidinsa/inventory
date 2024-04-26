@@ -113,13 +113,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
             horizontal: paymentOptionPadding(title: widget.title)
-                ? 20:minimizePadding(title: widget.title) ? 10 : 30,
+                ? 20
+                : minimizePadding(title: widget.title)
+                    ? 10
+                    : 30,
             vertical: paymentOptionPadding(title: widget.title)
-                ? 10: minimizePadding(title: widget.title)
                 ? 10
-                : maxPadding(title: widget.title)
-                    ? 15
-
+                : minimizePadding(title: widget.title)
+                    ? 10
+                    : maxPadding(title: widget.title)
+                        ? 15
                         : 20),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
@@ -132,16 +135,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
         labelText: widget.labelText,
-        labelStyle: TextStyle(fontSize: context.responsive<double>(
-          18,
-          xxl: 23,
-          xl: 22,
-          lg: 19,
-          md: 18,
-          sm: 16,
-          xs: 16,
-          xxs: 15,
-        ),),
+        labelStyle: TextStyle(
+          fontSize: context.responsive<double>(
+            18,
+            xxl: 23,
+            xl: 22,
+            lg: 19,
+            md: 18,
+            sm: 16,
+            xs: 16,
+            xxs: 15,
+          ),
+        ),
         // label: focusNode.hasFocus?Text(widget.labelText??'',):Center(child: Text(widget.labelText??'',))
         alignLabelWithHint: true,
       ),

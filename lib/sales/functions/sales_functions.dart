@@ -12,16 +12,18 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
 import 'package:my_inventory/sales/repository/sales_repository.dart';
 
+import '../../core/routes/route_names.dart';
+
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();
-  if (title == salesN) {
+  if (title == RouteName.sales) {
     return salesController.salesModels[index!].productName;
   } else if (title == selectN) {
     return salesController.customerName;
   } else if (title == quantityN) {
     return salesController.salesModels[index!].quantity;
-  } else if (title == cashN) {
-    return salesController.cash != '0' ? salesController.cash : '';
+  } else if (title == 'cash_received') {
+    return salesController.cashReceived;
   } else if (title == transferN) {
     return salesController.transfer;
   } else if (title == creditN) {
@@ -56,16 +58,16 @@ onSalesTextFieldChange({
     if (data.isEmpty) {
       sales?.quantity = '';
       sales?.totalAmount = 0;
-      salesController.cash = '';
+      salesController.cashReceived = '';
       salesController.credit = '0';
     } else {
       sales?.quantity = data;
       if (isNumeric(sales!.quantity) && isNumeric(sales.price)) {
         sales.totalAmount = double.parse(data) * double.parse(sales.price);
-        salesController.cash = getSalesTotal();
+        salesController.cashReceived = getSalesTotal();
       } else {
         sales.totalAmount = 0;
-        salesController.cash = '';
+        salesController.cashReceived = '';
         salesController.credit = '0';
       }
     }
@@ -74,7 +76,7 @@ onSalesTextFieldChange({
   } else if (title == discountN) {
     salesController.discount = data;
   } else if (title == cashN) {
-    salesController.cash = data;
+    salesController.cashReceived = data;
     if (isNumeric(salesController.total) &&
         isNumeric(data) &&
         isNumeric(salesController.transfer)) {
@@ -82,18 +84,19 @@ onSalesTextFieldChange({
           (double.parse(salesController.total) -
               double.parse(data) -
               double.parse(salesController.transfer)));
+      // salesController.cash = data;
     } else {
       salesController.credit = '0';
     }
   } else if (title == transferN) {
     salesController.transfer = data;
-    if (!['', '0'].contains(salesController.cash) &&
+    if (!['', '0'].contains(salesController.cashReceived) &&
         isNumeric(salesController.total) &&
-        isNumeric(salesController.cash) &&
+        isNumeric(salesController.cashReceived) &&
         isNumeric(data)) {
       salesController.credit = getFormattedNumberWithoutComa(
           (double.parse(salesController.total) -
-              double.parse(salesController.cash) -
+              double.parse(salesController.cashReceived) -
               double.parse(data)));
     } else {
       salesController.credit = '0';
@@ -104,6 +107,7 @@ onSalesTextFieldChange({
         .nameContains(data, caseSensitive: false)
         .findAllSync());
   }
+  salesController.update();
 }
 
 onSalesProductFocusChange({
@@ -138,6 +142,7 @@ onSalesSearchProductAlertDialogOptionSelect(
             double.parse(sales.quantity) * productDatabaseModel.price;
       }
       // });
+      salesController.update();
       Get.back();
     } else {
       if (productDatabaseModel.productId !=
@@ -170,6 +175,7 @@ onSalesSearchProductAlertDialogOptionSelect(
     Get.back();
   }
 }
-saveSalesProductToDB(){
+
+saveSalesProductToDB() {
   SalesRepository.saveSalesProductToDB();
 }

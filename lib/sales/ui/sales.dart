@@ -44,17 +44,21 @@ class Sales extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (ctx, index) => ProductItem(
-                index: index,
-              ),
-              itemCount: salesController.salesModels.length,
+            GetBuilder<SalesController>(
+              builder: (context) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (ctx, index) => ProductItem(
+                    index: index,
+                  ),
+                  itemCount: SalesController.to.salesModels.length,
+                );
+              }
             ),
             Center(
               child: IconButton(
-                onPressed: () => salesController.addSalesProduct(),
+                onPressed: () => SalesController.to.addSalesProduct(),
                 icon: const Icon(
                   Icons.add,
                   color: Colors.green,
@@ -62,9 +66,13 @@ class Sales extends StatelessWidget {
                 ),
               ),
             ),
-            const ProductPriceSummary(),
+            GetBuilder<SalesController>(
+              builder: (_) {
+                return  ProductPriceSummary();
+              }
+            ),
             sizedBox(height: 5),
-            const PaymentOptions(),
+             PaymentOptions(),
             ActionButton(redirectFrom: salesN)
           ],
         ),

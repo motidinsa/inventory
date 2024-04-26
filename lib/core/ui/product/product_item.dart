@@ -34,7 +34,7 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: CustomTextField(
-                  title: currentRoute,
+                  title: Get.currentRoute,
                   index: index,
                 ),
               ),

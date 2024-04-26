@@ -108,7 +108,7 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: salesController.cash,
+                      text: salesController.cashReceived,
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -189,7 +189,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.subtotal.value,
+                  text: salesController.subtotal,
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),

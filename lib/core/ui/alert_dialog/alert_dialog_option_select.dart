@@ -10,6 +10,8 @@ import 'package:my_inventory/core/ui/add_image/image_select_option.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_item.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import '../../routes/route_names.dart';
+
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
@@ -71,7 +73,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                             title: title,
                             listIndex: [
                               purchaseN,
-                              salesN
+                              RouteName.sales
                             ].contains(Get.currentRoute)
                                 ? listIndex
                                 : null,

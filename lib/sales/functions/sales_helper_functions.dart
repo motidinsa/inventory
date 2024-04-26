@@ -14,8 +14,8 @@ getSalesSubtotal() {
   for (var element in salesController.salesModels) {
     subTotal += double.parse(element.totalAmount.toString());
   }
-  salesController.subtotal(subTotal.toString());
-  return salesController.subtotal.value;
+  salesController.subtotal=subTotal.toString();
+  return salesController.subtotal;
 }
 
 getSalesTotal() {
@@ -28,13 +28,19 @@ getSalesTotal() {
   if (isNumeric(salesController.discount)) {
     salesController.total=
         (total - double.parse(salesController.discount)).toString();
-    salesController.cash =
+    salesController.cashReceived =
         getFormattedNumberWithoutComa(salesController.total);
+    if(salesController.cashReceived == '0'){
+      salesController.cashReceived = '';
+    }
   } else if (salesController.discount.isEmpty) {
-    salesController.cash = getFormattedNumberWithoutComa(total.toString());
+    salesController.cashReceived = getFormattedNumberWithoutComa(total.toString());
     salesController.total=total.toString();
+    if(salesController.cashReceived == '0'){
+      salesController.cashReceived = '';
+    }
   } else {
-    salesController.cash = '';
+    salesController.cashReceived = '';
     salesController.total='0';
   }
   return salesController.total;

@@ -37,7 +37,7 @@ titleToHint({String? title}) {
     value = searchByCustomerNameN;
   } else if (title == vendorListN) {
     value = searchByVendorNameN;
-  } else if (title == salesN) {
+  } else if (title == RouteName.sales) {
     value = selectN;
   } else if (title == purchaseN) {
     value = selectN;
@@ -104,7 +104,7 @@ hasOption({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    salesN,
+    RouteName.sales,
     purchaseN,
     selectN,
   ];
@@ -115,7 +115,7 @@ readOnly({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    salesN,
+    RouteName.sales,
     purchaseN,
     selectN,
     fromN,
