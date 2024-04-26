@@ -15,17 +15,17 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/ui/payment_options.dart';
 
 class Sales extends StatelessWidget {
-  Sales({super.key});
+  const Sales({super.key});
 
-  final AppController appController = Get.find();
-  final SalesController salesController = Get.find();
+  // final AppController appController = Get.find();
+  // final SalesController salesController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
       pageName: salesN,
       body: Form(
-        key: appController.formKey,
+        key: AppController.to.formKey,
         child: ListView(
           children: [
             ElevatedCard(

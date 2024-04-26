@@ -21,10 +21,11 @@ import '../../core/model/sales/sales_model.dart';
 
 class SalesRepository {
   static final Isar _isar = Get.find();
-  static final SalesController _salesController = Get.find();
+
 
   static saveSalesProductToDB() async {
-    List<SalesModel> salesModels = _salesController.salesModels;
+     final SalesController salesController = SalesController.to;
+    List<SalesModel> salesModels = salesController.salesModels;
     List<SalesDatabaseModel> salesDatabaseModels = [];
     String groupSalesId =
         generateDatabaseId(time: DateTime.now(), identifier: 'group');
@@ -89,11 +90,11 @@ class SalesRepository {
               productId: salesModel.productId,
               salesId: salesId,
               groupSalesId: groupSalesId,
-              salesDate: _salesController.salesDate,
+              salesDate: salesController.salesDate,
               dateCreated: now,
               quantity: double.parse(salesModel.quantity),
               price: double.parse(salesModel.price),
-              customerId: _salesController.customerId,
+              customerId: salesController.customerId,
               salesPaymentId: salesPaymentId),
         );
         await _isar.logProductDatabaseModels.put(
@@ -118,24 +119,24 @@ class SalesRepository {
         _isar.groupSalesDatabaseModels.put(
           GroupSalesDatabaseModel(
             groupSalesId: groupSalesId,
-            discount: isNumeric(_salesController.discount)
-                ? double.parse(_salesController.discount)
+            discount: isNumeric(salesController.discount)
+                ? double.parse(salesController.discount)
                 : 0,
           ),
         );
-        if ((_salesController.transfer.isNotEmpty &&
-                _salesController.transfer != '0') ||
-            (_salesController.cashReceived.isNotEmpty &&
-                _salesController.cashReceived != '0')) {
+        if ((salesController.transfer.isNotEmpty &&
+                salesController.transfer != '0') ||
+            (salesController.cashReceived.isNotEmpty &&
+                salesController.cashReceived != '0')) {
           _isar.salesPaymentDatabaseModels.put(
             SalesPaymentDatabaseModel(
-              cash: double.parse(_salesController.cashReceived),
-              transfer: double.parse(_salesController.transfer),
-              credit: double.parse(_salesController.credit),
-              customerId: _salesController.customerId!,
+              cash: double.parse(salesController.cashReceived),
+              transfer: double.parse(salesController.transfer),
+              credit: double.parse(salesController.credit),
+              customerId: salesController.customerId!,
               groupSalesId: groupSalesId,
               salesPaymentId: salesPaymentId,
-              total: double.parse(_salesController.total),
+              total: double.parse(salesController.total),
             ),
           );
         }

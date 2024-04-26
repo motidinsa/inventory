@@ -10,23 +10,25 @@ class CustomerDetailController extends GetxController {
   // final int isarId;
   // final String customerId;
   late CustomerDatabaseModel customerDatabaseModel;
+
   //
   // CustomerDetailController({required this.isarId, required this.customerId});
 
   static CustomerDetailController get to => Get.find();
   double customerCredit = 0;
+  late List<SalesPaymentDatabaseModel> salesPaymentDatabaseModels;
 
   @override
   void onInit() {
     AppController.to.currentRoutes.add(customerDetailN);
     final Isar isar = Get.find();
     customerDatabaseModel = Get.arguments[0] as CustomerDatabaseModel;
-    customerCredit = isar.salesPaymentDatabaseModels
+    salesPaymentDatabaseModels = isar.salesPaymentDatabaseModels.where()
         .filter()
         .customerIdEqualTo(customerDatabaseModel.customerId)
-        .findAllSync()
-        .fold(0, (previousValue, element) => previousValue + element.credit);
-    print(customerCredit);
+        .findAllSync();
+    customerCredit = salesPaymentDatabaseModels.fold(
+        0, (previousValue, element) => previousValue + element.credit);
     super.onInit();
   }
 }
