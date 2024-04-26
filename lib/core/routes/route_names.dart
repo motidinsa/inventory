@@ -14,4 +14,5 @@ class RouteName {
   static const String productDetail = '/product_detail';
   static const String editProduct = '/edit_product';
   static const String reorderStock = '/reorder_stock';
+  static const String creditHistory = '/credit_history';
 }

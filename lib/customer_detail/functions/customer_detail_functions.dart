@@ -9,7 +9,7 @@ deleteCustomer() async {
   final Isar isar = Get.find();
   await isar.writeTxn(() async {
     await isar.customerDatabaseModels
-        .delete(CustomerDetailController.to.isarId);
+        .delete(CustomerDetailController.to.customerDatabaseModel.id);
     // await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
     //   productId: ProductDetailController.to.productId,
     //   deletedDate: DateTime.now(),

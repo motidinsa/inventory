@@ -9,6 +9,7 @@ import 'package:my_inventory/add_product/ui/add_product.dart';
 import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
 import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
+import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/customer_list.dart';
@@ -24,6 +25,7 @@ import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
+import '../../credit_history/credit_history.dart';
 import '../../sales/controller/sales_controller.dart';
 
 List<GetPage> routes = [
@@ -45,10 +47,8 @@ List<GetPage> routes = [
   GetPage(
     name: RouteName.customerDetail,
     page: () => CustomerDetail(),
-    // binding: BindingsBuilder.put(() => EditCustomerController(
-    //       customerDatabaseModel: customerDatabaseModel,
-    //     )
-    // )
+    binding: BindingsBuilder.put(() => CustomerDetailController()
+    )
   ),
   GetPage(
       name: RouteName.sales,
@@ -73,5 +73,8 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.productList,
       page: () => ProductList(),
-      binding: BindingsBuilder.put(() => ProductListController())),
+      binding: BindingsBuilder.put(() => ProductListController())),GetPage(
+      name: RouteName.creditHistory,
+      page: () => CreditHistory(),
+  ),
 ];
