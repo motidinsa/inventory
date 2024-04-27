@@ -126,11 +126,11 @@ class SalesRepository {
         );
         if ((salesController.transfer.isNotEmpty &&
                 salesController.transfer != '0') ||
-            (salesController.cashReceived.isNotEmpty &&
-                salesController.cashReceived != '0')) {
+            (salesController.cash.isNotEmpty &&
+                salesController.cash != '0')) {
           _isar.salesPaymentDatabaseModels.put(
             SalesPaymentDatabaseModel(
-              cash: double.parse(salesController.cashReceived),
+              cash: double.parse(salesController.cash),
               transfer: double.parse(salesController.transfer),
               credit: double.parse(salesController.credit),
               customerId: salesController.customerId!,

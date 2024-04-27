@@ -30,6 +30,10 @@ import '../../sales/controller/sales_controller.dart';
 
 List<GetPage> routes = [
   GetPage(
+    name: RouteName.signUp,
+    page: () => SignUp(),
+    // page: () => SignUp(),
+  ),GetPage(
     name: RouteName.homepage,
     page: () => GetBuilder<AppController>(builder: (context) {
       return const Scaffold(drawer: MyDrawer(), body: Homepage());

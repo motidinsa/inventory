@@ -18,7 +18,7 @@ class CreditHistory extends StatelessWidget {
     return BodyWrapper(
       pageName: 'Credit history',
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
         child: ListView.separated(
           itemBuilder: (ctx, index) {
             SalesPaymentDatabaseModel salesPaymentDatabaseModel =

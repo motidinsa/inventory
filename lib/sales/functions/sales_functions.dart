@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -8,6 +11,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
+import 'package:my_inventory/homepage/ui/pdftest.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
 import 'package:my_inventory/sales/repository/sales_repository.dart';
@@ -177,7 +181,11 @@ onSalesSearchProductAlertDialogOptionSelect(
   }
 }
 
-saveSalesProductToDB() {
+saveSalesProductToDB() async {
   SalesRepository.saveSalesProductToDB();
-  Get.back();
+  final ByteData bytes = await rootBundle.load('assets/images/company-logo.png');
+  final Uint8List byteList = bytes.buffer.asUint8List();
+
+  Get.off(pdftest(image: byteList));
+
 }

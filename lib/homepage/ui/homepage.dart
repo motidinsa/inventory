@@ -14,40 +14,6 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: ,
-      floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            // final ExportDelegate exportDelegate = ExportDelegate();
-            // ExportFrame(
-            //   frameId: 'someFrameId',
-            //   child: SomeWidget(), // the widget you want to export
-            // )
-            final ByteData bytes = await rootBundle.load('assets/images/company-logo.png');
-            final Uint8List byteList = bytes.buffer.asUint8List();
-            // Get.to(Scaffold(body: Image(image:MemoryImage(byteList),
-            //     fit: BoxFit.fitHeight, height: 100, width: 100, ),));
-            Get.to(pdftest(image: byteList,));
-            // await Printing.layoutPdf(
-            //     onLayout: (PdfPageFormat format) async => doc.save());
-            // final file = File('example.pdf');
-            // await file.writeAsBytes(await doc.save());
-
-            // await FileSaver.instance.saveFile( name: 'test.isar',filePath: '/data/data/com.inventory.my_inventory/app_flutter/default.isar',);
-            // final directory = await getApplicationDocumentsDirectory();
-            // final dir = directory.parent.path;
-            // String pdfDirectory = '$dir/app_flutter';
-            // final myDir = Directory(pdfDirectory);
-            // await FolderFileSaver.saveFileIntoCustomDir(
-            //   filePath:  '${directory.path}/default.isar',
-            //   dirNamed: '/',
-            // );
-
-            // var status = await Permission.videos.status;
-            //
-            // await Permission.photos.request();
-            // print(status.name);
-          },
-          child: const Icon(Icons.ac_unit_rounded)),
       appBar: AppBar(
         title: const Text(
           'XYZ Company',

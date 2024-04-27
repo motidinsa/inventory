@@ -1,77 +1,81 @@
 import 'package:get/get.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:pdf/pdf.dart';
 
 import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:pdf/widgets.dart' as p;
 
-List<p.Widget> generateSalesData() {
+p.Widget generateSalesData() {
   List<p.Widget> salesData = [];
   SalesController salesController = Get.find();
   for (int i = 0; i < salesController.salesModels.length; i++) {
     SalesModel salesModel = salesController.salesModels[i];
-    salesData.add(
-      p.Container(
-        color: i.isOdd ? PdfColor.fromHex('eeeeee') : null,
-        padding: const p.EdgeInsets.symmetric(vertical: 10),
-        child: p.Row(
-          children: [
-            p.Expanded(
-              child: p.Text(
-                '${i + 1}',
-                textAlign: p.TextAlign.center,
-                style: const p.TextStyle(
-                  fontSize: 18,
+    salesData.addAll(
+      [
+        p.Container(
+          color: i.isOdd ? PdfColor.fromHex('eeeeee') : null,
+          padding: const p.EdgeInsets.symmetric(vertical: 10),
+          child: p.Row(
+            children: [
+              p.Expanded(
+                child: p.Text(
+                  '${i + 1}',
+                  textAlign: p.TextAlign.center,
+                  style: const p.TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            p.Expanded(
-              flex: 4,
-              child: p.Text(
-                salesModel.productName,
-                textAlign: p.TextAlign.center,
-                style: const p.TextStyle(
-                  fontSize: 18,
+              p.Expanded(
+                flex: 4,
+                child: p.Text(
+                  salesModel.productName,
+                  textAlign: p.TextAlign.center,
+                  style: const p.TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            p.Expanded(
-              flex: 2,
-              child: p.Text(
-                salesModel.quantity,
-                textAlign: p.TextAlign.center,
-                style: const p.TextStyle(
-                  fontSize: 18,
+              p.Expanded(
+                flex: 2,
+                child: p.Text(
+                  getFormattedNumberWithComa(double.parse(salesModel.quantity)),
+                  textAlign: p.TextAlign.center,
+                  style: const p.TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            p.Expanded(
-              flex: 2,
-              child: p.Text(
-                salesModel.price,
-                textAlign: p.TextAlign.center,
-                style: const p.TextStyle(
-                  fontSize: 18,
+              p.Expanded(
+                flex: 2,
+                child: p.Text(
+                  getFormattedNumberWithComa(double.parse(salesModel.price)),
+                  textAlign: p.TextAlign.center,
+                  style: const p.TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            p.Expanded(
-              flex: 2,
-              child: p.Text(
-                salesModel.totalAmount.toString(),
-                textAlign: p.TextAlign.center,
-                style: const p.TextStyle(
-                  fontSize: 18,
+              p.Expanded(
+                flex: 2,
+                child: p.Text(
+                  getFormattedNumberWithComa(salesModel.totalAmount),
+                  textAlign: p.TextAlign.center,
+                  style: const p.TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+        p.SizedBox(height: 5),
+      ],
     );
   }
 
-  return salesData;
+  return p.Column(children: salesData);
 }
 
 p.Widget generateSalesPaymentMode() {
@@ -108,7 +112,7 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: salesController.cashReceived,
+                      text: getFormattedNumberWithComa(double.parse(salesController.cash)),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -131,7 +135,7 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: salesController.transfer,
+                      text: getFormattedNumberWithComa(double.parse(salesController.transfer)),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -154,7 +158,7 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: salesController.credit,
+                      text: getFormattedNumberWithComa(double.parse(salesController.credit)),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -189,7 +193,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.subtotal,
+                  text: getFormattedNumberWithComa(double.parse(salesController.subtotal)),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
@@ -208,7 +212,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.discount,
+                  text: getFormattedNumberWithComa(double.parse(salesController.discount)),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
@@ -227,7 +231,7 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: salesController.total,
+                  text: getFormattedNumberWithComa(double.parse(salesController.total)),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
