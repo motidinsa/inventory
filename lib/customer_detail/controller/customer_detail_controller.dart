@@ -27,6 +27,7 @@ class CustomerDetailController extends GetxController {
         .filter()
         .customerIdEqualTo(customerDatabaseModel.customerId)
         .findAllSync();
+
     customerCredit = salesPaymentDatabaseModels.fold(
         0, (previousValue, element) => previousValue + element.credit);
     super.onInit();

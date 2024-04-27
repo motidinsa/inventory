@@ -39,7 +39,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         data: textEditingController.text,
       ),
     );
-    if ([categoryNameN, uomNameN].contains(widget.title)) {
+    if ([categoryNameN, uomNameN,customerNameN,vendorNameN,productN].contains(widget.title)) {
       focusNode.requestFocus();
     }
 

@@ -23,7 +23,6 @@ class CreditHistory extends StatelessWidget {
           itemBuilder: (ctx, index) {
             SalesPaymentDatabaseModel salesPaymentDatabaseModel =
                 CustomerDetailController.to.salesPaymentDatabaseModels[index];
-            // salesPaymentDatabaseModel.
             return Card(
               elevation: 3,
               child: Padding(
