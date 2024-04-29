@@ -122,36 +122,28 @@ hasSuffixIcon({String? title}) {
   return items.contains(title);
 }
 
-Icon? getPrefixIcon({String? title}) {
-  var items = [
-    vendorNameN,
-    customerNameN,
-    phoneNumberN,
-    addressN,
-    cityN,
-    emailN,
-    contactPersonN
-  ];
-  if (items.contains(title)) {
-    return profileTitleToIcon(title: title);
-  }
-  return null;
-}
-
-Icon profileTitleToIcon({
-  String? title,
+Icon titleToIcon({
+  required String title,
 }) {
-  var items = {
-    vendorNameN: Icons.corporate_fare_rounded,
-    customerNameN: Icons.person,
-    contactPersonN: Icons.person,
-    phoneNumberN: Icons.call,
-    addressN: Icons.location_on,
-    cityN: Icons.location_city,
-    emailN: Icons.mail,
-  };
+  IconData? iconData;
+  if ([vendorNameN, companyNameN].contains(title)) {
+    iconData = Icons.corporate_fare_rounded;
+  } else if ([customerNameN, contactPersonN, firstNameN, lastNameN]
+      .contains(title)) {
+    iconData = Icons.person_outline;
+  } else if (title == phoneNumberN) {
+    iconData = Icons.call_outlined;
+  } else if (title == addressN) {
+    iconData = Icons.location_on_outlined;
+  } else if (title == cityN) {
+    iconData = Icons.location_city_outlined;
+  } else if (title == emailN) {
+    iconData = Icons.mail_outline_rounded;
+  } else if (title == dateN) {
+    iconData = Icons.calendar_month_outlined;
+  }
   return Icon(
-    items[title],
+    iconData,
     size: 26,
     color: Colors.grey.shade700,
   );

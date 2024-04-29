@@ -321,21 +321,21 @@ onImageSourceButtonPressed({
   });
 }
 
-titleToIcon({required String title}) {
-  IconData? iconData;
-  if (title == dateN) {
-    iconData = Icons.calendar_month_rounded;
-  } else if (title == phoneNumberN) {
-    iconData = Icons.phone;
-  } else if (title == addressN) {
-    iconData = Icons.location_on;
-  } else if (title == contactPersonN) {
-    iconData = Icons.person;
-  }
-  return iconData != null
-      ? Icon(iconData, color: Colors.grey.shade600)
-      : Container();
-}
+// titleToIcon({required String title}) {
+//   IconData? iconData;
+//   if (title == dateN) {
+//     iconData = Icons.calendar_month_rounded;
+//   } else if (title == phoneNumberN) {
+//     iconData = Icons.phone;
+//   } else if (title == addressN) {
+//     iconData = Icons.location_on;
+//   } else if (title == contactPersonN) {
+//     iconData = Icons.person;
+//   }
+//   return iconData != null
+//       ? Icon(iconData, color: Colors.grey.shade600)
+//       : Container();
+// }
 
 getKeyboardType({required String title}) {
   final List<String> numberKeyboardLists = [

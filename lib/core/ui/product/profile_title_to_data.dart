@@ -6,6 +6,8 @@ import 'package:my_inventory/product_list/ui/product_detail_single_description.d
 
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 
+import '../../functions/custom_text_field_helper_functions.dart';
+
 class ProfileTitleToData extends StatelessWidget {
   final String title;
   final String data;

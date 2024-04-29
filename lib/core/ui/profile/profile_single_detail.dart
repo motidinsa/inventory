@@ -30,7 +30,7 @@ class ProfileSingleDetail extends StatelessWidget {
       crossAxisAlignment:
           data == null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
-        profileTitleToIcon(
+        titleToIcon(
           title: title,
         ),
         sizedBox(width: 15),

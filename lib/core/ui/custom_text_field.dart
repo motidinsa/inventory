@@ -86,7 +86,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         isDense: true,
         isCollapsed: true,
         errorMaxLines: 5,
-        prefixIcon: getPrefixIcon(title: widget.title),
+        prefixIcon: titleToIcon(title: widget.title),
         suffixIcon: hasOptionItems(title: widget.title)
             ? const Icon(
                 Icons.arrow_drop_down_rounded,

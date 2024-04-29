@@ -3,26 +3,22 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/custom_text_field_helper_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
-import 'package:my_inventory/signup/controller/signup_controller.dart';
-
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 
 class SignUp extends StatelessWidget {
-   const SignUp({Key? key}) : super(key: key);
-   static const List<String> signUpRequirements = [
+  const SignUp({Key? key}) : super(key: key);
+  static const List<String> signUpRequirements = [
+    companyNameN,
     firstNameN,
     lastNameN,
     phoneNumberN,
-    companyNameN
+    emailN
   ];
-   static const List<IconData> signUpRequirementsIcon = [
-    Icons.person_rounded,
-    Icons.person_rounded,
-    Icons.phone,
-    Icons.corporate_fare_rounded
-  ];
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -68,28 +64,13 @@ class SignUp extends StatelessWidget {
                               ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) => TextFormField(
-                                  onTap: () {},
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                      fillColor: Colors.white70,
-                                      filled: true,
-                                      errorMaxLines: 2,
-                                      border: UnderlineInputBorder(
-                                        borderRadius:
-                                            smoothBorderRadius(radius: 12),
-                                        borderSide: BorderSide.none,
-                                      ),
-                                      prefixIcon:  Icon(signUpRequirementsIcon[index]),
-                                      labelText: signUpRequirements[index],
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20,vertical: 10)
-                                        ),
+                                itemBuilder: (context, index) =>
+                                    CustomTextField2(
+                                  title: signUpRequirements[index],
                                 ),
                                 separatorBuilder: (context, index) =>
                                     sizedBox(height: 12),
-                                itemCount:
-                                    signUpRequirements.length,
+                                itemCount: signUpRequirements.length,
                               ),
                               sizedBox(height: 20)
                             ],
