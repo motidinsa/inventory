@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_model.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
@@ -35,6 +36,7 @@ class EditCustomerController extends GetxController {
   }
 
   onEditCustomerSaveButtonPressed() async {
+    unFocus();
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
     await isar.writeTxn(() async {

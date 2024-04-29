@@ -13,7 +13,7 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 onAddProductTextFieldChange({
   String? title,

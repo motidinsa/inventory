@@ -6,8 +6,8 @@ import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 
-import '../../core/model/purchase/purchase_model.dart';
-import '../../core/routes/route_names.dart';
+import 'package:my_inventory/core/model/purchase/purchase_model.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 onPurchaseTitleToData({required String title, int? index}) {
   PurchaseController purchaseController = Get.find();
@@ -39,11 +39,11 @@ onPurchaseTextFieldChange({
           .findAllSync());
     } else if (title == quantityN) {
       if (data.isEmpty) {
-        purchase?.quantity = '';
-        purchase?.totalAmount = 0;
+        purchase.quantity = '';
+        purchase.totalAmount = 0;
       } else {
-        purchase?.quantity = data;
-        if (isNumeric(purchase!.quantity) && isNumeric(purchase.cost)) {
+        purchase.quantity = data;
+        if (isNumeric(purchase.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
               double.parse(data) * double.parse(purchase.cost);
         } else {
@@ -53,11 +53,11 @@ onPurchaseTextFieldChange({
       purchaseController.update();
     } else if (title == costN) {
       if (data.isEmpty) {
-        purchase?.cost = '';
-        purchase?.totalAmount = 0;
+        purchase.cost = '';
+        purchase.totalAmount = 0;
       } else {
-        purchase?.cost = data;
-        if (isNumeric(purchase!.quantity) && isNumeric(purchase.cost)) {
+        purchase.cost = data;
+        if (isNumeric(purchase.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
               double.parse(data) * double.parse(purchase.quantity);
         } else {
@@ -98,11 +98,11 @@ onPurchaseSearchProductAlertDialogOptionSelect(
         isar.productDatabaseModels.getSync(isarId)!;
     PurchaseModel purchase = purchaseController.purchaseModels[listIndex!];
     // purchaseController.purchaseModels[listIndex!].update((purchase) {
-      purchase?.productId = productDatabaseModel.productId;
-      purchase?.productName = productDatabaseModel.productName;
-      purchase?.cost = emptyIfDefaultValue(
+      purchase.productId = productDatabaseModel.productId;
+      purchase.productName = productDatabaseModel.productName;
+      purchase.cost = emptyIfDefaultValue(
           getFormattedNumberWithoutComa(productDatabaseModel.cost));
-      if (purchase!.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
+      if (purchase.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
         purchase.totalAmount =
             double.parse(purchase.quantity) * productDatabaseModel.cost;
       }

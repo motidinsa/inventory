@@ -6,7 +6,7 @@ class ApplicationBindings implements Bindings {
 
   @override
   void dependencies()  {
-    Get.lazyPut(() => AppController());
+    Get.lazyPut(() => AppController(),fenix: true);
 
   }
 }

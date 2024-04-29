@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
@@ -10,26 +9,24 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
-import 'package:my_inventory/edit_customer/ui/edit_customer.dart';
-import 'package:my_inventory/edit_vendor/ui/edit_vendor.dart';
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
-import 'package:my_inventory/vendor_detail/ui/vendor_detail.dart';
 
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/packages/custom_date_picker.dart';
 
 onProfileEditPressed() {
-  if (Get.currentRoute == customerDetailN) {
+  if (Get.currentRoute == RouteName.customerDetail) {
     Get.toNamed(RouteName.editCustomer);
-    Get.to(() => EditCustomer(
-        // customerDatabaseModel:
-        //     CustomerDetailController.to.customerDatabaseModel,
-        ));
+    // Get.to(() => EditCustomer(
+    //     // customerDatabaseModel:
+    //     //     CustomerDetailController.to.customerDatabaseModel,
+    //     ));
   } else {
-    Get.to(() => EditVendor(
-          vendorDatabaseModel: VendorDetailController.to.vendorDatabaseModel,
-        ));
+    // Get.toNamed(RouteName.editVendor);
+    // Get.to(() => EditVendor(
+    //       vendorDatabaseModel: VendorDetailController.to.vendorDatabaseModel,
+    //     ));
   }
 }
 

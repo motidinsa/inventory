@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +15,7 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
 import 'package:my_inventory/sales/repository/sales_repository.dart';
 
-import '../../core/routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();
@@ -60,13 +59,13 @@ onSalesTextFieldChange({
     SalesModel sales = salesController.salesModels[index!];
 
     if (data.isEmpty) {
-      sales?.quantity = '';
-      sales?.totalAmount = 0;
+      sales.quantity = '';
+      sales.totalAmount = 0;
       salesController.cash = '';
       salesController.credit = '0';
     } else {
-      sales?.quantity = data;
-      if (isNumeric(sales!.quantity) && isNumeric(sales.price)) {
+      sales.quantity = data;
+      if (isNumeric(sales.quantity) && isNumeric(sales.price)) {
         sales.totalAmount = double.parse(data) * double.parse(sales.price);
         salesController.cash = getFormattedNumberWithoutComa(getSalesTotal());
       } else {
@@ -140,9 +139,9 @@ onSalesSearchProductAlertDialogOptionSelect(
       SalesModel sales = salesController.salesModels[listIndex!];
       // salesController.salesModels[listIndex!].update((sales) {
       sales.productName = productDatabaseModel.productName;
-      sales?.productId = productDatabaseModel.productId;
-      sales?.price = productDatabaseModel.price.toString();
-      if (sales!.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+      sales.productId = productDatabaseModel.productId;
+      sales.price = productDatabaseModel.price.toString();
+      if (sales.quantity.isNotEmpty && isNumeric(sales.quantity)) {
         sales.totalAmount =
             double.parse(sales.quantity) * productDatabaseModel.price;
       }

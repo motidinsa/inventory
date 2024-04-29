@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import 'package:my_inventory/core/ui/title_with_submenu.dart';
 
@@ -38,6 +39,7 @@ class MyDrawer extends StatelessWidget {
                     filePath:  '/data/data/com.inventory.my_inventory/app_flutter/default.isar',
                     dirNamed: '/',
                   );
+                  showSnackbar(message: 'Successfully exported to Documents/my_inventory');
                 },
               ),
             ),sizedBox(height: 5),
@@ -55,6 +57,7 @@ class MyDrawer extends StatelessWidget {
 
                   if (result != null) {
                     File file = File(result.files.single.path!).copySync('/data/data/com.inventory.my_inventory/app_flutter/default.isar');
+                    showSnackbar(message: 'Successfully imported');
                   } else {
                     // User canceled the picker
                   }

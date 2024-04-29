@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 class ProductTableTitles extends StatelessWidget {
   final String currentRoute;

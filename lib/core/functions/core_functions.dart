@@ -82,7 +82,7 @@ getFormattedNumberWithoutComa(num) {
 }
 
 onActionButtonPressed({required String redirectFrom}) async {
-  // await unFocus();
+  await unFocus();
   final Isar isar = Get.find();
   if (redirectFrom == productDetailN) {
     deleteProduct();
@@ -90,6 +90,8 @@ onActionButtonPressed({required String redirectFrom}) async {
     deleteCustomer();
   } else if (redirectFrom == vendorDetailN) {
     deleteVendor();
+  }else if (redirectFrom == signUpN) {
+    Get.offAndToNamed(RouteName.homepage);
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
@@ -165,7 +167,6 @@ onActionButtonPressed({required String redirectFrom}) async {
       addProductController.isSubmitButtonPressed(true);
       addProductController.onAddProductSaveButtonPressed();
     } else if (redirectFrom == salesN) {
-      // SalesController salesController = Get.find();
       saveSalesProductToDB();
     } else if (redirectFrom == purchaseN) {
       PurchaseController purchaseController = Get.find();
@@ -199,9 +200,9 @@ titleToData({required String title, int? index}) {
     return onPurchaseTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
     return getEditProductData(title: title);
-  } else if (currentRoute == editCustomerN) {
+  } else if (currentRoute == RouteName.editCustomer) {
     return getEditCustomerData(title: title);
-  } else if (currentRoute == editVendorN) {
+  } else if (currentRoute == RouteName.editVendor) {
     return getEditVendorData(title: title);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {

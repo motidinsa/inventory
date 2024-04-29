@@ -1,18 +1,14 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:flutter_to_pdf/export_delegate.dart';
 import 'package:intl/intl.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as p;
 
-import '../../core/functions/pdf/sales_pdf_functions.dart';
-import '../../sales/controller/sales_controller.dart';
+import 'package:my_inventory/core/functions/pdf/sales_pdf_functions.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 class pdftest extends StatelessWidget {
   final Uint8List image;

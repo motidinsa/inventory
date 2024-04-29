@@ -7,12 +7,7 @@ import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
 
 class CustomerDetailController extends GetxController {
-  // final int isarId;
-  // final String customerId;
   late CustomerDatabaseModel customerDatabaseModel;
-
-  //
-  // CustomerDetailController({required this.isarId, required this.customerId});
 
   static CustomerDetailController get to => Get.find();
   double customerCredit = 0;

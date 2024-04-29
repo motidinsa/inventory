@@ -5,11 +5,10 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
-import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/product/profile_title_to_data.dart';
 
-import '../../routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 class ProductProfileInfo extends StatelessWidget {
   ProductProfileInfo({super.key,});

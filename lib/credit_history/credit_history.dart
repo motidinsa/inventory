@@ -6,9 +6,9 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/sales/sales_database_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 
-import '../core/model/sales/sales_payment_database_model.dart';
-import '../core/styles/styles.dart';
-import '../core/ui/body_wrapper.dart';
+import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/body_wrapper.dart';
 
 class CreditHistory extends StatelessWidget {
   const CreditHistory({super.key});
@@ -60,7 +60,7 @@ class CreditHistory extends StatelessWidget {
                             ],
                           ),
                         )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
@@ -68,14 +68,14 @@ class CreditHistory extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                     color: Colors.red.shade300,
                                     borderRadius: smoothBorderRadius()),
                                 child: RichText(
                                   text: TextSpan(
                                     text: 'Credit: ',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                       // color: Colors.red.shade300,
@@ -98,7 +98,7 @@ class CreditHistory extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -124,7 +124,7 @@ class CreditHistory extends StatelessWidget {
                             ],
                           ),
                         )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
@@ -157,7 +157,7 @@ class CreditHistory extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (ctx, index) => SizedBox(
+          separatorBuilder: (ctx, index) => const SizedBox(
             height: 3,
           ),
           itemCount:

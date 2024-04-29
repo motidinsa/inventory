@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
@@ -81,7 +80,7 @@ class ReportData extends StatelessWidget {
               ),
             ),
             // sizedBox(width: spacingWidthR),
-            if (Get.currentRoute != reorderQuantityN) ...[
+            if (AppController.to.currentRoutes.last != reorderQuantityN) ...[
               SizedBox(
                 width: getReportFifthWidth(),
                 child: Padding(
@@ -98,7 +97,7 @@ class ReportData extends StatelessWidget {
                 ),
               ),
               if ([salesReportN, paymentReportN]
-                  .contains(Get.currentRoute)) ...[
+                  .contains( AppController.to.currentRoutes.last)) ...[
                 // sizedBox(width: spacingWidthR),
                 SizedBox(
                   width: getReportSixthWidth(),

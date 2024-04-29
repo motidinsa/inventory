@@ -94,7 +94,7 @@ class ReportHeader extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: purchaseSpacing),
                 child: Text(
-                  Get.currentRoute == salesReportN
+                  AppController.to.currentRoutes.last == salesReportN
                       ? 'T.price'
                       : 'T.cost',
                   textAlign: TextAlign.center,
@@ -105,7 +105,7 @@ class ReportHeader extends StatelessWidget {
                 ),
               ),
             ),
-            if (Get.currentRoute == salesReportN) ...[
+            if ( AppController.to.currentRoutes.last == salesReportN) ...[
               // sizedBox(width: spacingWidthR),
               SizedBox(
                 width: getReportSixthWidth(),

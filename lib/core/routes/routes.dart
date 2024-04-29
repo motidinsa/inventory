@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_instance/src/bindings_interface.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/add_customer/ui/add_customer.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
@@ -14,6 +12,8 @@ import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/customer_list.dart';
 import 'package:my_inventory/drawer/ui/my_drawer.dart';
+import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
+import 'package:my_inventory/edit_customer/ui/edit_customer.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
@@ -25,15 +25,16 @@ import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
-import '../../credit_history/credit_history.dart';
-import '../../sales/controller/sales_controller.dart';
+import 'package:my_inventory/credit_history/credit_history.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 List<GetPage> routes = [
   GetPage(
     name: RouteName.signUp,
-    page: () => SignUp(),
+    page: () => const SignUp(),
     // page: () => SignUp(),
-  ),GetPage(
+  ),
+  GetPage(
     name: RouteName.homepage,
     page: () => GetBuilder<AppController>(builder: (context) {
       return const Scaffold(drawer: MyDrawer(), body: Homepage());
@@ -49,14 +50,12 @@ List<GetPage> routes = [
       page: () => AddCustomer(),
       binding: BindingsBuilder.put(() => AddCustomerController())),
   GetPage(
-    name: RouteName.customerDetail,
-    page: () => CustomerDetail(),
-    binding: BindingsBuilder.put(() => CustomerDetailController()
-    )
-  ),
+      name: RouteName.customerDetail,
+      page: () => CustomerDetail(),
+      binding: BindingsBuilder.put(() => CustomerDetailController())),
   GetPage(
       name: RouteName.sales,
-      page: () => Sales(),
+      page: () => const Sales(),
       binding: BindingsBuilder.put(() => SalesController())),
   GetPage(
       name: RouteName.vendorList,
@@ -77,8 +76,18 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.productList,
       page: () => ProductList(),
-      binding: BindingsBuilder.put(() => ProductListController())),GetPage(
-      name: RouteName.creditHistory,
-      page: () => CreditHistory(),
+      binding: BindingsBuilder.put(() => ProductListController())),
+  GetPage(
+    name: RouteName.creditHistory,
+    page: () => const CreditHistory(),
   ),
+  GetPage(
+      name: RouteName.editCustomer,
+      page: () => EditCustomer(),
+      binding: BindingsBuilder.put(() =>
+          EditCustomerController(customerDatabaseModel: CustomerDetailController.to.customerDatabaseModel))),
+  // GetPage(
+  //   name: RouteName.creditHistory,
+  //   page: () => CreditHistory(),
+  // ),
 ];

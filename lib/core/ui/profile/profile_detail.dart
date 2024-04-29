@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
@@ -14,7 +13,7 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 
-import '../../functions/core_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 class ProfileDetail extends StatelessWidget {
   const ProfileDetail({
@@ -73,7 +72,7 @@ class ProfileDetail extends StatelessWidget {
                 ],
               ),
               if (Get.find<CustomerDetailController>().customerCredit > 0) ...[
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
@@ -81,11 +80,11 @@ class ProfileDetail extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           color: Colors.red.shade300,
                           borderRadius: smoothBorderRadius()),
-                      child: Text(
+                      child: const Text(
                         'Credit',
                         style: TextStyle(
                           color: Colors.white,
@@ -93,7 +92,7 @@ class ProfileDetail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
@@ -145,9 +144,9 @@ class ProfileDetail extends StatelessWidget {
                   onPressed: () {
                     Get.toNamed(RouteName.creditHistory);
                   },
-                  child: Text('Show credit history'),
                   style: ElevatedButton.styleFrom(
                       shape: smoothRectangleBorder(radius: 12)),
+                  child: const Text('Show credit history'),
                 )
             ],
           ),

@@ -55,7 +55,7 @@ double getReportWidth() {
 }
 
 String getFirstData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return DateFormat('MMM d')
         .format(SalesReportController.to.salesReportModels[index].salesDate);
@@ -72,7 +72,7 @@ String getFirstData({required int index}) {
 }
 
 String getSecondData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return SalesReportController.to.salesReportModels[index].productName;
   } else if (currentRoute == purchaseReportN) {
@@ -90,7 +90,7 @@ String getSecondData({required int index}) {
 }
 
 String getThirdData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].quantity);
@@ -111,7 +111,7 @@ String getThirdData({required int index}) {
 }
 
 String getFourthData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalCost);
@@ -132,7 +132,7 @@ String getFourthData({required int index}) {
 }
 
 String getFifthData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalPrice);
@@ -151,7 +151,7 @@ String getFifthData({required int index}) {
 }
 
 String getSixthData({required int index}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     return getFormattedNumberWithComa(
         SalesReportController.to.salesReportModels[index].totalPrice -
@@ -164,7 +164,7 @@ String getSixthData({required int index}) {
 }
 
 double getReportFirstWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[0];
   } else if (currentRoute == salesReportN) {
@@ -182,7 +182,7 @@ double getReportFirstWidth() {
 }
 
 double getReportSecondWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[1];
   } else if (currentRoute == salesReportN) {
@@ -200,7 +200,7 @@ double getReportSecondWidth() {
 }
 
 double getReportThirdWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[2];
   } else if (currentRoute == salesReportN) {
@@ -218,7 +218,7 @@ double getReportThirdWidth() {
 }
 
 double getReportFourthWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[3];
   } else if (currentRoute == salesReportN) {
@@ -236,7 +236,7 @@ double getReportFourthWidth() {
 }
 
 double getReportFifthWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[4];
   } else if (currentRoute == salesReportN) {
@@ -252,7 +252,7 @@ double getReportFifthWidth() {
 }
 
 double getReportSixthWidth() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == purchaseReportN) {
     return Get.mediaQuery.size.width * purchaseWidthRatio[5];
   } else if (currentRoute == salesReportN) {
@@ -266,7 +266,7 @@ double getReportSixthWidth() {
 }
 
 String? getReportSelectedDate({required String title}) {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     if (title == fromN && SalesReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.startDate!);
@@ -293,7 +293,7 @@ String? getReportSelectedDate({required String title}) {
 }
 
 onFilterSelect() {
-  String currentRoute = Get.currentRoute;
+  String currentRoute = AppController.to.currentRoutes.last;
   if (currentRoute == salesReportN) {
     final SalesReportController salesReportController = Get.find();
 

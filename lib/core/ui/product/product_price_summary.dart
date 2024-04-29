@@ -6,7 +6,7 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import '../../routes/route_names.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 class ProductPriceSummary extends StatelessWidget {
   const ProductPriceSummary({
@@ -55,9 +55,9 @@ class ProductPriceSummary extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: const CustomTextField(
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: CustomTextField(
                           title: discountN,
                           labelText: discountN,
                         ),

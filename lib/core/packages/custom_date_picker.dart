@@ -16,7 +16,6 @@ import 'package:my_inventory/purchase_report/controller/purchase_report_controll
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 
 // The M3 sizes are coming from the tokens, but are hand coded,
 // as the current token DB does not contain landscape versions.

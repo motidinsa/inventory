@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
@@ -41,7 +40,7 @@ class Sales extends StatelessWidget {
             const ProductTableTitles(
               currentRoute: salesN,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             GetBuilder<SalesController>(
@@ -68,11 +67,11 @@ class Sales extends StatelessWidget {
             ),
             GetBuilder<SalesController>(
               builder: (_) {
-                return  ProductPriceSummary();
+                return  const ProductPriceSummary();
               }
             ),
             sizedBox(height: 5),
-             PaymentOptions(),
+             const PaymentOptions(),
             ActionButton(redirectFrom: salesN)
           ],
         ),

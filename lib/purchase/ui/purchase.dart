@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/widget_functions.dart';
-import 'package:my_inventory/core/model/page_name_enum.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';

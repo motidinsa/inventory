@@ -2,7 +2,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 
 int getSalesAlertDialogProductLength() {
   return Get.find<SalesController>().searchProductFoundResult.length;

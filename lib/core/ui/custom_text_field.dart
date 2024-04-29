@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/custom_text_field_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/validations.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/main.dart';
+
+import '../functions/custom_text_field_helper_functions.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -39,7 +43,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         data: textEditingController.text,
       ),
     );
-    if ([categoryNameN, uomNameN,customerNameN,vendorNameN,productN].contains(widget.title)) {
+    if ([categoryNameN, uomNameN, customerNameN, vendorNameN, productN]
+            .contains(widget.title) &&
+        ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
+            .contains(Get.currentRoute)) {
       focusNode.requestFocus();
     }
 
@@ -62,7 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: getKeyboardType(title: widget.title),
       maxLines: widget.labelText == descriptionN ? 2 : 1,
-      readOnly: readOnly(title: widget.title),
+      readOnly: isReadOnlyTitle(title: widget.title),
       onChanged: (data) => onTextFieldChange(
         title: widget.title,
         data: data,
@@ -79,16 +86,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
         isDense: true,
         isCollapsed: true,
         errorMaxLines: 5,
-        prefixIcon: hasPrefix(title: widget.title)
-            ? profileTitleToIcon(title: widget.title)
-            : null,
-        suffixIcon: hasOption(title: widget.title)
+        prefixIcon: getPrefixIcon(title: widget.title),
+        suffixIcon: hasOptionItems(title: widget.title)
             ? const Icon(
                 Icons.arrow_drop_down_rounded,
                 color: Colors.teal,
                 size: 24,
               )
-            : hasSuffix(title: widget.title)
+            : hasSuffixIcon(title: widget.title)
                 ? Padding(
                     padding: const EdgeInsets.only(
                         top: 11, bottom: 10, left: 10, right: 15),
@@ -112,12 +117,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         hintStyle: const TextStyle(),
         contentPadding: EdgeInsets.symmetric(
-            horizontal: paymentOptionPadding(title: widget.title)
+            horizontal: hasPaymentOptionPadding(title: widget.title)
                 ? 20
                 : minimizePadding(title: widget.title)
                     ? 10
                     : 30,
-            vertical: paymentOptionPadding(title: widget.title)
+            vertical: hasPaymentOptionPadding(title: widget.title)
                 ? 10
                 : minimizePadding(title: widget.title)
                     ? 10
@@ -131,7 +136,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: smoothBorderRadius(radius: 15),
           borderSide: BorderSide(
             color: Colors.green,
-            width: hasOption(title: widget.title) ? 2 : addProductBorderSide(),
+            width: hasOptionItems(title: widget.title)
+                ? 2
+                : addProductBorderSide(),
           ),
         ),
         labelText: widget.labelText,
