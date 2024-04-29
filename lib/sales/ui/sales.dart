@@ -15,10 +15,6 @@ import 'package:my_inventory/sales/ui/payment_options.dart';
 
 class Sales extends StatelessWidget {
   const Sales({super.key});
-
-  // final AppController appController = Get.find();
-  // final SalesController salesController = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(

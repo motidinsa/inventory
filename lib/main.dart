@@ -1,8 +1,8 @@
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/app_bindings.dart';
@@ -22,16 +22,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DevicePreview(builder: (context) {
       return ScreenUtilInit(builder: (_, child) {
-        return GetMaterialApp(
-          title: appNameN,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-            useMaterial3: true,
+        return GlobalLoaderOverlay(
+          useDefaultLoading: false,
+          overlayWidgetBuilder: (_) {
+            return Center(
+                child: CircularProgressIndicator(
+              color: Colors.green.shade700,
+              strokeWidth: 3,
+            ));
+          },
+          child: GetMaterialApp(
+            title: appNameN,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+              useMaterial3: true,
+            ),
+            initialRoute: RouteName.signUp,
+            getPages: routes,
+            initialBinding: ApplicationBindings(),
           ),
-          initialRoute: RouteName.signUp,
-          getPages: routes,
-          initialBinding: ApplicationBindings(),
         );
       });
     });

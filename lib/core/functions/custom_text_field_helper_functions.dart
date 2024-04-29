@@ -149,6 +149,18 @@ Icon titleToIcon({
   );
 }
 
+String titleToLabel({
+  required String title,
+}) {
+  late String labelText;
+  if (Get.currentRoute == RouteName.signUp && title == emailN) {
+    labelText = '$emailN ($optionalN)';
+  } else {
+    labelText = title;
+  }
+  return labelText;
+}
+
 hasSearchIcon({String? title}) {
   var items = [
     productListN,

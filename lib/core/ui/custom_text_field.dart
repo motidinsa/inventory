@@ -122,7 +122,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 : minimizePadding(title: widget.title)
                     ? 10
                     : 30,
-            vertical: hasPaymentOptionPadding(title: widget.title)
+            vertical:hasPaymentOptionPadding(title: widget.title)
                 ? 10
                 : minimizePadding(title: widget.title)
                     ? 10

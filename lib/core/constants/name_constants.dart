@@ -103,3 +103,5 @@ const String createNewAccountN =  'Create new account';
 const String companyNameN = 'Company name';
 const String firstNameN = 'First name';
 const String lastNameN = 'Last name';
+const String addLogoN = 'Add logo';
+const String changeLogoN = 'Change logo';

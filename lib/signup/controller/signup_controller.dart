@@ -3,19 +3,13 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 
 class SignupController extends GetxController {
-  static  List<String> signUpRequirements = [
-
-    firstNameN,
-    lastNameN,
-    phoneNumberN,
-    companyNameN
-  ];
-  static  List<IconData> signUpRequirementsIcon = [
-    Icons.person_rounded,
-    Icons.person_rounded,
-    Icons.phone,
-    Icons.corporate_fare_rounded
-  ];
+  String? tempLogoPath;
+  bool isLoading = false;
+  String companyName = '';
+  String firstName = '';
+  String lastName = '';
+  String phoneNumber = '';
+  String? email;
 
   static SignupController get to => Get.find();
 }

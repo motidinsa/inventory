@@ -19,7 +19,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
-
+import '../../signup/functions/signup_functions.dart';
 
 onTextFieldChange({
   String? title,
@@ -27,12 +27,17 @@ onTextFieldChange({
   int? index,
 }) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.signUp) {
+    onSignUpTextFieldChange(title: title!, data: data);
+  } else if (currentRoute == RouteName.sales) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
   } else if (currentRoute == RouteName.addCustomer) {
-    onAddCustomerTextFieldChange(data: data, title: title!,);
-  }else if (currentRoute == RouteName.addProduct) {
+    onAddCustomerTextFieldChange(
+      data: data,
+      title: title!,
+    );
+  } else if (currentRoute == RouteName.addProduct) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
@@ -57,11 +62,11 @@ onTextFieldPressed({String? title, int? index}) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentRoute == RouteName.purchase) {
     onPurchaseProductSelect(title: title, index: index);
-  } else if ([salesReportN, purchaseReportN,paymentReportN].contains(currentRoute)) {
+  } else if ([salesReportN, purchaseReportN, paymentReportN]
+      .contains(currentRoute)) {
     onReportFilterSelect(title: title!);
   }
 }
-
 
 onFocusChange({
   required String title,
@@ -79,8 +84,7 @@ onFocusChange({
       onPurchaseProductFocusChange(title: title, data: data);
     } else if (currentRoute == RouteName.editProduct) {
       onEditProductFocusChange(title: title, data: data);
-    }
-    else if (currentRoute == addVendorN) {
+    } else if (currentRoute == addVendorN) {
       onAddVendorFocusChange(title: title, data: data);
     } else if (currentRoute == editCustomerN) {
       onEditCustomerFocusChange(title: title, data: data);

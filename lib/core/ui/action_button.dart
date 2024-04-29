@@ -5,23 +5,24 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
 
+import '../functions/action_button/action_button_functions.dart';
+import '../functions/action_button/action_button_helper_functions.dart';
+
 class ActionButton extends StatelessWidget {
-  final String redirectFrom;
+  final String? redirectFrom;
   final ActionButtonType? actionButtonType;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
   final Color? textColor;
 
-  ActionButton({
+  const ActionButton({
     super.key,
-    required this.redirectFrom,
+    this.redirectFrom,
     this.actionButtonType,
     this.padding,
     this.backgroundColor,
     this.textColor,
   });
-
-  final AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -42,31 +43,18 @@ class ActionButton extends StatelessWidget {
                     15,
                   ),
                 ),
-                backgroundColor: backgroundColor ??
-                    (actionButtonType == ActionButtonType.delete
-                        ? Colors.red.shade400
-                        : Colors.green.shade100),
+                backgroundColor: backgroundColor ?? Colors.green.shade100,
               ),
-              child: isActionButtonLoading()
-                  ? const SizedBox(
-                      width: 23,
-                      height: 23,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 3,
-                      ),
-                    )
-                  : Text(
-                      actionButtonType == null
-                          ? saveN
-                          : actionButtonType == ActionButtonType.filter
-                              ? filterN
-                              : 'Delete',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: textColor??(actionButtonType == ActionButtonType.delete
-                              ? Colors.white
-                              : null)),
-                    ),
+              child: Text(
+                getActionButtonText(),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: textColor ??
+                      (actionButtonType == ActionButtonType.delete
+                          ? Colors.white
+                          : null),
+                ),
+              ),
             ),
           ),
         ],

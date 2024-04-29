@@ -21,6 +21,7 @@ import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/ui/purchase.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
+import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
@@ -32,7 +33,7 @@ List<GetPage> routes = [
   GetPage(
     name: RouteName.signUp,
     page: () => const SignUp(),
-    // page: () => SignUp(),
+      binding: BindingsBuilder.put(() => SignupController())
   ),
   GetPage(
     name: RouteName.homepage,

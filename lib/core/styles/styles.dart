@@ -6,7 +6,7 @@ smoothBorderRadius({double radius = 10}) => SmoothBorderRadius(
       cornerSmoothing: 1,
     );
 
-smoothRectangleBorder({double radius = 10, BorderSide? side}) =>
+SmoothRectangleBorder smoothRectangleBorder({double radius = 10, BorderSide? side}) =>
     SmoothRectangleBorder(
       borderRadius: smoothBorderRadius(radius: radius),
       side: side ?? BorderSide.none,
