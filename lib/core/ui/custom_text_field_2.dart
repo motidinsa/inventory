@@ -41,11 +41,9 @@ class _CustomTextField2State extends State<CustomTextField2> {
           ),
           prefixIcon: titleToIcon(title: widget.title),
           labelText: titleToLabel(title: widget.title),
-          labelStyle: TextStyle(
-              color: !focusNode.hasFocus && textEditingController.text.isNotEmpty
-                  ? Colors.green.shade800
-                  : null),
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+          floatingLabelStyle: TextStyle(color: Colors.green.shade800),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
     );
   }
 }
