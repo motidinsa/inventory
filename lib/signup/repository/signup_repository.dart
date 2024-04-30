@@ -7,21 +7,24 @@ import 'package:my_inventory/signup/controller/signup_controller.dart';
 class SignupRepository {
   static final Isar _isar = Get.find();
 
-
   static saveSignupDetailToDB() async {
     SignupController signupController = Get.find();
     DateTime now = DateTime.now();
-    String companyId = generateDatabaseId(time: now,);
-    // await _isar.writeTxn(() async {
-    //   _isar.signUpDatabaseModels.put(SignUpDatabaseModel(
-    //       companyName: signupController.companyName,
-    //       firstName: signupController.firstName,
-    //       lastName: signupController.lastName,
-    //       phoneNumber: signupController.phoneNumber,
-    //       email: signupController.email,
-    //       registrationDate: DateTime.now(),
-    //       companyId: companyId,
-    //       adminId: adminId));
-    // });
+    String companyId = generateDatabaseId(time: now, identifier: 'comp');
+    String adminId = generateDatabaseId(time: now, identifier: 'admin');
+    await _isar.writeTxn(() async {
+      await  _isar.signUpDatabaseModels.put(
+        SignUpDatabaseModel(
+          companyName: signupController.companyName,
+          firstName: signupController.firstName,
+          lastName: signupController.lastName,
+          phoneNumber: signupController.phoneNumber,
+          email: signupController.email,
+          registrationDate: now,
+          companyId: companyId,
+          adminId: adminId,
+        ),
+      );
+    });
   }
 }

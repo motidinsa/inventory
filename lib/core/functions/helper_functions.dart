@@ -58,19 +58,25 @@ nullIfEmpty(String? data) {
   return data;
 }
 
-showSnackbar({required String message, Color? color}) {
-  Get.closeCurrentSnackbar();
+showSnackbar(
+    {required String message,
+    Color? backgroundColor,
+    TextStyle? style,
+    Duration? duration}) {
+  Get.closeAllSnackbars();
   Get.showSnackbar(
     GetSnackBar(
+      dismissDirection: DismissDirection.horizontal,
       messageText: Text(
         message,
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
+        style: style ??
+            const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
       ),
-      duration: const Duration(seconds: 3),
+      duration: duration ?? const Duration(seconds: 2),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       borderRadius: 12,
-      backgroundColor: color ?? Colors.green.shade400,
+      backgroundColor: backgroundColor ?? Colors.green.shade400,
     ),
   );
 }

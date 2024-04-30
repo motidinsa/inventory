@@ -31,85 +31,84 @@ class SignUp extends StatelessWidget {
       onTap: () => unFocus(),
       child: Scaffold(
         body: LoaderOverlay(
-          child: GetBuilder<SignupController>(
-            builder: (signupController) {
-              if(signupController.isLoading){
-                context.loaderOverlay.show();
-              }else{
+          child: GetBuilder<SignupController>(builder: (signupController) {
+            if (signupController.isLoading) {
+              context.loaderOverlay.show();
+            } else {
+              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                 context.loaderOverlay.hide();
-              }
-              return SafeArea(
-                child: Center(
-                  child: Form(
-                    key: AppController.to.formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Center(
-                            child: Text(
-                              signUpN,
-                              style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: bold(),
-                                  color: Colors.green.shade800),
-                            ),
+              });
+            }
+            return SafeArea(
+              child: Center(
+                child: Form(
+                  key: AppController.to.formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Center(
+                          child: Text(
+                            signUpN,
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: bold(),
+                                color: Colors.green.shade800),
                           ),
-                          Center(
-                            child: Text(
-                              createNewAccountN,
-                              style: TextStyle(color: Colors.green.shade800),
-                            ),
+                        ),
+                        Center(
+                          child: Text(
+                            createNewAccountN,
+                            style: TextStyle(color: Colors.green.shade800),
                           ),
-                          sizedBox(height: 16),
-                          Card(
-                            color: Colors.grey.shade50,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
-                              child: ListView(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                                  sizedBox(height: 20),
-                                  ListView.separated(
-                                    shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        CustomTextField2(
-                                      title: signUpRequirements[index],
-                                    ),
-                                    separatorBuilder: (context, index) =>
-                                        sizedBox(height: 12),
-                                    itemCount: signUpRequirements.length,
+                        ),
+                        sizedBox(height: 16),
+                        Card(
+                          color: Colors.grey.shade50,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                sizedBox(height: 20),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) =>
+                                      CustomTextField2(
+                                    title: signUpRequirements[index],
                                   ),
-                                  sizedBox(height: 12),
-                                  AddCompanyLogo(),
-                                  sizedBox(height: 12),
-                                ],
-                              ),
+                                  separatorBuilder: (context, index) =>
+                                      sizedBox(height: 12),
+                                  itemCount: signUpRequirements.length,
+                                ),
+                                sizedBox(height: 12),
+                                AddCompanyLogo(),
+                                sizedBox(height: 12),
+                              ],
                             ),
                           ),
-                          ActionButton(
-                            redirectFrom: signUpN,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal: 24,
-                            ),
-                            backgroundColor: Colors.green.shade300,
-                            textColor: Colors.white,
+                        ),
+                        ActionButton(
+                          redirectFrom: signUpN,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 24,
                           ),
-                          // sizedBox(height: 10)
-                        ],
-                      ),
+                          backgroundColor: Colors.green.shade300,
+                          textColor: Colors.white,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              );
-            }
-          ),
+              ),
+            );
+          }),
         ),
       ),
     );

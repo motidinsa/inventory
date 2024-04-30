@@ -26,10 +26,11 @@ class MyApp extends StatelessWidget {
           useDefaultLoading: false,
           overlayWidgetBuilder: (_) {
             return Center(
-                child: CircularProgressIndicator(
-              color: Colors.green.shade700,
-              strokeWidth: 3,
-            ));
+              child: CircularProgressIndicator(
+                color: Colors.green.shade700,
+                strokeWidth: 3,
+              ),
+            );
           },
           child: GetMaterialApp(
             title: appNameN,

@@ -31,6 +31,7 @@ onActionButtonPressed({String? redirectFrom}) async {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.signUp) {
     onSignupButtonPressed();
+    // Get.toNamed(RouteName.homepage);
   }
   else if (redirectFrom == productDetailN) {
     deleteProduct();

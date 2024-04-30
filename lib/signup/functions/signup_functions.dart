@@ -1,7 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
+
+import '../../core/functions/helper_functions.dart';
+import '../repository/signup_repository.dart';
 
 onAddLogoPressed() async {
   final ImagePicker imagePicker = ImagePicker();
@@ -20,17 +25,25 @@ onLogoImageCancelPressed() async {
   SignupController.to.update();
 }
 
-onSignupButtonPressed() {
+onSignupButtonPressed() async {
   SignupController signupController = SignupController.to;
   signupController.isLoading = true;
   signupController.update();
-  Future.delayed(
-    Duration(seconds: 3),
-    () {
-      signupController.isLoading = false;
-      signupController.update();
-    },
-  );
+  try {
+    await SignupRepository.saveSignupDetailToDB();
+    showSnackbar(
+      message: successfullySignedUpN,
+    );
+    Get.offAndToNamed(RouteName.homepage);
+  } on Exception {
+    showSnackbar(
+      message: someErrorOccurredN,
+      backgroundColor: Colors.grey.shade800,
+    );
+  } finally {
+    signupController.isLoading = false;
+    signupController.update();
+  }
 }
 
 onSignUpTextFieldChange({

@@ -105,3 +105,5 @@ const String firstNameN = 'First name';
 const String lastNameN = 'Last name';
 const String addLogoN = 'Add logo';
 const String changeLogoN = 'Change logo';
+const String someErrorOccurredN = 'Some error occurred';
+const String successfullySignedUpN = 'Successfully signed up';
