@@ -20,6 +20,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/ui/purchase.dart';
+import 'package:my_inventory/reorder_stock/ui/reorder_stock.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/signup/ui/signup.dart';
@@ -87,8 +88,8 @@ List<GetPage> routes = [
       page: () => EditCustomer(),
       binding: BindingsBuilder.put(() =>
           EditCustomerController(customerDatabaseModel: CustomerDetailController.to.customerDatabaseModel))),
-  // GetPage(
-  //   name: RouteName.creditHistory,
-  //   page: () => CreditHistory(),
-  // ),
+  GetPage(
+    name: RouteName.reorderStock,
+    page: () => ReorderStock(),
+  ),
 ];

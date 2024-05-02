@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'customer_database_model.dart';
+part of 'log_customer_database_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,14 +9,14 @@ part of 'customer_database_model.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetCustomerDatabaseModelCollection on Isar {
-  IsarCollection<CustomerDatabaseModel> get customerDatabaseModels =>
+extension GetLogCustomerDatabaseModelCollection on Isar {
+  IsarCollection<LogCustomerDatabaseModel> get logCustomerDatabaseModels =>
       this.collection();
 }
 
-const CustomerDatabaseModelSchema = CollectionSchema(
-  name: r'CustomerDatabaseModel',
-  id: 8748662444730804251,
+const LogCustomerDatabaseModelSchema = CollectionSchema(
+  name: r'LogCustomerDatabaseModel',
+  id: 5949697261472853189,
   properties: {
     r'address': PropertySchema(
       id: 0,
@@ -74,22 +74,22 @@ const CustomerDatabaseModelSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _customerDatabaseModelEstimateSize,
-  serialize: _customerDatabaseModelSerialize,
-  deserialize: _customerDatabaseModelDeserialize,
-  deserializeProp: _customerDatabaseModelDeserializeProp,
+  estimateSize: _logCustomerDatabaseModelEstimateSize,
+  serialize: _logCustomerDatabaseModelSerialize,
+  deserialize: _logCustomerDatabaseModelDeserialize,
+  deserializeProp: _logCustomerDatabaseModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _customerDatabaseModelGetId,
-  getLinks: _customerDatabaseModelGetLinks,
-  attach: _customerDatabaseModelAttach,
+  getId: _logCustomerDatabaseModelGetId,
+  getLinks: _logCustomerDatabaseModelGetLinks,
+  attach: _logCustomerDatabaseModelAttach,
   version: '3.1.0+1',
 );
 
-int _customerDatabaseModelEstimateSize(
-  CustomerDatabaseModel object,
+int _logCustomerDatabaseModelEstimateSize(
+  LogCustomerDatabaseModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -130,8 +130,8 @@ int _customerDatabaseModelEstimateSize(
   return bytesCount;
 }
 
-void _customerDatabaseModelSerialize(
-  CustomerDatabaseModel object,
+void _logCustomerDatabaseModelSerialize(
+  LogCustomerDatabaseModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -149,13 +149,13 @@ void _customerDatabaseModelSerialize(
   writer.writeString(offsets[10], object.userId);
 }
 
-CustomerDatabaseModel _customerDatabaseModelDeserialize(
+LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = CustomerDatabaseModel(
+  final object = LogCustomerDatabaseModel(
     address: reader.readStringOrNull(offsets[0]),
     city: reader.readStringOrNull(offsets[1]),
     customerId: reader.readString(offsets[2]),
@@ -172,7 +172,7 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
   return object;
 }
 
-P _customerDatabaseModelDeserializeProp<P>(
+P _logCustomerDatabaseModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -206,23 +206,23 @@ P _customerDatabaseModelDeserializeProp<P>(
   }
 }
 
-Id _customerDatabaseModelGetId(CustomerDatabaseModel object) {
+Id _logCustomerDatabaseModelGetId(LogCustomerDatabaseModel object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _customerDatabaseModelGetLinks(
-    CustomerDatabaseModel object) {
+List<IsarLinkBase<dynamic>> _logCustomerDatabaseModelGetLinks(
+    LogCustomerDatabaseModel object) {
   return [];
 }
 
-void _customerDatabaseModelAttach(
-    IsarCollection<dynamic> col, Id id, CustomerDatabaseModel object) {
+void _logCustomerDatabaseModelAttach(
+    IsarCollection<dynamic> col, Id id, LogCustomerDatabaseModel object) {
   object.id = id;
 }
 
-extension CustomerDatabaseModelQueryWhereSort
-    on QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QWhere> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhere>
+extension LogCustomerDatabaseModelQueryWhereSort on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QWhere> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterWhere>
       anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -230,10 +230,10 @@ extension CustomerDatabaseModelQueryWhereSort
   }
 }
 
-extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
-    CustomerDatabaseModel, QWhereClause> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhereClause>
-      idEqualTo(Id id) {
+extension LogCustomerDatabaseModelQueryWhere on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QWhereClause> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -242,8 +242,8 @@ extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhereClause>
-      idNotEqualTo(Id id) {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -265,8 +265,8 @@ extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhereClause>
-      idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -274,8 +274,8 @@ extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhereClause>
-      idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -283,8 +283,8 @@ extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterWhereClause>
-      idBetween(
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -301,9 +301,9 @@ extension CustomerDatabaseModelQueryWhere on QueryBuilder<CustomerDatabaseModel,
   }
 }
 
-extension CustomerDatabaseModelQueryFilter on QueryBuilder<
-    CustomerDatabaseModel, CustomerDatabaseModel, QFilterCondition> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QFilterCondition> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -312,7 +312,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -321,7 +321,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -335,7 +335,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressGreaterThan(
     String? value, {
     bool include = false,
@@ -351,7 +351,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressLessThan(
     String? value, {
     bool include = false,
@@ -367,7 +367,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressBetween(
     String? lower,
     String? upper, {
@@ -387,7 +387,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -401,7 +401,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -415,7 +415,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       addressContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -427,7 +427,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       addressMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -439,7 +439,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -449,7 +449,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> addressIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -459,7 +459,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -468,7 +468,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -477,7 +477,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -491,7 +491,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityGreaterThan(
     String? value, {
     bool include = false,
@@ -507,7 +507,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityLessThan(
     String? value, {
     bool include = false,
@@ -523,7 +523,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityBetween(
     String? lower,
     String? upper, {
@@ -543,7 +543,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -557,7 +557,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -571,7 +571,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       cityContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -583,7 +583,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       cityMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -595,7 +595,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -605,7 +605,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> cityIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -615,7 +615,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -629,7 +629,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdGreaterThan(
     String value, {
     bool include = false,
@@ -645,7 +645,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdLessThan(
     String value, {
     bool include = false,
@@ -661,7 +661,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdBetween(
     String lower,
     String upper, {
@@ -681,7 +681,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -695,7 +695,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -709,7 +709,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       customerIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -721,7 +721,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       customerIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -733,7 +733,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -743,7 +743,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> customerIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -753,7 +753,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> dateCreatedEqualTo(DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -763,7 +763,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> dateCreatedGreaterThan(
     DateTime value, {
     bool include = false,
@@ -777,7 +777,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> dateCreatedLessThan(
     DateTime value, {
     bool include = false,
@@ -791,7 +791,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> dateCreatedBetween(
     DateTime lower,
     DateTime upper, {
@@ -809,7 +809,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -818,7 +818,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -827,7 +827,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -841,7 +841,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailGreaterThan(
     String? value, {
     bool include = false,
@@ -857,7 +857,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailLessThan(
     String? value, {
     bool include = false,
@@ -873,7 +873,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailBetween(
     String? lower,
     String? upper, {
@@ -893,7 +893,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -907,7 +907,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -921,7 +921,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       emailContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -933,7 +933,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       emailMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -945,7 +945,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -955,7 +955,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> emailIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -965,7 +965,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -975,7 +975,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
@@ -989,7 +989,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
@@ -1003,7 +1003,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
@@ -1021,7 +1021,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1030,7 +1030,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1039,7 +1039,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> isAppWriteSyncedEqualTo(bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1049,7 +1049,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1058,7 +1058,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1067,7 +1067,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1081,7 +1081,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdGreaterThan(
     String? value, {
     bool include = false,
@@ -1097,7 +1097,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdLessThan(
     String? value, {
     bool include = false,
@@ -1113,7 +1113,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdBetween(
     String? lower,
     String? upper, {
@@ -1133,7 +1133,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1147,7 +1147,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1161,7 +1161,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1173,7 +1173,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       lastModifiedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1185,7 +1185,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1195,7 +1195,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedByUserIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1205,7 +1205,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1214,7 +1214,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1223,7 +1223,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateEqualTo(DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1233,7 +1233,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateGreaterThan(
     DateTime? value, {
     bool include = false,
@@ -1247,7 +1247,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateLessThan(
     DateTime? value, {
     bool include = false,
@@ -1261,7 +1261,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> lastModifiedDateBetween(
     DateTime? lower,
     DateTime? upper, {
@@ -1279,7 +1279,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1293,7 +1293,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameGreaterThan(
     String value, {
     bool include = false,
@@ -1309,7 +1309,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameLessThan(
     String value, {
     bool include = false,
@@ -1325,7 +1325,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameBetween(
     String lower,
     String upper, {
@@ -1345,7 +1345,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1359,7 +1359,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1373,7 +1373,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       nameContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1385,7 +1385,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       nameMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1397,7 +1397,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1407,7 +1407,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1417,7 +1417,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1426,7 +1426,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1435,7 +1435,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1449,7 +1449,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneGreaterThan(
     String? value, {
     bool include = false,
@@ -1465,7 +1465,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneLessThan(
     String? value, {
     bool include = false,
@@ -1481,7 +1481,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneBetween(
     String? lower,
     String? upper, {
@@ -1501,7 +1501,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1515,7 +1515,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1529,7 +1529,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       phoneContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1541,7 +1541,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       phoneMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1553,7 +1553,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1563,7 +1563,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1573,7 +1573,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1587,7 +1587,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdGreaterThan(
     String value, {
     bool include = false,
@@ -1603,7 +1603,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdLessThan(
     String value, {
     bool include = false,
@@ -1619,7 +1619,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdBetween(
     String lower,
     String upper, {
@@ -1639,7 +1639,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1653,7 +1653,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1667,7 +1667,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       userIdContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1679,7 +1679,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
           QAfterFilterCondition>
       userIdMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1691,7 +1691,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1701,7 +1701,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> userIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1712,162 +1712,162 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 }
 
-extension CustomerDatabaseModelQueryObject on QueryBuilder<
-    CustomerDatabaseModel, CustomerDatabaseModel, QFilterCondition> {}
+extension LogCustomerDatabaseModelQueryObject on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QFilterCondition> {}
 
-extension CustomerDatabaseModelQueryLinks on QueryBuilder<CustomerDatabaseModel,
-    CustomerDatabaseModel, QFilterCondition> {}
+extension LogCustomerDatabaseModelQueryLinks on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QFilterCondition> {}
 
-extension CustomerDatabaseModelQuerySortBy
-    on QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QSortBy> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+extension LogCustomerDatabaseModelQuerySortBy on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QSortBy> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByAddress() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'address', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByAddressDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'address', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByCity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByCityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByCustomerIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByEmail() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByEmailDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByLastModifiedDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedDate', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByLastModifiedDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedDate', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByPhone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByPhoneDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.desc);
@@ -1875,170 +1875,170 @@ extension CustomerDatabaseModelQuerySortBy
   }
 }
 
-extension CustomerDatabaseModelQuerySortThenBy
-    on QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QSortThenBy> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+extension LogCustomerDatabaseModelQuerySortThenBy on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QSortThenBy> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByAddress() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'address', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByAddressDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'address', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByCity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByCityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByCustomerIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByDateCreatedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dateCreated', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByEmail() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByEmailDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'email', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByLastModifiedByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedByUserId', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByLastModifiedDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedDate', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByLastModifiedDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lastModifiedDate', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByPhone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByPhoneDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.desc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.desc);
@@ -2046,51 +2046,51 @@ extension CustomerDatabaseModelQuerySortThenBy
   }
 }
 
-extension CustomerDatabaseModelQueryWhereDistinct
-    on QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct> {
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+extension LogCustomerDatabaseModelQueryWhereDistinct on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct> {
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByAddress({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'address', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByCity({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'city', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByCustomerId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'customerId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByDateCreated() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'dateCreated');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByEmail({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'email', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isAppWriteSynced');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByLastModifiedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastModifiedByUserId',
@@ -2098,28 +2098,28 @@ extension CustomerDatabaseModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByLastModifiedDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'lastModifiedDate');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByName({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByPhone({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
@@ -2127,84 +2127,85 @@ extension CustomerDatabaseModelQueryWhereDistinct
   }
 }
 
-extension CustomerDatabaseModelQueryProperty on QueryBuilder<
-    CustomerDatabaseModel, CustomerDatabaseModel, QQueryProperty> {
-  QueryBuilder<CustomerDatabaseModel, int, QQueryOperations> idProperty() {
+extension LogCustomerDatabaseModelQueryProperty on QueryBuilder<
+    LogCustomerDatabaseModel, LogCustomerDatabaseModel, QQueryProperty> {
+  QueryBuilder<LogCustomerDatabaseModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       addressProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'address');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       cityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'city');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
       customerIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'customerId');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, DateTime, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, DateTime, QQueryOperations>
       dateCreatedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dateCreated');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       emailProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'email');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, bool?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, bool?, QQueryOperations>
       isAppWriteSyncedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isAppWriteSynced');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, DateTime?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, DateTime?, QQueryOperations>
       lastModifiedDateProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedDate');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String, QQueryOperations> nameProperty() {
+  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
+      nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       phoneProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'phone');
     });
   }
 
-  QueryBuilder<CustomerDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
       userIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'userId');

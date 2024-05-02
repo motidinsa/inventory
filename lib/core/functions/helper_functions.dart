@@ -9,12 +9,12 @@ bool isNumeric(String input) {
   return numberRegExp.hasMatch(input);
 }
 
-generateDatabaseId({required DateTime time, var identifier}) {
-  final DateFormat dateFormatter =
-      DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
-  String key = dateFormatter.format(time);
-  return key;
-}
+// generateDatabaseId({required DateTime time, var identifier}) {
+//   final DateFormat dateFormatter =
+//       DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
+//   String key = dateFormatter.format(time);
+//   return key;
+// }
 
 double getValidNumValue(String data) {
   if (isNumeric(data)) {

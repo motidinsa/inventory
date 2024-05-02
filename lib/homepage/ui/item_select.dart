@@ -20,9 +20,8 @@ class ItemSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.green.shade50,
-      elevation: title == reportsN ? 4 : null,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      color: Color(0xffDCEEDE),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
       child: ListTile(
         onTap: () => navigateFromHomepage(title: title),
         shape: SmoothRectangleBorder(
@@ -37,21 +36,23 @@ class ItemSelect extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 17,
-                    ),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade800
+                        // fontSize: 17,
+                        ),
                   ),
-                  if(hasDetailIcon!=true)
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  if (hasDetailIcon != true)
+                    IconButton(
+                      style: IconButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: () =>
+                          navigateFromHomepage(title: title, isAddIcon: true),
+                      icon: Icon(
+                        iconData,color: Colors.grey.shade700,
+                      ),
                     ),
-                    onPressed: () =>
-                        navigateFromHomepage(title: title, isAddIcon: true),
-                    icon: Icon(
-                      iconData,
-                    ),
-                  ),
                 ],
               ),
             ),

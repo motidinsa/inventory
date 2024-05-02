@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_model.dart';
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
+import 'package:my_inventory/core/model/customer/log_customer_database_model.dart';
 
 class AddCustomerRepository {
   static final Isar _isar = Get.find();
@@ -22,10 +26,22 @@ class AddCustomerRepository {
       email: customerDetail.email,
       dateCreated: now,
       customerId: customerId,
+      userId: AppController.to.userId.value,
     );
     await _isar.writeTxn(() async {
       await _isar.customerDatabaseModels.put(customerDatabaseModel);
-      // await isar.logProductDatabaseModels.put(logDbProduct);
+      await _isar.logCustomerDatabaseModels.put(
+        LogCustomerDatabaseModel(
+          name: customerDetail.name,
+          phone: customerDetail.phoneNumber,
+          address: customerDetail.address,
+          city: customerDetail.city,
+          email: customerDetail.email,
+          dateCreated: now,
+          customerId: customerId,
+          userId: AppController.to.userId.value,
+        ),
+      );
     });
   }
 }

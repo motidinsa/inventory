@@ -19,7 +19,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
-import '../../signup/functions/signup_functions.dart';
+import '../../../signup/functions/signup_functions.dart';
 
 onTextFieldChange({
   String? title,

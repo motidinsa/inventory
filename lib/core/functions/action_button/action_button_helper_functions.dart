@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
@@ -9,9 +10,17 @@ String getActionButtonText({String? redirectFrom}) {
     if (currentRoute == RouteName.signUp) {
       actionButtonText = signUpN;
     }
-  }else{
-
-  }
+  } else {}
 
   return actionButtonText;
+}
+
+Color? getActionButtonTextColor() {
+  String currentRoute = Get.currentRoute;
+  Color? color;
+  if (currentRoute == RouteName.customerDetail) {
+    color = Colors.white;
+  }
+
+  return color;
 }

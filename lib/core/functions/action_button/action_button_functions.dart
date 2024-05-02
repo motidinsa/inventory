@@ -29,11 +29,7 @@ onActionButtonPressed({String? redirectFrom}) async {
   await unFocus();
   final Isar isar = Get.find();
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.signUp) {
-    onSignupButtonPressed();
-    // Get.toNamed(RouteName.homepage);
-  }
-  else if (redirectFrom == productDetailN) {
+  if (redirectFrom == productDetailN) {
     deleteProduct();
   } else if (redirectFrom == customerDetailN) {
     deleteCustomer();
@@ -111,6 +107,8 @@ onActionButtonPressed({String? redirectFrom}) async {
     } else {
       return;
     }
+  } else if (currentRoute == RouteName.signUp) {
+    onSignupButtonPressed();
   } else if (AppController.to.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN) {
       AddProductController addProductController = Get.find();
@@ -124,9 +122,7 @@ onActionButtonPressed({String? redirectFrom}) async {
     } else if (redirectFrom == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
-    } else if (redirectFrom == addCustomerN) {
-      onAddCustomerSaveButtonPressed();
-    } else if (redirectFrom == addVendorN) {
+    }  else if (redirectFrom == addVendorN) {
       AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
       EditCustomerController.to.onEditCustomerSaveButtonPressed();
@@ -134,6 +130,9 @@ onActionButtonPressed({String? redirectFrom}) async {
       EditVendorController.to.onEditVendorSaveButtonPressed();
     } else if (redirectFrom == dateSelectN) {
       onFilterSelect();
+    }
+    else if (currentRoute == RouteName.addCustomer) {
+      onAddCustomerSaveButtonPressed();
     }
     // Get.back();
   }
