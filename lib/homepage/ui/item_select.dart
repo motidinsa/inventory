@@ -38,7 +38,7 @@ class ItemSelect extends StatelessWidget {
                     title,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey.shade700
+                        color: Colors.grey.shade800
                         // fontSize: 17,
                         ),
                   ),

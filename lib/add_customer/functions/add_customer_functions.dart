@@ -5,7 +5,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
-
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 onAddCustomerTextFieldChange({
@@ -30,16 +29,21 @@ onAddCustomerSaveButtonPressed() async {
   AddCustomerController addCustomerController = AddCustomerController.to;
   addCustomerController.isLoading = true;
   addCustomerController.update();
-  await AddCustomerRepository.addCustomer();
-  if (Get.previousRoute == RouteName.customerList) {
-    CustomerListController customerListController = Get.find();
-    customerListController.customerList =
-        CustomerListRepository.getAllCustomers();
-    customerListController.isEmpty = false;
-    customerListController.update();
+  try {
+    await AddCustomerRepository.addCustomer();
+    if (Get.previousRoute == RouteName.customerList) {
+      CustomerListController customerListController = Get.find();
+      customerListController.customerList =
+          CustomerListRepository.getAllCustomers();
+      customerListController.isEmpty = false;
+      customerListController.update();
+    }
+    Get.back();
+    showSnackbar(message: successfullyAddedCustomerN);
+  } on Exception {
+    showSnackbar(message: someErrorOccurredN);
+  } finally {
+    addCustomerController.isLoading = false;
+    addCustomerController.update();
   }
-  addCustomerController.isLoading = false;
-  addCustomerController.update();
-  Get.back();
-  showSnackbar(message: successfullyAddedCustomerN);
 }

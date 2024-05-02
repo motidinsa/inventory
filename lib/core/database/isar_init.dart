@@ -19,6 +19,7 @@ import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurem
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 
+import '../model/customer/log_customer_database_model.dart';
 import '../model/sign_up/sign_up_database_model.dart';
 
 isarInit() async {
@@ -27,8 +28,8 @@ isarInit() async {
     return await Isar.open(
       [
         ProductDatabaseModelSchema,
-        QuantityCostDatabaseModelSchema,
         LogProductDatabaseModelSchema,
+        QuantityCostDatabaseModelSchema,
         PurchaseAvailableDatabaseModelSchema,
         PurchaseAllDatabaseModelSchema,
         SalesDatabaseModelSchema,
@@ -40,6 +41,7 @@ isarInit() async {
         UnitOfMeasurementDatabaseModelSchema,
         LogUnitOfMeasurementDatabaseModelSchema,
         CustomerDatabaseModelSchema,
+        LogCustomerDatabaseModelSchema,
         VendorDatabaseModelSchema,
         SignUpDatabaseModelSchema
       ],

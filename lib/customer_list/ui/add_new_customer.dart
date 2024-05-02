@@ -34,7 +34,12 @@ class AddNewCustomer extends StatelessWidget {
               ),
               backgroundColor: Colors.green.shade50,
             ),
-            child: const Text(addCustomerN),
+            child: const Text(
+              addCustomerN,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           )
         ],
       ),

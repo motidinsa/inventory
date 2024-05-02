@@ -9,8 +9,10 @@ import '../styles/styles.dart';
 
 class CustomTextField2 extends StatefulWidget {
   final String title;
+  final Color color;
 
-  const CustomTextField2({super.key, required this.title});
+  const CustomTextField2(
+      {super.key, required this.title, this.color = Colors.white70});
 
   @override
   State<CustomTextField2> createState() => _CustomTextField2State();
@@ -19,7 +21,17 @@ class CustomTextField2 extends StatefulWidget {
 class _CustomTextField2State extends State<CustomTextField2> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
+  @override
+  void initState() {
+    if ([categoryNameN, uomNameN, customerNameN, vendorNameN, productN]
+        .contains(widget.title) &&
+        ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
+            .contains(Get.currentRoute)) {
+      focusNode.requestFocus();
+    }
 
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -32,12 +44,13 @@ class _CustomTextField2State extends State<CustomTextField2> {
         data: data,
       ),
       decoration: InputDecoration(
-          fillColor: Colors.white70,
+          fillColor: widget.color,
           filled: true,
           errorMaxLines: 2,
           border: UnderlineInputBorder(
             borderRadius: smoothBorderRadius(radius: 12),
             borderSide: BorderSide.none,
+
           ),
           prefixIcon: titleToIcon(title: widget.title),
           labelText: titleToLabel(title: widget.title),

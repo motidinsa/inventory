@@ -9,6 +9,7 @@ class ElevatedCard extends StatelessWidget {
   final double verticalPadding;
   final double horizontalPadding;
   final double blurRadius;
+  final Color? color;
 
   const ElevatedCard({
     super.key,
@@ -17,7 +18,7 @@ class ElevatedCard extends StatelessWidget {
     this.verticalMargin = 0,
     this.blurRadius = 12,
     this.verticalPadding = 20,
-    this.horizontalPadding = 20,
+    this.horizontalPadding = 20,this.color
   });
 
   @override
@@ -33,11 +34,12 @@ class ElevatedCard extends StatelessWidget {
             BoxShadow(
               color: Colors.grey,
               blurRadius: blurRadius,
-              spreadRadius: 0,
+              spreadRadius: 1,
             ),
           ]),
       child: Card(
-        surfaceTintColor: Colors.white,
+        // surfaceTintColor: Colors.white,
+        color: color,
         shape: smoothRectangleBorder(radius: 20),
         child: Padding(
           padding: EdgeInsets.symmetric(
