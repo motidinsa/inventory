@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/name_constants.dart';
-import '../routes/route_names.dart';
+import '../../constants/name_constants.dart';
+import '../../routes/route_names.dart';
 
-titleToHint({String? title}) {
+String? titleToHint({String? title}) {
   String? value;
   if (title == productN) {
     value = enterProductNameN;
@@ -42,8 +42,11 @@ titleToHint({String? title}) {
   }
   return value;
 }
+EdgeInsetsGeometry? getTextFieldPadding(){
 
-hasOptionItems({String? title}) {
+  return null;
+}
+bool hasOptionItems({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
@@ -54,7 +57,7 @@ hasOptionItems({String? title}) {
   return itemsWithOption.contains(title);
 }
 
-isReadOnlyTitle({String? title}) {
+bool isReadOnlyTitle({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
@@ -68,7 +71,7 @@ isReadOnlyTitle({String? title}) {
   return itemsWithOption.contains(title);
 }
 
-minimizePadding({String? title}) {
+bool minimizePadding({String? title}) {
   var items = [
     productN,
     descriptionN,
@@ -99,7 +102,7 @@ minimizePadding({String? title}) {
   return !items.contains(title);
 }
 
-maxPadding({String? title}) {
+bool maxPadding({String? title}) {
   var items = [
     vendorNameN,
     contactPersonN,
@@ -112,12 +115,12 @@ maxPadding({String? title}) {
   return !items.contains(title);
 }
 
-hasPaymentOptionPadding({String? title}) {
+bool hasPaymentOptionPadding({String? title}) {
   var items = [cashN, transferN, creditN];
   return items.contains(title);
 }
 
-hasSuffixIcon({String? title}) {
+bool hasSuffixText({String? title}) {
   var items = [quantityOnHandN, reorderQuantityN];
   return items.contains(title);
 }
@@ -161,7 +164,7 @@ String titleToLabel({
   return labelText;
 }
 
-hasSearchIcon({String? title}) {
+bool hasSearchIcon({String? title}) {
   var items = [
     productListN,
     searchProductsN,

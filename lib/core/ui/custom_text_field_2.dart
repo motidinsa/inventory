@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_inventory/core/functions/custom_text_field_helper_functions.dart';
+import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
 import '../constants/name_constants.dart';
-import '../functions/custom_text_field_functions.dart';
+import '../functions/textfield/custom_text_field_functions.dart';
 import '../routes/route_names.dart';
 import '../styles/styles.dart';
 
@@ -23,7 +23,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
   FocusNode focusNode = FocusNode();
   @override
   void initState() {
-    if ([categoryNameN, uomNameN, customerNameN, vendorNameN, productN]
+    if ([customerNameN, vendorNameN, productN]
         .contains(widget.title) &&
         ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
             .contains(Get.currentRoute)) {

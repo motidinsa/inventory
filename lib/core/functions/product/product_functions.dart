@@ -65,7 +65,6 @@ getProductImagePath() {
 }
 
 getSuffix() {
-  final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addProduct) {
     final AddProductController addProductController = Get.find();
