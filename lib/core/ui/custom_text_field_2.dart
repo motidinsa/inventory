@@ -4,6 +4,7 @@ import 'package:my_inventory/core/functions/custom_text_field_helper_functions.d
 
 import '../constants/name_constants.dart';
 import '../functions/custom_text_field_functions.dart';
+import '../functions/validations.dart';
 import '../routes/route_names.dart';
 import '../styles/styles.dart';
 
@@ -44,6 +45,10 @@ class _CustomTextField2State extends State<CustomTextField2> {
           floatingLabelStyle: TextStyle(color: Colors.green.shade800),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+      validator: (value) => validateInput(
+        data: textEditingController.text,
+        title: widget.title,
+      ),
     );
   }
 }

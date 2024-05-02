@@ -27,23 +27,28 @@ onLogoImageCancelPressed() async {
 
 onSignupButtonPressed() async {
   SignupController signupController = SignupController.to;
-  signupController.isLoading = true;
-  signupController.update();
-  try {
-    await SignupRepository.saveSignupDetailToDB();
-    showSnackbar(
-      message: successfullySignedUpN,
-    );
-    Get.offAndToNamed(RouteName.homepage);
-  } on Exception {
-    showSnackbar(
-      message: someErrorOccurredN,
-      backgroundColor: Colors.grey.shade800,
-    );
-  } finally {
-    signupController.isLoading = false;
+  signupController.isSignupButtonPressed = true;
+  if (signupController.formKey.currentState!.validate()) {
+    signupController.isLoading = true;
     signupController.update();
+    try {
+      await SignupRepository.saveSignupDetailToDB();
+      showSnackbar(
+        message: successfullySignedUpN,
+      );
+      // Get.toNamed(RouteName.homepage);
+    } on Exception {
+      showSnackbar(
+        message: someErrorOccurredN,
+        backgroundColor: Colors.grey.shade800,
+      );
+    } finally {
+      signupController.isLoading = false;
+      signupController.update();
+    }
   }
+
+  signupController.update();
 }
 
 onSignUpTextFieldChange({
@@ -62,5 +67,9 @@ onSignUpTextFieldChange({
     signupController.phoneNumber = data;
   } else if (title == emailN) {
     signupController.email = data;
+  }
+
+  if(signupController.isSignupButtonPressed){
+    signupController.update();
   }
 }

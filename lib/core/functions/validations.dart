@@ -14,7 +14,11 @@ validateInput({
     salesN,
     customerNameN,
     fromN,
-    toN
+    toN,
+    companyNameN,
+    firstNameN,
+    lastNameN,
+    phoneNumberN,
   ];
   List<String> numberKeyboardLists = [
     costN,
@@ -25,16 +29,16 @@ validateInput({
     purchaseN,
   ];
   if (nonEmptyTitles.contains(title)) {
-    if (data.isEmpty) {
-      return 'Required';
+    if (data.trim().isEmpty) {
+      return requiredN;
     } else if ([quantityN].contains(title)) {
       if (!isNumeric(data)) {
-        return 'Invalid number';
+        return invalidNumberN;
       }
     }
   } else if (numberKeyboardLists.contains(title)) {
     if (data.isNotEmpty && !isNumeric(data)) {
-      return 'Invalid number';
+      return invalidNumberN;
     }
   }
   return null;

@@ -107,3 +107,5 @@ const String addLogoN = 'Add logo';
 const String changeLogoN = 'Change logo';
 const String someErrorOccurredN = 'Some error occurred';
 const String successfullySignedUpN = 'Successfully signed up';
+const String requiredN = 'Required';
+const String invalidNumberN = 'Invalid number';

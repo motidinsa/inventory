@@ -62,7 +62,7 @@ showSnackbar(
     {required String message,
     Color? backgroundColor,
     TextStyle? style,
-    Duration? duration}) {
+    Duration? duration})  {
   Get.closeAllSnackbars();
   Get.showSnackbar(
     GetSnackBar(
@@ -70,8 +70,7 @@ showSnackbar(
       messageText: Text(
         message,
         style: style ??
-            const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
+            const TextStyle( color: Colors.white, fontSize: 16),
       ),
       duration: duration ?? const Duration(seconds: 2),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),

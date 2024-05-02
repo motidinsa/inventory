@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -9,14 +10,28 @@ import 'package:my_inventory/core/app_bindings.dart';
 import 'package:my_inventory/core/database/initialize.dart';
 import 'package:my_inventory/core/routes/routes.dart';
 
+import 'core/env/env.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDatabase();
-  runApp(const MyApp());
+  late String initialRoute;
+  if (await Get.put(const FlutterSecureStorage()).read(key: Env.loginKey) != null) {
+    initialRoute = RouteName.homepage;
+  } else {
+    initialRoute = RouteName.signUp;
+  }
+  runApp(
+    MyApp(
+      initialRoute: initialRoute,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {

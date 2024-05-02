@@ -49,10 +49,7 @@ class ActionButton extends StatelessWidget {
                 getActionButtonText(),
                 style: TextStyle(
                   fontSize: 16,
-                  color: textColor ??
-                      (actionButtonType == ActionButtonType.delete
-                          ? Colors.white
-                          : null),
+                  color: textColor,
                 ),
               ),
             ),

@@ -35,14 +35,15 @@ class SignUp extends StatelessWidget {
             if (signupController.isLoading) {
               context.loaderOverlay.show();
             } else {
-              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              executeAfterBuild(() {
                 context.loaderOverlay.hide();
               });
             }
             return SafeArea(
               child: Center(
                 child: Form(
-                  key: AppController.to.formKey,
+                  key: signupController.formKey,
+                  autovalidateMode: signupController.isSignupButtonPressed?AutovalidateMode.always:null,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: ListView(
@@ -52,15 +53,18 @@ class SignUp extends StatelessWidget {
                           child: Text(
                             signUpN,
                             style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: bold(),
-                                color: Colors.green.shade800),
+                              fontSize: 28,
+                              fontWeight: bold(),
+                              color: Colors.green.shade800,
+                            ),
                           ),
                         ),
                         Center(
                           child: Text(
                             createNewAccountN,
-                            style: TextStyle(color: Colors.green.shade800),
+                            style: TextStyle(
+                              color: Colors.green.shade800,
+                            ),
                           ),
                         ),
                         sizedBox(height: 16),

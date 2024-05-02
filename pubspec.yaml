@@ -64,7 +64,9 @@ dependencies:
   printing: ^5.12.0
   flutter_to_pdf: ^0.2.0
   file_picker: ^8.0.2
-#  file_saver: ^0.2.12
+  flutter_secure_storage: ^9.0.0
+  envied: ^0.5.4+1
+
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   isar_generator: ^3.1.0+1
+  envied_generator: ^0.5.4+1
   build_runner: ^2.4.8
   hive_generator: ^2.0.1
 

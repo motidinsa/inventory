@@ -4,6 +4,11 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../core/constants/database_constants.dart';
+import '../../core/env/env.dart';
+
 class SignupRepository {
   static final Isar _isar = Get.find();
 
@@ -13,7 +18,7 @@ class SignupRepository {
     String companyId = generateDatabaseId(time: now, identifier: 'comp');
     String adminId = generateDatabaseId(time: now, identifier: 'admin');
     await _isar.writeTxn(() async {
-      await  _isar.signUpDatabaseModels.put(
+      await _isar.signUpDatabaseModels.put(
         SignUpDatabaseModel(
           companyName: signupController.companyName,
           firstName: signupController.firstName,
@@ -25,6 +30,8 @@ class SignupRepository {
           adminId: adminId,
         ),
       );
+      await Get.find<FlutterSecureStorage>()
+          .write(key: Env.loginKey, value: trueDC);
     });
   }
 }

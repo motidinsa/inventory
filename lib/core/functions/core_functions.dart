@@ -44,6 +44,11 @@ bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
 }
+executeAfterBuild(VoidCallback function) {
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    function();
+  });
+}
 
 generateDatabaseId({required DateTime time, var identifier}) {
   final DateFormat dateFormatter =
