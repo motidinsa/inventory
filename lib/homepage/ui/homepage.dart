@@ -12,18 +12,19 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           'XYZ Company',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+             color: Colors.grey.shade800
           ),
         ),
         leading: IconButton(
-          icon: const FaIcon(
+          icon:  FaIcon(
             FontAwesomeIcons.bars,
             size: 20,
-            // color: primaryColor(),
+            color: Colors.grey.shade800,
           ),
           onPressed: () async {
             // final directory = await getApplicationDocumentsDirectory();
@@ -117,19 +118,19 @@ class Homepage extends StatelessWidget {
       // drawer: const Drawer(),
       body: ListView(
         children: [
-          sizedBox(height: 10),
+          sizedBox(height: 5),
           ItemType(
             title: salesN,
             addItemName: customerN,
             detailPageName: salesN,
           ),
-          sizedBox(height: 30),
+          sizedBox(height: 15),
           ItemType(
             title: purchasingN,
             addItemName: vendorN,
             detailPageName: purchaseN,
           ),
-          sizedBox(height: 30),
+          sizedBox(height: 15),
           ItemType(
             title: inventoryN,
             addItemName: productN,

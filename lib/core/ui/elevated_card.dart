@@ -4,35 +4,35 @@ import 'package:my_inventory/core/styles/styles.dart';
 
 class ElevatedCard extends StatelessWidget {
   final Widget child;
-  final double? horizontalMargin;
-  final double? verticalMargin;
-  final double? verticalPadding;
-  final double? horizontalPadding;
-  final double? blurRadius;
+  final double horizontalMargin;
+  final double verticalMargin;
+  final double verticalPadding;
+  final double horizontalPadding;
+  final double blurRadius;
 
   const ElevatedCard({
     super.key,
     required this.child,
-    this.horizontalMargin,
-    this.verticalMargin,
-    this.blurRadius,
-    this.verticalPadding,
-    this.horizontalPadding,
+    this.horizontalMargin = 20,
+    this.verticalMargin = 0,
+    this.blurRadius = 12,
+    this.verticalPadding = 20,
+    this.horizontalPadding = 20,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: horizontalMargin ?? 20,
-        vertical: verticalMargin ?? 0,
+        horizontal: horizontalMargin,
+        vertical: verticalMargin,
       ),
       decoration: BoxDecoration(
           borderRadius: smoothBorderRadius(radius: 20),
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
-              blurRadius: blurRadius ?? 12,
+              blurRadius: blurRadius,
               spreadRadius: 0,
             ),
           ]),
@@ -41,8 +41,8 @@ class ElevatedCard extends StatelessWidget {
         shape: smoothRectangleBorder(radius: 20),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding ?? 20,
-            vertical: verticalPadding ?? 20,
+            horizontal: horizontalPadding,
+            vertical: verticalPadding,
           ),
           child: child,
         ),

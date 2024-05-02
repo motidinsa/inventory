@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/homepage/ui/item_select.dart';
 
 class ItemType extends StatelessWidget {
@@ -17,66 +18,70 @@ class ItemType extends StatelessWidget {
     required this.detailPageName,
     required this.title,
   });
+
   final Map<String, IconData> nameToIconItemType = {
     salesN: Icons.point_of_sale,
     purchasingN: Icons.shopping_cart,
     inventoryN: FontAwesomeIcons.box,
   };
   final List fontawesomeIcons = [salesN, inventoryN];
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 30),
-      shape: SmoothRectangleBorder(
-        borderRadius: smoothBorderRadius(radius: 15),
-        side: const BorderSide(
-          color: Colors.green,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 25),
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Colors.green.shade200,
+          width: 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade400,
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      elevation: 8,
-      surfaceTintColor: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.grey.shade700,
                   ),
-                  Icon(
-                    nameToIconItemType[title],
-                    color: Colors.grey.shade600,
-                    size: fontawesomeIcons.contains(title) ? 20 : null,
-                  ),
-                ],
-              ),
+                ),
+                Icon(
+                  nameToIconItemType[title],
+                  color: Colors.grey.shade600,
+                  size: fontawesomeIcons.contains(title) ? 20 : null,
+                ),
+              ],
             ),
-            sizedBox(height: 5),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                color: Colors.grey,
-              ),
-            ),
-            sizedBox(height: 5),
-            ItemSelect(
-              title: addItemName,
-              iconData: Icons.add,
-            ),
-            sizedBox(height: 10),
-            ItemSelect(
-              title: detailPageName,
-              iconData: Icons.add,
-              hasDetailIcon: detailPageName == reorderStockN?true:null,
-            ),
-          ],
-        ),
+          ),
+          sizedBox(height: 10),
+          ItemSelect(
+            title: addItemName,
+            iconData: Icons.add,
+          ),
+          sizedBox(height: 7),
+          ItemSelect(
+            title: detailPageName,
+            iconData: Icons.add,
+            hasDetailIcon: detailPageName == reorderStockN ? true : null,
+          ),
+        ],
       ),
     );
   }

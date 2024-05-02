@@ -10,7 +10,9 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
       Get.toNamed(RouteName.customerList);
     }
   } else if (title == salesN) {
-    Get.toNamed(RouteName.sales);
+    if (isAddIcon == true) {
+      Get.toNamed(RouteName.sales);
+    }
   } else if (title == productN) {
     if (isAddIcon == true) {
       Get.toNamed(RouteName.addProduct);
@@ -18,7 +20,9 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
       Get.toNamed(RouteName.productList);
     }
   } else if (title == purchaseN) {
-    Get.toNamed(RouteName.purchase);
+    if (isAddIcon == true) {
+      Get.toNamed(RouteName.purchase);
+    }
   } else if (title == vendorN) {
     if (isAddIcon == true) {
       Get.toNamed(RouteName.addVendor);
