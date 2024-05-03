@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/core/constants/color_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
@@ -13,35 +14,33 @@ class ProfileMiniDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onSingleProfileDetailPressed(index: index);
-      },
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 0),
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 0),
+      shape: smoothRectangleBorder(radius: 12),
+      elevation: 3,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 25),
+        onTap: () {onSingleProfileDetailPressed(index: index);},
         shape: smoothRectangleBorder(radius: 12),
-        elevation: 3,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-          child: Row(
-            children: [
-              Icon(
-                Get.currentRoute == RouteName.customerList
-                    ? Icons.person
-                    : Icons.corporate_fare_rounded,
-                size: 28,
-                color: Colors.grey.shade700,
+        tileColor: lightGreen,
+        leading: Icon(
+          Get.currentRoute == RouteName.customerList
+              ? Icons.person
+              : Icons.corporate_fare_rounded,
+          size: 28,
+          color: Colors.grey.shade700,
+        ),
+        title: Row(
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: Colors.grey.shade800,
               ),
-              sizedBox(width: 25),
-              Expanded(
-                child: Text(
-                  name,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

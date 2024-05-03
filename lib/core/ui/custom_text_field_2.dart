@@ -4,7 +4,6 @@ import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_f
 
 import '../constants/name_constants.dart';
 import '../functions/textfield/custom_text_field_functions.dart';
-import '../functions/custom_text_field_functions.dart';
 import '../functions/validations.dart';
 import '../routes/route_names.dart';
 import '../styles/styles.dart';

@@ -32,7 +32,7 @@ class ProfileSingleDetail extends StatelessWidget {
       children: [
        titleToIcon(
           title: title,
-        ),
+        )!,
         sizedBox(width: 15),
         Expanded(
           child: Column(

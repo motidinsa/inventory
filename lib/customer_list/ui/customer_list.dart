@@ -51,7 +51,7 @@ class CustomerList extends StatelessWidget {
                               itemCount:
                                   customerListController.customerList.length,
                               separatorBuilder: (ctx, index) =>
-                                  sizedBox(height: 15),
+                                  sizedBox(height: 12),
                             ),
                     ),
                   ],

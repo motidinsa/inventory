@@ -66,7 +66,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       controller: textEditingController,
       focusNode: focusNode,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: getKeyboardType(title: widget.title),
       maxLines: widget.labelText == descriptionN ? 2 : 1,
       readOnly: isReadOnlyTitle(title: widget.title),
@@ -79,67 +78,26 @@ class _CustomTextFieldState extends State<CustomTextField> {
         title: widget.title,
         index: widget.index,
       ),
-      textAlign: minimizePadding(title: widget.title)
-          ? TextAlign.center
-          : TextAlign.start,
+      textAlign: getTextAlign(title: widget.title),
       decoration: InputDecoration(
         isDense: true,
         isCollapsed: true,
         errorMaxLines: 5,
         prefixIcon: titleToIcon(title: widget.title),
-        suffixIcon: hasOptionItems(title: widget.title)
-            ? const Icon(
-                Icons.arrow_drop_down_rounded,
-                color: Colors.teal,
-                size: 24,
-              )
-            : hasSuffixText(title: widget.title)
-                ? Padding(
-                    padding: const EdgeInsets.only(
-                        top: 11, bottom: 10, left: 10, right: 15),
-                    child: Text(
-                      getSuffix(),
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  )
-                : hasSearchIcon(title: widget.title)
-                    ? IconButton(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.search_rounded,
-                          size: 26,
-                        ),
-                      )
-                    : null,
+        suffixIcon: getSuffixWidget(title: widget.title),
         hintText: titleToHint(
           title: widget.title,
         ),
         hintStyle: const TextStyle(),
-        contentPadding: EdgeInsets.symmetric(
-            horizontal: hasPaymentOptionPadding(title: widget.title)
-                ? 20
-                : minimizePadding(title: widget.title)
-                    ? 10
-                    : 30,
-            vertical:hasPaymentOptionPadding(title: widget.title)
-                ? 10
-                : minimizePadding(title: widget.title)
-                    ? 10
-                    : maxPadding(title: widget.title)
-                        ? 15
-                        : 20),
+        contentPadding: getContentPadding(title: widget.title),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
           borderSide: BorderSide(
-            color: Colors.green,
-            width: hasOptionItems(title: widget.title)
-                ? 2
-                : addProductBorderSide(),
-          ),
+              color: Colors.green,
+              width: getBorderWidth(title: widget.title)),
         ),
         labelText: widget.labelText,
         alignLabelWithHint: true,

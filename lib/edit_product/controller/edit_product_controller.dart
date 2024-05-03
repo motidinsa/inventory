@@ -27,6 +27,7 @@ class EditProductController extends GetxController {
   RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
   final formKey = GlobalKey<FormState>();
 
+  static EditProductController get to => Get.find();
   @override
   void onInit() {
     appController.currentRoutes.add(editProductN);

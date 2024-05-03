@@ -64,19 +64,7 @@ getProductImagePath() {
   return null;
 }
 
-getSuffix() {
-  String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.addProduct) {
-    final AddProductController addProductController = Get.find();
-    return addProductController.productInfo.value.unitOfMeasurementName;
-  } else if (currentRoute == RouteName.editProduct) {
-    final EditProductController editProductController = Get.find();
-    return editProductController.productInfo.value.unitOfMeasurementName;
-  }
-}
-
 onImageDeleteButtonPressed() {
-  final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();

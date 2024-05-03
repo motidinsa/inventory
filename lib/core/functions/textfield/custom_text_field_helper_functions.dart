@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../add_product/controller/add_product_controller.dart';
+import '../../../edit_product/controller/edit_product_controller.dart';
 import '../../constants/name_constants.dart';
 import '../../routes/route_names.dart';
 
@@ -42,10 +44,11 @@ String? titleToHint({String? title}) {
   }
   return value;
 }
-EdgeInsetsGeometry? getTextFieldPadding(){
 
+EdgeInsetsGeometry? getTextFieldPadding() {
   return null;
 }
+
 bool hasOptionItems({String? title}) {
   var itemsWithOption = [
     categoryN,
@@ -89,7 +92,7 @@ bool minimizePadding({String? title}) {
     addressN,
     cityN,
     emailN,
-    customerListN,
+    // customerListN,
     vendorListN,
     searchCustomersN,
     searchVendorsN,
@@ -100,6 +103,65 @@ bool minimizePadding({String? title}) {
     productIdN
   ];
   return !items.contains(title);
+}
+
+TextAlign getTextAlign({required String title}) {
+  List<String> centerTextAlignItems = [];
+  if (centerTextAlignItems.contains(title)) {
+    return TextAlign.center;
+  }
+  return TextAlign.start;
+}
+
+Widget? getSuffixWidget({required String title}) {
+  Widget? suffixWidget;
+  if (hasOptionItems(title: title)) {
+    suffixWidget = const Icon(
+      Icons.arrow_drop_down_rounded,
+      color: Colors.teal,
+      size: 24,
+    );
+  } else if (hasSuffixText(title: title)) {
+    suffixWidget = Padding(
+      padding: const EdgeInsets.only(top: 11, bottom: 10, left: 10, right: 15),
+      child: Text(
+        getSuffixText(),
+        style: const TextStyle(fontSize: 16),
+      ),
+    );
+  } else if (hasSearchIcon(title: title)) {
+    suffixWidget = IconButton(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      onPressed: () {},
+      icon: Icon(
+        Icons.search_rounded,
+        size: 26,
+        color: Colors.grey.shade700,
+      ),
+    );
+  }
+  return suffixWidget;
+}
+
+String getSuffixText() {
+  String currentRoute = Get.currentRoute;
+  String suffixText = '';
+  if (currentRoute == RouteName.addProduct) {
+    suffixText =
+        AddProductController.to.productInfo.value.unitOfMeasurementName;
+  } else if (currentRoute == RouteName.editProduct) {
+    suffixText =
+        EditProductController.to.productInfo.value.unitOfMeasurementName;
+  }
+  return suffixText;
+}
+
+double getBorderWidth({required String title}) {
+  double borderWidth = 1.5;
+  if (hasOptionItems(title: title)) {
+    borderWidth = 2;
+  }
+  return borderWidth;
 }
 
 bool maxPadding({String? title}) {
@@ -115,8 +177,35 @@ bool maxPadding({String? title}) {
   return !items.contains(title);
 }
 
-bool hasPaymentOptionPadding({String? title}) {
+EdgeInsets getContentPadding({required String title}) {
+  double horizontalPadding = 0;
+  double verticalPadding = 0;
+
+  if (paymentModeTitles(title: title)) {
+    horizontalPadding = 20;
+    verticalPadding = 10;
+  } else if (hasMinimumPadding(title: title)) {
+    horizontalPadding = 30;
+    verticalPadding = 10;
+  } else {
+    horizontalPadding = 20;
+    verticalPadding = 20;
+  }
+  return EdgeInsets.symmetric(
+      horizontal: horizontalPadding, vertical: verticalPadding);
+}
+
+bool paymentModeTitles({String? title}) {
   var items = [cashN, transferN, creditN];
+  return items.contains(title);
+}
+
+bool hasMinimumPadding({required String title}) {
+  List<String> items = [
+    customerListN,
+    vendorListN,
+    productListN,
+  ];
   return items.contains(title);
 }
 
@@ -125,7 +214,7 @@ bool hasSuffixText({String? title}) {
   return items.contains(title);
 }
 
-Icon titleToIcon({
+Icon? titleToIcon({
   required String title,
 }) {
   IconData? iconData;
@@ -145,11 +234,13 @@ Icon titleToIcon({
   } else if (title == dateN) {
     iconData = Icons.calendar_month_outlined;
   }
-  return Icon(
-    iconData,
-    size: 26,
-    color: Colors.grey.shade700,
-  );
+  return iconData != null
+      ? Icon(
+          iconData,
+          size: 26,
+          color: Colors.grey.shade700,
+        )
+      : null;
 }
 
 String titleToLabel({

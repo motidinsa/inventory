@@ -343,7 +343,7 @@ onImageSourceButtonPressed({
 //       : Container();
 // }
 
-getKeyboardType({required String title}) {
+TextInputType getKeyboardType({required String title}) {
   final List<String> numberKeyboardLists = [
     costN,
     priceN,

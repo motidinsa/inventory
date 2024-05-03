@@ -18,6 +18,8 @@ class AddProductController extends GetxController {
   RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
   final AppController appController = Get.find();
 
+  static AddProductController get to => Get.find();
+
   @override
   void onInit() {
     var defaultUnit = Get.find<Isar>().unitOfMeasurementDatabaseModels

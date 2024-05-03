@@ -30,7 +30,7 @@ class ProfileTitleToData extends StatelessWidget {
       mainAxisAlignment: alignment ?? MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        titleToIcon(title: title),
+        titleToIcon(title: title)!,
         sizedBox(width: 15),
         GestureDetector(
           onTap: ()=>onProfileDatePressed(),
