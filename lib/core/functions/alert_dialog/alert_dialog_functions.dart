@@ -8,6 +8,7 @@ import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
@@ -16,6 +17,8 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
+
+import '../../../customer_detail/functions/customer_detail_functions.dart';
 
 
 onAlertDialogOptionSelect(
@@ -149,5 +152,21 @@ getEmptyMessage({required String title}) {
     return noVendorAvailableSN;
   }else if (title == searchProductsN) {
     return noProductAvailableSN;
+  }
+}
+String getAlertDialogConfirmationMessage(){
+  String currentRoute = Get.currentRoute;
+  String message = '';
+  String tobeDeletedName = '';
+  if(currentRoute == RouteName.customerDetail){
+    tobeDeletedName = Get.find<CustomerDetailController>().customerDatabaseModel.name;
+    message = '$areYouSureYouWantToDeleteN $tobeDeletedName?';
+  }return message;
+}
+
+onAlertDialogDeleteButtonPressed(){
+  String currentRoute = Get.currentRoute;
+  if(currentRoute == RouteName.customerDetail){
+    deleteCustomer();
   }
 }

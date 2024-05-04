@@ -5,21 +5,11 @@ import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/profile/profile_detail.dart';
 
 class CustomerDetail extends StatelessWidget {
-  // final CustomerDatabaseModel customerDatabaseModel;
-  // final int index;
-  final DateFormat dateFormatter = DateFormat("MMM d, y");
-
-  CustomerDetail(
+  const CustomerDetail(
       {super.key, });
 
   @override
   Widget build(BuildContext context) {
-    // Get.put(
-    //   CustomerDetailController(
-    //     isarId: customerDatabaseModel.id,
-    //     customerId: customerDatabaseModel.customerId,
-    //   ),
-    // );
     return const BodyWrapper(
       pageName: customerDetailN,
       body: ProfileDetail(),

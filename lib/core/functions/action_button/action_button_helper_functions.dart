@@ -9,6 +9,8 @@ String getActionButtonText({String? redirectFrom}) {
   if (redirectFrom == null) {
     if (currentRoute == RouteName.signUp) {
       actionButtonText = signUpN;
+    } else if (currentRoute == RouteName.customerDetail) {
+      actionButtonText = deleteN;
     }
   } else {}
 

@@ -1,5 +1,7 @@
+import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 validateInput({
   required String title,
@@ -18,7 +20,7 @@ validateInput({
     companyNameN,
     firstNameN,
     lastNameN,
-    phoneNumberN,
+    if(Get.currentRoute == RouteName.signUp)phoneNumberN,
   ];
   List<String> numberKeyboardLists = [
     costN,

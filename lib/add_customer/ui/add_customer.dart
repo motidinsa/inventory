@@ -39,7 +39,7 @@ class AddCustomer extends StatelessWidget {
       return BodyWrapper(
         pageName: addCustomerN,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Form(
             key: AppController.to.formKey,
             child: Center(
@@ -51,27 +51,24 @@ class AddCustomer extends StatelessWidget {
                 child: ListView(
                   children: [
                     sizedBox(height: 15),
-                    Card(
-                      color: Colors.grey.shade50,
-                      shape: smoothRectangleBorder(radius: 16),
+                    ElevatedCard(
+                      color: Colors.grey.shade100,
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(8),
                         child: ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (ctx, index) => CustomTextField2(
                             title: titles[index],
+                            // color: Colors.white,
                           ),
                           shrinkWrap: true,
                           itemCount: titles.length,
-                          separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                          separatorBuilder: (ctx, index) =>
+                              sizedBox(height: 15),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ActionButton(
-                      ),
-                    ),
+                    ActionButton(),
                   ],
                 ),
               ),

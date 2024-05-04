@@ -26,7 +26,8 @@ class ProfileDetail extends StatelessWidget {
       children: [
         sizedBox(height: 20),
         ElevatedCard(
-          verticalPadding: 10,
+          verticalPadding: 5,
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -35,6 +36,10 @@ class ProfileDetail extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () => onProfileEditPressed(),
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 0),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
                     child: Row(
                       children: [
                         Text(
@@ -61,12 +66,12 @@ class ProfileDetail extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ProductDetailSingleDescription(
-                      title: 'Date added',
+                      title: dateAddedN,
                       description: getProfileDetailDateAdded(),
                       dataColor: Colors.green.shade800,
                       titleColor: Colors.grey.shade700,
                       textAlign: TextAlign.end,
-                      titleFontSize: 17,
+                      // titleFontSize: 17,
                     ),
                   ),
                 ],
@@ -80,12 +85,13 @@ class ProfileDetail extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 5),
                       decoration: BoxDecoration(
                           color: Colors.red.shade300,
                           borderRadius: smoothBorderRadius()),
                       child: const Text(
-                        'Credit',
+                        creditN,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -105,56 +111,53 @@ class ProfileDetail extends StatelessWidget {
                   ],
                 ),
               ],
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10),
-                child: Card(
-                  elevation: 5,
-                  surfaceTintColor: Colors.white,
-                  shape: smoothRectangleBorder(
-                    radius: 15,
-                    side: const BorderSide(
-                      color: Colors.green,
-                      width: .5,
-                    ),
+              Card(
+                elevation: 5,
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                shape: smoothRectangleBorder(
+                  radius: 15,
+                  side: const BorderSide(
+                    color: Colors.green,
+                    width: .5,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) {
-                        String title = profileTitles()[index];
-                        return ProfileSingleDetail(
-                          title: title,
-                          data: getProfileTitleToData(title: title),
-                          titleFontSize: 18,
-                          dataFontSize: 17,
-                          titleColor: Colors.green.shade800,
-                          dataColor: Colors.grey.shade700,
-                        );
-                      },
-                      separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                      itemCount: profileTitles().length,
-                    ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) {
+                      String title = profileTitles()[index];
+                      return ProfileSingleDetail(
+                        title: title,
+                        data: getProfileTitleToData(title: title),
+                        titleFontSize: 17,
+                        dataFontSize: 16,
+                        titleColor: Colors.green.shade800,
+                        dataColor: Colors.grey.shade700,
+                      );
+                    },
+                    separatorBuilder: (ctx, index) => sizedBox(height: 12),
+                    itemCount: profileTitles().length,
                   ),
                 ),
               ),
               if (Get.find<CustomerDetailController>().customerCredit > 0)
-                ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(RouteName.creditHistory);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      shape: smoothRectangleBorder(radius: 12)),
-                  child: const Text('Show credit history'),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed(RouteName.creditHistory);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        shape: smoothRectangleBorder(radius: 12),backgroundColor: Colors.green.shade50),
+                    child: const Text(showCreditHistoryN),
+                  ),
                 )
             ],
           ),
         ),
-        ActionButton(
-          redirectFrom: Get.currentRoute,
-          actionButtonType: ActionButtonType.delete,
-        ),
+        ActionButton(backgroundColor: Colors.red.shade400),
       ],
     );
   }

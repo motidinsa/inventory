@@ -18,15 +18,8 @@ import 'package:my_inventory/core/packages/custom_date_picker.dart';
 onProfileEditPressed() {
   if (Get.currentRoute == RouteName.customerDetail) {
     Get.toNamed(RouteName.editCustomer);
-    // Get.to(() => EditCustomer(
-    //     // customerDatabaseModel:
-    //     //     CustomerDetailController.to.customerDatabaseModel,
-    //     ));
-  } else {
-    // Get.toNamed(RouteName.editVendor);
-    // Get.to(() => EditVendor(
-    //       vendorDatabaseModel: VendorDetailController.to.vendorDatabaseModel,
-    //     ));
+  } else if(Get.currentRoute == RouteName.vendorDetail){
+    Get.toNamed(RouteName.editVendor);
   }
 }
 

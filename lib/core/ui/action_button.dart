@@ -27,7 +27,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? const EdgeInsets.symmetric(vertical: 15),
+      padding: padding ?? const EdgeInsets.symmetric(vertical: 15,horizontal: 40),
       child: Row(
         children: [
           Expanded(
@@ -36,7 +36,7 @@ class ActionButton extends StatelessWidget {
                 redirectFrom: redirectFrom,
               ),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     15,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+
+import '../ui/alert_dialog/alert_dialog_confirmation.dart';
+import 'alert_dialog/alert_dialog_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -62,20 +66,27 @@ showSnackbar(
     {required String message,
     Color? backgroundColor,
     TextStyle? style,
-    Duration? duration})  {
-  Get.closeAllSnackbars();
-  Get.showSnackbar(
-    GetSnackBar(
-      dismissDirection: DismissDirection.horizontal,
-      messageText: Text(
+    Duration? duration}) {
+  ScaffoldMessenger.of(Get.context!).clearSnackBars();
+  ScaffoldMessenger.of(Get.context!).showSnackBar(
+    SnackBar(
+      content: Text(
         message,
-        style: style ??
-            const TextStyle( color: Colors.white, fontSize: 16),
+        style: style ?? const TextStyle(color: Colors.white, fontSize: 16),
       ),
       duration: duration ?? const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-      borderRadius: 12,
+      shape: smoothRectangleBorder(radius: 12),
+      dismissDirection: DismissDirection.horizontal,
       backgroundColor: backgroundColor ?? Colors.green.shade400,
     ),
   );
+}
+
+showAlertDialogConfirmation() {
+  Get.dialog(GestureDetector(
+    onTap: () => unFocus(),
+    child: AlertDialogConfirmation(confirmationText: getAlertDialogConfirmationMessage(),),
+  ));
 }

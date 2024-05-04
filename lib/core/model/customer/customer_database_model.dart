@@ -12,6 +12,7 @@ class CustomerDatabaseModel {
   String? address;
   String? city;
   String? email;
+  double? totalCreditAmount;
   DateTime dateCreated;
   DateTime? lastModifiedDate;
   String? lastModifiedByUserId;
@@ -25,6 +26,7 @@ class CustomerDatabaseModel {
     this.address,
     this.city,
     this.email,
+    this.totalCreditAmount,
     required this.dateCreated,
     this.lastModifiedDate,
     this.isAppWriteSynced,

@@ -237,7 +237,7 @@ Icon? titleToIcon({
   return iconData != null
       ? Icon(
           iconData,
-          size: 26,
+          size: 24,
           color: Colors.grey.shade700,
         )
       : null;

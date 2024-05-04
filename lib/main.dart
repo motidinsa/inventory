@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
               useMaterial3: true,
             ),
-            initialRoute: RouteName.signUp,
+            initialRoute: RouteName.homepage,
             getPages: routes,
             initialBinding: ApplicationBindings(),
           ),

@@ -23,20 +23,18 @@ import '../../controller/add_item_controller.dart';
 import '../../controller/app_controller.dart';
 import '../../routes/route_names.dart';
 import '../core_functions.dart';
+import '../helper_functions.dart';
 import '../report/report_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
-  await unFocus();
+  // await unFocus();
   final Isar isar = Get.find();
   String currentRoute = Get.currentRoute;
+
   if (redirectFrom == productDetailN) {
     deleteProduct();
-  } else if (redirectFrom == customerDetailN) {
-    deleteCustomer();
-  } else if (redirectFrom == vendorDetailN) {
+  }  else if (redirectFrom == vendorDetailN) {
     deleteVendor();
-  } else if (redirectFrom == signUpN) {
-    Get.offAndToNamed(RouteName.homepage);
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
@@ -109,6 +107,8 @@ onActionButtonPressed({String? redirectFrom}) async {
     }
   } else if (currentRoute == RouteName.signUp) {
     onSignupButtonPressed();
+  }else if (currentRoute == RouteName.customerDetail) {
+    showAlertDialogConfirmation();
   } else if (AppController.to.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN) {
       AddProductController addProductController = Get.find();

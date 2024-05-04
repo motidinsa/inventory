@@ -79,10 +79,10 @@ List<GetPage> routes = [
       name: RouteName.productList,
       page: () => ProductList(),
       binding: BindingsBuilder.put(() => ProductListController())),
-  GetPage(
-    name: RouteName.creditHistory,
-    page: () => const CreditHistory(),
-  ),
+  // GetPage(
+  //   name: RouteName.creditHistory,
+  //   page: () => const CreditHistory(),
+  // ),
   GetPage(
       name: RouteName.editCustomer,
       page: () => EditCustomer(),

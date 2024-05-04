@@ -38,8 +38,9 @@ onAddCustomerSaveButtonPressed() async {
       customerListController.isEmpty = false;
       customerListController.update();
     }
-    Get.back();
     showSnackbar(message: successfullyAddedCustomerN);
+    Get.back();
+
   } on Exception {
     showSnackbar(message: someErrorOccurredN);
   } finally {

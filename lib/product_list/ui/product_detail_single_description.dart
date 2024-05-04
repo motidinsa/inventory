@@ -31,7 +31,7 @@ class ProductDetailSingleDescription extends StatelessWidget {
         text: '$title:   ',
         style: TextStyle(
           fontWeight: bold(),
-          fontSize: titleFontSize ?? 17,
+          fontSize: titleFontSize ?? 16,
           color: titleColor ?? Colors.grey.shade700,
         ),
         children: <TextSpan>[
@@ -41,8 +41,8 @@ class ProductDetailSingleDescription extends StatelessWidget {
                 : description,
             style: TextStyle(
                 color: dataColor ?? Colors.grey.shade500,
-                fontStyle: FontStyle.italic,
-                fontSize: dataFontSize ?? 16),
+                // fontStyle: FontStyle.italic,
+                fontSize: dataFontSize ?? 15),
           ),
         ],
       ),
