@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../add_product/controller/add_product_controller.dart';
-import '../../../edit_product/controller/edit_product_controller.dart';
-import '../../constants/name_constants.dart';
-import '../../routes/route_names.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 String? titleToHint({String? title}) {
   String? value;

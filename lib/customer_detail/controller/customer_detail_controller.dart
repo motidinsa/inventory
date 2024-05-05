@@ -1,10 +1,6 @@
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
 
 class CustomerDetailController extends GetxController {
   late CustomerDatabaseModel customerDatabaseModel;

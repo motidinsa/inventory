@@ -6,37 +6,24 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
-import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
-import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/add_item_controller.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/category/log_category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
-import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
-import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
-import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
-import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
-import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
 
-import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
 
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
@@ -195,24 +182,24 @@ getFormattedNumberWithoutComa(num) {
 //   }
 // }
 
-titleToData({required String title, int? index}) {
+String? titleToData({required String title, int? index}) {
   String currentRoute = Get.currentRoute;
   String? value;
   if (currentRoute == RouteName.sales) {
-    return onSalesTitleToData(title: title, index: index);
+    value = onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
-    return onAddProductGetData(title: title);
+    value = onAddProductGetData(title: title);
   } else if (currentRoute == RouteName.purchase) {
-    return onPurchaseTitleToData(title: title, index: index);
+    value = onPurchaseTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
-    return getEditProductData(title: title);
+    value = getEditProductData(title: title);
   } else if (currentRoute == RouteName.editCustomer) {
-    return getEditCustomerData(title: title);
+    value = getEditCustomerData(title: title);
   } else if (currentRoute == RouteName.editVendor) {
-    return getEditVendorData(title: title);
+    value = getEditVendorData(title: title);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {
-    return getReportSelectedDate(title: title);
+    value = getReportSelectedDate(title: title);
   }
   return value;
 }

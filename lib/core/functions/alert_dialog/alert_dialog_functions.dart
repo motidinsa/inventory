@@ -18,7 +18,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
-import '../../../customer_detail/functions/customer_detail_functions.dart';
+import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
 
 
 onAlertDialogOptionSelect(

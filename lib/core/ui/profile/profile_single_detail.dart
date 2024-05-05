@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/textfield/custom_text_field_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
-import '../../functions/textfield/custom_text_field_helper_functions.dart';
+import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
 class ProfileSingleDetail extends StatelessWidget {
   final String title;

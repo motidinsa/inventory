@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
 
-import '../functions/action_button/action_button_functions.dart';
-import '../functions/action_button/action_button_helper_functions.dart';
+import 'package:my_inventory/core/functions/action_button/action_button_functions.dart';
+import 'package:my_inventory/core/functions/action_button/action_button_helper_functions.dart';
 
 class ActionButton extends StatelessWidget {
   final String? redirectFrom;

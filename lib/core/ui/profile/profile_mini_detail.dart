@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/color_constants.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -19,7 +18,7 @@ class ProfileMiniDetail extends StatelessWidget {
       shape: smoothRectangleBorder(radius: 12),
       elevation: 3,
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 25),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         onTap: () {onSingleProfileDetailPressed(index: index);},
         shape: smoothRectangleBorder(radius: 12),
         tileColor: lightGreen,

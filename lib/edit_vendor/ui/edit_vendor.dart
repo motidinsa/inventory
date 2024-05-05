@@ -58,7 +58,7 @@ class EditVendor extends StatelessWidget {
                   separatorBuilder: (ctx, index) => sizedBox(height: 15),
                 ),
               ),
-              ActionButton(
+              const ActionButton(
                 redirectFrom: editVendorN,
               ),
             ],

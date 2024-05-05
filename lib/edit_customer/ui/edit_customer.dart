@@ -6,14 +6,13 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
-import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
+import 'package:my_inventory/core/ui/custom_text_field_2.dart';
+import 'package:my_inventory/core/ui/shadowed_container.dart';
 
 class EditCustomer extends StatelessWidget {
-  // final CustomerDatabaseModel customerDatabaseModel;
-
-  EditCustomer({super.key, });
+  EditCustomer({super.key});
 
   final List<String> titleList = [
     customerNameN,
@@ -23,46 +22,42 @@ class EditCustomer extends StatelessWidget {
     emailN
   ];
 
-  final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
-    // Get.put(
-    //     EditCustomerController(customerDatabaseModel: customerDatabaseModel));
-    return LoaderOverlay(
-      useDefaultLoading: false,
-      overlayWidgetBuilder: (_) {
-        return const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
+    return GetBuilder<EditCustomerController>(
+      builder: (editCustomerController) {
+        if (editCustomerController.isLoading) {
+          context.loaderOverlay.show();
+        } else {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            context.loaderOverlay.hide();
+          });
+        }
+        return BodyWrapper(
+          pageName: editCustomerN,
+          body: Form(
+            key: AppController.to.formKey,
+            child: ListView(
+              children: [
+                sizedBox(height: 20),
+                ShadowedContainer(
+                  child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) => CustomTextField2(
+                      title: titleList[index],
+                      color: Colors.green.shade50,
+                    ),
+                    shrinkWrap: true,
+                    itemCount: titleList.length,
+                    separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                  ),
+                ),
+                const ActionButton(),
+              ],
+            ),
           ),
         );
-      },
-      child: BodyWrapper(
-        pageName: editCustomerN,
-        body: Form(
-          key: appController.formKey,
-          child: ListView(
-            children: [
-              sizedBox(height: 20),
-              ElevatedCard(
-                child: ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => CustomTextField(
-                    title: titleList[index],
-                    labelText: titleList[index],
-                  ),
-                  shrinkWrap: true,
-                  itemCount: titleList.length,
-                  separatorBuilder: (ctx, index) => sizedBox(height: 15),
-                ),
-              ),
-              ActionButton(
-                redirectFrom: editCustomerN,
-              ),
-            ],
-          ),
-        ),
-      ),
+      }
     );
   }
 }

@@ -90,7 +90,7 @@ class EditProduct extends StatelessWidget {
                     itemCount: titleList.length,
                   ),
                 ),
-                ActionButton(
+                const ActionButton(
                   redirectFrom: editProductN,
                 ),
               ],

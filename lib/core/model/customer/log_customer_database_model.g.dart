@@ -63,13 +63,18 @@ const LogCustomerDatabaseModelSchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'phone': PropertySchema(
+    r'objectId': PropertySchema(
       id: 9,
+      name: r'objectId',
+      type: IsarType.string,
+    ),
+    r'phone': PropertySchema(
+      id: 10,
       name: r'phone',
       type: IsarType.string,
     ),
     r'userId': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'userId',
       type: IsarType.string,
     )
@@ -120,6 +125,7 @@ int _logCustomerDatabaseModelEstimateSize(
     }
   }
   bytesCount += 3 + object.name.length * 3;
+  bytesCount += 3 + object.objectId.length * 3;
   {
     final value = object.phone;
     if (value != null) {
@@ -145,8 +151,9 @@ void _logCustomerDatabaseModelSerialize(
   writer.writeString(offsets[6], object.lastModifiedByUserId);
   writer.writeDateTime(offsets[7], object.lastModifiedDate);
   writer.writeString(offsets[8], object.name);
-  writer.writeString(offsets[9], object.phone);
-  writer.writeString(offsets[10], object.userId);
+  writer.writeString(offsets[9], object.objectId);
+  writer.writeString(offsets[10], object.phone);
+  writer.writeString(offsets[11], object.userId);
 }
 
 LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
@@ -165,8 +172,9 @@ LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
     lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
     lastModifiedDate: reader.readDateTimeOrNull(offsets[7]),
     name: reader.readString(offsets[8]),
-    phone: reader.readStringOrNull(offsets[9]),
-    userId: reader.readString(offsets[10]),
+    objectId: reader.readString(offsets[9]),
+    phone: reader.readStringOrNull(offsets[10]),
+    userId: reader.readString(offsets[11]),
   );
   object.id = id;
   return object;
@@ -198,8 +206,10 @@ P _logCustomerDatabaseModelDeserializeProp<P>(
     case 8:
       return (reader.readString(offset)) as P;
     case 9:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 10:
+      return (reader.readStringOrNull(offset)) as P;
+    case 11:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1418,6 +1428,144 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'objectId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+          QAfterFilterCondition>
+      objectIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'objectId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+          QAfterFilterCondition>
+      objectIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'objectId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'objectId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'objectId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> phoneIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1847,6 +1995,20 @@ extension LogCustomerDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      sortByObjectId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'objectId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      sortByObjectIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'objectId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByPhone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.asc);
@@ -2018,6 +2180,20 @@ extension LogCustomerDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      thenByObjectId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'objectId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      thenByObjectIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'objectId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByPhone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.asc);
@@ -2113,6 +2289,13 @@ extension LogCustomerDatabaseModelQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
+      distinctByObjectId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'objectId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByPhone({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
@@ -2195,6 +2378,13 @@ extension LogCustomerDatabaseModelQueryProperty on QueryBuilder<
       nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
+      objectIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'objectId');
     });
   }
 

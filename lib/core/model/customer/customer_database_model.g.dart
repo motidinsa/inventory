@@ -68,8 +68,13 @@ const CustomerDatabaseModelSchema = CollectionSchema(
       name: r'phone',
       type: IsarType.string,
     ),
-    r'userId': PropertySchema(
+    r'totalCreditAmount': PropertySchema(
       id: 10,
+      name: r'totalCreditAmount',
+      type: IsarType.double,
+    ),
+    r'userId': PropertySchema(
+      id: 11,
       name: r'userId',
       type: IsarType.string,
     )
@@ -146,7 +151,8 @@ void _customerDatabaseModelSerialize(
   writer.writeDateTime(offsets[7], object.lastModifiedDate);
   writer.writeString(offsets[8], object.name);
   writer.writeString(offsets[9], object.phone);
-  writer.writeString(offsets[10], object.userId);
+  writer.writeDouble(offsets[10], object.totalCreditAmount);
+  writer.writeString(offsets[11], object.userId);
 }
 
 CustomerDatabaseModel _customerDatabaseModelDeserialize(
@@ -166,7 +172,8 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
     lastModifiedDate: reader.readDateTimeOrNull(offsets[7]),
     name: reader.readString(offsets[8]),
     phone: reader.readStringOrNull(offsets[9]),
-    userId: reader.readString(offsets[10]),
+    totalCreditAmount: reader.readDoubleOrNull(offsets[10]),
+    userId: reader.readString(offsets[11]),
   );
   object.id = id;
   return object;
@@ -200,6 +207,8 @@ P _customerDatabaseModelDeserializeProp<P>(
     case 9:
       return (reader.readStringOrNull(offset)) as P;
     case 10:
+      return (reader.readDoubleOrNull(offset)) as P;
+    case 11:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1574,6 +1583,90 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'totalCreditAmount',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'totalCreditAmount',
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountEqualTo(
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'totalCreditAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountGreaterThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'totalCreditAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountLessThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'totalCreditAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
+      QAfterFilterCondition> totalCreditAmountBetween(
+    double? lower,
+    double? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'totalCreditAmount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
       QAfterFilterCondition> userIdEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1861,6 +1954,20 @@ extension CustomerDatabaseModelQuerySortBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByTotalCreditAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalCreditAmount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      sortByTotalCreditAmountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalCreditAmount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       sortByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
@@ -2032,6 +2139,20 @@ extension CustomerDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByTotalCreditAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalCreditAmount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
+      thenByTotalCreditAmountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalCreditAmount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
       thenByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
@@ -2120,6 +2241,13 @@ extension CustomerDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
+      distinctByTotalCreditAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'totalCreditAmount');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
       distinctByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
@@ -2201,6 +2329,13 @@ extension CustomerDatabaseModelQueryProperty on QueryBuilder<
       phoneProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'phone');
+    });
+  }
+
+  QueryBuilder<CustomerDatabaseModel, double?, QQueryOperations>
+      totalCreditAmountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'totalCreditAmount');
     });
   }
 

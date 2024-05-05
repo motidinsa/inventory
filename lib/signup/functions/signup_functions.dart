@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
-import '../../core/functions/helper_functions.dart';
-import '../repository/signup_repository.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
+import 'package:my_inventory/signup/repository/signup_repository.dart';
 
 onAddLogoPressed() async {
   final ImagePicker imagePicker = ImagePicker();
@@ -56,7 +54,7 @@ onSignUpTextFieldChange({
   required String data,
   int? index,
 }) {
-  SignupController signupController = Get.find();
+  SignupController signupController = SignupController.to;
   if (title == companyNameN) {
     signupController.companyName = data;
   } else if (title == firstNameN) {

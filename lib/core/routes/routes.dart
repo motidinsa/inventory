@@ -27,7 +27,6 @@ import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
-import 'package:my_inventory/credit_history/credit_history.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 List<GetPage> routes = [
@@ -53,7 +52,7 @@ List<GetPage> routes = [
       binding: BindingsBuilder.put(() => AddCustomerController())),
   GetPage(
       name: RouteName.customerDetail,
-      page: () => CustomerDetail(),
+      page: () => const CustomerDetail(),
       binding: BindingsBuilder.put(() => CustomerDetailController())),
   GetPage(
       name: RouteName.sales,
@@ -90,6 +89,6 @@ List<GetPage> routes = [
           EditCustomerController(customerDatabaseModel: CustomerDetailController.to.customerDatabaseModel))),
   GetPage(
     name: RouteName.reorderStock,
-    page: () => ReorderStock(),
+    page: () => const ReorderStock(),
   ),
 ];

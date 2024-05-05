@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
+import 'package:my_inventory/core/ui/shadowed_container.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 
 import 'package:my_inventory/product_list/ui/product_detail_single_description.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/profile/profile_functions.dart';
-import 'package:my_inventory/core/model/action_button_enum.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
-import 'package:my_inventory/core/ui/elevated_card.dart';
 
 import 'package:my_inventory/core/functions/core_functions.dart';
 
@@ -25,9 +24,9 @@ class ProfileDetail extends StatelessWidget {
     return ListView(
       children: [
         sizedBox(height: 20),
-        ElevatedCard(
-          verticalPadding: 5,
-          color: Colors.white,
+        ShadowedContainer(
+          horizontalMargin: 20,
+          padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20,top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -37,7 +36,7 @@ class ProfileDetail extends StatelessWidget {
                   TextButton(
                     onPressed: () => onProfileEditPressed(),
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 0),
+                      padding: const EdgeInsets.symmetric(vertical: 0),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Row(
@@ -112,8 +111,8 @@ class ProfileDetail extends StatelessWidget {
                 ),
               ],
               Card(
-                elevation: 5,
-                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                elevation: 3,
+                margin: const EdgeInsets.only(top: 10,),
                 shape: smoothRectangleBorder(
                   radius: 15,
                   side: const BorderSide(

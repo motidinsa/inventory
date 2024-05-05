@@ -5,15 +5,13 @@ import 'package:my_inventory/add_customer/controller/add_customer_controller.dar
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/main.dart';
 
-import '../../core/ui/custom_text_field_2.dart';
+import 'package:my_inventory/core/ui/custom_text_field_2.dart';
+import 'package:my_inventory/core/ui/shadowed_container.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});
@@ -38,39 +36,32 @@ class AddCustomer extends StatelessWidget {
       }
       return BodyWrapper(
         pageName: addCustomerN,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: Form(
-            key: AppController.to.formKey,
-            child: Center(
-              child: SizedBox(
-                width: context.responsive<double>(
-                  Get.mediaQuery.size.width,
-                  xxl: 600,
-                ),
-                child: ListView(
-                  children: [
-                    sizedBox(height: 15),
-                    ElevatedCard(
-                      color: Colors.grey.shade100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (ctx, index) => CustomTextField2(
-                            title: titles[index],
-                            // color: Colors.white,
-                          ),
-                          shrinkWrap: true,
-                          itemCount: titles.length,
-                          separatorBuilder: (ctx, index) =>
-                              sizedBox(height: 15),
-                        ),
+        body: Form(
+          key: AppController.to.formKey,
+          child: Center(
+            child: SizedBox(
+              width: context.responsive<double>(
+                Get.mediaQuery.size.width,
+                xxl: 600,
+              ),
+              child: ListView(
+                children: [
+                  sizedBox(height: 20),
+                  ShadowedContainer(
+                    child: ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) => CustomTextField2(
+                        title: titles[index],
+                        color: Colors.green.shade50,
                       ),
+                      shrinkWrap: true,
+                      itemCount: titles.length,
+                      separatorBuilder: (ctx, index) =>
+                          sizedBox(height: 15),
                     ),
-                    ActionButton(),
-                  ],
-                ),
+                  ),
+                  const ActionButton(),
+                ],
               ),
             ),
           ),

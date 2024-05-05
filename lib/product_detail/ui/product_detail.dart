@@ -182,7 +182,7 @@ class ProductDetail extends StatelessWidget {
               ],
             ),
           ),
-          ActionButton(
+          const ActionButton(
             redirectFrom: productDetailN,
             actionButtonType: ActionButtonType.delete,
             // productId: productDatabaseModel.productId,

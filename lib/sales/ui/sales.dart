@@ -68,7 +68,7 @@ class Sales extends StatelessWidget {
             ),
             sizedBox(height: 5),
              const PaymentOptions(),
-            ActionButton(redirectFrom: salesN)
+            const ActionButton(redirectFrom: salesN)
           ],
         ),
       ),

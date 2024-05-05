@@ -6,25 +6,24 @@ import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurem
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/signup/functions/signup_functions.dart';
 
-import '../../../add_customer/functions/add_customer_functions.dart';
-import '../../../add_product/controller/add_product_controller.dart';
-import '../../../add_vendor/controller/add_vendor_controller.dart';
-import '../../../customer_detail/functions/customer_detail_functions.dart';
-import '../../../edit_customer/controller/edit_customer_controller.dart';
-import '../../../edit_product/controller/edit_product_controller.dart';
-import '../../../edit_vendor/controller/edit_vendor_controller.dart';
-import '../../../product_detail/functions/product_detail_functions.dart';
-import '../../../purchase/controller/purchase_controller.dart';
-import '../../../sales/functions/sales_functions.dart';
-import '../../../vendor_detail/functions/vendor_detail_functions.dart';
-import '../../constants/database_constants.dart';
-import '../../constants/name_constants.dart';
-import '../../controller/add_item_controller.dart';
-import '../../controller/app_controller.dart';
-import '../../routes/route_names.dart';
-import '../core_functions.dart';
-import '../helper_functions.dart';
-import '../report/report_functions.dart';
+import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
+import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
+import 'package:my_inventory/core/constants/database_constants.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/add_item_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
   // await unFocus();
@@ -125,7 +124,7 @@ onActionButtonPressed({String? redirectFrom}) async {
     }  else if (redirectFrom == addVendorN) {
       AddVendorController.to.onAddVendorSaveButtonPressed();
     } else if (redirectFrom == editCustomerN) {
-      EditCustomerController.to.onEditCustomerSaveButtonPressed();
+      // EditCustomerController.to.onEditCustomerSaveButtonPressed();
     } else if (redirectFrom == editVendorN) {
       EditVendorController.to.onEditVendorSaveButtonPressed();
     } else if (redirectFrom == dateSelectN) {
@@ -133,6 +132,8 @@ onActionButtonPressed({String? redirectFrom}) async {
     }
     else if (currentRoute == RouteName.addCustomer) {
       onAddCustomerSaveButtonPressed();
+    } else if (currentRoute == RouteName.editCustomer) {
+      onEditCustomerSaveButtonPressed();
     }
     // Get.back();
   }

@@ -91,7 +91,7 @@ class AddProduct extends StatelessWidget {
                   ),
                 );
               }),
-              ActionButton(
+              const ActionButton(
                 redirectFrom: addProductN,
               ),
             ],

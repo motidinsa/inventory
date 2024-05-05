@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:my_inventory/add_product/constants/add_product_constants.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/textfield/custom_text_field_functions.dart';
-import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/functions/validations.dart';
-import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/main.dart';
 
-import '../functions/textfield/custom_text_field_helper_functions.dart';
+import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -55,7 +50,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    executeAfterBuild(() {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
           title: widget.title,
@@ -96,8 +91,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         enabledBorder: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
           borderSide: BorderSide(
-              color: Colors.green,
-              width: getBorderWidth(title: widget.title)),
+              color: Colors.green, width: getBorderWidth(title: widget.title)),
         ),
         labelText: widget.labelText,
         alignLabelWithHint: true,

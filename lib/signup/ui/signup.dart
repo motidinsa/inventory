@@ -1,19 +1,16 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
-import '../functions/signup_functions.dart';
-import 'add_company_logo.dart';
+import 'package:my_inventory/signup/ui/add_company_logo.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -91,7 +88,7 @@ class SignUp extends StatelessWidget {
                                   itemCount: signUpRequirements.length,
                                 ),
                                 sizedBox(height: 12),
-                                AddCompanyLogo(),
+                                const AddCompanyLogo(),
                                 sizedBox(height: 12),
                               ],
                             ),

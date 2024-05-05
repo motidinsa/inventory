@@ -52,7 +52,7 @@ class Purchase extends StatelessWidget {
             ),
             addIconButton(),
             const ProductPriceSummary(),
-            ActionButton(redirectFrom: purchaseN)
+            const ActionButton(redirectFrom: purchaseN)
           ],
         ),
       ),

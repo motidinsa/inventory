@@ -3,7 +3,7 @@ import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 
 class CustomerListController extends GetxController {
-  var searchedText = ''.obs;
+  String searchedText = '';
   bool? isEmpty;
   List<CustomerDatabaseModel> customerList = [];
 
@@ -12,7 +12,7 @@ class CustomerListController extends GetxController {
   @override
   void onInit() {
     customerList = CustomerListRepository.getAllCustomers();
-    if(customerList.isEmpty){
+    if(CustomerListRepository.getAllCustomers().isEmpty){
       isEmpty = true;
     }
     super.onInit();

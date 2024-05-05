@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/homepage/functions/homepage_functions.dart';
@@ -20,7 +19,7 @@ class ItemSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color(0xffDCEEDE),
+      color: const Color(0xffDCEEDE),
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
       child: ListTile(
         onTap: () => navigateFromHomepage(title: title),

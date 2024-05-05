@@ -8,7 +8,7 @@ onCustomerListTextFieldChange({
   required String data,
 }) {
   CustomerListController customerListController = Get.find();
-  customerListController.searchedText(data);
+  customerListController.searchedText= data;
   customerListController.customerList = CustomerListRepository.searchCustomer(data: data);
   customerListController.update();
 }

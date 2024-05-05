@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 
@@ -39,7 +37,7 @@ class AddCustomerRepository {
           email: customerDetail.email,
           dateCreated: now,
           customerId: customerId,
-          userId: AppController.to.userId.value,
+          userId: AppController.to.userId.value,objectId: customerId
         ),
       );
     });

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
-import '../constants/name_constants.dart';
-import '../functions/textfield/custom_text_field_functions.dart';
-import '../functions/validations.dart';
-import '../routes/route_names.dart';
-import '../styles/styles.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
+import 'package:my_inventory/core/functions/textfield/custom_text_field_functions.dart';
+import 'package:my_inventory/core/functions/validations.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
+import 'package:my_inventory/core/styles/styles.dart';
 
 class CustomTextField2 extends StatefulWidget {
   final String title;
@@ -35,6 +36,13 @@ class _CustomTextField2State extends State<CustomTextField2> {
   }
   @override
   Widget build(BuildContext context) {
+    executeAfterBuild(() {
+      textEditingController.value = textEditingController.value.copyWith(
+        text: titleToData(
+          title: widget.title,
+        ),
+      );
+    });
     return TextFormField(
       onTap: () {},
       textAlignVertical: TextAlignVertical.center,

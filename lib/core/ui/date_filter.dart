@@ -34,10 +34,10 @@ class DateFilter extends StatelessWidget {
                 return const DateRangeSelection();
               }),
             sizedBox(height: 15),
-            ActionButton(
+            const ActionButton(
               redirectFrom: dateSelectN,
               actionButtonType: ActionButtonType.filter,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
             )
           ],
         ),

@@ -10,7 +10,7 @@ import 'package:my_inventory/core/app_bindings.dart';
 import 'package:my_inventory/core/database/initialize.dart';
 import 'package:my_inventory/core/routes/routes.dart';
 
-import 'core/env/env.dart';
+import 'package:my_inventory/core/env/env.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

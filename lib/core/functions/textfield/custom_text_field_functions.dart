@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/add_customer/functions/add_customer_functions.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
@@ -19,7 +18,7 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
-import '../../../signup/functions/signup_functions.dart';
+import 'package:my_inventory/signup/functions/signup_functions.dart';
 
 onTextFieldChange({
   String? title,
@@ -33,10 +32,9 @@ onTextFieldChange({
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
   } else if (currentRoute == RouteName.addCustomer) {
-    onAddCustomerTextFieldChange(
-      data: data,
-      title: title!,
-    );
+    onAddCustomerTextFieldChange(data: data, title: title!);
+  } else if (currentRoute == RouteName.editCustomer) {
+    onEditCustomerTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.addProduct) {
     onAddProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == RouteName.editProduct) {
@@ -87,7 +85,7 @@ onFocusChange({
     } else if (currentRoute == addVendorN) {
       onAddVendorFocusChange(title: title, data: data);
     } else if (currentRoute == editCustomerN) {
-      onEditCustomerFocusChange(title: title, data: data);
+      // onEditCustomerFocusChange(title: title, data: data);
     } else if (currentRoute == editVendorN) {
       onEditVendorFocusChange(title: title, data: data);
     }

@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-import '../../core/constants/name_constants.dart';
-import '../../core/styles/styles.dart';
-import '../controller/signup_controller.dart';
-import '../functions/signup_functions.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/styles/styles.dart';
+import 'package:my_inventory/signup/controller/signup_controller.dart';
+import 'package:my_inventory/signup/functions/signup_functions.dart';
 
 class AddCompanyLogo extends StatelessWidget {
   const AddCompanyLogo({super.key});
@@ -33,7 +33,7 @@ class AddCompanyLogo extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 )
               ],
@@ -44,7 +44,7 @@ class AddCompanyLogo extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade50,
                   shape: smoothRectangleBorder(),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 5,
                     horizontal: 10,
                   ),
@@ -55,7 +55,7 @@ class AddCompanyLogo extends StatelessWidget {
                         null
                         ? Icons.add
                         : Icons.autorenew_outlined),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Text(
@@ -67,7 +67,7 @@ class AddCompanyLogo extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               if (signupController.tempLogoPath != null)
@@ -75,7 +75,7 @@ class AddCompanyLogo extends StatelessWidget {
                   onPressed: () {
                     onLogoImageCancelPressed();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.cancel,
                     color: Colors.red,
                   ),
