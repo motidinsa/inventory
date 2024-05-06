@@ -15,9 +15,9 @@ deleteVendor() async {final Isar isar = Get.find();
     //   addedFrom: productDetailDC,
     // ));
   });
-  VendorListController.to.vendorList(isar.vendorDatabaseModels
-      .filter()
-      .nameContains(VendorListController.to.searchedText.value)
-      .findAllSync());
+  // VendorListController.to.vendorList(isar.vendorDatabaseModels
+  //     .filter()
+  //     .nameContains(VendorListController.to.searchedText.value)
+  //     .findAllSync());
   Get.back();
 }

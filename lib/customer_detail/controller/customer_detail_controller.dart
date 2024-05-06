@@ -11,7 +11,7 @@ class CustomerDetailController extends GetxController {
 
   @override
   void onInit() {
-    customerDatabaseModel = Get.arguments[0] as CustomerDatabaseModel;
+    customerDatabaseModel = Get.arguments as CustomerDatabaseModel;
     // salesPaymentDatabaseModels = isar.salesPaymentDatabaseModels.where()
     //     .filter()
     //     .customerIdEqualTo(customerDatabaseModel.customerId)

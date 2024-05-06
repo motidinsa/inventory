@@ -3,7 +3,6 @@ import 'package:isar/isar.dart';
 
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 
-
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 
 class CustomerDetailRepository {
@@ -14,12 +13,15 @@ class CustomerDetailRepository {
       await _isar.customerDatabaseModels
           .delete(CustomerDetailController.to.customerDatabaseModel.id);
     });
-  }static getCustomerCredit() async {
-   CustomerDatabaseModel customerDatabaseModel = Get.arguments[0] as CustomerDatabaseModel;
+  }
+
+  static getCustomerCredit() async {
+    // CustomerDatabaseModel customerDatabaseModel =
+    //     Get.arguments[0] as CustomerDatabaseModel;
     // salesPaymentDatabaseModels = isar.salesPaymentDatabaseModels.where()
     //     .filter()
     //     .customerIdEqualTo(customerDatabaseModel.customerId)
-    //     .findAllSync();0969225673
+    //     .findAllSync();
     await _isar.writeTxn(() async {
       await _isar.customerDatabaseModels
           .delete(CustomerDetailController.to.customerDatabaseModel.id);

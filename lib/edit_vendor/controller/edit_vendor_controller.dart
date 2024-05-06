@@ -50,10 +50,10 @@ class EditVendorController extends GetxController {
       dbVendor?.lastModifiedDate = DateTime.now();
       await isar.vendorDatabaseModels.put(dbVendor!);
     });
-    VendorListController.to.vendorList(isar.vendorDatabaseModels
-        .filter()
-        .nameContains(VendorListController.to.searchedText.value)
-        .findAllSync());
+    // VendorListController.to.vendorList(isar.vendorDatabaseModels
+    //     .filter()
+    //     .nameContains(VendorListController.to.searchedText.value)
+    //     .findAllSync());
     // if (productInfo.value.localImagePath != null) {
     //   try {
     //     await Gal.putImage(productInfo.value.localImagePath!,

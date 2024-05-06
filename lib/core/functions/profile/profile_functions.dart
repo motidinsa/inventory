@@ -18,20 +18,28 @@ import 'package:my_inventory/core/packages/custom_date_picker.dart';
 onProfileEditPressed() {
   if (Get.currentRoute == RouteName.customerDetail) {
     Get.toNamed(RouteName.editCustomer);
-  } else if(Get.currentRoute == RouteName.vendorDetail){
+  } else if (Get.currentRoute == RouteName.vendorDetail) {
     Get.toNamed(RouteName.editVendor);
   }
 }
 
 onSingleProfileDetailPressed({required int index}) {
-  unFocus();
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.customerList) {
     Get.toNamed(RouteName.customerDetail,
-        arguments: [CustomerListController.to.customerList[index], index]);
+        arguments: CustomerListController.to.customerList[index]);
   } else if (currentRoute == RouteName.vendorList) {
     Get.toNamed(RouteName.vendorDetail,
         arguments: [VendorListController.to.vendorList[index], index]);
+  }
+}
+
+onProfileAddPressed() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.customerList) {
+    Get.toNamed(RouteName.addCustomer);
+  } else if (currentRoute == RouteName.vendorList) {
+    Get.toNamed(RouteName.addVendor);
   }
 }
 
@@ -98,26 +106,19 @@ String getProfileDetailDateAdded() {
   DateTime? date;
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.customerDetail) {
-    date = (Get.arguments[0] as CustomerDatabaseModel).dateCreated;
+    date = CustomerDetailController.to.customerDatabaseModel.dateCreated;
   } else if (currentRoute == RouteName.vendorDetail) {
-    date = (Get.arguments[0] as VendorDatabaseModel).dateCreated;
+    date = VendorDetailController.to.vendorDatabaseModel.dateCreated;
   }
   if (date != null) return DateFormat("MMM d, y").format(date);
   return '';
 }
 
 List<String> profileTitles() {
-  if(Get.currentRoute == RouteName.customerDetail){
+  if (Get.currentRoute == RouteName.customerDetail) {
     return [customerNameN, phoneNumberN, addressN, cityN, emailN];
-  }else if(Get.currentRoute == RouteName.vendorDetail){
-    return [
-      vendorNameN,
-      phoneNumberN,
-      contactPersonN,
-      addressN,
-      cityN,
-      emailN
-    ];
+  } else if (Get.currentRoute == RouteName.vendorDetail) {
+    return [vendorNameN, phoneNumberN, contactPersonN, addressN, cityN, emailN];
   }
   return [];
 }
@@ -128,7 +129,8 @@ String? getProfileTitleToData({required String title}) {
   // return CustomerDetailController.to.customerDatabaseModel.name;
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.customerDetail) {
-    CustomerDatabaseModel customerDatabaseModel = Get.arguments[0];
+    CustomerDatabaseModel customerDatabaseModel =
+        CustomerDetailController.to.customerDatabaseModel;
     if (title == customerNameN) {
       return customerDatabaseModel.name;
     } else if (title == phoneNumberN) {
@@ -140,7 +142,10 @@ String? getProfileTitleToData({required String title}) {
     } else if (title == emailN) {
       return customerDatabaseModel.email;
     }
-  }else if(currentRoute == RouteName.vendorDetail){
+  } else if (currentRoute == RouteName.vendorDetail) {
+    VendorDatabaseModel vendorDatabaseModel =
+        VendorDetailController.to.vendorDatabaseModel;
+
     if (title == vendorNameN) {
       return VendorDetailController.to.vendorDatabaseModel.name;
     } else if (title == customerNameN) {
@@ -168,4 +173,70 @@ String? getProfileTitleToData({required String title}) {
   }
 
   return null;
+}
+
+bool isProfileListEmpty() {
+  String currentRoute = Get.currentRoute;
+  bool value = false;
+  if (currentRoute == RouteName.customerList) {
+    value = CustomerListController.to.customerList.isEmpty;
+  } else if (currentRoute == RouteName.vendorList) {
+    value = VendorListController.to.vendorList.isEmpty;
+  }
+  return value;
+}
+
+String getProfileNoListName() {
+  String currentRoute = Get.currentRoute;
+  String value = '';
+  if (currentRoute == RouteName.customerList) {
+    value = noCustomerFoundN;
+  } else if (currentRoute == RouteName.vendorList) {
+    value = noVendorFoundN;
+  }
+  return value;
+}
+
+String getProfileNoListButtonText() {
+  String currentRoute = Get.currentRoute;
+  String value = '';
+  if (currentRoute == RouteName.customerList) {
+    value = addCustomerN;
+  } else if (currentRoute == RouteName.vendorList) {
+    value = addVendorN;
+  }
+  return value;
+}
+
+String getProfileMiniDetailName({required int index}) {
+  String currentRoute = Get.currentRoute;
+  String value = '';
+  if (currentRoute == RouteName.customerList) {
+    value = CustomerListController.to.customerList[index].name;
+  } else if (currentRoute == RouteName.vendorList) {
+    value = VendorListController.to.vendorList[index].name;
+  }
+  return value;
+}
+
+String getProfilePageName() {
+  String currentRoute = Get.currentRoute;
+  String value = '';
+  if (currentRoute == RouteName.customerList) {
+    value = customerListN;
+  } else if (currentRoute == RouteName.vendorList) {
+    value = vendorListN;
+  }
+  return value;
+}
+
+int getProfileListLength() {
+  String currentRoute = Get.currentRoute;
+  int length = 0;
+  if (currentRoute == RouteName.customerList) {
+    length = CustomerListController.to.customerList.length;
+  } else if (currentRoute == RouteName.vendorList) {
+    length = VendorListController.to.vendorList.length;
+  }
+  return length;
 }

@@ -7,7 +7,7 @@ import 'package:my_inventory/customer_list/repository/customer_list_repository.d
 onCustomerListTextFieldChange({
   required String data,
 }) {
-  CustomerListController customerListController = Get.find();
+  CustomerListController customerListController = CustomerListController.to;
   customerListController.searchedText= data;
   customerListController.customerList = CustomerListRepository.searchCustomer(data: data);
   customerListController.update();

@@ -97,6 +97,7 @@ const String cashN = 'Cash';
 const String transferN = 'Transfer';
 const String creditN = 'Credit';
 const String noCustomerFoundN = 'No customer found';
+const String noVendorFoundN = 'No vendor found';
 const String successfullyAddedCustomerN = 'Successfully added customer';
 const String signUpN = 'Sign up';
 const String createNewAccountN =  'Create new account';

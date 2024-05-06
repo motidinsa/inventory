@@ -21,7 +21,7 @@ class AppModule extends Module {
     r.child('/y', child: (_) => const Homepage());
     r.child(
       '/customer',
-      child: (_) => const CustomerList(),
+      child: (_) =>  const CustomerList(),
       // guards: [
       //   GuardT(),
       // ],

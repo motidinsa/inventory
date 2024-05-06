@@ -5,7 +5,6 @@ import 'package:my_inventory/customer_list/repository/customer_list_repository.d
 
 class CustomerListController extends GetxController {
   String searchedText = '';
-  String currentRoute = RouteName.customerList;
   bool? isEmpty;
   List<CustomerDatabaseModel> customerList = [];
 
@@ -14,7 +13,7 @@ class CustomerListController extends GetxController {
   @override
   void onInit() {
     customerList = CustomerListRepository.getAllCustomers();
-    if(CustomerListRepository.getAllCustomers().isEmpty){
+    if(customerList.isEmpty){
       isEmpty = true;
     }
     super.onInit();
