@@ -81,13 +81,13 @@ bool isCustomerEdited() {
       CustomerDetailController.to;
   CustomerModel customerModel = EditCustomerController.to.customerModel;
   return customerDetailController.customerDatabaseModel.name !=
-          customerModel.name ||
+          customerModel.name.trim() ||
       customerDetailController.customerDatabaseModel.phoneNumber !=
-          customerModel.phoneNumber ||
+          customerModel.phoneNumber?.trim() ||
       customerDetailController.customerDatabaseModel.address !=
-          customerModel.address ||
+          nullIfEmpty(customerModel.address?.trim()) ||
       customerDetailController.customerDatabaseModel.city !=
-          customerModel.city ||
+          nullIfEmpty(customerModel.city?.trim()) ||
       customerDetailController.customerDatabaseModel.email !=
-          customerModel.email;
+          nullIfEmpty(customerModel.email?.trim());
 }

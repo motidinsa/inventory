@@ -31,7 +31,7 @@ class AlertDialogConfirmation extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      content: Text(confirmationText,style: TextStyle(fontSize: 16),),
+      content: Text(confirmationText,style: const TextStyle(fontSize: 16),),
       actions: [
         TextButton(
           onPressed: () {

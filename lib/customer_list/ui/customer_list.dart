@@ -46,7 +46,7 @@ class CustomerList extends StatelessWidget {
                               itemBuilder: (ctx, index) => ProfileMiniDetail(
                                 name: customerListController
                                     .customerList[index].name,
-                                index: index,
+                                index: index,iconData: Icons.person,
                               ),
                               itemCount:
                                   customerListController.customerList.length,

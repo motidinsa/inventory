@@ -63,9 +63,9 @@ const CustomerDatabaseModelSchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'phone': PropertySchema(
+    r'phoneNumber': PropertySchema(
       id: 9,
-      name: r'phone',
+      name: r'phoneNumber',
       type: IsarType.string,
     ),
     r'totalCreditAmount': PropertySchema(
@@ -1427,31 +1427,31 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneIsNull() {
+      QAfterFilterCondition> phoneNumberIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'phone',
+        property: r'phoneNumber',
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneIsNotNull() {
+      QAfterFilterCondition> phoneNumberIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'phone',
+        property: r'phoneNumber',
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneEqualTo(
+      QAfterFilterCondition> phoneNumberEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1459,7 +1459,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneGreaterThan(
+      QAfterFilterCondition> phoneNumberGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1467,7 +1467,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1475,7 +1475,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneLessThan(
+      QAfterFilterCondition> phoneNumberLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1483,7 +1483,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1491,7 +1491,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneBetween(
+      QAfterFilterCondition> phoneNumberBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -1500,7 +1500,7 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'phone',
+        property: r'phoneNumber',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1511,13 +1511,13 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneStartsWith(
+      QAfterFilterCondition> phoneNumberStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1525,13 +1525,13 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneEndsWith(
+      QAfterFilterCondition> phoneNumberEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1540,10 +1540,10 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
           QAfterFilterCondition>
-      phoneContains(String value, {bool caseSensitive = true}) {
+      phoneNumberContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1552,10 +1552,10 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
           QAfterFilterCondition>
-      phoneMatches(String pattern, {bool caseSensitive = true}) {
+      phoneNumberMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'phone',
+        property: r'phoneNumber',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
@@ -1563,20 +1563,20 @@ extension CustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneIsEmpty() {
+      QAfterFilterCondition> phoneNumberIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'phone',
+        property: r'phoneNumber',
         value: '',
       ));
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel,
-      QAfterFilterCondition> phoneIsNotEmpty() {
+      QAfterFilterCondition> phoneNumberIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'phone',
+        property: r'phoneNumber',
         value: '',
       ));
     });
@@ -1940,16 +1940,16 @@ extension CustomerDatabaseModelQuerySortBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      sortByPhone() {
+      sortByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.asc);
+      return query.addSortBy(r'phoneNumber', Sort.asc);
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      sortByPhoneDesc() {
+      sortByPhoneNumberDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.desc);
+      return query.addSortBy(r'phoneNumber', Sort.desc);
     });
   }
 
@@ -2125,16 +2125,16 @@ extension CustomerDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      thenByPhone() {
+      thenByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.asc);
+      return query.addSortBy(r'phoneNumber', Sort.asc);
     });
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QAfterSortBy>
-      thenByPhoneDesc() {
+      thenByPhoneNumberDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.desc);
+      return query.addSortBy(r'phoneNumber', Sort.desc);
     });
   }
 
@@ -2234,9 +2234,9 @@ extension CustomerDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<CustomerDatabaseModel, CustomerDatabaseModel, QDistinct>
-      distinctByPhone({bool caseSensitive = true}) {
+      distinctByPhoneNumber({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'phoneNumber', caseSensitive: caseSensitive);
     });
   }
 
@@ -2326,9 +2326,9 @@ extension CustomerDatabaseModelQueryProperty on QueryBuilder<
   }
 
   QueryBuilder<CustomerDatabaseModel, String?, QQueryOperations>
-      phoneProperty() {
+      phoneNumberProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'phone');
+      return query.addPropertyName(r'phoneNumber');
     });
   }
 

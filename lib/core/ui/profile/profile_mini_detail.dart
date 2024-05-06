@@ -8,8 +8,14 @@ import 'package:my_inventory/core/styles/styles.dart';
 class ProfileMiniDetail extends StatelessWidget {
   final String name;
   final int index;
+  final IconData iconData;
 
-  const ProfileMiniDetail({super.key, required this.name, required this.index});
+  const ProfileMiniDetail({
+    super.key,
+    required this.name,
+    required this.index,
+    required this.iconData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +25,13 @@ class ProfileMiniDetail extends StatelessWidget {
       elevation: 3,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 25),
-        onTap: () {onSingleProfileDetailPressed(index: index);},
+        onTap: () {
+          onSingleProfileDetailPressed(index: index);
+        },
         shape: smoothRectangleBorder(radius: 12),
         tileColor: lightGreen,
         leading: Icon(
-          Get.currentRoute == RouteName.customerList
-              ? Icons.person
-              : Icons.corporate_fare_rounded,
+          iconData,
           size: 28,
           color: Colors.grey.shade700,
         ),

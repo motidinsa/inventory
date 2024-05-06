@@ -9,7 +9,7 @@ import 'package:my_inventory/core/model/customer/log_customer_database_model.dar
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
-import '../../core/model/customer/customer_model.dart';
+import 'package:my_inventory/core/model/customer/customer_model.dart';
 
 class EditCustomerRepository {
   static final Isar _isar = Get.find();

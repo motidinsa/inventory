@@ -15,8 +15,10 @@ import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 class ProfileDetail extends StatelessWidget {
-  const ProfileDetail({super.key});
+  ProfileDetail({super.key});
 
+  final CustomerDetailController customerDetailController =
+      CustomerDetailController.to;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,8 @@ class ProfileDetail extends StatelessWidget {
         sizedBox(height: 20),
         ShadowedContainer(
           horizontalMargin: 20,
-          padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20,top: 10),
+          padding:
+              const EdgeInsets.only(bottom: 20, left: 20, right: 20, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -74,7 +77,7 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ],
               ),
-              if (Get.find<CustomerDetailController>().customerCredit > 0) ...[
+              if (customerDetailController.customerCredit > 0) ...[
                 const SizedBox(
                   height: 5,
                 ),
@@ -111,7 +114,9 @@ class ProfileDetail extends StatelessWidget {
               ],
               Card(
                 elevation: 3,
-                margin: const EdgeInsets.only(top: 10,),
+                margin: const EdgeInsets.only(
+                  top: 10,
+                ),
                 shape: smoothRectangleBorder(
                   radius: 15,
                   side: const BorderSide(
@@ -140,7 +145,7 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              if (Get.find<CustomerDetailController>().customerCredit > 0)
+              if (customerDetailController.customerCredit > 0)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 5),
                   child: ElevatedButton(
@@ -148,7 +153,8 @@ class ProfileDetail extends StatelessWidget {
                       Get.toNamed(RouteName.creditHistory);
                     },
                     style: ElevatedButton.styleFrom(
-                        shape: smoothRectangleBorder(radius: 12),backgroundColor: Colors.green.shade50),
+                        shape: smoothRectangleBorder(radius: 12),
+                        backgroundColor: Colors.green.shade50),
                     child: const Text(showCreditHistoryN),
                   ),
                 )

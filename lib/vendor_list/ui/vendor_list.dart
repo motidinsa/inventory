@@ -36,7 +36,7 @@ class VendorList extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (ctx, index) => ProfileMiniDetail(
                   name: vendorListController.vendorList[index].name,
-                  index: index,
+                  index: index,iconData: Icons.corporate_fare_rounded,
                 ),
                 itemCount: vendorListController.vendorList.length,
                 separatorBuilder: (ctx, index) => sizedBox(height: 15),

@@ -24,7 +24,7 @@ class VendorDetail extends StatelessWidget {
         vendorId: vendorDatabaseModel.vendorId,
       ),
     );
-    return const BodyWrapper(
+    return  BodyWrapper(
       pageName: vendorDetailN,
       body: ProfileDetail(),
     );
