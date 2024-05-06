@@ -126,7 +126,7 @@ int _customerDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.name.length * 3;
   {
-    final value = object.phone;
+    final value = object.phoneNumber;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -150,7 +150,7 @@ void _customerDatabaseModelSerialize(
   writer.writeString(offsets[6], object.lastModifiedByUserId);
   writer.writeDateTime(offsets[7], object.lastModifiedDate);
   writer.writeString(offsets[8], object.name);
-  writer.writeString(offsets[9], object.phone);
+  writer.writeString(offsets[9], object.phoneNumber);
   writer.writeDouble(offsets[10], object.totalCreditAmount);
   writer.writeString(offsets[11], object.userId);
 }
@@ -171,7 +171,7 @@ CustomerDatabaseModel _customerDatabaseModelDeserialize(
     lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
     lastModifiedDate: reader.readDateTimeOrNull(offsets[7]),
     name: reader.readString(offsets[8]),
-    phone: reader.readStringOrNull(offsets[9]),
+    phoneNumber: reader.readStringOrNull(offsets[9]),
     totalCreditAmount: reader.readDoubleOrNull(offsets[10]),
     userId: reader.readString(offsets[11]),
   );

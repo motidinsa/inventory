@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/model/customer/customer_database_model.dart';
+import 'package:my_inventory/core/model/customer/customer_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
@@ -13,61 +16,78 @@ onEditCustomerTextFieldChange({
   required String title,
   required String data,
 }) {
-  final EditCustomerController editCustomerController = EditCustomerController.to;
+  final CustomerModel customerModel = EditCustomerController.to.customerModel;
   if (title == customerNameN) {
-    editCustomerController.customerDatabaseModel.name = data;
+    customerModel.name = data;
   } else if (title == phoneNumberN) {
-    editCustomerController.customerDatabaseModel.phone = nullIfEmpty(data);
+    customerModel.phoneNumber = nullIfEmpty(data);
   } else if (title == addressN) {
-    editCustomerController.customerDatabaseModel.address = nullIfEmpty(data);
+    customerModel.address = nullIfEmpty(data);
   } else if (title == cityN) {
-    editCustomerController.customerDatabaseModel.city = nullIfEmpty(data);
+    customerModel.city = nullIfEmpty(data);
   } else if (title == emailN) {
-    editCustomerController.customerDatabaseModel.email = nullIfEmpty(data);
+    customerModel.email = nullIfEmpty(data);
   }
 }
 
 String? getEditCustomerData({required String title}) {
-  EditCustomerController editCustomerController = EditCustomerController.to;
+  CustomerDatabaseModel customerDatabaseModel =
+      CustomerDetailController.to.customerDatabaseModel;
   String? data;
   if (title == customerNameN) {
-    data = editCustomerController.customerDatabaseModel.name;
+    data = customerDatabaseModel.name;
   } else if (title == phoneNumberN) {
-    data = editCustomerController.customerDatabaseModel.phone;
+    data = customerDatabaseModel.phoneNumber;
   } else if (title == addressN) {
-    data = editCustomerController.customerDatabaseModel.address;
+    data = customerDatabaseModel.address;
   } else if (title == cityN) {
-    data = editCustomerController.customerDatabaseModel.city;
+    data = customerDatabaseModel.city;
   } else if (title == emailN) {
-    data = editCustomerController.customerDatabaseModel.email;
+    data = customerDatabaseModel.email;
   }
   return data;
 }
 
 onEditCustomerSaveButtonPressed() async {
   EditCustomerController editCustomerController = EditCustomerController.to;
-  // unFocus();
   editCustomerController.isLoading = true;
   editCustomerController.update();
   try {
-    await EditCustomerRepository.editCustomer();
+    if (isCustomerEdited()) {
+      await EditCustomerRepository.editCustomer();
       CustomerListController customerListController = CustomerListController.to;
       customerListController.customerList =
-          CustomerListRepository.searchCustomer(data: customerListController.searchedText);
-      // customerListController.isEmpty = false;
+          CustomerListRepository.searchCustomer(
+              data: customerListController.searchedText);
       customerListController.update();
       CustomerDetailController.to.update();
 
-    showSnackbar(message: successfullyEditedN);
+      showSnackbar(message: successfullyEditedN);
+    } else {
+      showSnackbar(
+          message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
+    }
     Get.back();
-
   } on Exception {
     showSnackbar(message: someErrorOccurredN);
   } finally {
     editCustomerController.isLoading = false;
     editCustomerController.update();
   }
+}
 
-  // Get.back();
-  // Get.back();
+bool isCustomerEdited() {
+  CustomerDetailController customerDetailController =
+      CustomerDetailController.to;
+  CustomerModel customerModel = EditCustomerController.to.customerModel;
+  return customerDetailController.customerDatabaseModel.name !=
+          customerModel.name ||
+      customerDetailController.customerDatabaseModel.phoneNumber !=
+          customerModel.phoneNumber ||
+      customerDetailController.customerDatabaseModel.address !=
+          customerModel.address ||
+      customerDetailController.customerDatabaseModel.city !=
+          customerModel.city ||
+      customerDetailController.customerDatabaseModel.email !=
+          customerModel.email;
 }

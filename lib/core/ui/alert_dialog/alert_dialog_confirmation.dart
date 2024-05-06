@@ -31,7 +31,7 @@ class AlertDialogConfirmation extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      content: Text(confirmationText),
+      content: Text(confirmationText,style: TextStyle(fontSize: 16),),
       actions: [
         TextButton(
           onPressed: () {
@@ -39,7 +39,7 @@ class AlertDialogConfirmation extends StatelessWidget {
           },
           style: TextButton.styleFrom(
               tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-          child: const Text(cancelN),
+          child: const Text(cancelN,style: TextStyle(fontSize: 15),),
         ),
         TextButton(
           style: TextButton.styleFrom(
@@ -49,8 +49,7 @@ class AlertDialogConfirmation extends StatelessWidget {
             onAlertDialogDeleteButtonPressed();
           },
           child: const Text(
-            deleteN,
-            style: TextStyle(),
+            deleteN,style: TextStyle(fontSize: 15),
           ),
         ),
       ],

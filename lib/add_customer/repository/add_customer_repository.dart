@@ -18,7 +18,7 @@ class AddCustomerRepository {
     String customerId = generateDatabaseId(time: now);
     final CustomerDatabaseModel customerDatabaseModel = CustomerDatabaseModel(
       name: customerDetail.name,
-      phone: customerDetail.phoneNumber,
+      phoneNumber: customerDetail.phoneNumber,
       address: customerDetail.address,
       city: customerDetail.city,
       email: customerDetail.email,

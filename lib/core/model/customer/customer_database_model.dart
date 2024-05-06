@@ -8,7 +8,7 @@ class CustomerDatabaseModel {
   String name;
   String customerId;
   String userId;
-  String? phone;
+  String? phoneNumber;
   String? address;
   String? city;
   String? email;
@@ -22,7 +22,7 @@ class CustomerDatabaseModel {
     required this.name,
     required this.customerId,
     required this.userId,
-    this.phone,
+    this.phoneNumber,
     this.address,
     this.city,
     this.email,

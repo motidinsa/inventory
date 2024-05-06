@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-
 import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
+//ignore: must_be_immutable
 class ProfileSingleDetail extends StatelessWidget {
   final String title;
-  final String? data;
+  String? data;
   final double? titleFontSize;
   final double? dataFontSize;
   final Color? titleColor;
   final Color? dataColor;
   final TextAlign? textAlign;
 
-  const ProfileSingleDetail(
+   ProfileSingleDetail(
       {super.key,
       required this.title,
       this.data,

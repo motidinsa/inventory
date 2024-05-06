@@ -86,7 +86,7 @@ List<GetPage> routes = [
       name: RouteName.editCustomer,
       page: () => EditCustomer(),
       binding: BindingsBuilder.put(() =>
-          EditCustomerController(customerDatabaseModel: CustomerDetailController.to.customerDatabaseModel))),
+          EditCustomerController())),
   GetPage(
     name: RouteName.reorderStock,
     page: () => const ReorderStock(),

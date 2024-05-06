@@ -15,7 +15,7 @@ class CustomerDetail extends StatelessWidget {
       pageName: customerDetailN,
       body: GetBuilder<CustomerDetailController>(
         builder: (_) {
-          return const ProfileDetail();
+          return ProfileDetail();
         }
       ),
     );

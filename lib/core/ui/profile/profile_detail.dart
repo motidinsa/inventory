@@ -15,9 +15,8 @@ import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 
 class ProfileDetail extends StatelessWidget {
-  const ProfileDetail({
-    super.key,
-  });
+  const ProfileDetail({super.key});
+
 
   @override
   Widget build(BuildContext context) {

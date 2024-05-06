@@ -132,7 +132,7 @@ String? getProfileTitleToData({required String title}) {
     if (title == customerNameN) {
       return customerDatabaseModel.name;
     } else if (title == phoneNumberN) {
-      return customerDatabaseModel.phone;
+      return customerDatabaseModel.phoneNumber;
     } else if (title == addressN) {
       return customerDatabaseModel.address;
     } else if (title == cityN) {
@@ -151,7 +151,7 @@ String? getProfileTitleToData({required String title}) {
     } else if (title == phoneNumberN) {
       return currentRoute == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.phone
-          : CustomerDetailController.to.customerDatabaseModel.phone;
+          : CustomerDetailController.to.customerDatabaseModel.phoneNumber;
     } else if (title == addressN) {
       return currentRoute == vendorDetailN
           ? VendorDetailController.to.vendorDatabaseModel.address

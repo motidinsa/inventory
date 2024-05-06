@@ -173,7 +173,7 @@ onSalesSearchProductAlertDialogOptionSelect(
         isar.customerDatabaseModels.getSync(isarId)!;
     salesController.customerId = customerDatabaseModel.customerId;
     salesController.customerName = customerDatabaseModel.name;
-    salesController.customerPhone = customerDatabaseModel.phone;
+    salesController.customerPhone = customerDatabaseModel.phoneNumber;
     salesController.customerAddress = customerDatabaseModel.address;
     salesController.update();
     Get.back();

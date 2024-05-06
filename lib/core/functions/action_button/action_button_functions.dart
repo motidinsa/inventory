@@ -26,7 +26,6 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
-  // await unFocus();
   final Isar isar = Get.find();
   String currentRoute = Get.currentRoute;
 
