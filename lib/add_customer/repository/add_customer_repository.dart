@@ -13,32 +13,32 @@ class AddCustomerRepository {
   static final Isar _isar = Get.find();
 
   static addCustomer() async {
-    CustomerModel customerDetail = AddCustomerController.to.customerDetail;
+    CustomerModel customerDetail = AddCustomerController.to.customerModel;
     DateTime now = DateTime.now();
     String customerId = generateDatabaseId(time: now);
     final CustomerDatabaseModel customerDatabaseModel = CustomerDatabaseModel(
-      name: customerDetail.name,
-      phoneNumber: customerDetail.phoneNumber,
-      address: customerDetail.address,
-      city: customerDetail.city,
-      email: customerDetail.email,
+      name: customerDetail.name.trim(),
+      phoneNumber: nullIfEmpty(customerDetail.phoneNumber?.trim()),
+      address: nullIfEmpty(customerDetail.address?.trim()),
+      city: nullIfEmpty(customerDetail.city?.trim()),
+      email: nullIfEmpty(customerDetail.email?.trim()),
       dateCreated: now,
       customerId: customerId,
-      userId: AppController.to.userId.value,
+      addedByUserId: AppController.to.userId.value,
     );
     await _isar.writeTxn(() async {
       await _isar.customerDatabaseModels.put(customerDatabaseModel);
       await _isar.logCustomerDatabaseModels.put(
         LogCustomerDatabaseModel(
-          name: customerDetail.name,
-          phone: customerDetail.phoneNumber,
-          address: customerDetail.address,
-          city: customerDetail.city,
-          email: customerDetail.email,
-          dateCreated: now,
-          customerId: customerId,
-          userId: AppController.to.userId.value,objectId: customerId
-        ),
+            name: customerDetail.name.trim(),
+            phoneNumber: nullIfEmpty(customerDetail.phoneNumber?.trim()),
+            address: nullIfEmpty(customerDetail.address?.trim()),
+            city: nullIfEmpty(customerDetail.city?.trim()),
+            email: nullIfEmpty(customerDetail.email?.trim()),
+            dateCreated: now,
+            customerId: customerId,
+            addedByUserId: AppController.to.userId.value,
+            objectId: customerId),
       );
     });
   }

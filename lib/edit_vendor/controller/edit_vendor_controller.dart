@@ -25,7 +25,7 @@ class EditVendorController extends GetxController {
     appController.currentRoutes.add(editVendorN);
     vendorInfo = VendorModel(
       name: vendorDatabaseModel.name,
-      phoneNumber: vendorDatabaseModel.phone,
+      phoneNumber: vendorDatabaseModel.phoneNumber,
       address: vendorDatabaseModel.address,
       city: vendorDatabaseModel.city,
       email: vendorDatabaseModel.email,
@@ -41,7 +41,7 @@ class EditVendorController extends GetxController {
       final dbVendor =
       await isar.vendorDatabaseModels.get(vendorDatabaseModel.id);
       dbVendor?.name = vendorInfo.value.name;
-      dbVendor?.phone = vendorInfo.value.phoneNumber;
+      dbVendor?.phoneNumber = vendorInfo.value.phoneNumber;
       dbVendor?.address = vendorInfo.value.address;
       dbVendor?.city = vendorInfo.value.city;
       dbVendor?.email = vendorInfo.value.email;

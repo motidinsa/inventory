@@ -35,13 +35,13 @@ class EditCustomerRepository {
       await _isar.logCustomerDatabaseModels.put(
         LogCustomerDatabaseModel(
           name: customerDatabaseModel.name,
-          phone: nullIfEmpty(customerDatabaseModel.phoneNumber),
+          phoneNumber: nullIfEmpty(customerDatabaseModel.phoneNumber),
           address: nullIfEmpty(customerDatabaseModel.address),
           city: nullIfEmpty(customerDatabaseModel.city),
           email: nullIfEmpty(customerDatabaseModel.email),
           dateCreated: now,
           customerId: customerDatabaseModel.customerId,
-          userId: AppController.to.userId.value,
+          addedByUserId: AppController.to.userId.value,
           lastModifiedByUserId: AppController.to.userId.value,
           lastModifiedDate: now,
           objectId: objectId,

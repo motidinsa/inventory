@@ -25,6 +25,8 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 
+import '../../../add_vendor/functions/add_vendor_functions.dart';
+
 onActionButtonPressed({String? redirectFrom}) async {
   final Isar isar = Get.find();
   String currentRoute = Get.currentRoute;
@@ -120,17 +122,17 @@ onActionButtonPressed({String? redirectFrom}) async {
     } else if (redirectFrom == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
-    }  else if (redirectFrom == addVendorN) {
-      AddVendorController.to.onAddVendorSaveButtonPressed();
-    } else if (redirectFrom == editCustomerN) {
-      // EditCustomerController.to.onEditCustomerSaveButtonPressed();
-    } else if (redirectFrom == editVendorN) {
+    }   else if (redirectFrom == editVendorN) {
       EditVendorController.to.onEditVendorSaveButtonPressed();
     } else if (redirectFrom == dateSelectN) {
       onFilterSelect();
     }
     else if (currentRoute == RouteName.addCustomer) {
       onAddCustomerSaveButtonPressed();
+    } else if (currentRoute == RouteName.editCustomer) {
+      onEditCustomerSaveButtonPressed();
+    }else if (currentRoute == RouteName.addVendor) {
+      onAddVendorSaveButtonPressed();
     } else if (currentRoute == RouteName.editCustomer) {
       onEditCustomerSaveButtonPressed();
     }

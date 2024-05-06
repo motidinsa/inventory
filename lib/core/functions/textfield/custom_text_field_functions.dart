@@ -47,6 +47,10 @@ onTextFieldChange({
     onCustomerListTextFieldChange(data: data);
   } else if (currentRoute == vendorListN) {
     onVendorListTextFieldChange(data: data);
+  }else if (currentRoute == RouteName.addVendor) {
+    onAddVendorTextFieldChange(data: data, title: title!);
+  }else if (currentRoute == RouteName.vendorList) {
+    onVendorListTextFieldChange(data: data);
   }
 }
 
@@ -82,8 +86,6 @@ onFocusChange({
       onPurchaseProductFocusChange(title: title, data: data);
     } else if (currentRoute == RouteName.editProduct) {
       onEditProductFocusChange(title: title, data: data);
-    } else if (currentRoute == addVendorN) {
-      onAddVendorFocusChange(title: title, data: data);
     } else if (currentRoute == editCustomerN) {
       // onEditCustomerFocusChange(title: title, data: data);
     } else if (currentRoute == editVendorN) {

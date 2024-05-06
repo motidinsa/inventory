@@ -1,15 +1,16 @@
 import 'package:isar/isar.dart';
 
-part 'log_customer_database_model.g.dart';
+part 'log_vendor_database_model.g.dart';
 
 @collection
-class LogCustomerDatabaseModel {
+class LogVendorDatabaseModel {
   Id id = Isar.autoIncrement;
-  String  objectId ;
+  String objectId;
   String name;
-  String customerId;
+  String vendorId;
   String addedByUserId;
   String? phoneNumber;
+  String? contactPerson;
   String? address;
   String? city;
   String? email;
@@ -18,12 +19,13 @@ class LogCustomerDatabaseModel {
   String? lastModifiedByUserId;
   bool? isAppWriteSynced;
 
-  LogCustomerDatabaseModel({
+  LogVendorDatabaseModel({
     required this.objectId,
     required this.name,
-    required this.customerId,
+    required this.vendorId,
     required this.addedByUserId,
     this.phoneNumber,
+    this.contactPerson,
     this.address,
     this.city,
     this.email,

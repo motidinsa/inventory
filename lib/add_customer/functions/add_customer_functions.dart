@@ -11,17 +11,17 @@ onAddCustomerTextFieldChange({
   required String title,
   required String data,
 }) {
-  final AddCustomerController addCustomerController = Get.find();
+  final AddCustomerController addCustomerController = AddCustomerController.to;
   if (title == customerNameN) {
-    addCustomerController.customerDetail.name = data;
+    addCustomerController.customerModel.name = data;
   } else if (title == phoneNumberN) {
-    addCustomerController.customerDetail.phoneNumber = data;
+    addCustomerController.customerModel.phoneNumber = data;
   } else if (title == addressN) {
-    addCustomerController.customerDetail.address = data;
+    addCustomerController.customerModel.address = data;
   } else if (title == cityN) {
-    addCustomerController.customerDetail.city = data;
+    addCustomerController.customerModel.city = data;
   } else if (title == emailN) {
-    addCustomerController.customerDetail.email = data;
+    addCustomerController.customerModel.email = data;
   }
 }
 
@@ -32,7 +32,7 @@ onAddCustomerSaveButtonPressed() async {
   try {
     await AddCustomerRepository.addCustomer();
     if (Get.previousRoute == RouteName.customerList) {
-      CustomerListController customerListController = Get.find();
+      CustomerListController customerListController = CustomerListController.to;
       customerListController.customerList =
           CustomerListRepository.getAllCustomers();
       customerListController.isEmpty = false;

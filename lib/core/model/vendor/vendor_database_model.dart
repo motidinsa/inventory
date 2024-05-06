@@ -7,7 +7,8 @@ class VendorDatabaseModel {
   Id id = Isar.autoIncrement;
   String name;
   String vendorId;
-  String? phone;
+  String addedByUserId;
+  String? phoneNumber;
   String? address;
   String? city;
   String? email;
@@ -17,16 +18,18 @@ class VendorDatabaseModel {
   String? lastModifiedByUserId;
   bool? isAppWriteSynced;
 
-  VendorDatabaseModel(
-      {required this.name,
-      required this.vendorId,
-      this.phone,
-      this.address,
-      this.city,
-      this.email,
-      required this.dateCreated,
-      this.lastModifiedDate,
-      this.isAppWriteSynced,
-      this.lastModifiedByUserId,
-      this.contactPerson});
+  VendorDatabaseModel({
+    required this.name,
+    required this.vendorId,
+    required this.addedByUserId,
+    this.phoneNumber,
+    this.address,
+    this.city,
+    this.email,
+    required this.dateCreated,
+    this.lastModifiedDate,
+    this.isAppWriteSynced,
+    this.lastModifiedByUserId,
+    this.contactPerson,
+  });
 }

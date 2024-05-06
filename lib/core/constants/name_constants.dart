@@ -99,6 +99,7 @@ const String creditN = 'Credit';
 const String noCustomerFoundN = 'No customer found';
 const String noVendorFoundN = 'No vendor found';
 const String successfullyAddedCustomerN = 'Successfully added customer';
+const String successfullyAddedVendorN = 'Successfully added vendor';
 const String signUpN = 'Sign up';
 const String createNewAccountN =  'Create new account';
 const String companyNameN = 'Company name';

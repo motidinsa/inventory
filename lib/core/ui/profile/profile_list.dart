@@ -10,41 +10,40 @@ class ProfileList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isProfileListEmpty()==true
+    return isProfileListEmpty() == true
         ? const AddNewProfile()
         : ListView(
-      children: [
-        SizedBox(height: 15),
-        if (isProfileListEmpty() != true)
-           CustomTextField(
-            title: getProfilePageName(),
-          ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: isProfileListEmpty()
-              ? Center(
-            child: Text(
-              getProfileNoListName(),
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.grey.shade700),
-            ),
-          )
-              : ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (ctx, index) => ProfileMiniDetail(
-              name: getProfileMiniDetailName(index: index),
-              index: index,iconData: Icons.person,
-            ),
-            itemCount:
-            getProfileListLength(),
-            separatorBuilder: (ctx, index) =>
-                SizedBox(height: 12),
-          ),
-        ),
-      ],
-    );
+            children: [
+              SizedBox(height: 15),
+              if (isProfileListEmpty() != true)
+                CustomTextField(
+                  title: getProfilePageName(),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: isProfileListEmpty()
+                    ? Center(
+                        child: Text(
+                          getProfileNoListName(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.grey.shade700),
+                        ),
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => ProfileMiniDetail(
+                          name: getProfileMiniDetailName(index: index),
+                          index: index,
+                          iconData: Icons.person,
+                        ),
+                        itemCount: getProfileListLength(),
+                        separatorBuilder: (ctx, index) => SizedBox(height: 12),
+                      ),
+              ),
+            ],
+          );
   }
 }

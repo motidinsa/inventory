@@ -155,7 +155,7 @@ String? getProfileTitleToData({required String title}) {
       return VendorDetailController.to.vendorDatabaseModel.contactPerson;
     } else if (title == phoneNumberN) {
       return currentRoute == vendorDetailN
-          ? VendorDetailController.to.vendorDatabaseModel.phone
+          ? VendorDetailController.to.vendorDatabaseModel.phoneNumber
           : CustomerDetailController.to.customerDatabaseModel.phoneNumber;
     } else if (title == addressN) {
       return currentRoute == vendorDetailN

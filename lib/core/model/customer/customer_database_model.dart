@@ -7,7 +7,7 @@ class CustomerDatabaseModel {
   Id id = Isar.autoIncrement;
   String name;
   String customerId;
-  String userId;
+  String addedByUserId;
   String? phoneNumber;
   String? address;
   String? city;
@@ -21,7 +21,7 @@ class CustomerDatabaseModel {
   CustomerDatabaseModel({
     required this.name,
     required this.customerId,
-    required this.userId,
+    required this.addedByUserId,
     this.phoneNumber,
     this.address,
     this.city,

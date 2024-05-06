@@ -113,7 +113,7 @@ onPurchaseSearchProductAlertDialogOptionSelect(
         isar.vendorDatabaseModels.getSync(isarId)!;
     purchaseController.vendorId = vendorDatabaseModel.vendorId;
     purchaseController.vendorName = vendorDatabaseModel.name;
-    purchaseController.vendorPhone = vendorDatabaseModel.phone;
+    purchaseController.vendorPhone = vendorDatabaseModel.phoneNumber;
     purchaseController.vendorAddress = vendorDatabaseModel.address;
     purchaseController.vendorContactPerson = vendorDatabaseModel.contactPerson;
     purchaseController.update();

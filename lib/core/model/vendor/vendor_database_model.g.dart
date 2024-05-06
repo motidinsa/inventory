@@ -18,58 +18,63 @@ const VendorDatabaseModelSchema = CollectionSchema(
   name: r'VendorDatabaseModel',
   id: -3254548581389073012,
   properties: {
-    r'address': PropertySchema(
+    r'addedByUserId': PropertySchema(
       id: 0,
+      name: r'addedByUserId',
+      type: IsarType.string,
+    ),
+    r'address': PropertySchema(
+      id: 1,
       name: r'address',
       type: IsarType.string,
     ),
     r'city': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'city',
       type: IsarType.string,
     ),
     r'contactPerson': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'contactPerson',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'email': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'email',
       type: IsarType.string,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'lastModifiedDate': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'lastModifiedDate',
       type: IsarType.dateTime,
     ),
     r'name': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'name',
       type: IsarType.string,
     ),
-    r'phone': PropertySchema(
-      id: 9,
-      name: r'phone',
+    r'phoneNumber': PropertySchema(
+      id: 10,
+      name: r'phoneNumber',
       type: IsarType.string,
     ),
     r'vendorId': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'vendorId',
       type: IsarType.string,
     )
@@ -94,6 +99,7 @@ int _vendorDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedByUserId.length * 3;
   {
     final value = object.address;
     if (value != null) {
@@ -126,7 +132,7 @@ int _vendorDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.name.length * 3;
   {
-    final value = object.phone;
+    final value = object.phoneNumber;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -141,17 +147,18 @@ void _vendorDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.address);
-  writer.writeString(offsets[1], object.city);
-  writer.writeString(offsets[2], object.contactPerson);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeString(offsets[4], object.email);
-  writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeString(offsets[6], object.lastModifiedByUserId);
-  writer.writeDateTime(offsets[7], object.lastModifiedDate);
-  writer.writeString(offsets[8], object.name);
-  writer.writeString(offsets[9], object.phone);
-  writer.writeString(offsets[10], object.vendorId);
+  writer.writeString(offsets[0], object.addedByUserId);
+  writer.writeString(offsets[1], object.address);
+  writer.writeString(offsets[2], object.city);
+  writer.writeString(offsets[3], object.contactPerson);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeString(offsets[5], object.email);
+  writer.writeBool(offsets[6], object.isAppWriteSynced);
+  writer.writeString(offsets[7], object.lastModifiedByUserId);
+  writer.writeDateTime(offsets[8], object.lastModifiedDate);
+  writer.writeString(offsets[9], object.name);
+  writer.writeString(offsets[10], object.phoneNumber);
+  writer.writeString(offsets[11], object.vendorId);
 }
 
 VendorDatabaseModel _vendorDatabaseModelDeserialize(
@@ -161,17 +168,18 @@ VendorDatabaseModel _vendorDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = VendorDatabaseModel(
-    address: reader.readStringOrNull(offsets[0]),
-    city: reader.readStringOrNull(offsets[1]),
-    contactPerson: reader.readStringOrNull(offsets[2]),
-    dateCreated: reader.readDateTime(offsets[3]),
-    email: reader.readStringOrNull(offsets[4]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
-    lastModifiedDate: reader.readDateTimeOrNull(offsets[7]),
-    name: reader.readString(offsets[8]),
-    phone: reader.readStringOrNull(offsets[9]),
-    vendorId: reader.readString(offsets[10]),
+    addedByUserId: reader.readString(offsets[0]),
+    address: reader.readStringOrNull(offsets[1]),
+    city: reader.readStringOrNull(offsets[2]),
+    contactPerson: reader.readStringOrNull(offsets[3]),
+    dateCreated: reader.readDateTime(offsets[4]),
+    email: reader.readStringOrNull(offsets[5]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[6]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
+    lastModifiedDate: reader.readDateTimeOrNull(offsets[8]),
+    name: reader.readString(offsets[9]),
+    phoneNumber: reader.readStringOrNull(offsets[10]),
+    vendorId: reader.readString(offsets[11]),
   );
   object.id = id;
   return object;
@@ -185,26 +193,28 @@ P _vendorDatabaseModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 5:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 7:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 8:
-      return (reader.readString(offset)) as P;
-    case 9:
       return (reader.readStringOrNull(offset)) as P;
+    case 8:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 9:
+      return (reader.readString(offset)) as P;
     case 10:
+      return (reader.readStringOrNull(offset)) as P;
+    case 11:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -307,6 +317,142 @@ extension VendorDatabaseModelQueryWhere
 
 extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
     VendorDatabaseModel, QFilterCondition> {
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedByUserId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedByUserId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
+      addedByUserIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
       addressIsNull() {
     return QueryBuilder.apply(this, (query) {
@@ -1428,31 +1574,31 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneIsNull() {
+      phoneNumberIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'phone',
+        property: r'phoneNumber',
       ));
     });
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneIsNotNull() {
+      phoneNumberIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'phone',
+        property: r'phoneNumber',
       ));
     });
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneEqualTo(
+      phoneNumberEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1460,7 +1606,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneGreaterThan(
+      phoneNumberGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1468,7 +1614,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1476,7 +1622,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneLessThan(
+      phoneNumberLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1484,7 +1630,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1492,7 +1638,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneBetween(
+      phoneNumberBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -1501,7 +1647,7 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'phone',
+        property: r'phoneNumber',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1512,13 +1658,13 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneStartsWith(
+      phoneNumberStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1526,13 +1672,13 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneEndsWith(
+      phoneNumberEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1540,10 +1686,10 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneContains(String value, {bool caseSensitive = true}) {
+      phoneNumberContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'phone',
+        property: r'phoneNumber',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -1551,10 +1697,10 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneMatches(String pattern, {bool caseSensitive = true}) {
+      phoneNumberMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'phone',
+        property: r'phoneNumber',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
@@ -1562,20 +1708,20 @@ extension VendorDatabaseModelQueryFilter on QueryBuilder<VendorDatabaseModel,
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneIsEmpty() {
+      phoneNumberIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'phone',
+        property: r'phoneNumber',
         value: '',
       ));
     });
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterFilterCondition>
-      phoneIsNotEmpty() {
+      phoneNumberIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'phone',
+        property: r'phoneNumber',
         value: '',
       ));
     });
@@ -1727,6 +1873,20 @@ extension VendorDatabaseModelQueryLinks on QueryBuilder<VendorDatabaseModel,
 extension VendorDatabaseModelQuerySortBy
     on QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QSortBy> {
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
+      sortByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
+      sortByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
       sortByAddress() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'address', Sort.asc);
@@ -1853,16 +2013,16 @@ extension VendorDatabaseModelQuerySortBy
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
-      sortByPhone() {
+      sortByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.asc);
+      return query.addSortBy(r'phoneNumber', Sort.asc);
     });
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
-      sortByPhoneDesc() {
+      sortByPhoneNumberDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.desc);
+      return query.addSortBy(r'phoneNumber', Sort.desc);
     });
   }
 
@@ -1883,6 +2043,20 @@ extension VendorDatabaseModelQuerySortBy
 
 extension VendorDatabaseModelQuerySortThenBy
     on QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QSortThenBy> {
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
+      thenByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
+      thenByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
       thenByAddress() {
     return QueryBuilder.apply(this, (query) {
@@ -2024,16 +2198,16 @@ extension VendorDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
-      thenByPhone() {
+      thenByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.asc);
+      return query.addSortBy(r'phoneNumber', Sort.asc);
     });
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QAfterSortBy>
-      thenByPhoneDesc() {
+      thenByPhoneNumberDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'phone', Sort.desc);
+      return query.addSortBy(r'phoneNumber', Sort.desc);
     });
   }
 
@@ -2054,6 +2228,14 @@ extension VendorDatabaseModelQuerySortThenBy
 
 extension VendorDatabaseModelQueryWhereDistinct
     on QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QDistinct> {
+  QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QDistinct>
+      distinctByAddedByUserId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedByUserId',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QDistinct>
       distinctByAddress({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2120,9 +2302,9 @@ extension VendorDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<VendorDatabaseModel, VendorDatabaseModel, QDistinct>
-      distinctByPhone({bool caseSensitive = true}) {
+      distinctByPhoneNumber({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'phoneNumber', caseSensitive: caseSensitive);
     });
   }
 
@@ -2139,6 +2321,13 @@ extension VendorDatabaseModelQueryProperty
   QueryBuilder<VendorDatabaseModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<VendorDatabaseModel, String, QQueryOperations>
+      addedByUserIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedByUserId');
     });
   }
 
@@ -2202,9 +2391,10 @@ extension VendorDatabaseModelQueryProperty
     });
   }
 
-  QueryBuilder<VendorDatabaseModel, String?, QQueryOperations> phoneProperty() {
+  QueryBuilder<VendorDatabaseModel, String?, QQueryOperations>
+      phoneNumberProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'phone');
+      return query.addPropertyName(r'phoneNumber');
     });
   }
 
