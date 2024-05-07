@@ -77,17 +77,17 @@ onEditCustomerSaveButtonPressed() async {
 }
 
 bool isCustomerEdited() {
-  CustomerDetailController customerDetailController =
-      CustomerDetailController.to;
+  CustomerDatabaseModel customerDatabaseModel =
+      CustomerDetailController.to.customerDatabaseModel;
   CustomerModel customerModel = EditCustomerController.to.customerModel;
-  return customerDetailController.customerDatabaseModel.name !=
+  return customerDatabaseModel.name !=
           customerModel.name.trim() ||
-      customerDetailController.customerDatabaseModel.phoneNumber !=
+      customerDatabaseModel.phoneNumber !=
           customerModel.phoneNumber?.trim() ||
-      customerDetailController.customerDatabaseModel.address !=
+      customerDatabaseModel.address !=
           nullIfEmpty(customerModel.address?.trim()) ||
-      customerDetailController.customerDatabaseModel.city !=
+      customerDatabaseModel.city !=
           nullIfEmpty(customerModel.city?.trim()) ||
-      customerDetailController.customerDatabaseModel.email !=
+      customerDatabaseModel.email !=
           nullIfEmpty(customerModel.email?.trim());
 }

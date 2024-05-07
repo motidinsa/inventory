@@ -4,6 +4,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
@@ -29,9 +30,7 @@ class EditCustomer extends StatelessWidget {
         if (editCustomerController.isLoading) {
           context.loaderOverlay.show();
         } else {
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            context.loaderOverlay.hide();
-          });
+         executeAfterBuild(() { context.loaderOverlay.hide();});
         }
         return BodyWrapper(
           pageName: editCustomerN,
@@ -49,7 +48,7 @@ class EditCustomer extends StatelessWidget {
                     ),
                     shrinkWrap: true,
                     itemCount: titleList.length,
-                    separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                    separatorBuilder: (ctx, index) => SizedBox(height: 15),
                   ),
                 ),
                 const ActionButton(),

@@ -41,7 +41,7 @@ class EditCustomerRepository {
           email: nullIfEmpty(customerDatabaseModel.email),
           dateCreated: now,
           customerId: customerDatabaseModel.customerId,
-          addedByUserId: AppController.to.userId.value,
+          addedByUserId: customerDatabaseModel.addedByUserId,
           lastModifiedByUserId: AppController.to.userId.value,
           lastModifiedDate: now,
           objectId: objectId,

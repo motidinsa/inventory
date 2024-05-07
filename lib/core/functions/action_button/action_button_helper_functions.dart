@@ -9,7 +9,7 @@ String getActionButtonText({String? redirectFrom}) {
   if (redirectFrom == null) {
     if (currentRoute == RouteName.signUp) {
       actionButtonText = signUpN;
-    } else if (currentRoute == RouteName.customerDetail) {
+    } else if ([RouteName.customerDetail,RouteName.vendorDetail].contains(currentRoute)) {
       actionButtonText = deleteN;
     }
   } else {}
@@ -20,7 +20,7 @@ String getActionButtonText({String? redirectFrom}) {
 Color? getActionButtonTextColor() {
   String currentRoute = Get.currentRoute;
   Color? color;
-  if (currentRoute == RouteName.customerDetail) {
+  if ([RouteName.customerDetail,RouteName.vendorDetail].contains(currentRoute)) {
     color = Colors.white;
   }
 

@@ -14,7 +14,7 @@ validateInput({
     quantityN,
     purchaseN,
     salesN,
-    customerNameN,
+    customerNameN,vendorNameN,
     fromN,
     toN,
     companyNameN,

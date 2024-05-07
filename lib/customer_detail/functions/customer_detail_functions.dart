@@ -30,6 +30,3 @@ deleteCustomer() async {
     Get.back();
   }
 }
-// double getCustomerCredit(){
-//
-// }

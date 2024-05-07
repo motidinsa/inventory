@@ -17,8 +17,7 @@ import 'package:my_inventory/core/functions/core_functions.dart';
 class ProfileDetail extends StatelessWidget {
   ProfileDetail({super.key});
 
-  final CustomerDetailController customerDetailController =
-      CustomerDetailController.to;
+  final bool customerWithCredit = customerHasCredit();
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,11 @@ class ProfileDetail extends StatelessWidget {
         sizedBox(height: 20),
         ShadowedContainer(
           horizontalMargin: 20,
-          padding:
-              const EdgeInsets.only(bottom: 20, left: 20, right: 20, top: 10),
+          padding: EdgeInsets.only(
+              bottom: customerWithCredit ? 0 : 20,
+              left: 20,
+              right: 20,
+              top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -77,7 +79,7 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ],
               ),
-              if (customerDetailController.customerCredit > 0) ...[
+              if (customerWithCredit) ...[
                 const SizedBox(
                   height: 5,
                 ),
@@ -145,15 +147,16 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              if (customerDetailController.customerCredit > 0)
+              if (customerWithCredit)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(RouteName.creditHistory);
                     },
                     style: ElevatedButton.styleFrom(
                         shape: smoothRectangleBorder(radius: 12),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         backgroundColor: Colors.green.shade50),
                     child: const Text(showCreditHistoryN),
                   ),

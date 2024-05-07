@@ -51,6 +51,8 @@ onTextFieldChange({
     onAddVendorTextFieldChange(data: data, title: title!);
   }else if (currentRoute == RouteName.vendorList) {
     onVendorListTextFieldChange(data: data);
+  }else if (currentRoute == RouteName.editVendor) {
+    onEditVendorTextFieldChange(data: data, title: title!);
   }
 }
 
@@ -88,8 +90,6 @@ onFocusChange({
       onEditProductFocusChange(title: title, data: data);
     } else if (currentRoute == editCustomerN) {
       // onEditCustomerFocusChange(title: title, data: data);
-    } else if (currentRoute == editVendorN) {
-      onEditVendorFocusChange(title: title, data: data);
     }
   }
 }
