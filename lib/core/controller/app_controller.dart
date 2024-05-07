@@ -8,7 +8,8 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  var userId = ''.obs;
+  var userId = 'mo'.obs;
+  String companyId = 'XYZ';
   List<String> currentRoutes = [];
   var key = GlobalKey<ScaffoldState>();
   static AppController get to => Get.find();
@@ -16,7 +17,6 @@ class AppController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    currentRoutes.add('Homepage');
     final Isar isar = Get.find();
     final uomLength = isar.unitOfMeasurementDatabaseModels.countSync();
     if (uomLength == 0) {

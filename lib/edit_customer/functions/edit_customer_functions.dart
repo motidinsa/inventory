@@ -83,7 +83,7 @@ bool isCustomerEdited() {
   return customerDatabaseModel.name !=
           customerModel.name.trim() ||
       customerDatabaseModel.phoneNumber !=
-          customerModel.phoneNumber?.trim() ||
+          nullIfEmpty(customerModel.phoneNumber?.trim()) ||
       customerDatabaseModel.address !=
           nullIfEmpty(customerModel.address?.trim()) ||
       customerDatabaseModel.city !=

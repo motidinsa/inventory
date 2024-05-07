@@ -13,32 +13,43 @@ class AddCustomerRepository {
   static final Isar _isar = Get.find();
 
   static addCustomer() async {
-    CustomerModel customerDetail = AddCustomerController.to.customerModel;
+    CustomerModel customerModel = AddCustomerController.to.customerModel;
     DateTime now = DateTime.now();
     String customerId = generateDatabaseId(time: now);
+    String name = customerModel.name.trim();
+    String? phoneNumber = nullIfEmpty(customerModel.phoneNumber?.trim());
+    String? address = nullIfEmpty(customerModel.address?.trim());
+    String? city = nullIfEmpty(customerModel.city?.trim());
+    String? email = nullIfEmpty(customerModel.email?.trim());
+    String addedByUserId = AppController.to.userId.value;
+    String companyId = AppController.to.companyId;
+
     final CustomerDatabaseModel customerDatabaseModel = CustomerDatabaseModel(
-      name: customerDetail.name.trim(),
-      phoneNumber: nullIfEmpty(customerDetail.phoneNumber?.trim()),
-      address: nullIfEmpty(customerDetail.address?.trim()),
-      city: nullIfEmpty(customerDetail.city?.trim()),
-      email: nullIfEmpty(customerDetail.email?.trim()),
+      name: name,
+      phoneNumber: phoneNumber,
+      address: address,
+      city: city,
+      email: email,
       dateCreated: now,
       customerId: customerId,
-      addedByUserId: AppController.to.userId.value,
+      addedByUserId: addedByUserId,
+      companyId: companyId,
     );
     await _isar.writeTxn(() async {
       await _isar.customerDatabaseModels.put(customerDatabaseModel);
       await _isar.logCustomerDatabaseModels.put(
         LogCustomerDatabaseModel(
-            name: customerDetail.name.trim(),
-            phoneNumber: nullIfEmpty(customerDetail.phoneNumber?.trim()),
-            address: nullIfEmpty(customerDetail.address?.trim()),
-            city: nullIfEmpty(customerDetail.city?.trim()),
-            email: nullIfEmpty(customerDetail.email?.trim()),
-            dateCreated: now,
-            customerId: customerId,
-            addedByUserId: AppController.to.userId.value,
-            objectId: customerId),
+          name: name,
+          phoneNumber: phoneNumber,
+          address: address,
+          city: city,
+          email: email,
+          dateCreated: now,
+          customerId: customerId,
+          addedByUserId: AppController.to.userId.value,
+          companyId: companyId,
+          objectId: customerId,
+        ),
       );
     });
   }

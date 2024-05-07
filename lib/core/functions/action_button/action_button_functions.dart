@@ -34,7 +34,7 @@ onActionButtonPressed({String? redirectFrom}) async {
 
   if (redirectFrom == productDetailN) {
     deleteProduct();
-  }  else if (redirectFrom == vendorDetailN) {
+  } else if (redirectFrom == vendorDetailN) {
     deleteVendor();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
@@ -108,7 +108,8 @@ onActionButtonPressed({String? redirectFrom}) async {
     }
   } else if (currentRoute == RouteName.signUp) {
     onSignupButtonPressed();
-  }else if (currentRoute == RouteName.customerDetail) {
+  } else if ([RouteName.customerDetail, RouteName.vendorDetail]
+      .contains(currentRoute)) {
     showAlertDialogConfirmation();
   } else if (AppController.to.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN) {
@@ -123,18 +124,17 @@ onActionButtonPressed({String? redirectFrom}) async {
     } else if (redirectFrom == editProductN) {
       EditProductController editProductController = Get.find();
       editProductController.onEditProductSaveButtonPressed();
-    }  else if (redirectFrom == dateSelectN) {
+    } else if (redirectFrom == dateSelectN) {
       onFilterSelect();
-    }
-    else if (currentRoute == RouteName.addCustomer) {
+    } else if (currentRoute == RouteName.addCustomer) {
       onAddCustomerSaveButtonPressed();
     } else if (currentRoute == RouteName.editCustomer) {
       onEditCustomerSaveButtonPressed();
-    }else if (currentRoute == RouteName.addVendor) {
+    } else if (currentRoute == RouteName.addVendor) {
       onAddVendorSaveButtonPressed();
     } else if (currentRoute == RouteName.editCustomer) {
       onEditCustomerSaveButtonPressed();
-    }else if (currentRoute == RouteName.editVendor) {
+    } else if (currentRoute == RouteName.editVendor) {
       onEditVendorSaveButtonPressed();
     }
     // Get.back();

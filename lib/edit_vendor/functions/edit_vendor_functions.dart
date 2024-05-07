@@ -92,8 +92,10 @@ bool isVendorEdited() {
       VendorDetailController.to.vendorDatabaseModel;
   VendorModel vendorModel = EditVendorController.to.vendorModel;
   return vendorDatabaseModel.name != vendorModel.name.trim() ||
-      vendorDatabaseModel.phoneNumber != vendorModel.phoneNumber?.trim() ||
-      vendorDatabaseModel.contactPerson != vendorModel.contactPerson?.trim() ||
+      vendorDatabaseModel.phoneNumber !=
+          nullIfEmpty(vendorModel.phoneNumber?.trim()) ||
+      vendorDatabaseModel.contactPerson !=
+          nullIfEmpty(vendorModel.contactPerson?.trim()) ||
       vendorDatabaseModel.address != nullIfEmpty(vendorModel.address?.trim()) ||
       vendorDatabaseModel.city != nullIfEmpty(vendorModel.city?.trim()) ||
       vendorDatabaseModel.email != nullIfEmpty(vendorModel.email?.trim());

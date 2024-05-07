@@ -8,6 +8,7 @@ class LogCustomerDatabaseModel {
   String  objectId ;
   String name;
   String customerId;
+  String companyId;
   String addedByUserId;
   String? phoneNumber;
   String? address;
@@ -22,6 +23,7 @@ class LogCustomerDatabaseModel {
     required this.objectId,
     required this.name,
     required this.customerId,
+    required this.companyId,
     required this.addedByUserId,
     this.phoneNumber,
     this.address,

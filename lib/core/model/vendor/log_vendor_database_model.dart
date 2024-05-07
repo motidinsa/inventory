@@ -9,6 +9,7 @@ class LogVendorDatabaseModel {
   String name;
   String vendorId;
   String addedByUserId;
+  String companyId;
   String? phoneNumber;
   String? contactPerson;
   String? address;
@@ -23,6 +24,7 @@ class LogVendorDatabaseModel {
     required this.objectId,
     required this.name,
     required this.vendorId,
+    required this.companyId,
     required this.addedByUserId,
     this.phoneNumber,
     this.contactPerson,

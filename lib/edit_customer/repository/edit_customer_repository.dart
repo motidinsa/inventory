@@ -22,27 +22,35 @@ class EditCustomerRepository {
     String objectId = generateDatabaseId(time: now);
 
     await _isar.writeTxn(() async {
-      customerDatabaseModel.name = customerModel.name;
-      customerDatabaseModel.phoneNumber =
-          nullIfEmpty(customerModel.phoneNumber);
-      customerDatabaseModel.address = nullIfEmpty(customerModel.address);
-      customerDatabaseModel.city = nullIfEmpty(customerModel.city);
-      customerDatabaseModel.email = nullIfEmpty(customerModel.email);
-      customerDatabaseModel.lastModifiedByUserId =
-          AppController.to.userId.value;
+      String name = customerModel.name.trim();
+      String? phoneNumber = nullIfEmpty(customerModel.phoneNumber?.trim());
+      String? address = nullIfEmpty(customerModel.address?.trim());
+      String? city = nullIfEmpty(customerModel.city?.trim());
+      String? email = nullIfEmpty(customerModel.email?.trim());
+      String lastModifiedByUserId = AppController.to.userId.value;
+      String companyId = AppController.to.companyId;
+
+      customerDatabaseModel.name = name;
+      customerDatabaseModel.phoneNumber = phoneNumber;
+      customerDatabaseModel.address = address;
+      customerDatabaseModel.city = city;
+      customerDatabaseModel.email = email;
+      customerDatabaseModel.lastModifiedByUserId = lastModifiedByUserId;
       customerDatabaseModel.lastModifiedDate = now;
+
       await _isar.customerDatabaseModels.put(customerDatabaseModel);
       await _isar.logCustomerDatabaseModels.put(
         LogCustomerDatabaseModel(
-          name: customerDatabaseModel.name,
-          phoneNumber: nullIfEmpty(customerDatabaseModel.phoneNumber),
-          address: nullIfEmpty(customerDatabaseModel.address),
-          city: nullIfEmpty(customerDatabaseModel.city),
-          email: nullIfEmpty(customerDatabaseModel.email),
+          name: name,
+          phoneNumber: phoneNumber,
+          address: address,
+          city: city,
+          email: email,
           dateCreated: now,
           customerId: customerDatabaseModel.customerId,
           addedByUserId: customerDatabaseModel.addedByUserId,
-          lastModifiedByUserId: AppController.to.userId.value,
+          companyId: companyId,
+          lastModifiedByUserId: lastModifiedByUserId,
           lastModifiedDate: now,
           objectId: objectId,
         ),

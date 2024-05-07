@@ -7,6 +7,7 @@ class VendorDatabaseModel {
   Id id = Isar.autoIncrement;
   String name;
   String vendorId;
+  String companyId;
   String addedByUserId;
   String? phoneNumber;
   String? address;
@@ -21,6 +22,7 @@ class VendorDatabaseModel {
   VendorDatabaseModel({
     required this.name,
     required this.vendorId,
+    required this.companyId,
     required this.addedByUserId,
     this.phoneNumber,
     this.address,

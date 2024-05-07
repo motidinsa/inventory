@@ -28,29 +28,38 @@ class EditVendorRepository {
     String objectId = generateDatabaseId(time: now);
 
     await _isar.writeTxn(() async {
-      vendorDatabaseModel.name = vendorModel.name;
-      vendorDatabaseModel.phoneNumber =
-          nullIfEmpty(vendorModel.phoneNumber);  vendorDatabaseModel.contactPerson =
-          nullIfEmpty(vendorModel.contactPerson);
-      vendorDatabaseModel.address = nullIfEmpty(vendorModel.address);
-      vendorDatabaseModel.city = nullIfEmpty(vendorModel.city);
-      vendorDatabaseModel.email = nullIfEmpty(vendorModel.email);
-      vendorDatabaseModel.lastModifiedByUserId =
-          AppController.to.userId.value;
+      String name = vendorModel.name.trim();
+      String? phoneNumber = nullIfEmpty(vendorModel.phoneNumber?.trim());
+      String? contactPerson = nullIfEmpty(vendorModel.contactPerson?.trim());
+      String? address = nullIfEmpty(vendorModel.address?.trim());
+      String? city = nullIfEmpty(vendorModel.city?.trim());
+      String? email = nullIfEmpty(vendorModel.email?.trim());
+      String lastModifiedByUserId = AppController.to.userId.value;
+      String companyId = AppController.to.companyId;
+
+      vendorDatabaseModel.name = name;
+      vendorDatabaseModel.phoneNumber = phoneNumber;
+      vendorDatabaseModel.contactPerson = contactPerson;
+      vendorDatabaseModel.address = address;
+      vendorDatabaseModel.city = city;
+      vendorDatabaseModel.email = email;
+      vendorDatabaseModel.lastModifiedByUserId = lastModifiedByUserId;
       vendorDatabaseModel.lastModifiedDate = now;
+
       await _isar.vendorDatabaseModels.put(vendorDatabaseModel);
       await _isar.logVendorDatabaseModels.put(
         LogVendorDatabaseModel(
-          name: vendorDatabaseModel.name,
-          phoneNumber: nullIfEmpty(vendorDatabaseModel.phoneNumber),
-          contactPerson: nullIfEmpty(vendorDatabaseModel.contactPerson),
-          address: nullIfEmpty(vendorDatabaseModel.address),
-          city: nullIfEmpty(vendorDatabaseModel.city),
-          email: nullIfEmpty(vendorDatabaseModel.email),
+          name: name,
+          phoneNumber: phoneNumber,
+          contactPerson: contactPerson,
+          address: address,
+          city: city,
+          email: email,
           dateCreated: now,
           vendorId: vendorDatabaseModel.vendorId,
           addedByUserId: vendorDatabaseModel.addedByUserId,
-          lastModifiedByUserId: AppController.to.userId.value,
+          companyId: companyId,
+          lastModifiedByUserId: lastModifiedByUserId,
           lastModifiedDate: now,
           objectId: objectId,
         ),

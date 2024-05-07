@@ -20,6 +20,8 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
 
+import '../../../vendor_detail/controller/vendor_detail_controller.dart';
+import '../../../vendor_detail/functions/vendor_detail_functions.dart';
 
 onAlertDialogOptionSelect(
     {required String title,
@@ -38,7 +40,7 @@ onAlertDialogOptionSelect(
         title: title, data: data, isarId: isarId);
   } else if (currentRoute == RouteName.purchase) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex, isarId: isarId,title: title);
+        listIndex: listIndex, isarId: isarId, title: title);
   }
 }
 
@@ -119,7 +121,8 @@ getAlertDialogOptionId({required int index, required String title}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return onSalesAlertDialogOption(title: title, index: index);
-  }if (currentRoute == RouteName.purchase) {
+  }
+  if (currentRoute == RouteName.purchase) {
     return onPurchaseAlertDialogOption(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();
@@ -150,23 +153,27 @@ getEmptyMessage({required String title}) {
     return noUomAvailableSN;
   } else if (title == searchVendorsN) {
     return noVendorAvailableSN;
-  }else if (title == searchProductsN) {
+  } else if (title == searchProductsN) {
     return noProductAvailableSN;
   }
 }
-String getAlertDialogConfirmationMessage(){
+
+String getAlertDialogConfirmationMessage() {
   String currentRoute = Get.currentRoute;
-  String message = '';
   String tobeDeletedName = '';
-  if(currentRoute == RouteName.customerDetail){
-    tobeDeletedName = Get.find<CustomerDetailController>().customerDatabaseModel.name;
-    message = '$areYouSureYouWantToDeleteN $tobeDeletedName?';
-  }return message;
+  if (currentRoute == RouteName.customerDetail) {
+    tobeDeletedName = CustomerDetailController.to.customerDatabaseModel.name;
+  } else if (currentRoute == RouteName.vendorDetail) {
+    tobeDeletedName = VendorDetailController.to.vendorDatabaseModel.name;
+  }
+  return '$areYouSureYouWantToDeleteN $tobeDeletedName?';
 }
 
-onAlertDialogDeleteButtonPressed(){
+onAlertDialogDeleteButtonPressed() {
   String currentRoute = Get.currentRoute;
-  if(currentRoute == RouteName.customerDetail){
+  if (currentRoute == RouteName.customerDetail) {
     deleteCustomer();
+  }else  if (currentRoute == RouteName.vendorDetail) {
+    deleteVendor();
   }
 }

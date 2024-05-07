@@ -33,48 +33,53 @@ const LogCustomerDatabaseModelSchema = CollectionSchema(
       name: r'city',
       type: IsarType.string,
     ),
-    r'customerId': PropertySchema(
+    r'companyId': PropertySchema(
       id: 3,
+      name: r'companyId',
+      type: IsarType.string,
+    ),
+    r'customerId': PropertySchema(
+      id: 4,
       name: r'customerId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'email': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'email',
       type: IsarType.string,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'lastModifiedDate': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'lastModifiedDate',
       type: IsarType.dateTime,
     ),
     r'name': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'name',
       type: IsarType.string,
     ),
     r'objectId': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'objectId',
       type: IsarType.string,
     ),
     r'phoneNumber': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'phoneNumber',
       type: IsarType.string,
     )
@@ -112,6 +117,7 @@ int _logCustomerDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  bytesCount += 3 + object.companyId.length * 3;
   bytesCount += 3 + object.customerId.length * 3;
   {
     final value = object.email;
@@ -145,15 +151,16 @@ void _logCustomerDatabaseModelSerialize(
   writer.writeString(offsets[0], object.addedByUserId);
   writer.writeString(offsets[1], object.address);
   writer.writeString(offsets[2], object.city);
-  writer.writeString(offsets[3], object.customerId);
-  writer.writeDateTime(offsets[4], object.dateCreated);
-  writer.writeString(offsets[5], object.email);
-  writer.writeBool(offsets[6], object.isAppWriteSynced);
-  writer.writeString(offsets[7], object.lastModifiedByUserId);
-  writer.writeDateTime(offsets[8], object.lastModifiedDate);
-  writer.writeString(offsets[9], object.name);
-  writer.writeString(offsets[10], object.objectId);
-  writer.writeString(offsets[11], object.phoneNumber);
+  writer.writeString(offsets[3], object.companyId);
+  writer.writeString(offsets[4], object.customerId);
+  writer.writeDateTime(offsets[5], object.dateCreated);
+  writer.writeString(offsets[6], object.email);
+  writer.writeBool(offsets[7], object.isAppWriteSynced);
+  writer.writeString(offsets[8], object.lastModifiedByUserId);
+  writer.writeDateTime(offsets[9], object.lastModifiedDate);
+  writer.writeString(offsets[10], object.name);
+  writer.writeString(offsets[11], object.objectId);
+  writer.writeString(offsets[12], object.phoneNumber);
 }
 
 LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
@@ -166,15 +173,16 @@ LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
     addedByUserId: reader.readString(offsets[0]),
     address: reader.readStringOrNull(offsets[1]),
     city: reader.readStringOrNull(offsets[2]),
-    customerId: reader.readString(offsets[3]),
-    dateCreated: reader.readDateTime(offsets[4]),
-    email: reader.readStringOrNull(offsets[5]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[6]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
-    lastModifiedDate: reader.readDateTimeOrNull(offsets[8]),
-    name: reader.readString(offsets[9]),
-    objectId: reader.readString(offsets[10]),
-    phoneNumber: reader.readStringOrNull(offsets[11]),
+    companyId: reader.readString(offsets[3]),
+    customerId: reader.readString(offsets[4]),
+    dateCreated: reader.readDateTime(offsets[5]),
+    email: reader.readStringOrNull(offsets[6]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[7]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[8]),
+    lastModifiedDate: reader.readDateTimeOrNull(offsets[9]),
+    name: reader.readString(offsets[10]),
+    objectId: reader.readString(offsets[11]),
+    phoneNumber: reader.readStringOrNull(offsets[12]),
   );
   object.id = id;
   return object;
@@ -196,20 +204,22 @@ P _logCustomerDatabaseModelDeserializeProp<P>(
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
-      return (reader.readDateTime(offset)) as P;
-    case 5:
-      return (reader.readStringOrNull(offset)) as P;
-    case 6:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 7:
-      return (reader.readStringOrNull(offset)) as P;
-    case 8:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 9:
       return (reader.readString(offset)) as P;
+    case 5:
+      return (reader.readDateTime(offset)) as P;
+    case 6:
+      return (reader.readStringOrNull(offset)) as P;
+    case 7:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 8:
+      return (reader.readStringOrNull(offset)) as P;
+    case 9:
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
+      return (reader.readString(offset)) as P;
+    case 12:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -758,6 +768,144 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'city',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'companyId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+          QAfterFilterCondition>
+      companyIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+          QAfterFilterCondition>
+      companyIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'companyId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> companyIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'companyId',
         value: '',
       ));
     });
@@ -1911,6 +2059,20 @@ extension LogCustomerDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      sortByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      sortByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       sortByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
@@ -2082,6 +2244,20 @@ extension LogCustomerDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      thenByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
+      thenByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QAfterSortBy>
       thenByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
@@ -2247,6 +2423,13 @@ extension LogCustomerDatabaseModelQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
+      distinctByCompanyId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'companyId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel, QDistinct>
       distinctByCustomerId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'customerId', caseSensitive: caseSensitive);
@@ -2337,6 +2520,13 @@ extension LogCustomerDatabaseModelQueryProperty on QueryBuilder<
       cityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'city');
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
+      companyIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'companyId');
     });
   }
 
