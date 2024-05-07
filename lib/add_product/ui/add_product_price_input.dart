@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import '../../core/ui/custom_text_field_2.dart';
+
 class AddProductPriceInput extends StatelessWidget {
   final String title;
 
@@ -18,9 +20,9 @@ class AddProductPriceInput extends StatelessWidget {
         // ),
         // sizedBox(width: 10),
         Expanded(
-          child: CustomTextField(
+          child: CustomTextField2(
             title: title,
-            labelText: title,
+            // labelText: title,
           ),
         ),
       ],

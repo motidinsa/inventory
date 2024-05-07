@@ -8,6 +8,7 @@ class CategoryDatabaseModel {
   String categoryName;
   String categoryId;
   String createdByUserId;
+  String companyId;
   String? lastModifiedByUserId;
   DateTime dateCreated;
   DateTime? lastDateModified;
@@ -17,6 +18,7 @@ class CategoryDatabaseModel {
     required this.categoryName,
     required this.categoryId,
     required this.createdByUserId,
+    required this.companyId,
     this.lastModifiedByUserId,
     required this.dateCreated,
     this.lastDateModified,

@@ -240,7 +240,7 @@ onAddIconPressed({String? type}) {
         type: type!,
       ),
     ).then((value) {
-      RxList? itemList;
+      List? itemList;
       if (currentRoute == RouteName.addProduct) {
         AddProductController addProductController = Get.find();
         if (type == selectCategoryN) {
@@ -270,7 +270,7 @@ onAddImagePressed({int? id}) {
   if (id != null) {
     ProductListController.to.selectedId = id;
   }
-  Get.dialog(const AlertDialogOptionSelect(
+  Get.dialog( AlertDialogOptionSelect(
     title: selectSourceN,
   )).then((value) => unFocus());
 }
@@ -290,9 +290,8 @@ onImageSourceButtonPressed({
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.addProduct) {
       AddProductController addProductController = Get.find();
-      addProductController.productInfo.update((val) async {
-        val?.localImagePath = value?.path;
-      });
+      addProductController.productModel.localImagePath= value?.path;
+
     } else if (currentRoute == RouteName.editProduct) {
       EditProductController editProductController = Get.find();
       editProductController.productInfo.update((val) async {

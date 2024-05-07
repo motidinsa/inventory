@@ -7,20 +7,24 @@ class LogCategoryDatabaseModel {
   Id id = Isar.autoIncrement;
   String categoryName;
   String categoryId;
+  String objectId;
   String createdByUserId;
-  String modifiedByUserId;
+  String companyId;
+  String? modifiedByUserId;
   DateTime dateCreated;
-  DateTime dateModified;
+  DateTime? dateModified;
   bool? isAppWriteSynced;
   String addedFrom;
 
   LogCategoryDatabaseModel({
     required this.categoryName,
     required this.categoryId,
+    required this.objectId,
     required this.createdByUserId,
-    required this.modifiedByUserId,
+    required this.companyId,
+    this.modifiedByUserId,
     required this.dateCreated,
-    required this.dateModified,
+    this.dateModified,
     this.isAppWriteSynced,
     required this.addedFrom,
   });

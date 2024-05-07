@@ -36,7 +36,7 @@ onTextFieldChange({
   } else if (currentRoute == RouteName.editCustomer) {
     onEditCustomerTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.addProduct) {
-    onAddProductTextFieldChange(data: data, index: index, title: title);
+    onAddProductTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == RouteName.purchase) {
@@ -56,19 +56,19 @@ onTextFieldChange({
   }
 }
 
-onTextFieldPressed({String? title, int? index}) {
+onTextFieldPressed({required String title, int? index}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addProduct) {
-    onAddProductTextFieldPressed(title: title!);
+    onAddProductTextFieldPressed(title: title);
   } else if (currentRoute == RouteName.editProduct) {
-    onEditProductTextFieldPressed(title: title!);
+    onEditProductTextFieldPressed(title: title);
   } else if (currentRoute == RouteName.sales) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentRoute == RouteName.purchase) {
     onPurchaseProductSelect(title: title, index: index);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {
-    onReportFilterSelect(title: title!);
+    onReportFilterSelect(title: title);
   }
 }
 
@@ -78,7 +78,6 @@ onFocusChange({
   required String data,
 }) {
   if (!hasFocus) {
-    final AppController appController = Get.find();
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.addProduct) {
       onAddProductFocusChange(title: title, data: data);

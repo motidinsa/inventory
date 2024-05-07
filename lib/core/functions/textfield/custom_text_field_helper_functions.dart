@@ -45,8 +45,24 @@ String? titleToHint({String? title}) {
   return value;
 }
 
-EdgeInsetsGeometry? getTextFieldPadding() {
-  return null;
+EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
+  EdgeInsetsGeometry? padding;
+  if ([
+    productN,
+    descriptionN,
+    categoryN,
+    productIdN,
+    costN,
+    uomSN,
+    quantityOnHandN,
+    reorderQuantityN,
+    imageN,
+    costN,
+    priceN,categoryNameN
+  ].contains(title)) {
+    padding = EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
+  }
+  return padding;
 }
 
 bool hasOptionItems({String? title}) {
@@ -148,7 +164,7 @@ String getSuffixText() {
   String suffixText = '';
   if (currentRoute == RouteName.addProduct) {
     suffixText =
-        AddProductController.to.productInfo.value.unitOfMeasurementName;
+        AddProductController.to.productModel.unitOfMeasurementName;
   } else if (currentRoute == RouteName.editProduct) {
     suffixText =
         EditProductController.to.productInfo.value.unitOfMeasurementName;

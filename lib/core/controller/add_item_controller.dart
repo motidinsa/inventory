@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AddItemController extends GetxController {
-  var addedText = ''.obs;
+  String addedText = '';
   final formKey = GlobalKey<FormState>();
+
+  static AddItemController get to => Get.find();
 }

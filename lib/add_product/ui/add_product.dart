@@ -12,6 +12,9 @@ import 'package:my_inventory/core/ui/add_image/add_product_image.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
+import 'package:my_inventory/core/ui/shadowed_container.dart';
+
+import '../../core/ui/custom_text_field_2.dart';
 
 class AddProduct extends StatelessWidget {
   AddProduct({super.key});
@@ -19,83 +22,62 @@ class AddProduct extends StatelessWidget {
   final List<String> titleList = [
     productN,
     descriptionN,
-    imageN,
     categoryN,
     productIdN,
     costN,
+    uomSN,
     quantityOnHandN,
     reorderQuantityN,
-    uomSN
+    imageN,
   ];
-
-  final AddProductController addProductController =
-      Get.put(AddProductController());
-
-  // final AppController appController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return LoaderOverlay(
-      useDefaultLoading: false,
-      overlayWidgetBuilder: (_) {
-        return const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
-          ),
-        );
-      },
-      child: BodyWrapper(
-        pageName: addProductN,
-        body: Form(
-          key: AppController.to.formKey,
-          child: ListView(
-            children: [
-              sizedBox(height: 20),
-              GetBuilder<AddProductController>(builder: (context) {
-                return ElevatedCard(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => [0, 1,4].contains(index)
-                        ? CustomTextField(
-                            title: titleList[index],
-                            labelText: titleList[index],
-                          )
-                        : index == 2
-                            ? const AddProductImage(
-                                currentRoute: addProductN,
-                              )
-                            : index == 5
-                                ? Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Expanded(
-                                        child: AddProductPriceInput(
-                                          title: costN,
-                                        ),
-                                      ),
-                                      sizedBox(width: 20),
-                                      const Expanded(
-                                        child: AddProductPriceInput(
-                                          title: priceN,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : AddProductTitleWithTextField(
-                                    title: titleList[index],
-                                    currentRoute: addProductN,
-                                  ),
-                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
-                    itemCount: titleList.length,
-                  ),
-                );
-              }),
-              const ActionButton(
-                redirectFrom: addProductN,
-              ),
-            ],
-          ),
+    return BodyWrapper(
+      pageName: addProductN,
+      body: Form(
+        key: AppController.to.formKey,
+        child: ListView(
+          children: [
+            SizedBox(height: 20),
+            GetBuilder<AddProductController>(builder: (context) {
+
+              return ShadowedContainer(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (ctx, index) => index == 4
+                      ? Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Expanded(
+                              child: CustomTextField2(
+                                title: costN,
+                                // labelText: title,
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            const Expanded(
+                              child: CustomTextField2(
+                                title: priceN,
+                                // labelText: title,
+                              ),
+                            ),
+                          ],
+                        )
+                      : index == 8
+                          ? const AddProductImage()
+                          : CustomTextField2(
+                              title: titleList[index],
+                              // labelText: titleList[index],
+                            ),
+                  separatorBuilder: (ctx, index) => sizedBox(height: 15),
+                  itemCount: titleList.length,
+                ),
+              );
+            }),
+            const ActionButton(),
+          ],
         ),
       ),
     );

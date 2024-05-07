@@ -9,9 +9,8 @@ import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 class AddProductImage extends StatelessWidget {
-  final String currentRoute;
 
-  const AddProductImage({super.key, required this.currentRoute});
+  const AddProductImage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +21,14 @@ class AddProductImage extends StatelessWidget {
           imageN.capitalizeFirst!,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontWeight: bold(), fontSize: 16, color: Colors.grey.shade800),
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: Colors.grey.shade700),
         ),
-        sizedBox(width: 40),
-        Obx(() {
-          if (getProductImagePath() != null) {
-            return Column(
+        SizedBox(width: 40),
+
+          if (getProductImagePath() != null)
+             Column(
               children: [
                 ClipRRect(
                   borderRadius: smoothBorderRadius(radius: 15),
@@ -57,20 +58,26 @@ class AddProductImage extends StatelessWidget {
                   ],
                 )
               ],
-            );
-          }
-          return ElevatedButton(
+            )
+
+          else ElevatedButton(
             onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
-              shape: smoothRectangleBorder(radius: 12),
-              padding: const EdgeInsets.all(16),
+              shape: smoothRectangleBorder(radius: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               backgroundColor: Colors.green.shade50,
             ),
-            child: const Column(
-              children: [Icon(Icons.add), Text('Add image')],
+            child: Column(
+              children: [
+                Icon(
+                  Icons.add,
+                ),
+                Text(
+                  addImageN,
+                )
+              ],
             ),
-          );
-        })
+          )
 
         // }),
       ],

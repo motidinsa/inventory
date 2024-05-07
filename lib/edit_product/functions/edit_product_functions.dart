@@ -30,7 +30,7 @@ onEditProductFocusChange({
       product?.reorderQuantity = data;
     } else if ([categoryNameN, uomNameN].contains(title)) {
       AddItemController addItemController = Get.find();
-      addItemController.addedText(data);
+      addItemController.addedText= data;
     }
   });
 }

@@ -28,28 +28,33 @@ const CategoryDatabaseModelSchema = CollectionSchema(
       name: r'categoryName',
       type: IsarType.string,
     ),
-    r'createdByUserId': PropertySchema(
+    r'companyId': PropertySchema(
       id: 2,
+      name: r'companyId',
+      type: IsarType.string,
+    ),
+    r'createdByUserId': PropertySchema(
+      id: 3,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     )
@@ -76,6 +81,7 @@ int _categoryDatabaseModelEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.categoryId.length * 3;
   bytesCount += 3 + object.categoryName.length * 3;
+  bytesCount += 3 + object.companyId.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
   {
     final value = object.lastModifiedByUserId;
@@ -94,11 +100,12 @@ void _categoryDatabaseModelSerialize(
 ) {
   writer.writeString(offsets[0], object.categoryId);
   writer.writeString(offsets[1], object.categoryName);
-  writer.writeString(offsets[2], object.createdByUserId);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeBool(offsets[4], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[5], object.lastDateModified);
-  writer.writeString(offsets[6], object.lastModifiedByUserId);
+  writer.writeString(offsets[2], object.companyId);
+  writer.writeString(offsets[3], object.createdByUserId);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeBool(offsets[5], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[6], object.lastDateModified);
+  writer.writeString(offsets[7], object.lastModifiedByUserId);
 }
 
 CategoryDatabaseModel _categoryDatabaseModelDeserialize(
@@ -110,11 +117,12 @@ CategoryDatabaseModel _categoryDatabaseModelDeserialize(
   final object = CategoryDatabaseModel(
     categoryId: reader.readString(offsets[0]),
     categoryName: reader.readString(offsets[1]),
-    createdByUserId: reader.readString(offsets[2]),
-    dateCreated: reader.readDateTime(offsets[3]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[5]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
+    companyId: reader.readString(offsets[2]),
+    createdByUserId: reader.readString(offsets[3]),
+    dateCreated: reader.readDateTime(offsets[4]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
   );
   object.id = id;
   return object;
@@ -134,12 +142,14 @@ P _categoryDatabaseModelDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 5:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 6:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 7:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -514,6 +524,144 @@ extension CategoryDatabaseModelQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'categoryName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'companyId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+          QAfterFilterCondition>
+      companyIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+          QAfterFilterCondition>
+      companyIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'companyId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel,
+      QAfterFilterCondition> companyIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'companyId',
         value: '',
       ));
     });
@@ -1065,6 +1213,20 @@ extension CategoryDatabaseModelQuerySortBy
   }
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
+      sortByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
+      sortByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
       sortByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.asc);
@@ -1162,6 +1324,20 @@ extension CategoryDatabaseModelQuerySortThenBy
       thenByCategoryNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryName', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
+      thenByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QAfterSortBy>
+      thenByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
     });
   }
 
@@ -1267,6 +1443,13 @@ extension CategoryDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QDistinct>
+      distinctByCompanyId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'companyId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, CategoryDatabaseModel, QDistinct>
       distinctByCreatedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'createdByUserId',
@@ -1323,6 +1506,13 @@ extension CategoryDatabaseModelQueryProperty on QueryBuilder<
       categoryNameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'categoryName');
+    });
+  }
+
+  QueryBuilder<CategoryDatabaseModel, String, QQueryOperations>
+      companyIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'companyId');
     });
   }
 

@@ -45,7 +45,6 @@ List<GetPage> routes = [
     page: () => GetBuilder<AppController>(builder: (context) {
       return const Scaffold(drawer: MyDrawer(), body: Homepage());
     }),
-    // page: () => SignUp(),
   ),
   GetPage(
       name: RouteName.customerList,

@@ -12,29 +12,10 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/core/constants/database_constants.dart';
 
 class AddProductController extends GetxController {
-  var isLocalSaveLoading = false.obs;
+  var isLoading = false;
   var isSubmitButtonPressed = false.obs;
-  RxList<CategoryDatabaseModel> categoryListFoundResult = <CategoryDatabaseModel>[].obs;
-  RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
-  final AppController appController = Get.find();
 
-  static AddProductController get to => Get.find();
-
-  @override
-  void onInit() {
-    var defaultUnit = Get.find<Isar>().unitOfMeasurementDatabaseModels
-        .filter()
-        .nameEqualTo('Pcs')
-        .findFirstSync();
-    productInfo.update((val) {
-      val?.unitOfMeasurementId = defaultUnit!.uomId;
-      val?.unitOfMeasurementName = defaultUnit!.name;
-    });
-    appController.currentRoutes.add(addProductN);
-    super.onInit();
-  }
-
-  var productInfo = ProductModel(
+  ProductModel productModel = ProductModel(
     name: '',
     categoryId: '',
     categoryName: '',
@@ -45,54 +26,73 @@ class AddProductController extends GetxController {
     reorderQuantity: '',
     unitOfMeasurementId: '',
     unitOfMeasurementName: '',
-  ).obs;
+  );
+
+  List<CategoryDatabaseModel> categoryListFoundResult = [];
+  List<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = [];
+  final AppController appController = Get.find();
+
+  static AddProductController get to => Get.find();
+
+  @override
+  void onInit() {
+    var defaultUnit = Get.find<Isar>().unitOfMeasurementDatabaseModels
+        .filter()
+        .nameEqualTo('Pcs')
+        .findFirstSync();
+    // productInfo.update((val) {
+    //   val?.unitOfMeasurementId = defaultUnit!.uomId;
+    //   val?.unitOfMeasurementName = defaultUnit!.name;
+    // });
+    super.onInit();
+  }
 
   onAddProductSaveButtonPressed() async {
-    Isar isar = Get.find();
-    isLocalSaveLoading(true);
-    DateTime now = DateTime.now();
-    final dbProduct = ProductDatabaseModel(
-      productName: productInfo.value.name,
-      description: nullIfEmpty(productInfo.value.description),
-      categoryId: nullIfEmpty(productInfo.value.categoryId),
-      cost: getValidNumValue(productInfo.value.cost),
-      price: getValidNumValue(productInfo.value.price),
-      createdByUserId: appController.userId.value,
-      dateCreated: now,
-      quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-      reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-      unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-      localImagePath: productInfo.value.localImagePath,
-      userAssignedProductId:
-          nullIfEmpty(productInfo.value.userAssignedProductId),
-      productId: generateDatabaseId(time: now),
-    );
-
-    final logDbProduct = LogProductDatabaseModel(
-      productName: productInfo.value.name,
-      description: nullIfEmpty(productInfo.value.description),
-      categoryId: nullIfEmpty(productInfo.value.categoryId),
-      cost: getValidNumValue(productInfo.value.cost),
-      price: getValidNumValue(productInfo.value.price),
-      createdByUserId: appController.userId.value,
-      dateCreated: now,
-      quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-      reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-      unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-      localImagePath: productInfo.value.localImagePath,
-      userAssignedProductId:
-          nullIfEmpty(productInfo.value.userAssignedProductId),
-      productId: generateDatabaseId(time: now),
-      dateModified: now,
-      modifiedByUserId: appController.userId.value,
-      addedFrom: addProductDC,
-    );
-
-    await isar.writeTxn(() async {
-      await isar.productDatabaseModels.put(dbProduct);
-      await isar.logProductDatabaseModels.put(logDbProduct);
-    });
-    isLocalSaveLoading(false);
-    Get.back();
+    // Isar isar = Get.find();
+    // isLocalSaveLoading(true);
+    // DateTime now = DateTime.now();
+    // final dbProduct = ProductDatabaseModel(
+    //   productName: productInfo.value.name,
+    //   description: nullIfEmpty(productInfo.value.description),
+    //   categoryId: nullIfEmpty(productInfo.value.categoryId),
+    //   cost: getValidNumValue(productInfo.value.cost),
+    //   price: getValidNumValue(productInfo.value.price),
+    //   createdByUserId: appController.userId.value,
+    //   dateCreated: now,
+    //   quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+    //   reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+    //   unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+    //   localImagePath: productInfo.value.localImagePath,
+    //   userAssignedProductId:
+    //       nullIfEmpty(productInfo.value.userAssignedProductId),
+    //   productId: generateDatabaseId(time: now),
+    // );
+    //
+    // final logDbProduct = LogProductDatabaseModel(
+    //   productName: productInfo.value.name,
+    //   description: nullIfEmpty(productInfo.value.description),
+    //   categoryId: nullIfEmpty(productInfo.value.categoryId),
+    //   cost: getValidNumValue(productInfo.value.cost),
+    //   price: getValidNumValue(productInfo.value.price),
+    //   createdByUserId: appController.userId.value,
+    //   dateCreated: now,
+    //   quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+    //   reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+    //   unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+    //   localImagePath: productInfo.value.localImagePath,
+    //   userAssignedProductId:
+    //       nullIfEmpty(productInfo.value.userAssignedProductId),
+    //   productId: generateDatabaseId(time: now),
+    //   dateModified: now,
+    //   modifiedByUserId: appController.userId.value,
+    //   addedFrom: addProductDC,
+    // );
+    //
+    // await isar.writeTxn(() async {
+    //   await isar.productDatabaseModels.put(dbProduct);
+    //   await isar.logProductDatabaseModels.put(logDbProduct);
+    // });
+    // isLocalSaveLoading(false);
+    // Get.back();
   }
 }

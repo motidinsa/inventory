@@ -11,10 +11,9 @@ import 'package:my_inventory/core/styles/styles.dart';
 
 class CustomTextField2 extends StatefulWidget {
   final String title;
-  final Color color;
+  final Color? color;
 
-  const CustomTextField2(
-      {super.key, required this.title, this.color = Colors.white70});
+  const CustomTextField2({super.key, required this.title, this.color});
 
   @override
   State<CustomTextField2> createState() => _CustomTextField2State();
@@ -23,10 +22,10 @@ class CustomTextField2 extends StatefulWidget {
 class _CustomTextField2State extends State<CustomTextField2> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
+
   @override
   void initState() {
-    if ([customerNameN, vendorNameN, productN]
-        .contains(widget.title) &&
+    if ([customerNameN, vendorNameN, productN,categoryNameN].contains(widget.title) &&
         ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
             .contains(Get.currentRoute)) {
       focusNode.requestFocus();
@@ -34,6 +33,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     executeAfterBuild(() {
@@ -44,16 +44,21 @@ class _CustomTextField2State extends State<CustomTextField2> {
       );
     });
     return TextFormField(
-      onTap: () {},
+
       textAlignVertical: TextAlignVertical.center,
       controller: textEditingController,
       focusNode: focusNode,
+      keyboardType: getKeyboardType(title: widget.title),
+      maxLines: widget.title == descriptionN ? 2 : 1,
+      readOnly: isReadOnlyTitle(title: widget.title),
       onChanged: (data) => onTextFieldChange(
         title: widget.title,
         data: data,
-      ),
+      ),onTap: () => onTextFieldPressed(
+      title: widget.title,
+    ),
       decoration: InputDecoration(
-          fillColor: widget.color,
+          fillColor: widget.color ?? Colors.green.shade50,
           filled: true,
           errorMaxLines: 2,
           border: UnderlineInputBorder(
@@ -61,9 +66,10 @@ class _CustomTextField2State extends State<CustomTextField2> {
             borderSide: BorderSide.none,
           ),
           prefixIcon: titleToIcon(title: widget.title),
+          suffixIcon: getSuffixWidget(title: widget.title),
           labelText: titleToLabel(title: widget.title),
-          floatingLabelStyle: TextStyle(color: Colors.green.shade800),
-          contentPadding:
+          floatingLabelStyle: TextStyle(color: Colors.green.shade900),
+          contentPadding: getTextFieldPadding(title: widget.title) ??
               const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
       validator: (value) => validateInput(
         data: textEditingController.text,

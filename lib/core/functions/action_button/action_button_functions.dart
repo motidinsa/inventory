@@ -27,6 +27,7 @@ import 'package:my_inventory/core/functions/report/report_functions.dart';
 
 import '../../../add_vendor/functions/add_vendor_functions.dart';
 import '../../../edit_vendor/functions/edit_vendor_functions.dart';
+import '../add_item_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
   final Isar isar = Get.find();
@@ -34,8 +35,6 @@ onActionButtonPressed({String? redirectFrom}) async {
 
   if (redirectFrom == productDetailN) {
     deleteProduct();
-  } else if (redirectFrom == vendorDetailN) {
-    deleteVendor();
   } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
     AddItemController addItemController = Get.find();
     if (addItemController.formKey.currentState!.validate()) {
@@ -44,45 +43,19 @@ onActionButtonPressed({String? redirectFrom}) async {
       DateTime now = DateTime.now();
       String id = generateDatabaseId(time: now);
       if (redirectFrom == categoryNameN) {
-        await isar.writeTxn(() async {
-          await isar.categoryDatabaseModels.put(CategoryDatabaseModel(
-            categoryName: addItemController.addedText.value,
-            dateCreated: now,
-            createdByUserId: appController.userId.value,
-            categoryId: id,
-          ));
-          await isar.logCategoryDatabaseModels.put(LogCategoryDatabaseModel(
-              categoryName: addItemController.addedText.value,
-              dateCreated: now,
-              createdByUserId: appController.userId.value,
-              categoryId: id,
-              dateModified: now,
-              modifiedByUserId: appController.userId.value,
-              addedFrom: currentRoute == RouteName.addProduct
-                  ? addProductDC
-                  : editProductDC));
-        });
-        if (currentRoute == RouteName.addProduct) {
-          AddProductController addProductController = Get.find();
-          addProductController.categoryListFoundResult(
-              isar.categoryDatabaseModels.where().findAllSync());
-        } else if (currentRoute == RouteName.editProduct) {
-          EditProductController editProductController = Get.find();
-          editProductController.categoryListFoundResult(
-              isar.categoryDatabaseModels.where().findAllSync());
-        }
+        onCategoryAddPressed();
       } else if (redirectFrom == uomNameN) {
         await isar.writeTxn(() async {
           await isar.unitOfMeasurementDatabaseModels
               .put(UnitOfMeasurementDatabaseModel(
-            name: addItemController.addedText.value,
+            name: addItemController.addedText,
             dateCreated: now,
             createdByUserId: appController.userId.value,
             uomId: id,
           ));
           await isar.logUnitOfMeasurementDatabaseModels.put(
               LogUnitOfMeasurementDatabaseModel(
-                  name: addItemController.addedText.value,
+                  name: addItemController.addedText,
                   dateCreated: now,
                   createdByUserId: appController.userId.value,
                   uomId: id,
@@ -94,8 +67,8 @@ onActionButtonPressed({String? redirectFrom}) async {
         });
         if (currentRoute == RouteName.addProduct) {
           AddProductController addProductController = Get.find();
-          addProductController.unitOfMeasurementListFoundResult(
-              isar.unitOfMeasurementDatabaseModels.where().findAllSync());
+          addProductController.unitOfMeasurementListFoundResult=
+              isar.unitOfMeasurementDatabaseModels.where().findAllSync();
         } else if (currentRoute == RouteName.editProduct) {
           EditProductController editProductController = Get.find();
           editProductController.unitOfMeasurementListFoundResult(
@@ -132,9 +105,7 @@ onActionButtonPressed({String? redirectFrom}) async {
       onEditCustomerSaveButtonPressed();
     } else if (currentRoute == RouteName.addVendor) {
       onAddVendorSaveButtonPressed();
-    } else if (currentRoute == RouteName.editCustomer) {
-      onEditCustomerSaveButtonPressed();
-    } else if (currentRoute == RouteName.editVendor) {
+    }else if (currentRoute == RouteName.editVendor) {
       onEditVendorSaveButtonPressed();
     }
     // Get.back();

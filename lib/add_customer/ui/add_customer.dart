@@ -53,7 +53,7 @@ class AddCustomer extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) => CustomTextField2(
                         title: titles[index],
-                        color: Colors.green.shade50,
+
                       ),
                       shrinkWrap: true,
                       itemCount: titles.length,

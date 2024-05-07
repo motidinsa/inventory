@@ -3,12 +3,13 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import '../../core/ui/custom_text_field_2.dart';
+
 class AddProductTitleWithTextField extends StatelessWidget {
   final String title;
-  final String currentRoute;
 
   AddProductTitleWithTextField(
-      {super.key, required this.title, required this.currentRoute});
+      {super.key, required this.title});
 
   final List<String> readOnlyItems = [categoryN, uomSN];
   final List<String> suffixItems = [quantityOnHandN, reorderQuantityN];
@@ -32,7 +33,7 @@ class AddProductTitleWithTextField extends StatelessWidget {
         sizedBox(width: 5),
         Expanded(
           child: Center(
-            child: CustomTextField(
+            child: CustomTextField2(
               title: title,
               // labelText: descriptionN,
             ),

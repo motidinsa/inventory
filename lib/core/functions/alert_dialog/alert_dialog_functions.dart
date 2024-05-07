@@ -44,63 +44,67 @@ onAlertDialogOptionSelect(
   }
 }
 
-getAlertDialogOptionLists({String? title}) {
+List getAlertDialogOptionLists({String? title}) {
   String currentRoute = Get.currentRoute;
+  List value = [];
   if (currentRoute == RouteName.sales) {
-    SalesController salesController = Get.find();
-    return title == searchProductsN
+    SalesController salesController = SalesController.to;
+    value = title == searchProductsN
         ? salesController.searchProductFoundResult
         : salesController.searchCustomerFoundResult;
   } else if (currentRoute == RouteName.addProduct) {
-    AddProductController addProductController = Get.find();
+    AddProductController addProductController = AddProductController.to;
     if (title == selectCategoryN) {
-      return addProductController.categoryListFoundResult;
+      value = addProductController.categoryListFoundResult;
     } else if (title == selectUomSN) {
-      return addProductController.unitOfMeasurementListFoundResult;
+      value = addProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.editProduct) {
     EditProductController editProductController = Get.find();
     if (title == selectCategoryN) {
-      return editProductController.categoryListFoundResult;
+      value = editProductController.categoryListFoundResult;
     } else if (title == selectUomSN) {
-      return editProductController.unitOfMeasurementListFoundResult;
+      value = editProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
-    return title == searchProductsN
+    value = title == searchProductsN
         ? purchaseController.searchProductFoundResult
         : purchaseController.searchVendorFoundResult;
   }
+  return value;
 }
 
-getAllAlertDialogOptionLists({String? title}) {
+List getAllAlertDialogOptionLists({String? title}) {
   final Isar isar = Get.find();
+  List value = [];
   if (title == selectCategoryN) {
-    return isar.categoryDatabaseModels.where().findAllSync();
+    value =  isar.categoryDatabaseModels.where().findAllSync();
   } else if (title == selectUomSN) {
-    return isar.unitOfMeasurementDatabaseModels.where().findAllSync();
+    value = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
   } else if (title == searchCustomersN) {
-    return isar.customerDatabaseModels.where().findAllSync();
+    value = isar.customerDatabaseModels.where().findAllSync();
   } else if (title == searchVendorsN) {
-    return isar.vendorDatabaseModels.where().findAllSync();
+    value = isar.vendorDatabaseModels.where().findAllSync();
   } else if (title == searchProductsN) {
-    return isar.productDatabaseModels.where().findAllSync();
-  }
+    value = isar.productDatabaseModels.where().findAllSync();
+  }return value;
 }
 
-getAlertDialogOptionName({required int index, String? title}) {
+String getAlertDialogOptionName({required int index, String? title}) {
   String currentRoute = Get.currentRoute;
+  String value = '';
   if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
     return title == searchProductsN
         ? salesController.searchProductFoundResult[index].productName
         : salesController.searchCustomerFoundResult[index].name;
   } else if (currentRoute == RouteName.addProduct) {
-    AddProductController addProductController = Get.find();
+    AddProductController addProductController = AddProductController.to;
     if (title == selectCategoryN) {
-      return (addProductController.categoryListFoundResult[index]).categoryName;
+      value = addProductController.categoryListFoundResult[index].categoryName;
     } else if (title == selectUomSN) {
-      return addProductController.unitOfMeasurementListFoundResult[index].name;
+      value = addProductController.unitOfMeasurementListFoundResult[index].name;
     }
   } else if (currentRoute == RouteName.editProduct) {
     EditProductController editProductController = Get.find();
@@ -115,6 +119,7 @@ getAlertDialogOptionName({required int index, String? title}) {
         ? purchaseController.searchProductFoundResult[index].productName
         : purchaseController.searchVendorFoundResult[index].name;
   }
+  return value;
 }
 
 getAlertDialogOptionId({required int index, required String title}) {
@@ -173,7 +178,7 @@ onAlertDialogDeleteButtonPressed() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.customerDetail) {
     deleteCustomer();
-  }else  if (currentRoute == RouteName.vendorDetail) {
+  } else if (currentRoute == RouteName.vendorDetail) {
     deleteVendor();
   }
 }

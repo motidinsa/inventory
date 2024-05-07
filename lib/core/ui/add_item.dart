@@ -7,6 +7,8 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
+import 'custom_text_field_2.dart';
+
 class AddItem extends StatelessWidget {
   final String type;
 
@@ -14,6 +16,7 @@ class AddItem extends StatelessWidget {
     super.key,
     required this.type,
   });
+
   @override
   Widget build(BuildContext context) {
     String title = type == selectCategoryN ? addCategoryNameN : addUomNameN;
@@ -29,12 +32,14 @@ class AddItem extends StatelessWidget {
           top: 15,
           bottom: 15,
         ),
+        // surfaceTintColor: Colors.white70,
         shape: smoothRectangleBorder(radius: 15),
         title: Text(
           title,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
           ),
         ),
         content: SizedBox(
@@ -46,9 +51,9 @@ class AddItem extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomTextField(
+                  CustomTextField2(
                     title: labelText,
-                    labelText: labelText,
+                    color: Colors.green.shade100,
                   ),
                   ActionButton(
                     redirectFrom: labelText,
