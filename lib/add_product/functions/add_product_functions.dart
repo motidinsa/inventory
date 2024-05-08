@@ -37,7 +37,7 @@ onAddProductTextFieldChange({
     productModel.quantityOnHand = data;
   } else if (title == reorderQuantityN) {
     productModel.reorderQuantity = data;
-  }else if (title == categoryNameN) {
+  } else if (title == categoryNameN) {
     AddItemController.to.addedText = data;
   }
   // if (title == selectCategoryN) {
@@ -111,7 +111,7 @@ onSalesProductSelect({
   } else if (title == selectN) {
     salesController.searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());
-    Get.dialog( AlertDialogOptionSelect(
+    Get.dialog(AlertDialogOptionSelect(
       title: searchCustomersN,
     )).then(
       (value) {
@@ -141,7 +141,7 @@ onPurchaseProductSelect({
   } else if (title == selectN) {
     purchaseController.searchVendorFoundResult(
         isar.vendorDatabaseModels.where().findAllSync());
-    Get.dialog( AlertDialogOptionSelect(
+    Get.dialog(AlertDialogOptionSelect(
       title: searchVendorsN,
     )).then(
       (value) {
@@ -152,31 +152,14 @@ onPurchaseProductSelect({
 }
 
 onAddProductTextFieldPressed({required String title}) {
-  final AddProductController addProductController = Get.find();
-  // final Isar isar = Get.find();
-  Map<String, List> itemsWithList = {
-    categoryN: addProductController.categoryListFoundResult,
-    uomSN: addProductController.unitOfMeasurementListFoundResult,
-  };
   if ([categoryN, uomSN].contains(title)) {
     if (title == categoryN) {
-      List<CategoryDatabaseModel> categoryList =
+      AddProductController.to.categoryListFoundResult =
           AddProductRepository.getAllCategory();
-      addProductController.categoryListFoundResult = categoryList;
-
-      Get.dialog(GetBuilder<AddProductController>(
-        builder: (context) {
-          return AlertDialogOptionSelect(
-            title: title == categoryN ? selectCategoryN : selectUomSN,
-          );
-        }
+      Get.dialog(AlertDialogOptionSelect(
+        title: title == categoryN ? selectCategoryN : selectUomSN,
       ));
     }
-  }
-  if (itemsWithList.keys.contains(title)) {
-    // var uomList = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
-
-    // addProductController.unitOfMeasurementListFoundResult(uomList);
   }
 }
 

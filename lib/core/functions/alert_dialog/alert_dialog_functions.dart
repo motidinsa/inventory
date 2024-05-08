@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';

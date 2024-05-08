@@ -8,7 +8,9 @@ import 'package:my_inventory/add_product/controller/add_product_controller.dart'
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
+import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/add_item.dart';
@@ -24,13 +26,13 @@ import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
-
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
 bool isNumeric(String input) {
   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
   return numberRegExp.hasMatch(input);
 }
+
 executeAfterBuild(VoidCallback function) {
   WidgetsBinding.instance.addPostFrameCallback((_) {
     function();
@@ -240,26 +242,31 @@ onAddIconPressed({String? type}) {
         type: type!,
       ),
     ).then((value) {
-      List? itemList;
+      // List? itemList;
       if (currentRoute == RouteName.addProduct) {
         AddProductController addProductController = Get.find();
-        if (type == selectCategoryN) {
-          itemList = addProductController.categoryListFoundResult;
-        } else {
-          addProductController.unitOfMeasurementListFoundResult;
-        }
-      } else if (currentRoute == RouteName.editProduct) {
-        EditProductController editProductController = Get.find();
-        if (type == selectCategoryN) {
-          itemList = editProductController.categoryListFoundResult;
-        } else {
-          editProductController.unitOfMeasurementListFoundResult;
-        }
+        // addProductController.update();
+        // if (type == selectCategoryN) {
+        // } else {
+        //   addProductController.unitOfMeasurementListFoundResult;
+        // }
       }
+      // else if (currentRoute == RouteName.editProduct) {
+      //   EditProductController editProductController = Get.find();
+      //   if (type == selectCategoryN) {
+      //     itemList = editProductController.categoryListFoundResult;
+      //   } else {
+      //     editProductController.unitOfMeasurementListFoundResult;
+      //   }
+      // }
 
       Get.dialog(
-        AlertDialogOptionSelect(
-          title: type,
+        GetBuilder<AddProductController>(
+          builder: (context) {
+            return AlertDialogOptionSelect(
+              title: type,
+            );
+          }
         ),
       );
     });
@@ -270,7 +277,7 @@ onAddImagePressed({int? id}) {
   if (id != null) {
     ProductListController.to.selectedId = id;
   }
-  Get.dialog( AlertDialogOptionSelect(
+  Get.dialog(AlertDialogOptionSelect(
     title: selectSourceN,
   )).then((value) => unFocus());
 }
@@ -290,8 +297,7 @@ onImageSourceButtonPressed({
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.addProduct) {
       AddProductController addProductController = Get.find();
-      addProductController.productModel.localImagePath= value?.path;
-
+      addProductController.productModel.localImagePath = value?.path;
     } else if (currentRoute == RouteName.editProduct) {
       EditProductController editProductController = Get.find();
       editProductController.productInfo.update((val) async {
