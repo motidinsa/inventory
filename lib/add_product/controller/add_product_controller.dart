@@ -11,10 +11,13 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 
 import 'package:my_inventory/core/constants/database_constants.dart';
 
-class AddProductController extends GetxController {
-  var isLoading = false;
-  var isSubmitButtonPressed = false.obs;
+import '../repository/add_product_repository.dart';
 
+class AddProductController extends GetxController {
+  bool isLoading = false;
+  bool isSubmitButtonPressed = false;
+  late bool isCategoryEmpty;
+  late bool isUnitOfMeasurementEmpty;
   ProductModel productModel = ProductModel(
     name: '',
     categoryId: '',
@@ -36,7 +39,11 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
-    var defaultUnit = Get.find<Isar>().unitOfMeasurementDatabaseModels
+    isCategoryEmpty = AddProductRepository.getCategoryCount() == 0;
+    isUnitOfMeasurementEmpty =
+        AddProductRepository.getUnitOfMeasurementCount() == 0;
+    var defaultUnit = Get.find<Isar>()
+        .unitOfMeasurementDatabaseModels
         .filter()
         .nameEqualTo('Pcs')
         .findFirstSync();

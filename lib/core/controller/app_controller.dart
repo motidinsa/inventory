@@ -12,6 +12,7 @@ class AppController extends GetxController {
   String companyId = 'XYZ';
   List<String> currentRoutes = [];
   var key = GlobalKey<ScaffoldState>();
+
   static AppController get to => Get.find();
 
   @override
@@ -25,10 +26,12 @@ class AppController extends GetxController {
       List<LogUnitOfMeasurementDatabaseModel> logUomModels = [];
       for (var element in defaultUnitOfMeasurement) {
         DateTime now = DateTime.now();
+        String uomId = generateDatabaseId(time: now, identifier: element);
         uomModels.add(
           UnitOfMeasurementDatabaseModel(
             createdByUserId: userId.value,
             name: element,
+            companyId: companyId,
             uomId: generateDatabaseId(time: now, identifier: element),
             dateCreated: now,
           ),
@@ -36,7 +39,9 @@ class AppController extends GetxController {
         logUomModels.add(LogUnitOfMeasurementDatabaseModel(
           createdByUserId: userId.value,
           name: element,
-          uomId: generateDatabaseId(time: now, identifier: element),
+          companyId: companyId,
+          uomId: uomId,
+          objectId: uomId,
           dateCreated: now,
           dateModified: now,
           modifiedByUserId: userId.value,

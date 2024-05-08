@@ -2,11 +2,13 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/add_product/repository/add_product_repository.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
+import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
@@ -23,78 +25,92 @@ import 'package:my_inventory/customer_detail/functions/customer_detail_functions
 
 import '../../../vendor_detail/controller/vendor_detail_controller.dart';
 import '../../../vendor_detail/functions/vendor_detail_functions.dart';
-
+String? onAddProductTitleToData({required String title}) {
+  ProductModel productModel =
+      AddProductController.to.productModel;
+  if (title == categoryN) {
+    return productModel.categoryName;
+  }
+  // else if (title == phoneNumberN) {
+  //   data = customerDatabaseModel.phoneNumber;
+  // } else if (title == addressN) {
+  //   data = customerDatabaseModel.address;
+  // } else if (title == cityN) {
+  //   data = customerDatabaseModel.city;
+  // } else if (title == emailN) {
+  //   data = customerDatabaseModel.email;
+  // }
+  return null;
+}
 onAlertDialogOptionSelect(
     {required String title,
-    required int isarId,
-    required String data,
+    required int index,
     int? listIndex}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     onSalesSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex, isarId: isarId, title: title);
+        listIndex: listIndex,  title: title);
   } else if (currentRoute == RouteName.addProduct) {
     onAddProductAlertDialogOptionSelect(
-        title: title, data: data, isarId: isarId);
+        title: title, index: index,);
   } else if (currentRoute == RouteName.editProduct) {
-    onEditProductAlertDialogOptionSelect(
-        title: title, data: data, isarId: isarId);
+    // onEditProductAlertDialogOptionSelect(
+    //     title: title,);
   } else if (currentRoute == RouteName.purchase) {
-    onPurchaseSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex, isarId: isarId, title: title);
+    // onPurchaseSearchProductAlertDialogOptionSelect(
+    //     listIndex: listIndex,  title: title);
   }
 }
 
 List getAlertDialogOptionLists({String? title}) {
   String currentRoute = Get.currentRoute;
-  List value = [];
   if (currentRoute == RouteName.sales) {
     SalesController salesController = SalesController.to;
-    value = title == searchProductsN
+    return title == searchProductsN
         ? salesController.searchProductFoundResult
         : salesController.searchCustomerFoundResult;
   } else if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = AddProductController.to;
     if (title == selectCategoryN) {
-      value = addProductController.categoryListFoundResult;
+      return addProductController.categoryListFoundResult;
     } else if (title == selectUomSN) {
-      value = addProductController.unitOfMeasurementListFoundResult;
+      return addProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.editProduct) {
     EditProductController editProductController = Get.find();
     if (title == selectCategoryN) {
-      value = editProductController.categoryListFoundResult;
+      return editProductController.categoryListFoundResult;
     } else if (title == selectUomSN) {
-      value = editProductController.unitOfMeasurementListFoundResult;
+      return editProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.purchase) {
     PurchaseController purchaseController = Get.find();
-    value = title == searchProductsN
+    return title == searchProductsN
         ? purchaseController.searchProductFoundResult
         : purchaseController.searchVendorFoundResult;
   }
-  return value;
+  return [];
 }
 
-List getAllAlertDialogOptionLists({String? title}) {
-  final Isar isar = Get.find();
-  List value = [];
+bool isAlertDialogListEmpty({String? title}) {
   if (title == selectCategoryN) {
-    value =  isar.categoryDatabaseModels.where().findAllSync();
+    return AddProductRepository.getCategoryCount() == 0;
   } else if (title == selectUomSN) {
-    value = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
-  } else if (title == searchCustomersN) {
-    value = isar.customerDatabaseModels.where().findAllSync();
-  } else if (title == searchVendorsN) {
-    value = isar.vendorDatabaseModels.where().findAllSync();
-  } else if (title == searchProductsN) {
-    value = isar.productDatabaseModels.where().findAllSync();
-  }return value;
+    return AddProductRepository.getUnitOfMeasurementCount() == 0;
+  }
+  // else if (title == searchCustomersN) {
+  //   return  isar.customerDatabaseModels.where().findAllSync();
+  // } else if (title == searchVendorsN) {
+  //   return  isar.vendorDatabaseModels.where().findAllSync();
+  // } else if (title == searchProductsN) {
+  //   return  isar.productDatabaseModels.where().findAllSync();
+  // }
+  return false;
 }
+
 
 String getAlertDialogOptionName({required int index, String? title}) {
   String currentRoute = Get.currentRoute;
-  String value = '';
   if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
     return title == searchProductsN
@@ -103,9 +119,9 @@ String getAlertDialogOptionName({required int index, String? title}) {
   } else if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = AddProductController.to;
     if (title == selectCategoryN) {
-      value = addProductController.categoryListFoundResult[index].categoryName;
+      return addProductController.categoryListFoundResult[index].categoryName;
     } else if (title == selectUomSN) {
-      value = addProductController.unitOfMeasurementListFoundResult[index].name;
+      return addProductController.unitOfMeasurementListFoundResult[index].name;
     }
   } else if (currentRoute == RouteName.editProduct) {
     EditProductController editProductController = Get.find();
@@ -120,7 +136,7 @@ String getAlertDialogOptionName({required int index, String? title}) {
         ? purchaseController.searchProductFoundResult[index].productName
         : purchaseController.searchVendorFoundResult[index].name;
   }
-  return value;
+  return '';
 }
 
 getAlertDialogOptionId({required int index, required String title}) {

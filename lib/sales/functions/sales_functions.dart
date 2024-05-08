@@ -125,59 +125,59 @@ onSalesProductFocusChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {int? listIndex, required int isarId, required String title}) {
+    {int? listIndex,  required String title}) {
   final SalesController salesController = Get.find();
   final Isar isar = Get.find();
-  if (title == searchProductsN) {
-    ProductDatabaseModel productDatabaseModel =
-        isar.productDatabaseModels.getSync(isarId)!;
-
-    bool productExists = salesController.salesModels.any(
-        (salesModel) => salesModel.productId == productDatabaseModel.productId);
-
-    if (!productExists) {
-      SalesModel sales = salesController.salesModels[listIndex!];
-      // salesController.salesModels[listIndex!].update((sales) {
-      sales.productName = productDatabaseModel.productName;
-      sales.productId = productDatabaseModel.productId;
-      sales.price = productDatabaseModel.price.toString();
-      if (sales.quantity.isNotEmpty && isNumeric(sales.quantity)) {
-        sales.totalAmount =
-            double.parse(sales.quantity) * productDatabaseModel.price;
-      }
-      // });
-      salesController.update();
-      Get.back();
-    } else {
-      if (productDatabaseModel.productId !=
-          salesController.salesModels[listIndex!].productId) {
-        Get.closeCurrentSnackbar();
-        salesController.salesModels.removeAt(listIndex);
-        Get.showSnackbar(const GetSnackBar(
-          messageText: Text(
-            'Product already exists',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
-          ),
-          duration: Duration(seconds: 2),
-          margin: EdgeInsets.all(10),
-          borderRadius: 10,
-        ));
-        Get.key.currentState?.pop();
-      } else {
-        Get.back();
-      }
-    }
-  } else if (title == searchCustomersN) {
-    CustomerDatabaseModel customerDatabaseModel =
-        isar.customerDatabaseModels.getSync(isarId)!;
-    salesController.customerId = customerDatabaseModel.customerId;
-    salesController.customerName = customerDatabaseModel.name;
-    salesController.customerPhone = customerDatabaseModel.phoneNumber;
-    salesController.customerAddress = customerDatabaseModel.address;
-    salesController.update();
-    Get.back();
-  }
+  // if (title == searchProductsN) {
+  //   ProductDatabaseModel productDatabaseModel =
+  //       isar.productDatabaseModels.getSync(isarId)!;
+  //
+  //   bool productExists = salesController.salesModels.any(
+  //       (salesModel) => salesModel.productId == productDatabaseModel.productId);
+  //
+  //   if (!productExists) {
+  //     SalesModel sales = salesController.salesModels[listIndex!];
+  //     // salesController.salesModels[listIndex!].update((sales) {
+  //     sales.productName = productDatabaseModel.productName;
+  //     sales.productId = productDatabaseModel.productId;
+  //     sales.price = productDatabaseModel.price.toString();
+  //     if (sales.quantity.isNotEmpty && isNumeric(sales.quantity)) {
+  //       sales.totalAmount =
+  //           double.parse(sales.quantity) * productDatabaseModel.price;
+  //     }
+  //     // });
+  //     salesController.update();
+  //     Get.back();
+  //   } else {
+  //     if (productDatabaseModel.productId !=
+  //         salesController.salesModels[listIndex!].productId) {
+  //       Get.closeCurrentSnackbar();
+  //       salesController.salesModels.removeAt(listIndex);
+  //       Get.showSnackbar(const GetSnackBar(
+  //         messageText: Text(
+  //           'Product already exists',
+  //           style: TextStyle(
+  //               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
+  //         ),
+  //         duration: Duration(seconds: 2),
+  //         margin: EdgeInsets.all(10),
+  //         borderRadius: 10,
+  //       ));
+  //       Get.key.currentState?.pop();
+  //     } else {
+  //       Get.back();
+  //     }
+  //   }
+  // } else if (title == searchCustomersN) {
+  //   CustomerDatabaseModel customerDatabaseModel =
+  //       isar.customerDatabaseModels.getSync(isarId)!;
+  //   salesController.customerId = customerDatabaseModel.customerId;
+  //   salesController.customerName = customerDatabaseModel.name;
+  //   salesController.customerPhone = customerDatabaseModel.phoneNumber;
+  //   salesController.customerAddress = customerDatabaseModel.address;
+  //   salesController.update();
+  //   Get.back();
+  // }
 }
 
 saveSalesProductToDB() async {

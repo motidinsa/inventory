@@ -57,8 +57,7 @@ onEditCustomerSaveButtonPressed() async {
       await EditCustomerRepository.editCustomer();
       CustomerListController customerListController = CustomerListController.to;
       customerListController.customerList =
-          CustomerListRepository.searchCustomer(
-              data: customerListController.searchedText);
+          CustomerListRepository.getAllCustomers();
       customerListController.update();
       CustomerDetailController.to.update();
 

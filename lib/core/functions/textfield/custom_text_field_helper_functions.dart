@@ -208,7 +208,7 @@ EdgeInsets getContentPadding({required String title}) {
     verticalPadding = 20;
   }
   return EdgeInsets.symmetric(
-      horizontal: horizontalPadding, vertical: verticalPadding);
+      horizontal: 30, vertical: 10);
 }
 
 bool paymentModeTitles({String? title}) {

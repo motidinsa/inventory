@@ -56,12 +56,12 @@ double getValidNumValue(String data) {
 autoValidateMode() {
   final AppController appController = Get.find();
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.addProduct) {
-    AddProductController addProductController = Get.find();
-    if (addProductController.isSubmitButtonPressed.isTrue) {
-      return true;
-    }
-  }
+  // if (currentRoute == RouteName.addProduct) {
+  //   AddProductController addProductController = Get.find();
+  //   if (addProductController.isSubmitButtonPressed.isTrue) {
+  //     return true;
+  //   }
+  // }
   return false;
 }
 
@@ -186,24 +186,23 @@ getFormattedNumberWithoutComa(num) {
 
 String? titleToData({required String title, int? index}) {
   String currentRoute = Get.currentRoute;
-  String? value;
   if (currentRoute == RouteName.sales) {
-    value = onSalesTitleToData(title: title, index: index);
+    return onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
-    value = onAddProductGetData(title: title);
+    return onAddProductTitleToData(title: title);
   } else if (currentRoute == RouteName.purchase) {
-    value = onPurchaseTitleToData(title: title, index: index);
+    return onPurchaseTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
-    value = getEditProductData(title: title);
+    return getEditProductData(title: title);
   } else if (currentRoute == RouteName.editCustomer) {
-    value = getEditCustomerData(title: title);
+    return getEditCustomerData(title: title);
   } else if (currentRoute == RouteName.editVendor) {
-    value = getEditVendorData(title: title);
+    return getEditVendorData(title: title);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {
-    value = getReportSelectedDate(title: title);
+    return getReportSelectedDate(title: title);
   }
-  return value;
+  return null;
 }
 
 emptyIfNull(String? data) {
@@ -243,14 +242,14 @@ onAddIconPressed({String? type}) {
       ),
     ).then((value) {
       // List? itemList;
-      if (currentRoute == RouteName.addProduct) {
-        AddProductController addProductController = Get.find();
+      // if (currentRoute == RouteName.addProduct) {
+      //   AddProductController addProductController = Get.find();
         // addProductController.update();
         // if (type == selectCategoryN) {
         // } else {
         //   addProductController.unitOfMeasurementListFoundResult;
         // }
-      }
+      // }
       // else if (currentRoute == RouteName.editProduct) {
       //   EditProductController editProductController = Get.find();
       //   if (type == selectCategoryN) {

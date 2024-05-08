@@ -9,29 +9,27 @@ import '../routes/route_names.dart';
 import 'helper_functions.dart';
 
 onCategoryAddPressed() async {
-  String currentRoute = Get.currentRoute;
-
-  if (currentRoute == RouteName.addProduct) {
-    try {
-      await AddItemRepository.addCategory();
-      AddProductController.to.categoryListFoundResult =
-          AddItemRepository.getAllCategory();
-      AddProductController.to.update();
-      showSnackbar(
-        message: 'success',
-        // backgroundColor: Colors.red.shade400,
-      );
-      // Get.back();
-    } on Exception {
-      showSnackbar(
-        message: someErrorOccurredN,
-        backgroundColor: Colors.red.shade400,
-      );
-    }
+  try {
+    await AddItemRepository.addCategory();
+    AddProductController.to.categoryListFoundResult =
+        AddItemRepository.getAllCategory();
+    AddProductController.to.update();
+  } on Exception {
+    showSnackbar(
+      message: someErrorOccurredN,
+      backgroundColor: Colors.red.shade400,
+    );
   }
-  // else if (currentRoute == RouteName.editProduct) {
-  //   EditProductController editProductController = Get.find();
-  //   editProductController.categoryListFoundResult(
-  //       isar.categoryDatabaseModels.where().findAllSync());
-  // }
+}onUnitOfMeasurementAddPressed() async {
+  try {
+    await AddItemRepository.addCategory();
+    AddProductController.to.categoryListFoundResult =
+        AddItemRepository.getAllCategory();
+    AddProductController.to.update();
+  } on Exception {
+    showSnackbar(
+      message: someErrorOccurredN,
+      backgroundColor: Colors.red.shade400,
+    );
+  }
 }

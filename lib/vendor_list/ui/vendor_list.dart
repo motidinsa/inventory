@@ -8,7 +8,9 @@ import 'package:my_inventory/core/ui/profile/profile_mini_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/add_new_customer.dart';
 
+import '../../core/model/vendor/vendor_database_model.dart';
 import '../controller/vendor_list_controller.dart';
+import '../functions/vendor_list_functions.dart';
 import 'add_new_vendor.dart';
 
 class VendorList extends StatelessWidget {
@@ -22,15 +24,14 @@ class VendorList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child:
             GetBuilder<VendorListController>(builder: (vendorListController) {
-          return vendorListController.isEmpty == true
+              return vendorListController.isEmpty == true
               ? const AddNewVendor()
               : ListView(
                   children: [
                     sizedBox(height: 15),
-                    if (vendorListController.isEmpty != true)
                       const CustomTextField(
-                        title: vendorListN,
-                      ),
+                        title: vendorListN,),
+
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       child: vendorListController.vendorList.isEmpty
@@ -48,7 +49,7 @@ class VendorList extends StatelessWidget {
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (ctx, index) => ProfileMiniDetail(
                                 name:
-                                    vendorListController.vendorList[index].name,
+                                vendorListController.vendorList[index].name,
                                 index: index,
                                 iconData: Icons.corporate_fare_rounded,
                               ),

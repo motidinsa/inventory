@@ -25,7 +25,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
 
   @override
   void initState() {
-    if ([customerNameN, vendorNameN, productN,categoryNameN].contains(widget.title) &&
+    if ([customerNameN, vendorNameN, productN,categoryNameN,uomNameN].contains(widget.title) &&
         ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
             .contains(Get.currentRoute)) {
       focusNode.requestFocus();

@@ -35,50 +35,6 @@ onActionButtonPressed({String? redirectFrom}) async {
 
   if (redirectFrom == productDetailN) {
     deleteProduct();
-  } else if ([categoryNameN, uomNameN].contains(redirectFrom)) {
-    AddItemController addItemController = Get.find();
-    if (addItemController.formKey.currentState!.validate()) {
-      final AppController appController = Get.find();
-      String currentRoute = Get.currentRoute;
-      DateTime now = DateTime.now();
-      String id = generateDatabaseId(time: now);
-      if (redirectFrom == categoryNameN) {
-        onCategoryAddPressed();
-      } else if (redirectFrom == uomNameN) {
-        await isar.writeTxn(() async {
-          await isar.unitOfMeasurementDatabaseModels
-              .put(UnitOfMeasurementDatabaseModel(
-            name: addItemController.addedText,
-            dateCreated: now,
-            createdByUserId: appController.userId.value,
-            uomId: id,
-          ));
-          await isar.logUnitOfMeasurementDatabaseModels.put(
-              LogUnitOfMeasurementDatabaseModel(
-                  name: addItemController.addedText,
-                  dateCreated: now,
-                  createdByUserId: appController.userId.value,
-                  uomId: id,
-                  dateModified: now,
-                  modifiedByUserId: appController.userId.value,
-                  addedFrom: currentRoute == RouteName.addProduct
-                      ? addProductDC
-                      : editProductDC));
-        });
-        if (currentRoute == RouteName.addProduct) {
-          AddProductController addProductController = Get.find();
-          addProductController.unitOfMeasurementListFoundResult=
-              isar.unitOfMeasurementDatabaseModels.where().findAllSync();
-        } else if (currentRoute == RouteName.editProduct) {
-          EditProductController editProductController = Get.find();
-          editProductController.unitOfMeasurementListFoundResult(
-              isar.unitOfMeasurementDatabaseModels.where().findAllSync());
-        }
-      }
-      Get.back();
-    } else {
-      return;
-    }
   } else if (currentRoute == RouteName.signUp) {
     onSignupButtonPressed();
   } else if ([RouteName.customerDetail, RouteName.vendorDetail]
@@ -87,7 +43,7 @@ onActionButtonPressed({String? redirectFrom}) async {
   } else if (AppController.to.formKey.currentState!.validate()) {
     if (redirectFrom == addProductN) {
       AddProductController addProductController = Get.find();
-      addProductController.isSubmitButtonPressed(true);
+      addProductController.isSubmitButtonPressed = true;
       addProductController.onAddProductSaveButtonPressed();
     } else if (redirectFrom == salesN) {
       saveSalesProductToDB();
@@ -105,9 +61,15 @@ onActionButtonPressed({String? redirectFrom}) async {
       onEditCustomerSaveButtonPressed();
     } else if (currentRoute == RouteName.addVendor) {
       onAddVendorSaveButtonPressed();
-    }else if (currentRoute == RouteName.editVendor) {
+    } else if (currentRoute == RouteName.editVendor) {
       onEditVendorSaveButtonPressed();
+    } else if (currentRoute == RouteName.addProduct) {
+      if (redirectFrom == categoryNameN) {
+        onCategoryAddPressed();
+      } else if (redirectFrom == uomNameN) {
+      } else {
+        onEditVendorSaveButtonPressed();
+      }
     }
-    // Get.back();
   }
 }

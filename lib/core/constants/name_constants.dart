@@ -70,8 +70,8 @@ const String noVendorAvailableSN =
     'There is no vendor available. Please add vendor first';
 const String noUomAvailableSN =
     'There is no unit of measurement available. Click the + icon to add new unit of measurement';
-const String addCategoryNameN = 'Add category';
-const String addUomNameN = 'Add unit of measurement';
+const String addCategoryN = 'Add category';
+const String addUomN = 'Add unit of measurement';
 const String categoryNameN = 'Category name';
 const String uomNameN = 'Unit of measurement name';
 const String imageN = 'image';
@@ -98,6 +98,8 @@ const String transferN = 'Transfer';
 const String creditN = 'Credit';
 const String noCustomerFoundN = 'No customer found';
 const String noVendorFoundN = 'No vendor found';
+const String noCategoryFoundN = 'No category found';
+const String noUnitOfMeasurementFoundN = 'No unit of measurement found';
 const String successfullyAddedCustomerN = 'Successfully added customer';
 const String successfullyAddedVendorN = 'Successfully added vendor';
 const String signUpN = 'Sign up';

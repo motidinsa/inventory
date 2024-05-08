@@ -19,7 +19,7 @@ class AddItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = type == selectCategoryN ? addCategoryNameN : addUomNameN;
+    String title = type == selectCategoryN ? addCategoryN : addUomN;
     String labelText = type == selectCategoryN ? categoryNameN : uomNameN;
     AddItemController addItemController = Get.put(AddItemController());
     return GestureDetector(

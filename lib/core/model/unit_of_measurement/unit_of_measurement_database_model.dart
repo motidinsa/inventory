@@ -5,11 +5,12 @@ part 'unit_of_measurement_database_model.g.dart';
 @collection
 class UnitOfMeasurementDatabaseModel {
   Id id = Isar.autoIncrement;
-  late String name;
-  late String uomId;
-  late String createdByUserId;
+  String name;
+  String uomId;
+  String createdByUserId;
+  String companyId;
   String? lastModifiedByUserId;
-  late DateTime dateCreated;
+  DateTime dateCreated;
   DateTime? lastDateModified;
   bool? isAppWriteSynced;
 
@@ -17,6 +18,7 @@ class UnitOfMeasurementDatabaseModel {
     required this.name,
     required this.uomId,
     required this.createdByUserId,
+    required this.companyId,
     this.lastModifiedByUserId,
     required this.dateCreated,
     this.lastDateModified,

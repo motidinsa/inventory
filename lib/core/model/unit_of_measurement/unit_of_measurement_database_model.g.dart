@@ -18,38 +18,43 @@ const UnitOfMeasurementDatabaseModelSchema = CollectionSchema(
   name: r'UnitOfMeasurementDatabaseModel',
   id: 4452331368249909062,
   properties: {
-    r'createdByUserId': PropertySchema(
+    r'companyId': PropertySchema(
       id: 0,
+      name: r'companyId',
+      type: IsarType.string,
+    ),
+    r'createdByUserId': PropertySchema(
+      id: 1,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'name',
       type: IsarType.string,
     ),
     r'uomId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'uomId',
       type: IsarType.string,
     )
@@ -74,6 +79,7 @@ int _unitOfMeasurementDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.companyId.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
   {
     final value = object.lastModifiedByUserId;
@@ -92,13 +98,14 @@ void _unitOfMeasurementDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.createdByUserId);
-  writer.writeDateTime(offsets[1], object.dateCreated);
-  writer.writeBool(offsets[2], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[3], object.lastDateModified);
-  writer.writeString(offsets[4], object.lastModifiedByUserId);
-  writer.writeString(offsets[5], object.name);
-  writer.writeString(offsets[6], object.uomId);
+  writer.writeString(offsets[0], object.companyId);
+  writer.writeString(offsets[1], object.createdByUserId);
+  writer.writeDateTime(offsets[2], object.dateCreated);
+  writer.writeBool(offsets[3], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[4], object.lastDateModified);
+  writer.writeString(offsets[5], object.lastModifiedByUserId);
+  writer.writeString(offsets[6], object.name);
+  writer.writeString(offsets[7], object.uomId);
 }
 
 UnitOfMeasurementDatabaseModel _unitOfMeasurementDatabaseModelDeserialize(
@@ -108,13 +115,14 @@ UnitOfMeasurementDatabaseModel _unitOfMeasurementDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = UnitOfMeasurementDatabaseModel(
-    createdByUserId: reader.readString(offsets[0]),
-    dateCreated: reader.readDateTime(offsets[1]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[2]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[3]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[4]),
-    name: reader.readString(offsets[5]),
-    uomId: reader.readString(offsets[6]),
+    companyId: reader.readString(offsets[0]),
+    createdByUserId: reader.readString(offsets[1]),
+    dateCreated: reader.readDateTime(offsets[2]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[3]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[4]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[5]),
+    name: reader.readString(offsets[6]),
+    uomId: reader.readString(offsets[7]),
   );
   object.id = id;
   return object;
@@ -130,16 +138,18 @@ P _unitOfMeasurementDatabaseModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readDateTime(offset)) as P;
-    case 2:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 3:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 4:
-      return (reader.readStringOrNull(offset)) as P;
-    case 5:
       return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readDateTime(offset)) as P;
+    case 3:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 4:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 5:
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -247,6 +257,144 @@ extension UnitOfMeasurementDatabaseModelQueryFilter on QueryBuilder<
     UnitOfMeasurementDatabaseModel,
     UnitOfMeasurementDatabaseModel,
     QFilterCondition> {
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'companyId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+          QAfterFilterCondition>
+      companyIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+          QAfterFilterCondition>
+      companyIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'companyId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterFilterCondition> companyIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterFilterCondition> createdByUserIdEqualTo(
     String value, {
@@ -1045,6 +1193,20 @@ extension UnitOfMeasurementDatabaseModelQueryLinks on QueryBuilder<
 extension UnitOfMeasurementDatabaseModelQuerySortBy on QueryBuilder<
     UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel, QSortBy> {
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterSortBy> sortByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterSortBy> sortByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterSortBy> sortByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdByUserId', Sort.asc);
@@ -1147,6 +1309,20 @@ extension UnitOfMeasurementDatabaseModelQuerySortThenBy on QueryBuilder<
     UnitOfMeasurementDatabaseModel,
     UnitOfMeasurementDatabaseModel,
     QSortThenBy> {
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterSortBy> thenByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QAfterSortBy> thenByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QAfterSortBy> thenByCreatedByUserId() {
     return QueryBuilder.apply(this, (query) {
@@ -1263,6 +1439,13 @@ extension UnitOfMeasurementDatabaseModelQuerySortThenBy on QueryBuilder<
 extension UnitOfMeasurementDatabaseModelQueryWhereDistinct on QueryBuilder<
     UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel, QDistinct> {
   QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
+      QDistinct> distinctByCompanyId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'companyId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, UnitOfMeasurementDatabaseModel,
       QDistinct> distinctByCreatedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'createdByUserId',
@@ -1322,6 +1505,13 @@ extension UnitOfMeasurementDatabaseModelQueryProperty on QueryBuilder<
       idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<UnitOfMeasurementDatabaseModel, String, QQueryOperations>
+      companyIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'companyId');
     });
   }
 

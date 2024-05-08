@@ -37,7 +37,15 @@ onAddProductTextFieldChange({
     productModel.quantityOnHand = data;
   } else if (title == reorderQuantityN) {
     productModel.reorderQuantity = data;
-  } else if (title == categoryNameN) {
+  } else if (title == selectCategoryN) {
+    AddProductController.to.categoryListFoundResult =
+        AddProductRepository.searchCategory(data: data);
+    AddProductController.to.update();
+  } else if (title == selectUomSN) {
+    AddProductController.to.unitOfMeasurementListFoundResult =
+        AddProductRepository.searchUnitOfMeasurement(data: data);
+    AddProductController.to.update();
+  } else if ([categoryNameN, uomNameN].contains(title)) {
     AddItemController.to.addedText = data;
   }
   // if (title == selectCategoryN) {
@@ -100,10 +108,12 @@ onSalesProductSelect({
     salesController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
 
-    Get.dialog(AlertDialogOptionSelect(
-      title: searchProductsN,
-      listIndex: listIndex,
-    )).then(
+    Get.dialog(GetBuilder<AddProductController>(builder: (context) {
+      return AlertDialogOptionSelect(
+        title: searchProductsN,
+        listIndex: listIndex,
+      );
+    })).then(
       (value) async {
         await unFocus();
       },
@@ -156,41 +166,46 @@ onAddProductTextFieldPressed({required String title}) {
     if (title == categoryN) {
       AddProductController.to.categoryListFoundResult =
           AddProductRepository.getAllCategory();
-      Get.dialog(AlertDialogOptionSelect(
-        title: title == categoryN ? selectCategoryN : selectUomSN,
-      ));
+    } else if (title == uomSN) {
+      AddProductController.to.unitOfMeasurementListFoundResult =
+          AddProductRepository.getAllUnitOfMeasurement();
     }
+    Get.dialog(GetBuilder<AddProductController>(builder: (context) {
+      return AlertDialogOptionSelect(
+        title: title == categoryN ? selectCategoryN : selectUomSN,
+      );
+    })).then((value) => unFocus());
   }
 }
 
 onAddProductAlertDialogOptionSelect(
-    {required String title, required String data, required int isarId}) {
-  final AddProductController addProductController = Get.find();
-  final Isar isar = Get.find();
+    {required String title, required int index}) {
+  final AddProductController addProductController = AddProductController.to;
   // addProductController.productInfo.update((product) {
-  //   if (title == selectCategoryN) {
-  //     CategoryDatabaseModel categoryDatabaseModel =
-  //         isar.categoryDatabaseModels.getSync(isarId)!;
-  //     product?.categoryName = data;
-  //     product?.categoryId = categoryDatabaseModel.categoryId;
-  //   } else if (title == selectUomSN) {
-  //     UnitOfMeasurementDatabaseModel uomDatabaseModel =
-  //         isar.unitOfMeasurementDatabaseModels.getSync(isarId)!;
-  //     product?.unitOfMeasurementName = data;
-  //     product?.unitOfMeasurementId = uomDatabaseModel.uomId;
-  //   }
+  if (title == selectCategoryN) {
+    CategoryDatabaseModel categoryDatabaseModel =
+        addProductController.categoryListFoundResult[index];
+    addProductController.productModel.categoryName =
+        categoryDatabaseModel.categoryName;
+    addProductController.productModel.categoryId =
+        categoryDatabaseModel.categoryId;
+  }
+  // else if (title == selectUomSN) {
+  //   UnitOfMeasurementDatabaseModel uomDatabaseModel =
+  //       isar.unitOfMeasurementDatabaseModels.getSync(isarId)!;
+  //   product?.unitOfMeasurementName = data;
+  //   product?.unitOfMeasurementId = uomDatabaseModel.uomId;
+  // }
   // });
   Get.back();
   addProductController.update();
 }
 
-onAddProductGetData({required String title}) {
-  // AddProductController addProductController = Get.find();
-  // if (title == categoryN) {
-  //   return addProductController.productInfo.value.categoryName;
-  // } else if (title == uomSN) {
-  //   return addProductController.productInfo.value.unitOfMeasurementName;
-  // } else if (title == productN) {
-  //   return addProductController.productInfo.value.name;
-  // }
+String getEmptySearchResult({required String title}) {
+  if (title == selectCategoryN) {
+    return noCategoryFoundN;
+  } else if (title == selectUomSN) {
+    return noUnitOfMeasurementFoundN;
+  }
+  return '';
 }
