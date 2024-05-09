@@ -62,16 +62,9 @@ class _CustomTextField2State extends State<CustomTextField2> {
           fillColor: widget.color ?? Colors.green.shade50,
           filled: true,
           errorMaxLines: 2,
-          enabledBorder: UnderlineInputBorder(
-            borderRadius: smoothBorderRadius(radius: 12),
-            // borderSide: BorderSide.none
-            borderSide: BorderSide(width: 0, color: Colors.white),
-          ),
-          focusedBorder: UnderlineInputBorder(
-              borderRadius: smoothBorderRadius(radius: 12),
-              borderSide: BorderSide.none
-              // borderSide: BorderSide(width: 0,color: Colors.white),
-              ),
+          border: UnderlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(12)),
           prefixIcon: titleToIcon(title: widget.title),
           suffixIcon: getSuffixWidget(title: widget.title),
           labelText: titleToLabel(title: widget.title),

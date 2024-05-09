@@ -36,11 +36,11 @@ class MiniProductDetail extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
           child: Row(
             children: [
-              ProductImage(
-                id: productModel.id,
-                currentRoute: productListN,
-                localImagePath: productModel.localImagePath,
-              ),
+              // ProductImage(
+              //   id: productModel.id,
+              //   currentRoute: productListN,
+              //   localImagePath: productModel.localImagePath,
+              // ),
               sizedBox(width: 20),
               Expanded(
                 child: Column(

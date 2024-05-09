@@ -66,7 +66,7 @@ class AddProduct extends StatelessWidget {
                           ],
                         )
                       : index == 8
-                          ? const AddProductImage()
+                          ?  AddProductImage()
                           : CustomTextField2(
                               title: titleList[index],
                               // labelText: titleList[index],

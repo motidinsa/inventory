@@ -33,11 +33,11 @@ class AddProductImage extends StatelessWidget {
                 ClipRRect(
                   borderRadius: smoothBorderRadius(radius: 15),
                   child: Image.file(
-                    File(getProductImagePath()),
+                    File(getProductImagePath()!),
                     width: 120,
                   ),
                 ),
-                sizedBox(height: 5),
+                SizedBox(height: 5),
                 Row(
                   children: [
                     TextButton(
@@ -52,7 +52,6 @@ class AddProductImage extends StatelessWidget {
                       onPressed: () => onAddImagePressed(),
                       child: const Text(
                         changeN,
-                        // style: TextStyle(color: Colors.red),
                       ),
                     ),
                   ],

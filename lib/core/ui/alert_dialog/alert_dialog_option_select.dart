@@ -64,7 +64,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                           index: listIndex,
                         ),
                       ),
-                    isSearchedListEmpty
+                    isSearchedListEmpty && !isAlertDialogListEmpty(title: title)
                         ? Center(
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10),

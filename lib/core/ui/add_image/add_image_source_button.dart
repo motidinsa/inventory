@@ -33,7 +33,7 @@ class AddImageSourceButton extends StatelessWidget {
                 size: 45,
                 color: Colors.grey.shade600,
               ),
-              sizedBox(height: 5),
+              SizedBox(height: 5),
               Text(
                 sourceLocation,
                 style: TextStyle(

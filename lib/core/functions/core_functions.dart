@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -25,7 +28,8 @@ import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
-
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
 bool isNumeric(String input) {
@@ -42,6 +46,12 @@ executeAfterBuild(VoidCallback function) {
 generateDatabaseId({required DateTime time, var identifier}) {
   final DateFormat dateFormatter =
       DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
+  String key = dateFormatter.format(time);
+  return key;
+}
+generateImageNameN({required DateTime time, var identifier}) {
+  final DateFormat dateFormatter =
+      DateFormat('yyyyMMdd_Hms${identifier != null ? '_$identifier' : ''}');
   String key = dateFormatter.format(time);
   return key;
 }
@@ -254,10 +264,7 @@ onAddIconPressed({String? type}) {
   }
 }
 
-onAddImagePressed({int? id}) {
-  if (id != null) {
-    ProductListController.to.selectedId = id;
-  }
+onAddImagePressed() {
   Get.dialog(AlertDialogOptionSelect(
     title: selectSourceN,
   )).then((value) => unFocus());
@@ -273,30 +280,50 @@ onImageSourceButtonPressed({
           source: sourceLocation == galleryN
               ? ImageSource.gallery
               : ImageSource.camera,
-          imageQuality: 50)
+          imageQuality: 40)
       .then((value) async {
-    String currentRoute = Get.currentRoute;
-    if (currentRoute == RouteName.addProduct) {
-      AddProductController addProductController = Get.find();
-      addProductController.productModel.localImagePath = value?.path;
-    } else if (currentRoute == RouteName.editProduct) {
-      EditProductController editProductController = Get.find();
-      editProductController.productInfo.update((val) async {
-        val?.localImagePath = value?.path;
-      });
-    } else if (ProductListController.to.selectedId != null) {
-      await isar.writeTxn(() async {
-        final dbProduct = await isar.productDatabaseModels
-            .get(ProductListController.to.selectedId!);
-        dbProduct?.localImagePath = value?.path;
-        await isar.productDatabaseModels.put(dbProduct!);
-      });
-      ProductListController.to.selectedId = null;
-      ProductListController.to
-          .productList(isar.productDatabaseModels.where().findAllSync());
-    }
+        if(value!=null){
+          String dir = path.dirname(value.path);
+          String imageName = generateDatabaseId(time: DateTime.now(),);
+          String newPath = path.join(dir, '$imageName${path.extension(value.name)}');
+         await  File(value.path).rename(newPath);
+          String currentRoute = Get.currentRoute;
+          if (currentRoute == RouteName.addProduct) {
+            await FolderFileSaver.saveFileIntoCustomDir(
+              filePath:  newPath,
+              dirNamed: '/',
+            ).then((val) async {
+              AddProductController addProductController = AddProductController.to;
+              addProductController.productModel.localImagePath = val;
+              addProductController.update();
+              final directory = await getTemporaryDirectory();
+              directory.delete(recursive: true);
+              Get.back();
+            });
+            //   // addProductController.productModel.localImagePath = value.path;
+            // }
 
-    Get.back();
+          }
+        }
+
+    // else if (currentRoute == RouteName.editProduct) {
+    //   EditProductController editProductController = Get.find();
+    //   editProductController.productInfo.update((val) async {
+    //     val?.localImagePath = value?.path;
+    //   });
+    // } else if (ProductListController.to.selectedId != null) {
+    //   await isar.writeTxn(() async {
+    //     final dbProduct = await isar.productDatabaseModels
+    //         .get(ProductListController.to.selectedId!);
+    //     dbProduct?.localImagePath = value?.path;
+    //     await isar.productDatabaseModels.put(dbProduct!);
+    //   });
+    //   ProductListController.to.selectedId = null;
+    //   ProductListController.to
+    //       .productList(isar.productDatabaseModels.where().findAllSync());
+    // }
+
+    // Get.back();
   });
 }
 

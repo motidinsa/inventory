@@ -51,14 +51,13 @@ getProductTotalPrice({required int index}) {
   }
 }
 
-getProductImagePath() {
-  final AppController appController = Get.find();
+String? getProductImagePath() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addProduct) {
-    final AddProductController addProductController = Get.find();
+    final AddProductController addProductController = AddProductController.to;
     return addProductController.productModel.localImagePath;
   } else if (currentRoute == RouteName.editProduct) {
-    final EditProductController editProductController = Get.find();
+    final EditProductController editProductController = EditProductController.to;
     return editProductController.productInfo.value.localImagePath;
   }
   return null;
