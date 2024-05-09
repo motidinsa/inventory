@@ -189,13 +189,14 @@ onAddProductAlertDialogOptionSelect(
         categoryDatabaseModel.categoryName;
     addProductController.productModel.categoryId =
         categoryDatabaseModel.categoryId;
+  } else if (title == selectUomSN) {
+    UnitOfMeasurementDatabaseModel unitOfMeasurementDatabaseModel =
+        addProductController.unitOfMeasurementListFoundResult[index];
+    addProductController.productModel.unitOfMeasurementName =
+        unitOfMeasurementDatabaseModel.name;
+    addProductController.productModel.unitOfMeasurementId =
+        unitOfMeasurementDatabaseModel.uomId;
   }
-  // else if (title == selectUomSN) {
-  //   UnitOfMeasurementDatabaseModel uomDatabaseModel =
-  //       isar.unitOfMeasurementDatabaseModels.getSync(isarId)!;
-  //   product?.unitOfMeasurementName = data;
-  //   product?.unitOfMeasurementId = uomDatabaseModel.uomId;
-  // }
   // });
   Get.back();
   addProductController.update();

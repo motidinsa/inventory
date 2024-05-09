@@ -241,24 +241,6 @@ onAddIconPressed({String? type}) {
         type: type!,
       ),
     ).then((value) {
-      // List? itemList;
-      // if (currentRoute == RouteName.addProduct) {
-      //   AddProductController addProductController = Get.find();
-        // addProductController.update();
-        // if (type == selectCategoryN) {
-        // } else {
-        //   addProductController.unitOfMeasurementListFoundResult;
-        // }
-      // }
-      // else if (currentRoute == RouteName.editProduct) {
-      //   EditProductController editProductController = Get.find();
-      //   if (type == selectCategoryN) {
-      //     itemList = editProductController.categoryListFoundResult;
-      //   } else {
-      //     editProductController.unitOfMeasurementListFoundResult;
-      //   }
-      // }
-
       Get.dialog(
         GetBuilder<AddProductController>(
           builder: (context) {
@@ -267,7 +249,7 @@ onAddIconPressed({String? type}) {
             );
           }
         ),
-      );
+      ).then((value) => unFocus());
     });
   }
 }

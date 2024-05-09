@@ -7,6 +7,8 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/controller/app_controller.dart';
+
 onAddCustomerTextFieldChange({
   required String title,
   required String data,
@@ -26,25 +28,28 @@ onAddCustomerTextFieldChange({
 }
 
 onAddCustomerSaveButtonPressed() async {
-  AddCustomerController addCustomerController = AddCustomerController.to;
-  addCustomerController.isLoading = true;
-  addCustomerController.update();
-  try {
-    await AddCustomerRepository.addCustomer();
-    if (Get.previousRoute == RouteName.customerList) {
-      CustomerListController customerListController = CustomerListController.to;
-      customerListController.customerList =
-          CustomerListRepository.getAllCustomers();
-      customerListController.isEmpty = false;
-      customerListController.update();
-    }
-    showSnackbar(message: successfullyAddedCustomerN);
-    Get.back();
 
-  } on Exception {
-    showSnackbar(message: someErrorOccurredN);
-  } finally {
-    addCustomerController.isLoading = false;
+  if (AppController.to.formKey.currentState!.validate()) {
+    AddCustomerController addCustomerController = AddCustomerController.to;
+    addCustomerController.isLoading = true;
     addCustomerController.update();
+    try {
+        await AddCustomerRepository.addCustomer();
+        if (Get.previousRoute == RouteName.customerList) {
+          CustomerListController customerListController = CustomerListController.to;
+          customerListController.customerList =
+              CustomerListRepository.getAllCustomers();
+          customerListController.isEmpty = false;
+          customerListController.update();
+        }
+        showSnackbar(message: successfullyAddedCustomerN);
+        Get.back();
+
+      } on Exception {
+        showSnackbar(message: someErrorOccurredN);
+      } finally {
+        addCustomerController.isLoading = false;
+        addCustomerController.update();
+      }
   }
 }

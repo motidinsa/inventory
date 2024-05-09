@@ -49,7 +49,7 @@ class AddItemRepository {
     });
   }
 
-  static getAllCategory() {
+  static List<CategoryDatabaseModel> getAllCategory() {
     return _isar.categoryDatabaseModels.where().findAllSync();
   }
 
@@ -60,14 +60,16 @@ class AddItemRepository {
     String userId = AppController.to.userId.value;
     String companyId = AppController.to.companyId;
     await _isar.writeTxn(() async {
-      await _isar.unitOfMeasurementDatabaseModels.put(UnitOfMeasurementDatabaseModel(
+      await _isar.unitOfMeasurementDatabaseModels
+          .put(UnitOfMeasurementDatabaseModel(
         name: uomName,
         dateCreated: now,
         createdByUserId: userId,
         companyId: companyId,
         uomId: uomId,
       ));
-      await _isar.logUnitOfMeasurementDatabaseModels.put(LogUnitOfMeasurementDatabaseModel(
+      await _isar.logUnitOfMeasurementDatabaseModels
+          .put(LogUnitOfMeasurementDatabaseModel(
         name: uomName,
         dateCreated: now,
         createdByUserId: userId,
@@ -82,4 +84,7 @@ class AddItemRepository {
     });
   }
 
+  static List<UnitOfMeasurementDatabaseModel> getAllUnitOfMeasurement() {
+    return _isar.unitOfMeasurementDatabaseModels.where().findAllSync();
+  }
 }

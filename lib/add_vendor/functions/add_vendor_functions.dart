@@ -7,6 +7,7 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/controller/app_controller.dart';
 import '../../vendor_list/controller/vendor_list_controller.dart';
 import '../../vendor_list/repository/vendor_list_repository.dart';
 import '../controller/add_vendor_controller.dart';
@@ -33,25 +34,27 @@ onAddVendorTextFieldChange({
 }
 
 onAddVendorSaveButtonPressed() async {
-  final AddVendorController addVendorController = AddVendorController.to;
-  addVendorController.isLoading = true;
-  addVendorController.update();
-  try {
-    await AddVendorRepository.addVendor();
-    if (Get.previousRoute == RouteName.vendorList) {
-      VendorListController vendorListController = VendorListController.to;
-      vendorListController.vendorList =
-          VendorListRepository.getAllVendors();
-      vendorListController.isEmpty = false;
-      vendorListController.update();
-    }
-    showSnackbar(message: successfullyAddedVendorN);
-    Get.back();
-
-  } on Exception {
-    showSnackbar(message: someErrorOccurredN);
-  } finally {
-    addVendorController.isLoading = false;
+  if (AppController.to.formKey.currentState!.validate()) {
+    final AddVendorController addVendorController = AddVendorController.to;
+    addVendorController.isLoading = true;
     addVendorController.update();
+    try {
+      await AddVendorRepository.addVendor();
+      if (Get.previousRoute == RouteName.vendorList) {
+        VendorListController vendorListController = VendorListController.to;
+        vendorListController.vendorList =
+            VendorListRepository.getAllVendors();
+        vendorListController.isEmpty = false;
+        vendorListController.update();
+      }
+      showSnackbar(message: successfullyAddedVendorN);
+      Get.back();
+
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN);
+    } finally {
+      addVendorController.isLoading = false;
+      addVendorController.update();
+    }
   }
 }

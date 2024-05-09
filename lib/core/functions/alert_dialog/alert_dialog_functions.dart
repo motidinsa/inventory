@@ -30,6 +30,8 @@ String? onAddProductTitleToData({required String title}) {
       AddProductController.to.productModel;
   if (title == categoryN) {
     return productModel.categoryName;
+  } else if (title == uomSN) {
+    return productModel.unitOfMeasurementName;
   }
   // else if (title == phoneNumberN) {
   //   data = customerDatabaseModel.phoneNumber;

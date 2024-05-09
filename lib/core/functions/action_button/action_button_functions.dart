@@ -30,7 +30,6 @@ import '../../../edit_vendor/functions/edit_vendor_functions.dart';
 import '../add_item_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
-  final Isar isar = Get.find();
   String currentRoute = Get.currentRoute;
 
   if (redirectFrom == productDetailN) {
@@ -40,36 +39,37 @@ onActionButtonPressed({String? redirectFrom}) async {
   } else if ([RouteName.customerDetail, RouteName.vendorDetail]
       .contains(currentRoute)) {
     showAlertDialogConfirmation();
-  } else if (AppController.to.formKey.currentState!.validate()) {
-    if (redirectFrom == addProductN) {
-      AddProductController addProductController = Get.find();
-      addProductController.isSubmitButtonPressed = true;
-      addProductController.onAddProductSaveButtonPressed();
-    } else if (redirectFrom == salesN) {
-      saveSalesProductToDB();
-    } else if (redirectFrom == purchaseN) {
-      PurchaseController purchaseController = Get.find();
-      purchaseController.savePurchaseProductToDB();
-    } else if (redirectFrom == editProductN) {
-      EditProductController editProductController = Get.find();
-      editProductController.onEditProductSaveButtonPressed();
-    } else if (redirectFrom == dateSelectN) {
-      onFilterSelect();
-    } else if (currentRoute == RouteName.addCustomer) {
-      onAddCustomerSaveButtonPressed();
-    } else if (currentRoute == RouteName.editCustomer) {
-      onEditCustomerSaveButtonPressed();
-    } else if (currentRoute == RouteName.addVendor) {
-      onAddVendorSaveButtonPressed();
-    } else if (currentRoute == RouteName.editVendor) {
+  }
+  // else if (AppController.to.formKey.currentState!.validate()) {
+  //   if (redirectFrom == addProductN) {
+  //     AddProductController addProductController = Get.find();
+  //     addProductController.isSubmitButtonPressed = true;
+  //     addProductController.onAddProductSaveButtonPressed();
+  //   } else if (redirectFrom == salesN) {
+  //     saveSalesProductToDB();
+  //   } else if (redirectFrom == purchaseN) {
+  //     PurchaseController purchaseController = Get.find();
+  //     purchaseController.savePurchaseProductToDB();
+  //   } else if (redirectFrom == editProductN) {
+  //     EditProductController editProductController = Get.find();
+  //     editProductController.onEditProductSaveButtonPressed();
+  //   } else if (redirectFrom == dateSelectN) {
+  //     onFilterSelect();
+  //   }
+  else if (currentRoute == RouteName.addCustomer) {
+    onAddCustomerSaveButtonPressed();
+  } else if (currentRoute == RouteName.editCustomer) {
+    onEditCustomerSaveButtonPressed();
+  } else if (currentRoute == RouteName.addVendor) {
+    onAddVendorSaveButtonPressed();
+  } else if (currentRoute == RouteName.editVendor) {
+    onEditVendorSaveButtonPressed();
+  } else if (currentRoute == RouteName.addProduct) {
+    if (redirectFrom == categoryNameN) {
+      onCategoryAddPressed();
+    } else if (redirectFrom == uomNameN) {onUnitOfMeasurementAddPressed();
+    } else {
       onEditVendorSaveButtonPressed();
-    } else if (currentRoute == RouteName.addProduct) {
-      if (redirectFrom == categoryNameN) {
-        onCategoryAddPressed();
-      } else if (redirectFrom == uomNameN) {
-      } else {
-        onEditVendorSaveButtonPressed();
-      }
     }
   }
 }

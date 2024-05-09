@@ -12,6 +12,8 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/edit_customer/repository/edit_customer_repository.dart';
 
+import '../../core/controller/app_controller.dart';
+
 onEditCustomerTextFieldChange({
   required String title,
   required String data,
@@ -49,29 +51,32 @@ String? getEditCustomerData({required String title}) {
 }
 
 onEditCustomerSaveButtonPressed() async {
-  EditCustomerController editCustomerController = EditCustomerController.to;
-  editCustomerController.isLoading = true;
-  editCustomerController.update();
-  try {
-    if (isCustomerEdited()) {
-      await EditCustomerRepository.editCustomer();
-      CustomerListController customerListController = CustomerListController.to;
-      customerListController.customerList =
-          CustomerListRepository.getAllCustomers();
-      customerListController.update();
-      CustomerDetailController.to.update();
-
-      showSnackbar(message: successfullyEditedN);
-    } else {
-      showSnackbar(
-          message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
-    }
-    Get.back();
-  } on Exception {
-    showSnackbar(message: someErrorOccurredN);
-  } finally {
-    editCustomerController.isLoading = false;
+  if (AppController.to.formKey.currentState!.validate()) {
+    EditCustomerController editCustomerController = EditCustomerController.to;
+    editCustomerController.isLoading = true;
     editCustomerController.update();
+    try {
+      if (isCustomerEdited()) {
+        await EditCustomerRepository.editCustomer();
+        CustomerListController customerListController =
+            CustomerListController.to;
+        customerListController.customerList =
+            CustomerListRepository.getAllCustomers();
+        customerListController.update();
+        CustomerDetailController.to.update();
+
+        showSnackbar(message: successfullyEditedN);
+      } else {
+        showSnackbar(
+            message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
+      }
+      Get.back();
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN);
+    } finally {
+      editCustomerController.isLoading = false;
+      editCustomerController.update();
+    }
   }
 }
 
@@ -79,14 +84,11 @@ bool isCustomerEdited() {
   CustomerDatabaseModel customerDatabaseModel =
       CustomerDetailController.to.customerDatabaseModel;
   CustomerModel customerModel = EditCustomerController.to.customerModel;
-  return customerDatabaseModel.name !=
-          customerModel.name.trim() ||
+  return customerDatabaseModel.name != customerModel.name.trim() ||
       customerDatabaseModel.phoneNumber !=
           nullIfEmpty(customerModel.phoneNumber?.trim()) ||
       customerDatabaseModel.address !=
           nullIfEmpty(customerModel.address?.trim()) ||
-      customerDatabaseModel.city !=
-          nullIfEmpty(customerModel.city?.trim()) ||
-      customerDatabaseModel.email !=
-          nullIfEmpty(customerModel.email?.trim());
+      customerDatabaseModel.city != nullIfEmpty(customerModel.city?.trim()) ||
+      customerDatabaseModel.email != nullIfEmpty(customerModel.email?.trim());
 }

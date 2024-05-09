@@ -12,6 +12,7 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/edit_customer/repository/edit_customer_repository.dart';
 
+import '../../core/controller/app_controller.dart';
 import '../../core/model/vendor/vendor_database_model.dart';
 import '../../core/model/vendor/vendor_model.dart';
 import '../../vendor_detail/controller/vendor_detail_controller.dart';
@@ -61,29 +62,31 @@ String? getEditVendorData({required String title}) {
 }
 
 onEditVendorSaveButtonPressed() async {
-  EditVendorController editVendorController = EditVendorController.to;
-  editVendorController.isLoading = true;
-  editVendorController.update();
-  try {
-    if (isVendorEdited()) {
-      await EditVendorRepository.editVendor();
-      VendorListController vendorListController = VendorListController.to;
-      vendorListController.vendorList = VendorListRepository.searchVendor(
-          data: vendorListController.searchedText);
-      vendorListController.update();
-      VendorDetailController.to.update();
-
-      showSnackbar(message: successfullyEditedN);
-    } else {
-      showSnackbar(
-          message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
-    }
-    Get.back();
-  } on Exception {
-    showSnackbar(message: someErrorOccurredN);
-  } finally {
-    editVendorController.isLoading = false;
+  if (AppController.to.formKey.currentState!.validate()) {
+    EditVendorController editVendorController = EditVendorController.to;
+    editVendorController.isLoading = true;
     editVendorController.update();
+    try {
+      if (isVendorEdited()) {
+        await EditVendorRepository.editVendor();
+        VendorListController vendorListController = VendorListController.to;
+        vendorListController.vendorList = VendorListRepository.searchVendor(
+            data: vendorListController.searchedText);
+        vendorListController.update();
+        VendorDetailController.to.update();
+
+        showSnackbar(message: successfullyEditedN);
+      } else {
+        showSnackbar(
+            message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
+      }
+      Get.back();
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN);
+    } finally {
+      editVendorController.isLoading = false;
+      editVendorController.update();
+    }
   }
 }
 

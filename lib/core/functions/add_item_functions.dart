@@ -9,27 +9,33 @@ import '../routes/route_names.dart';
 import 'helper_functions.dart';
 
 onCategoryAddPressed() async {
-  try {
-    await AddItemRepository.addCategory();
-    AddProductController.to.categoryListFoundResult =
-        AddItemRepository.getAllCategory();
-    AddProductController.to.update();
-  } on Exception {
-    showSnackbar(
-      message: someErrorOccurredN,
-      backgroundColor: Colors.red.shade400,
-    );
+  if (AddItemController.to.formKey.currentState!.validate()) {
+    try {
+        await AddItemRepository.addCategory();
+        AddProductController.to.categoryListFoundResult =
+            AddItemRepository.getAllCategory();
+        AddProductController.to.update();
+        Get.back();
+      } on Exception {
+        showSnackbar(
+          message: someErrorOccurredN,
+          backgroundColor: Colors.red.shade400,
+        );
+      }
   }
 }onUnitOfMeasurementAddPressed() async {
-  try {
-    await AddItemRepository.addCategory();
-    AddProductController.to.categoryListFoundResult =
-        AddItemRepository.getAllCategory();
-    AddProductController.to.update();
-  } on Exception {
-    showSnackbar(
-      message: someErrorOccurredN,
-      backgroundColor: Colors.red.shade400,
-    );
+  if (AddItemController.to.formKey.currentState!.validate()) {
+    try {
+        await AddItemRepository.addUnitOfMeasurement();
+        AddProductController.to.unitOfMeasurementListFoundResult =
+            AddItemRepository.getAllUnitOfMeasurement();
+        AddProductController.to.update();
+        Get.back();
+      } on Exception {
+        showSnackbar(
+          message: someErrorOccurredN,
+          backgroundColor: Colors.red.shade400,
+        );
+      }
   }
 }

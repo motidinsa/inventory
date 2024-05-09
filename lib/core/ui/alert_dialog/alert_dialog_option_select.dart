@@ -96,7 +96,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               title: title,
                             ).length,
                           ),
-                    if (isSearchedListEmpty) sizedBox(height: 8),
+                    if (isSearchedListEmpty) SizedBox(height: 8),
                     if (isAlertDialogListEmpty(title: title))
                       Padding(
                         padding: const EdgeInsets.symmetric(

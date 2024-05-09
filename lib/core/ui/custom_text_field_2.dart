@@ -25,7 +25,8 @@ class _CustomTextField2State extends State<CustomTextField2> {
 
   @override
   void initState() {
-    if ([customerNameN, vendorNameN, productN,categoryNameN,uomNameN].contains(widget.title) &&
+    if ([customerNameN, vendorNameN, productN, categoryNameN, uomNameN]
+            .contains(widget.title) &&
         ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
             .contains(Get.currentRoute)) {
       focusNode.requestFocus();
@@ -44,7 +45,6 @@ class _CustomTextField2State extends State<CustomTextField2> {
       );
     });
     return TextFormField(
-
       textAlignVertical: TextAlignVertical.center,
       controller: textEditingController,
       focusNode: focusNode,
@@ -54,17 +54,24 @@ class _CustomTextField2State extends State<CustomTextField2> {
       onChanged: (data) => onTextFieldChange(
         title: widget.title,
         data: data,
-      ),onTap: () => onTextFieldPressed(
-      title: widget.title,
-    ),
+      ),
+      onTap: () => onTextFieldPressed(
+        title: widget.title,
+      ),
       decoration: InputDecoration(
           fillColor: widget.color ?? Colors.green.shade50,
           filled: true,
           errorMaxLines: 2,
-          border: UnderlineInputBorder(
+          enabledBorder: UnderlineInputBorder(
             borderRadius: smoothBorderRadius(radius: 12),
-            borderSide: BorderSide.none,
+            // borderSide: BorderSide.none
+            borderSide: BorderSide(width: 0, color: Colors.white),
           ),
+          focusedBorder: UnderlineInputBorder(
+              borderRadius: smoothBorderRadius(radius: 12),
+              borderSide: BorderSide.none
+              // borderSide: BorderSide(width: 0,color: Colors.white),
+              ),
           prefixIcon: titleToIcon(title: widget.title),
           suffixIcon: getSuffixWidget(title: widget.title),
           labelText: titleToLabel(title: widget.title),
