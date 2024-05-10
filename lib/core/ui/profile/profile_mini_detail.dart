@@ -20,7 +20,7 @@ class ProfileMiniDetail extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 0),
       shape: smoothRectangleBorder(radius: 12),
-      elevation: 3,
+      elevation: 2,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         onTap: () {

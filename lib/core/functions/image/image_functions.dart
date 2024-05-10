@@ -41,7 +41,8 @@ onImageSourceButtonPressed({
           source: sourceLocation == galleryN
               ? ImageSource.gallery
               : ImageSource.camera,
-          imageQuality: 30)
+          preferredCameraDevice: CameraDevice.front,
+          imageQuality: 25)
       .then((value) async {
     if (value != null) {
       String dir = path.dirname(value.path);

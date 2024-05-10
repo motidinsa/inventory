@@ -33,7 +33,7 @@ class ShadowedContainer extends StatelessWidget {
         vertical: verticalPadding,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: color??Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.green.shade200,

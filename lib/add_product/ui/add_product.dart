@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
@@ -11,6 +12,7 @@ import 'package:my_inventory/core/ui/shadowed_container.dart';
 
 import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 
+import '../../core/functions/helper_functions.dart';
 import '../../core/functions/image/image_functions.dart';
 
 class AddProduct extends StatelessWidget {
@@ -39,10 +41,17 @@ class AddProduct extends StatelessWidget {
           }
         },
         child: GetBuilder<AddProductController>(
-          builder: (context) {
+          builder: (addProductController) {
+            if (addProductController.isLoading) {
+              context.loaderOverlay.show();
+            } else {
+              executeAfterBuild(() {
+                context.loaderOverlay.hide();
+              });
+            }
             return Form(
               key: AppController.to.formKey,
-              autovalidateMode: AddProductController.to.isSubmitButtonPressed?AutovalidateMode.always:null,
+              autovalidateMode: addProductController.isSubmitButtonPressed?AutovalidateMode.always:null,
 
               child: ListView(
                 children: [

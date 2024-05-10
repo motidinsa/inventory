@@ -13,6 +13,8 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class PurchaseController extends GetxController {
+  bool isLoading = false;
+  bool isSubmitButtonPressed = false;
   DateTime now = DateTime.now();
   RxList<ProductDatabaseModel> searchProductFoundResult =
       <ProductDatabaseModel>[].obs;
