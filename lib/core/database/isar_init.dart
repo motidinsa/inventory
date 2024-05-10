@@ -22,9 +22,9 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/model/customer/log_customer_database_model.dart';
 import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 
-import '../model/customer/log_deleted_customer_database_model.dart';
-import '../model/vendor/log_deleted_vendor_database_model.dart';
-import '../model/vendor/log_vendor_database_model.dart';
+import 'package:my_inventory/core/model/customer/log_deleted_customer_database_model.dart';
+import 'package:my_inventory/core/model/vendor/log_deleted_vendor_database_model.dart';
+import 'package:my_inventory/core/model/vendor/log_vendor_database_model.dart';
 
 isarInit() async {
   await Get.putAsync<Isar>(() async {

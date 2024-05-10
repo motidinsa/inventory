@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/widget_functions.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class BodyWrapper extends StatelessWidget {
   final Widget body;

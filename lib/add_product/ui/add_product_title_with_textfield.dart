@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/ui/custom_text_field.dart';
 
-import '../../core/ui/custom_text_field_2.dart';
+import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 
 class AddProductTitleWithTextField extends StatelessWidget {
   final String title;

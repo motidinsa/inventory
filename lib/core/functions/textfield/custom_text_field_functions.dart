@@ -3,7 +3,6 @@ import 'package:my_inventory/add_customer/functions/add_customer_functions.dart'
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';

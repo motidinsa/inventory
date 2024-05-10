@@ -1,17 +1,12 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/product/log_product_database_model.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
-import 'package:my_inventory/core/constants/database_constants.dart';
 
-import '../repository/add_product_repository.dart';
+import 'package:my_inventory/add_product/repository/add_product_repository.dart';
 
 class AddProductController extends GetxController {
   bool isLoading = false;

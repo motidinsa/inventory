@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';

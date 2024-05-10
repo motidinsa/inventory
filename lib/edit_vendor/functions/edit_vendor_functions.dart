@@ -1,25 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/core/model/customer/customer_model.dart';
-import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
-import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
-import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
-import 'package:my_inventory/edit_customer/repository/edit_customer_repository.dart';
 
-import '../../core/controller/app_controller.dart';
-import '../../core/model/vendor/vendor_database_model.dart';
-import '../../core/model/vendor/vendor_model.dart';
-import '../../vendor_detail/controller/vendor_detail_controller.dart';
-import '../../vendor_list/controller/vendor_list_controller.dart';
-import '../../vendor_list/repository/vendor_list_repository.dart';
-import '../controller/edit_vendor_controller.dart';
-import '../repository/edit_vendor_repository.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
+import 'package:my_inventory/core/model/vendor/vendor_model.dart';
+import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
+import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
+import 'package:my_inventory/vendor_list/repository/vendor_list_repository.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+import 'package:my_inventory/edit_vendor/repository/edit_vendor_repository.dart';
 
 onEditVendorTextFieldChange({
   required String title,
@@ -75,14 +66,15 @@ onEditVendorSaveButtonPressed() async {
         vendorListController.update();
         VendorDetailController.to.update();
 
-        showSnackbar(message: successfullyEditedN);
+        showSnackbar(message: successfullyEditedN, success: true);
       } else {
         showSnackbar(
-            message: noChangesMadeN, backgroundColor: Colors.grey.shade800);
+          message: noChangesMadeN,
+        );
       }
       Get.back();
     } on Exception {
-      showSnackbar(message: someErrorOccurredN);
+      showSnackbar(message: someErrorOccurredN, success: false);
     } finally {
       editVendorController.isLoading = false;
       editVendorController.update();

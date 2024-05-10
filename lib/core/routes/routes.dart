@@ -31,8 +31,8 @@ import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
-import '../../edit_vendor/controller/edit_vendor_controller.dart';
-import '../../vendor_detail/controller/vendor_detail_controller.dart';
+import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
+import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 
 List<GetPage> routes = [
   GetPage(
@@ -67,7 +67,7 @@ List<GetPage> routes = [
       binding: BindingsBuilder.put(() => SalesController())),
   GetPage(
       name: RouteName.vendorList,
-      page: () => VendorList(),
+      page: () => const VendorList(),
       binding: BindingsBuilder.put(() => VendorListController())),
   GetPage(
       name: RouteName.addVendor,

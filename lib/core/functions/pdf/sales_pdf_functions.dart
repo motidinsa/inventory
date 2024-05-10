@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:pdf/pdf.dart';
 
 import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:pdf/widgets.dart' as p;
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 p.Widget generateSalesData() {
   List<p.Widget> salesData = [];

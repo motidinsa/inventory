@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
@@ -38,7 +37,7 @@ onSignupButtonPressed() async {
     } on Exception {
       showSnackbar(
         message: someErrorOccurredN,
-        backgroundColor: Colors.grey.shade800,
+
       );
     } finally {
       signupController.isLoading = false;

@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import 'package:my_inventory/core/functions/image/image_functions.dart';
 
 class AddProductImage extends StatelessWidget {
 
@@ -25,7 +25,7 @@ class AddProductImage extends StatelessWidget {
               fontSize: 16,
               color: Colors.grey.shade700),
         ),
-        SizedBox(width: 40),
+        const SizedBox(width: 40),
 
           if (getProductImagePath() != null)
              Column(
@@ -37,7 +37,7 @@ class AddProductImage extends StatelessWidget {
                     width: 120,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Row(
                   children: [
                     TextButton(
@@ -66,7 +66,7 @@ class AddProductImage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               backgroundColor: Colors.green.shade50,
             ),
-            child: Column(
+            child: const Column(
               children: [
                 Icon(
                   Icons.add,

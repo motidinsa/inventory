@@ -1,12 +1,10 @@
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
@@ -16,6 +14,8 @@ import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
 import 'package:my_inventory/sales/repository/sales_repository.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();

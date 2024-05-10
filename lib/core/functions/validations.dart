@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 validateInput({
   required String title,

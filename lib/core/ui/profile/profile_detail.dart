@@ -12,7 +12,8 @@ import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 
-import 'package:my_inventory/core/functions/core_functions.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class ProfileDetail extends StatelessWidget {
   ProfileDetail({super.key});
@@ -105,7 +106,7 @@ class ProfileDetail extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${getFormattedNumberWithComa(Get.find<CustomerDetailController>().customerCredit)}',
+                      getFormattedNumberWithComa(Get.find<CustomerDetailController>().customerCredit),
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -164,7 +165,7 @@ class ProfileDetail extends StatelessWidget {
             ],
           ),
         ),
-        ActionButton(backgroundColor: Colors.red.shade400),
+        const ActionButton(),
       ],
     );
   }

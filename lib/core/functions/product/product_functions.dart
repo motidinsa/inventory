@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
-import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';

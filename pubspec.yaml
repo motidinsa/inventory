@@ -68,6 +68,7 @@ dependencies:
   envied: ^0.5.4+1
 
 
+  path: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

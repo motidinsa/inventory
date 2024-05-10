@@ -1,19 +1,11 @@
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/add_product/repository/add_product_repository.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
-import 'package:my_inventory/core/model/category/category_database_model.dart';
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
-import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
-import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
-import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
-import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/purchase/functions/purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
@@ -23,8 +15,8 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/customer_detail/functions/customer_detail_functions.dart';
 
-import '../../../vendor_detail/controller/vendor_detail_controller.dart';
-import '../../../vendor_detail/functions/vendor_detail_functions.dart';
+import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
+import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
 String? onAddProductTitleToData({required String title}) {
   ProductModel productModel =
       AddProductController.to.productModel;

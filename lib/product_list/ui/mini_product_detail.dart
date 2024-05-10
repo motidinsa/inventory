@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/styles/styles.dart';
-import 'package:my_inventory/core/ui/product/product_image.dart';
 import 'package:my_inventory/product_detail/functions/product_detail_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
 import 'package:smooth_corner/smooth_corner.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;

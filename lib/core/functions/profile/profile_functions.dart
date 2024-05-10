@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';

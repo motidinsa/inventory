@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
+
+import 'package:my_inventory/core/functions/image/image_functions.dart';
 
 class AddImageSourceButton extends StatelessWidget {
   final String sourceLocation;
@@ -33,7 +33,7 @@ class AddImageSourceButton extends StatelessWidget {
                 size: 45,
                 color: Colors.grey.shade600,
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
                 sourceLocation,
                 style: TextStyle(

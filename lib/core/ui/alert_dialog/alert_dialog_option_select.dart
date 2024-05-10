@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
@@ -11,13 +10,14 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
-import '../../../add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/add_product/functions/add_product_functions.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
 
-  AlertDialogOptionSelect({super.key, required this.title, this.listIndex});
+  const AlertDialogOptionSelect({super.key, required this.title, this.listIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               title: title,
                             ).length,
                           ),
-                    if (isSearchedListEmpty) SizedBox(height: 8),
+                    if (isSearchedListEmpty) const SizedBox(height: 8),
                     if (isAlertDialogListEmpty(title: title))
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -127,7 +127,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                               size: 27,
                             )),
                       ),
-                    SizedBox(height: 8)
+                    const SizedBox(height: 8)
                   ],
                 ),
         ),

@@ -5,7 +5,6 @@ import 'package:my_inventory/add_customer/controller/add_customer_controller.dar
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/body_wrapper.dart';
 
@@ -13,6 +12,8 @@ import 'package:my_inventory/main.dart';
 
 import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 import 'package:my_inventory/core/ui/shadowed_container.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class AddCustomer extends StatelessWidget {
   AddCustomer({super.key});

@@ -1,71 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_confirmation.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 
+import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
+import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/signup/controller/signup_controller.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
+
 unFocus() => FocusManager.instance.primaryFocus?.unfocus();
 
-// bool isNumeric(String input) {
-//   final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
-//   return numberRegExp.hasMatch(input);
-// }
+void executeAfterBuild(VoidCallback function) {
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    function();
+  });
+}
 
-// generateDatabaseId({required DateTime time, var identifier}) {
-//   final DateFormat dateFormatter =
-//       DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
-//   String key = dateFormatter.format(time);
-//   return key;
-// }
+bool isNumeric(String input) {
+  final numberRegExp = RegExp(r'^[-+]?[0-9]+(\.[0-9]+)?$');
+  return numberRegExp.hasMatch(input);
+}
 
-// double getValidNumValue(String data) {
-//   if (isNumeric(data)) {
-//     return double.parse(data);
-//   }
-//   return 0;
-// }
-//
-// getFormattedNumberWithComa(double num) {
-//   return NumberFormat("#,###.##").format(num);
-// }
-//
-// getFormattedNumberWithoutComa(num) {
-//   if (isNumeric(num.toString())) {
-//     return NumberFormat("###.##").format(double.parse(num.toString()));
-//   }
-//   return num.toString();
-// }
-//
-// emptyIfNull(String? data) {
-//   if (data != null) {
-//     return data;
-//   }
-//   return '';
-// }
-//
-// emptyIfDefaultValue(var data) {
-//   var emptyLists = [0, '0.0', '0'];
-//   if (!emptyLists.contains(data)) {
-//     return data.toString();
-//   }
-//   return '';
-// }
-//
-// nullIfEmpty(String? data) {
-//   if (data != null) {
-//     if (data.isEmpty) {
-//       return null;
-//     }
-//   }
-//   return data;
-// }
+String generateDatabaseId({required DateTime time, var identifier}) {
+  final DateFormat dateFormatter =
+      DateFormat('yyyyMMdd_HmsS${identifier != null ? '_$identifier' : ''}');
+  String key = dateFormatter.format(time);
+  return key;
+}
+
+double getValidNumValue(String data) {
+  if (isNumeric(data)) {
+    return double.parse(data);
+  }
+  return 0;
+}
+
+String getFormattedNumberWithComa(double num) {
+  return NumberFormat("#,###.##").format(num);
+}
+
+String getFormattedNumberWithoutComa(num) {
+  if (isNumeric(num.toString())) {
+    return NumberFormat("###.##").format(double.parse(num.toString()));
+  }
+  return num.toString();
+}
+
+String? nullIfEmpty(String? data) {
+  if (data != null) {
+    if (data.isEmpty) {
+      return null;
+    }
+  }
+  return data;
+}
+
+String emptyIfNull(String? data) {
+  if (data != null) {
+    return data;
+  }
+  return '';
+}
+
+String emptyIfDefaultValue(var data) {
+  var emptyLists = [0, '0.0', '0'];
+  if (!emptyLists.contains(data)) {
+    return data.toString();
+  }
+  return '';
+}
 
 showSnackbar(
     {required String message,
-    Color? backgroundColor,
     TextStyle? style,
-    Duration? duration}) {
+    Duration? duration,
+    bool? success}) {
   ScaffoldMessenger.of(Get.context!).clearSnackBars();
   ScaffoldMessenger.of(Get.context!).showSnackBar(
     SnackBar(
@@ -78,7 +91,11 @@ showSnackbar(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       shape: smoothRectangleBorder(radius: 12),
       dismissDirection: DismissDirection.horizontal,
-      backgroundColor: backgroundColor ?? Colors.green.shade400,
+      backgroundColor: success == true
+          ? Colors.green.shade400
+          : success == false
+              ? Colors.red.shade400
+              : Colors.grey.shade800,
     ),
   );
 }
@@ -86,6 +103,29 @@ showSnackbar(
 showAlertDialogConfirmation() {
   Get.dialog(GestureDetector(
     onTap: () => unFocus(),
-    child: AlertDialogConfirmation(confirmationText: getAlertDialogConfirmationMessage(),),
+    child: AlertDialogConfirmation(
+      confirmationText: getAlertDialogConfirmationMessage(),
+    ),
   ));
+}
+
+DateTime? getSelectedDate() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
+    return SalesController.to.salesDate;
+  } else if (currentRoute == RouteName.purchase) {
+    return PurchaseController.to.purchaseDate;
+  }
+  return null;
+}
+
+bool isActionButtonLoading() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.signUp) {
+    return SignupController.to.isLoading;
+  }
+  if (currentRoute == RouteName.addCustomer) {
+    return AddCustomerController.to.isLoading;
+  }
+  return false;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
@@ -13,8 +12,8 @@ import 'package:my_inventory/main.dart';
 import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 import 'package:my_inventory/core/ui/shadowed_container.dart';
 
-import '../../core/functions/core_functions.dart';
-import '../controller/add_vendor_controller.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
+import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
 
 class AddVendor extends StatelessWidget {
   AddVendor({super.key});

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
@@ -8,6 +7,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:my_inventory/core/constants/database_constants.dart';
 import 'package:my_inventory/core/env/env.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class SignupRepository {
   static final Isar _isar = Get.find();

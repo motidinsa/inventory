@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 
-import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/vendor/log_deleted_vendor_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 
-import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 
-import '../../core/controller/app_controller.dart';
-import '../controller/vendor_detail_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 
 class VendorDetailRepository {
   static final Isar _isar = Get.find();

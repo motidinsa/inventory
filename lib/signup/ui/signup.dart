@@ -6,11 +6,12 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/ui/custom_text_field_2.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
 import 'package:my_inventory/signup/ui/add_company_logo.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -94,13 +95,11 @@ class SignUp extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ActionButton(
-                          redirectFrom: signUpN,
-                          padding: const EdgeInsets.symmetric(
+                        const ActionButton(
+                          padding: EdgeInsets.symmetric(
                             vertical: 15,
                             horizontal: 24,
                           ),
-                          backgroundColor: Colors.green.shade300,
                           textColor: Colors.white,
                         ),
                       ],

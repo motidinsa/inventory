@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/product/product_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/custom_text_field.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class ProductItem extends StatelessWidget {
   final int index;

@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
 
-import '../../add_product/controller/add_product_controller.dart';
-import '../repository/add_item_repository.dart';
-import '../routes/route_names.dart';
-import 'helper_functions.dart';
+import 'package:my_inventory/add_product/controller/add_product_controller.dart';
+import 'package:my_inventory/core/repository/add_item_repository.dart';
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 onCategoryAddPressed() async {
   if (AddItemController.to.formKey.currentState!.validate()) {
@@ -19,7 +17,7 @@ onCategoryAddPressed() async {
       } on Exception {
         showSnackbar(
           message: someErrorOccurredN,
-          backgroundColor: Colors.red.shade400,
+          success: false,
         );
       }
   }
@@ -34,7 +32,7 @@ onCategoryAddPressed() async {
       } on Exception {
         showSnackbar(
           message: someErrorOccurredN,
-          backgroundColor: Colors.red.shade400,
+          success: false,
         );
       }
   }

@@ -8,7 +8,6 @@ class ActionButton extends StatelessWidget {
   final String? redirectFrom;
   final ActionButtonType? actionButtonType;
   final EdgeInsetsGeometry? padding;
-  final Color? backgroundColor;
   final Color? textColor;
 
   const ActionButton({
@@ -16,7 +15,6 @@ class ActionButton extends StatelessWidget {
     this.redirectFrom,
     this.actionButtonType,
     this.padding,
-    this.backgroundColor,
     this.textColor,
   });
 
@@ -38,7 +36,7 @@ class ActionButton extends StatelessWidget {
                     15,
                   ),
                 ),
-                backgroundColor: backgroundColor ?? Colors.green.shade100,
+                backgroundColor: getActionButtonBackgroundColor(),
               ),
               child: Text(
                 getActionButtonText(),

@@ -1,10 +1,7 @@
-import 'package:get/get.dart';
-import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 
-import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 
-import '../controller/vendor_list_controller.dart';
-import '../repository/vendor_list_repository.dart';
+import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
+import 'package:my_inventory/vendor_list/repository/vendor_list_repository.dart';
 
 
 onVendorListTextFieldChange({

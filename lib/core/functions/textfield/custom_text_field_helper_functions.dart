@@ -6,6 +6,35 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
+import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
+import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
+import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
+import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
+import 'package:my_inventory/core/functions/report/report_functions.dart';
+
+String? titleToData({required String title, int? index}) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.sales) {
+    return onSalesTitleToData(title: title, index: index);
+  } else if (currentRoute == RouteName.addProduct) {
+    return onAddProductTitleToData(title: title);
+  } else if (currentRoute == RouteName.purchase) {
+    return onPurchaseTitleToData(title: title, index: index);
+  } else if (currentRoute == RouteName.editProduct) {
+    return getEditProductData(title: title);
+  } else if (currentRoute == RouteName.editCustomer) {
+    return getEditCustomerData(title: title);
+  } else if (currentRoute == RouteName.editVendor) {
+    return getEditVendorData(title: title);
+  } else if ([salesReportN, purchaseReportN, paymentReportN]
+      .contains(currentRoute)) {
+    return getReportSelectedDate(title: title);
+  }
+  return null;
+}
+
 String? titleToHint({String? title}) {
   String? value;
   if (title == productN) {
@@ -45,6 +74,35 @@ String? titleToHint({String? title}) {
   return value;
 }
 
+Icon? titleToIcon({
+  required String title,
+}) {
+  IconData? iconData;
+  if ([vendorNameN, companyNameN].contains(title)) {
+    iconData = Icons.corporate_fare_rounded;
+  } else if ([customerNameN, contactPersonN, firstNameN, lastNameN]
+      .contains(title)) {
+    iconData = Icons.person_outline;
+  } else if (title == phoneNumberN) {
+    iconData = Icons.call_outlined;
+  } else if (title == addressN) {
+    iconData = Icons.location_on_outlined;
+  } else if (title == cityN) {
+    iconData = Icons.location_city_outlined;
+  } else if (title == emailN) {
+    iconData = Icons.mail_outline_rounded;
+  } else if (title == dateN) {
+    iconData = Icons.calendar_month_outlined;
+  }
+  return iconData != null
+      ? Icon(
+          iconData,
+          size: 24,
+          color: Colors.grey.shade700,
+        )
+      : null;
+}
+
 EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
   EdgeInsetsGeometry? padding;
   if ([
@@ -58,9 +116,10 @@ EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
     reorderQuantityN,
     imageN,
     costN,
-    priceN,categoryNameN
+    priceN,
+    categoryNameN
   ].contains(title)) {
-    padding = EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
+    padding = const EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
   }
   return padding;
 }
@@ -163,8 +222,7 @@ String getSuffixText() {
   String currentRoute = Get.currentRoute;
   String suffixText = '';
   if (currentRoute == RouteName.addProduct) {
-    suffixText =
-        AddProductController.to.productModel.unitOfMeasurementName;
+    suffixText = AddProductController.to.productModel.unitOfMeasurementName;
   } else if (currentRoute == RouteName.editProduct) {
     suffixText =
         EditProductController.to.productInfo.value.unitOfMeasurementName;
@@ -207,8 +265,7 @@ EdgeInsets getContentPadding({required String title}) {
     horizontalPadding = 20;
     verticalPadding = 20;
   }
-  return EdgeInsets.symmetric(
-      horizontal: 30, vertical: 10);
+  return const EdgeInsets.symmetric(horizontal: 30, vertical: 10);
 }
 
 bool paymentModeTitles({String? title}) {
@@ -228,35 +285,6 @@ bool hasMinimumPadding({required String title}) {
 bool hasSuffixText({String? title}) {
   var items = [quantityOnHandN, reorderQuantityN];
   return items.contains(title);
-}
-
-Icon? titleToIcon({
-  required String title,
-}) {
-  IconData? iconData;
-  if ([vendorNameN, companyNameN].contains(title)) {
-    iconData = Icons.corporate_fare_rounded;
-  } else if ([customerNameN, contactPersonN, firstNameN, lastNameN]
-      .contains(title)) {
-    iconData = Icons.person_outline;
-  } else if (title == phoneNumberN) {
-    iconData = Icons.call_outlined;
-  } else if (title == addressN) {
-    iconData = Icons.location_on_outlined;
-  } else if (title == cityN) {
-    iconData = Icons.location_city_outlined;
-  } else if (title == emailN) {
-    iconData = Icons.mail_outline_rounded;
-  } else if (title == dateN) {
-    iconData = Icons.calendar_month_outlined;
-  }
-  return iconData != null
-      ? Icon(
-          iconData,
-          size: 24,
-          color: Colors.grey.shade700,
-        )
-      : null;
 }
 
 String titleToLabel({
@@ -283,4 +311,22 @@ bool hasSearchIcon({String? title}) {
     searchVendorsN
   ];
   return items.contains(title);
+}
+
+TextInputType getKeyboardType({required String title}) {
+  final List<String> numberKeyboardLists = [
+    costN,
+    priceN,
+    quantityOnHandN,
+    reorderQuantityN,
+    quantityN
+  ];
+  if (numberKeyboardLists.contains(title)) {
+    return TextInputType.number;
+  } else if (title == phoneNumberN) {
+    return TextInputType.phone;
+  } else if (title == emailN) {
+    return TextInputType.emailAddress;
+  }
+  return TextInputType.name;
 }

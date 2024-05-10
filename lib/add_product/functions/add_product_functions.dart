@@ -1,11 +1,9 @@
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/repository/add_product_repository.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/add_item_controller.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
@@ -17,6 +15,8 @@ import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 onAddProductTextFieldChange({
   required String title,
@@ -121,7 +121,7 @@ onSalesProductSelect({
   } else if (title == selectN) {
     salesController.searchCustomerFoundResult(
         isar.customerDatabaseModels.where().findAllSync());
-    Get.dialog(AlertDialogOptionSelect(
+    Get.dialog(const AlertDialogOptionSelect(
       title: searchCustomersN,
     )).then(
       (value) {
@@ -151,7 +151,7 @@ onPurchaseProductSelect({
   } else if (title == selectN) {
     purchaseController.searchVendorFoundResult(
         isar.vendorDatabaseModels.where().findAllSync());
-    Get.dialog(AlertDialogOptionSelect(
+    Get.dialog(const AlertDialogOptionSelect(
       title: searchVendorsN,
     )).then(
       (value) {

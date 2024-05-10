@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class PurchaseReportSummary extends StatelessWidget {
   final double totalCost;

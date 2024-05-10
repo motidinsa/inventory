@@ -7,7 +7,7 @@ import 'package:my_inventory/customer_list/controller/customer_list_controller.d
 import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-import '../../core/controller/app_controller.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 
 onAddCustomerTextFieldChange({
   required String title,
@@ -42,11 +42,11 @@ onAddCustomerSaveButtonPressed() async {
           customerListController.isEmpty = false;
           customerListController.update();
         }
-        showSnackbar(message: successfullyAddedCustomerN);
+        showSnackbar(message: successfullyAddedCustomerN,success: true);
         Get.back();
 
       } on Exception {
-        showSnackbar(message: someErrorOccurredN);
+        showSnackbar(message: someErrorOccurredN,success: false);
       } finally {
         addCustomerController.isLoading = false;
         addCustomerController.update();

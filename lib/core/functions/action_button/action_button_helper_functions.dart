@@ -26,3 +26,13 @@ Color? getActionButtonTextColor() {
 
   return color;
 }
+Color getActionButtonBackgroundColor() {
+  String currentRoute = Get.currentRoute;
+  if ([RouteName.customerDetail,RouteName.vendorDetail].contains(currentRoute)) {
+    return Colors.red.shade400;
+  }else if(currentRoute == RouteName.signUp){
+    return Colors.green.shade300;
+  }
+
+  return Colors.green.shade100;
+}

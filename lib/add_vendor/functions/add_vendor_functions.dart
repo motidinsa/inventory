@@ -1,17 +1,13 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
-import 'package:my_inventory/add_customer/repository/add_customer_repository.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
-import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/customer_list/repository/customer_list_repository.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-import '../../core/controller/app_controller.dart';
-import '../../vendor_list/controller/vendor_list_controller.dart';
-import '../../vendor_list/repository/vendor_list_repository.dart';
-import '../controller/add_vendor_controller.dart';
-import '../repository/add_vendor_repository.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
+import 'package:my_inventory/vendor_list/repository/vendor_list_repository.dart';
+import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
+import 'package:my_inventory/add_vendor/repository/add_vendor_repository.dart';
 
 onAddVendorTextFieldChange({
   required String title,

@@ -121,3 +121,4 @@ const String confirmToDeleteN = 'Confirm to delete';
 const String areYouSureYouWantToDeleteN = 'Are you sure you want to delete';
 const String cancelN = 'Cancel';
 const String noChangesMadeN = 'No changes made';
+const String unableToLoadImageN = 'Unable to load image';

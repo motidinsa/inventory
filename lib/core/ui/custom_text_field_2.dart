@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/functions/textfield/custom_text_field_helper_functions.dart';
 
 import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/functions/core_functions.dart';
 import 'package:my_inventory/core/functions/textfield/custom_text_field_functions.dart';
 import 'package:my_inventory/core/functions/validations.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
-import 'package:my_inventory/core/styles/styles.dart';
+
+import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class CustomTextField2 extends StatefulWidget {
   final String title;
