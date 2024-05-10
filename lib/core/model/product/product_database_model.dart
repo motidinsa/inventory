@@ -16,6 +16,7 @@ class ProductDatabaseModel {
   double reorderQuantity;
   String unitOfMeasurementId;
   String createdByUserId;
+  String companyId;
   String? lastModifiedByUserId;
   DateTime dateCreated;
   DateTime? lastDateModified;
@@ -35,6 +36,7 @@ class ProductDatabaseModel {
     required this.reorderQuantity,
     required this.unitOfMeasurementId,
     required this.createdByUserId,
+    required this.companyId,
     this.lastModifiedByUserId,
     required this.dateCreated,
     this.lastDateModified,

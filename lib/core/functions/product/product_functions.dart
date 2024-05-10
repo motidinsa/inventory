@@ -62,19 +62,7 @@ String? getProductImagePath() {
   return null;
 }
 
-onImageDeleteButtonPressed() {
-  String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.addProduct) {
-    AddProductController addProductController = Get.find();
-    addProductController.productModel.localImagePath = null;
 
-  } else if (currentRoute == RouteName.editProduct) {
-    EditProductController editProductController = Get.find();
-    editProductController.productInfo.update((val) {
-      val?.localImagePath = null;
-    });
-  }
-}
 onProductDelete({required int index}){
   if(Get.currentRoute == RouteName.sales){
     SalesController.to.salesModels.removeAt(index);

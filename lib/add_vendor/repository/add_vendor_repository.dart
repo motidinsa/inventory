@@ -15,6 +15,7 @@ class AddVendorRepository {
 
   static addVendor() async {
     VendorModel vendorModel = AddVendorController.to.vendorModel;
+    AppController appController = AppController.to;
     DateTime now = DateTime.now();
     String vendorId = generateDatabaseId(time: now);
     String name = vendorModel.name.trim();
@@ -23,8 +24,8 @@ class AddVendorRepository {
     String? address = nullIfEmpty(vendorModel.address?.trim());
     String? city = nullIfEmpty(vendorModel.city?.trim());
     String? email = nullIfEmpty(vendorModel.email?.trim());
-    String addedByUserId = AppController.to.userId.value;
-    String companyId = AppController.to.companyId;
+    String addedByUserId = appController.userId.value;
+    String companyId = appController.companyId;
 
     final VendorDatabaseModel vendorDatabaseModel = VendorDatabaseModel(
       name: name,
@@ -52,7 +53,6 @@ class AddVendorRepository {
           vendorId: vendorId,
           addedByUserId: addedByUserId,
           companyId: companyId,
-          objectId: vendorId,
         ),
       );
     });

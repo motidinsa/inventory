@@ -23,83 +23,88 @@ const ProductDatabaseModelSchema = CollectionSchema(
       name: r'categoryId',
       type: IsarType.string,
     ),
-    r'cost': PropertySchema(
+    r'companyId': PropertySchema(
       id: 1,
+      name: r'companyId',
+      type: IsarType.string,
+    ),
+    r'cost': PropertySchema(
+      id: 2,
       name: r'cost',
       type: IsarType.double,
     ),
     r'createdByUserId': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'createdByUserId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'description': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'description',
       type: IsarType.string,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'localImagePath': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'localImagePath',
       type: IsarType.string,
     ),
     r'onlineImagePath': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'onlineImagePath',
       type: IsarType.string,
     ),
     r'price': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'price',
       type: IsarType.double,
     ),
     r'productId': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'productId',
       type: IsarType.string,
     ),
     r'productName': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'productName',
       type: IsarType.string,
     ),
     r'quantityOnHand': PropertySchema(
-      id: 13,
+      id: 14,
       name: r'quantityOnHand',
       type: IsarType.double,
     ),
     r'reorderQuantity': PropertySchema(
-      id: 14,
+      id: 15,
       name: r'reorderQuantity',
       type: IsarType.double,
     ),
     r'unitOfMeasurementId': PropertySchema(
-      id: 15,
+      id: 16,
       name: r'unitOfMeasurementId',
       type: IsarType.string,
     ),
     r'userAssignedProductId': PropertySchema(
-      id: 16,
+      id: 17,
       name: r'userAssignedProductId',
       type: IsarType.string,
     )
@@ -130,6 +135,7 @@ int _productDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  bytesCount += 3 + object.companyId.length * 3;
   bytesCount += 3 + object.createdByUserId.length * 3;
   {
     final value = object.description;
@@ -174,22 +180,23 @@ void _productDatabaseModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.categoryId);
-  writer.writeDouble(offsets[1], object.cost);
-  writer.writeString(offsets[2], object.createdByUserId);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeString(offsets[4], object.description);
-  writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[6], object.lastDateModified);
-  writer.writeString(offsets[7], object.lastModifiedByUserId);
-  writer.writeString(offsets[8], object.localImagePath);
-  writer.writeString(offsets[9], object.onlineImagePath);
-  writer.writeDouble(offsets[10], object.price);
-  writer.writeString(offsets[11], object.productId);
-  writer.writeString(offsets[12], object.productName);
-  writer.writeDouble(offsets[13], object.quantityOnHand);
-  writer.writeDouble(offsets[14], object.reorderQuantity);
-  writer.writeString(offsets[15], object.unitOfMeasurementId);
-  writer.writeString(offsets[16], object.userAssignedProductId);
+  writer.writeString(offsets[1], object.companyId);
+  writer.writeDouble(offsets[2], object.cost);
+  writer.writeString(offsets[3], object.createdByUserId);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeString(offsets[5], object.description);
+  writer.writeBool(offsets[6], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[7], object.lastDateModified);
+  writer.writeString(offsets[8], object.lastModifiedByUserId);
+  writer.writeString(offsets[9], object.localImagePath);
+  writer.writeString(offsets[10], object.onlineImagePath);
+  writer.writeDouble(offsets[11], object.price);
+  writer.writeString(offsets[12], object.productId);
+  writer.writeString(offsets[13], object.productName);
+  writer.writeDouble(offsets[14], object.quantityOnHand);
+  writer.writeDouble(offsets[15], object.reorderQuantity);
+  writer.writeString(offsets[16], object.unitOfMeasurementId);
+  writer.writeString(offsets[17], object.userAssignedProductId);
 }
 
 ProductDatabaseModel _productDatabaseModelDeserialize(
@@ -200,22 +207,23 @@ ProductDatabaseModel _productDatabaseModelDeserialize(
 ) {
   final object = ProductDatabaseModel(
     categoryId: reader.readStringOrNull(offsets[0]),
-    cost: reader.readDouble(offsets[1]),
-    createdByUserId: reader.readString(offsets[2]),
-    dateCreated: reader.readDateTime(offsets[3]),
-    description: reader.readStringOrNull(offsets[4]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
-    localImagePath: reader.readStringOrNull(offsets[8]),
-    onlineImagePath: reader.readStringOrNull(offsets[9]),
-    price: reader.readDouble(offsets[10]),
-    productId: reader.readString(offsets[11]),
-    productName: reader.readString(offsets[12]),
-    quantityOnHand: reader.readDouble(offsets[13]),
-    reorderQuantity: reader.readDouble(offsets[14]),
-    unitOfMeasurementId: reader.readString(offsets[15]),
-    userAssignedProductId: reader.readStringOrNull(offsets[16]),
+    companyId: reader.readString(offsets[1]),
+    cost: reader.readDouble(offsets[2]),
+    createdByUserId: reader.readString(offsets[3]),
+    dateCreated: reader.readDateTime(offsets[4]),
+    description: reader.readStringOrNull(offsets[5]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[6]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[7]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[8]),
+    localImagePath: reader.readStringOrNull(offsets[9]),
+    onlineImagePath: reader.readStringOrNull(offsets[10]),
+    price: reader.readDouble(offsets[11]),
+    productId: reader.readString(offsets[12]),
+    productName: reader.readString(offsets[13]),
+    quantityOnHand: reader.readDouble(offsets[14]),
+    reorderQuantity: reader.readDouble(offsets[15]),
+    unitOfMeasurementId: reader.readString(offsets[16]),
+    userAssignedProductId: reader.readStringOrNull(offsets[17]),
   );
   object.id = id;
   return object;
@@ -231,36 +239,38 @@ P _productDatabaseModelDeserializeProp<P>(
     case 0:
       return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readDouble(offset)) as P;
-    case 2:
       return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readDouble(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 5:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 6:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 7:
       return (reader.readStringOrNull(offset)) as P;
+    case 6:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 7:
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 8:
       return (reader.readStringOrNull(offset)) as P;
     case 9:
       return (reader.readStringOrNull(offset)) as P;
     case 10:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 12:
       return (reader.readString(offset)) as P;
     case 13:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 14:
       return (reader.readDouble(offset)) as P;
     case 15:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 16:
+      return (reader.readString(offset)) as P;
+    case 17:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -515,6 +525,144 @@ extension ProductDatabaseModelQueryFilter on QueryBuilder<ProductDatabaseModel,
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'categoryId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'companyId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+          QAfterFilterCondition>
+      companyIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+          QAfterFilterCondition>
+      companyIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'companyId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel,
+      QAfterFilterCondition> companyIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'companyId',
         value: '',
       ));
     });
@@ -2355,6 +2503,20 @@ extension ProductDatabaseModelQuerySortBy
   }
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+      sortByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+      sortByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
       sortByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
@@ -2592,6 +2754,20 @@ extension ProductDatabaseModelQuerySortThenBy
       thenByCategoryIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'categoryId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+      thenByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QAfterSortBy>
+      thenByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
     });
   }
 
@@ -2844,6 +3020,13 @@ extension ProductDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
+      distinctByCompanyId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'companyId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, ProductDatabaseModel, QDistinct>
       distinctByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cost');
@@ -2974,6 +3157,13 @@ extension ProductDatabaseModelQueryProperty on QueryBuilder<
       categoryIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'categoryId');
+    });
+  }
+
+  QueryBuilder<ProductDatabaseModel, String, QQueryOperations>
+      companyIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'companyId');
     });
   }
 

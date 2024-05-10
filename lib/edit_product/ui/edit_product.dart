@@ -62,7 +62,7 @@ class EditProduct extends StatelessWidget {
                             labelText: titleList[index],
                           )
                         : index == 2
-                            ? const AddProductImage(
+                            ?  AddProductImage(
                               )
                             : index == 5
                                 ? Row(

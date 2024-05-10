@@ -31,7 +31,6 @@ class AddItem extends StatelessWidget {
           top: 15,
           bottom: 15,
         ),
-        // surfaceTintColor: Colors.white70,
         shape: smoothRectangleBorder(radius: 15),
         title: Text(
           title,

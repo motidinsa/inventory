@@ -16,13 +16,13 @@ class LogProductDatabaseModel {
   double reorderQuantity;
   String unitOfMeasurementId;
   String createdByUserId;
-  String modifiedByUserId;
+  String companyId;
+  String? modifiedByUserId;
   DateTime dateCreated;
-  DateTime dateModified;
+  DateTime? dateModified;
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;
-  String addedFrom;
 
   LogProductDatabaseModel({
     required this.productId,
@@ -36,12 +36,12 @@ class LogProductDatabaseModel {
     required this.reorderQuantity,
     required this.unitOfMeasurementId,
     required this.createdByUserId,
-    required this.modifiedByUserId,
+    required this.companyId,
+    this.modifiedByUserId,
     required this.dateCreated,
-    required this.dateModified,
+    this.dateModified,
     this.isAppWriteSynced,
     this.localImagePath,
     this.onlineImagePath,
-    required this.addedFrom,
   });
 }

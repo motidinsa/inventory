@@ -5,7 +5,7 @@ part 'log_customer_database_model.g.dart';
 @collection
 class LogCustomerDatabaseModel {
   Id id = Isar.autoIncrement;
-  String  objectId ;
+  String?  objectId ;
   String name;
   String customerId;
   String companyId;
@@ -20,7 +20,7 @@ class LogCustomerDatabaseModel {
   bool? isAppWriteSynced;
 
   LogCustomerDatabaseModel({
-    required this.objectId,
+     this.objectId,
     required this.name,
     required this.customerId,
     required this.companyId,

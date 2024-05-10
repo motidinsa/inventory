@@ -71,23 +71,3 @@ onTextFieldPressed({required String title, int? index}) {
   }
 }
 
-onFocusChange({
-  required String title,
-  required bool hasFocus,
-  required String data,
-}) {
-  if (!hasFocus) {
-    String currentRoute = Get.currentRoute;
-    if (currentRoute == RouteName.addProduct) {
-      onAddProductFocusChange(title: title, data: data);
-    } else if (currentRoute == RouteName.sales) {
-      onSalesProductFocusChange(title: title, data: data);
-    } else if (currentRoute == RouteName.purchase) {
-      onPurchaseProductFocusChange(title: title, data: data);
-    } else if (currentRoute == RouteName.editProduct) {
-      onEditProductFocusChange(title: title, data: data);
-    } else if (currentRoute == editCustomerN) {
-      // onEditCustomerFocusChange(title: title, data: data);
-    }
-  }
-}

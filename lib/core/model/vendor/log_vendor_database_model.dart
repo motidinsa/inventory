@@ -5,7 +5,7 @@ part 'log_vendor_database_model.g.dart';
 @collection
 class LogVendorDatabaseModel {
   Id id = Isar.autoIncrement;
-  String objectId;
+  String? objectId;
   String name;
   String vendorId;
   String addedByUserId;
@@ -21,7 +21,7 @@ class LogVendorDatabaseModel {
   bool? isAppWriteSynced;
 
   LogVendorDatabaseModel({
-    required this.objectId,
+    this.objectId,
     required this.name,
     required this.vendorId,
     required this.companyId,

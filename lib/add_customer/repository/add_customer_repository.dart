@@ -15,6 +15,7 @@ class AddCustomerRepository {
 
   static addCustomer() async {
     CustomerModel customerModel = AddCustomerController.to.customerModel;
+    AppController appController = AppController.to;
     DateTime now = DateTime.now();
     String customerId = generateDatabaseId(time: now);
     String name = customerModel.name.trim();
@@ -22,8 +23,8 @@ class AddCustomerRepository {
     String? address = nullIfEmpty(customerModel.address?.trim());
     String? city = nullIfEmpty(customerModel.city?.trim());
     String? email = nullIfEmpty(customerModel.email?.trim());
-    String addedByUserId = AppController.to.userId.value;
-    String companyId = AppController.to.companyId;
+    String addedByUserId = appController.userId.value;
+    String companyId = appController.companyId;
 
     final CustomerDatabaseModel customerDatabaseModel = CustomerDatabaseModel(
       name: name,
@@ -47,9 +48,8 @@ class AddCustomerRepository {
           email: email,
           dateCreated: now,
           customerId: customerId,
-          addedByUserId: AppController.to.userId.value,
+          addedByUserId: addedByUserId,
           companyId: companyId,
-          objectId: customerId,
         ),
       );
     });

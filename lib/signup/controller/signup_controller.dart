@@ -10,6 +10,6 @@ class SignupController extends GetxController {
   String phoneNumber = '';
   String? email;
   final formKey = GlobalKey<FormState>();
-bool isSignupButtonPressed = false;
+  bool isSignupButtonPressed = false;
   static SignupController get to => Get.find();
 }

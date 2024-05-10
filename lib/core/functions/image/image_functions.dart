@@ -18,6 +18,20 @@ onAddImagePressed() {
   )).then((value) => unFocus());
 }
 
+onDeleteImageButtonPressed() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addProduct) {
+    AddProductController addProductController = Get.find();
+    addProductController.productModel.localImagePath = null;
+    addProductController.update();
+  } else if (currentRoute == RouteName.editProduct) {
+    // EditProductController editProductController = Get.find();
+    // editProductController.productInfo.update((val) {
+    //   val?.localImagePath = null;
+    // });
+  }
+}
+
 onImageSourceButtonPressed({
   required String sourceLocation,
 }) async {
@@ -27,7 +41,7 @@ onImageSourceButtonPressed({
           source: sourceLocation == galleryN
               ? ImageSource.gallery
               : ImageSource.camera,
-          imageQuality: 40)
+          imageQuality: 30)
       .then((value) async {
     if (value != null) {
       String dir = path.dirname(value.path);
@@ -38,24 +52,24 @@ onImageSourceButtonPressed({
           path.join(dir, '$imageName${path.extension(value.name)}');
       try {
         await File(value.path).rename(newPath);
+        AddProductController addProductController = AddProductController.to;
+        addProductController.productModel.localImagePath = newPath;
+        addProductController.update();
+        Get.back();
       } catch (e) {
-        showSnackbar(message: unableToLoadImageN,success: true);
+        showSnackbar(message: unableToLoadImageN, success: false);
       }
-      AddProductController addProductController = AddProductController.to;
-      addProductController.productModel.localImagePath = newPath;
-      addProductController.update();
-
-      String currentRoute = Get.currentRoute;
-      if (currentRoute == RouteName.addProduct) {
-        await FolderFileSaver.saveFileIntoCustomDir(
-          filePath: newPath,
-          dirNamed: '/',
-        ).then((val) async {
-          final directory = await getTemporaryDirectory();
-          directory.delete(recursive: true);
-          Get.back();
-        });
-      }
+      // String currentRoute = Get.currentRoute;
+      // if (currentRoute == RouteName.addProduct) {
+      //   await FolderFileSaver.saveFileIntoCustomDir(
+      //     filePath: newPath,
+      //     dirNamed: '/',
+      //   ).then((val) async {
+      //     final directory = await getTemporaryDirectory();
+      //     directory.delete(recursive: true);
+      //     Get.back();
+      //   });
+      // }
     }
 
     // else if (currentRoute == RouteName.editProduct) {
@@ -77,4 +91,17 @@ onImageSourceButtonPressed({
 
     // Get.back();
   });
+}
+
+saveImageToInternalStorage() async {
+  await FolderFileSaver.saveFileIntoCustomDir(
+    filePath: AddProductController.to.productModel.localImagePath!,
+    dirNamed: '/',
+  ).then(
+      (value) => AddProductController.to.productModel.localImagePath = value);
+}
+
+clearTemporaryFile() async {
+  final directory = await getTemporaryDirectory();
+  directory.delete(recursive: true);
 }

@@ -28,17 +28,9 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   TextEditingController textEditingController = TextEditingController();
-  FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
-    focusNode.addListener(
-      () => onFocusChange(
-        title: widget.title,
-        hasFocus: focusNode.hasFocus,
-        data: textEditingController.text,
-      ),
-    );
     // if ([categoryNameN, uomNameN, customerNameN, vendorNameN, productN]
     //         .contains(widget.title) &&
     //     ![RouteName.editCustomer, RouteName.editVendor, RouteName.editProduct]
@@ -61,7 +53,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     });
     return TextFormField(
       controller: textEditingController,
-      focusNode: focusNode,
       keyboardType: getKeyboardType(title: widget.title),
       maxLines: widget.labelText == descriptionN ? 2 : 1,
       readOnly: isReadOnlyTitle(title: widget.title),

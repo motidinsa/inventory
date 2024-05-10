@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
@@ -21,16 +20,12 @@ onAddIconPressed({String? type}) {
       ),
     ).then((value) {
       Get.dialog(
-        GetBuilder<AddProductController>(
-          builder: (context) {
-            return AlertDialogOptionSelect(
-              title: type,
-            );
-          }
-        ),
+        GetBuilder<AddProductController>(builder: (context) {
+          return AlertDialogOptionSelect(
+            title: type,
+          );
+        }),
       ).then((value) => unFocus());
     });
   }
 }
-
-

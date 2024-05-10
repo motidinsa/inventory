@@ -105,24 +105,24 @@ class PurchaseController extends GetxController {
           ),
         );
 
-        await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
-          productName: currentProduct.productName,
-          description: currentProduct.description,
-          categoryId: currentProduct.categoryId,
-          cost: double.parse(purchaseModel.cost),
-          price: currentProduct.price,
-          createdByUserId: currentProduct.createdByUserId,
-          dateCreated: currentProduct.dateCreated,
-          quantityOnHand: currentQty,
-          reorderQuantity: currentProduct.reorderQuantity,
-          unitOfMeasurementId: currentProduct.unitOfMeasurementId,
-          localImagePath: currentProduct.localImagePath,
-          userAssignedProductId: currentProduct.userAssignedProductId,
-          productId: currentProduct.productId,
-          dateModified: now,
-          modifiedByUserId: AppController.to.userId.value,
-          addedFrom: purchaseDC,
-        ));
+        // await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
+        //   productName: currentProduct.productName,
+        //   description: currentProduct.description,
+        //   categoryId: currentProduct.categoryId,
+        //   cost: double.parse(purchaseModel.cost),
+        //   price: currentProduct.price,
+        //   createdByUserId: currentProduct.createdByUserId,
+        //   dateCreated: currentProduct.dateCreated,
+        //   quantityOnHand: currentQty,
+        //   reorderQuantity: currentProduct.reorderQuantity,
+        //   unitOfMeasurementId: currentProduct.unitOfMeasurementId,
+        //   localImagePath: currentProduct.localImagePath,
+        //   userAssignedProductId: currentProduct.userAssignedProductId,
+        //   productId: currentProduct.productId,
+        //   dateModified: now,
+        //   modifiedByUserId: AppController.to.userId.value,
+        //   addedFrom: purchaseDC,
+        // ));
       });
     }
     // purchaseModels.asMap().forEach((index, purchaseModel) async {

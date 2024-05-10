@@ -18,6 +18,30 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/controller/app_controller.dart';
+
+onAddProductSaveButtonPressed() async {
+  AddProductController addProductController = AddProductController.to;
+  addProductController.isSubmitButtonPressed=true;
+  addProductController.update();
+  if (AppController.to.formKey.currentState!.validate()) {
+    addProductController.isLoading = true;
+    addProductController.update();
+    try {
+      await AddProductRepository.addProduct();
+      showSnackbar(message: successfullyAddedProductN, success: true);
+      Get.back();
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN, success: false);
+    } finally {
+      addProductController.isLoading = false;
+      addProductController.update();
+    }
+  }else{
+    showSnackbar(message: pleaseFillTheRequiredFieldN);
+  }
+}
+
 onAddProductTextFieldChange({
   required String title,
   required String data,
@@ -48,54 +72,54 @@ onAddProductTextFieldChange({
   } else if ([categoryNameN, uomNameN].contains(title)) {
     AddItemController.to.addedText = data;
   }
-  // if (title == selectCategoryN) {
-  //   addProductController.categoryListFoundResult(isar.categoryDatabaseModels
-  //       .filter()
-  //       .categoryNameContains(data, caseSensitive: false)
-  //       .findAllSync());
-  // } else if (title == selectUomSN) {
-  //   addProductController.unitOfMeasurementListFoundResult(isar
-  //       .unitOfMeasurementDatabaseModels
-  //       .filter()
-  //       .nameContains(data, caseSensitive: false)
-  //       .findAllSync());
-  // }
 }
 
-onAddProductFocusChange({
-  required String title,
-  required String data,
-}) {
-  // final AddProductController addProductController = Get.find();
-  // addProductController.productInfo.update((product) {
-  //   if (title == productN) {
-  //     product?.name = data;
-  //   } else if (title == descriptionN) {
-  //     product?.description = data;
-  //   } else if (title == productIdN) {
-  //     product?.userAssignedProductId = data;
-  //   } else if (title == costN) {
-  //     product?.cost = data;
-  //   } else if (title == priceN) {
-  //     product?.price = data;
-  //   } else if (title == quantityOnHandN) {
-  //     product?.quantityOnHand = data;
-  //   } else if (title == reorderQuantityN) {
-  //     product?.reorderQuantity = data;
-  //   } else if ([categoryNameN, uomNameN].contains(title)) {
-  //     AddItemController addItemController = Get.find();
-  //     addItemController.addedText(data);
-  //   }
-  // });
-}
-
-getAddProductAlertDialogLength({required String title}) {
-  AddProductController addProductController = Get.find();
-  if (title == selectCategoryN) {
-    return addProductController.categoryListFoundResult.length;
-  } else if (title == selectUomSN) {
-    return addProductController.unitOfMeasurementListFoundResult.length;
+onAddProductTextFieldPressed({required String title}) {
+  if ([categoryN, uomSN].contains(title)) {
+    if (title == categoryN) {
+      AddProductController.to.categoryListFoundResult =
+          AddProductRepository.getAllCategory();
+    } else if (title == uomSN) {
+      AddProductController.to.unitOfMeasurementListFoundResult =
+          AddProductRepository.getAllUnitOfMeasurement();
+    }
+    Get.dialog(GetBuilder<AddProductController>(builder: (context) {
+      return AlertDialogOptionSelect(
+        title: title == categoryN ? selectCategoryN : selectUomSN,
+      );
+    })).then((value) => unFocus());
   }
+}
+
+onAddProductAlertDialogOptionSelect(
+    {required String title, required int index}) {
+  final AddProductController addProductController = AddProductController.to;
+  if (title == selectCategoryN) {
+    CategoryDatabaseModel categoryDatabaseModel =
+        addProductController.categoryListFoundResult[index];
+    addProductController.productModel.categoryName =
+        categoryDatabaseModel.categoryName;
+    addProductController.productModel.categoryId =
+        categoryDatabaseModel.categoryId;
+  } else if (title == selectUomSN) {
+    UnitOfMeasurementDatabaseModel unitOfMeasurementDatabaseModel =
+        addProductController.unitOfMeasurementListFoundResult[index];
+    addProductController.productModel.unitOfMeasurementName =
+        unitOfMeasurementDatabaseModel.name;
+    addProductController.productModel.unitOfMeasurementId =
+        unitOfMeasurementDatabaseModel.uomId;
+  }
+  Get.back();
+  addProductController.update();
+}
+
+String getEmptySearchResult({required String title}) {
+  if (title == selectCategoryN) {
+    return noCategoryFoundN;
+  } else if (title == selectUomSN) {
+    return noUnitOfMeasurementFoundN;
+  }
+  return '';
 }
 
 onSalesProductSelect({
@@ -159,54 +183,4 @@ onPurchaseProductSelect({
       },
     );
   }
-}
-
-onAddProductTextFieldPressed({required String title}) {
-  if ([categoryN, uomSN].contains(title)) {
-    if (title == categoryN) {
-      AddProductController.to.categoryListFoundResult =
-          AddProductRepository.getAllCategory();
-    } else if (title == uomSN) {
-      AddProductController.to.unitOfMeasurementListFoundResult =
-          AddProductRepository.getAllUnitOfMeasurement();
-    }
-    Get.dialog(GetBuilder<AddProductController>(builder: (context) {
-      return AlertDialogOptionSelect(
-        title: title == categoryN ? selectCategoryN : selectUomSN,
-      );
-    })).then((value) => unFocus());
-  }
-}
-
-onAddProductAlertDialogOptionSelect(
-    {required String title, required int index}) {
-  final AddProductController addProductController = AddProductController.to;
-  // addProductController.productInfo.update((product) {
-  if (title == selectCategoryN) {
-    CategoryDatabaseModel categoryDatabaseModel =
-        addProductController.categoryListFoundResult[index];
-    addProductController.productModel.categoryName =
-        categoryDatabaseModel.categoryName;
-    addProductController.productModel.categoryId =
-        categoryDatabaseModel.categoryId;
-  } else if (title == selectUomSN) {
-    UnitOfMeasurementDatabaseModel unitOfMeasurementDatabaseModel =
-        addProductController.unitOfMeasurementListFoundResult[index];
-    addProductController.productModel.unitOfMeasurementName =
-        unitOfMeasurementDatabaseModel.name;
-    addProductController.productModel.unitOfMeasurementId =
-        unitOfMeasurementDatabaseModel.uomId;
-  }
-  // });
-  Get.back();
-  addProductController.update();
-}
-
-String getEmptySearchResult({required String title}) {
-  if (title == selectCategoryN) {
-    return noCategoryFoundN;
-  } else if (title == selectUomSN) {
-    return noUnitOfMeasurementFoundN;
-  }
-  return '';
 }

@@ -132,7 +132,12 @@ int _logCustomerDatabaseModelEstimateSize(
     }
   }
   bytesCount += 3 + object.name.length * 3;
-  bytesCount += 3 + object.objectId.length * 3;
+  {
+    final value = object.objectId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   {
     final value = object.phoneNumber;
     if (value != null) {
@@ -181,7 +186,7 @@ LogCustomerDatabaseModel _logCustomerDatabaseModelDeserialize(
     lastModifiedByUserId: reader.readStringOrNull(offsets[8]),
     lastModifiedDate: reader.readDateTimeOrNull(offsets[9]),
     name: reader.readString(offsets[10]),
-    objectId: reader.readString(offsets[11]),
+    objectId: reader.readStringOrNull(offsets[11]),
     phoneNumber: reader.readStringOrNull(offsets[12]),
   );
   object.id = id;
@@ -218,7 +223,7 @@ P _logCustomerDatabaseModelDeserializeProp<P>(
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 12:
       return (reader.readStringOrNull(offset)) as P;
     default:
@@ -1714,8 +1719,26 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'objectId',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
+      QAfterFilterCondition> objectIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'objectId',
+      ));
+    });
+  }
+
+  QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> objectIdEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1729,7 +1752,7 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> objectIdGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1745,7 +1768,7 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> objectIdLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1761,8 +1784,8 @@ extension LogCustomerDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogCustomerDatabaseModel, LogCustomerDatabaseModel,
       QAfterFilterCondition> objectIdBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2579,7 +2602,7 @@ extension LogCustomerDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<LogCustomerDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogCustomerDatabaseModel, String?, QQueryOperations>
       objectIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'objectId');

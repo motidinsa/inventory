@@ -15,7 +15,7 @@ class ProductModel {
   ProductModel({
     required this.name,
     this.description,
-    required this.categoryId,
+    this.categoryId,
     required this.categoryName,
     required this.userAssignedProductId,
     required this.cost,

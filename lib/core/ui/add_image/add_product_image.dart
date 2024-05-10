@@ -9,8 +9,9 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/functions/image/image_functions.dart';
 
 class AddProductImage extends StatelessWidget {
+  AddProductImage({super.key});
 
-  const AddProductImage({super.key});
+  final String? productImagePath = getProductImagePath();
 
   @override
   Widget build(BuildContext context) {
@@ -27,39 +28,39 @@ class AddProductImage extends StatelessWidget {
         ),
         const SizedBox(width: 40),
 
-          if (getProductImagePath() != null)
-             Column(
-              children: [
-                ClipRRect(
-                  borderRadius: smoothBorderRadius(radius: 15),
-                  child: Image.file(
-                    File(getProductImagePath()!),
-                    width: 120,
-                  ),
+        if (productImagePath != null)
+          Column(
+            children: [
+              ClipRRect(
+                borderRadius: smoothBorderRadius(radius: 15),
+                child: Image.file(
+                  File(productImagePath!),
+                  width: 120,
                 ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    TextButton(
-                      onPressed: () => onImageDeleteButtonPressed(),
-                      style: TextButton.styleFrom(foregroundColor: Colors.red),
-                      child: const Text(
-                        deleteN,
-                        style: TextStyle(color: Colors.red),
-                      ),
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => onDeleteImageButtonPressed(),
+                    style: TextButton.styleFrom(foregroundColor: Colors.red),
+                    child: const Text(
+                      deleteN,
+                      style: TextStyle(color: Colors.red),
                     ),
-                    TextButton(
-                      onPressed: () => onAddImagePressed(),
-                      child: const Text(
-                        changeN,
-                      ),
+                  ),
+                  TextButton(
+                    onPressed: () => onAddImagePressed(),
+                    child: const Text(
+                      changeN,
                     ),
-                  ],
-                )
-              ],
-            )
-
-          else ElevatedButton(
+                  ),
+                ],
+              )
+            ],
+          )
+        else
+          ElevatedButton(
             onPressed: () => onAddImagePressed(),
             style: ElevatedButton.styleFrom(
               shape: smoothRectangleBorder(radius: 10),

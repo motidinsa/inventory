@@ -69,47 +69,47 @@ class EditProductController extends GetxController {
     isLocalSaveLoading(true);
     // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
     DateTime now = DateTime.now();  final Isar isar = Get.find();
-    await isar.writeTxn(() async {
-      final dbProduct =
-          await isar.productDatabaseModels.get(productDatabaseModel.id);
-      dbProduct?.productName = productInfo.value.name;
-      dbProduct?.description = productInfo.value.description;
-      dbProduct?.categoryId = productInfo.value.categoryId;
-      dbProduct?.cost = getValidNumValue(productInfo.value.cost);
-      dbProduct?.price = getValidNumValue(productInfo.value.price);
-      dbProduct?.createdByUserId = appController.userId.value;
-      dbProduct?.lastModifiedByUserId = appController.userId.value;
-      dbProduct?.dateCreated = productDatabaseModel.dateCreated;
-      dbProduct?.lastDateModified = now;
-      dbProduct?.quantityOnHand =
-          getValidNumValue(productInfo.value.quantityOnHand);
-      dbProduct?.reorderQuantity =
-          getValidNumValue(productInfo.value.reorderQuantity);
-      dbProduct?.unitOfMeasurementId = productInfo.value.unitOfMeasurementId;
-      dbProduct?.localImagePath = productInfo.value.localImagePath;
-      dbProduct?.userAssignedProductId =
-          productInfo.value.userAssignedProductId;
-      await isar.productDatabaseModels.put(dbProduct!);
-      await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
-        productId: productDatabaseModel.productId,
-        productName: productInfo.value.name,
-        description: productInfo.value.description,
-        categoryId: productInfo.value.categoryId,
-        userAssignedProductId: productInfo.value.userAssignedProductId,
-        cost: getValidNumValue(productInfo.value.cost),
-        price: getValidNumValue(productInfo.value.price),
-        quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-        reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-        unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-        createdByUserId: productDatabaseModel.createdByUserId,
-        modifiedByUserId: appController.userId.value,
-        dateCreated: productDatabaseModel.dateCreated,
-        dateModified: now,
-        localImagePath: productInfo.value.localImagePath,
-        onlineImagePath: productDatabaseModel.onlineImagePath,
-        addedFrom: editProductDC,
-      ));
-    });
+    // await isar.writeTxn(() async {
+    //   final dbProduct =
+    //       await isar.productDatabaseModels.get(productDatabaseModel.id);
+    //   dbProduct?.productName = productInfo.value.name;
+    //   dbProduct?.description = productInfo.value.description;
+    //   dbProduct?.categoryId = productInfo.value.categoryId;
+    //   dbProduct?.cost = getValidNumValue(productInfo.value.cost);
+    //   dbProduct?.price = getValidNumValue(productInfo.value.price);
+    //   dbProduct?.createdByUserId = appController.userId.value;
+    //   dbProduct?.lastModifiedByUserId = appController.userId.value;
+    //   dbProduct?.dateCreated = productDatabaseModel.dateCreated;
+    //   dbProduct?.lastDateModified = now;
+    //   dbProduct?.quantityOnHand =
+    //       getValidNumValue(productInfo.value.quantityOnHand);
+    //   dbProduct?.reorderQuantity =
+    //       getValidNumValue(productInfo.value.reorderQuantity);
+    //   dbProduct?.unitOfMeasurementId = productInfo.value.unitOfMeasurementId;
+    //   dbProduct?.localImagePath = productInfo.value.localImagePath;
+    //   dbProduct?.userAssignedProductId =
+    //       productInfo.value.userAssignedProductId;
+    //   await isar.productDatabaseModels.put(dbProduct!);
+    //   await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
+    //     productId: productDatabaseModel.productId,
+    //     productName: productInfo.value.name,
+    //     description: productInfo.value.description,
+    //     categoryId: productInfo.value.categoryId,
+    //     userAssignedProductId: productInfo.value.userAssignedProductId,
+    //     cost: getValidNumValue(productInfo.value.cost),
+    //     price: getValidNumValue(productInfo.value.price),
+    //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+    //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+    //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+    //     createdByUserId: productDatabaseModel.createdByUserId,
+    //     modifiedByUserId: appController.userId.value,
+    //     dateCreated: productDatabaseModel.dateCreated,
+    //     dateModified: now,
+    //     localImagePath: productInfo.value.localImagePath,
+    //     onlineImagePath: productDatabaseModel.onlineImagePath,
+    //     addedFrom: editProductDC,
+    //   ));
+    // });
     ProductListController.to.productList(isar.productDatabaseModels
         .filter()
         .productNameContains(ProductListController.to.searchedText.value)

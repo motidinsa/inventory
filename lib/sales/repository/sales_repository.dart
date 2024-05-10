@@ -95,22 +95,22 @@ class SalesRepository {
               customerId: salesController.customerId,
               salesPaymentId: salesPaymentId),
         );
-        await _isar.logProductDatabaseModels.put(
-          LogProductDatabaseModel(
-            productId: logProduct.productId,
-            productName: logProduct.productName,
-            cost: logProduct.cost,
-            price: logProduct.price,
-            quantityOnHand: quantityOnHand,
-            reorderQuantity: logProduct.reorderQuantity,
-            unitOfMeasurementId: logProduct.unitOfMeasurementId,
-            createdByUserId: logProduct.createdByUserId,
-            modifiedByUserId: AppController.to.userId.value,
-            dateCreated: logProduct.dateCreated,
-            dateModified: now,
-            addedFrom: salesDC,
-          ),
-        );
+        // await _isar.logProductDatabaseModels.put(
+        //   LogProductDatabaseModel(
+        //     productId: logProduct.productId,
+        //     productName: logProduct.productName,
+        //     cost: logProduct.cost,
+        //     price: logProduct.price,
+        //     quantityOnHand: quantityOnHand,
+        //     reorderQuantity: logProduct.reorderQuantity,
+        //     unitOfMeasurementId: logProduct.unitOfMeasurementId,
+        //     createdByUserId: logProduct.createdByUserId,
+        //     modifiedByUserId: AppController.to.userId.value,
+        //     dateCreated: logProduct.dateCreated,
+        //     dateModified: now,
+        //     addedFrom: salesDC,
+        //   ),
+        // );
 
         //
         _isar.salesDatabaseModels.putAll(salesDatabaseModels);

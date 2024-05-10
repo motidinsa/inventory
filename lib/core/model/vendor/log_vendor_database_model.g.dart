@@ -142,7 +142,12 @@ int _logVendorDatabaseModelEstimateSize(
     }
   }
   bytesCount += 3 + object.name.length * 3;
-  bytesCount += 3 + object.objectId.length * 3;
+  {
+    final value = object.objectId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   {
     final value = object.phoneNumber;
     if (value != null) {
@@ -193,7 +198,7 @@ LogVendorDatabaseModel _logVendorDatabaseModelDeserialize(
     lastModifiedByUserId: reader.readStringOrNull(offsets[8]),
     lastModifiedDate: reader.readDateTimeOrNull(offsets[9]),
     name: reader.readString(offsets[10]),
-    objectId: reader.readString(offsets[11]),
+    objectId: reader.readStringOrNull(offsets[11]),
     phoneNumber: reader.readStringOrNull(offsets[12]),
     vendorId: reader.readString(offsets[13]),
   );
@@ -231,7 +236,7 @@ P _logVendorDatabaseModelDeserializeProp<P>(
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 12:
       return (reader.readStringOrNull(offset)) as P;
     case 13:
@@ -1747,8 +1752,26 @@ extension LogVendorDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
+      QAfterFilterCondition> objectIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'objectId',
+      ));
+    });
+  }
+
+  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
+      QAfterFilterCondition> objectIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'objectId',
+      ));
+    });
+  }
+
+  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
       QAfterFilterCondition> objectIdEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1762,7 +1785,7 @@ extension LogVendorDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
       QAfterFilterCondition> objectIdGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1778,7 +1801,7 @@ extension LogVendorDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
       QAfterFilterCondition> objectIdLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1794,8 +1817,8 @@ extension LogVendorDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
       QAfterFilterCondition> objectIdBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2786,7 +2809,7 @@ extension LogVendorDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<LogVendorDatabaseModel, String, QQueryOperations>
+  QueryBuilder<LogVendorDatabaseModel, String?, QQueryOperations>
       objectIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'objectId');

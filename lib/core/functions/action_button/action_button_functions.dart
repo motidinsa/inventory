@@ -12,6 +12,8 @@ import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/core/functions/add_item_functions.dart';
 
+import '../../../add_product/functions/add_product_functions.dart';
+
 onActionButtonPressed({String? redirectFrom}) async {
   String currentRoute = Get.currentRoute;
 
@@ -52,7 +54,7 @@ onActionButtonPressed({String? redirectFrom}) async {
       onCategoryAddPressed();
     } else if (redirectFrom == uomNameN) {onUnitOfMeasurementAddPressed();
     } else {
-      onEditVendorSaveButtonPressed();
+      onAddProductSaveButtonPressed();
     }
   }
 }
