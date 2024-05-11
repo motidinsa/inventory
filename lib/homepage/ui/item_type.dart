@@ -29,7 +29,7 @@ class ItemType extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 25),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xfffcfdf6),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.green.shade200,

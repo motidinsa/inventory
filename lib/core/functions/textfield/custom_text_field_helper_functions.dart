@@ -78,7 +78,7 @@ Icon? titleToIcon({
   required String title,
 }) {
   IconData? iconData;
-  if ([vendorNameN, companyNameN].contains(title)) {
+  if ([vendorNameN,vendorN, companyNameN].contains(title)) {
     iconData = Icons.corporate_fare_rounded;
   } else if ([customerNameN, contactPersonN, firstNameN, lastNameN]
       .contains(title)) {
@@ -104,43 +104,48 @@ Icon? titleToIcon({
 }
 
 EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
-  EdgeInsetsGeometry? padding;
-  if ([
+  String currentRoute = Get.currentRoute;
+  if([RouteName.purchase,RouteName.sales].contains(currentRoute)){
+    return const EdgeInsets.only(left: 15, right: 10,top: 6,bottom: 6);
+  }
+  else if ([
     productN,
     descriptionN,
     categoryN,
     productIdN,
-    costN,
     uomSN,
     quantityOnHandN,
     reorderQuantityN,
     imageN,
-    costN,
+    if([RouteName.addProduct].contains(Get.currentRoute))costN,
     priceN,
-    categoryNameN
+    categoryNameN,
   ].contains(title)) {
-    padding = const EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
+    return const EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
   }
-  return padding;
+  return null;
 }
 
 bool hasOptionItems({String? title}) {
+  String currentRoute = Get.currentRoute;
   var itemsWithOption = [
     categoryN,
     uomSN,
     RouteName.sales,
     RouteName.purchase,
+    if(currentRoute == RouteName.purchase)vendorN,
     selectN,
   ];
   return itemsWithOption.contains(title);
 }
 
 bool isReadOnlyTitle({String? title}) {
+  String currentRoute = Get.currentRoute;
   var itemsWithOption = [
     categoryN,
     uomSN,
     RouteName.sales,
-    RouteName.purchase,
+    RouteName.purchase,if(currentRoute == RouteName.purchase)vendorN,
     selectN,
     fromN,
     toN,
@@ -291,9 +296,13 @@ String titleToLabel({
   required String title,
 }) {
   late String labelText;
-  if (Get.currentRoute == RouteName.signUp && title == emailN) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.signUp && title == emailN) {
     labelText = '$emailN ($optionalN)';
-  } else {
+  }else if([RouteName.purchase,RouteName.sales].contains(title)) {
+    labelText = productN;
+  }else
+ {
     labelText = title;
   }
   return labelText;
@@ -319,7 +328,7 @@ TextInputType getKeyboardType({required String title}) {
     priceN,
     quantityOnHandN,
     reorderQuantityN,
-    quantityN
+    qtyN
   ];
   if (numberKeyboardLists.contains(title)) {
     return TextInputType.number;

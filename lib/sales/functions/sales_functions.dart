@@ -23,7 +23,7 @@ onSalesTitleToData({required String title, int? index}) {
     return salesController.salesModels[index!].productName;
   } else if (title == selectN) {
     return salesController.customerName;
-  } else if (title == quantityN) {
+  } else if (title == qtyN) {
     return salesController.salesModels[index!].quantity;
   } else if (title == cashN) {
     return salesController.cash;
@@ -55,7 +55,7 @@ onSalesTextFieldChange({
         .filter()
         .productNameContains(data, caseSensitive: false)
         .findAllSync());
-  } else if (title == quantityN) {
+  } else if (title == qtyN) {
     SalesModel sales = salesController.salesModels[index!];
 
     if (data.isEmpty) {

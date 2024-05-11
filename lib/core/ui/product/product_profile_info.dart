@@ -11,6 +11,8 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../custom_text_field_2.dart';
+
 class ProductProfileInfo extends StatelessWidget {
   ProductProfileInfo({super.key,});
 
@@ -40,37 +42,11 @@ class ProductProfileInfo extends StatelessWidget {
           ],
         ),
         sizedBox(height: 15),
-        Row(
-          children: [
-            Icon(
-              Get.currentRoute == RouteName.sales ? Icons.person : Icons.corporate_fare,
-              size: 28,
-              color: Colors.grey.shade700,
-            ),
-            sizedBox(width: 15),
-            Text(
-              Get.currentRoute == RouteName.sales ? customerN : vendorN,
-              style: const TextStyle(fontSize: 17),
-            ),
-            sizedBox(width: 20),
-             const Expanded(
-              child: CustomTextField(
-                title: selectN,
-              ),
-            ),
-            if (getProfileId() != null) ...[
-              sizedBox(width: 2),
-              IconButton(
-                onPressed: () => onProfileCancelPressed(),
-                icon: Icon(
-                  Icons.cancel,
-                  color: Colors.red.shade600,
-                ),
-                style: IconButton.styleFrom(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-              )
-            ]
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: CustomTextField2(
+            title: vendorN,
+          ),
         ),
         if (getProfilePhone() != null) ...[
           sizedBox(height: 20),

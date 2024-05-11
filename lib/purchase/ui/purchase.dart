@@ -42,23 +42,9 @@ class Purchase extends StatelessWidget {
               ShadowedContainer(
                 child: ProductProfileInfo(),
                 horizontalMargin: 15,
-                verticalMargin: 20,
+                verticalMargin: 20,verticalPadding: 15,
                 horizontalPadding: 20,
-                // color: Colors.grey.shade100,
-                color: Color(0xfffcfdf6),
               ),
-              // ElevatedCard(
-              //   horizontalMargin: 10,
-              //   verticalMargin: 20,
-              //   blurRadius: 10,
-              //   horizontalPadding: 20,
-              //   child: GetBuilder<PurchaseController>(builder: (_) {
-              //     return ProductProfileInfo();
-              //   }),
-              // ),
-              // const ProductTableTitles(
-              //   currentRoute: purchaseN,
-              // ),
               GetBuilder<PurchaseController>(builder: (purchaseController) {
                 return ListView.builder(
                   shrinkWrap: true,

@@ -69,8 +69,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
           suffixIcon: getSuffixWidget(title: widget.title),
           labelText: titleToLabel(title: widget.title),
           floatingLabelStyle: TextStyle(color: Colors.green.shade900),
-          contentPadding: getTextFieldPadding(title: widget.title) ??
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+          contentPadding: getTextFieldPadding(title: widget.title)),
       validator: (value) => validateInput(
         data: textEditingController.text,
         title: widget.title,

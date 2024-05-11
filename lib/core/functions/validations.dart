@@ -12,7 +12,7 @@ validateInput({
     productN,
     categoryNameN,
     uomNameN,
-    quantityN,
+    qtyN,
     purchaseN,
     salesN,
     customerNameN,vendorNameN,
@@ -28,13 +28,13 @@ validateInput({
     priceN,
     quantityOnHandN,
     reorderQuantityN,
-    quantityN,
+    qtyN,
     purchaseN,
   ];
   if (nonEmptyTitles.contains(title)) {
     if (data.trim().isEmpty) {
       return requiredN;
-    } else if ([quantityN].contains(title)) {
+    } else if ([qtyN].contains(title)) {
       if (!isNumeric(data)) {
         return invalidNumberN;
       }

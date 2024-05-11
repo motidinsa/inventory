@@ -18,7 +18,7 @@ onPurchaseTitleToData({required String title, int? index}) {
     return purchaseController.purchaseModels[index!].cost;
   } else if (title == selectN) {
     return purchaseController.vendorName;
-  } else if (title == quantityN) {
+  } else if (title == qtyN) {
     return purchaseController.purchaseModels[index!].quantity;
   }
 }
@@ -38,7 +38,7 @@ onPurchaseTextFieldChange({
           .filter()
           .productNameContains(data, caseSensitive: false)
           .findAllSync());
-    } else if (title == quantityN) {
+    } else if (title == qtyN) {
       if (data.isEmpty) {
         purchase.quantity = '';
         purchase.totalAmount = 0;

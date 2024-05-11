@@ -57,6 +57,7 @@ class AddProduct extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
               ShadowedContainer(
+
                 child: ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
