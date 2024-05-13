@@ -8,6 +8,7 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
+import 'package:my_inventory/core/ui/shadowed_container.dart';
 
 class ProductPriceSummary extends StatelessWidget {
   const ProductPriceSummary({
@@ -16,79 +17,62 @@ class ProductPriceSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          const Spacer(
-            flex: 6,
-          ),
-          Expanded(
-            flex: 6,
-            child: Card(
-              surfaceTintColor: Colors.white,
-              shape: smoothRectangleBorder(
-                  radius: 15,
-                  side: const BorderSide(color: Colors.green, width: .5)),
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    if (Get.currentRoute == RouteName.sales) ...[
-                      RichText(
-                        text: TextSpan(
-                          text: '$subtotalN: ',
-                          style: TextStyle(
-                              fontWeight: bold(),
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontStyle: FontStyle.italic),
-                          // style: DefaultTextStyle.of(context).style,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: getFormattedNumberWithComa(double.parse(
-                                getSubtotal(),
-                              )),
-                              style: TextStyle(color: Colors.green.shade800),
-                            ),
-                            // TextSpan(text: ' world!'),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: CustomTextField(
-                          title: discountN,
-                          labelText: discountN,
-                        ),
-                      ),
-                    ],
-                    RichText(
-                      text: TextSpan(
-                        text: '$totalN: ',
-                        style: TextStyle(
-                          fontWeight: bold(),
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontStyle: FontStyle.italic,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: getFormattedNumberWithComa(
-                                double.parse(getTotal())),
-                            style: TextStyle(color: Colors.green.shade800),
-                          ),
-                          // TextSpan(text: ' world!'),
-                        ],
-                      ),
+    return ShadowedContainer(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            if (Get.currentRoute == RouteName.sales) ...[
+              RichText(
+                text: TextSpan(
+                  text: '$subtotalN: ',
+                  style: TextStyle(
+                      fontWeight: bold(),
+                      fontSize: 17,
+                      color: Colors.black,
+                  ),
+                  // style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: getFormattedNumberWithComa(double.parse(
+                        getSubtotal(),
+                      )),
+                      style: TextStyle(color: Colors.green.shade800),
                     ),
+                    // TextSpan(text: ' world!'),
                   ],
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: CustomTextField(
+                  title: discountN,
+                  labelText: discountN,
+                ),
+              ),
+            ],
+            RichText(
+              text: TextSpan(
+                text: '$totalN: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.grey.shade800,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: getFormattedNumberWithComa(
+                        double.parse(getTotal())),
+                    style: TextStyle(color: Colors.green.shade800),
+                  ),
+                  // TextSpan(text: ' world!'),
+                ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

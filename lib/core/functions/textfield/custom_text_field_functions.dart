@@ -9,7 +9,7 @@ import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dar
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 

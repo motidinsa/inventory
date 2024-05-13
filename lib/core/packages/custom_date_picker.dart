@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
@@ -476,8 +476,8 @@ class _DatePickerDialogState extends State<DatePickerDialog>
       SalesController.to.salesDate = date;
       SalesController.to.update();
     } else if(currentRoute == RouteName.purchase){
-      PurchaseController.to.purchaseDate = date;
-      PurchaseController.to.update();
+      addPurchaseController.to.purchaseDate = date;
+      addPurchaseController.to.update();
     }
     else if (currentRoute == salesReportN) {
       if (widget.title == fromN) {

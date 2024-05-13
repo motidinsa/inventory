@@ -6,8 +6,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
+import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
@@ -78,10 +78,10 @@ List getAlertDialogOptionLists({String? title}) {
       return editProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.purchase) {
-    PurchaseController purchaseController = Get.find();
+    addPurchaseController addPurchaseController = Get.find();
     return title == searchProductsN
-        ? purchaseController.searchProductFoundResult
-        : purchaseController.searchVendorFoundResult;
+        ? addPurchaseController.searchProductFoundResult
+        : addPurchaseController.searchVendorFoundResult;
   }
   return [];
 }
@@ -125,10 +125,10 @@ String getAlertDialogOptionName({required int index, String? title}) {
       return editProductController.unitOfMeasurementListFoundResult[index].name;
     }
   } else if (currentRoute == RouteName.purchase) {
-    PurchaseController purchaseController = Get.find();
+    addPurchaseController addPurchaseController = Get.find();
     return title == searchProductsN
-        ? purchaseController.searchProductFoundResult[index].productName
-        : purchaseController.searchVendorFoundResult[index].name;
+        ? addPurchaseController.searchProductFoundResult[index].productName
+        : addPurchaseController.searchVendorFoundResult[index].name;
   }
   return '';
 }
@@ -155,8 +155,8 @@ getAlertDialogOptionId({required int index, required String title}) {
       return editProductController.unitOfMeasurementListFoundResult[index].id;
     }
   } else if (currentRoute == RouteName.purchase) {
-    PurchaseController purchaseController = Get.find();
-    return purchaseController.searchProductFoundResult[index].id;
+    addPurchaseController addPurchaseController = Get.find();
+    return addPurchaseController.searchProductFoundResult[index].id;
   }
 }
 

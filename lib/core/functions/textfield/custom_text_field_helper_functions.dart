@@ -9,7 +9,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
-import 'package:my_inventory/purchase/functions/purchase_functions.dart';
+import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
@@ -132,7 +132,7 @@ bool hasOptionItems({String? title}) {
     categoryN,
     uomSN,
     RouteName.sales,
-    RouteName.purchase,
+    // RouteName.purchase,
     if(currentRoute == RouteName.purchase)vendorN,
     selectN,
   ];
@@ -196,10 +196,13 @@ TextAlign getTextAlign({required String title}) {
 Widget? getSuffixWidget({required String title}) {
   Widget? suffixWidget;
   if (hasOptionItems(title: title)) {
-    suffixWidget = const Icon(
-      Icons.arrow_drop_down_rounded,
-      color: Colors.teal,
-      size: 24,
+    suffixWidget = Padding(
+      padding: const EdgeInsets.only(right: 8,left: 5),
+      child: const Icon(
+        Icons.arrow_drop_down_rounded,
+        color: Colors.teal,
+        size: 24,
+      ),
     );
   } else if (hasSuffixText(title: title)) {
     suffixWidget = Padding(

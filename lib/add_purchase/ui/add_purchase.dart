@@ -12,20 +12,20 @@ import 'package:my_inventory/core/ui/product/product_item.dart';
 import 'package:my_inventory/core/ui/product/product_price_summary.dart';
 import 'package:my_inventory/core/ui/product/product_profile_info.dart';
 import 'package:my_inventory/core/ui/product/product_table_titles.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 
 import '../../core/functions/helper_functions.dart';
 import '../../core/ui/shadowed_container.dart';
 
-class Purchase extends StatelessWidget {
-  Purchase({super.key});
+class AddPurchase extends StatelessWidget {
+  AddPurchase({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
       pageName: purchaseN,
-      body: GetBuilder<PurchaseController>(builder: (purchaseController) {
-        if (purchaseController.isLoading) {
+      body: GetBuilder<addPurchaseController>(builder: (addPurchaseController) {
+        if (addPurchaseController.isLoading) {
           context.loaderOverlay.show();
         } else {
           executeAfterBuild(() {
@@ -34,29 +34,40 @@ class Purchase extends StatelessWidget {
         }
         return Form(
           key: AppController.to.formKey,
-          autovalidateMode: purchaseController.isSubmitButtonPressed
+          autovalidateMode: addPurchaseController.isSubmitButtonPressed
               ? AutovalidateMode.always
               : null,
           child: ListView(
+            shrinkWrap: true,
             children: [
               ShadowedContainer(
                 child: ProductProfileInfo(),
                 horizontalMargin: 15,
-                verticalMargin: 20,verticalPadding: 15,
+                verticalMargin: 20,
+                verticalPadding: 15,
                 horizontalPadding: 20,
               ),
-              GetBuilder<PurchaseController>(builder: (purchaseController) {
+              GetBuilder<addPurchaseController>(builder: (addPurchaseController) {
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => ProductItem(
                     index: index,
                   ),
-                  itemCount: purchaseController.purchaseModels.length,
+                  itemCount: addPurchaseController.purchaseModels.length,
                 );
               }),
-              addIconButton(),
-              const ProductPriceSummary(),
+              SizedBox(height: 5,),
+              Row(
+                children: [
+                  Spacer(),
+                  Expanded(
+                    child: addIconButton(),
+                  ),
+                   SizedBox(height: 5,),
+                   const ProductPriceSummary(),
+                ],
+              ),
               const ActionButton(redirectFrom: purchaseN)
             ],
           ),

@@ -4,7 +4,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
@@ -55,7 +55,7 @@ String? getProfilePhone() {
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerPhone;
   } else if (currentRoute == RouteName.purchase) {
-    return PurchaseController.to.vendorPhone;
+    return addPurchaseController.to.vendorPhone;
   }
   return null;
 }
@@ -65,7 +65,7 @@ String? getProfileAddress() {
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerAddress;
   } else if (currentRoute == RouteName.purchase) {
-    return PurchaseController.to.vendorAddress;
+    return addPurchaseController.to.vendorAddress;
   }
   return null;
 }
@@ -73,7 +73,7 @@ String? getProfileAddress() {
 String? getContactPerson() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.purchase) {
-    return PurchaseController.to.vendorContactPerson;
+    return addPurchaseController.to.vendorContactPerson;
   }
   return null;
 }

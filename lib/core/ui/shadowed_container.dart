@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../styles/styles.dart';
+
 class ShadowedContainer extends StatelessWidget {
   final Widget child;
   final double horizontalMargin;
@@ -34,7 +36,7 @@ class ShadowedContainer extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: color?? Color(0xfffcfdf6),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: smoothBorderRadius(radius: 15),
         border: Border.all(
           color: Colors.green.shade200,
           width: 1,
@@ -42,7 +44,7 @@ class ShadowedContainer extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade400,
-            spreadRadius: 1,
+            spreadRadius:.1 ,
             blurRadius: blurRadius,
             offset: const Offset(0, 2),
           ),

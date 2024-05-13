@@ -24,50 +24,64 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadowedContainer(
-      margin: EdgeInsets.only(left: 15, right: 15, bottom: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),blurRadius: 5,
-      // surfaceTintColor: Colors.white,
-      // blurRadius: 0,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      blurRadius: 5,
+      child: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: CustomTextField2(
-              title: Get.currentRoute,
-              // index: index,
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 6,
+                child: CustomTextField2(
+                  title: Get.currentRoute,
+                  index: index,
+                  // index: index,
+                ),
+              ),
+              sizedBox(width: 8),
+              Expanded(
+                flex: 3,
+                child: CustomTextField2(
+                  title: qtyN,
+                  // index: index,
+                ),
+              ),
+              sizedBox(width: 8),
+              Expanded(
+                flex: 4,
+                // flex: Get.currentRoute == RouteName.purchase ? 4 : 3,
+                child: Get.currentRoute == RouteName.purchase
+                    ? CustomTextField2(
+                        title: costN,
+                        // index: index,
+                      )
+                    : Text(
+                        getFormattedNumberWithComa(
+                            getProductPrice(index: index)),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+              ),
+              sizedBox(width: 5),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  // '999,999',
+                  getFormattedNumberWithComa(
+                      getProductTotalPrice(index: index)),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ),
-          sizedBox(width: 10),
-          Expanded(
-            // flex: 3,
-            child: CustomTextField2(
-              title: qtyN,
-              // index: index,
-            ),
-          ),
-          sizedBox(width: 10),
-          Expanded(
-            // flex: Get.currentRoute == RouteName.purchase ? 4 : 3,
-            child: Get.currentRoute == RouteName.purchase
-                ? CustomTextField2(
-                    title: costN,
-                    // index: index,
-                  )
-                : Text(
-                    getFormattedNumberWithComa(getProductPrice(index: index)),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-          ),
-          // sizedBox(width: 10),
-          // Expanded(
-          //   flex: 3,
-          //   child: Text(
-          //     getFormattedNumberWithComa(getProductTotalPrice(index: index)),
-          //     textAlign: TextAlign.center,
-          //     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          //   ),
+          // Text(
+          //   getFormattedNumberWithComa(getProductTotalPrice(index: index)),
+          //   textAlign: TextAlign.center,
+          //   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           // ),
         ],
       ),

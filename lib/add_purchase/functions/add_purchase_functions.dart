@@ -1,25 +1,32 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/add_purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-
 import 'package:my_inventory/core/model/purchase/purchase_model.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+onPurchaseAddIconPressed() {
+  unFocus();
+  AddPurchaseController AddPurchaseController = AddPurchaseController.to;
+  AddPurchaseController.purchaseModels.add(
+    PurchaseModel(
+      productId: '',
+      productName: '',
+      quantity: '',
+      cost: '',
+      totalAmount: 0,
+    ),
+  );
+  AddPurchaseController.update();
+}
 onPurchaseTitleToData({required String title, int? index}) {
-  PurchaseController purchaseController = Get.find();
+  AddPurchaseController addPurchaseController = AddPurchaseController.to;
   if (title == RouteName.purchase) {
-    return purchaseController.purchaseModels[index!].productName;
-  } else if (title == costN) {
-    return purchaseController.purchaseModels[index!].cost;
-  } else if (title == selectN) {
-    return purchaseController.vendorName;
-  } else if (title == qtyN) {
-    return purchaseController.purchaseModels[index!].quantity;
+    return addPurchaseController.purchaseModels[index!].productName;
   }
 }
 
@@ -28,16 +35,15 @@ onPurchaseTextFieldChange({
   required String data,
   int? index,
 }) {
-  PurchaseController purchaseController = Get.find();
-  PurchaseModel purchase = purchaseController.purchaseModels[index!];
-  // purchaseController.purchaseModels[index!].update((purchase) {
+  addPurchaseController addPurchaseController = addPurchaseController.to;
+  PurchaseModel purchase = addPurchaseController.purchaseModels[index!];
+  // addPurchaseController.purchaseModels[index!].update((purchase) {
     if (title == searchProductsN) {
-      PurchaseController purchaseController = Get.find();
       final Isar isar = Get.find();
-      purchaseController.searchProductFoundResult(isar.productDatabaseModels
+      addPurchaseController.searchProductFoundResult = isar.productDatabaseModels
           .filter()
           .productNameContains(data, caseSensitive: false)
-          .findAllSync());
+          .findAllSync();
     } else if (title == qtyN) {
       if (data.isEmpty) {
         purchase.quantity = '';
@@ -51,7 +57,7 @@ onPurchaseTextFieldChange({
           purchase.totalAmount = 0;
         }
       }
-      purchaseController.update();
+      addPurchaseController.update();
     } else if (title == costN) {
       if (data.isEmpty) {
         purchase.cost = '';
@@ -66,39 +72,56 @@ onPurchaseTextFieldChange({
         }
       }
     }
-    purchaseController.update();
+    addPurchaseController.update();
   // });
 }
-
-onPurchaseProductFocusChange({
-  required String title,
-  required String data,
+onPurchaseProductSelect({
+  String? title,
+  int? index,
 }) {
-  final PurchaseController purchaseController = Get.find();
-  if (title == discountN) {
-    purchaseController.discount=data;
-    purchaseController.update();
+  addPurchaseController addPurchaseController =addPurchaseController.to;
+  if (title == RouteName.purchase) {
+    addPurchaseController.searchProductFoundResult(
+        isar.productDatabaseModels.where().findAllSync());
+    Get.dialog(AlertDialogOptionSelect(
+      title: searchProductsN,
+      listIndex: index,
+    )).then(
+          (value) {
+        unFocus();
+      },
+    );
+  } else if (title == selectN) {
+    addPurchaseController.searchVendorFoundResult(
+        isar.vendorDatabaseModels.where().findAllSync());
+    Get.dialog(const AlertDialogOptionSelect(
+      title: searchVendorsN,
+    )).then(
+          (value) {
+        unFocus();
+      },
+    );
   }
 }
 
 onPurchaseAlertDialogOption({required String title, required int index}) {
-  PurchaseController purchaseController = Get.find();
+  addPurchaseController addPurchaseController = Get.find();
   if (title == searchProductsN) {
-    return purchaseController.searchProductFoundResult[index].id;
+    return addPurchaseController.searchProductFoundResult[index].id;
   } else if (title == searchVendorsN) {
-    return purchaseController.searchVendorFoundResult[index].id;
+    return addPurchaseController.searchVendorFoundResult[index].id;
   }
 }
 
 onPurchaseSearchProductAlertDialogOptionSelect(
     {int? listIndex, required int isarId, required String title}) {
-  final PurchaseController purchaseController = Get.find();
+  final addPurchaseController addPurchaseController = Get.find();
   final Isar isar = Get.find();
   if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
         isar.productDatabaseModels.getSync(isarId)!;
-    PurchaseModel purchase = purchaseController.purchaseModels[listIndex!];
-    // purchaseController.purchaseModels[listIndex!].update((purchase) {
+    PurchaseModel purchase = addPurchaseController.purchaseModels[listIndex!];
+    // addPurchaseController.purchaseModels[listIndex!].update((purchase) {
       purchase.productId = productDatabaseModel.productId;
       purchase.productName = productDatabaseModel.productName;
       purchase.cost = emptyIfDefaultValue(
@@ -108,41 +131,18 @@ onPurchaseSearchProductAlertDialogOptionSelect(
             double.parse(purchase.quantity) * productDatabaseModel.cost;
       }
     // });
-    purchaseController.update();
+    addPurchaseController.update();
   } else if (title == searchVendorsN) {
     VendorDatabaseModel vendorDatabaseModel =
         isar.vendorDatabaseModels.getSync(isarId)!;
-    purchaseController.vendorId = vendorDatabaseModel.vendorId;
-    purchaseController.vendorName = vendorDatabaseModel.name;
-    purchaseController.vendorPhone = vendorDatabaseModel.phoneNumber;
-    purchaseController.vendorAddress = vendorDatabaseModel.address;
-    purchaseController.vendorContactPerson = vendorDatabaseModel.contactPerson;
-    purchaseController.update();
+    addPurchaseController.vendorId = vendorDatabaseModel.vendorId;
+    addPurchaseController.vendorName = vendorDatabaseModel.name;
+    addPurchaseController.vendorPhone = vendorDatabaseModel.phoneNumber;
+    addPurchaseController.vendorAddress = vendorDatabaseModel.address;
+    addPurchaseController.vendorContactPerson = vendorDatabaseModel.contactPerson;
+    addPurchaseController.update();
   }
   Get.back();
 }
 
-getPurchaseAlertDialogProductLength() {
-  PurchaseController purchaseController = Get.find();
-  return purchaseController.searchProductFoundResult.length;
-}
 
-getPurchaseSubtotal() {
-  PurchaseController purchaseController = Get.find();
-  double total = 0;
-  for (var element in purchaseController.purchaseModels) {
-    if (isNumeric(element.cost)) {
-      total += double.parse(element.cost);
-    }
-  }
-  return total.toString();
-}
-
-getPurchaseTotal() {
-  PurchaseController purchaseController = Get.find();
-  double total = 0;
-  for (var element in purchaseController.purchaseModels) {
-    total += element.totalAmount;
-  }
-  return total.toString();
-}

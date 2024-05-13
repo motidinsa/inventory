@@ -7,7 +7,7 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_confirmation.dart
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
@@ -114,7 +114,7 @@ DateTime? getSelectedDate() {
   if (currentRoute == RouteName.sales) {
     return SalesController.to.salesDate;
   } else if (currentRoute == RouteName.purchase) {
-    return PurchaseController.to.purchaseDate;
+    return addPurchaseController.to.purchaseDate;
   }
   return null;
 }

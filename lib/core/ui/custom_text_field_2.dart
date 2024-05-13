@@ -12,8 +12,10 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 class CustomTextField2 extends StatefulWidget {
   final String title;
   final Color? color;
+  final int? index;
 
-  const CustomTextField2({super.key, required this.title, this.color});
+  const CustomTextField2(
+      {super.key, required this.title, this.color, this.index});
 
   @override
   State<CustomTextField2> createState() => _CustomTextField2State();
@@ -41,6 +43,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
       textEditingController.value = textEditingController.value.copyWith(
         text: titleToData(
           title: widget.title,
+          index: widget.index,
         ),
       );
     });
@@ -67,7 +70,9 @@ class _CustomTextField2State extends State<CustomTextField2> {
               borderRadius: BorderRadius.circular(12)),
           prefixIcon: titleToIcon(title: widget.title),
           suffixIcon: getSuffixWidget(title: widget.title),
+          suffixIconConstraints: BoxConstraints(),
           labelText: titleToLabel(title: widget.title),
+          // labelStyle: TextStyle(overflow: TextOverflow.fade),
           floatingLabelStyle: TextStyle(color: Colors.green.shade900),
           contentPadding: getTextFieldPadding(title: widget.title)),
       validator: (value) => validateInput(

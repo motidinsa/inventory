@@ -11,7 +11,6 @@ import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
@@ -155,32 +154,3 @@ onSalesProductSelect({
   }
 }
 
-onPurchaseProductSelect({
-  String? title,
-  int? index,
-}) {
-  PurchaseController purchaseController = Get.find();
-  final Isar isar = Get.find();
-  if (title == RouteName.purchase) {
-    purchaseController.searchProductFoundResult(
-        isar.productDatabaseModels.where().findAllSync());
-    Get.dialog(AlertDialogOptionSelect(
-      title: searchProductsN,
-      listIndex: index,
-    )).then(
-      (value) {
-        unFocus();
-      },
-    );
-  } else if (title == selectN) {
-    purchaseController.searchVendorFoundResult(
-        isar.vendorDatabaseModels.where().findAllSync());
-    Get.dialog(const AlertDialogOptionSelect(
-      title: searchVendorsN,
-    )).then(
-      (value) {
-        unFocus();
-      },
-    );
-  }
-}

@@ -33,8 +33,8 @@ onActionButtonPressed({String? redirectFrom}) async {
   //   } else if (redirectFrom == salesN) {
   //     saveSalesProductToDB();
   //   } else if (redirectFrom == purchaseN) {
-  //     PurchaseController purchaseController = Get.find();
-  //     purchaseController.savePurchaseProductToDB();
+  //     addPurchaseController addPurchaseController = Get.find();
+  //     addPurchaseController.savePurchaseProductToDB();
   //   } else if (redirectFrom == editProductN) {
   //     EditProductController editProductController = Get.find();
   //     editProductController.onEditProductSaveButtonPressed();

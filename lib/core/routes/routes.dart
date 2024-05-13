@@ -19,8 +19,8 @@ import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/product_list.dart';
-import 'package:my_inventory/purchase/controller/purchase_controller.dart';
-import 'package:my_inventory/purchase/ui/purchase.dart';
+import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
+import 'package:my_inventory/purchase/ui/add_purchase.dart';
 import 'package:my_inventory/reorder_stock/ui/reorder_stock.dart';
 import 'package:my_inventory/sales/ui/sales.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
@@ -79,7 +79,7 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.purchase,
       page: () => Purchase(),
-      binding: BindingsBuilder.put(() => PurchaseController())),
+      binding: BindingsBuilder.put(() => addPurchaseController())),
   GetPage(
       name: RouteName.addProduct,
       page: () => AddProduct(),
