@@ -19,7 +19,7 @@ class VendorDetailRepository {
           .put(LogDeletedVendorDatabaseModel(
         vendorId: vendorDatabaseModel.vendorId,
         companyId: vendorDatabaseModel.companyId,
-        deletedByUserId: AppController.to.userId.value,
+        deletedByUserId: AppController.to.userId,
         deletedDate: DateTime.now(),
       ));
 

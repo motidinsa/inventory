@@ -43,11 +43,11 @@ onAddVendorSaveButtonPressed() async {
         vendorListController.isEmpty = false;
         vendorListController.update();
       }
-      showSnackbar(message: successfullyAddedVendorN);
+      showSnackbar(message: successfullyAddedVendorN,success: true);
       Get.back();
 
     } on Exception {
-      showSnackbar(message: someErrorOccurredN);
+      showSnackbar(message: someErrorOccurredN,success: false);
     } finally {
       addVendorController.isLoading = false;
       addVendorController.update();

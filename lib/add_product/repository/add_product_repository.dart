@@ -74,7 +74,7 @@ class AddProductRepository {
     double reorderQuantity = productModel.reorderQuantity.isNotEmpty
         ? double.parse(productModel.reorderQuantity)
         : 0;
-    String userId = appController.userId.value;
+    String userId = appController.userId;
     String companyId = appController.companyId;
     final ProductDatabaseModel productDatabaseModel = ProductDatabaseModel(
       productName: productName,

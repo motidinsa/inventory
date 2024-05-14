@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/add_purchase/controller/add_purchase_controller.dart';
@@ -5,6 +7,8 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/image/image_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/log_product_database_model.dart';
+import 'package:my_inventory/core/model/purchase/log_purchase_all_database_model.dart';
+import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
 
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
@@ -12,6 +16,8 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import '../../core/functions/helper_functions.dart';
 import '../../core/model/product/product_database_model.dart';
 import '../../core/model/product/product_model.dart';
+import '../../core/model/purchase/purchase_available_database_model.dart';
+import '../../core/model/purchase/purchase_model.dart';
 
 class AddPurchaseRepository {
   static final Isar _isar = Get.find();
@@ -39,84 +45,86 @@ class AddPurchaseRepository {
     return _isar.vendorDatabaseModels.countSync();
   }
 
-  static List<VendorDatabaseModel> searchVendor(
-      {required String data}) {
+  static List<VendorDatabaseModel> searchVendor({required String data}) {
     return _isar.vendorDatabaseModels
         .filter()
         .nameContains(data, caseSensitive: false)
         .findAllSync();
   }
 
-
   static addPurchase() async {
     AddPurchaseController addPurchaseController = AddPurchaseController.to;
+    AppController appController = AppController.to;
     DateTime now = DateTime.now();
 
-    for (int i = 0; i < purchaseModels.length; i++) {
-      PurchaseModel purchaseModel = purchaseModels[i];
+    for (int i = 0; i < addPurchaseController.purchaseModels.length; i++) {
+      PurchaseModel purchaseModel = addPurchaseController.purchaseModels[i];
       String key = generateDatabaseId(time: now, identifier: i);
-      await isar.writeTxn(() async {
-        ProductDatabaseModel? currentProduct = await isar.productDatabaseModels
+      await _isar.writeTxn(() async {
+        ProductDatabaseModel? currentProduct = await _isar.productDatabaseModels
             .filter()
             .productIdEqualTo(purchaseModel.productId)
             .findFirst();
         double currentQty = currentProduct!.quantityOnHand +
             double.parse(purchaseModel.quantity);
+        LogProductDatabaseModel? logProductDatabaseModel = await _isar
+            .logProductDatabaseModels
+            .filter()
+            .productIdEqualTo(purchaseModel.productId)
+            .findFirst();
         currentProduct.cost = double.parse(purchaseModel.cost);
+        logProductDatabaseModel!.cost = double.parse(purchaseModel.cost);
         currentProduct.quantityOnHand = currentQty;
-        currentProduct.lastDateModified = now;
-        currentProduct.lastModifiedByUserId = AppController.to.userId.value;
+        logProductDatabaseModel.quantityOnHand = currentQty;
+        if (currentProduct.lastDateModified != null) {
+          currentProduct.lastDateModified = now;
+          logProductDatabaseModel.lastDateModified = now;
+          currentProduct.lastModifiedByUserId = appController.userId;
+          logProductDatabaseModel.lastModifiedByUserId = appController.userId;
+        }
 
-        await isar.productDatabaseModels.put(currentProduct);
-        await isar.purchaseAvailableDatabaseModels.put(
+        await _isar.productDatabaseModels.put(currentProduct);
+        await _isar.logProductDatabaseModels.put(logProductDatabaseModel);
+        await _isar.purchaseAvailableDatabaseModels.put(
           PurchaseAvailableDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseDate,
+            purchaseDate: addPurchaseController.selectedPurchaseDate ?? now,
             dateCreated: now,
-            customerId: purchaseModel.customerId,
+            companyId: appController.companyId,
+            addedByUserId: appController.userId,
             vendorId: purchaseModel.vendorId,
             quantity: double.parse(purchaseModel.quantity),
             cost: double.parse(purchaseModel.cost),
           ),
         );
-        await isar.purchaseAllDatabaseModels.put(
+        await _isar.purchaseAllDatabaseModels.put(
           PurchaseAllDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: purchaseDate,
+            purchaseDate: addPurchaseController.selectedPurchaseDate ?? now,
             dateCreated: now,
-            customerId: purchaseModel.customerId,
+            addedByUserId: appController.userId,
+            companyId: appController.companyId,
             vendorId: purchaseModel.vendorId,
             quantity: double.parse(purchaseModel.quantity),
             cost: double.parse(purchaseModel.cost),
           ),
         );
-
-        // await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
-        //   productName: currentProduct.productName,
-        //   description: currentProduct.description,
-        //   categoryId: currentProduct.categoryId,
-        //   cost: double.parse(purchaseModel.cost),
-        //   price: currentProduct.price,
-        //   createdByUserId: currentProduct.createdByUserId,
-        //   dateCreated: currentProduct.dateCreated,
-        //   quantityOnHand: currentQty,
-        //   reorderQuantity: currentProduct.reorderQuantity,
-        //   unitOfMeasurementId: currentProduct.unitOfMeasurementId,
-        //   localImagePath: currentProduct.localImagePath,
-        //   userAssignedProductId: currentProduct.userAssignedProductId,
-        //   productId: currentProduct.productId,
-        //   dateModified: now,
-        //   modifiedByUserId: AppController.to.userId.value,
-        //   addedFrom: purchaseDC,
-        // ));
+        await _isar.logPurchaseAllDatabaseModels.put(
+          LogPurchaseAllDatabaseModel(
+            productId: purchaseModel.productId,
+            purchaseId: key,
+            purchaseDate: addPurchaseController.selectedPurchaseDate ?? now,
+            dateCreated: now,
+            addedByUserId: appController.userId,
+            companyId: appController.companyId,
+            vendorId: purchaseModel.vendorId,
+            quantity: double.parse(purchaseModel.quantity),
+            cost: double.parse(purchaseModel.cost),
+          ),
+        );
       });
     }
-    // purchaseModels.asMap().forEach((index, purchaseModel) async {
-    //
-    // });
-    isLocalSaveLoading(false);
-    Get.back();
   }
 }

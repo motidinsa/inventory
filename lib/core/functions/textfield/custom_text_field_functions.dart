@@ -9,7 +9,6 @@ import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dar
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
-import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
@@ -18,6 +17,8 @@ import 'package:my_inventory/sales/functions/sales_functions.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/signup/functions/signup_functions.dart';
+
+import '../../../add_purchase/functions/add_purchase_functions.dart';
 
 onTextFieldChange({
   String? title,
@@ -64,7 +65,7 @@ onTextFieldPressed({required String title, int? index}) {
   } else if (currentRoute == RouteName.sales) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentRoute == RouteName.purchase) {
-    onPurchaseProductSelect(title: title, index: index);
+    onPurchaseTextFieldPressed(title: title, index: index);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {
     onReportFilterSelect(title: title);

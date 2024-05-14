@@ -20,7 +20,7 @@ class AddItemRepository {
     String categoryName = AddItemController.to.addedText;
     DateTime now = DateTime.now();
     String categoryId = generateDatabaseId(time: now);
-    String userId = AppController.to.userId.value;
+    String userId = AppController.to.userId;
     String companyId = AppController.to.companyId;
     await _isar.writeTxn(() async {
       await _isar.categoryDatabaseModels.put(CategoryDatabaseModel(
@@ -53,7 +53,7 @@ class AddItemRepository {
     String uomName = AddItemController.to.addedText;
     DateTime now = DateTime.now();
     String uomId = generateDatabaseId(time: now);
-    String userId = AppController.to.userId.value;
+    String userId = AppController.to.userId;
     String companyId = AppController.to.companyId;
     await _isar.writeTxn(() async {
       await _isar.unitOfMeasurementDatabaseModels

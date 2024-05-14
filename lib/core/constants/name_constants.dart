@@ -98,6 +98,7 @@ const String transferN = 'Transfer';
 const String creditN = 'Credit';
 const String noCustomerFoundN = 'No customer found';
 const String noVendorFoundN = 'No vendor found';
+const String noProductFoundN = 'No product found';
 const String noCategoryFoundN = 'No category found';
 const String noUnitOfMeasurementFoundN = 'No unit of measurement found';
 const String successfullyAddedCustomerN = 'Successfully added customer';

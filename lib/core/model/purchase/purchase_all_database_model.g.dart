@@ -18,53 +18,58 @@ const PurchaseAllDatabaseModelSchema = CollectionSchema(
   name: r'PurchaseAllDatabaseModel',
   id: 5808505839300405048,
   properties: {
-    r'cost': PropertySchema(
+    r'addedByUserId': PropertySchema(
       id: 0,
+      name: r'addedByUserId',
+      type: IsarType.string,
+    ),
+    r'companyId': PropertySchema(
+      id: 1,
+      name: r'companyId',
+      type: IsarType.string,
+    ),
+    r'cost': PropertySchema(
+      id: 2,
       name: r'cost',
       type: IsarType.double,
     ),
-    r'customerId': PropertySchema(
-      id: 1,
-      name: r'customerId',
-      type: IsarType.long,
-    ),
     r'dateCreated': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'lastDateModified': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'productId': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'productId',
       type: IsarType.string,
     ),
     r'purchaseDate': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'purchaseDate',
       type: IsarType.dateTime,
     ),
     r'purchaseId': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'purchaseId',
       type: IsarType.string,
     ),
     r'quantity': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'quantity',
       type: IsarType.double,
     ),
     r'vendorId': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'vendorId',
       type: IsarType.string,
     )
@@ -89,6 +94,8 @@ int _purchaseAllDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.addedByUserId.length * 3;
+  bytesCount += 3 + object.companyId.length * 3;
   {
     final value = object.lastModifiedByUserId;
     if (value != null) {
@@ -112,16 +119,17 @@ void _purchaseAllDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDouble(offsets[0], object.cost);
-  writer.writeLong(offsets[1], object.customerId);
-  writer.writeDateTime(offsets[2], object.dateCreated);
-  writer.writeDateTime(offsets[3], object.lastDateModified);
-  writer.writeString(offsets[4], object.lastModifiedByUserId);
-  writer.writeString(offsets[5], object.productId);
-  writer.writeDateTime(offsets[6], object.purchaseDate);
-  writer.writeString(offsets[7], object.purchaseId);
-  writer.writeDouble(offsets[8], object.quantity);
-  writer.writeString(offsets[9], object.vendorId);
+  writer.writeString(offsets[0], object.addedByUserId);
+  writer.writeString(offsets[1], object.companyId);
+  writer.writeDouble(offsets[2], object.cost);
+  writer.writeDateTime(offsets[3], object.dateCreated);
+  writer.writeDateTime(offsets[4], object.lastDateModified);
+  writer.writeString(offsets[5], object.lastModifiedByUserId);
+  writer.writeString(offsets[6], object.productId);
+  writer.writeDateTime(offsets[7], object.purchaseDate);
+  writer.writeString(offsets[8], object.purchaseId);
+  writer.writeDouble(offsets[9], object.quantity);
+  writer.writeString(offsets[10], object.vendorId);
 }
 
 PurchaseAllDatabaseModel _purchaseAllDatabaseModelDeserialize(
@@ -131,16 +139,17 @@ PurchaseAllDatabaseModel _purchaseAllDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = PurchaseAllDatabaseModel(
-    cost: reader.readDouble(offsets[0]),
-    customerId: reader.readLongOrNull(offsets[1]),
-    dateCreated: reader.readDateTime(offsets[2]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[3]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[4]),
-    productId: reader.readString(offsets[5]),
-    purchaseDate: reader.readDateTime(offsets[6]),
-    purchaseId: reader.readString(offsets[7]),
-    quantity: reader.readDouble(offsets[8]),
-    vendorId: reader.readStringOrNull(offsets[9]),
+    addedByUserId: reader.readString(offsets[0]),
+    companyId: reader.readString(offsets[1]),
+    cost: reader.readDouble(offsets[2]),
+    dateCreated: reader.readDateTime(offsets[3]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[4]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[5]),
+    productId: reader.readString(offsets[6]),
+    purchaseDate: reader.readDateTime(offsets[7]),
+    purchaseId: reader.readString(offsets[8]),
+    quantity: reader.readDouble(offsets[9]),
+    vendorId: reader.readStringOrNull(offsets[10]),
   );
   object.id = id;
   return object;
@@ -154,24 +163,26 @@ P _purchaseAllDatabaseModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readDateTime(offset)) as P;
-    case 3:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 4:
-      return (reader.readStringOrNull(offset)) as P;
-    case 5:
-      return (reader.readString(offset)) as P;
-    case 6:
-      return (reader.readDateTime(offset)) as P;
-    case 7:
-      return (reader.readString(offset)) as P;
-    case 8:
       return (reader.readDouble(offset)) as P;
+    case 3:
+      return (reader.readDateTime(offset)) as P;
+    case 4:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 5:
+      return (reader.readStringOrNull(offset)) as P;
+    case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
+      return (reader.readDateTime(offset)) as P;
+    case 8:
+      return (reader.readString(offset)) as P;
     case 9:
+      return (reader.readDouble(offset)) as P;
+    case 10:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -276,6 +287,282 @@ extension PurchaseAllDatabaseModelQueryWhere on QueryBuilder<
 extension PurchaseAllDatabaseModelQueryFilter on QueryBuilder<
     PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QFilterCondition> {
   QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedByUserId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+          QAfterFilterCondition>
+      addedByUserIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+          QAfterFilterCondition>
+      addedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedByUserId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> addedByUserIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'companyId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+          QAfterFilterCondition>
+      companyIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'companyId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+          QAfterFilterCondition>
+      companyIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'companyId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
+      QAfterFilterCondition> companyIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'companyId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
       QAfterFilterCondition> costEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -337,80 +624,6 @@ extension PurchaseAllDatabaseModelQueryFilter on QueryBuilder<
         upper: upper,
         includeUpper: includeUpper,
         epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'customerId',
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'customerId',
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdEqualTo(int? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'customerId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdGreaterThan(
-    int? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'customerId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdLessThan(
-    int? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'customerId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel,
-      QAfterFilterCondition> customerIdBetween(
-    int? lower,
-    int? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'customerId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
       ));
     });
   }
@@ -1321,6 +1534,34 @@ extension PurchaseAllDatabaseModelQueryLinks on QueryBuilder<
 extension PurchaseAllDatabaseModelQuerySortBy on QueryBuilder<
     PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QSortBy> {
   QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      sortByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      sortByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      sortByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      sortByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       sortByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
@@ -1331,20 +1572,6 @@ extension PurchaseAllDatabaseModelQuerySortBy on QueryBuilder<
       sortByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
-      sortByCustomerId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'customerId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
-      sortByCustomerIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
@@ -1464,6 +1691,34 @@ extension PurchaseAllDatabaseModelQuerySortBy on QueryBuilder<
 extension PurchaseAllDatabaseModelQuerySortThenBy on QueryBuilder<
     PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QSortThenBy> {
   QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      thenByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      thenByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      thenByCompanyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
+      thenByCompanyIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
       thenByCost() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.asc);
@@ -1474,20 +1729,6 @@ extension PurchaseAllDatabaseModelQuerySortThenBy on QueryBuilder<
       thenByCostDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cost', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
-      thenByCustomerId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'customerId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QAfterSortBy>
-      thenByCustomerIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'customerId', Sort.desc);
     });
   }
 
@@ -1621,16 +1862,24 @@ extension PurchaseAllDatabaseModelQuerySortThenBy on QueryBuilder<
 extension PurchaseAllDatabaseModelQueryWhereDistinct on QueryBuilder<
     PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct> {
   QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
-      distinctByCost() {
+      distinctByAddedByUserId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'cost');
+      return query.addDistinctBy(r'addedByUserId',
+          caseSensitive: caseSensitive);
     });
   }
 
   QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
-      distinctByCustomerId() {
+      distinctByCompanyId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'customerId');
+      return query.addDistinctBy(r'companyId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, PurchaseAllDatabaseModel, QDistinct>
+      distinctByCost() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'cost');
     });
   }
 
@@ -1700,17 +1949,24 @@ extension PurchaseAllDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
+  QueryBuilder<PurchaseAllDatabaseModel, String, QQueryOperations>
+      addedByUserIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedByUserId');
+    });
+  }
+
+  QueryBuilder<PurchaseAllDatabaseModel, String, QQueryOperations>
+      companyIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'companyId');
+    });
+  }
+
   QueryBuilder<PurchaseAllDatabaseModel, double, QQueryOperations>
       costProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cost');
-    });
-  }
-
-  QueryBuilder<PurchaseAllDatabaseModel, int?, QQueryOperations>
-      customerIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'customerId');
     });
   }
 

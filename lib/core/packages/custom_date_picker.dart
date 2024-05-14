@@ -11,11 +11,12 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
-import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+
+import '../../add_purchase/controller/add_purchase_controller.dart';
 
 // The M3 sizes are coming from the tokens, but are hand coded,
 // as the current token DB does not contain landscape versions.
@@ -476,8 +477,8 @@ class _DatePickerDialogState extends State<DatePickerDialog>
       SalesController.to.salesDate = date;
       SalesController.to.update();
     } else if(currentRoute == RouteName.purchase){
-      addPurchaseController.to.purchaseDate = date;
-      addPurchaseController.to.update();
+      AddPurchaseController.to.selectedPurchaseDate = date;
+      AddPurchaseController.to.update();
     }
     else if (currentRoute == salesReportN) {
       if (widget.title == fromN) {

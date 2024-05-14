@@ -23,7 +23,7 @@ class AddCustomerRepository {
     String? address = nullIfEmpty(customerModel.address?.trim());
     String? city = nullIfEmpty(customerModel.city?.trim());
     String? email = nullIfEmpty(customerModel.email?.trim());
-    String addedByUserId = appController.userId.value;
+    String addedByUserId = appController.userId;
     String companyId = appController.companyId;
 
     final CustomerDatabaseModel customerDatabaseModel = CustomerDatabaseModel(

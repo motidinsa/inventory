@@ -29,7 +29,7 @@ class EditVendorRepository {
       String? address = nullIfEmpty(vendorModel.address?.trim());
       String? city = nullIfEmpty(vendorModel.city?.trim());
       String? email = nullIfEmpty(vendorModel.email?.trim());
-      String lastModifiedByUserId = AppController.to.userId.value;
+      String lastModifiedByUserId = AppController.to.userId;
       String companyId = AppController.to.companyId;
 
       vendorDatabaseModel.name = name;

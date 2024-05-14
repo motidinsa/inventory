@@ -6,8 +6,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
-import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
-import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/sales/functions/sales_functions.dart';
 
@@ -17,6 +15,9 @@ import 'package:my_inventory/customer_detail/functions/customer_detail_functions
 
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
 import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dart';
+
+import '../../../add_purchase/controller/add_purchase_controller.dart';
+import '../../../add_purchase/functions/add_purchase_functions.dart';
 String? onAddProductTitleToData({required String title}) {
   ProductModel productModel =
       AddProductController.to.productModel;
@@ -78,7 +79,7 @@ List getAlertDialogOptionLists({String? title}) {
       return editProductController.unitOfMeasurementListFoundResult;
     }
   } else if (currentRoute == RouteName.purchase) {
-    addPurchaseController addPurchaseController = Get.find();
+    AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return title == searchProductsN
         ? addPurchaseController.searchProductFoundResult
         : addPurchaseController.searchVendorFoundResult;
@@ -125,7 +126,7 @@ String getAlertDialogOptionName({required int index, String? title}) {
       return editProductController.unitOfMeasurementListFoundResult[index].name;
     }
   } else if (currentRoute == RouteName.purchase) {
-    addPurchaseController addPurchaseController = Get.find();
+    AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return title == searchProductsN
         ? addPurchaseController.searchProductFoundResult[index].productName
         : addPurchaseController.searchVendorFoundResult[index].name;
@@ -155,7 +156,7 @@ getAlertDialogOptionId({required int index, required String title}) {
       return editProductController.unitOfMeasurementListFoundResult[index].id;
     }
   } else if (currentRoute == RouteName.purchase) {
-    addPurchaseController addPurchaseController = Get.find();
+    AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return addPurchaseController.searchProductFoundResult[index].id;
   }
 }

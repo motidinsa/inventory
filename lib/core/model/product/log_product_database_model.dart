@@ -17,9 +17,9 @@ class LogProductDatabaseModel {
   String unitOfMeasurementId;
   String createdByUserId;
   String companyId;
-  String? modifiedByUserId;
+  String? lastModifiedByUserId;
   DateTime dateCreated;
-  DateTime? dateModified;
+  DateTime? lastDateModified;
   bool? isAppWriteSynced;
   String? localImagePath;
   String? onlineImagePath;
@@ -37,9 +37,9 @@ class LogProductDatabaseModel {
     required this.unitOfMeasurementId,
     required this.createdByUserId,
     required this.companyId,
-    this.modifiedByUserId,
+    this.lastModifiedByUserId,
     required this.dateCreated,
-    this.dateModified,
+    this.lastDateModified,
     this.isAppWriteSynced,
     this.localImagePath,
     this.onlineImagePath,

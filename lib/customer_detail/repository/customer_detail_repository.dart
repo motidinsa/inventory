@@ -18,7 +18,7 @@ class CustomerDetailRepository {
           .put(LogDeletedCustomerDatabaseModel(
         customerId: customerDatabaseModel.customerId,
         companyId: customerDatabaseModel.companyId,
-        deletedByUserId: AppController.to.userId.value,
+        deletedByUserId: AppController.to.userId,
         deletedDate: DateTime.now(),
       ));
 

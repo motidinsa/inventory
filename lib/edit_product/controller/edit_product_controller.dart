@@ -77,8 +77,8 @@ class EditProductController extends GetxController {
     //   dbProduct?.categoryId = productInfo.value.categoryId;
     //   dbProduct?.cost = getValidNumValue(productInfo.value.cost);
     //   dbProduct?.price = getValidNumValue(productInfo.value.price);
-    //   dbProduct?.createdByUserId = appController.userId.value;
-    //   dbProduct?.lastModifiedByUserId = appController.userId.value;
+    //   dbProduct?.createdByUserId = appController.userId;
+    //   dbProduct?.lastModifiedByUserId = appController.userId;
     //   dbProduct?.dateCreated = productDatabaseModel.dateCreated;
     //   dbProduct?.lastDateModified = now;
     //   dbProduct?.quantityOnHand =
@@ -102,7 +102,7 @@ class EditProductController extends GetxController {
     //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
     //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
     //     createdByUserId: productDatabaseModel.createdByUserId,
-    //     modifiedByUserId: appController.userId.value,
+    //     modifiedByUserId: appController.userId,
     //     dateCreated: productDatabaseModel.dateCreated,
     //     dateModified: now,
     //     localImagePath: productInfo.value.localImagePath,

@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
-import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
-import 'package:my_inventory/purchase/functions/add_purchase_functions.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 
 import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
+
+import '../../../add_purchase/controller/add_purchase_controller.dart';
+import '../../../add_purchase/functions/add_purchase_helper_functions.dart';
 
 getSubtotal() {
   String currentRoute = Get.currentRoute;
@@ -34,7 +35,7 @@ getProductPrice({required int index}) {
     String currentPrice = salesController.salesModels[index].price;
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
   } else if (currentRoute == RouteName.purchase) {
-    addPurchaseController addPurchaseController = Get.find();
+    AddPurchaseController addPurchaseController = Get.find();
     return addPurchaseController.purchaseModels[index].cost;
   }
 }
@@ -45,7 +46,7 @@ getProductTotalPrice({required int index}) {
     SalesController salesController = Get.find();
     return salesController.salesModels[index].totalAmount;
   } else if (currentRoute == RouteName.purchase) {
-    addPurchaseController addPurchaseController = Get.find();
+    AddPurchaseController addPurchaseController = Get.find();
     return addPurchaseController.purchaseModels[index].totalAmount;
   }
 }
@@ -67,6 +68,6 @@ onProductDelete({required int index}){
   if(Get.currentRoute == RouteName.sales){
     SalesController.to.salesModels.removeAt(index);
   }else{
-    addPurchaseController.to.purchaseModels.removeAt(index);
+    AddPurchaseController.to.purchaseModels.removeAt(index);
   }
 }

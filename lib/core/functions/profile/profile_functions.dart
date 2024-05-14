@@ -4,7 +4,6 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 import 'package:my_inventory/sales/controller/sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
@@ -13,6 +12,8 @@ import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.d
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/packages/custom_date_picker.dart';
+
+import '../../../add_purchase/controller/add_purchase_controller.dart';
 
 onProfileEditPressed() {
   if (Get.currentRoute == RouteName.customerDetail) {
@@ -55,7 +56,7 @@ String? getProfilePhone() {
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerPhone;
   } else if (currentRoute == RouteName.purchase) {
-    return addPurchaseController.to.vendorPhone;
+    // return AddPurchaseController.to.vendorPhone;
   }
   return null;
 }
@@ -65,7 +66,7 @@ String? getProfileAddress() {
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerAddress;
   } else if (currentRoute == RouteName.purchase) {
-    return addPurchaseController.to.vendorAddress;
+    // return AddPurchaseController.to.vendorAddress;
   }
   return null;
 }
@@ -73,7 +74,7 @@ String? getProfileAddress() {
 String? getContactPerson() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.purchase) {
-    return addPurchaseController.to.vendorContactPerson;
+    // return AddPurchaseController.to.vendorContactPerson;
   }
   return null;
 }

@@ -11,7 +11,8 @@ class PurchaseAvailableDatabaseModel {
   DateTime dateCreated;
   DateTime? lastDateModified;
   String? lastModifiedByUserId;
-  int? customerId;
+  String addedByUserId;
+  String companyId;
   String? vendorId;
   double quantity;
   double cost;
@@ -23,7 +24,8 @@ class PurchaseAvailableDatabaseModel {
     required this.dateCreated,
     this.lastDateModified,
     this.lastModifiedByUserId,
-    this.customerId,
+    required this.companyId,
+    required this.addedByUserId,
     this.vendorId,
     required this.quantity,
     required this.cost,

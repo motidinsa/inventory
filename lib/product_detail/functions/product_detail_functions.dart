@@ -37,7 +37,7 @@ deleteProduct() async {  final Isar isar = Get.find();
     await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
       productId: ProductDetailController.to.productId,
       deletedDate: DateTime.now(),
-      deletedByUserId: AppController.to.userId.value,
+      deletedByUserId: AppController.to.userId,
       addedFrom: productDetailDC,
     ));
   });

@@ -24,7 +24,7 @@ class AddVendorRepository {
     String? address = nullIfEmpty(vendorModel.address?.trim());
     String? city = nullIfEmpty(vendorModel.city?.trim());
     String? email = nullIfEmpty(vendorModel.email?.trim());
-    String addedByUserId = appController.userId.value;
+    String addedByUserId = appController.userId;
     String companyId = appController.companyId;
 
     final VendorDatabaseModel vendorDatabaseModel = VendorDatabaseModel(

@@ -15,9 +15,9 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 class AddPurchaseController extends GetxController {
   bool isLoading = false;
   bool isSubmitButtonPressed = false;
-  DateTime now = DateTime.now();
-  List<ProductDatabaseModel> searchProductFoundResult =[];
-  List<VendorDatabaseModel> searchVendorFoundResult =[];
+  DateTime? selectedPurchaseDate;
+  List<ProductDatabaseModel> searchProductFoundResult = [];
+  List<VendorDatabaseModel> searchVendorFoundResult = [];
   double total = 0;
   VendorDatabaseModel? vendorDatabaseModel;
   List<PurchaseModel> purchaseModels = [
@@ -31,7 +31,4 @@ class AddPurchaseController extends GetxController {
   ];
 
   static AddPurchaseController get to => Get.find();
-
-  savePurchaseProductToDB() async {
-  }
 }

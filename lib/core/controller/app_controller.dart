@@ -9,7 +9,7 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  var userId = 'mo'.obs;
+  String userId = 'mo';
   String companyId = 'XYZ';
   List<String> currentRoutes = [];
   var key = GlobalKey<ScaffoldState>();
@@ -30,7 +30,7 @@ class AppController extends GetxController {
         String uomId = generateDatabaseId(time: now, identifier: element);
         uomModels.add(
           UnitOfMeasurementDatabaseModel(
-            createdByUserId: userId.value,
+            createdByUserId: userId,
             name: element,
             companyId: companyId,
             uomId: generateDatabaseId(time: now, identifier: element),
@@ -38,14 +38,14 @@ class AppController extends GetxController {
           ),
         );
         logUomModels.add(LogUnitOfMeasurementDatabaseModel(
-          createdByUserId: userId.value,
+          createdByUserId: userId,
           name: element,
           companyId: companyId,
           uomId: uomId,
           objectId: uomId,
           dateCreated: now,
           dateModified: now,
-          modifiedByUserId: userId.value,
+          modifiedByUserId: userId,
           addedFrom: initialDC,
         ));
       }

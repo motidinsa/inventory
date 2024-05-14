@@ -28,7 +28,7 @@ class EditCustomerRepository {
       String? address = nullIfEmpty(customerModel.address?.trim());
       String? city = nullIfEmpty(customerModel.city?.trim());
       String? email = nullIfEmpty(customerModel.email?.trim());
-      String lastModifiedByUserId = AppController.to.userId.value;
+      String lastModifiedByUserId = AppController.to.userId;
       String companyId = AppController.to.companyId;
 
       customerDatabaseModel.name = name;

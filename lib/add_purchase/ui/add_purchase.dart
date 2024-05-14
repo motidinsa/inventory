@@ -12,10 +12,10 @@ import 'package:my_inventory/core/ui/product/product_item.dart';
 import 'package:my_inventory/core/ui/product/product_price_summary.dart';
 import 'package:my_inventory/core/ui/product/product_profile_info.dart';
 import 'package:my_inventory/core/ui/product/product_table_titles.dart';
-import 'package:my_inventory/purchase/controller/add_purchase_controller.dart';
 
 import '../../core/functions/helper_functions.dart';
 import '../../core/ui/shadowed_container.dart';
+import '../controller/add_purchase_controller.dart';
 
 class AddPurchase extends StatelessWidget {
   AddPurchase({super.key});
@@ -24,7 +24,7 @@ class AddPurchase extends StatelessWidget {
   Widget build(BuildContext context) {
     return BodyWrapper(
       pageName: purchaseN,
-      body: GetBuilder<addPurchaseController>(builder: (addPurchaseController) {
+      body: GetBuilder<AddPurchaseController>(builder: (addPurchaseController) {
         if (addPurchaseController.isLoading) {
           context.loaderOverlay.show();
         } else {
@@ -42,12 +42,12 @@ class AddPurchase extends StatelessWidget {
             children: [
               ShadowedContainer(
                 child: ProductProfileInfo(),
-                horizontalMargin: 15,
+                horizontalMargin: 10,
                 verticalMargin: 20,
                 verticalPadding: 15,
                 horizontalPadding: 20,
               ),
-              GetBuilder<addPurchaseController>(builder: (addPurchaseController) {
+              GetBuilder<AddPurchaseController>(builder: (addPurchaseController) {
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

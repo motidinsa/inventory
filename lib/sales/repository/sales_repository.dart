@@ -81,7 +81,7 @@ class SalesRepository {
             product.quantityOnHand - double.parse(salesModel.quantity);
         product.quantityOnHand = quantityOnHand;
         product.lastDateModified = now;
-        product.lastModifiedByUserId = AppController.to.userId.value;
+        product.lastModifiedByUserId = AppController.to.userId;
         await _isar.productDatabaseModels.put(product);
         salesDatabaseModels.add(
           SalesDatabaseModel(
@@ -105,7 +105,7 @@ class SalesRepository {
         //     reorderQuantity: logProduct.reorderQuantity,
         //     unitOfMeasurementId: logProduct.unitOfMeasurementId,
         //     createdByUserId: logProduct.createdByUserId,
-        //     modifiedByUserId: AppController.to.userId.value,
+        //     modifiedByUserId: AppController.to.userId,
         //     dateCreated: logProduct.dateCreated,
         //     dateModified: now,
         //     addedFrom: salesDC,

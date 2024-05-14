@@ -117,6 +117,10 @@ String getEmptySearchResult({required String title}) {
     return noCategoryFoundN;
   } else if (title == selectUomSN) {
     return noUnitOfMeasurementFoundN;
+  }else if (title == searchVendorsN) {
+    return noVendorFoundN;
+  }else if (title == searchProductsN) {
+    return noProductFoundN;
   }
   return '';
 }
