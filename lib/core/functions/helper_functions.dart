@@ -114,7 +114,7 @@ DateTime? getSelectedDate() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return SalesController.to.salesDate;
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.selectedPurchaseDate??DateTime.now();
   }
   return null;

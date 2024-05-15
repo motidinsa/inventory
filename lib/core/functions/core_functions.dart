@@ -11,7 +11,7 @@ import '../../add_purchase/functions/add_purchase_functions.dart';
 
 onAddIconPressed({String? type}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.purchase) {
+  if (currentRoute == RouteName.addPurchase) {
     onPurchaseAddIconPressed();
   } else {
     Get.back();

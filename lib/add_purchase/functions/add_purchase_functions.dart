@@ -11,6 +11,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/controller/app_controller.dart';
 import '../../core/ui/alert_dialog/alert_dialog_option_select.dart';
 
 onPurchaseAddIconPressed() {
@@ -30,7 +31,7 @@ onPurchaseAddIconPressed() {
 
 String? onPurchaseTitleToData({required String title, int? index}) {
   AddPurchaseController addPurchaseController = AddPurchaseController.to;
-  if (title == RouteName.purchase) {
+  if (title == RouteName.addPurchase) {
     return addPurchaseController.purchaseModels[index!].productName;
   }else if (title == vendorN) {
     return addPurchaseController.vendorDatabaseModel?.name;
@@ -95,7 +96,7 @@ onPurchaseTextFieldPressed({
   int? index,
 }) {
   AddPurchaseController addPurchaseController = AddPurchaseController.to;
-  if (title == RouteName.purchase) {
+  if (title == RouteName.addPurchase) {
     addPurchaseController.searchProductFoundResult =
         AddPurchaseRepository.getAllProduct();
     Get.dialog(GetBuilder<AddPurchaseController>(
@@ -157,4 +158,9 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   }
   addPurchaseController.update();
   Get.back();
+}
+onAddPurchaseSaveButtonPressed(){
+  if(AppController.to.formKey.currentState!.validate()){
+
+  }
 }

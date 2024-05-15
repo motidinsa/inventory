@@ -39,7 +39,7 @@ onTextFieldChange({
     onAddProductTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldChange(data: data, index: index, title: title);
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == productListN) {
     onProductListTextFieldChange(data: data);
@@ -64,7 +64,7 @@ onTextFieldPressed({required String title, int? index}) {
     onEditProductTextFieldPressed(title: title);
   } else if (currentRoute == RouteName.sales) {
     onSalesProductSelect(title: title, listIndex: index);
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldPressed(title: title, index: index);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {

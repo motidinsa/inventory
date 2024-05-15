@@ -21,7 +21,7 @@ String? titleToData({required String title, int? index}) {
     return onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     return onAddProductTitleToData(title: title);
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     return onPurchaseTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
     return getEditProductData(title: title);
@@ -45,7 +45,7 @@ String? titleToHint({String? title}) {
   } else if ([
     categoryN,
     RouteName.sales,
-    RouteName.purchase,
+    RouteName.addPurchase,
     selectN,
     fromN,
     toN
@@ -106,7 +106,7 @@ Icon? titleToIcon({
 
 EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
   String currentRoute = Get.currentRoute;
-  if([RouteName.purchase,RouteName.sales].contains(currentRoute)){
+  if([RouteName.addPurchase,RouteName.sales].contains(currentRoute)){
     return const EdgeInsets.only(left: 15, right: 10,top: 6,bottom: 6);
   }
   else if ([
@@ -134,7 +134,7 @@ bool hasOptionItems({String? title}) {
     uomSN,
     RouteName.sales,
     // RouteName.purchase,
-    if(currentRoute == RouteName.purchase)vendorN,
+    if(currentRoute == RouteName.addPurchase)vendorN,
     selectN,
   ];
   return itemsWithOption.contains(title);
@@ -146,7 +146,7 @@ bool isReadOnlyTitle({String? title}) {
     categoryN,
     uomSN,
     RouteName.sales,
-    RouteName.purchase,if(currentRoute == RouteName.purchase)vendorN,
+    RouteName.addPurchase,if(currentRoute == RouteName.addPurchase)vendorN,
     selectN,
     fromN,
     toN,
@@ -303,7 +303,7 @@ String titleToLabel({
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.signUp && title == emailN) {
     labelText = '$emailN ($optionalN)';
-  }else if([RouteName.purchase,RouteName.sales].contains(title)) {
+  }else if([RouteName.addPurchase,RouteName.sales].contains(title)) {
     labelText = productN;
   }else
  {

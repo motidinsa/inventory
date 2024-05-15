@@ -55,7 +55,7 @@ String? getProfilePhone() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerPhone;
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     // return AddPurchaseController.to.vendorPhone;
   }
   return null;
@@ -65,7 +65,7 @@ String? getProfileAddress() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return SalesController.to.customerAddress;
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     // return AddPurchaseController.to.vendorAddress;
   }
   return null;
@@ -73,7 +73,7 @@ String? getProfileAddress() {
 
 String? getContactPerson() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.purchase) {
+  if (currentRoute == RouteName.addPurchase) {
     // return AddPurchaseController.to.vendorContactPerson;
   }
   return null;
@@ -92,7 +92,7 @@ onProfileCancelPressed() {
 
 onProfileDatePressed() {
   String currentRoute = Get.currentRoute;
-  if ([RouteName.sales, RouteName.purchase].contains(currentRoute)) {
+  if ([RouteName.sales, RouteName.addPurchase].contains(currentRoute)) {
     showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),

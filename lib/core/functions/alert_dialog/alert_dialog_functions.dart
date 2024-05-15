@@ -51,7 +51,7 @@ onAlertDialogOptionSelect(
   } else if (currentRoute == RouteName.editProduct) {
     // onEditProductAlertDialogOptionSelect(
     //     title: title,);
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseSearchProductAlertDialogOptionSelect(
         listIndex: listIndex,  title: title,index: index);
   }
@@ -78,7 +78,7 @@ List getAlertDialogOptionLists({String? title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult;
     }
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return title == searchProductsN
         ? addPurchaseController.searchProductFoundResult
@@ -125,7 +125,7 @@ String getAlertDialogOptionName({required int index, String? title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult[index].name;
     }
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return title == searchProductsN
         ? addPurchaseController.searchProductFoundResult[index].productName
@@ -139,7 +139,7 @@ getAlertDialogOptionId({required int index, required String title}) {
   if (currentRoute == RouteName.sales) {
     return onSalesAlertDialogOption(title: title, index: index);
   }
-  if (currentRoute == RouteName.purchase) {
+  if (currentRoute == RouteName.addPurchase) {
     return onPurchaseAlertDialogOption(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();
@@ -155,7 +155,7 @@ getAlertDialogOptionId({required int index, required String title}) {
     } else if (title == selectUomSN) {
       return editProductController.unitOfMeasurementListFoundResult[index].id;
     }
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = AddPurchaseController.to;
     return addPurchaseController.searchProductFoundResult[index].id;
   }

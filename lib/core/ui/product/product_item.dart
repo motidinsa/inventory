@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 4,
                 // flex: Get.currentRoute == RouteName.purchase ? 4 : 3,
-                child: Get.currentRoute == RouteName.purchase
+                child: Get.currentRoute == RouteName.addPurchase
                     ? CustomTextField2(
                         title: costN,
                         index: index,

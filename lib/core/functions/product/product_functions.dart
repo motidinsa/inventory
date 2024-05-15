@@ -14,7 +14,7 @@ getSubtotal() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return getSalesSubtotal();
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     return getPurchaseSubtotal();
   }
 }
@@ -23,7 +23,7 @@ getTotal() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.sales) {
     return getSalesTotal();
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     return getPurchaseTotal();
   }
 }
@@ -34,7 +34,7 @@ getProductPrice({required int index}) {
     SalesController salesController = Get.find();
     String currentPrice = salesController.salesModels[index].price;
     return double.parse(currentPrice.isEmpty ? '0' : currentPrice);
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = Get.find();
     return addPurchaseController.purchaseModels[index].cost;
   }
@@ -45,7 +45,7 @@ getProductTotalPrice({required int index}) {
   if (currentRoute == RouteName.sales) {
     SalesController salesController = Get.find();
     return salesController.salesModels[index].totalAmount;
-  } else if (currentRoute == RouteName.purchase) {
+  } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = Get.find();
     return addPurchaseController.purchaseModels[index].totalAmount;
   }

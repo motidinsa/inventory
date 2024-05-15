@@ -78,7 +78,7 @@ List<GetPage> routes = [
       page: () => EditVendor(),
       binding: BindingsBuilder.put(() => EditVendorController())),
   GetPage(
-      name: RouteName.purchase,
+      name: RouteName.addPurchase,
       page: () => AddPurchase(),
       binding: BindingsBuilder.put(() => AddPurchaseController())),
   GetPage(

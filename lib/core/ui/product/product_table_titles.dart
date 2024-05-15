@@ -50,7 +50,7 @@ class ProductTableTitles extends StatelessWidget {
                 )),
             sizedBox(width: 10),
             Expanded(
-              flex: currentRoute == RouteName.purchase ? 4 : 3,
+              flex: currentRoute == RouteName.addPurchase ? 4 : 3,
               child: Text(
                 currentRoute == RouteName.sales ? 'Price' : 'Cost',
                 textAlign: TextAlign.center,

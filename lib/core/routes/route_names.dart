@@ -8,7 +8,7 @@ class RouteName {
   static const String vendorList = '/vendor_list';
   static const String addVendor = '/add_vendor';
   static const String vendorDetail = '/vendor_detail';
-  static const String purchase = '/purchase';
+  static const String addPurchase = '/add_purchase';
   static const String productList = '/product_list';
   static const String addProduct = '/add_product';
   static const String productDetail = '/product_detail';
