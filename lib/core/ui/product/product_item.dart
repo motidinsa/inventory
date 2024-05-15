@@ -45,7 +45,7 @@ class ProductItem extends StatelessWidget {
                 flex: 3,
                 child: CustomTextField2(
                   title: qtyN,
-                  // index: index,
+                  index: index,
                 ),
               ),
               sizedBox(width: 8),
@@ -55,7 +55,7 @@ class ProductItem extends StatelessWidget {
                 child: Get.currentRoute == RouteName.purchase
                     ? CustomTextField2(
                         title: costN,
-                        // index: index,
+                        index: index,
                       )
                     : Text(
                         getFormattedNumberWithComa(

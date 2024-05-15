@@ -28,11 +28,16 @@ onPurchaseAddIconPressed() {
   addPurchaseController.update();
 }
 
-onPurchaseTitleToData({required String title, int? index}) {
+String? onPurchaseTitleToData({required String title, int? index}) {
   AddPurchaseController addPurchaseController = AddPurchaseController.to;
   if (title == RouteName.purchase) {
     return addPurchaseController.purchaseModels[index!].productName;
+  }else if (title == vendorN) {
+    return addPurchaseController.vendorDatabaseModel?.name;
+  }else if (title == costN) {
+    return addPurchaseController.purchaseModels[index!].cost;
   }
+  return null;
 }
 
 onPurchaseTextFieldChange({
@@ -65,8 +70,6 @@ onPurchaseTextFieldChange({
         if (isNumeric(purchase.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
               double.parse(data) * double.parse(purchase.cost);
-        } else {
-          purchase.totalAmount = 0;
         }
       }
       addPurchaseController.update();
@@ -79,8 +82,6 @@ onPurchaseTextFieldChange({
         if (isNumeric(purchase.quantity) && isNumeric(purchase.cost)) {
           purchase.totalAmount =
               double.parse(data) * double.parse(purchase.quantity);
-        } else {
-          purchase.totalAmount = 0;
         }
       }
     }
@@ -134,33 +135,26 @@ onPurchaseAlertDialogOption({required String title, required int index}) {
 }
 
 onPurchaseSearchProductAlertDialogOptionSelect(
-    {int? listIndex, required int isarId, required String title}) {
+    {int? listIndex, int? index, required String title}) {
   final AddPurchaseController addPurchaseController = AddPurchaseController.to;
-  final Isar isar = Get.find();
   if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
-        isar.productDatabaseModels.getSync(isarId)!;
-    PurchaseModel purchase = addPurchaseController.purchaseModels[listIndex!];
-    // addPurchaseController.purchaseModels[listIndex!].update((purchase) {
-    purchase.productId = productDatabaseModel.productId;
-    purchase.productName = productDatabaseModel.productName;
-    purchase.cost = emptyIfDefaultValue(
+        addPurchaseController.searchProductFoundResult[index!];
+    PurchaseModel purchaseModel = addPurchaseController.purchaseModels[listIndex!];
+    purchaseModel.productId = productDatabaseModel.productId;
+    purchaseModel.productName = productDatabaseModel.productName;
+    purchaseModel.cost = emptyIfDefaultValue(
         getFormattedNumberWithoutComa(productDatabaseModel.cost));
-    if (purchase.quantity.isNotEmpty && isNumeric(purchase.quantity)) {
-      purchase.totalAmount =
-          double.parse(purchase.quantity) * productDatabaseModel.cost;
+    if (purchaseModel.quantity.isNotEmpty && isNumeric(purchaseModel.quantity)) {
+      purchaseModel.totalAmount =
+          double.parse(purchaseModel.quantity) * productDatabaseModel.cost;
     }
-    // });
-    addPurchaseController.update();
   } else if (title == searchVendorsN) {
-    // VendorDatabaseModel vendorDatabaseModel =
-    //     isar.vendorDatabaseModels.getSync(isarId)!;
-    // addPurchaseController.vendorId = vendorDatabaseModel.vendorId;
-    // addPurchaseController.vendorName = vendorDatabaseModel.name;
-    // addPurchaseController.vendorPhone = vendorDatabaseModel.phoneNumber;
-    // addPurchaseController.vendorAddress = vendorDatabaseModel.address;
-    // addPurchaseController.vendorContactPerson = vendorDatabaseModel.contactPerson;
-    // addPurchaseController.update();
+    VendorDatabaseModel vendorDatabaseModel =
+    addPurchaseController.searchVendorFoundResult[index!];
+    addPurchaseController.vendorDatabaseModel= vendorDatabaseModel;
+
   }
+  addPurchaseController.update();
   Get.back();
 }

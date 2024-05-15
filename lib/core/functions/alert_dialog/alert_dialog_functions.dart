@@ -52,8 +52,8 @@ onAlertDialogOptionSelect(
     // onEditProductAlertDialogOptionSelect(
     //     title: title,);
   } else if (currentRoute == RouteName.purchase) {
-    // onPurchaseSearchProductAlertDialogOptionSelect(
-    //     listIndex: listIndex,  title: title);
+    onPurchaseSearchProductAlertDialogOptionSelect(
+        listIndex: listIndex,  title: title,index: index);
   }
 }
 

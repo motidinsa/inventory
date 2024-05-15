@@ -47,25 +47,25 @@ class AddPurchase extends StatelessWidget {
                 verticalPadding: 15,
                 horizontalPadding: 20,
               ),
-              GetBuilder<AddPurchaseController>(builder: (addPurchaseController) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => ProductItem(
-                    index: index,
-                  ),
-                  itemCount: addPurchaseController.purchaseModels.length,
-                );
-              }),
-              SizedBox(height: 5,),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) => ProductItem(
+                  index: index,
+                ),
+                itemCount: addPurchaseController.purchaseModels.length,
+              ),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 children: [
                   Spacer(),
                   Expanded(
                     child: addIconButton(),
                   ),
-                   SizedBox(height: 5,),
-                   const ProductPriceSummary(),
+                  // SizedBox(height: 5,),
+                  ProductPriceSummary(),
                 ],
               ),
               const ActionButton(redirectFrom: purchaseN)

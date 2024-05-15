@@ -56,10 +56,12 @@ class _CustomTextField2State extends State<CustomTextField2> {
       readOnly: isReadOnlyTitle(title: widget.title),
       onChanged: (data) => onTextFieldChange(
         title: widget.title,
+        index: widget.index,
         data: data,
       ),
       onTap: () => onTextFieldPressed(
         title: widget.title,
+        index: widget.index,
       ),
       decoration: InputDecoration(
           fillColor: widget.color ?? Colors.green.shade50,
