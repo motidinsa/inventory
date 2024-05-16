@@ -64,7 +64,7 @@ onEditCustomerSaveButtonPressed() async {
         customerListController.update();
         CustomerDetailController.to.update();
 
-        showSnackbar(message: successfullyEditedN, success: true);
+        showSnackbar(message: successfullyUpdatedN, success: true);
       } else {
         showSnackbar(
           message: noChangesMadeN,

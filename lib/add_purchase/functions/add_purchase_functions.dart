@@ -159,8 +159,25 @@ onPurchaseSearchProductAlertDialogOptionSelect(
   addPurchaseController.update();
   Get.back();
 }
-onAddPurchaseSaveButtonPressed(){
-  if(AppController.to.formKey.currentState!.validate()){
-
+onAddPurchaseSaveButtonPressed() async {
+  AddPurchaseController addPurchaseController = AddPurchaseController.to;
+  addPurchaseController.isSubmitButtonPressed=true;
+  addPurchaseController.update();
+  if (AppController.to.formKey.currentState!.validate()) {
+    addPurchaseController.isLoading = true;
+    addPurchaseController.update();
+    try {
+      await AddPurchaseRepository.addPurchase();
+      showSnackbar(message: successfullyAddedPurchaseN, success: true);
+      Get.back();
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN, success: false);
+    } finally {
+      addPurchaseController.isLoading = false;
+      addPurchaseController.update();
+    }
+  }else{
+    showSnackbar(message: pleaseFillTheRequiredFieldN);
   }
+
 }

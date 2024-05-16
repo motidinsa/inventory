@@ -76,7 +76,7 @@ class AddPurchaseRepository {
         logProductDatabaseModel!.cost = double.parse(purchaseModel.cost);
         currentProduct.quantityOnHand = currentQty;
         logProductDatabaseModel.quantityOnHand = currentQty;
-        if (currentProduct.lastDateModified != null) {
+        if (currentProduct.cost != double.parse(purchaseModel.cost)) {
           currentProduct.lastDateModified = now;
           logProductDatabaseModel.lastDateModified = now;
           currentProduct.lastModifiedByUserId = appController.userId;
@@ -93,7 +93,7 @@ class AddPurchaseRepository {
             dateCreated: now,
             companyId: appController.companyId,
             addedByUserId: appController.userId,
-            vendorId: purchaseModel.vendorId,
+            vendorId: addPurchaseController.vendorDatabaseModel?.vendorId,
             quantity: double.parse(purchaseModel.quantity),
             cost: double.parse(purchaseModel.cost),
           ),
@@ -106,7 +106,7 @@ class AddPurchaseRepository {
             dateCreated: now,
             addedByUserId: appController.userId,
             companyId: appController.companyId,
-            vendorId: purchaseModel.vendorId,
+            vendorId: addPurchaseController.vendorDatabaseModel?.vendorId,
             quantity: double.parse(purchaseModel.quantity),
             cost: double.parse(purchaseModel.cost),
           ),
@@ -119,7 +119,7 @@ class AddPurchaseRepository {
             dateCreated: now,
             addedByUserId: appController.userId,
             companyId: appController.companyId,
-            vendorId: purchaseModel.vendorId,
+            vendorId: addPurchaseController.vendorDatabaseModel?.vendorId,
             quantity: double.parse(purchaseModel.quantity),
             cost: double.parse(purchaseModel.cost),
           ),

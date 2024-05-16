@@ -26,6 +26,8 @@ import 'package:my_inventory/core/model/customer/log_deleted_customer_database_m
 import 'package:my_inventory/core/model/vendor/log_deleted_vendor_database_model.dart';
 import 'package:my_inventory/core/model/vendor/log_vendor_database_model.dart';
 
+import '../model/purchase/log_purchase_all_database_model.dart';
+
 isarInit() async {
   await Get.putAsync<Isar>(() async {
     final dir = await getApplicationDocumentsDirectory();
@@ -36,6 +38,7 @@ isarInit() async {
         QuantityCostDatabaseModelSchema,
         PurchaseAvailableDatabaseModelSchema,
         PurchaseAllDatabaseModelSchema,
+        LogPurchaseAllDatabaseModelSchema,
         SalesDatabaseModelSchema,
         SalesPaymentDatabaseModelSchema,
         GroupSalesDatabaseModelSchema,

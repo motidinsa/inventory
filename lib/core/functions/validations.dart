@@ -8,6 +8,7 @@ validateInput({
   required String title,
   required String data,
 }) {
+  String currentRoute = Get.currentRoute;
   List<String> nonEmptyTitles = [
     productN,
     categoryNameN,
@@ -21,7 +22,8 @@ validateInput({
     companyNameN,
     firstNameN,
     lastNameN,
-    if(Get.currentRoute == RouteName.signUp)phoneNumberN,
+    if(currentRoute == RouteName.signUp)phoneNumberN,
+    if(currentRoute == RouteName.addPurchase)...[RouteName.addPurchase,costN],
   ];
   List<String> numberKeyboardLists = [
     costN,
