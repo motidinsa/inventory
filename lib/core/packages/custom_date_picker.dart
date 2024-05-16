@@ -12,7 +12,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 
@@ -473,7 +473,7 @@ class _DatePickerDialogState extends State<DatePickerDialog>
 
   void _handleDateChanged(DateTime date) {
     String currentRoute = Get.currentRoute;
-    if (currentRoute == RouteName.sales) {
+    if (currentRoute == RouteName.addSales) {
       SalesController.to.salesDate = date;
       SalesController.to.update();
     } else if(currentRoute == RouteName.addPurchase){

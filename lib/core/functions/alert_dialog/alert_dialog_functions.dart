@@ -6,8 +6,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
+import 'package:my_inventory/add_sales/functions/add_sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -42,7 +42,7 @@ onAlertDialogOptionSelect(
     required int index,
     int? listIndex}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     onSalesSearchProductAlertDialogOptionSelect(
         listIndex: listIndex,  title: title);
   } else if (currentRoute == RouteName.addProduct) {
@@ -59,7 +59,7 @@ onAlertDialogOptionSelect(
 
 List getAlertDialogOptionLists({String? title}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     SalesController salesController = SalesController.to;
     return title == searchProductsN
         ? salesController.searchProductFoundResult
@@ -106,7 +106,7 @@ bool isAlertDialogListEmpty({String? title}) {
 
 String getAlertDialogOptionName({required int index, String? title}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     SalesController salesController = Get.find();
     return title == searchProductsN
         ? salesController.searchProductFoundResult[index].productName
@@ -136,7 +136,7 @@ String getAlertDialogOptionName({required int index, String? title}) {
 
 getAlertDialogOptionId({required int index, required String title}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return onSalesAlertDialogOption(title: title, index: index);
   }
   if (currentRoute == RouteName.addPurchase) {

@@ -11,7 +11,7 @@ import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -131,7 +131,7 @@ onSalesProductSelect({
 }) {
   final SalesController salesController = Get.find();
   final Isar isar = Get.find();
-  if (title == RouteName.sales) {
+  if (title == RouteName.addSales) {
     salesController.searchProductFoundResult(
         isar.productDatabaseModels.where().findAllSync());
 

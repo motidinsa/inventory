@@ -10,6 +10,8 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:my_inventory/core/ui/shadowed_container.dart';
 
+import '../custom_text_field_2.dart';
+
 class ProductPriceSummary extends StatelessWidget {
   const ProductPriceSummary({
     super.key,
@@ -24,14 +26,14 @@ class ProductPriceSummary extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            if (Get.currentRoute == RouteName.sales) ...[
+            if (Get.currentRoute == RouteName.addSales) ...[
               RichText(
                 text: TextSpan(
                   text: '$subtotalN: ',
                   style: TextStyle(
                       fontWeight: bold(),
                       fontSize: 17,
-                      color: Colors.black,
+                      color: Colors.grey.shade800,
                   ),
                   // style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
@@ -47,9 +49,9 @@ class ProductPriceSummary extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
-                child: CustomTextField(
+                child: CustomTextField2(
                   title: discountN,
-                  labelText: discountN,
+                  // labelText: discountN,
                 ),
               ),
             ],

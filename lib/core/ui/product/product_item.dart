@@ -40,7 +40,7 @@ class ProductItem extends StatelessWidget {
                   // index: index,
                 ),
               ),
-              sizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
                 flex: 3,
                 child: CustomTextField2(
@@ -52,17 +52,19 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 4,
                 // flex: Get.currentRoute == RouteName.purchase ? 4 : 3,
-                child: Get.currentRoute == RouteName.addPurchase
-                    ? CustomTextField2(
-                        title: costN,
+                child:
+                // Get.currentRoute == RouteName.addPurchase
+                //     ?
+                CustomTextField2(
+                        title: Get.currentRoute == RouteName.addPurchase?costN:priceN,
                         index: index,
                       )
-                    : Text(
-                        getFormattedNumberWithComa(
-                            getProductPrice(index: index)),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 16),
-                      ),
+                    // : Text(
+                    //     getFormattedNumberWithComa(
+                    //         getProductPrice(index: index)),
+                    //     textAlign: TextAlign.center,
+                    //     style: const TextStyle(fontSize: 16),
+                    //   ),
               ),
               sizedBox(width: 5),
               Expanded(

@@ -20,14 +20,14 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/reorder_stock/ui/reorder_stock.dart';
-import 'package:my_inventory/sales/ui/sales.dart';
+import 'package:my_inventory/add_sales/ui/add_sales.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/signup/ui/signup.dart';
 import 'package:my_inventory/vendor_detail/ui/vendor_detail.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 import 'package:my_inventory/vendor_list/ui/vendor_list.dart';
 
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 
 import 'package:my_inventory/edit_vendor/controller/edit_vendor_controller.dart';
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
@@ -63,7 +63,7 @@ List<GetPage> routes = [
       page: () => const VendorDetail(),
       binding: BindingsBuilder.put(() => VendorDetailController())),
   GetPage(
-      name: RouteName.sales,
+      name: RouteName.addSales,
       page: () => const Sales(),
       binding: BindingsBuilder.put(() => SalesController())),
   GetPage(

@@ -10,11 +10,14 @@ import 'package:my_inventory/core/ui/product/product_item.dart';
 import 'package:my_inventory/core/ui/product/product_price_summary.dart';
 import 'package:my_inventory/core/ui/product/product_profile_info.dart';
 import 'package:my_inventory/core/ui/product/product_table_titles.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-import 'package:my_inventory/sales/ui/payment_options.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
+import 'package:my_inventory/add_sales/ui/payment_options.dart';
+
+import '../../core/ui/shadowed_container.dart';
 
 class Sales extends StatelessWidget {
   const Sales({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BodyWrapper(
@@ -23,33 +26,20 @@ class Sales extends StatelessWidget {
         key: AppController.to.formKey,
         child: ListView(
           children: [
-            ElevatedCard(
+            ShadowedContainer(
+              child: ProductProfileInfo(),
               horizontalMargin: 10,
-              verticalMargin: 10,
-              blurRadius: 10,
-              horizontalPadding: 20,
+              verticalMargin: 15,
               verticalPadding: 15,
-              child: GetBuilder<SalesController>(builder: (_) {
-                return ProductProfileInfo();
-              }),
+              horizontalPadding: 20,
             ),
-            const ProductTableTitles(
-              currentRoute: salesN,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            GetBuilder<SalesController>(
-              builder: (context) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => ProductItem(
-                    index: index,
-                  ),
-                  itemCount: SalesController.to.salesModels.length,
-                );
-              }
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, index) => ProductItem(
+                index: index,
+              ),
+              itemCount: SalesController.to.salesModels.length,
             ),
             Center(
               child: IconButton(
@@ -61,13 +51,18 @@ class Sales extends StatelessWidget {
                 ),
               ),
             ),
-            GetBuilder<SalesController>(
-              builder: (_) {
-                return  const ProductPriceSummary();
-              }
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  Expanded(child: PaymentOptions()),
+                  // SizedBox(width: 5),
+                  Expanded(child: ProductPriceSummary()),
+
+
+                ],
+              ),
             ),
-            sizedBox(height: 5),
-             const PaymentOptions(),
             const ActionButton(redirectFrom: salesN)
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 
 
 import 'package:my_inventory/core/functions/helper_functions.dart';

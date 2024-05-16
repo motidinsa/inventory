@@ -4,7 +4,7 @@ class RouteName {
   static const String addCustomer = '/add_customer';
   static const String customerDetail = '/customer_detail';
   static const String editCustomer = '/edit_customer';
-  static const String sales = '/sales';
+  static const String addSales = '/sales';
   static const String vendorList = '/vendor_list';
   static const String addVendor = '/add_vendor';
   static const String vendorDetail = '/vendor_detail';

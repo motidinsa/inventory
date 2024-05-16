@@ -9,9 +9,9 @@ import 'package:my_inventory/core/model/customer/customer_database_model.dart';
 import 'package:my_inventory/core/model/product/product_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_model.dart';
 import 'package:my_inventory/homepage/ui/pdftest.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
-import 'package:my_inventory/sales/functions/sales_helper_functions.dart';
-import 'package:my_inventory/sales/repository/sales_repository.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
+import 'package:my_inventory/add_sales/functions/add_sales_helper_functions.dart';
+import 'package:my_inventory/add_sales/repository/sales_repository.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -19,7 +19,7 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 
 onSalesTitleToData({required String title, int? index}) {
   SalesController salesController = Get.find();
-  if (title == RouteName.sales) {
+  if (title == RouteName.addSales) {
     return salesController.salesModels[index!].productName;
   } else if (title == selectN) {
     return salesController.customerName;

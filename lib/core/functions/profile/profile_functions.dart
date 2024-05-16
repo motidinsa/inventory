@@ -4,7 +4,7 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
 
 import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.dart';
@@ -45,7 +45,7 @@ onProfileAddPressed() {
 
 String? getProfileId() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return SalesController.to.customerId;
   }
   return null;
@@ -53,20 +53,20 @@ String? getProfileId() {
 
 String? getProfilePhone() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return SalesController.to.customerPhone;
   } else if (currentRoute == RouteName.addPurchase) {
-    // return AddPurchaseController.to.vendorPhone;
+    return AddPurchaseController.to.vendorDatabaseModel?.phoneNumber;
   }
   return null;
 }
 
 String? getProfileAddress() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return SalesController.to.customerAddress;
   } else if (currentRoute == RouteName.addPurchase) {
-    // return AddPurchaseController.to.vendorAddress;
+    return AddPurchaseController.to.vendorDatabaseModel?.address;
   }
   return null;
 }
@@ -74,14 +74,14 @@ String? getProfileAddress() {
 String? getContactPerson() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addPurchase) {
-    // return AddPurchaseController.to.vendorContactPerson;
+    return AddPurchaseController.to.vendorDatabaseModel?.contactPerson;
   }
   return null;
 }
 
 onProfileCancelPressed() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     SalesController.to.customerId = null;
     SalesController.to.customerName = '';
     SalesController.to.customerPhone = null;
@@ -92,7 +92,7 @@ onProfileCancelPressed() {
 
 onProfileDatePressed() {
   String currentRoute = Get.currentRoute;
-  if ([RouteName.sales, RouteName.addPurchase].contains(currentRoute)) {
+  if ([RouteName.addSales, RouteName.addPurchase].contains(currentRoute)) {
     showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),

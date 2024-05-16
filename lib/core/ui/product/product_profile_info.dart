@@ -34,26 +34,29 @@ class ProductProfileInfo extends StatelessWidget {
                   ProfileTitleToData(
                     title: dateN,
                     dataColor: Colors.green.shade700,
-                    data: dateFormatter.format(getSelectedDate()!),
+                    data: dateFormatter.format(getSelectedDate()),
                   ),
                 ],
               ),
             )
           ],
         ),
-        sizedBox(height: 15),
+        SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: CustomTextField2(
-            title: vendorN,
+            title: Get.currentRoute == RouteName.addPurchase?vendorN:customerN,
           ),
         ),
         if (getProfilePhone() != null) ...[
-          sizedBox(height: 20),
-          ProfileTitleToData(
-            title: phoneNumberN,
-            data: getProfilePhone()!,
-            dataColor: Colors.green.shade800,
+          SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: ProfileTitleToData(
+              title: phoneNumberN,
+              data: getProfilePhone()!,
+              dataColor: Colors.green.shade800,
+            ),
           )
         ],
       ],

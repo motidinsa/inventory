@@ -11,7 +11,7 @@ navigateFromHomepage({required String title, bool? isAddIcon}) async {
     }
   } else if (title == salesN) {
     if (isAddIcon == true) {
-      Get.toNamed(RouteName.sales);
+      Get.toNamed(RouteName.addSales);
     }
   } else if (title == productN) {
     if (isAddIcon == true) {

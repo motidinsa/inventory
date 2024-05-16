@@ -86,7 +86,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                                   title: title,
                                   listIndex: [
                                     RouteName.addPurchase,
-                                    RouteName.sales
+                                    RouteName.addSales
                                   ].contains(Get.currentRoute)
                                       ? listIndex
                                       : null,

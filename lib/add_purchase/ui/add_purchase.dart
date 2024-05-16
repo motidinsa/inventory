@@ -43,7 +43,7 @@ class AddPurchase extends StatelessWidget {
               ShadowedContainer(
                 child: ProductProfileInfo(),
                 horizontalMargin: 10,
-                verticalMargin: 20,
+                verticalMargin: 15,
                 verticalPadding: 15,
                 horizontalPadding: 20,
               ),

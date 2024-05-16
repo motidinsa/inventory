@@ -7,7 +7,7 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_confirmation.dart
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -110,14 +110,14 @@ showAlertDialogConfirmation() {
   ));
 }
 
-DateTime? getSelectedDate() {
+DateTime getSelectedDate() {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return SalesController.to.salesDate;
   } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.selectedPurchaseDate??DateTime.now();
   }
-  return null;
+  return DateTime.now();
 }
 
 bool isActionButtonLoading() {

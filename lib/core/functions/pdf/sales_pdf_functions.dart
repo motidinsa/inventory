@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:pdf/pdf.dart';
 
 import 'package:my_inventory/core/model/sales/sales_model.dart';

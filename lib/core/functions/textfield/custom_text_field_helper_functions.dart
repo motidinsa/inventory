@@ -9,7 +9,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
-import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/add_sales/functions/add_sales_functions.dart';
 import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 
@@ -17,7 +17,7 @@ import '../../../add_purchase/functions/add_purchase_functions.dart';
 
 String? titleToData({required String title, int? index}) {
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.sales) {
+  if (currentRoute == RouteName.addSales) {
     return onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     return onAddProductTitleToData(title: title);
@@ -44,7 +44,7 @@ String? titleToHint({String? title}) {
     value = writeYourDescriptionN;
   } else if ([
     categoryN,
-    RouteName.sales,
+    RouteName.addSales,
     RouteName.addPurchase,
     selectN,
     fromN,
@@ -79,9 +79,9 @@ Icon? titleToIcon({
   required String title,
 }) {
   IconData? iconData;
-  if ([vendorNameN,vendorN, companyNameN].contains(title)) {
+  if ([vendorNameN, vendorN, companyNameN].contains(title)) {
     iconData = Icons.corporate_fare_rounded;
-  } else if ([customerNameN, contactPersonN, firstNameN, lastNameN]
+  } else if ([customerNameN, contactPersonN, firstNameN, lastNameN, customerN]
       .contains(title)) {
     iconData = Icons.person_outline;
   } else if (title == phoneNumberN) {
@@ -106,10 +106,9 @@ Icon? titleToIcon({
 
 EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
   String currentRoute = Get.currentRoute;
-  if([RouteName.addPurchase,RouteName.sales].contains(currentRoute)){
-    return const EdgeInsets.only(left: 15, right: 10,top: 6,bottom: 6);
-  }
-  else if ([
+  if ([RouteName.addPurchase, RouteName.addSales].contains(currentRoute)) {
+    return const EdgeInsets.only(left: 15, right: 10, top: 6, bottom: 6);
+  } else if ([
     productN,
     descriptionN,
     categoryN,
@@ -118,7 +117,7 @@ EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
     quantityOnHandN,
     reorderQuantityN,
     imageN,
-    if([RouteName.addProduct].contains(Get.currentRoute))costN,
+    if ([RouteName.addProduct].contains(Get.currentRoute)) costN,
     priceN,
     categoryNameN,
   ].contains(title)) {
@@ -132,9 +131,10 @@ bool hasOptionItems({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    RouteName.sales,
+    // RouteName.sales,
     // RouteName.purchase,
-    if(currentRoute == RouteName.addPurchase)vendorN,
+    if (currentRoute == RouteName.addPurchase) vendorN,
+    if (currentRoute == RouteName.addSales) customerN,
     selectN,
   ];
   return itemsWithOption.contains(title);
@@ -145,8 +145,10 @@ bool isReadOnlyTitle({String? title}) {
   var itemsWithOption = [
     categoryN,
     uomSN,
-    RouteName.sales,
-    RouteName.addPurchase,if(currentRoute == RouteName.addPurchase)vendorN,
+    RouteName.addSales,
+    RouteName.addPurchase,
+    if (currentRoute == RouteName.addPurchase) vendorN,
+    customerN,
     selectN,
     fromN,
     toN,
@@ -198,7 +200,7 @@ Widget? getSuffixWidget({required String title}) {
   Widget? suffixWidget;
   if (hasOptionItems(title: title)) {
     suffixWidget = Padding(
-      padding: const EdgeInsets.only(right: 8,left: 5),
+      padding: const EdgeInsets.only(right: 8, left: 5),
       child: const Icon(
         Icons.arrow_drop_down_rounded,
         color: Colors.teal,
@@ -303,10 +305,9 @@ String titleToLabel({
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.signUp && title == emailN) {
     labelText = '$emailN ($optionalN)';
-  }else if([RouteName.addPurchase,RouteName.sales].contains(title)) {
+  } else if ([RouteName.addPurchase, RouteName.addSales].contains(title)) {
     labelText = productN;
-  }else
- {
+  } else {
     labelText = title;
   }
   return labelText;

@@ -9,10 +9,10 @@ import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dar
 import 'package:my_inventory/edit_product/functions/edit_product_functions.dart';
 import 'package:my_inventory/edit_vendor/functions/edit_vendor_functions.dart';
 import 'package:my_inventory/product_list/functions/product_list_functions.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/vendor_list/functions/vendor_list_functions.dart';
 
-import 'package:my_inventory/sales/functions/sales_functions.dart';
+import 'package:my_inventory/add_sales/functions/add_sales_functions.dart';
 
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -28,7 +28,7 @@ onTextFieldChange({
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.signUp) {
     onSignUpTextFieldChange(title: title!, data: data);
-  } else if (currentRoute == RouteName.sales) {
+  } else if (currentRoute == RouteName.addSales) {
     onSalesTextFieldChange(data: data, index: index, title: title);
     SalesController.to.update();
   } else if (currentRoute == RouteName.addCustomer) {
@@ -62,7 +62,7 @@ onTextFieldPressed({required String title, int? index}) {
     onAddProductTextFieldPressed(title: title);
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldPressed(title: title);
-  } else if (currentRoute == RouteName.sales) {
+  } else if (currentRoute == RouteName.addSales) {
     onSalesProductSelect(title: title, listIndex: index);
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldPressed(title: title, index: index);

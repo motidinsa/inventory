@@ -8,7 +8,7 @@ import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as p;
 
 import 'package:my_inventory/core/functions/pdf/sales_pdf_functions.dart';
-import 'package:my_inventory/sales/controller/sales_controller.dart';
+import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 
 class pdftest extends StatelessWidget {
   final Uint8List image;
