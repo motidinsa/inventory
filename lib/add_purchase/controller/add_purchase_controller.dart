@@ -15,7 +15,7 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 class AddPurchaseController extends GetxController {
   bool isLoading = false;
   bool isSubmitButtonPressed = false;
-  DateTime? selectedPurchaseDate;
+  DateTime selectedPurchaseDate = DateTime.now();
   List<ProductDatabaseModel> searchProductFoundResult = [];
   List<VendorDatabaseModel> searchVendorFoundResult = [];
   double total = 0;

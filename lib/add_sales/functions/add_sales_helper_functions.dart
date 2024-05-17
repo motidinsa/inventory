@@ -6,11 +6,11 @@ import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 int getSalesAlertDialogProductLength() {
-  return Get.find<SalesController>().searchProductFoundResult.length;
+  return Get.find<AddSalesController>().searchProductFoundResult.length;
 }
 
 getSalesSubtotal() {
-  SalesController salesController = Get.find();
+  AddSalesController salesController = Get.find();
   double subTotal = 0;
   for (var element in salesController.salesModels) {
     subTotal += double.parse(element.totalAmount.toString());
@@ -20,7 +20,7 @@ getSalesSubtotal() {
 }
 
 getSalesTotal() {
-  SalesController salesController = Get.find();
+  AddSalesController salesController = Get.find();
   double total = 0;
 
   for (var element in salesController.salesModels) {

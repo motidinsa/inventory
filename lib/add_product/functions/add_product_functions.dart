@@ -119,6 +119,8 @@ String getEmptySearchResult({required String title}) {
     return noUnitOfMeasurementFoundN;
   }else if (title == searchVendorsN) {
     return noVendorFoundN;
+  }else if (title == searchCustomersN) {
+    return noCustomerFoundN;
   }else if (title == searchProductsN) {
     return noProductFoundN;
   }
@@ -129,32 +131,33 @@ onSalesProductSelect({
   String? title,
   int? listIndex,
 }) {
-  final SalesController salesController = Get.find();
+  final AddSalesController salesController = Get.find();
   final Isar isar = Get.find();
-  if (title == RouteName.addSales) {
-    salesController.searchProductFoundResult(
-        isar.productDatabaseModels.where().findAllSync());
-
-    Get.dialog(GetBuilder<AddProductController>(builder: (context) {
-      return AlertDialogOptionSelect(
-        title: searchProductsN,
-        listIndex: listIndex,
-      );
-    })).then(
-      (value) async {
-        await unFocus();
-      },
-    );
-  } else if (title == selectN) {
-    salesController.searchCustomerFoundResult(
-        isar.customerDatabaseModels.where().findAllSync());
-    Get.dialog(const AlertDialogOptionSelect(
-      title: searchCustomersN,
-    )).then(
-      (value) {
-        unFocus();
-      },
-    );
-  }
+  // if (title == RouteName.addSales) {
+  //   salesController.searchProductFoundResult(
+  //       isar.productDatabaseModels.where().findAllSync());
+  //
+  //   Get.dialog(GetBuilder<AddProductController>(builder: (context) {
+  //     return AlertDialogOptionSelect(
+  //       title: searchProductsN,
+  //       listIndex: listIndex,
+  //     );
+  //   })).then(
+  //     (value) async {
+  //       await unFocus();
+  //     },
+  //   );
+  // }
+  // else if (title == selectN) {
+  //   salesController.searchCustomerFoundResult(
+  //       isar.customerDatabaseModels.where().findAllSync());
+  //   Get.dialog(const AlertDialogOptionSelect(
+  //     title: searchCustomersN,
+  //   )).then(
+  //     (value) {
+  //       unFocus();
+  //     },
+  //   );
+  // }
 }
 

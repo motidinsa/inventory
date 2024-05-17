@@ -46,7 +46,7 @@ double getProductPrice({required int index}) {
 double getProductTotalPrice({required int index}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    SalesController salesController = Get.find();
+    AddSalesController salesController = Get.find();
     return salesController.salesModels[index].totalAmount;
   } else if (currentRoute == RouteName.addPurchase) {
     AddPurchaseController addPurchaseController = Get.find();
@@ -70,7 +70,7 @@ String? getProductImagePath() {
 
 onProductDelete({required int index}){
   if(Get.currentRoute == RouteName.addSales){
-    SalesController.to.salesModels.removeAt(index);
+    AddSalesController.to.salesModels.removeAt(index);
   }else{
     AddPurchaseController.to.purchaseModels.removeAt(index);
   }

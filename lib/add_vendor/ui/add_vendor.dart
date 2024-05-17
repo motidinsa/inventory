@@ -37,7 +37,7 @@ class AddVendor extends StatelessWidget {
         });
       }
       return BodyWrapper(
-        pageName: addCustomerN,
+        pageName: addVendorN,
         body: Form(
           key: AppController.to.formKey,
           child: Center(

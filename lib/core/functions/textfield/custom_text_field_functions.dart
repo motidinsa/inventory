@@ -30,7 +30,7 @@ onTextFieldChange({
     onSignUpTextFieldChange(title: title!, data: data);
   } else if (currentRoute == RouteName.addSales) {
     onSalesTextFieldChange(data: data, index: index, title: title);
-    SalesController.to.update();
+    AddSalesController.to.update();
   } else if (currentRoute == RouteName.addCustomer) {
     onAddCustomerTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.editCustomer) {
@@ -62,10 +62,10 @@ onTextFieldPressed({required String title, int? index}) {
     onAddProductTextFieldPressed(title: title);
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductTextFieldPressed(title: title);
-  } else if (currentRoute == RouteName.addSales) {
-    onSalesProductSelect(title: title, listIndex: index);
-  } else if (currentRoute == RouteName.addPurchase) {
+  }  else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldPressed(title: title, index: index);
+  }else if (currentRoute == RouteName.addSales) {
+    onAddSalesTextFieldPressed(title: title, index: index);
   } else if ([salesReportN, purchaseReportN, paymentReportN]
       .contains(currentRoute)) {
     onReportFilterSelect(title: title);

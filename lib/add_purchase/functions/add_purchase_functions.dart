@@ -47,12 +47,9 @@ onPurchaseTextFieldChange({
   int? index,
 }) {
   AddPurchaseController addPurchaseController = AddPurchaseController.to;
-
-  // addPurchaseController.purchaseModels[index!].update((purchase) {
   if (title == searchVendorsN) {
     addPurchaseController.searchVendorFoundResult =
         AddPurchaseRepository.searchVendor(data: data);
-    // addPurchaseController.update();
   } else {
     PurchaseModel purchase = addPurchaseController.purchaseModels[index!];
     if (title == searchProductsN) {
@@ -88,7 +85,6 @@ onPurchaseTextFieldChange({
     }
   }
   addPurchaseController.update();
-  // });
 }
 
 onPurchaseTextFieldPressed({
@@ -126,7 +122,7 @@ onPurchaseTextFieldPressed({
   }
 }
 
-onPurchaseAlertDialogOption({required String title, required int index}) {
+getPurchaseAlertDialogOptionId({required String title, required int index}) {
   AddPurchaseController addPurchaseController = AddPurchaseController.to;
   if (title == searchProductsN) {
     return addPurchaseController.searchProductFoundResult[index].id;

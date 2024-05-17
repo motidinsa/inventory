@@ -13,6 +13,8 @@ onAddIconPressed({String? type}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addPurchase) {
     onPurchaseAddIconPressed();
+  } else if (currentRoute == RouteName.addSales) {
+    onPurchaseAddIconPressed();
   } else {
     Get.back();
     Get.dialog(

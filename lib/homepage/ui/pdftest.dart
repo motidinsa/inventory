@@ -15,7 +15,7 @@ class pdftest extends StatelessWidget {
 
   pdftest({super.key, required this.image});
 
-  final SalesController salesController = SalesController.to;
+  final AddSalesController salesController = AddSalesController.to;
   final DateTime now = DateTime.now();
 
   @override
@@ -54,7 +54,7 @@ class pdftest extends StatelessWidget {
                         children: [
                           p.TextSpan(
                             text: DateFormat('MMM d, y')
-                                .format(salesController.salesDate),
+                                .format(salesController.selectedSalesDate),
                             style: p.TextStyle(
                               // color: PdfColor.fromHex('424242'),
                               fontSize: 16,
@@ -103,7 +103,7 @@ class pdftest extends StatelessWidget {
                     // style: DefaultTextStyle.of(context).style,
                     children: [
                       p.TextSpan(
-                        text: salesController.customerName,
+                        text: salesController.customerDatabaseModel?.name,
                         style: p.TextStyle(
                           // color: PdfColor.fromHex('424242'),
                           fontSize: 16,
@@ -218,7 +218,7 @@ class pdftest extends StatelessWidget {
           ],
         ),
         pdfFileName:
-            '${DateFormat('MMM d, y').format(salesController.salesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf',
+            '${DateFormat('MMM d, y').format(salesController.selectedSalesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf',
         canDebug: false,
         pdfPreviewPageDecoration: const BoxDecoration(
           color: Colors.white,
@@ -250,7 +250,7 @@ class pdftest extends StatelessWidget {
                 await Printing.sharePdf(
                     bytes: await doc.save(),
                     filename:
-                        '${DateFormat('MMM d, y').format(salesController.salesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf');
+                        '${DateFormat('MMM d, y').format(salesController.selectedSalesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf');
               },
               icon: const Icon(
                 Icons.share,
@@ -260,7 +260,7 @@ class pdftest extends StatelessWidget {
                 final params = SaveFileDialogParams(
                     data: await doc.save(),
                     fileName:
-                        '${DateFormat('MMM d, y').format(salesController.salesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf');
+                        '${DateFormat('MMM d, y').format(salesController.selectedSalesDate)}_sales_${DateFormat('HmsS').format(now)}.pdf');
                 await FlutterFileDialog.saveFile(params: params).then((value) {
                   debugPrint('success');
                 }).catchError((error) {});

@@ -474,8 +474,8 @@ class _DatePickerDialogState extends State<DatePickerDialog>
   void _handleDateChanged(DateTime date) {
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.addSales) {
-      SalesController.to.salesDate = date;
-      SalesController.to.update();
+      AddSalesController.to.selectedSalesDate = date;
+      AddSalesController.to.update();
     } else if(currentRoute == RouteName.addPurchase){
       AddPurchaseController.to.selectedPurchaseDate = date;
       AddPurchaseController.to.update();

@@ -113,7 +113,7 @@ showAlertDialogConfirmation() {
 DateTime getSelectedDate() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    return SalesController.to.salesDate;
+    return AddSalesController.to.selectedSalesDate;
   } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.selectedPurchaseDate??DateTime.now();
   }

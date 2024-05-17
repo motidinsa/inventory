@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 
-
 import 'package:my_inventory/core/model/sales/group_sales_database_model.dart';
 import 'package:my_inventory/core/model/sales/quantity_cost_database_model.dart';
 import 'package:my_inventory/core/model/sales/sales_payment_database_model.dart';
@@ -17,12 +16,43 @@ import 'package:my_inventory/core/model/sales/sales_model.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-class SalesRepository {
+import '../../core/model/customer/customer_database_model.dart';
+
+class AddSalesRepository {
   static final Isar _isar = Get.find();
 
+  static List<ProductDatabaseModel> getAllProduct() {
+    return _isar.productDatabaseModels.where().findAllSync();
+  }
+
+  static int getProductCount() {
+    return _isar.productDatabaseModels.countSync();
+  }
+
+  static List<ProductDatabaseModel> searchProduct({required String data}) {
+    return _isar.productDatabaseModels
+        .filter()
+        .productNameContains(data, caseSensitive: false)
+        .findAllSync();
+  }
+
+  static List<CustomerDatabaseModel> getAllCustomers() {
+    return _isar.customerDatabaseModels.where().findAllSync();
+  }
+
+  static int getCustomerCount() {
+    return _isar.customerDatabaseModels.countSync();
+  }
+
+  static List<CustomerDatabaseModel> searchCustomer({required String data}) {
+    return _isar.customerDatabaseModels
+        .filter()
+        .nameContains(data, caseSensitive: false)
+        .findAllSync();
+  }
 
   static saveSalesProductToDB() async {
-     final SalesController salesController = SalesController.to;
+    final AddSalesController salesController = AddSalesController.to;
     List<SalesModel> salesModels = salesController.salesModels;
     List<SalesDatabaseModel> salesDatabaseModels = [];
     String groupSalesId =
@@ -88,11 +118,11 @@ class SalesRepository {
               productId: salesModel.productId,
               salesId: salesId,
               groupSalesId: groupSalesId,
-              salesDate: salesController.salesDate,
+              salesDate: salesController.selectedSalesDate,
               dateCreated: now,
               quantity: double.parse(salesModel.quantity),
               price: double.parse(salesModel.price),
-              customerId: salesController.customerId,
+              // customerId: salesController.customerId,
               salesPaymentId: salesPaymentId),
         );
         // await _isar.logProductDatabaseModels.put(
@@ -124,14 +154,13 @@ class SalesRepository {
         );
         if ((salesController.transfer.isNotEmpty &&
                 salesController.transfer != '0') ||
-            (salesController.cash.isNotEmpty &&
-                salesController.cash != '0')) {
+            (salesController.cash.isNotEmpty && salesController.cash != '0')) {
           _isar.salesPaymentDatabaseModels.put(
             SalesPaymentDatabaseModel(
               cash: double.parse(salesController.cash),
               transfer: double.parse(salesController.transfer),
               credit: double.parse(salesController.credit),
-              customerId: salesController.customerId!,
+              customerId: salesController.customerDatabaseModel!.customerId,
               groupSalesId: groupSalesId,
               salesPaymentId: salesPaymentId,
               total: double.parse(salesController.total),

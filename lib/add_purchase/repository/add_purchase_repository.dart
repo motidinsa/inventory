@@ -27,7 +27,7 @@ class AddPurchaseRepository {
   }
 
   static int getProductCount() {
-    return _isar.categoryDatabaseModels.countSync();
+    return _isar.productDatabaseModels.countSync();
   }
 
   static List<ProductDatabaseModel> searchProduct({required String data}) {

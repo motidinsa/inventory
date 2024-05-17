@@ -46,7 +46,7 @@ onProfileAddPressed() {
 String? getProfileId() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    return SalesController.to.customerId;
+    return AddSalesController.to.customerDatabaseModel?.customerId;
   }
   return null;
 }
@@ -54,7 +54,7 @@ String? getProfileId() {
 String? getProfilePhone() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    return SalesController.to.customerPhone;
+    return AddSalesController.to.customerDatabaseModel?.phoneNumber;
   } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.vendorDatabaseModel?.phoneNumber;
   }
@@ -64,7 +64,7 @@ String? getProfilePhone() {
 String? getProfileAddress() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    return SalesController.to.customerAddress;
+    return AddSalesController.to.customerDatabaseModel?.address;
   } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.vendorDatabaseModel?.address;
   }
@@ -82,11 +82,8 @@ String? getContactPerson() {
 onProfileCancelPressed() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    SalesController.to.customerId = null;
-    SalesController.to.customerName = '';
-    SalesController.to.customerPhone = null;
-    SalesController.to.customerAddress = null;
-    SalesController.to.update();
+    AddSalesController.to.customerDatabaseModel = null;
+    AddSalesController.to.update();
   }
 }
 

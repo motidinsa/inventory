@@ -9,7 +9,7 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 
 p.Widget generateSalesData() {
   List<p.Widget> salesData = [];
-  SalesController salesController = Get.find();
+  AddSalesController salesController = Get.find();
   for (int i = 0; i < salesController.salesModels.length; i++) {
     SalesModel salesModel = salesController.salesModels[i];
     salesData.addAll(
@@ -80,7 +80,7 @@ p.Widget generateSalesData() {
 }
 
 p.Widget generateSalesPaymentMode() {
-  SalesController salesController = Get.find();
+  AddSalesController salesController = Get.find();
   return p.Expanded(
     child: p.Row(
       mainAxisSize: p.MainAxisSize.min,
@@ -179,7 +179,7 @@ p.Widget generateSalesPaymentMode() {
 }
 
 p.Widget generatePriceSummary() {
-  SalesController salesController = Get.find();
+  AddSalesController salesController = Get.find();
   return p.Expanded(
     child: p.Container(
       child: p.Column(

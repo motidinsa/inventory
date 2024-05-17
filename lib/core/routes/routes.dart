@@ -65,7 +65,7 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.addSales,
       page: () => const Sales(),
-      binding: BindingsBuilder.put(() => SalesController())),
+      binding: BindingsBuilder.put(() => AddSalesController())),
   GetPage(
       name: RouteName.vendorList,
       page: () => const VendorList(),

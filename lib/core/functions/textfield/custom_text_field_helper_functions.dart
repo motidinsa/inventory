@@ -23,6 +23,8 @@ String? titleToData({required String title, int? index}) {
     return onAddProductTitleToData(title: title);
   } else if (currentRoute == RouteName.addPurchase) {
     return onPurchaseTitleToData(title: title, index: index);
+  }else if (currentRoute == RouteName.addSales) {
+    return onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
     return getEditProductData(title: title);
   } else if (currentRoute == RouteName.editCustomer) {
@@ -148,6 +150,7 @@ bool isReadOnlyTitle({String? title}) {
     RouteName.addSales,
     RouteName.addPurchase,
     if (currentRoute == RouteName.addPurchase) vendorN,
+    if (currentRoute == RouteName.addSales) priceN,
     customerN,
     selectN,
     fromN,

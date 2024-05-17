@@ -5,27 +5,20 @@ import 'package:my_inventory/core/model/sales/sales_model.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-class SalesController extends GetxController {
-  DateTime now = DateTime.now();
-  RxList<ProductDatabaseModel> searchProductFoundResult =
-      <ProductDatabaseModel>[].obs;
-  RxList<CustomerDatabaseModel> searchCustomerFoundResult =
-      <CustomerDatabaseModel>[].obs;
+class AddSalesController extends GetxController {
+  bool isLoading = false;
+  bool isSubmitButtonPressed = false;
+  DateTime selectedSalesDate = DateTime.now();
+  List<ProductDatabaseModel> searchProductFoundResult = [];
+  List<CustomerDatabaseModel> searchCustomerFoundResult = [];
+  CustomerDatabaseModel? customerDatabaseModel;
   String subtotal = '0';
-  String? customerId;
-  String? customerName;
-  String? customerPhone;
-  String? customerAddress;
-  DateTime salesDate = DateTime.now();
-  String discount='';
-
+  String discount = '';
   String total = '0';
-  String cashReceived = '2';
+  String cashReceived = '';
   String cash = '';
   String transfer = '';
   String credit = '0';
-
-  var isLocalSaveLoading = false.obs;
   List<SalesModel> salesModels = [
     SalesModel(
       productId: '',
@@ -36,19 +29,5 @@ class SalesController extends GetxController {
     )
   ];
 
-  static SalesController get to => Get.find();
-
-  addSalesProduct() {
-    unFocus();
-    salesModels.add(
-      SalesModel(
-        productId: '',
-        productName: '',
-        quantity: '',
-        price: '',
-        totalAmount: 0,
-      ),
-    );
-    update();
-  }
+  static AddSalesController get to => Get.find();
 }

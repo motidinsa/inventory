@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:my_inventory/add_customer/repository/add_customer_repository.dart';
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/add_product/repository/add_product_repository.dart';
+import 'package:my_inventory/add_purchase/repository/add_purchase_repository.dart';
+import 'package:my_inventory/add_sales/repository/add_sales_repository.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/model/product/product_model.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
@@ -18,9 +21,9 @@ import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dar
 
 import '../../../add_purchase/controller/add_purchase_controller.dart';
 import '../../../add_purchase/functions/add_purchase_functions.dart';
+
 String? onAddProductTitleToData({required String title}) {
-  ProductModel productModel =
-      AddProductController.to.productModel;
+  ProductModel productModel = AddProductController.to.productModel;
   if (title == categoryN) {
     return productModel.categoryName;
   } else if (title == uomSN) {
@@ -37,30 +40,31 @@ String? onAddProductTitleToData({required String title}) {
   // }
   return null;
 }
+
 onAlertDialogOptionSelect(
-    {required String title,
-    required int index,
-    int? listIndex}) {
+    {required String title, required int index, int? listIndex}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
     onSalesSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex,  title: title);
+        listIndex: listIndex, title: title,index: index);
   } else if (currentRoute == RouteName.addProduct) {
     onAddProductAlertDialogOptionSelect(
-        title: title, index: index,);
+      title: title,
+      index: index,
+    );
   } else if (currentRoute == RouteName.editProduct) {
     // onEditProductAlertDialogOptionSelect(
     //     title: title,);
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex,  title: title,index: index);
+        listIndex: listIndex, title: title, index: index);
   }
 }
 
 List getAlertDialogOptionLists({String? title}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    SalesController salesController = SalesController.to;
+    AddSalesController salesController = AddSalesController.to;
     return title == searchProductsN
         ? salesController.searchProductFoundResult
         : salesController.searchCustomerFoundResult;
@@ -92,22 +96,20 @@ bool isAlertDialogListEmpty({String? title}) {
     return AddProductRepository.getCategoryCount() == 0;
   } else if (title == selectUomSN) {
     return AddProductRepository.getUnitOfMeasurementCount() == 0;
+  } else if (title == searchCustomersN) {
+    return AddSalesRepository.getCustomerCount() == 0;
+  } else if (title == searchVendorsN) {
+    return AddPurchaseRepository.getVendorCount() == 0;
+  } else if (title == searchProductsN) {
+    return AddPurchaseRepository.getProductCount() == 0;
   }
-  // else if (title == searchCustomersN) {
-  //   return  isar.customerDatabaseModels.where().findAllSync();
-  // } else if (title == searchVendorsN) {
-  //   return  isar.vendorDatabaseModels.where().findAllSync();
-  // } else if (title == searchProductsN) {
-  //   return  isar.productDatabaseModels.where().findAllSync();
-  // }
   return false;
 }
-
 
 String getAlertDialogOptionName({required int index, String? title}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
-    SalesController salesController = Get.find();
+    AddSalesController salesController = Get.find();
     return title == searchProductsN
         ? salesController.searchProductFoundResult[index].productName
         : salesController.searchCustomerFoundResult[index].name;
@@ -140,7 +142,7 @@ getAlertDialogOptionId({required int index, required String title}) {
     return onSalesAlertDialogOption(title: title, index: index);
   }
   if (currentRoute == RouteName.addPurchase) {
-    return onPurchaseAlertDialogOption(title: title, index: index);
+    return getPurchaseAlertDialogOptionId(title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     AddProductController addProductController = Get.find();
     if (title == selectCategoryN) {
