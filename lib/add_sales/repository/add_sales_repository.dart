@@ -52,29 +52,31 @@ class AddSalesRepository {
   }
 
   static saveSalesProductToDB() async {
-    final AddSalesController salesController = AddSalesController.to;
-    List<SalesModel> salesModels = salesController.salesModels;
+    final AddSalesController allSalesController = AddSalesController.to;
+    final AppController appController = AppController.to;
+    // List<SalesModel> salesModels = salesController.salesModels;
     List<SalesDatabaseModel> salesDatabaseModels = [];
     String groupSalesId =
         generateDatabaseId(time: DateTime.now(), identifier: 'group');
     String salesPaymentId =
         generateDatabaseId(time: DateTime.now(), identifier: 'p_id');
-    for (int i = 0; i < salesModels.length; i++) {
-      SalesModel salesModel = salesModels[i];
-      DateTime now = DateTime.now();
-      String salesId = generateDatabaseId(time: now, identifier: i);
-      List<PurchaseAvailableDatabaseModel> purchases =
-          _getAvailablePurchases(productId: salesModel.productId);
-      ProductDatabaseModel product = _isar.productDatabaseModels
-          .filter()
-          .productIdEqualTo(salesModel.productId)
-          .findFirstSync()!;
-      LogProductDatabaseModel logProduct = _isar.logProductDatabaseModels
-          .filter()
-          .productIdEqualTo(salesModel.productId)
-          .findFirstSync()!;
-      double remaining = double.parse(salesModel.quantity);
-      await _isar.writeTxn(() async {
+    DateTime now = DateTime.now();
+    await _isar.writeTxn(() async {
+      for (int i = 0; i < allSalesController.salesModels.length; i++) {
+        SalesModel salesModel = allSalesController.salesModels[i];
+
+        String salesId = generateDatabaseId(time: now, identifier: i);
+        List<PurchaseAvailableDatabaseModel> purchases =
+            await _getAvailablePurchases(productId: salesModel.productId);
+        ProductDatabaseModel? product = await _isar.productDatabaseModels
+            .filter()
+            .productIdEqualTo(salesModel.productId)
+            .findFirst();
+        // LogProductDatabaseModel logProduct = _isar.logProductDatabaseModels
+        //     .filter()
+        //     .productIdEqualTo(salesModel.productId)
+        //     .findFirstSync()!;
+        double remaining = double.parse(salesModel.quantity);
         while (remaining != 0) {
           if (remaining <= purchases.first.quantity) {
             await _isar.quantityCostDatabaseModels.put(
@@ -108,76 +110,103 @@ class AddSalesRepository {
           }
         }
         double quantityOnHand =
-            product.quantityOnHand - double.parse(salesModel.quantity);
+            product!.quantityOnHand - double.parse(salesModel.quantity);
         product.quantityOnHand = quantityOnHand;
         product.lastDateModified = now;
         product.lastModifiedByUserId = AppController.to.userId;
         await _isar.productDatabaseModels.put(product);
+
         salesDatabaseModels.add(
           SalesDatabaseModel(
-              productId: salesModel.productId,
-              salesId: salesId,
-              groupSalesId: groupSalesId,
-              salesDate: salesController.selectedSalesDate,
-              dateCreated: now,
-              quantity: double.parse(salesModel.quantity),
-              price: double.parse(salesModel.price),
-              // customerId: salesController.customerId,
-              salesPaymentId: salesPaymentId),
-        );
-        // await _isar.logProductDatabaseModels.put(
-        //   LogProductDatabaseModel(
-        //     productId: logProduct.productId,
-        //     productName: logProduct.productName,
-        //     cost: logProduct.cost,
-        //     price: logProduct.price,
-        //     quantityOnHand: quantityOnHand,
-        //     reorderQuantity: logProduct.reorderQuantity,
-        //     unitOfMeasurementId: logProduct.unitOfMeasurementId,
-        //     createdByUserId: logProduct.createdByUserId,
-        //     modifiedByUserId: AppController.to.userId,
-        //     dateCreated: logProduct.dateCreated,
-        //     dateModified: now,
-        //     addedFrom: salesDC,
-        //   ),
-        // );
-
-        //
-        _isar.salesDatabaseModels.putAll(salesDatabaseModels);
-        _isar.groupSalesDatabaseModels.put(
-          GroupSalesDatabaseModel(
+            productId: salesModel.productId,
+            salesId: salesId,
             groupSalesId: groupSalesId,
-            discount: isNumeric(salesController.discount)
-                ? double.parse(salesController.discount)
-                : 0,
+            salesDate: allSalesController.selectedSalesDate,
+            dateCreated: now,
+            quantity: double.parse(salesModel.quantity),
+            price: double.parse(salesModel.price),
+            customerId: allSalesController.customerDatabaseModel?.customerId,
+            salesPaymentId: salesPaymentId,
+            addedByUserId: appController.userId,
+            companyId: appController.companyId,
           ),
         );
-        if ((salesController.transfer.isNotEmpty &&
-                salesController.transfer != '0') ||
-            (salesController.cash.isNotEmpty && salesController.cash != '0')) {
-          _isar.salesPaymentDatabaseModels.put(
-            SalesPaymentDatabaseModel(
-              cash: double.parse(salesController.cash),
-              transfer: double.parse(salesController.transfer),
-              credit: double.parse(salesController.credit),
-              customerId: salesController.customerDatabaseModel!.customerId,
-              groupSalesId: groupSalesId,
-              salesPaymentId: salesPaymentId,
-              total: double.parse(salesController.total),
-            ),
-          );
+        //     // await _isar.logProductDatabaseModels.put(
+        //     //   LogProductDatabaseModel(
+        //     //     productId: logProduct.productId,
+        //     //     productName: logProduct.productName,
+        //     //     cost: logProduct.cost,
+        //     //     price: logProduct.price,
+        //     //     quantityOnHand: quantityOnHand,
+        //     //     reorderQuantity: logProduct.reorderQuantity,
+        //     //     unitOfMeasurementId: logProduct.unitOfMeasurementId,
+        //     //     createdByUserId: logProduct.createdByUserId,
+        //     //     modifiedByUserId: AppController.to.userId,
+        //     //     dateCreated: logProduct.dateCreated,
+        //     //     dateModified: now,
+        //     //     addedFrom: salesDC,
+        //     //   ),
+        //     // );
+        //
+        //     //
+        //
+      }
+      _isar.salesDatabaseModels.putAll(salesDatabaseModels);
+      _isar.groupSalesDatabaseModels.put(
+        GroupSalesDatabaseModel(
+          groupSalesId: groupSalesId,
+          discount: isNumeric(allSalesController.discount)
+              ? double.parse(allSalesController.discount)
+              : 0,
+        ),
+      );
+      if (allSalesController.customerDatabaseModel != null) {
+        if (allSalesController.customerDatabaseModel?.totalCreditAmount ==
+            null) {
+          allSalesController.customerDatabaseModel!.totalCreditAmount =
+              double.parse(allSalesController.credit);
+        } else {
+          allSalesController.customerDatabaseModel!.totalCreditAmount =
+              allSalesController.customerDatabaseModel!.totalCreditAmount! +
+                  double.parse(allSalesController.credit);
         }
-      });
-    }
+        allSalesController.customerDatabaseModel?.lastModifiedByUserId =
+            appController.userId;
+        allSalesController.customerDatabaseModel?.lastModifiedDate = now;
+        await _isar.customerDatabaseModels
+            .put(allSalesController.customerDatabaseModel!);
+      }
+      // if ((allSalesController.transfer.isNotEmpty &&
+      //         allSalesController.transfer != '0') ||
+      //     (allSalesController.cash.isNotEmpty &&
+      //         allSalesController.cash != '0')) {
+      _isar.salesPaymentDatabaseModels.put(
+        SalesPaymentDatabaseModel(
+          cash: isNumeric(allSalesController.cash)
+              ? double.parse(allSalesController.cash)
+              : 0,
+          transfer: isNumeric(allSalesController.transfer)
+              ? double.parse(allSalesController.transfer)
+              : 0,
+          credit: double.parse(allSalesController.credit),
+          customerId: allSalesController.customerDatabaseModel?.customerId,
+          groupSalesId: groupSalesId,
+          salesPaymentId: salesPaymentId,
+          total: double.parse(allSalesController.total),
+          addedByUserId: appController.userId,
+          dateAdded: now,
+        ),
+      );
+      // }
+    });
   }
 
-  static List<PurchaseAvailableDatabaseModel> _getAvailablePurchases(
+  static Future<List<PurchaseAvailableDatabaseModel>> _getAvailablePurchases(
       {required String productId}) {
-    return Get.find<Isar>()
-        .purchaseAvailableDatabaseModels
+    return _isar.purchaseAvailableDatabaseModels
         .filter()
         .group(
             (q) => q.productIdEqualTo(productId).and().quantityGreaterThan(0))
-        .findAllSync();
+        .findAll();
   }
 }

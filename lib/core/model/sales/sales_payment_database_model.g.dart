@@ -18,43 +18,63 @@ const SalesPaymentDatabaseModelSchema = CollectionSchema(
   name: r'SalesPaymentDatabaseModel',
   id: 1468659235813119651,
   properties: {
-    r'cash': PropertySchema(
+    r'addedByUserId': PropertySchema(
       id: 0,
+      name: r'addedByUserId',
+      type: IsarType.string,
+    ),
+    r'cash': PropertySchema(
+      id: 1,
       name: r'cash',
       type: IsarType.double,
     ),
     r'credit': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'credit',
       type: IsarType.double,
     ),
     r'customerId': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'customerId',
       type: IsarType.string,
     ),
+    r'dateAdded': PropertySchema(
+      id: 4,
+      name: r'dateAdded',
+      type: IsarType.dateTime,
+    ),
+    r'dateModified': PropertySchema(
+      id: 5,
+      name: r'dateModified',
+      type: IsarType.dateTime,
+    ),
     r'groupSalesId': PropertySchema(
-      id: 3,
+      id: 6,
       name: r'groupSalesId',
       type: IsarType.string,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 4,
+      id: 7,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
+    r'modifiedByUserId': PropertySchema(
+      id: 8,
+      name: r'modifiedByUserId',
+      type: IsarType.string,
+    ),
     r'salesPaymentId': PropertySchema(
-      id: 5,
+      id: 9,
       name: r'salesPaymentId',
       type: IsarType.string,
     ),
     r'total': PropertySchema(
-      id: 6,
+      id: 10,
       name: r'total',
       type: IsarType.double,
     ),
     r'transfer': PropertySchema(
-      id: 7,
+      id: 11,
       name: r'transfer',
       type: IsarType.double,
     )
@@ -79,8 +99,20 @@ int _salesPaymentDatabaseModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.customerId.length * 3;
+  bytesCount += 3 + object.addedByUserId.length * 3;
+  {
+    final value = object.customerId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.groupSalesId.length * 3;
+  {
+    final value = object.modifiedByUserId;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.salesPaymentId.length * 3;
   return bytesCount;
 }
@@ -91,14 +123,18 @@ void _salesPaymentDatabaseModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDouble(offsets[0], object.cash);
-  writer.writeDouble(offsets[1], object.credit);
-  writer.writeString(offsets[2], object.customerId);
-  writer.writeString(offsets[3], object.groupSalesId);
-  writer.writeBool(offsets[4], object.isAppWriteSynced);
-  writer.writeString(offsets[5], object.salesPaymentId);
-  writer.writeDouble(offsets[6], object.total);
-  writer.writeDouble(offsets[7], object.transfer);
+  writer.writeString(offsets[0], object.addedByUserId);
+  writer.writeDouble(offsets[1], object.cash);
+  writer.writeDouble(offsets[2], object.credit);
+  writer.writeString(offsets[3], object.customerId);
+  writer.writeDateTime(offsets[4], object.dateAdded);
+  writer.writeDateTime(offsets[5], object.dateModified);
+  writer.writeString(offsets[6], object.groupSalesId);
+  writer.writeBool(offsets[7], object.isAppWriteSynced);
+  writer.writeString(offsets[8], object.modifiedByUserId);
+  writer.writeString(offsets[9], object.salesPaymentId);
+  writer.writeDouble(offsets[10], object.total);
+  writer.writeDouble(offsets[11], object.transfer);
 }
 
 SalesPaymentDatabaseModel _salesPaymentDatabaseModelDeserialize(
@@ -108,14 +144,18 @@ SalesPaymentDatabaseModel _salesPaymentDatabaseModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = SalesPaymentDatabaseModel(
-    cash: reader.readDouble(offsets[0]),
-    credit: reader.readDouble(offsets[1]),
-    customerId: reader.readString(offsets[2]),
-    groupSalesId: reader.readString(offsets[3]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
-    salesPaymentId: reader.readString(offsets[5]),
-    total: reader.readDouble(offsets[6]),
-    transfer: reader.readDouble(offsets[7]),
+    addedByUserId: reader.readString(offsets[0]),
+    cash: reader.readDouble(offsets[1]),
+    credit: reader.readDouble(offsets[2]),
+    customerId: reader.readStringOrNull(offsets[3]),
+    dateAdded: reader.readDateTime(offsets[4]),
+    dateModified: reader.readDateTimeOrNull(offsets[5]),
+    groupSalesId: reader.readString(offsets[6]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[7]),
+    modifiedByUserId: reader.readStringOrNull(offsets[8]),
+    salesPaymentId: reader.readString(offsets[9]),
+    total: reader.readDouble(offsets[10]),
+    transfer: reader.readDouble(offsets[11]),
   );
   object.id = id;
   return object;
@@ -129,20 +169,28 @@ P _salesPaymentDatabaseModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 1:
       return (reader.readDouble(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
-    case 3:
-      return (reader.readString(offset)) as P;
-    case 4:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 5:
-      return (reader.readString(offset)) as P;
-    case 6:
       return (reader.readDouble(offset)) as P;
+    case 3:
+      return (reader.readStringOrNull(offset)) as P;
+    case 4:
+      return (reader.readDateTime(offset)) as P;
+    case 5:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 6:
+      return (reader.readString(offset)) as P;
     case 7:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 8:
+      return (reader.readStringOrNull(offset)) as P;
+    case 9:
+      return (reader.readString(offset)) as P;
+    case 10:
+      return (reader.readDouble(offset)) as P;
+    case 11:
       return (reader.readDouble(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -246,6 +294,144 @@ extension SalesPaymentDatabaseModelQueryWhere on QueryBuilder<
 
 extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
     SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QFilterCondition> {
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'addedByUserId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+          QAfterFilterCondition>
+      addedByUserIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'addedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+          QAfterFilterCondition>
+      addedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'addedByUserId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> addedByUserIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'addedByUserId',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> cashEqualTo(
     double value, {
@@ -379,8 +565,26 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> customerIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'customerId',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> customerIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'customerId',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -394,7 +598,7 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -410,7 +614,7 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -426,8 +630,8 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterFilterCondition> customerIdBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -512,6 +716,136 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'customerId',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateAddedEqualTo(DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dateAdded',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateAddedGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dateAdded',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateAddedLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dateAdded',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateAddedBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dateAdded',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'dateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'dateModified',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dateModified',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> dateModifiedBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dateModified',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
@@ -734,6 +1068,162 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isAppWriteSynced',
         value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'modifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'modifiedByUserId',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'modifiedByUserId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+          QAfterFilterCondition>
+      modifiedByUserIdContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'modifiedByUserId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+          QAfterFilterCondition>
+      modifiedByUserIdMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'modifiedByUserId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiedByUserId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterFilterCondition> modifiedByUserIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'modifiedByUserId',
+        value: '',
       ));
     });
   }
@@ -1018,6 +1508,20 @@ extension SalesPaymentDatabaseModelQueryLinks on QueryBuilder<
 extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
     SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QSortBy> {
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> sortByCash() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cash', Sort.asc);
@@ -1060,6 +1564,34 @@ extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByDateAdded() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateAdded', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByDateAddedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateAdded', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateModified', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByDateModifiedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateModified', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> sortByGroupSalesId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupSalesId', Sort.asc);
@@ -1084,6 +1616,20 @@ extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
       QAfterSortBy> sortByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByModifiedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> sortByModifiedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedByUserId', Sort.desc);
     });
   }
 
@@ -1133,6 +1679,20 @@ extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
 extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
     SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QSortThenBy> {
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByAddedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByAddedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'addedByUserId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> thenByCash() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cash', Sort.asc);
@@ -1175,6 +1735,34 @@ extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByDateAdded() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateAdded', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByDateAddedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateAdded', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateModified', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByDateModifiedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dateModified', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
       QAfterSortBy> thenByGroupSalesId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupSalesId', Sort.asc);
@@ -1213,6 +1801,20 @@ extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
       QAfterSortBy> thenByIsAppWriteSyncedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByModifiedByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedByUserId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
+      QAfterSortBy> thenByModifiedByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'modifiedByUserId', Sort.desc);
     });
   }
 
@@ -1262,6 +1864,14 @@ extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
 extension SalesPaymentDatabaseModelQueryWhereDistinct on QueryBuilder<
     SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct> {
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
+      distinctByAddedByUserId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'addedByUserId',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
       distinctByCash() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cash');
@@ -1283,6 +1893,20 @@ extension SalesPaymentDatabaseModelQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
+      distinctByDateAdded() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dateAdded');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
+      distinctByDateModified() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dateModified');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
       distinctByGroupSalesId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'groupSalesId', caseSensitive: caseSensitive);
@@ -1293,6 +1917,14 @@ extension SalesPaymentDatabaseModelQueryWhereDistinct on QueryBuilder<
       distinctByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isAppWriteSynced');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
+      distinctByModifiedByUserId({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'modifiedByUserId',
+          caseSensitive: caseSensitive);
     });
   }
 
@@ -1327,6 +1959,13 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
+  QueryBuilder<SalesPaymentDatabaseModel, String, QQueryOperations>
+      addedByUserIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'addedByUserId');
+    });
+  }
+
   QueryBuilder<SalesPaymentDatabaseModel, double, QQueryOperations>
       cashProperty() {
     return QueryBuilder.apply(this, (query) {
@@ -1341,10 +1980,24 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<SalesPaymentDatabaseModel, String, QQueryOperations>
+  QueryBuilder<SalesPaymentDatabaseModel, String?, QQueryOperations>
       customerIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'customerId');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, DateTime, QQueryOperations>
+      dateAddedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dateAdded');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, DateTime?, QQueryOperations>
+      dateModifiedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dateModified');
     });
   }
 
@@ -1359,6 +2012,13 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
       isAppWriteSyncedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isAppWriteSynced');
+    });
+  }
+
+  QueryBuilder<SalesPaymentDatabaseModel, String?, QQueryOperations>
+      modifiedByUserIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'modifiedByUserId');
     });
   }
 

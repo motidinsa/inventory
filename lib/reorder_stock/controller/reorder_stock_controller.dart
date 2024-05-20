@@ -13,8 +13,7 @@ class ReorderStockController extends GetxController {
   void onInit() {
     AppController.to.currentRoutes.add(reorderQuantityN);final Isar isar = Get.find();
     for (var element in isar.productDatabaseModels
-        .filter()
-        .quantityOnHandGreaterThan(0)
+        .where()
         .findAllSync()) {
       if(element.quantityOnHand<=element.reorderQuantity){
         productDatabaseModels.add(

@@ -8,13 +8,14 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import '../../add_purchase/controller/add_purchase_controller.dart';
 import '../../add_purchase/functions/add_purchase_functions.dart';
+import '../../add_sales/functions/add_sales_functions.dart';
 
 onAddIconPressed({String? type}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addPurchase) {
     onPurchaseAddIconPressed();
   } else if (currentRoute == RouteName.addSales) {
-    onPurchaseAddIconPressed();
+    addSalesProduct();
   } else {
     Get.back();
     Get.dialog(

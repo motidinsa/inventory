@@ -127,42 +127,47 @@ String? getProfileTitleToData({required String title}) {
     CustomerDatabaseModel customerDatabaseModel =
         CustomerDetailController.to.customerDatabaseModel;
     if (title == customerNameN) {
-      value= customerDatabaseModel.name;
+      value = customerDatabaseModel.name;
     } else if (title == phoneNumberN) {
-      value= customerDatabaseModel.phoneNumber;
+      value = customerDatabaseModel.phoneNumber;
     } else if (title == addressN) {
-      value= customerDatabaseModel.address;
+      value = customerDatabaseModel.address;
     } else if (title == cityN) {
-      value= customerDatabaseModel.city;
+      value = customerDatabaseModel.city;
     } else if (title == emailN) {
-      value= customerDatabaseModel.email;
+      value = customerDatabaseModel.email;
     }
   } else if (currentRoute == RouteName.vendorDetail) {
     VendorDatabaseModel vendorDatabaseModel =
         VendorDetailController.to.vendorDatabaseModel;
 
     if (title == vendorNameN) {
-      value= vendorDatabaseModel.name;
+      value = vendorDatabaseModel.name;
     } else if (title == phoneNumberN) {
-      value= vendorDatabaseModel.phoneNumber;
+      value = vendorDatabaseModel.phoneNumber;
     } else if (title == contactPersonN) {
-      value= vendorDatabaseModel.contactPerson;
+      value = vendorDatabaseModel.contactPerson;
     } else if (title == addressN) {
-      value= vendorDatabaseModel.address;
+      value = vendorDatabaseModel.address;
     } else if (title == cityN) {
-      value= vendorDatabaseModel.city;
+      value = vendorDatabaseModel.city;
     } else if (title == emailN) {
-      value= vendorDatabaseModel.email;
+      value = vendorDatabaseModel.email;
     }
   }
 
   return value;
 }
 
-bool customerHasCredit(){
+bool customerHasCredit() {
   String currentRoute = Get.currentRoute;
   bool value = false;
-  if(currentRoute == RouteName.customerDetail){
-    value =  CustomerDetailController.to.customerCredit>0;
-  }return value;
+  if (currentRoute == RouteName.customerDetail &&
+      CustomerDetailController.to.customerDatabaseModel.totalCreditAmount !=
+          null) {
+    value =
+        CustomerDetailController.to.customerDatabaseModel.totalCreditAmount! >
+            0;
+  }
+  return value;
 }

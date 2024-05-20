@@ -34,6 +34,7 @@ import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.d
 
 import '../../add_purchase/controller/add_purchase_controller.dart';
 import '../../add_purchase/ui/add_purchase.dart';
+import '../../credit_history/credit_history.dart';
 
 List<GetPage> routes = [
   GetPage(
@@ -89,10 +90,10 @@ List<GetPage> routes = [
       name: RouteName.productList,
       page: () => ProductList(),
       binding: BindingsBuilder.put(() => ProductListController())),
-  // GetPage(
-  //   name: RouteName.creditHistory,
-  //   page: () => const CreditHistory(),
-  // ),
+  GetPage(
+    name: RouteName.creditHistory,
+    page: () => const CreditHistory(),
+  ),
   GetPage(
       name: RouteName.editCustomer,
       page: () => EditCustomer(),

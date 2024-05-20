@@ -40,9 +40,10 @@ getSalesTotal() {
     if(salesController.cashReceived == '0'){
       salesController.cashReceived = '';
     }
-  } else {
-    salesController.cashReceived = '';
-    salesController.total='0';
   }
+  // else {
+  //   salesController.cashReceived = '';
+  //   salesController.total='0';
+  // }
   return salesController.total;
 }

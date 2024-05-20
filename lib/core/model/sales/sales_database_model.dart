@@ -17,6 +17,8 @@ class SalesDatabaseModel {
   double price;
   bool? isAppWriteSynced;
   String salesPaymentId;
+  String addedByUserId;
+  String companyId;
 
   SalesDatabaseModel({
     required this.productId,
@@ -31,5 +33,7 @@ class SalesDatabaseModel {
     required this.price,
     required this.salesPaymentId,
     this.isAppWriteSynced,
+    required this.addedByUserId,
+    required this.companyId,
   });
 }

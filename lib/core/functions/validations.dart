@@ -24,6 +24,7 @@ validateInput({
     lastNameN,
     if(currentRoute == RouteName.signUp)phoneNumberN,
     if(currentRoute == RouteName.addPurchase)...[RouteName.addPurchase,costN],
+    if(currentRoute == RouteName.addSales)...[RouteName.addSales,priceN],
   ];
   List<String> numberKeyboardLists = [
     costN,

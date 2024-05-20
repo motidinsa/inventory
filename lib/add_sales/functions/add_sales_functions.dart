@@ -17,6 +17,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/controller/app_controller.dart';
 import '../../core/ui/alert_dialog/alert_dialog_option_select.dart';
 
 addSalesProduct() {
@@ -32,6 +33,33 @@ addSalesProduct() {
     ),
   );
   addSalesController.update();
+}
+
+onAddSalesSaveButtonPressed() async {
+  AddSalesController addSalesController = AddSalesController.to;
+  addSalesController.isSubmitButtonPressed = true;
+  addSalesController.update();
+  if (AppController.to.formKey.currentState!.validate()) {
+    addSalesController.isLoading = true;
+    addSalesController.update();
+    try {
+      await AddSalesRepository.saveSalesProductToDB();
+      showSnackbar(message: successfullyAddedSalesN, success: true);
+      // Get.back();
+      final ByteData bytes =
+      await rootBundle.load('assets/images/company-logo.png');
+      final Uint8List byteList = bytes.buffer.asUint8List();
+
+      Get.off(pdftest(image: byteList));
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN, success: false);
+    } finally {
+      addSalesController.isLoading = false;
+      addSalesController.update();
+    }
+  } else {
+    showSnackbar(message: pleaseFillTheRequiredFieldN);
+  }
 }
 
 onAddSalesTextFieldPressed({
@@ -69,13 +97,17 @@ onSalesTitleToData({required String title, int? index}) {
   AddSalesController addSalesController = Get.find();
   if (title == RouteName.addSales) {
     return addSalesController.salesModels[index!].productName;
-  }else if (title == customerN) {
+  } else if (title == customerN) {
     return addSalesController.customerDatabaseModel?.name;
-  }else if (title == priceN) {
+  } else if (title == priceN) {
     return addSalesController.salesModels[index!].price;
-  }else if (title == creditN) {
-      return addSalesController.credit;
-    }
+  } else if (title == creditN) {
+    return addSalesController.credit;
+  } else if (title == cashN) {
+    return addSalesController.cash;
+  } else if (title == transferN) {
+    return addSalesController.transfer;
+  }
   // else if (title == selectN) {
   //   return salesController.customerName;
   // } else if (title == qtyN) {
@@ -107,7 +139,7 @@ onSalesTextFieldChange({
   if (title == searchCustomersN) {
     addSalesController.searchCustomerFoundResult =
         AddSalesRepository.searchCustomer(data: data);
-  }else if (title == searchProductsN) {
+  } else if (title == searchProductsN) {
     addSalesController.searchProductFoundResult =
         AddSalesRepository.searchProduct(data: data);
   } else if (title == discountN) {
@@ -122,25 +154,26 @@ onSalesTextFieldChange({
               double.parse(data) -
               double.parse(addSalesController.transfer)));
       // salesController.cash = data;
-    } else {
-      addSalesController.credit = '0';
     }
+    // else {
+    //   addSalesController.credit = '0';
+    // }
   } else if (title == transferN) {
     addSalesController.transfer = data;
-    if (!['', '0'].contains(addSalesController.cash) &&
-        isNumeric(addSalesController.total) &&
+    if (isNumeric(addSalesController.total) &&
         isNumeric(addSalesController.cash) &&
         isNumeric(data)) {
       addSalesController.credit = getFormattedNumberWithoutComa(
           (double.parse(addSalesController.total) -
               double.parse(addSalesController.cash) -
               double.parse(data)));
-    } else {
-      addSalesController.credit = '0';
     }
-    addSalesController.update();
+    // else {
+    //   addSalesController.credit = '0';
+    // }
+    // addSalesController.update();
   } else {
-    SalesModel salesModel = addSalesController.salesModels[index!];
+    // SalesModel salesModel = addSalesController.salesModels[index!];
     if (title == qtyN) {
       SalesModel sales = addSalesController.salesModels[index!];
 
@@ -153,12 +186,16 @@ onSalesTextFieldChange({
         sales.quantity = data;
         if (isNumeric(sales.quantity) && isNumeric(sales.price)) {
           sales.totalAmount = double.parse(data) * double.parse(sales.price);
-          addSalesController.cash = getFormattedNumberWithoutComa(getSalesTotal());
-        } else {
-          sales.totalAmount = 0;
-          addSalesController.cash = '';
+          addSalesController.cash =
+              getFormattedNumberWithoutComa(getSalesTotal());
+          addSalesController.transfer = '';
           addSalesController.credit = '0';
         }
+        // else {
+        //   sales.totalAmount = 0;
+        //   addSalesController.cash = '';
+        //   addSalesController.credit = '0';
+        // }
       }
       // });
       // addSalesController.update();
@@ -169,25 +206,42 @@ onSalesTextFieldChange({
 }
 
 onSalesSearchProductAlertDialogOptionSelect(
-    {int? listIndex,int? index, required String title}) {
+    {int? listIndex, int? index, required String title}) {
   final AddSalesController addSalesController = AddSalesController.to;
   if (title == searchProductsN) {
     ProductDatabaseModel productDatabaseModel =
-    addSalesController.searchProductFoundResult[index!];
-    SalesModel salesModel = addSalesController.salesModels[listIndex!];
-    salesModel.productId = productDatabaseModel.productId;
-    salesModel.productName = productDatabaseModel.productName;
-    salesModel.price = emptyIfDefaultValue(
-        getFormattedNumberWithoutComa(productDatabaseModel.price));
-    if (salesModel.quantity.isNotEmpty && isNumeric(salesModel.quantity)) {
-      salesModel.totalAmount =
-          double.parse(salesModel.quantity) * productDatabaseModel.price;
+        addSalesController.searchProductFoundResult[index!];
+    bool productExists = addSalesController.salesModels.any(
+        (salesModel) => salesModel.productId == productDatabaseModel.productId);
+
+    //   if (!productExists) {
+
+    if (!productExists) {
+      SalesModel salesModel = addSalesController.salesModels[listIndex!];
+      salesModel.productId = productDatabaseModel.productId;
+      salesModel.productName = productDatabaseModel.productName;
+      salesModel.price = emptyIfDefaultValue(
+          getFormattedNumberWithoutComa(productDatabaseModel.price));
+      if (salesModel.quantity.isNotEmpty && isNumeric(salesModel.quantity)) {
+        salesModel.totalAmount =
+            double.parse(salesModel.quantity) * productDatabaseModel.price;
+        addSalesController.cash =
+            getFormattedNumberWithoutComa(salesModel.totalAmount);
+        addSalesController.transfer = '';
+        addSalesController.credit = '0';
+      }
+    }else{
+      if (productDatabaseModel.productId !=
+          addSalesController.salesModels[listIndex!].productId) {
+        // Get.closeCurrentSnackbar();
+        addSalesController.salesModels.removeAt(listIndex);
+        showSnackbar(message: productAlreadySelectedN);
+      }
     }
   } else if (title == searchCustomersN) {
     CustomerDatabaseModel customerDatabaseModel =
-    addSalesController.searchCustomerFoundResult[index!];
-    addSalesController.customerDatabaseModel= customerDatabaseModel;
-
+        addSalesController.searchCustomerFoundResult[index!];
+    addSalesController.customerDatabaseModel = customerDatabaseModel;
   }
   // if (title == searchProductsN) {
   //   ProductDatabaseModel productDatabaseModel =
@@ -225,7 +279,8 @@ onSalesSearchProductAlertDialogOptionSelect(
   //         borderRadius: 10,
   //       ));
   //       Get.key.currentState?.pop();
-  //     } else {
+  //     }
+  //     else {
   //       Get.back();
   //     }
   //   }

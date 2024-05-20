@@ -37,6 +37,9 @@ class Sales extends StatelessWidget {
           }
           return Form(
             key: AppController.to.formKey,
+            autovalidateMode: addSalesController.isSubmitButtonPressed
+                ? AutovalidateMode.always
+                : null,
             child: ListView(
               children: [
                 ShadowedContainer(

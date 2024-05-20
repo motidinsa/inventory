@@ -31,7 +31,7 @@ class PaymentReportController extends GetxController {
               .salesDate,
           customerName: isar.customerDatabaseModels
               .filter()
-              .customerIdEqualTo(element.customerId)
+              .customerIdEqualTo(element.customerId!)
               .findFirstSync()!
               .name,
           cash: element.cash,
@@ -64,7 +64,7 @@ class PaymentReportController extends GetxController {
           paymentDate: element.salesDate,
           customerName: isar.customerDatabaseModels
               .filter()
-              .customerIdEqualTo(salesPaymentDatabaseModel!.customerId)
+              .customerIdEqualTo(salesPaymentDatabaseModel!.customerId!)
               .findFirstSync()!
               .name,
           cash: salesPaymentDatabaseModel.cash,

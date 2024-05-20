@@ -34,15 +34,15 @@ class PaymentOptions extends StatelessWidget {
             SizedBox(height: 10),
         Column(
           children: [
-            const CustomTextField2(
+             CustomTextField2(
               title: cashN,
             ),
             SizedBox(height: 10,),
-            const CustomTextField2(
+             CustomTextField2(
               title: transferN,
             ),
             SizedBox(height: 10),
-            const CustomTextField2(
+             CustomTextField2(
               title: creditN,
             ),
           ],

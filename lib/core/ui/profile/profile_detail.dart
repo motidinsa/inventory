@@ -12,7 +12,6 @@ import 'package:my_inventory/core/functions/profile/profile_functions.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 
-
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class ProfileDetail extends StatelessWidget {
@@ -106,7 +105,11 @@ class ProfileDetail extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      getFormattedNumberWithComa(Get.find<CustomerDetailController>().customerCredit),
+                      getFormattedNumberWithComa(
+                          Get.find<CustomerDetailController>()
+                                  .customerDatabaseModel
+                                  .totalCreditAmount ??
+                              0),
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -150,7 +153,7 @@ class ProfileDetail extends StatelessWidget {
               ),
               if (customerWithCredit)
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(RouteName.creditHistory);
