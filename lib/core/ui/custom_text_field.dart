@@ -67,24 +67,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       textAlign: getTextAlign(title: widget.title),
       decoration: InputDecoration(
-        isDense: true,
-        isCollapsed: true,
+        // isDense: true,
+        filled: true,
+        // fillColor: Colors.grey.shade300,
+        // isCollapsed: true,
         errorMaxLines: 5,
         prefixIcon: titleToIcon(title: widget.title),
         suffixIcon: getSuffixWidget(title: widget.title),
         hintText: titleToHint(
           title: widget.title,
         ),
-        hintStyle: const TextStyle(),
+        // hintStyle:  TextStyle(color: Colors.grey.shade800),
         contentPadding: getContentPadding(title: widget.title),
         border: OutlineInputBorder(
           borderRadius: smoothBorderRadius(radius: 15),
+          borderSide: BorderSide.none
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: smoothBorderRadius(radius: 15),
-          borderSide: BorderSide(
-              color: Colors.green, width: getBorderWidth(title: widget.title)),
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: smoothBorderRadius(radius: 15),
+        //   borderSide: BorderSide(
+        //       color: Colors.green, width: getBorderWidth(title: widget.title)),
+        // ),
         labelText: widget.labelText,
         alignLabelWithHint: true,
       ),

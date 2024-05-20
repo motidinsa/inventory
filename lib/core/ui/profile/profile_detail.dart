@@ -146,7 +146,7 @@ class ProfileDetail extends StatelessWidget {
                         dataColor: Colors.grey.shade700,
                       );
                     },
-                    separatorBuilder: (ctx, index) => sizedBox(height: 12),
+                    separatorBuilder: (ctx, index) => SizedBox(height: 20),
                     itemCount: profileTitles().length,
                   ),
                 ),

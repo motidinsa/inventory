@@ -51,7 +51,6 @@ dependencies:
   loader_overlay: ^4.0.0
   image_picker: ^1.0.7
   device_preview: ^1.1.0
-  gal: ^2.3.0
   flutter_screenutil: ^5.9.0
   sticky_headers: ^0.3.0+2
   flutter_slidable: ^3.1.0
