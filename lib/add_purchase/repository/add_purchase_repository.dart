@@ -56,11 +56,10 @@ class AddPurchaseRepository {
     AddPurchaseController addPurchaseController = AddPurchaseController.to;
     AppController appController = AppController.to;
     DateTime now = DateTime.now();
-
-    for (int i = 0; i < addPurchaseController.purchaseModels.length; i++) {
-      PurchaseModel purchaseModel = addPurchaseController.purchaseModels[i];
-      String key = generateDatabaseId(time: now, identifier: i);
-      await _isar.writeTxn(() async {
+    await _isar.writeTxn(() async {
+      for (int i = 0; i < addPurchaseController.purchaseModels.length; i++) {
+        PurchaseModel purchaseModel = addPurchaseController.purchaseModels[i];
+        String key = generateDatabaseId(time: now, identifier: i);
         ProductDatabaseModel? currentProduct = await _isar.productDatabaseModels
             .filter()
             .productIdEqualTo(purchaseModel.productId)
@@ -102,7 +101,7 @@ class AddPurchaseRepository {
           PurchaseAllDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: addPurchaseController.selectedPurchaseDate ?? now,
+            purchaseDate: addPurchaseController.selectedPurchaseDate,
             dateCreated: now,
             addedByUserId: appController.userId,
             companyId: appController.companyId,
@@ -115,7 +114,7 @@ class AddPurchaseRepository {
           LogPurchaseAllDatabaseModel(
             productId: purchaseModel.productId,
             purchaseId: key,
-            purchaseDate: addPurchaseController.selectedPurchaseDate ?? now,
+            purchaseDate: addPurchaseController.selectedPurchaseDate,
             dateCreated: now,
             addedByUserId: appController.userId,
             companyId: appController.companyId,
@@ -124,7 +123,7 @@ class AddPurchaseRepository {
             cost: double.parse(purchaseModel.cost),
           ),
         );
-      });
-    }
+      }
+    });
   }
 }
