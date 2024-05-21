@@ -10,17 +10,18 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
+  final Color? fillColor;
   final String? labelText;
   final String? suffixText;
   final int? index;
 
-  const CustomTextField({
-    super.key,
-    required this.title,
-    this.labelText,
-    this.suffixText,
-    this.index,
-  });
+  const CustomTextField(
+      {super.key,
+      required this.title,
+      this.labelText,
+      this.suffixText,
+      this.index,
+      this.fillColor});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -67,9 +68,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       textAlign: getTextAlign(title: widget.title),
       decoration: InputDecoration(
-        // isDense: true,
+        isDense: true,
         filled: true,
-        // fillColor: Colors.grey.shade300,
+        fillColor: widget.fillColor??Colors.grey.shade200,
         // isCollapsed: true,
         errorMaxLines: 5,
         prefixIcon: titleToIcon(title: widget.title),
@@ -78,11 +79,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           title: widget.title,
         ),
         // hintStyle:  TextStyle(color: Colors.grey.shade800),
+        // contentPadding: EdgeInsets.symmetric(horizontal: ),
         contentPadding: getContentPadding(title: widget.title),
         border: OutlineInputBorder(
-          borderRadius: smoothBorderRadius(radius: 15),
-          borderSide: BorderSide.none
-        ),
+            borderRadius: smoothBorderRadius(radius: 15),
+            borderSide: BorderSide.none),
         // enabledBorder: OutlineInputBorder(
         //   borderRadius: smoothBorderRadius(radius: 15),
         //   borderSide: BorderSide(

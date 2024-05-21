@@ -61,7 +61,7 @@ class AlertDialogOptionSelect extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: CustomTextField(
                           title: title,
-                          index: listIndex,
+                          index: listIndex,fillColor: Colors.white60,
                         ),
                       ),
                     isSearchedListEmpty && !isAlertDialogListEmpty(title: title)

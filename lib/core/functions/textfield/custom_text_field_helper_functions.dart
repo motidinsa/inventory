@@ -273,13 +273,13 @@ EdgeInsets getContentPadding({required String title}) {
     horizontalPadding = 20;
     verticalPadding = 10;
   } else if (hasMinimumPadding(title: title)) {
-    horizontalPadding = 30;
-    verticalPadding = 10;
+    horizontalPadding = 25;
+    verticalPadding = 15;
   } else {
     horizontalPadding = 20;
-    verticalPadding = 20;
+    verticalPadding = 10;
   }
-  return const EdgeInsets.symmetric(horizontal: 30, vertical: 10);
+  return  EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding);
 }
 
 bool paymentModeTitles({String? title}) {
