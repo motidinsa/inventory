@@ -4,6 +4,9 @@ import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/image/image_functions.dart';
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/product/log_product_database_model.dart';
+import 'package:my_inventory/core/model/purchase/log_purchase_all_database_model.dart';
+import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dart';
+import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
 
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
@@ -93,11 +96,43 @@ class AddProductRepository {
       localImagePath: productModel.localImagePath,
     );
     await _isar.writeTxn(() async {
-      if(productModel.localImagePath!=null) {
+      if (productModel.localImagePath != null) {
         await saveImageToInternalStorage();
       }
       productDatabaseModel.localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels.put(productDatabaseModel);
+      if (productModel.cost.isNotEmpty && productModel.price.isNotEmpty) {
+        _isar.purchaseAllDatabaseModels.put(PurchaseAllDatabaseModel(
+          addedByUserId: userId,
+          companyId: companyId,
+          cost: double.parse(productModel.cost),
+          productId: productId,
+          purchaseId: productId,
+          quantity: double.parse(productModel.quantityOnHand),
+          dateCreated: now,
+          purchaseDate: now,
+        )); _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
+          addedByUserId: userId,
+          companyId: companyId,
+          cost: double.parse(productModel.cost),
+          productId: productId,
+          purchaseId: productId,
+          quantity: double.parse(productModel.quantityOnHand),
+          dateCreated: now,
+          purchaseDate: now,
+        ));
+        _isar.purchaseAvailableDatabaseModels
+            .put(PurchaseAvailableDatabaseModel(
+          addedByUserId: userId,
+          companyId: companyId,
+          cost: double.parse(productModel.cost),
+          productId: productId,
+          purchaseId: productId,
+          quantity: double.parse(productModel.quantityOnHand),
+          dateCreated: now,
+          purchaseDate: now,
+        ));
+      }
       await _isar.logProductDatabaseModels.put(
         LogProductDatabaseModel(
           productName: productName,
@@ -116,7 +151,6 @@ class AddProductRepository {
           localImagePath: productModel.localImagePath,
         ),
       );
-
     });
   }
 }

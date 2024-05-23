@@ -4,13 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:my_inventory/core/constants/name_constants.dart';
-import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/app_bindings.dart';
+import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/database/initialize.dart';
-import 'package:my_inventory/core/routes/routes.dart';
-
 import 'package:my_inventory/core/env/env.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
+import 'package:my_inventory/core/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,9 +29,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final String initialRoute;
-
-  const MyApp({super.key, required this.initialRoute});
-
   @override
   Widget build(BuildContext context) {
     return DevicePreview(builder: (context) {
@@ -62,6 +58,9 @@ class MyApp extends StatelessWidget {
       });
     });
   }
+
+
+  const MyApp({super.key, required this.initialRoute});
 }
 
 extension Responsive on BuildContext {

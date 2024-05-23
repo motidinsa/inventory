@@ -113,7 +113,10 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: getFormattedNumberWithComa(double.parse(salesController.cash)),
+                      text: getFormattedNumberWithComa(
+                          salesController.cash.isNotEmpty
+                              ? double.parse(salesController.cash)
+                              : 0),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -136,7 +139,10 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: getFormattedNumberWithComa(double.parse(salesController.transfer)),
+                      text: getFormattedNumberWithComa(
+                          salesController.transfer.isNotEmpty
+                              ? double.parse(salesController.transfer)
+                              : 0),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -159,7 +165,10 @@ p.Widget generateSalesPaymentMode() {
                   // style: DefaultTextStyle.of(context).style,
                   children: [
                     p.TextSpan(
-                      text: getFormattedNumberWithComa(double.parse(salesController.credit)),
+                      text: getFormattedNumberWithComa(
+                          salesController.credit.isNotEmpty
+                              ? double.parse(salesController.credit)
+                              : 0),
                       style: p.TextStyle(
                         // color: PdfColor.fromHex('424242'),
                         fontSize: 16,
@@ -194,7 +203,10 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: getFormattedNumberWithComa(double.parse(salesController.subtotal)),
+                  text: getFormattedNumberWithComa(
+                      salesController.subtotal.isNotEmpty
+                          ? double.parse(salesController.subtotal)
+                          : 0),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
@@ -213,7 +225,10 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: getFormattedNumberWithComa(double.parse(salesController.discount)),
+                  text: getFormattedNumberWithComa(
+                      salesController.discount.isNotEmpty
+                          ? double.parse(salesController.discount)
+                          : 0),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
@@ -232,7 +247,10 @@ p.Widget generatePriceSummary() {
               ),
               children: [
                 p.TextSpan(
-                  text: getFormattedNumberWithComa(double.parse(salesController.total)),
+                  text: getFormattedNumberWithComa(
+                      salesController.total.isNotEmpty
+                          ? double.parse(salesController.total)
+                          : 0),
                   style: const p.TextStyle(
                     fontSize: 16,
                   ),
