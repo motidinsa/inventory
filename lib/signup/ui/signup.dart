@@ -83,6 +83,7 @@ class SignUp extends StatelessWidget {
                                   itemBuilder: (context, index) =>
                                       CustomTextField2(
                                     title: signUpRequirements[index],
+                                        color: Colors.white,
                                   ),
                                   separatorBuilder: (context, index) =>
                                       sizedBox(height: 12),

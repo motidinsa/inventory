@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
@@ -5,8 +6,12 @@ import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:my_inventory/signup/repository/signup_repository.dart';
 
+import '../../core/functions/image/image_functions.dart';
+import '../../core/routes/route_names.dart';
+
 onAddLogoPressed() async {
   final ImagePicker imagePicker = ImagePicker();
+  await clearTemporaryFile();
   await imagePicker
       .pickImage(source: ImageSource.gallery, imageQuality: 50)
       .then((value) async {
@@ -20,6 +25,7 @@ onAddLogoPressed() async {
 onLogoImageCancelPressed() async {
   SignupController.to.tempLogoPath = null;
   SignupController.to.update();
+  clearTemporaryFile();
 }
 
 onSignupButtonPressed() async {
@@ -31,9 +37,9 @@ onSignupButtonPressed() async {
     try {
       await SignupRepository.saveSignupDetailToDB();
       showSnackbar(
-        message: successfullySignedUpN,
+        message: successfullySignedUpN,success: true
       );
-      // Get.toNamed(RouteName.homepage);
+      Get.offAndToNamed(RouteName.homepage);
     } on Exception {
       showSnackbar(
         message: someErrorOccurredN,
