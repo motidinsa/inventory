@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/database_constants.dart';
@@ -7,10 +8,13 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../signup/controller/signup_controller.dart';
+
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  String userId = 'mo';
-  String companyId = 'XYZ';
+  String userId = '';
+  String companyId = '';
+  String companyName = '';
   List<String> currentRoutes = [];
   var key = GlobalKey<ScaffoldState>();
 
@@ -19,6 +23,8 @@ class AppController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
+    // SignupControllerd signupController = SignupController.to;
+    // userId = signupController.
     final Isar isar = Get.find();
     final uomLength = isar.unitOfMeasurementDatabaseModels.countSync();
     if (uomLength == 0) {
