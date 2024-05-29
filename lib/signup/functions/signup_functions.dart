@@ -42,12 +42,11 @@ onSignupButtonPressed() async {
       Get.offAndToNamed(RouteName.homepage);
     } on Exception {
       showSnackbar(
-        message: someErrorOccurredN,
+        message: someErrorOccurredN,success: false
 
       );
     } finally {
       signupController.isLoading = false;
-      signupController.update();
     }
   }
 

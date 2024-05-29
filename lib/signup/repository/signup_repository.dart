@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
+import 'package:my_inventory/core/functions/image/image_functions.dart';
 import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 
@@ -14,7 +15,7 @@ class SignupRepository {
   static final Isar _isar = Get.find();
 
   static saveSignupDetailToDB() async {
-    SignupController signupController = Get.find();
+    SignupController signupController = SignupController.to;
     DateTime now = DateTime.now();
     String companyId = generateDatabaseId(time: now, identifier: 'comp');
     String adminId = generateDatabaseId(time: now, identifier: 'admin');
@@ -34,5 +35,9 @@ class SignupRepository {
       await Get.find<FlutterSecureStorage>()
           .write(key: Env.loginKey, value: trueDC);
     });
+    if (signupController.tempLogoPath != null) {
+      saveImageToInternalStorage(filePath: signupController.tempLogoPath!);
+    }
+    clearTemporaryFile();
   }
 }

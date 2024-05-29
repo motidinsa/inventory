@@ -16,7 +16,7 @@ void main() async {
   await initializeDatabase();
   late String initialRoute;
   if (await Get.put(const FlutterSecureStorage()).read(key: Env.loginKey) != null) {
-    initialRoute = RouteName.homepage;
+    initialRoute = RouteName.signUp;
   } else {
     initialRoute = RouteName.signUp;
   }

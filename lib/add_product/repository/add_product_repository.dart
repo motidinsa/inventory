@@ -97,7 +97,8 @@ class AddProductRepository {
     );
     await _isar.writeTxn(() async {
       if (productModel.localImagePath != null) {
-        await saveImageToInternalStorage();
+        await saveImageToInternalStorage(
+            filePath: AddProductController.to.productModel.localImagePath!);
       }
       productDatabaseModel.localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels.put(productDatabaseModel);
@@ -111,7 +112,8 @@ class AddProductRepository {
           quantity: double.parse(productModel.quantityOnHand),
           dateCreated: now,
           purchaseDate: now,
-        )); _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
+        ));
+        _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
           addedByUserId: userId,
           companyId: companyId,
           cost: double.parse(productModel.cost),
