@@ -1,19 +1,23 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+import '../../core/controller/app_controller.dart';
 
+class Homepage extends StatelessWidget {
+   Homepage({super.key});
+final AppController appController = AppController.to;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title:  Text(
-          'XYZ Company',
+          appController.companyName,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -102,14 +106,16 @@ class Homepage extends StatelessWidget {
             // await FileSaver.instance.saveFile( name: 'test',filePath: '/data/data/com.inventory.my_inventory/app_flutter/default.isar',);
           },
         ),
-        actions: const [
+        actions:  [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: CircleAvatar(
-              radius: 25,
+            child:
+
+            CircleAvatar(
+              radius: 22,
               backgroundColor: Colors.white,
-              backgroundImage: AssetImage(
-                'assets/images/company-logo.png',
+              backgroundImage: FileImage(
+                File(appController.companyLogo!),
               ),
             ),
           ),

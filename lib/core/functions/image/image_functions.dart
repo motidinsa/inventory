@@ -12,6 +12,8 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:path/path.dart' as path;
 
+import '../../../signup/controller/signup_controller.dart';
+
 onAddImagePressed() {
   Get.dialog(const AlertDialogOptionSelect(
     title: selectSourceN,
@@ -38,11 +40,11 @@ onImageSourceButtonPressed({
   final ImagePicker picker = ImagePicker();
   await picker
       .pickImage(
-      source: sourceLocation == galleryN
-          ? ImageSource.gallery
-          : ImageSource.camera,
-      preferredCameraDevice: CameraDevice.front,
-      imageQuality: 25)
+          source: sourceLocation == galleryN
+              ? ImageSource.gallery
+              : ImageSource.camera,
+          preferredCameraDevice: CameraDevice.front,
+          imageQuality: 25)
       .then((value) async {
     if (value != null) {
       String dir = path.dirname(value.path);
@@ -50,7 +52,7 @@ onImageSourceButtonPressed({
         time: DateTime.now(),
       );
       String newPath =
-      path.join(dir, '$imageName${path.extension(value.name)}');
+          path.join(dir, '$imageName${path.extension(value.name)}');
       try {
         await File(value.path).rename(newPath);
         AddProductController addProductController = AddProductController.to;
@@ -95,30 +97,31 @@ onImageSourceButtonPressed({
 }
 
 saveImageToInternalStorage({required String filePath}) async {
+  String currentRoute = Get.currentRoute;
   String dir = path.dirname(filePath);
   String imageName = generateDatabaseId(
     time: DateTime.now(),
   );
-  String newPath =
-  path.join(dir, '$imageName${path.extension(filePath)}');
+  String newPath = path.join(dir, '$imageName${path.extension(filePath)}');
   try {
-    // await File(filePath).rename(newPath);
-    // AddProductController addProductController = AddProductController.to;
-    // addProductController.productModel.localImagePath = newPath;
-    // addProductController.update();
-    // Get.back();
+    await File(filePath).rename(newPath);
+    await FolderFileSaver.saveFileIntoCustomDir(
+      filePath: newPath,
+      dirNamed: '/',
+    ).then((value) {
+      if (currentRoute == RouteName.addProduct) {
+        AddProductController.to.productModel.localImagePath = newPath;
+      } else if (currentRoute == RouteName.signUp) {
+        SignupController.to.tempLogoPath = value;
+      }
+    });
   } catch (e) {
-    showSnackbar(message: unableToLoadImageN, success: false);
+    showSnackbar(
+        message: currentRoute == RouteName.addProduct
+            ? unableToLoadImageN
+            : unableToSaveLogoN,
+        success: false);
   }
-  await FolderFileSaver.saveFileIntoCustomDir(
-    filePath: filePath,
-    dirNamed: '/',
-  ).then(
-          (value) {
-        if (Get.currentRoute == RouteName.addProduct) {
-          AddProductController.to.productModel.localImagePath = value;
-        }
-      });
 }
 
 clearTemporaryFile() async {

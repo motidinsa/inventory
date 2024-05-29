@@ -126,5 +126,6 @@ const String areYouSureYouWantToDeleteN = 'Are you sure you want to delete';
 const String cancelN = 'Cancel';
 const String noChangesMadeN = 'No changes made';
 const String unableToLoadImageN = 'Unable to load image';
+const String unableToSaveLogoN = 'Unable to save logo';
 const String pleaseFillTheRequiredFieldN = 'Please fill the required field';
 const String productAlreadySelectedN = 'Product already selected';

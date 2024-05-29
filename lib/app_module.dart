@@ -18,7 +18,7 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/y', child: (_) => const Homepage());
+    r.child('/y', child: (_) =>  Homepage());
     r.child(
       '/customer',
       child: (_) =>  const CustomerList(),

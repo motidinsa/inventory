@@ -3,10 +3,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/database_constants.dart';
+import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
+import 'package:my_inventory/signup/repository/signup_repository.dart';
 
 import '../../signup/controller/signup_controller.dart';
 
@@ -15,6 +17,7 @@ class AppController extends GetxController {
   String userId = '';
   String companyId = '';
   String companyName = '';
+  String? companyLogo;
   List<String> currentRoutes = [];
   var key = GlobalKey<ScaffoldState>();
 
@@ -23,8 +26,13 @@ class AppController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    // SignupControllerd signupController = SignupController.to;
-    // userId = signupController.
+    SignUpDatabaseModel signUpDatabaseModel =
+        SignupRepository.getSignedUpUserData();
+
+    userId = signUpDatabaseModel.adminId;
+    companyId = signUpDatabaseModel.companyId;
+    companyName = signUpDatabaseModel.companyName;
+    companyLogo = signUpDatabaseModel.offlineLogoPath;
     final Isar isar = Get.find();
     final uomLength = isar.unitOfMeasurementDatabaseModels.countSync();
     if (uomLength == 0) {

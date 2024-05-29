@@ -20,24 +20,30 @@ class SignupRepository {
     String companyId = generateDatabaseId(time: now, identifier: 'comp');
     String adminId = generateDatabaseId(time: now, identifier: 'admin');
     await _isar.writeTxn(() async {
+      if (signupController.tempLogoPath != null) {
+        await saveImageToInternalStorage(
+            filePath: signupController.tempLogoPath!);
+      }
       await _isar.signUpDatabaseModels.put(
         SignUpDatabaseModel(
-          companyName: signupController.companyName,
-          firstName: signupController.firstName,
-          lastName: signupController.lastName,
-          phoneNumber: signupController.phoneNumber,
-          email: signupController.email,
-          registrationDate: now,
-          companyId: companyId,
-          adminId: adminId,
-        ),
+            companyName: signupController.companyName,
+            firstName: signupController.firstName,
+            lastName: signupController.lastName,
+            phoneNumber: signupController.phoneNumber,
+            email: signupController.email,
+            registrationDate: now,
+            companyId: companyId,
+            adminId: adminId,
+            offlineLogoPath: signupController.tempLogoPath),
       );
       await Get.find<FlutterSecureStorage>()
           .write(key: Env.loginKey, value: trueDC);
     });
-    if (signupController.tempLogoPath != null) {
-      saveImageToInternalStorage(filePath: signupController.tempLogoPath!);
-    }
+
     clearTemporaryFile();
+  }
+
+  static SignUpDatabaseModel getSignedUpUserData() {
+    return _isar.signUpDatabaseModels.where().findAllSync().last;
   }
 }

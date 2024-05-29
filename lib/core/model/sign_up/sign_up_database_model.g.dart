@@ -154,12 +154,12 @@ SignUpDatabaseModel _signUpDatabaseModelDeserialize(
     firstName: reader.readString(offsets[4]),
     isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
     lastName: reader.readString(offsets[6]),
+    offlineLogoPath: reader.readStringOrNull(offsets[7]),
+    onlineLogoPath: reader.readStringOrNull(offsets[8]),
     phoneNumber: reader.readString(offsets[9]),
     registrationDate: reader.readDateTime(offsets[10]),
   );
   object.id = id;
-  object.offlineLogoPath = reader.readStringOrNull(offsets[7]);
-  object.onlineLogoPath = reader.readStringOrNull(offsets[8]);
   return object;
 }
 

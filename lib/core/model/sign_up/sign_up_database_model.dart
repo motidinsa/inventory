@@ -27,5 +27,7 @@ class SignUpDatabaseModel {
     required this.companyId,
     required this.adminId,
     this.isAppWriteSynced,
+    this.offlineLogoPath,
+    this.onlineLogoPath,
   });
 }
