@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
@@ -48,7 +50,10 @@ onAddSalesSaveButtonPressed() async {
       // Get.back();
       final ByteData bytes =
       await rootBundle.load('assets/images/company-logo.png');
-      final Uint8List byteList = bytes.buffer.asUint8List();
+      File file = File(AppController.to.companyLogo!);
+      List<int> imageBytes = file.readAsBytesSync();
+      // return Uint8List.fromList(imageBytes);
+      final Uint8List byteList = Uint8List.fromList(imageBytes);
 
       Get.off(pdftest(image: byteList));
     } on Exception {

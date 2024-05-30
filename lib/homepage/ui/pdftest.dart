@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as p;
@@ -16,6 +17,7 @@ class pdftest extends StatelessWidget {
   pdftest({super.key, required this.image});
 
   final AddSalesController salesController = AddSalesController.to;
+  final AppController appController = AppController.to;
   final DateTime now = DateTime.now();
 
   @override
@@ -29,11 +31,12 @@ class pdftest extends StatelessWidget {
             p.Column(
               children: [
                 p.Row(children: [
+                  p.Container(),
                   p.Image(p.MemoryImage(image),
                       fit: p.BoxFit.fitHeight, height: 70, width: 70),
                   p.SizedBox(width: 10),
                   p.Text(
-                    'XYZ company',
+                    appController.companyName,
                     style: p.TextStyle(
                       fontWeight: p.FontWeight.bold,
                       fontSize: 24,

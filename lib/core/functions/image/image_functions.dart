@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
+import 'package:my_inventory/signup/repository/signup_repository.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:my_inventory/add_product/controller/add_product_controller.dart';
@@ -127,4 +129,16 @@ saveImageToInternalStorage({required String filePath}) async {
 clearTemporaryFile() async {
   final directory = await getTemporaryDirectory();
   directory.delete(recursive: true);
+}
+
+bool imageExists({required String imagePath}) {
+  if (File(imagePath).existsSync()) {
+    return true;
+  } else {
+    String currentRoute = Get.currentRoute;
+    if (currentRoute == RouteName.homepage) {
+      SignupRepository.clearImagePath();
+    }
+  }
+  return false;
 }

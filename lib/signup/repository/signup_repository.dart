@@ -46,4 +46,11 @@ class SignupRepository {
   static SignUpDatabaseModel getSignedUpUserData() {
     return _isar.signUpDatabaseModels.where().findAllSync().last;
   }
+  static void clearImagePath() async {
+    SignUpDatabaseModel signUpDatabaseModel =  _isar.signUpDatabaseModels.where().findAllSync().last;
+    await _isar.writeTxn(() async {
+      signUpDatabaseModel.offlineLogoPath = null;
+      await _isar.signUpDatabaseModels.put(signUpDatabaseModel);
+    });
+  }
 }

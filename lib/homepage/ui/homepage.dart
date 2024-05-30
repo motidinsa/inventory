@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,24 +7,26 @@ import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/homepage/ui/item_type.dart';
 
 import '../../core/controller/app_controller.dart';
+import '../../core/functions/image/image_functions.dart';
 
 class Homepage extends StatelessWidget {
-   Homepage({super.key});
-final AppController appController = AppController.to;
+  Homepage({super.key});
+
+  final AppController appController = AppController.to;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
+        title: Text(
           appController.companyName,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-             color: Colors.grey.shade800
-          ),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade800),
         ),
         leading: IconButton(
-          icon:  FaIcon(
+          icon: FaIcon(
             FontAwesomeIcons.bars,
             size: 20,
             color: Colors.grey.shade800,
@@ -106,17 +107,21 @@ final AppController appController = AppController.to;
             // await FileSaver.instance.saveFile( name: 'test',filePath: '/data/data/com.inventory.my_inventory/app_flutter/default.isar',);
           },
         ),
-        actions:  [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child:
-
-            CircleAvatar(
-              radius: 22,
+            child: CircleAvatar(
+              radius: 20,
               backgroundColor: Colors.white,
-              backgroundImage: FileImage(
-                File(appController.companyLogo!),
-              ),
+              backgroundImage: appController.companyLogo != null
+                  ? imageExists(
+                      imagePath: appController.companyLogo!,
+                    )
+                      ? FileImage(
+                          File(appController.companyLogo!),
+                        )
+                      : null
+                  : null,
             ),
           ),
         ],
