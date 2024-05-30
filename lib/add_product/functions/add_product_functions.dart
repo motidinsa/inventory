@@ -30,8 +30,8 @@ onAddProductSaveButtonPressed() async {
       await AddProductRepository.addProduct();
       showSnackbar(message: successfullyAddedProductN, success: true);
       Get.back();
-    } on Exception {
-      showSnackbar(message: someErrorOccurredN, success: false);
+    } on Exception catch(e) {
+print(e);      showSnackbar(message: someErrorOccurredN, success: false);
     } finally {
       addProductController.isLoading = false;
       addProductController.update();

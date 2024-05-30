@@ -23,7 +23,7 @@ class ProfileDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        sizedBox(height: 20),
+        SizedBox(height: 20),
         ShadowedContainer(
           horizontalMargin: 20,
           padding: EdgeInsets.only(
@@ -40,7 +40,7 @@ class ProfileDetail extends StatelessWidget {
                   TextButton(
                     onPressed: () => onProfileEditPressed(),
                     style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 0),
+                      padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Row(
@@ -168,7 +168,7 @@ class ProfileDetail extends StatelessWidget {
             ],
           ),
         ),
-        const ActionButton(),
+        // const ActionButton(),
       ],
     );
   }

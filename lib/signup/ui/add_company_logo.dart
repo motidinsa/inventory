@@ -22,15 +22,10 @@ class AddCompanyLogo extends StatelessWidget {
               if (signupController.tempLogoPath !=
                   null) ...[
                 Container(
-                  width: 60,
-                  height: 60,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
+                  width: 80,
+                  constraints: BoxConstraints(maxHeight: 80),
                   child: Image.file(
                     File(signupController.tempLogoPath!),
-                    fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(

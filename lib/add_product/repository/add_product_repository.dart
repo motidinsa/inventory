@@ -79,28 +79,29 @@ class AddProductRepository {
         : 0;
     String userId = appController.userId;
     String companyId = appController.companyId;
-    final ProductDatabaseModel productDatabaseModel = ProductDatabaseModel(
-      productName: productName,
-      productId: productId,
-      description: description,
-      categoryId: categoryId,
-      userAssignedProductId: userAssignedProductId,
-      cost: cost,
-      price: price,
-      unitOfMeasurementId: unitOfMeasurementId,
-      quantityOnHand: quantityOnHand,
-      reorderQuantity: reorderQuantity,
-      createdByUserId: userId,
-      companyId: companyId,
-      dateCreated: now,
-      localImagePath: productModel.localImagePath,
-    );
+
     await _isar.writeTxn(() async {
       if (productModel.localImagePath != null) {
         await saveImageToInternalStorage(
             filePath: AddProductController.to.productModel.localImagePath!);
       }
-      productDatabaseModel.localImagePath = productModel.localImagePath;
+      final ProductDatabaseModel productDatabaseModel = ProductDatabaseModel(
+        productName: productName,
+        productId: productId,
+        description: description,
+        categoryId: categoryId,
+        userAssignedProductId: userAssignedProductId,
+        cost: cost,
+        price: price,
+        unitOfMeasurementId: unitOfMeasurementId,
+        quantityOnHand: quantityOnHand,
+        reorderQuantity: reorderQuantity,
+        createdByUserId: userId,
+        companyId: companyId,
+        dateCreated: now,
+        localImagePath: productModel.localImagePath,
+      );
+      // productDatabaseModel.localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels.put(productDatabaseModel);
       if (productModel.cost.isNotEmpty && productModel.price.isNotEmpty) {
         _isar.purchaseAllDatabaseModels.put(PurchaseAllDatabaseModel(
@@ -153,6 +154,18 @@ class AddProductRepository {
           localImagePath: productModel.localImagePath,
         ),
       );
+    });
+  }
+
+  static void clearProductImagePath({required String productId}) async {
+    ProductDatabaseModel productDatabaseModel = _isar.productDatabaseModels
+        .filter()
+        .productIdEqualTo(productId)
+        .findAllSync()
+        .last;
+    await _isar.writeTxn(() async {
+      productDatabaseModel.localImagePath = null;
+      await _isar.productDatabaseModels.put(productDatabaseModel);
     });
   }
 }

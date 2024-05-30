@@ -33,8 +33,8 @@ class pdftest extends StatelessWidget {
                 p.Row(children: [
                   p.Container(),
                   p.Image(p.MemoryImage(image),
-                      fit: p.BoxFit.fitHeight, height: 70, width: 70),
-                  p.SizedBox(width: 10),
+                        width: 100),
+                  p.SizedBox(width: 15),
                   p.Text(
                     appController.companyName,
                     style: p.TextStyle(
@@ -205,7 +205,7 @@ class pdftest extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('PDF Preview'),
+        title: const Text('Sales Preview'),
       ),
       body: PdfPreview(
         scrollViewDecoration: const BoxDecoration(color: Colors.white),

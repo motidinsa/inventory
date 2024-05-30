@@ -31,12 +31,9 @@ class AddProductImage extends StatelessWidget {
         if (productImagePath != null)
           Column(
             children: [
-              ClipRRect(
-                borderRadius: smoothBorderRadius(radius: 15),
-                child: Image.file(
-                  File(productImagePath!),
-                  width: 120,
-                ),
+              Image.file(
+                File(productImagePath!),
+                width: 100,
               ),
               const SizedBox(height: 5),
               Row(

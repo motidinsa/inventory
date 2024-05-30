@@ -110,19 +110,37 @@ class Homepage extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.white,
-              backgroundImage: appController.companyLogo != null
-                  ? imageExists(
-                      imagePath: appController.companyLogo!,
-                    )
-                      ? FileImage(
-                          File(appController.companyLogo!),
-                        )
-                      : null
-                  : null,
-            ),
+            child:Container(
+              width: 80,
+              constraints: BoxConstraints(maxHeight: 60),
+              // height: 60,
+              // clipBehavior: Clip.antiAlias,
+              // decoration: const BoxDecoration(
+              //   shape: BoxShape.circle,
+              // ),
+
+              child: appController.companyLogo != null?imageExists(
+                imagePath: appController.companyLogo!,
+              )
+                  ? Image.file(
+                File(appController.companyLogo!),
+                // fit: BoxFit.cover,
+              ):null
+              :null,
+            )
+            // CircleAvatar(
+            //   radius: 20,
+            //   backgroundColor: Colors.white,
+            //   backgroundImage: appController.companyLogo != null
+            //       ? imageExists(
+            //           imagePath: appController.companyLogo!,
+            //         )
+            //           ? FileImage(
+            //               File(appController.companyLogo!),
+            //             )
+            //           : null
+            //       : null,
+            // ),
           ),
         ],
       ),
