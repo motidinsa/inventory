@@ -16,7 +16,6 @@ class InventoryReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(InventoryReportController());
 
     return GetBuilder<InventoryReportController>(builder: (context) {
       bool hasReportDate =

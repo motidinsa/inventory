@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/payment_report/ui/payment_report.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
@@ -45,7 +46,7 @@ class TitleWithSubMenu extends StatelessWidget {
                   size: 24,
                 ),
                 onTap: () {
-                  Get.to(() => const SalesReport());
+                  Get.toNamed(RouteName.salesReport);
                   Scaffold.of(context).closeDrawer();
                 },
               ),
@@ -59,7 +60,7 @@ class TitleWithSubMenu extends StatelessWidget {
                   size: 24,
                 ),
                 onTap: () {
-                  Get.to(() => const PurchaseReport());
+                  Get.toNamed(RouteName.purchaseReport);
                   Scaffold.of(context).closeDrawer();
                 },
               ),
@@ -73,10 +74,11 @@ class TitleWithSubMenu extends StatelessWidget {
                   size: 24,
                 ),
                 onTap: () {
-                  Get.to(() => const InventoryReport());
+                  Get.toNamed(RouteName.inventoryReport);
                   Scaffold.of(context).closeDrawer();
                 },
-              ),ListTile(
+              ),
+              ListTile(
                 shape: smoothRectangleBorder(radius: 12),
                 title: const Text(
                   'Payment report',
@@ -86,7 +88,7 @@ class TitleWithSubMenu extends StatelessWidget {
                   size: 19,
                 ),
                 onTap: () {
-                  Get.to(() => const PaymentReport());
+                  Get.toNamed(RouteName.inventoryReport);
                   Scaffold.of(context).closeDrawer();
                 },
               ),

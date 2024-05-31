@@ -31,7 +31,7 @@ String? titleToData({required String title, int? index}) {
     return getEditCustomerData(title: title);
   } else if (currentRoute == RouteName.editVendor) {
     return getEditVendorData(title: title);
-  } else if ([salesReportN, purchaseReportN, paymentReportN]
+  } else if ([RouteName.salesReport, RouteName.purchaseReport, RouteName.paymentReport]
       .contains(currentRoute)) {
     return getReportSelectedDate(title: title);
   }
@@ -124,6 +124,8 @@ EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
     categoryNameN,
   ].contains(title)) {
     return const EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
+  }else if([RouteName.salesReport].contains(currentRoute)){
+    return EdgeInsets.symmetric(horizontal: 15,vertical: 0);
   }
   return null;
 }

@@ -18,7 +18,7 @@ class AddProductController extends GetxController {
     userAssignedProductId: '',
     cost: '',
     price: '',
-    quantityOnHand: '',
+    quantityOnHand: '0',
     reorderQuantity: '',
     unitOfMeasurementName: '',
     unitOfMeasurementId: '',

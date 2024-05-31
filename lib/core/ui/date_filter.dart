@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/model/action_button_enum.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/action_button.dart';
 import 'package:my_inventory/core/ui/report/date_range_selection.dart';
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
@@ -22,16 +23,16 @@ class DateFilter extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
-            if (Get.currentRoute == salesReportN)
+            if (Get.currentRoute == RouteName.salesReport)
               GetBuilder<SalesReportController>(builder: (context) {
-                return const DateRangeSelection();
+                return  DateRangeSelection();
               })
-            else if (Get.currentRoute == purchaseReportN)
+            else if (Get.currentRoute == RouteName.purchaseReport)
               GetBuilder<PurchaseReportController>(builder: (context) {
-                return const DateRangeSelection();
+                return  DateRangeSelection();
               })   else if (Get.currentRoute == paymentReportN)
               GetBuilder<PaymentReportController>(builder: (context) {
-                return const DateRangeSelection();
+                return  DateRangeSelection();
               }),
             sizedBox(height: 15),
             const ActionButton(

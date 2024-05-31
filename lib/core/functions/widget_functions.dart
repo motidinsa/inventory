@@ -8,6 +8,8 @@ import 'package:my_inventory/core/styles/styles.dart';
 import 'package:my_inventory/core/ui/date_filter.dart';
 import 'package:my_inventory/main.dart';
 
+import '../routes/route_names.dart';
+
 appBar({required String pageName, required BuildContext context}) {
   return AppBar(
     title: Text(
@@ -38,7 +40,7 @@ appBar({required String pageName, required BuildContext context}) {
         color: Colors.grey.shade800,
       ),
     ),
-    actions: [salesReportN, purchaseReportN, paymentReportN]
+    actions: [RouteName.salesReport, RouteName.purchaseReport, RouteName.paymentReport]
             .contains(Get.currentRoute)
         ? [
             PopupMenuButton(

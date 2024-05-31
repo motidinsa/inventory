@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
 import 'package:my_inventory/reorder_stock/controller/reorder_stock_controller.dart';
 import 'package:my_inventory/sales_report/controller/sales_report_controller.dart';
@@ -268,13 +269,13 @@ double getReportSixthWidth() {
 
 String? getReportSelectedDate({required String title}) {
   String currentRoute = AppController.to.currentRoutes.last;
-  if (currentRoute == salesReportN) {
+  if (currentRoute == RouteName.salesReport) {
     if (title == fromN && SalesReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.startDate!);
     } else if (title == toN && SalesReportController.to.endDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.endDate!);
     }
-  } else if (currentRoute == purchaseReportN) {
+  } else if (currentRoute == RouteName.purchaseReport) {
     if (title == fromN && PurchaseReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.startDate!);
@@ -282,7 +283,7 @@ String? getReportSelectedDate({required String title}) {
       return DateFormat('dd/MM/yy')
           .format(PurchaseReportController.to.endDate!);
     }
-  } else if (currentRoute == paymentReportN) {
+  } else if (currentRoute == RouteName.paymentReport) {
     if (title == fromN && PaymentReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy')
           .format(PaymentReportController.to.startDate!);

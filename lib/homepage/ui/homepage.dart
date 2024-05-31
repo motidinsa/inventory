@@ -112,7 +112,7 @@ class Homepage extends StatelessWidget {
             padding: EdgeInsets.only(right: 20),
             child:Container(
               width: 80,
-              constraints: BoxConstraints(maxHeight: 60),
+              constraints: BoxConstraints(maxHeight: 50),
               // height: 60,
               // clipBehavior: Clip.antiAlias,
               // decoration: const BoxDecoration(

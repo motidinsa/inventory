@@ -16,7 +16,7 @@ void main() async {
   await initializeDatabase();
   late String initialRoute;
   if (await Get.put(const FlutterSecureStorage()).read(key: Env.loginKey) != null) {
-    initialRoute = RouteName.signUp;
+    initialRoute = RouteName.homepage;
   } else {
     initialRoute = RouteName.signUp;
   }
@@ -31,31 +31,29 @@ class MyApp extends StatelessWidget {
   final String initialRoute;
   @override
   Widget build(BuildContext context) {
-    return DevicePreview(builder: (context) {
-      return ScreenUtilInit(builder: (_, child) {
-        return GlobalLoaderOverlay(
-          useDefaultLoading: false,
-          overlayWidgetBuilder: (_) {
-            return Center(
-              child: CircularProgressIndicator(
-                color: Colors.green.shade700,
-                strokeWidth: 3,
-              ),
-            );
-          },
-          child: GetMaterialApp(
-            title: appNameN,
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-              useMaterial3: true,
+    return ScreenUtilInit(builder: (_, child) {
+      return GlobalLoaderOverlay(
+        useDefaultLoading: false,
+        overlayWidgetBuilder: (_) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Colors.green.shade700,
+              strokeWidth: 3,
             ),
-            initialRoute: initialRoute,
-            getPages: routes,
-            initialBinding: ApplicationBindings(),
+          );
+        },
+        child: GetMaterialApp(
+          title: appNameN,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+            useMaterial3: true,
           ),
-        );
-      });
+          initialRoute: initialRoute,
+          getPages: routes,
+          initialBinding: ApplicationBindings(),
+        ),
+      );
     });
   }
 

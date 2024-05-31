@@ -66,7 +66,7 @@ onTextFieldPressed({required String title, int? index}) {
     onPurchaseTextFieldPressed(title: title, index: index);
   }else if (currentRoute == RouteName.addSales) {
     onAddSalesTextFieldPressed(title: title, index: index);
-  } else if ([salesReportN, purchaseReportN, paymentReportN]
+  } else if ([RouteName.salesReport, RouteName.purchaseReport, RouteName.paymentReport]
       .contains(currentRoute)) {
     onReportFilterSelect(title: title);
   }

@@ -16,7 +16,6 @@ class PurchaseReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PurchaseReportController());
 
     return GetBuilder<PurchaseReportController>(builder: (context) {
       bool hasReportDate =

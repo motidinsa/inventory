@@ -16,7 +16,6 @@ class SalesReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SalesReportController());
     return GetBuilder<SalesReportController>(builder: (context) {
       bool hasReportDate = SalesReportController.to.displayStartDate != null &&
           SalesReportController.to.displayEndDate != null;

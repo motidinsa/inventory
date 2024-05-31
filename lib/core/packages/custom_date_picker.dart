@@ -480,21 +480,21 @@ class _DatePickerDialogState extends State<DatePickerDialog>
       AddPurchaseController.to.selectedPurchaseDate = date;
       AddPurchaseController.to.update();
     }
-    else if (currentRoute == salesReportN) {
+    else if (currentRoute == RouteName.salesReport) {
       if (widget.title == fromN) {
         SalesReportController.to.startDate = date;
       } else {
         SalesReportController.to.endDate = date;
       }
       SalesReportController.to.update();
-    } else if (currentRoute == purchaseReportN) {
+    } else if (currentRoute == RouteName.purchaseReport) {
       if (widget.title == fromN) {
         PurchaseReportController.to.startDate = date;
       } else {
         PurchaseReportController.to.endDate = date;
       }
       PurchaseReportController.to.update();
-    } else if (currentRoute == paymentReportN) {
+    } else if (currentRoute == RouteName.paymentReport) {
       if (widget.title == fromN) {
         PaymentReportController.to.startDate = date;
       } else {
