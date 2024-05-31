@@ -268,7 +268,7 @@ double getReportSixthWidth() {
 }
 
 String? getReportSelectedDate({required String title}) {
-  String currentRoute = AppController.to.currentRoutes.last;
+  String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.salesReport) {
     if (title == fromN && SalesReportController.to.startDate != null) {
       return DateFormat('dd/MM/yy').format(SalesReportController.to.startDate!);
