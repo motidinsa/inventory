@@ -103,17 +103,7 @@ class AddProductRepository {
       );
       // productDatabaseModel.localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels.put(productDatabaseModel);
-      if (productModel.cost.isNotEmpty && productModel.price.isNotEmpty) {
-        _isar.purchaseAllDatabaseModels.put(PurchaseAllDatabaseModel(
-          addedByUserId: userId,
-          companyId: companyId,
-          cost: double.parse(productModel.cost),
-          productId: productId,
-          purchaseId: productId,
-          quantity: double.parse(productModel.quantityOnHand),
-          dateCreated: now,
-          purchaseDate: now,
-        ));
+      if (productModel.quantityOnHand.isNotEmpty) {
         _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
           addedByUserId: userId,
           companyId: companyId,
