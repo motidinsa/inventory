@@ -101,16 +101,15 @@ class AddProductRepository {
         dateCreated: now,
         localImagePath: productModel.localImagePath,
       );
-      // productDatabaseModel.localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels.put(productDatabaseModel);
       if (productModel.quantityOnHand.isNotEmpty) {
         _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
           addedByUserId: userId,
           companyId: companyId,
-          cost: double.parse(productModel.cost),
+          cost: cost,
           productId: productId,
           purchaseId: productId,
-          quantity: double.parse(productModel.quantityOnHand),
+          quantity: quantityOnHand,
           dateCreated: now,
           purchaseDate: now,
         ));
@@ -118,10 +117,10 @@ class AddProductRepository {
             .put(PurchaseAvailableDatabaseModel(
           addedByUserId: userId,
           companyId: companyId,
-          cost: double.parse(productModel.cost),
+          cost: cost,
           productId: productId,
           purchaseId: productId,
-          quantity: double.parse(productModel.quantityOnHand),
+          quantity: quantityOnHand,
           dateCreated: now,
           purchaseDate: now,
         ));
