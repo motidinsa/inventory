@@ -19,29 +19,33 @@ class ProductList extends StatelessWidget {
       pageName: productListN,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Obx(() => ListView(
-              children: [
-                sizedBox(height: 15),
-                const CustomTextField(
-                  title: productListN,
-                ),
-                // sizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: ListView.separated(
+        child: ListView(
+          children: [
+            sizedBox(height: 15),
+            const CustomTextField(
+              title: productListN,
+            ),
+            // sizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: GetBuilder<ProductListController>(
+                builder: (productListController) {
+                  return ListView.separated(
                     shrinkWrap: true,
                     reverse: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) => MiniProductDetail(
-                      productModel: ProductListController.to.productList[index],
+                      productModel: productListController.productList[index],
                       index: index,
                     ),
-                    itemCount: ProductListController.to.productList.length,
-                    separatorBuilder: (ctx, index) => sizedBox(height: 15),
-                  ),
-                ),
-              ],
-            )),
+                    itemCount: productListController.productList.length,
+                    separatorBuilder: (ctx, index) => SizedBox(height: 15),
+                  );
+                }
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

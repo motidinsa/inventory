@@ -116,7 +116,6 @@ class ProductDetail extends StatelessWidget {
                         Expanded(
                           child: ProductImage(
                             productId: productDatabaseModel.productId,
-                            currentRoute: productDetailN,
                             localImagePath: productDatabaseModel.localImagePath,
                             imageWidth: 100,
                           ),
@@ -155,7 +154,7 @@ class ProductDetail extends StatelessWidget {
                         )
                       ],
                     ),
-                    // sizedBox(height: 10),
+                    SizedBox(height: 3),
                     Padding(
                       padding: const EdgeInsets.only(top: 5, bottom: 0),
                       child: Card(

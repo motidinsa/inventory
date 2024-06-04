@@ -8,7 +8,6 @@ import '../../functions/image/image_functions.dart';
 
 class ProductImage extends StatelessWidget {
   final String  productId;
-  final String currentRoute;
   final String? localImagePath;
   final double imageWidth;
 
@@ -16,7 +15,6 @@ class ProductImage extends StatelessWidget {
       {super.key,
       this.localImagePath,
       required this.productId,
-      required this.currentRoute,
       this.imageWidth = 50});
 
   @override

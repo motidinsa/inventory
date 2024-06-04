@@ -8,6 +8,8 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../core/ui/product/product_image.dart';
+
 class MiniProductDetail extends StatelessWidget {
   final ProductDatabaseModel productModel;
   final int index;
@@ -30,17 +32,15 @@ class MiniProductDetail extends StatelessWidget {
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 0),
         shape: smoothRectangleBorder(radius: 12),
-        elevation: 3,
+        elevation: 2,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
           child: Row(
             children: [
-              // ProductImage(
-              //   id: productModel.id,
-              //   currentRoute: productListN,
-              //   localImagePath: productModel.localImagePath,
-              // ),
-              sizedBox(width: 20),
+              ProductImage(
+                localImagePath: productModel.localImagePath, productId: productModel.productId,
+              ),
+              SizedBox(width: 20),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

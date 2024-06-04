@@ -139,7 +139,7 @@ bool imageExists({required String imagePath,String? id}) {
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.homepage) {
       SignupRepository.clearImagePath();
-    }else if (currentRoute == RouteName.productDetail) {
+    }else if ( [RouteName.productDetail,RouteName.productList].contains(currentRoute)) {
       AddProductRepository.clearProductImagePath(productId: id!);
     }
   }
