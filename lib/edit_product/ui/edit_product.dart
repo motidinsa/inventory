@@ -14,6 +14,9 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/core/ui/elevated_card.dart';
 import 'package:my_inventory/edit_product/controller/edit_product_controller.dart';
 
+import '../../core/functions/helper_functions.dart';
+import '../../core/functions/image/image_functions.dart';
+
 class EditProduct extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
 
@@ -22,34 +25,40 @@ class EditProduct extends StatelessWidget {
   final List<String> titleList = [
     productN,
     descriptionN,
-    'image',
     categoryN,
     productIdN,
     costN,
+    uomSN,
     quantityOnHandN,
     reorderQuantityN,
-    uomSN
+    imageN,
   ];
 
   final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
-    Get.put(EditProductController(productDatabaseModel: productDatabaseModel));
-    return LoaderOverlay(
-      useDefaultLoading: false,
-      overlayWidgetBuilder: (_) {
-        return const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
-          ),
-        );
-      },
-      child: BodyWrapper(
-        pageName: editProductN,
-        body: Form(
-          key: appController.formKey,
-          child: GetBuilder<EditProductController>(builder: (_) {
-            return ListView(
+    // Get.put(EditProductController(productDatabaseModel: productDatabaseModel));
+    return BodyWrapper(
+      pageName: editProductN,
+      body: PopScope(
+        onPopInvoked: (isPopped) {
+          if (isPopped) {
+            clearTemporaryFile();
+          }
+        },
+        child: GetBuilder<EditProductController>(builder: (editProductController) {
+          if (editProductController.isLoading) {
+            context.loaderOverlay.show();
+          } else {
+            executeAfterBuild(() {
+              context.loaderOverlay.hide();
+            });
+          }
+          return Form(
+            key: AppController.to.formKey,
+            autovalidateMode: editProductController.isSubmitButtonPressed?AutovalidateMode.always:null,
+
+            child: ListView(
               children: [
                 sizedBox(height: 20),
                 ElevatedCard(
@@ -92,9 +101,9 @@ class EditProduct extends StatelessWidget {
                   redirectFrom: editProductN,
                 ),
               ],
-            );
-          }),
-        ),
+            ),
+          );
+        }),
       ),
     );
   }
