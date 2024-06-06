@@ -16,6 +16,8 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 
 import '../../core/functions/helper_functions.dart';
 import '../../core/functions/image/image_functions.dart';
+import '../../core/ui/custom_text_field_2.dart';
+import '../../core/ui/shadowed_container.dart';
 
 class EditProduct extends StatelessWidget {
   final ProductDatabaseModel productDatabaseModel;
@@ -60,40 +62,38 @@ class EditProduct extends StatelessWidget {
 
             child: ListView(
               children: [
-                sizedBox(height: 20),
-                ElevatedCard(
+                SizedBox(height: 20),
+                ShadowedContainer(
+
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => [0, 1].contains(index)
-                        ? CustomTextField(
-                            title: titleList[index],
-                            labelText: titleList[index],
-                          )
-                        : index == 2
-                            ?  AddProductImage(
-                              )
-                            : index == 5
-                                ? Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Expanded(
-                                        child: AddProductPriceInput(
-                                          title: costN,
-                                        ),
-                                      ),
-                                      sizedBox(width: 20),
-                                      const Expanded(
-                                        child: AddProductPriceInput(
-                                          title: priceN,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : AddProductTitleWithTextField(
-                                    title: titleList[index],
-                                  ),
-                    separatorBuilder: (ctx, index) => sizedBox(height: 20),
+                    itemBuilder: (ctx, index) => index == 4
+                        ?  Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: CustomTextField2(
+                            title: costN,
+                            // labelText: title,
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Expanded(
+                          child: CustomTextField2(
+                            title: priceN,
+                            // labelText: title,
+                          ),
+                        ),
+                      ],
+                    )
+                        : index == 8
+                        ? AddProductImage()
+                        : CustomTextField2(
+                      title: titleList[index],
+                      // labelText: titleList[index],
+                    ),
+                    separatorBuilder: (ctx, index) => sizedBox(height: 15),
                     itemCount: titleList.length,
                   ),
                 ),

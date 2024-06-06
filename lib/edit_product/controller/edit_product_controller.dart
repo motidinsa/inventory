@@ -13,41 +13,36 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../add_product/repository/add_product_repository.dart';
+
 class EditProductController extends GetxController {
-  final ProductDatabaseModel productDatabaseModel;
+  late ProductModel productModel;
+  bool isLoading = false;
+  bool isSubmitButtonPressed = false;
+  late bool isCategoryEmpty;
+  late bool isUnitOfMeasurementEmpty;
 
-  EditProductController({required this.productDatabaseModel});
-
-  late Rx<ProductModel> productInfo;
+  List<CategoryDatabaseModel> categoryListFoundResult = [];
+  List<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = [];
   final AppController appController = Get.find();
-  var emptyText = ''.obs;
-  var isLocalSaveLoading = false.obs;
-  var isOnlineSaveLoading = false.obs;
-
-  RxList<CategoryDatabaseModel> categoryListFoundResult = <CategoryDatabaseModel>[].obs;
-  RxList<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = <UnitOfMeasurementDatabaseModel>[].obs;
-  final formKey = GlobalKey<FormState>();
 
   static EditProductController get to => Get.find();
+
   @override
   void onInit() {
-    appController.currentRoutes.add(editProductN);
-    final Isar isar = Get.find();
+    isCategoryEmpty = AddProductRepository.getCategoryCount() == 0;
+    isUnitOfMeasurementEmpty =
+        AddProductRepository.getUnitOfMeasurementCount() == 0;
+    ProductDatabaseModel productDatabaseModel = Get.arguments[0];
+    productModel.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
+    String uomName = AddProductRepository.getUnitOfMeasurementName(
+        uomId: productDatabaseModel.unitOfMeasurementId);
     String? categoryName;
-    late String uomName;
     if (productDatabaseModel.categoryId != null) {
-      categoryName = isar.categoryDatabaseModels
-          .filter()
-          .categoryIdEqualTo(productDatabaseModel.categoryId!)
-          .findFirstSync()
-          ?.categoryName;
+      categoryName = AddProductRepository.getCategoryName(
+          categoryId: productDatabaseModel.categoryId!);
     }
-    uomName = isar.unitOfMeasurementDatabaseModels
-        .filter()
-        .uomIdEqualTo(productDatabaseModel.unitOfMeasurementId)
-        .findFirstSync()!
-        .name;
-    productInfo = ProductModel(
+    productModel = ProductModel(
       name: productDatabaseModel.productName,
       description: productDatabaseModel.description,
       localImagePath: productDatabaseModel.localImagePath,
@@ -59,73 +54,73 @@ class EditProductController extends GetxController {
       reorderQuantity: productDatabaseModel.reorderQuantity.toString(),
       unitOfMeasurementId: productDatabaseModel.unitOfMeasurementId,
       unitOfMeasurementName: uomName,
-      // id: productDatabaseModel.id,
       userAssignedProductId: productDatabaseModel.userAssignedProductId,
-    ).obs;
+    );
     super.onInit();
   }
 
-  onEditProductSaveButtonPressed() async {
-    isLocalSaveLoading(true);
-    // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
-    DateTime now = DateTime.now();  final Isar isar = Get.find();
-    // await isar.writeTxn(() async {
-    //   final dbProduct =
-    //       await isar.productDatabaseModels.get(productDatabaseModel.id);
-    //   dbProduct?.productName = productInfo.value.name;
-    //   dbProduct?.description = productInfo.value.description;
-    //   dbProduct?.categoryId = productInfo.value.categoryId;
-    //   dbProduct?.cost = getValidNumValue(productInfo.value.cost);
-    //   dbProduct?.price = getValidNumValue(productInfo.value.price);
-    //   dbProduct?.createdByUserId = appController.userId;
-    //   dbProduct?.lastModifiedByUserId = appController.userId;
-    //   dbProduct?.dateCreated = productDatabaseModel.dateCreated;
-    //   dbProduct?.lastDateModified = now;
-    //   dbProduct?.quantityOnHand =
-    //       getValidNumValue(productInfo.value.quantityOnHand);
-    //   dbProduct?.reorderQuantity =
-    //       getValidNumValue(productInfo.value.reorderQuantity);
-    //   dbProduct?.unitOfMeasurementId = productInfo.value.unitOfMeasurementId;
-    //   dbProduct?.localImagePath = productInfo.value.localImagePath;
-    //   dbProduct?.userAssignedProductId =
-    //       productInfo.value.userAssignedProductId;
-    //   await isar.productDatabaseModels.put(dbProduct!);
-    //   await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
-    //     productId: productDatabaseModel.productId,
-    //     productName: productInfo.value.name,
-    //     description: productInfo.value.description,
-    //     categoryId: productInfo.value.categoryId,
-    //     userAssignedProductId: productInfo.value.userAssignedProductId,
-    //     cost: getValidNumValue(productInfo.value.cost),
-    //     price: getValidNumValue(productInfo.value.price),
-    //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
-    //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
-    //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
-    //     createdByUserId: productDatabaseModel.createdByUserId,
-    //     modifiedByUserId: appController.userId,
-    //     dateCreated: productDatabaseModel.dateCreated,
-    //     dateModified: now,
-    //     localImagePath: productInfo.value.localImagePath,
-    //     onlineImagePath: productDatabaseModel.onlineImagePath,
-    //     addedFrom: editProductDC,
-    //   ));
-    // });
-    ProductListController.to.productList(isar.productDatabaseModels
-        .filter()
-        .productNameContains(ProductListController.to.searchedText.value)
-        .findAllSync());
-    // if (productInfo.value.localImagePath != null) {
-    //   try {
-    //     await Gal.putImage(productInfo.value.localImagePath!,
-    //         album: appNameN);
-    //     File(productInfo.value.localImagePath!).delete();
-    //   } on GalException catch (e) {
-    //     log(e.type.message);
-    //   }
-    // }
-    isLocalSaveLoading(false);
-
-    Get.back();
-    Get.back();
-  }
+  // onEditProductSaveButtonPressed() async {
+  //   isLocalSaveLoading(true);
+  //   // Future.delayed(const Duration(seconds: 3),() => isLocalSaveLoading(false),);
+  //   DateTime now = DateTime.now();
+  //   final Isar isar = Get.find();
+  //   // await isar.writeTxn(() async {
+  //   //   final dbProduct =
+  //   //       await isar.productDatabaseModels.get(productDatabaseModel.id);
+  //   //   dbProduct?.productName = productInfo.value.name;
+  //   //   dbProduct?.description = productInfo.value.description;
+  //   //   dbProduct?.categoryId = productInfo.value.categoryId;
+  //   //   dbProduct?.cost = getValidNumValue(productInfo.value.cost);
+  //   //   dbProduct?.price = getValidNumValue(productInfo.value.price);
+  //   //   dbProduct?.createdByUserId = appController.userId;
+  //   //   dbProduct?.lastModifiedByUserId = appController.userId;
+  //   //   dbProduct?.dateCreated = productDatabaseModel.dateCreated;
+  //   //   dbProduct?.lastDateModified = now;
+  //   //   dbProduct?.quantityOnHand =
+  //   //       getValidNumValue(productInfo.value.quantityOnHand);
+  //   //   dbProduct?.reorderQuantity =
+  //   //       getValidNumValue(productInfo.value.reorderQuantity);
+  //   //   dbProduct?.unitOfMeasurementId = productInfo.value.unitOfMeasurementId;
+  //   //   dbProduct?.localImagePath = productInfo.value.localImagePath;
+  //   //   dbProduct?.userAssignedProductId =
+  //   //       productInfo.value.userAssignedProductId;
+  //   //   await isar.productDatabaseModels.put(dbProduct!);
+  //   //   await isar.logProductDatabaseModels.put(LogProductDatabaseModel(
+  //   //     productId: productDatabaseModel.productId,
+  //   //     productName: productInfo.value.name,
+  //   //     description: productInfo.value.description,
+  //   //     categoryId: productInfo.value.categoryId,
+  //   //     userAssignedProductId: productInfo.value.userAssignedProductId,
+  //   //     cost: getValidNumValue(productInfo.value.cost),
+  //   //     price: getValidNumValue(productInfo.value.price),
+  //   //     quantityOnHand: getValidNumValue(productInfo.value.quantityOnHand),
+  //   //     reorderQuantity: getValidNumValue(productInfo.value.reorderQuantity),
+  //   //     unitOfMeasurementId: productInfo.value.unitOfMeasurementId,
+  //   //     createdByUserId: productDatabaseModel.createdByUserId,
+  //   //     modifiedByUserId: appController.userId,
+  //   //     dateCreated: productDatabaseModel.dateCreated,
+  //   //     dateModified: now,
+  //   //     localImagePath: productInfo.value.localImagePath,
+  //   //     onlineImagePath: productDatabaseModel.onlineImagePath,
+  //   //     addedFrom: editProductDC,
+  //   //   ));
+  //   // });
+  //   ProductListController.to.productList(isar.productDatabaseModels
+  //       .filter()
+  //       .productNameContains(ProductListController.to.searchedText.value)
+  //       .findAllSync());
+  //   // if (productInfo.value.localImagePath != null) {
+  //   //   try {
+  //   //     await Gal.putImage(productInfo.value.localImagePath!,
+  //   //         album: appNameN);
+  //   //     File(productInfo.value.localImagePath!).delete();
+  //   //   } on GalException catch (e) {
+  //   //     log(e.type.message);
+  //   //   }
+  //   // }
+  //   isLocalSaveLoading(false);
+  //
+  //   Get.back();
+  //   Get.back();
+  // }
 }

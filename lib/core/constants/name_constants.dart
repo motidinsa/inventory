@@ -104,6 +104,7 @@ const String noUnitOfMeasurementFoundN = 'No unit of measurement found';
 const String successfullyAddedCustomerN = 'Successfully added customer';
 const String successfullyAddedVendorN = 'Successfully added vendor';
 const String successfullyAddedProductN = 'Successfully added product';
+const String successfullyEditedProductN = 'Successfully edited product';
 const String successfullyAddedPurchaseN = 'Successfully added purchase';
 const String successfullyAddedSalesN = 'Successfully added sales';
 const String signUpN = 'Sign up';

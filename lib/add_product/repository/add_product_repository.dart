@@ -33,6 +33,14 @@ class AddProductRepository {
         .findAllSync();
   }
 
+  static String getCategoryName({required String categoryId}) {
+    return _isar.categoryDatabaseModels
+        .filter()
+        .categoryIdEqualTo(categoryId)
+        .findFirstSync()!
+        .categoryName;
+  }
+
   static List<UnitOfMeasurementDatabaseModel> getAllUnitOfMeasurement() {
     return _isar.unitOfMeasurementDatabaseModels.where().findAllSync();
   }
@@ -54,6 +62,14 @@ class AddProductRepository {
         .filter()
         .nameEqualTo('Pcs')
         .findFirstSync();
+  }
+
+  static String getUnitOfMeasurementName({required String uomId}) {
+    return _isar.unitOfMeasurementDatabaseModels
+        .filter()
+        .uomIdEqualTo(uomId)
+        .findFirstSync()!
+        .name;
   }
 
   static addProduct() async {

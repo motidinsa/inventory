@@ -9,51 +9,62 @@ import 'package:my_inventory/edit_product/controller/edit_product_controller.dar
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
-onEditProductFocusChange({
+import '../../add_product/repository/add_product_repository.dart';
+import '../../core/controller/app_controller.dart';
+import '../../core/model/product/product_model.dart';
+import '../repository/edit_product_repository.dart';
+
+onEditProductSaveButtonPressed() async {
+  EditProductController editProductController = EditProductController.to;
+  editProductController.isSubmitButtonPressed = true;
+  editProductController.update();
+  if (AppController.to.formKey.currentState!.validate()) {
+    editProductController.isLoading = true;
+    editProductController.update();
+    try {
+      await EditProductRepository.editProduct();
+      showSnackbar(message: successfullyEditedProductN, success: true);
+      Get.back();
+    } on Exception{
+      showSnackbar(message: someErrorOccurredN, success: false);
+    } finally {
+      editProductController.isLoading = false;
+      editProductController.update();
+    }
+  } else {
+    showSnackbar(message: pleaseFillTheRequiredFieldN);
+  }
+}
+
+onEditProductTextFieldChange({
   required String title,
   required String data,
 }) {
-  final EditProductController editProductController = Get.find();
-  editProductController.productInfo.update((product) {
-    if (title == productN) {
-      product?.name = data;
-    } else if (title == descriptionN) {
-      product?.description = data;
-    } else if (title == productIdN) {
-      product?.userAssignedProductId = data;
-    } else if (title == costN) {
-      product?.cost = data;
-    } else if (title == priceN) {
-      product?.price = data;
-    } else if (title == quantityOnHandN) {
-      product?.quantityOnHand = data;
-    } else if (title == reorderQuantityN) {
-      product?.reorderQuantity = data;
-    } else if ([categoryNameN, uomNameN].contains(title)) {
-      AddItemController addItemController = Get.find();
-      addItemController.addedText= data;
-    }
-  });
-}
-
-onEditProductTextFieldPressed({required String title}) {
-  final EditProductController editProductController = Get.find();  final Isar isar = Get.find();
-  Map<String, List> itemsWithList = {
-    categoryN: editProductController.categoryListFoundResult,
-    uomSN: editProductController.unitOfMeasurementListFoundResult,
-  };
-  if (itemsWithList.keys.contains(title)) {
-    var categoryList = isar.categoryDatabaseModels.where().findAllSync();
-    var uomList = isar.unitOfMeasurementDatabaseModels.where().findAllSync();
-    editProductController.categoryListFoundResult(categoryList);
-    editProductController.unitOfMeasurementListFoundResult(uomList);
-    Get.dialog(AlertDialogOptionSelect(
-      title: title == categoryN ? selectCategoryN : selectUomSN,
-    )).then(
-      (value) async {
-        await unFocus();
-      },
-    );
+  ProductModel productModel = EditProductController.to.productModel;
+  if (title == productN) {
+    productModel.name = data;
+  } else if (title == descriptionN) {
+    productModel.description = data;
+  } else if (title == productIdN) {
+    productModel.userAssignedProductId = data;
+  } else if (title == costN) {
+    productModel.cost = data;
+  } else if (title == priceN) {
+    productModel.price = data;
+  } else if (title == quantityOnHandN) {
+    productModel.quantityOnHand = data;
+  } else if (title == reorderQuantityN) {
+    productModel.reorderQuantity = data;
+  } else if (title == selectCategoryN) {
+    EditProductController.to.categoryListFoundResult =
+        AddProductRepository.searchCategory(data: data);
+    EditProductController.to.update();
+  } else if (title == selectUomSN) {
+    EditProductController.to.unitOfMeasurementListFoundResult =
+        AddProductRepository.searchUnitOfMeasurement(data: data);
+    EditProductController.to.update();
+  } else if ([categoryNameN, uomNameN].contains(title)) {
+    AddItemController.to.addedText = data;
   }
 }
 
@@ -89,7 +100,7 @@ onEditProductTextFieldChange({
 onEditProductAlertDialogOptionSelect(
     {required String title, required String data, required int isarId}) {
   final EditProductController editProductController = Get.find();  final Isar isar = Get.find();
-  editProductController.productInfo.update((product) {
+  editProductController.productModel.update((product) {
     if (title == selectCategoryN) {
       CategoryDatabaseModel categoryDatabaseModel =
           isar.categoryDatabaseModels.getSync(isarId)!;
@@ -109,27 +120,27 @@ onEditProductAlertDialogOptionSelect(
 String? getEditProductData({required String title}) {
   EditProductController editProductController = Get.find();
   if (title == productN) {
-    return editProductController.productInfo.value.name;
+    return editProductController.productModel.value.name;
   } else if (title == descriptionN) {
-    return editProductController.productInfo.value.description;
+    return editProductController.productModel.value.description;
   } else if (title == productIdN) {
-    return editProductController.productInfo.value.userAssignedProductId;
+    return editProductController.productModel.value.userAssignedProductId;
   } else if (title == costN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
-        editProductController.productInfo.value.cost));
+        editProductController.productModel.value.cost));
   } else if (title == priceN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
-        editProductController.productInfo.value.price));
+        editProductController.productModel.value.price));
   } else if (title == quantityOnHandN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
-        editProductController.productInfo.value.quantityOnHand));
+        editProductController.productModel.value.quantityOnHand));
   } else if (title == reorderQuantityN) {
     return emptyIfDefaultValue(getFormattedNumberWithoutComa(
-        editProductController.productInfo.value.reorderQuantity));
+        editProductController.productModel.value.reorderQuantity));
   } else if (title == uomSN) {
-    return editProductController.productInfo.value.unitOfMeasurementName;
+    return editProductController.productModel.value.unitOfMeasurementName;
   } else if (title == categoryN) {
-    return editProductController.productInfo.value.categoryName;
+    return editProductController.productModel.value.categoryName;
   } else if (title == selectCategoryN) {
     return editProductController.emptyText.value;
   } else if (title == selectUomSN) {

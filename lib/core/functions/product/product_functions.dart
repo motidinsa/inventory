@@ -58,11 +58,9 @@ double getProductTotalPrice({required int index}) {
 String? getProductImagePath() {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addProduct) {
-    final AddProductController addProductController = AddProductController.to;
-    return addProductController.productModel.localImagePath;
+    return AddProductController.to.productModel.localImagePath;
   } else if (currentRoute == RouteName.editProduct) {
-    final EditProductController editProductController = EditProductController.to;
-    return editProductController.productInfo.value.localImagePath;
+    return EditProductController.to.productModel.localImagePath;
   }
   return null;
 }

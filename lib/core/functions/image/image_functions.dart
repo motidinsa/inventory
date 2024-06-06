@@ -15,6 +15,7 @@ import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_option_select.dar
 import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:path/path.dart' as path;
 
+import '../../../edit_product/controller/edit_product_controller.dart';
 import '../../../signup/controller/signup_controller.dart';
 
 onAddImagePressed() {
@@ -114,15 +115,19 @@ saveImageToInternalStorage({required String filePath}) async {
     ).then((value) {
       if (currentRoute == RouteName.addProduct) {
         AddProductController.to.productModel.localImagePath = value;
+      }
+      if (currentRoute == RouteName.editProduct) {
+        EditProductController.to.productModel.localImagePath = value;
       } else if (currentRoute == RouteName.signUp) {
         SignupController.to.tempLogoPath = value;
       }
     });
   } catch (e) {
     showSnackbar(
-        message: currentRoute == RouteName.addProduct
-            ? unableToLoadImageN
-            : unableToSaveLogoN,
+        message:
+            [RouteName.addProduct, RouteName.editProduct].contains(currentRoute)
+                ? unableToLoadImageN
+                : unableToSaveLogoN,
         success: false);
   }
 }
@@ -132,14 +137,15 @@ clearTemporaryFile() async {
   directory.delete(recursive: true);
 }
 
-bool imageExists({required String imagePath,String? id}) {
+bool imageExists({required String imagePath, String? id}) {
   if (File(imagePath).existsSync()) {
     return true;
   } else {
     String currentRoute = Get.currentRoute;
     if (currentRoute == RouteName.homepage) {
       SignupRepository.clearImagePath();
-    }else if ( [RouteName.productDetail,RouteName.productList].contains(currentRoute)) {
+    } else if ([RouteName.productDetail, RouteName.productList]
+        .contains(currentRoute)) {
       AddProductRepository.clearProductImagePath(productId: id!);
     }
   }

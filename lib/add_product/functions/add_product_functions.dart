@@ -21,7 +21,7 @@ import '../../core/controller/app_controller.dart';
 
 onAddProductSaveButtonPressed() async {
   AddProductController addProductController = AddProductController.to;
-  addProductController.isSubmitButtonPressed=true;
+  addProductController.isSubmitButtonPressed = true;
   addProductController.update();
   if (AppController.to.formKey.currentState!.validate()) {
     addProductController.isLoading = true;
@@ -30,13 +30,13 @@ onAddProductSaveButtonPressed() async {
       await AddProductRepository.addProduct();
       showSnackbar(message: successfullyAddedProductN, success: true);
       Get.back();
-    } on Exception catch(e) {
-print(e);      showSnackbar(message: someErrorOccurredN, success: false);
+    } on Exception{
+      showSnackbar(message: someErrorOccurredN, success: false);
     } finally {
       addProductController.isLoading = false;
       addProductController.update();
     }
-  }else{
+  } else {
     showSnackbar(message: pleaseFillTheRequiredFieldN);
   }
 }
@@ -117,47 +117,12 @@ String getEmptySearchResult({required String title}) {
     return noCategoryFoundN;
   } else if (title == selectUomSN) {
     return noUnitOfMeasurementFoundN;
-  }else if (title == searchVendorsN) {
+  } else if (title == searchVendorsN) {
     return noVendorFoundN;
-  }else if (title == searchCustomersN) {
+  } else if (title == searchCustomersN) {
     return noCustomerFoundN;
-  }else if (title == searchProductsN) {
+  } else if (title == searchProductsN) {
     return noProductFoundN;
   }
   return '';
 }
-
-onSalesProductSelect({
-  String? title,
-  int? listIndex,
-}) {
-  final AddSalesController salesController = Get.find();
-  final Isar isar = Get.find();
-  // if (title == RouteName.addSales) {
-  //   salesController.searchProductFoundResult(
-  //       isar.productDatabaseModels.where().findAllSync());
-  //
-  //   Get.dialog(GetBuilder<AddProductController>(builder: (context) {
-  //     return AlertDialogOptionSelect(
-  //       title: searchProductsN,
-  //       listIndex: listIndex,
-  //     );
-  //   })).then(
-  //     (value) async {
-  //       await unFocus();
-  //     },
-  //   );
-  // }
-  // else if (title == selectN) {
-  //   salesController.searchCustomerFoundResult(
-  //       isar.customerDatabaseModels.where().findAllSync());
-  //   Get.dialog(const AlertDialogOptionSelect(
-  //     title: searchCustomersN,
-  //   )).then(
-  //     (value) {
-  //       unFocus();
-  //     },
-  //   );
-  // }
-}
-

@@ -241,7 +241,7 @@ String getSuffixText() {
     suffixText = AddProductController.to.productModel.unitOfMeasurementName;
   } else if (currentRoute == RouteName.editProduct) {
     suffixText =
-        EditProductController.to.productInfo.value.unitOfMeasurementName;
+        EditProductController.to.productModel.unitOfMeasurementName;
   }
   return suffixText;
 }
