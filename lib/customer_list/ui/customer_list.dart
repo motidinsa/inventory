@@ -8,6 +8,9 @@ import 'package:my_inventory/core/ui/profile/profile_mini_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/add_new_customer.dart';
 
+import '../../core/model/customer/customer_database_model.dart';
+import '../repository/customer_list_repository.dart';
+
 class CustomerList extends StatelessWidget {
   const CustomerList({super.key});
 
@@ -19,18 +22,19 @@ class CustomerList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: GetBuilder<CustomerListController>(
             builder: (customerListController) {
-          return customerListController.isEmpty == true
+          List<CustomerDatabaseModel> customerList =
+              CustomerListRepository.getAllCustomers();
+          return customerList.isEmpty == true
               ? const AddNewCustomer()
               : ListView(
                   children: [
                     sizedBox(height: 15),
-                     const CustomTextField(
-                        title: customerListN,),
-
+                    const CustomTextField(
+                      title: customerListN,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: customerListController.customerList
-                              .isEmpty
+                      child: customerList.isEmpty
                           ? Center(
                               child: Text(
                                 noCustomerFoundN,
@@ -44,13 +48,11 @@ class CustomerList extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (ctx, index) => ProfileMiniDetail(
-                                name: customerListController.customerList[index]
-                                    .name,
+                                name: customerList[index].name,
                                 index: index,
                                 iconData: Icons.person,
                               ),
-                              itemCount: customerListController.customerList
-                                  .length,
+                              itemCount: customerList.length,
                               separatorBuilder: (ctx, index) =>
                                   sizedBox(height: 12),
                             ),

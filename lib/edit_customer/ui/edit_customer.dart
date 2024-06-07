@@ -39,7 +39,7 @@ class EditCustomer extends StatelessWidget {
             key: AppController.to.formKey,
             child: ListView(
               children: [
-                sizedBox(height: 20),
+                SizedBox(height: 20),
                 ShadowedContainer(
                   child: ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
