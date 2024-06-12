@@ -2,17 +2,13 @@ import 'package:get/get.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 
-class ProductDetailController extends GetxController {
-  final int isarId;
-  final String productId;
+import '../../core/model/product/product_database_model.dart';
 
-  ProductDetailController({required this.isarId, required this.productId});
+class ProductDetailController extends GetxController {
+  final ProductDatabaseModel productDatabaseModel;
+
+  ProductDetailController({required this.productDatabaseModel});
 
   static ProductDetailController get to => Get.find();
 
-  @override
-  void onInit() {
-    AppController.to.currentRoutes.add(productDetailN);
-    super.onInit();
-  }
 }

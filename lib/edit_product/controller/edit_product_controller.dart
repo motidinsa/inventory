@@ -14,6 +14,7 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import '../../add_product/repository/add_product_repository.dart';
+import '../../product_detail/controller/product_detail_controller.dart';
 
 class EditProductController extends GetxController {
   late ProductModel productModel;
@@ -33,7 +34,7 @@ class EditProductController extends GetxController {
     isCategoryEmpty = AddProductRepository.getCategoryCount() == 0;
     isUnitOfMeasurementEmpty =
         AddProductRepository.getUnitOfMeasurementCount() == 0;
-    ProductDatabaseModel productDatabaseModel = Get.arguments[0];
+    ProductDatabaseModel productDatabaseModel = Get.find<ProductDetailController>().productDatabaseModel;
     productModel.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
     String uomName = AddProductRepository.getUnitOfMeasurementName(
         uomId: productDatabaseModel.unitOfMeasurementId);

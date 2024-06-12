@@ -38,7 +38,7 @@ onTextFieldChange({
   } else if (currentRoute == RouteName.addProduct) {
     onAddProductTextFieldChange(data: data, title: title!);
   } else if (currentRoute == RouteName.editProduct) {
-    onEditProductTextFieldChange(data: data, index: index, title: title!);
+    onEditProductTextFieldChange(data: data,  title: title!);
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
   } else if (currentRoute == productListN) {

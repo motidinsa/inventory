@@ -14,10 +14,12 @@ import 'package:my_inventory/customer_list/ui/customer_list.dart';
 import 'package:my_inventory/drawer/ui/my_drawer.dart';
 import 'package:my_inventory/edit_customer/controller/edit_customer_controller.dart';
 import 'package:my_inventory/edit_customer/ui/edit_customer.dart';
+import 'package:my_inventory/edit_product/ui/edit_product.dart';
 import 'package:my_inventory/edit_vendor/ui/edit_vendor.dart';
 import 'package:my_inventory/homepage/ui/homepage.dart';
 import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/payment_report/ui/payment_report.dart';
+import 'package:my_inventory/product_detail/ui/product_detail.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/product_list.dart';
 import 'package:my_inventory/purchase_report/ui/purchase_report.dart';
@@ -38,6 +40,7 @@ import 'package:my_inventory/vendor_detail/controller/vendor_detail_controller.d
 import '../../add_purchase/controller/add_purchase_controller.dart';
 import '../../add_purchase/ui/add_purchase.dart';
 import '../../credit_history/credit_history.dart';
+import '../../edit_product/controller/edit_product_controller.dart';
 import '../../inventory_report/controller/inventory_report_controller.dart';
 import '../../inventory_report/ui/inventory_report.dart';
 import '../../payment_report/controller/payment_report_controller.dart';
@@ -46,14 +49,13 @@ import '../../sales_report/controller/sales_report_controller.dart';
 
 List<GetPage> routes = [
   GetPage(
-    name: RouteName.signUp,
-    page: () => const SignUp(),
-      binding: BindingsBuilder.put(() => SignupController())
-  ),
+      name: RouteName.signUp,
+      page: () => const SignUp(),
+      binding: BindingsBuilder.put(() => SignupController())),
   GetPage(
     name: RouteName.homepage,
     page: () => GetBuilder<AppController>(builder: (context) {
-      return  Scaffold(drawer: MyDrawer(), body: Homepage());
+      return Scaffold(drawer: MyDrawer(), body: Homepage());
     }),
   ),
   GetPage(
@@ -67,7 +69,8 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.customerDetail,
       page: () => const CustomerDetail(),
-      binding: BindingsBuilder.put(() => CustomerDetailController())),GetPage(
+      binding: BindingsBuilder.put(() => CustomerDetailController())),
+  GetPage(
       name: RouteName.vendorDetail,
       page: () => const VendorDetail(),
       binding: BindingsBuilder.put(() => VendorDetailController())),
@@ -82,7 +85,8 @@ List<GetPage> routes = [
   GetPage(
       name: RouteName.addVendor,
       page: () => AddVendor(),
-      binding: BindingsBuilder.put(() => AddVendorController())),GetPage(
+      binding: BindingsBuilder.put(() => AddVendorController())),
+  GetPage(
       name: RouteName.editVendor,
       page: () => EditVendor(),
       binding: BindingsBuilder.put(() => EditVendorController())),
@@ -99,36 +103,40 @@ List<GetPage> routes = [
       page: () => ProductList(),
       binding: BindingsBuilder.put(() => ProductListController())),
   GetPage(
+    name: RouteName.productDetail,
+    page: () => ProductDetail(),
+  ),
+  GetPage(
+    name: RouteName.editProduct,
+    page: () => EditProduct(),
+      binding: BindingsBuilder.put(() => EditProductController())
+  ),
+  GetPage(
     name: RouteName.creditHistory,
     page: () => const CreditHistory(),
   ),
   GetPage(
       name: RouteName.editCustomer,
       page: () => EditCustomer(),
-      binding: BindingsBuilder.put(() =>
-          EditCustomerController())),
+      binding: BindingsBuilder.put(() => EditCustomerController())),
   GetPage(
     name: RouteName.reorderStock,
     page: () => const ReorderStock(),
-  ),GetPage(
-    name: RouteName.salesReport,
-    page: () => const SalesReport(),
-      binding: BindingsBuilder.put(() =>
-          SalesReportController())
-  ),GetPage(
-    name: RouteName.purchaseReport,
-    page: () => const PurchaseReport(),
-      binding: BindingsBuilder.put(() =>
-          PurchaseReportController())
-  ),GetPage(
-    name: RouteName.inventoryReport,
-    page: () => const InventoryReport(),
-      binding: BindingsBuilder.put(() =>
-          InventoryReportController())
-  ),GetPage(
-    name: RouteName.paymentReport,
-    page: () => const PaymentReport(),
-      binding: BindingsBuilder.put(() =>
-          PaymentReportController())
   ),
+  GetPage(
+      name: RouteName.salesReport,
+      page: () => const SalesReport(),
+      binding: BindingsBuilder.put(() => SalesReportController())),
+  GetPage(
+      name: RouteName.purchaseReport,
+      page: () => const PurchaseReport(),
+      binding: BindingsBuilder.put(() => PurchaseReportController())),
+  GetPage(
+      name: RouteName.inventoryReport,
+      page: () => const InventoryReport(),
+      binding: BindingsBuilder.put(() => InventoryReportController())),
+  GetPage(
+      name: RouteName.paymentReport,
+      page: () => const PaymentReport(),
+      binding: BindingsBuilder.put(() => PaymentReportController())),
 ];

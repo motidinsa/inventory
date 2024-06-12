@@ -32,15 +32,15 @@ getUomName({required String id}) {  final Isar isar = Get.find();
 }
 
 deleteProduct() async {  final Isar isar = Get.find();
-  await isar.writeTxn(() async {
-    await isar.productDatabaseModels.delete(ProductDetailController.to.isarId);
-    await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
-      productId: ProductDetailController.to.productId,
-      deletedDate: DateTime.now(),
-      deletedByUserId: AppController.to.userId,
-      addedFrom: productDetailDC,
-    ));
-  });
+  // await isar.writeTxn(() async {
+  //   await isar.productDatabaseModels.delete(ProductDetailController.to.isarId);
+  //   await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
+  //     productId: ProductDetailController.to.productId,
+  //     deletedDate: DateTime.now(),
+  //     deletedByUserId: AppController.to.userId,
+  //     addedFrom: productDetailDC,
+  //   ));
+  // });
   ProductListController.to.productList(isar.productDatabaseModels
       .filter()
       .productNameContains(ProductListController.to.searchedText.value)

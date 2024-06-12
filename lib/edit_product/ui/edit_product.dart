@@ -20,9 +20,8 @@ import '../../core/ui/custom_text_field_2.dart';
 import '../../core/ui/shadowed_container.dart';
 
 class EditProduct extends StatelessWidget {
-  final ProductDatabaseModel productDatabaseModel;
 
-  EditProduct({super.key, required this.productDatabaseModel});
+  EditProduct({super.key,});
 
   final List<String> titleList = [
     productN,
@@ -36,7 +35,6 @@ class EditProduct extends StatelessWidget {
     imageN,
   ];
 
-  final AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
     // Get.put(EditProductController(productDatabaseModel: productDatabaseModel));

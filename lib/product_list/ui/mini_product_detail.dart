@@ -55,7 +55,7 @@ class MiniProductDetail extends StatelessWidget {
                             color: Colors.grey.shade800),
                       ),
                     ),
-                    sizedBox(height: 5),
+                    SizedBox(height: 5),
                     Row(
                       // mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
