@@ -35,7 +35,7 @@ class EditProductController extends GetxController {
     isUnitOfMeasurementEmpty =
         AddProductRepository.getUnitOfMeasurementCount() == 0;
     ProductDatabaseModel productDatabaseModel = Get.find<ProductDetailController>().productDatabaseModel;
-    productModel.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
+    // productModel.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
     String uomName = AddProductRepository.getUnitOfMeasurementName(
         uomId: productDatabaseModel.unitOfMeasurementId);
     String? categoryName;

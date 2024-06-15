@@ -24,6 +24,6 @@ onProductListTextFieldChange({
 onMiniProductDetailPressed(
     {required ProductDatabaseModel productDatabaseModel, required int index}) {
   unFocus();
-  Get.put(ProductDetailController(productDatabaseModel: productDatabaseModel));
-  Get.toNamed(RouteName.productDetail);
+  // Get.put(ProductDetailController(productDatabaseModel: productDatabaseModel));
+  Get.toNamed(RouteName.productDetail,arguments: productDatabaseModel);
 }
