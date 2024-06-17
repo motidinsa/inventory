@@ -12,9 +12,9 @@ import 'package:my_inventory/core/functions/pdf/sales_pdf_functions.dart';
 import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 
 class pdftest extends StatelessWidget {
-  final Uint8List image;
+  final Uint8List? image;
 
-  pdftest({super.key, required this.image});
+  pdftest({super.key, this.image});
 
   final AddSalesController salesController = AddSalesController.to;
   final AppController appController = AppController.to;
@@ -31,10 +31,11 @@ class pdftest extends StatelessWidget {
             p.Column(
               children: [
                 p.Row(children: [
-                  p.Container(),
-                  p.Image(p.MemoryImage(image),
-                        width: 100),
-                  p.SizedBox(width: 15),
+                  if (image != null) ...[
+                    p.Container(),
+                    p.Image(p.MemoryImage(image!), width: 100),
+                    p.SizedBox(width: 15)
+                  ],
                   p.Text(
                     appController.companyName,
                     style: p.TextStyle(

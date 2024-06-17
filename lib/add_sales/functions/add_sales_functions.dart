@@ -48,12 +48,17 @@ onAddSalesSaveButtonPressed() async {
       await AddSalesRepository.saveSalesProductToDB();
       showSnackbar(message: successfullyAddedSalesN, success: true);
       // Get.back();
-      final ByteData bytes =
-      await rootBundle.load('assets/images/company-logo.png');
-      File file = File(AppController.to.companyLogo!);
-      List<int> imageBytes = file.readAsBytesSync();
-      // return Uint8List.fromList(imageBytes);
-      final Uint8List byteList = Uint8List.fromList(imageBytes);
+      // final ByteData bytes =
+      // await rootBundle.load('assets/images/company-logo.png');
+      // File file = File(AppController.to.companyLogo!);
+      String? companyLogo = AppController.to.companyLogo;
+      Uint8List? byteList;
+      if (companyLogo != null) {
+        File file = File(companyLogo);
+        List<int> imageBytes = file.readAsBytesSync();
+        // return Uint8List.fromList(imageBytes);
+         byteList = Uint8List.fromList(imageBytes);
+      }
 
       Get.off(pdftest(image: byteList));
     } on Exception {
@@ -235,7 +240,7 @@ onSalesSearchProductAlertDialogOptionSelect(
         addSalesController.transfer = '';
         addSalesController.credit = '0';
       }
-    }else{
+    } else {
       if (productDatabaseModel.productId !=
           addSalesController.salesModels[listIndex!].productId) {
         // Get.closeCurrentSnackbar();
