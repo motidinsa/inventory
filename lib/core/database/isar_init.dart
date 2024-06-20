@@ -2,7 +2,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'package:my_inventory/core/model/category/category_database_model.dart';
 import 'package:my_inventory/core/model/category/log_category_database_model.dart';
 import 'package:my_inventory/core/model/customer/customer_database_model.dart';
@@ -20,12 +19,12 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 
 import 'package:my_inventory/core/model/customer/log_customer_database_model.dart';
-import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 
 import 'package:my_inventory/core/model/customer/log_deleted_customer_database_model.dart';
 import 'package:my_inventory/core/model/vendor/log_deleted_vendor_database_model.dart';
 import 'package:my_inventory/core/model/vendor/log_vendor_database_model.dart';
 
+import '../../signup/model/sign_up_database_model.dart';
 import '../model/purchase/log_purchase_all_database_model.dart';
 
 isarInit() async {

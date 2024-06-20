@@ -3,7 +3,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:my_inventory/core/constants/database_constants.dart';
-import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/log_unit_of_measurement_database_model.dart';
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
@@ -11,6 +10,7 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 import 'package:my_inventory/signup/repository/signup_repository.dart';
 
 import '../../signup/controller/signup_controller.dart';
+import '../../signup/model/sign_up_database_model.dart';
 
 class AppController extends GetxController {
   final formKey = GlobalKey<FormState>();

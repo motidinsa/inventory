@@ -65,7 +65,7 @@ class SignUp extends StatelessWidget {
                             ),
                           ),
                         ),
-                        sizedBox(height: 16),
+                        SizedBox(height: 16),
                         Card(
                           color: Colors.grey.shade50,
                           shape: RoundedRectangleBorder(
@@ -76,7 +76,7 @@ class SignUp extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               children: [
-                                sizedBox(height: 20),
+                                SizedBox(height: 20),
                                 ListView.separated(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -86,10 +86,10 @@ class SignUp extends StatelessWidget {
                                         color: Colors.white70,
                                   ),
                                   separatorBuilder: (context, index) =>
-                                      sizedBox(height: 12),
+                                      SizedBox(height: 12),
                                   itemCount: signUpRequirements.length,
                                 ),
-                                sizedBox(height: 12),
+                                SizedBox(height: 12),
                                 const AddCompanyLogo(),
                                 sizedBox(height: 12),
                               ],

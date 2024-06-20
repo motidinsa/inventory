@@ -4,7 +4,6 @@ import 'package:folder_file_saver/folder_file_saver.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_inventory/add_product/repository/add_product_repository.dart';
-import 'package:my_inventory/core/model/sign_up/sign_up_database_model.dart';
 import 'package:my_inventory/signup/repository/signup_repository.dart';
 import 'package:path_provider/path_provider.dart';
 
