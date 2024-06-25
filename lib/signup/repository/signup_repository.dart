@@ -26,15 +26,16 @@ class SignupRepository {
       }
       await _isar.signUpDatabaseModels.put(
         SignUpDatabaseModel(
-            companyName: signupController.companyName,
-            firstName: signupController.firstName,
-            lastName: signupController.lastName,
-            phoneNumber: signupController.phoneNumber,
-            email: signupController.email,
-            registrationDate: now,
-            companyId: companyId,
-            adminId: adminId,
-            offlineLogoPath: signupController.tempLogoPath),
+          companyName: signupController.companyName,
+          firstName: signupController.firstName,
+          lastName: signupController.lastName,
+          phoneNumber: signupController.phoneNumber,
+          email: signupController.email,
+          registrationDate: now,
+          companyId: companyId,
+          adminId: adminId,
+          offlineLogoPath: signupController.tempLogoPath,
+        ),
       );
       await Get.find<FlutterSecureStorage>()
           .write(key: Env.loginKey, value: trueDC);
@@ -46,8 +47,10 @@ class SignupRepository {
   static SignUpDatabaseModel getSignedUpUserData() {
     return _isar.signUpDatabaseModels.where().findAllSync().last;
   }
+
   static void clearImagePath() async {
-    SignUpDatabaseModel signUpDatabaseModel =  _isar.signUpDatabaseModels.where().findAllSync().last;
+    SignUpDatabaseModel signUpDatabaseModel =
+        _isar.signUpDatabaseModels.where().findAllSync().last;
     await _isar.writeTxn(() async {
       signUpDatabaseModel.offlineLogoPath = null;
       await _isar.signUpDatabaseModels.put(signUpDatabaseModel);
