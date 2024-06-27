@@ -20,7 +20,6 @@ class EditVendorRepository {
         VendorDetailController.to.vendorDatabaseModel;
     VendorModel vendorModel = EditVendorController.to.vendorModel;
     DateTime now = DateTime.now();
-    String objectId = generateDatabaseId(time: now);
 
     await _isar.writeTxn(() async {
       String name = vendorModel.name.trim();
@@ -56,7 +55,6 @@ class EditVendorRepository {
           companyId: companyId,
           lastModifiedByUserId: lastModifiedByUserId,
           lastModifiedDate: now,
-          objectId: objectId,
         ),
       );
     });

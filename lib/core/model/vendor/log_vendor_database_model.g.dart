@@ -73,18 +73,13 @@ const LogVendorDatabaseModelSchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'objectId': PropertySchema(
-      id: 11,
-      name: r'objectId',
-      type: IsarType.string,
-    ),
     r'phoneNumber': PropertySchema(
-      id: 12,
+      id: 11,
       name: r'phoneNumber',
       type: IsarType.string,
     ),
     r'vendorId': PropertySchema(
-      id: 13,
+      id: 12,
       name: r'vendorId',
       type: IsarType.string,
     )
@@ -143,12 +138,6 @@ int _logVendorDatabaseModelEstimateSize(
   }
   bytesCount += 3 + object.name.length * 3;
   {
-    final value = object.objectId;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
     final value = object.phoneNumber;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -175,9 +164,8 @@ void _logVendorDatabaseModelSerialize(
   writer.writeString(offsets[8], object.lastModifiedByUserId);
   writer.writeDateTime(offsets[9], object.lastModifiedDate);
   writer.writeString(offsets[10], object.name);
-  writer.writeString(offsets[11], object.objectId);
-  writer.writeString(offsets[12], object.phoneNumber);
-  writer.writeString(offsets[13], object.vendorId);
+  writer.writeString(offsets[11], object.phoneNumber);
+  writer.writeString(offsets[12], object.vendorId);
 }
 
 LogVendorDatabaseModel _logVendorDatabaseModelDeserialize(
@@ -198,9 +186,8 @@ LogVendorDatabaseModel _logVendorDatabaseModelDeserialize(
     lastModifiedByUserId: reader.readStringOrNull(offsets[8]),
     lastModifiedDate: reader.readDateTimeOrNull(offsets[9]),
     name: reader.readString(offsets[10]),
-    objectId: reader.readStringOrNull(offsets[11]),
-    phoneNumber: reader.readStringOrNull(offsets[12]),
-    vendorId: reader.readString(offsets[13]),
+    phoneNumber: reader.readStringOrNull(offsets[11]),
+    vendorId: reader.readString(offsets[12]),
   );
   object.id = id;
   return object;
@@ -238,8 +225,6 @@ P _logVendorDatabaseModelDeserializeProp<P>(
     case 11:
       return (reader.readStringOrNull(offset)) as P;
     case 12:
-      return (reader.readStringOrNull(offset)) as P;
-    case 13:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1752,162 +1737,6 @@ extension LogVendorDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'objectId',
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'objectId',
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'objectId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-          QAfterFilterCondition>
-      objectIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'objectId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-          QAfterFilterCondition>
-      objectIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'objectId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'objectId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
-      QAfterFilterCondition> objectIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'objectId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel,
       QAfterFilterCondition> phoneNumberIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -2365,20 +2194,6 @@ extension LogVendorDatabaseModelQuerySortBy
   }
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
-      sortByObjectId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'objectId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
-      sortByObjectIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'objectId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
       sortByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phoneNumber', Sort.asc);
@@ -2578,20 +2393,6 @@ extension LogVendorDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
-      thenByObjectId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'objectId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
-      thenByObjectIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'objectId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QAfterSortBy>
       thenByPhoneNumber() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phoneNumber', Sort.asc);
@@ -2703,13 +2504,6 @@ extension LogVendorDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QDistinct>
-      distinctByObjectId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'objectId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, LogVendorDatabaseModel, QDistinct>
       distinctByPhoneNumber({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'phoneNumber', caseSensitive: caseSensitive);
@@ -2806,13 +2600,6 @@ extension LogVendorDatabaseModelQueryProperty on QueryBuilder<
       nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
-    });
-  }
-
-  QueryBuilder<LogVendorDatabaseModel, String?, QQueryOperations>
-      objectIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'objectId');
     });
   }
 

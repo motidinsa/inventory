@@ -20,7 +20,6 @@ class EditCustomerRepository {
         CustomerDetailController.to.customerDatabaseModel;
     CustomerModel customerModel = EditCustomerController.to.customerModel;
     DateTime now = DateTime.now();
-    String objectId = generateDatabaseId(time: now);
 
     await _isar.writeTxn(() async {
       String name = customerModel.name.trim();
@@ -53,7 +52,6 @@ class EditCustomerRepository {
           companyId: companyId,
           lastModifiedByUserId: lastModifiedByUserId,
           lastModifiedDate: now,
-          objectId: objectId,
         ),
       );
     });
