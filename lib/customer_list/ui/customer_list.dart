@@ -22,9 +22,7 @@ class CustomerList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: GetBuilder<CustomerListController>(
             builder: (customerListController) {
-          List<CustomerDatabaseModel> customerList =
-              CustomerListRepository.getAllCustomers();
-          return customerList.isEmpty == true
+          return customerListController.isEmpty == true
               ? const AddNewCustomer()
               : ListView(
                   children: [
@@ -34,7 +32,7 @@ class CustomerList extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: customerList.isEmpty
+                      child: customerListController.customerList.isEmpty
                           ? Center(
                               child: Text(
                                 noCustomerFoundN,
@@ -48,11 +46,11 @@ class CustomerList extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (ctx, index) => ProfileMiniDetail(
-                                name: customerList[index].name,
+                                name: customerListController.customerList[index].name,
                                 index: index,
                                 iconData: Icons.person,
                               ),
-                              itemCount: customerList.length,
+                              itemCount: customerListController.customerList.length,
                               separatorBuilder: (ctx, index) =>
                                   sizedBox(height: 12),
                             ),
