@@ -56,14 +56,14 @@ class SalesReportController extends GetxController {
         ));
         subtotal += totalPrice - totalCost;
       }
-      if (currentGroupSalesId != element.groupSalesId) {
-        discount += isar.groupSalesDatabaseModels
-            .filter()
-            .groupSalesIdEqualTo(element.groupSalesId)
-            .findFirstSync()!
-            .discount;
-      }
-      currentGroupSalesId = element.groupSalesId;
+      // if (currentGroupSalesId != element.groupSalesId) {
+      //   discount += isar.groupSalesDatabaseModels
+      //       .filter()
+      //       .groupSalesIdEqualTo(element.groupSalesId)
+      //       .findFirstSync()!
+      //       .discount;
+      // }
+      // currentGroupSalesId = element.groupSalesId;
     }
     super.onInit();
   }
@@ -106,14 +106,14 @@ class SalesReportController extends GetxController {
         ));
         subtotal += totalPrice - totalCost;
       }
-      if (currentGroupSalesId != element.groupSalesId) {
-        discount += isar.groupSalesDatabaseModels
-            .filter()
-            .groupSalesIdEqualTo(element.groupSalesId)
-            .findFirstSync()!
-            .discount;
-      }
-      currentGroupSalesId = element.groupSalesId;
+      // if (currentGroupSalesId != element.groupSalesId) {
+      //   discount += isar.groupSalesDatabaseModels
+      //       .filter()
+      //       .groupSalesIdEqualTo(element.groupSalesId)
+      //       .findFirstSync()!
+      //       .discount;
+      // }
+      // currentGroupSalesId = element.groupSalesId;
     }
     update();
   }

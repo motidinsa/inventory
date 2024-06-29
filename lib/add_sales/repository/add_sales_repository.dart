@@ -56,8 +56,6 @@ class AddSalesRepository {
     final AppController appController = AppController.to;
     // List<SalesModel> salesModels = salesController.salesModels;
     List<SalesDatabaseModel> salesDatabaseModels = [];
-    String groupSalesId =
-        generateDatabaseId(time: DateTime.now(), identifier: 'group');
     String salesPaymentId =
         generateDatabaseId(time: DateTime.now(), identifier: 'p_id');
     DateTime now = DateTime.now();
@@ -120,7 +118,6 @@ class AddSalesRepository {
           SalesDatabaseModel(
             productId: salesModel.productId,
             salesId: salesId,
-            groupSalesId: groupSalesId,
             salesDate: allSalesController.selectedSalesDate,
             dateCreated: now,
             quantity: double.parse(salesModel.quantity),
@@ -152,14 +149,6 @@ class AddSalesRepository {
         //
       }
       _isar.salesDatabaseModels.putAll(salesDatabaseModels);
-      _isar.groupSalesDatabaseModels.put(
-        GroupSalesDatabaseModel(
-          groupSalesId: groupSalesId,
-          discount: isNumeric(allSalesController.discount)
-              ? double.parse(allSalesController.discount)
-              : 0,
-        ),
-      );
       if (allSalesController.customerDatabaseModel != null) {
         if (allSalesController.customerDatabaseModel?.totalCreditAmount ==
             null) {
@@ -189,8 +178,10 @@ class AddSalesRepository {
               ? double.parse(allSalesController.transfer)
               : 0,
           credit: double.parse(allSalesController.credit),
+          discount: isNumeric(allSalesController.discount)
+              ? double.parse(allSalesController.discount)
+              : 0,
           customerId: allSalesController.customerDatabaseModel?.customerId,
-          groupSalesId: groupSalesId,
           salesPaymentId: salesPaymentId,
           total: double.parse(allSalesController.total),
           addedByUserId: appController.userId,

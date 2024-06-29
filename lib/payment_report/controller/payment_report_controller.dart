@@ -22,24 +22,24 @@ class PaymentReportController extends GetxController {
   void onInit() {
     AppController.to.currentRoutes.add(paymentReportN);  final Isar isar = Get.find();
     for (var element in isar.salesPaymentDatabaseModels.where().findAllSync().reversed) {
-      paymentReportModels.add(
-        PaymentReportModel(
-          paymentDate: isar.salesDatabaseModels
-              .filter()
-              .groupSalesIdEqualTo(element.groupSalesId)
-              .findFirstSync()!
-              .salesDate,
-          customerName: isar.customerDatabaseModels
-              .filter()
-              .customerIdEqualTo(element.customerId!)
-              .findFirstSync()!
-              .name,
-          cash: element.cash,
-          credit: element.credit,
-          transfer: element.transfer,
-          total: element.total,
-        ),
-      );
+      // paymentReportModels.add(
+      //   PaymentReportModel(
+      //     paymentDate: isar.salesDatabaseModels
+      //         .filter()
+      //         .groupSalesIdEqualTo(element.groupSalesId)
+      //         .findFirstSync()!
+      //         .salesDate,
+      //     customerName: isar.customerDatabaseModels
+      //         .filter()
+      //         .customerIdEqualTo(element.customerId!)
+      //         .findFirstSync()!
+      //         .name,
+      //     cash: element.cash,
+      //     credit: element.credit,
+      //     transfer: element.transfer,
+      //     total: element.total,
+      //   ),
+      // );
       totalCost += element.total;
     }
     super.onInit();

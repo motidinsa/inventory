@@ -7,7 +7,6 @@ class SalesDatabaseModel {
   Id id = Isar.autoIncrement;
   String productId;
   String salesId;
-  String groupSalesId;
   DateTime salesDate;
   DateTime dateCreated;
   DateTime? lastDateModified;
@@ -23,7 +22,6 @@ class SalesDatabaseModel {
   SalesDatabaseModel({
     required this.productId,
     required this.salesId,
-    required this.groupSalesId,
     required this.salesDate,
     required this.dateCreated,
     this.lastDateModified,

@@ -9,26 +9,27 @@ class SalesPaymentDatabaseModel {
   double transfer;
   double credit;
   double total;
+  double discount;
   DateTime dateAdded;
   DateTime? dateModified;
   String addedByUserId;
   String? modifiedByUserId;
   String? customerId;
   String salesPaymentId;
-  String groupSalesId;
   bool? isAppWriteSynced;
 
-  SalesPaymentDatabaseModel(
-      {required this.cash,
-      required this.transfer,
-      required this.credit,
-      required this.total,
-      this.customerId,
-      required this.salesPaymentId,
-      required this.groupSalesId,
-      this.isAppWriteSynced,
-      required this.addedByUserId,
-      required this.dateAdded,
-       this.dateModified,
-      this.modifiedByUserId});
+  SalesPaymentDatabaseModel({
+    required this.cash,
+    required this.transfer,
+    required this.credit,
+    required this.total,
+    required this.discount,
+    this.customerId,
+    required this.salesPaymentId,
+    this.isAppWriteSynced,
+    required this.addedByUserId,
+    required this.dateAdded,
+    this.dateModified,
+    this.modifiedByUserId,
+  });
 }

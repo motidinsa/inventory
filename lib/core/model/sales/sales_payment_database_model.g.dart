@@ -48,10 +48,10 @@ const SalesPaymentDatabaseModelSchema = CollectionSchema(
       name: r'dateModified',
       type: IsarType.dateTime,
     ),
-    r'groupSalesId': PropertySchema(
+    r'discount': PropertySchema(
       id: 6,
-      name: r'groupSalesId',
-      type: IsarType.string,
+      name: r'discount',
+      type: IsarType.double,
     ),
     r'isAppWriteSynced': PropertySchema(
       id: 7,
@@ -106,7 +106,6 @@ int _salesPaymentDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.groupSalesId.length * 3;
   {
     final value = object.modifiedByUserId;
     if (value != null) {
@@ -129,7 +128,7 @@ void _salesPaymentDatabaseModelSerialize(
   writer.writeString(offsets[3], object.customerId);
   writer.writeDateTime(offsets[4], object.dateAdded);
   writer.writeDateTime(offsets[5], object.dateModified);
-  writer.writeString(offsets[6], object.groupSalesId);
+  writer.writeDouble(offsets[6], object.discount);
   writer.writeBool(offsets[7], object.isAppWriteSynced);
   writer.writeString(offsets[8], object.modifiedByUserId);
   writer.writeString(offsets[9], object.salesPaymentId);
@@ -150,7 +149,7 @@ SalesPaymentDatabaseModel _salesPaymentDatabaseModelDeserialize(
     customerId: reader.readStringOrNull(offsets[3]),
     dateAdded: reader.readDateTime(offsets[4]),
     dateModified: reader.readDateTimeOrNull(offsets[5]),
-    groupSalesId: reader.readString(offsets[6]),
+    discount: reader.readDouble(offsets[6]),
     isAppWriteSynced: reader.readBoolOrNull(offsets[7]),
     modifiedByUserId: reader.readStringOrNull(offsets[8]),
     salesPaymentId: reader.readString(offsets[9]),
@@ -181,7 +180,7 @@ P _salesPaymentDatabaseModelDeserializeProp<P>(
     case 5:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 7:
       return (reader.readBoolOrNull(offset)) as P;
     case 8:
@@ -851,139 +850,67 @@ extension SalesPaymentDatabaseModelQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
+      QAfterFilterCondition> discountEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'groupSalesId',
+        property: r'discount',
         value: value,
-        caseSensitive: caseSensitive,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdGreaterThan(
-    String value, {
+      QAfterFilterCondition> discountGreaterThan(
+    double value, {
     bool include = false,
-    bool caseSensitive = true,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'groupSalesId',
+        property: r'discount',
         value: value,
-        caseSensitive: caseSensitive,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdLessThan(
-    String value, {
+      QAfterFilterCondition> discountLessThan(
+    double value, {
     bool include = false,
-    bool caseSensitive = true,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'groupSalesId',
+        property: r'discount',
         value: value,
-        caseSensitive: caseSensitive,
+        epsilon: epsilon,
       ));
     });
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdBetween(
-    String lower,
-    String upper, {
+      QAfterFilterCondition> discountBetween(
+    double lower,
+    double upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
+    double epsilon = Query.epsilon,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'groupSalesId',
+        property: r'discount',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-          QAfterFilterCondition>
-      groupSalesIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-          QAfterFilterCondition>
-      groupSalesIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'groupSalesId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'groupSalesId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterFilterCondition> groupSalesIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'groupSalesId',
-        value: '',
+        epsilon: epsilon,
       ));
     });
   }
@@ -1592,16 +1519,16 @@ extension SalesPaymentDatabaseModelQuerySortBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterSortBy> sortByGroupSalesId() {
+      QAfterSortBy> sortByDiscount() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.asc);
+      return query.addSortBy(r'discount', Sort.asc);
     });
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterSortBy> sortByGroupSalesIdDesc() {
+      QAfterSortBy> sortByDiscountDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.desc);
+      return query.addSortBy(r'discount', Sort.desc);
     });
   }
 
@@ -1763,16 +1690,16 @@ extension SalesPaymentDatabaseModelQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterSortBy> thenByGroupSalesId() {
+      QAfterSortBy> thenByDiscount() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.asc);
+      return query.addSortBy(r'discount', Sort.asc);
     });
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel,
-      QAfterSortBy> thenByGroupSalesIdDesc() {
+      QAfterSortBy> thenByDiscountDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.desc);
+      return query.addSortBy(r'discount', Sort.desc);
     });
   }
 
@@ -1907,9 +1834,9 @@ extension SalesPaymentDatabaseModelQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<SalesPaymentDatabaseModel, SalesPaymentDatabaseModel, QDistinct>
-      distinctByGroupSalesId({bool caseSensitive = true}) {
+      distinctByDiscount() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'groupSalesId', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'discount');
     });
   }
 
@@ -2001,10 +1928,10 @@ extension SalesPaymentDatabaseModelQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<SalesPaymentDatabaseModel, String, QQueryOperations>
-      groupSalesIdProperty() {
+  QueryBuilder<SalesPaymentDatabaseModel, double, QQueryOperations>
+      discountProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'groupSalesId');
+      return query.addPropertyName(r'discount');
     });
   }
 

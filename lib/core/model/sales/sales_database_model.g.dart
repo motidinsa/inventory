@@ -38,53 +38,48 @@ const SalesDatabaseModelSchema = CollectionSchema(
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
-    r'groupSalesId': PropertySchema(
-      id: 4,
-      name: r'groupSalesId',
-      type: IsarType.string,
-    ),
     r'isAppWriteSynced': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'price': PropertySchema(
-      id: 8,
+      id: 7,
       name: r'price',
       type: IsarType.double,
     ),
     r'productId': PropertySchema(
-      id: 9,
+      id: 8,
       name: r'productId',
       type: IsarType.string,
     ),
     r'quantity': PropertySchema(
-      id: 10,
+      id: 9,
       name: r'quantity',
       type: IsarType.double,
     ),
     r'salesDate': PropertySchema(
-      id: 11,
+      id: 10,
       name: r'salesDate',
       type: IsarType.dateTime,
     ),
     r'salesId': PropertySchema(
-      id: 12,
+      id: 11,
       name: r'salesId',
       type: IsarType.string,
     ),
     r'salesPaymentId': PropertySchema(
-      id: 13,
+      id: 12,
       name: r'salesPaymentId',
       type: IsarType.string,
     )
@@ -117,7 +112,6 @@ int _salesDatabaseModelEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.groupSalesId.length * 3;
   {
     final value = object.lastModifiedByUserId;
     if (value != null) {
@@ -140,16 +134,15 @@ void _salesDatabaseModelSerialize(
   writer.writeString(offsets[1], object.companyId);
   writer.writeString(offsets[2], object.customerId);
   writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeString(offsets[4], object.groupSalesId);
-  writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[6], object.lastDateModified);
-  writer.writeString(offsets[7], object.lastModifiedByUserId);
-  writer.writeDouble(offsets[8], object.price);
-  writer.writeString(offsets[9], object.productId);
-  writer.writeDouble(offsets[10], object.quantity);
-  writer.writeDateTime(offsets[11], object.salesDate);
-  writer.writeString(offsets[12], object.salesId);
-  writer.writeString(offsets[13], object.salesPaymentId);
+  writer.writeBool(offsets[4], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[5], object.lastDateModified);
+  writer.writeString(offsets[6], object.lastModifiedByUserId);
+  writer.writeDouble(offsets[7], object.price);
+  writer.writeString(offsets[8], object.productId);
+  writer.writeDouble(offsets[9], object.quantity);
+  writer.writeDateTime(offsets[10], object.salesDate);
+  writer.writeString(offsets[11], object.salesId);
+  writer.writeString(offsets[12], object.salesPaymentId);
 }
 
 SalesDatabaseModel _salesDatabaseModelDeserialize(
@@ -163,16 +156,15 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
     companyId: reader.readString(offsets[1]),
     customerId: reader.readStringOrNull(offsets[2]),
     dateCreated: reader.readDateTime(offsets[3]),
-    groupSalesId: reader.readString(offsets[4]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
-    price: reader.readDouble(offsets[8]),
-    productId: reader.readString(offsets[9]),
-    quantity: reader.readDouble(offsets[10]),
-    salesDate: reader.readDateTime(offsets[11]),
-    salesId: reader.readString(offsets[12]),
-    salesPaymentId: reader.readString(offsets[13]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[5]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
+    price: reader.readDouble(offsets[7]),
+    productId: reader.readString(offsets[8]),
+    quantity: reader.readDouble(offsets[9]),
+    salesDate: reader.readDateTime(offsets[10]),
+    salesId: reader.readString(offsets[11]),
+    salesPaymentId: reader.readString(offsets[12]),
   );
   object.id = id;
   return object;
@@ -194,24 +186,22 @@ P _salesDatabaseModelDeserializeProp<P>(
     case 3:
       return (reader.readDateTime(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
-    case 5:
       return (reader.readBoolOrNull(offset)) as P;
-    case 6:
+    case 5:
       return (reader.readDateTimeOrNull(offset)) as P;
-    case 7:
+    case 6:
       return (reader.readStringOrNull(offset)) as P;
+    case 7:
+      return (reader.readDouble(offset)) as P;
     case 8:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 9:
-      return (reader.readString(offset)) as P;
-    case 10:
       return (reader.readDouble(offset)) as P;
-    case 11:
+    case 10:
       return (reader.readDateTime(offset)) as P;
-    case 12:
+    case 11:
       return (reader.readString(offset)) as P;
-    case 13:
+    case 12:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -792,142 +782,6 @@ extension SalesDatabaseModelQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'groupSalesId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'groupSalesId',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'groupSalesId',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'groupSalesId',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
-      groupSalesIdIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'groupSalesId',
-        value: '',
       ));
     });
   }
@@ -1906,20 +1760,6 @@ extension SalesDatabaseModelQuerySortBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByGroupSalesId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      sortByGroupSalesIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       sortByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAppWriteSynced', Sort.asc);
@@ -2105,20 +1945,6 @@ extension SalesDatabaseModelQuerySortThenBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByGroupSalesId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
-      thenByGroupSalesIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'groupSalesId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -2291,13 +2117,6 @@ extension SalesDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
-      distinctByGroupSalesId({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'groupSalesId', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
       distinctByIsAppWriteSynced() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isAppWriteSynced');
@@ -2396,13 +2215,6 @@ extension SalesDatabaseModelQueryProperty
       dateCreatedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dateCreated');
-    });
-  }
-
-  QueryBuilder<SalesDatabaseModel, String, QQueryOperations>
-      groupSalesIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'groupSalesId');
     });
   }
 
