@@ -40,7 +40,6 @@ isarInit() async {
         LogPurchaseAllDatabaseModelSchema,
         SalesDatabaseModelSchema,
         SalesPaymentDatabaseModelSchema,
-        GroupSalesDatabaseModelSchema,
         DeletedProductDatabaseModelSchema,
         CategoryDatabaseModelSchema,
         LogCategoryDatabaseModelSchema,

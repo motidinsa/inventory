@@ -10,6 +10,7 @@ import 'package:my_inventory/core/model/purchase/purchase_available_database_mod
 
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
 
+import '../../add_sales/repository/add_sales_repository.dart';
 import '../../core/functions/helper_functions.dart';
 import '../../core/model/product/product_database_model.dart';
 import '../../core/model/product/product_model.dart';
@@ -19,7 +20,8 @@ class EditProductRepository {
   static final Isar _isar = Get.find();
 
   static editProduct() async {
-    ProductModel productModel = EditProductController.to.productModel;
+    EditProductController editProductController = EditProductController.to;
+    ProductModel productModel = editProductController.productModel;
     AppController appController = AppController.to;
     DateTime now = DateTime.now();
     String productId = generateDatabaseId(time: now);
@@ -63,6 +65,45 @@ class EditProductRepository {
         dateCreated: now,
         localImagePath: productModel.localImagePath,
       );
+
+      if(quantityOnHand<editProductController.initialQuantityOnHand){
+        double remaining = editProductController.initialQuantityOnHand -quantityOnHand;
+        List<PurchaseAvailableDatabaseModel> purchases =
+        await AddSalesRepository.getAvailablePurchases(productId: editProductController.productId);
+        while (remaining != 0) {
+          if (remaining <= purchases.first.quantity) {
+            // await _isar.quantityCostDatabaseModels.put(
+            //   QuantityCostDatabaseModel(
+            //     salesId: salesId,
+            //     purchaseId: purchases.first.purchaseId,
+            //     quantity: remaining,
+            //   ),
+            // );
+            if (purchases.first.quantity > remaining) {
+              purchases.first.quantity -= remaining;
+              await _isar.purchaseAvailableDatabaseModels.put(purchases.first);
+            } else {
+              await _isar.purchaseAvailableDatabaseModels
+                  .delete(purchases.first.id);
+            }
+            remaining = 0;
+          } else if (double.parse(salesModel.quantity) >
+              purchases.first.quantity) {
+            remaining -= purchases.first.quantity;
+
+            await _isar.quantityCostDatabaseModels
+                .put(QuantityCostDatabaseModel(
+              salesId: salesId,
+              purchaseId: purchases.first.purchaseId,
+              quantity: purchases.first.quantity,
+            ));
+            await _isar.purchaseAvailableDatabaseModels
+                .delete(purchases.first.id);
+            purchases.removeAt(0);
+          }
+        }
+      }
+
       await _isar.productDatabaseModels.put(productDatabaseModel);
       // if (productModel.quantityOnHand.isNotEmpty) {
       //   _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(

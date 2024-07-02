@@ -65,7 +65,7 @@ class AddSalesRepository {
 
         String salesId = generateDatabaseId(time: now, identifier: i);
         List<PurchaseAvailableDatabaseModel> purchases =
-            await _getAvailablePurchases(productId: salesModel.productId);
+            await getAvailablePurchases(productId: salesModel.productId);
         ProductDatabaseModel? product = await _isar.productDatabaseModels
             .filter()
             .productIdEqualTo(salesModel.productId)
@@ -192,7 +192,7 @@ class AddSalesRepository {
     });
   }
 
-  static Future<List<PurchaseAvailableDatabaseModel>> _getAvailablePurchases(
+  static Future<List<PurchaseAvailableDatabaseModel>> getAvailablePurchases(
       {required String productId}) {
     return _isar.purchaseAvailableDatabaseModels
         .filter()
