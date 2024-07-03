@@ -15,6 +15,7 @@ import 'package:my_inventory/core/functions/add_item_functions.dart';
 import '../../../add_product/functions/add_product_functions.dart';
 import '../../../add_purchase/functions/add_purchase_functions.dart';
 import '../../../add_sales/functions/add_sales_functions.dart';
+import '../../../edit_product/functions/edit_product_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
   String currentRoute = Get.currentRoute;
@@ -57,6 +58,13 @@ onActionButtonPressed({String? redirectFrom}) async {
     } else if (redirectFrom == uomNameN) {onUnitOfMeasurementAddPressed();
     } else {
       onAddProductSaveButtonPressed();
+    }
+  }else if (currentRoute == RouteName.editProduct) {
+    if (redirectFrom == categoryNameN) {
+      onCategoryAddPressed();
+    } else if (redirectFrom == uomNameN) {onUnitOfMeasurementAddPressed();
+    } else {
+      onEditProductSaveButtonPressed();
     }
   }else if (currentRoute == RouteName.addPurchase) {
     onAddPurchaseSaveButtonPressed();

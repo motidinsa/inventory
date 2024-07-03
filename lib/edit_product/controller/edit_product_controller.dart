@@ -27,7 +27,8 @@ class EditProductController extends GetxController {
   List<CategoryDatabaseModel> categoryListFoundResult = [];
   List<UnitOfMeasurementDatabaseModel> unitOfMeasurementListFoundResult = [];
   final AppController appController = Get.find();
-
+  ProductDatabaseModel productDatabaseModel =
+      Get.find<ProductDetailController>().productDatabaseModel;
   static EditProductController get to => Get.find();
 
   @override
@@ -35,8 +36,6 @@ class EditProductController extends GetxController {
     isCategoryEmpty = AddProductRepository.getCategoryCount() == 0;
     isUnitOfMeasurementEmpty =
         AddProductRepository.getUnitOfMeasurementCount() == 0;
-    ProductDatabaseModel productDatabaseModel =
-        Get.find<ProductDetailController>().productDatabaseModel;
     // productModel.unitOfMeasurementId = productDatabaseModel.unitOfMeasurementId;
     String uomName = AddProductRepository.getUnitOfMeasurementName(
         uomId: productDatabaseModel.unitOfMeasurementId);
