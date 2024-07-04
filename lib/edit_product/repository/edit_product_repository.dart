@@ -24,7 +24,7 @@ class EditProductRepository {
     ProductModel productModel = editProductController.productModel;
     AppController appController = AppController.to;
     DateTime now = DateTime.now();
-    String productId = generateDatabaseId(time: now);
+    // String productId = generateDatabaseId(time: now);
     String productName = productModel.name.trim();
     String? description = nullIfEmpty(productModel.description?.trim());
     String? categoryId = productModel.categoryId;
@@ -49,22 +49,7 @@ class EditProductRepository {
         await saveImageToInternalStorage(
             filePath: EditProductController.to.productModel.localImagePath!);
       }
-      editProductController.productDatabaseModel
-        ..productName = productName
-        ..productId = productId
-        ..description = description
-        ..categoryId = categoryId
-        ..userAssignedProductId = userAssignedProductId
-        ..cost = cost
-        ..price = price
-        ..unitOfMeasurementId = unitOfMeasurementId
-        ..quantityOnHand = quantityOnHand
-        ..reorderQuantity = reorderQuantity
-        ..createdByUserId = userId
-        ..companyId = companyId
-        ..lastDateModified = now
-        ..lastModifiedByUserId = appController.userId
-        ..localImagePath = productModel.localImagePath;
+
       List<PurchaseAvailableDatabaseModel> purchases =
           await AddSalesRepository.getAvailablePurchases(
               productId: editProductController.productId);
@@ -73,43 +58,36 @@ class EditProductRepository {
             editProductController.initialQuantityOnHand - quantityOnHand;
 
         while (remaining != 0) {
-          if (remaining <= purchases.first.quantity) {
-            if (purchases.first.quantity > remaining) {
-              purchases.first.quantity -= remaining;
-              await _isar.purchaseAvailableDatabaseModels.put(purchases.first);
+          if (remaining <= purchases.last.quantity) {
+            if (purchases.last.quantity > remaining) {
+              purchases.last.quantity -= remaining;
+              await _isar.purchaseAvailableDatabaseModels.put(purchases.last);
             } else {
               await _isar.purchaseAvailableDatabaseModels
-                  .delete(purchases.first.id);
+                  .delete(purchases.last.id);
             }
             remaining = 0;
           } else {
-            remaining -= purchases.first.quantity;
-
-            // await _isar.quantityCostDatabaseModels
-            //     .put(QuantityCostDatabaseModel(
-            //   salesId: salesId,
-            //   purchaseId: purchases.first.purchaseId,
-            //   quantity: purchases.first.quantity,
-            // ));
+            remaining -= purchases.last.quantity;
             await _isar.purchaseAvailableDatabaseModels
-                .delete(purchases.first.id);
-            purchases.removeAt(0);
+                .delete(purchases.last.id);
+            purchases.removeLast();
           }
         }
       } else if (quantityOnHand > editProductController.initialQuantityOnHand) {
         double remaining = quantityOnHand-editProductController.initialQuantityOnHand;
         if (cost == editProductController.productDatabaseModel.cost) {
-          purchases.first.quantity += remaining;
-          purchases.first.lastDateModified = now;
-          purchases.first.lastModifiedByUserId = appController.userId;
-          await _isar.purchaseAvailableDatabaseModels.put(purchases.first);
+          purchases.last.quantity += remaining;
+          purchases.last.lastDateModified = now;
+          purchases.last.lastModifiedByUserId = appController.userId;
+          await _isar.purchaseAvailableDatabaseModels.put(purchases.last);
         } else {
           String key = generateDatabaseId(
             time: now,
           );
           await _isar.purchaseAvailableDatabaseModels.put(PurchaseAvailableDatabaseModel(
             cost: cost,
-            productId: productId,
+            productId: editProductController.productDatabaseModel.productId,
             companyId: companyId,
             lastDateModified: now,
             lastModifiedByUserId: appController.userId,
@@ -123,7 +101,21 @@ class EditProductRepository {
           ));
         }
       }
-
+      editProductController.productDatabaseModel
+        ..productName = productName
+        ..description = description
+        ..categoryId = categoryId
+        ..userAssignedProductId = userAssignedProductId
+        ..cost = cost
+        ..price = price
+        ..unitOfMeasurementId = unitOfMeasurementId
+        ..quantityOnHand = quantityOnHand
+        ..reorderQuantity = reorderQuantity
+        ..createdByUserId = userId
+        ..companyId = companyId
+        ..lastDateModified = now
+        ..lastModifiedByUserId = appController.userId
+        ..localImagePath = productModel.localImagePath;
       await _isar.productDatabaseModels
           .put(editProductController.productDatabaseModel);
       // if (productModel.quantityOnHand.isNotEmpty) {
