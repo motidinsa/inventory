@@ -61,6 +61,8 @@ class EditProductRepository {
           if (remaining <= purchases.last.quantity) {
             if (purchases.last.quantity > remaining) {
               purchases.last.quantity -= remaining;
+              purchases.last.lastDateModified = now;
+              purchases.last.lastModifiedByUserId = appController.userId;
               await _isar.purchaseAvailableDatabaseModels.put(purchases.last);
             } else {
               await _isar.purchaseAvailableDatabaseModels
@@ -69,6 +71,8 @@ class EditProductRepository {
             remaining = 0;
           } else {
             remaining -= purchases.last.quantity;
+            purchases.last.lastDateModified = now;
+            purchases.last.lastModifiedByUserId = appController.userId;
             await _isar.purchaseAvailableDatabaseModels
                 .delete(purchases.last.id);
             purchases.removeLast();
