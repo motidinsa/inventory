@@ -8,17 +8,15 @@ import 'package:my_inventory/product_list/controller/product_list_controller.dar
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import '../../product_detail/controller/product_detail_controller.dart';
+import '../repository/product_list_repository.dart';
 
 onProductListTextFieldChange({
   required String data,
 }) {
-  ProductListController productListController = Get.find();
-  productListController.searchedText(data);
-  final Isar isar = Get.find();
-  productListController.productList(isar.productDatabaseModels
-      .filter()
-      .productNameContains(data, caseSensitive: false)
-      .findAllSync());
+  ProductListController productListController = ProductListController.to;
+  productListController.searchedText=data;
+  productListController.productList = ProductListRepository.searchProduct(data: data);
+  productListController.update();
 }
 
 onMiniProductDetailPressed(

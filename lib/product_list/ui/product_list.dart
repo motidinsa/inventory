@@ -7,11 +7,10 @@ import 'package:my_inventory/core/ui/custom_text_field.dart';
 import 'package:my_inventory/product_list/controller/product_list_controller.dart';
 import 'package:my_inventory/product_list/ui/mini_product_detail.dart';
 
+import 'add_new_product.dart';
+
 class ProductList extends StatelessWidget {
   ProductList({super.key});
-
-  final ProductListController productListController =
-      Get.put(ProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +18,32 @@ class ProductList extends StatelessWidget {
       pageName: productListN,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView(
-          children: [
-            sizedBox(height: 15),
-            const CustomTextField(
-              title: productListN,
-            ),
-            // sizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: GetBuilder<ProductListController>(
-                builder: (productListController) {
-                  return ListView.separated(
+        child: GetBuilder<ProductListController>(
+          builder: (productListController) {
+            return
+              productListController.isEmpty == true
+                ? const AddNewProduct()
+                :
+            ListView(
+              children: [
+                SizedBox(height: 15),
+                const CustomTextField(
+                  title: productListN,
+                ),
+                // sizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child:productListController.productList.isEmpty
+                      ? Center(
+                    child: Text(
+                      noProductFoundN,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey.shade700),
+                    ),
+                  )
+                      :  ListView.separated(
                     shrinkWrap: true,
                     reverse: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -40,11 +53,11 @@ class ProductList extends StatelessWidget {
                     ),
                     itemCount: productListController.productList.length,
                     separatorBuilder: (ctx, index) => SizedBox(height: 15),
-                  );
-                }
-              ),
-            ),
-          ],
+                  ),
+                ),
+              ],
+            );
+          }
         ),
       ),
     );

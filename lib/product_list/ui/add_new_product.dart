@@ -4,8 +4,8 @@ import 'package:my_inventory/core/constants/name_constants.dart';
 import 'package:my_inventory/core/constants/widget_constants.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
-class AddNewCustomer extends StatelessWidget {
-  const AddNewCustomer({super.key});
+class AddNewProduct extends StatelessWidget {
+  const AddNewProduct({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AddNewCustomer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            noCustomerFoundN,
+            noProductFoundN,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -23,7 +23,7 @@ class AddNewCustomer extends StatelessWidget {
           SizedBox(height: 10),
           TextButton(
             onPressed: () {
-              Get.toNamed(RouteName.addCustomer);
+              Get.toNamed(RouteName.addProduct);
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -35,7 +35,7 @@ class AddNewCustomer extends StatelessWidget {
               backgroundColor: Colors.green.shade50,
             ),
             child: const Text(
-              addCustomerN,
+              addProductN,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
               ),

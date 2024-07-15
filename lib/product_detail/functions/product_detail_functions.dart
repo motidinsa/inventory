@@ -31,7 +31,8 @@ getUomName({required String id}) {  final Isar isar = Get.find();
   return name;
 }
 
-deleteProduct() async {  final Isar isar = Get.find();
+deleteProduct() async {
+  // final Isar isar = Get.find();
   // await isar.writeTxn(() async {
   //   await isar.productDatabaseModels.delete(ProductDetailController.to.isarId);
   //   await isar.deletedProductDatabaseModels.put(DeletedProductDatabaseModel(
@@ -41,9 +42,9 @@ deleteProduct() async {  final Isar isar = Get.find();
   //     addedFrom: productDetailDC,
   //   ));
   // });
-  ProductListController.to.productList(isar.productDatabaseModels
-      .filter()
-      .productNameContains(ProductListController.to.searchedText.value)
-      .findAllSync());
-  Get.back();
+  // ProductListController.to.productList(isar.productDatabaseModels
+  //     .filter()
+  //     .productNameContains(ProductListController.to.searchedText.value)
+  //     .findAllSync());
+  // Get.back();
 }

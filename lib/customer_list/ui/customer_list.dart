@@ -26,7 +26,7 @@ class CustomerList extends StatelessWidget {
               ? const AddNewCustomer()
               : ListView(
                   children: [
-                    sizedBox(height: 15),
+                    SizedBox(height: 15),
                     const CustomTextField(
                       title: customerListN,
                     ),

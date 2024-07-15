@@ -52,7 +52,7 @@ class ProfileDetail extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
-                        sizedBox(width: 20),
+                        SizedBox(width: 20),
                         Icon(
                           Icons.edit,
                           color: Colors.green.shade700,

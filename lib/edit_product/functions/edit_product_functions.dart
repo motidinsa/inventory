@@ -12,6 +12,9 @@ import 'package:my_inventory/core/functions/helper_functions.dart';
 import '../../add_product/repository/add_product_repository.dart';
 import '../../core/controller/app_controller.dart';
 import '../../core/model/product/product_model.dart';
+import '../../product_detail/controller/product_detail_controller.dart';
+import '../../product_list/controller/product_list_controller.dart';
+import '../../product_list/repository/product_list_repository.dart';
 import '../repository/edit_product_repository.dart';
 
 onEditProductSaveButtonPressed() async {
@@ -23,6 +26,13 @@ onEditProductSaveButtonPressed() async {
     editProductController.update();
     try {
       await EditProductRepository.editProduct();
+      ProductListController productListController =
+          ProductListController.to;
+      productListController.productList =
+          ProductListRepository.searchProduct(
+              data: productListController.searchedText);
+      productListController.update();
+      ProductDetailController.to.update();
       showSnackbar(message: successfullyEditedProductN, success: true);
       Get.back();
     } on Exception {

@@ -70,13 +70,13 @@ class ProductDetail extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'Edit',
+                              editN,
                               style: TextStyle(
                                   color: Colors.green.shade700,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
-                            sizedBox(width: 20),
+                            SizedBox(width: 20),
                             Icon(
                               Icons.edit,
                               color: Colors.green.shade700,
