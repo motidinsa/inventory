@@ -19,7 +19,6 @@ import 'package:my_inventory/product_list/ui/product_detail_single_description.d
 import '../../core/ui/shadowed_container.dart';
 
 class ProductDetail extends StatelessWidget {
-  final ProductDatabaseModel productDatabaseModel =Get.arguments;
       // ProductDetailController.to.productDatabaseModel;
   // final int index;
   final DateFormat dateFormatter = DateFormat("MMM d, y");
@@ -28,21 +27,23 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailController(productDatabaseModel: productDatabaseModel));
+    // Get.put(ProductDetailController(productDatabaseModel: productDatabaseModel));
 
-    var titleToData = {
-      categoryN:
-          getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
-      productIdN: productDatabaseModel.userAssignedProductId ?? '',
-      costN: productDatabaseModel.cost,
-      priceN: productDatabaseModel.price,
-      quantityOnHandN: productDatabaseModel.quantityOnHand,
-      reorderQuantityN: productDatabaseModel.reorderQuantity,
-      uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),
-    };
+
     return BodyWrapper(
       pageName: productDetailN,
-      body: GetBuilder<ProductDetailController>(builder: (_) {
+      body: GetBuilder<ProductDetailController>(builder: (productDetailController) {
+        final ProductDatabaseModel productDatabaseModel =productDetailController.productDatabaseModel;
+        var titleToData = {
+          categoryN:
+          getProductCategoryName(id: productDatabaseModel.categoryId) ?? '',
+          productIdN: productDatabaseModel.userAssignedProductId ?? '',
+          costN: productDatabaseModel.cost,
+          priceN: productDatabaseModel.price,
+          quantityOnHandN: productDatabaseModel.quantityOnHand,
+          reorderQuantityN: productDatabaseModel.reorderQuantity,
+          uomSN: getUomName(id: productDatabaseModel.unitOfMeasurementId),
+        };
         return ListView(
           children: [
             SizedBox(height: 20),

@@ -79,8 +79,9 @@ class EditProductRepository {
           }
         }
       } else if (quantityOnHand > editProductController.initialQuantityOnHand) {
-        double remaining = quantityOnHand-editProductController.initialQuantityOnHand;
-        if (cost == editProductController.productDatabaseModel.cost) {
+        double remaining =
+            quantityOnHand - editProductController.initialQuantityOnHand;
+        if (cost == editProductController.productDatabaseModel.cost && purchases.isNotEmpty) {
           purchases.last.quantity += remaining;
           purchases.last.lastDateModified = now;
           purchases.last.lastModifiedByUserId = appController.userId;
@@ -89,7 +90,8 @@ class EditProductRepository {
           String key = generateDatabaseId(
             time: now,
           );
-          await _isar.purchaseAvailableDatabaseModels.put(PurchaseAvailableDatabaseModel(
+          await _isar.purchaseAvailableDatabaseModels
+              .put(PurchaseAvailableDatabaseModel(
             cost: cost,
             productId: editProductController.productDatabaseModel.productId,
             companyId: companyId,
@@ -98,10 +100,9 @@ class EditProductRepository {
             addedByUserId: appController.userId,
             dateCreated: now,
             purchaseDate: now,
-            quantity:
-            remaining,
+            quantity: remaining,
             purchaseId: key,
-            vendorId: purchases.first.vendorId,
+            vendorId: purchases.isNotEmpty?purchases.first.vendorId:null,
           ));
         }
       }

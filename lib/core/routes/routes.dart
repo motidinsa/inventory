@@ -44,6 +44,7 @@ import '../../edit_product/controller/edit_product_controller.dart';
 import '../../inventory_report/controller/inventory_report_controller.dart';
 import '../../inventory_report/ui/inventory_report.dart';
 import '../../payment_report/controller/payment_report_controller.dart';
+import '../../product_detail/controller/product_detail_controller.dart';
 import '../../purchase_report/controller/purchase_report_controller.dart';
 import '../../sales_report/controller/sales_report_controller.dart';
 
@@ -103,14 +104,13 @@ List<GetPage> routes = [
       page: () => ProductList(),
       binding: BindingsBuilder.put(() => ProductListController())),
   GetPage(
-    name: RouteName.productDetail,
-    page: () => ProductDetail(),
-  ),
+      name: RouteName.productDetail,
+      page: () => ProductDetail(),
+      binding: BindingsBuilder.put(() => ProductDetailController())),
   GetPage(
-    name: RouteName.editProduct,
-    page: () => EditProduct(),
-      binding: BindingsBuilder.put(() => EditProductController())
-  ),
+      name: RouteName.editProduct,
+      page: () => EditProduct(),
+      binding: BindingsBuilder.put(() => EditProductController())),
   GetPage(
     name: RouteName.creditHistory,
     page: () => const CreditHistory(),

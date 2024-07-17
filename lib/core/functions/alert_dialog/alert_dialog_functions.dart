@@ -21,6 +21,7 @@ import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dar
 
 import '../../../add_purchase/controller/add_purchase_controller.dart';
 import '../../../add_purchase/functions/add_purchase_functions.dart';
+import '../../../edit_product/functions/edit_product_functions.dart';
 
 String? onAddProductTitleToData({required String title}) {
   ProductModel productModel = AddProductController.to.productModel;
@@ -53,8 +54,8 @@ onAlertDialogOptionSelect(
       index: index,
     );
   } else if (currentRoute == RouteName.editProduct) {
-    // onEditProductAlertDialogOptionSelect(
-    //     title: title,);
+    onEditProductAlertDialogOptionSelect(
+        title: title, index: index,);
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseSearchProductAlertDialogOptionSelect(
         listIndex: listIndex, title: title, index: index);
