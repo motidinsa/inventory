@@ -43,7 +43,10 @@ class AddProduct extends StatelessWidget {
         child: GetBuilder<AddProductController>(
           builder: (addProductController) {
             if (addProductController.isLoading) {
-              context.loaderOverlay.show();
+              executeAfterBuild((){
+                context.loaderOverlay.show();
+              });
+
             } else {
               executeAfterBuild(() {
                 context.loaderOverlay.hide();
@@ -62,7 +65,7 @@ class AddProduct extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) => index == 4
-                      ?  Row(
+                      ?  const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Expanded(

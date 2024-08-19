@@ -13,6 +13,8 @@ import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_
 import '../../core/functions/helper_functions.dart';
 import '../../core/model/product/product_database_model.dart';
 import '../../core/model/product/product_model.dart';
+import '../../product_list/controller/product_list_controller.dart';
+import '../../product_list/repository/product_list_repository.dart';
 import '../controller/add_product_controller.dart';
 
 class AddProductRepository {
@@ -75,6 +77,7 @@ class AddProductRepository {
   static addProduct() async {
     ProductModel productModel = AddProductController.to.productModel;
     AppController appController = AppController.to;
+    ProductListController productListController = ProductListController.to;
     DateTime now = DateTime.now();
     String productId = generateDatabaseId(time: now);
     String productName = productModel.name.trim();
@@ -159,7 +162,11 @@ class AddProductRepository {
           localImagePath: productModel.localImagePath,
         ),
       );
+
     });
+    productListController.productList =  ProductListRepository.getAllProducts();
+    productListController.isEmpty=false;
+    productListController.update();
   }
 
   static void clearProductImagePath({required String productId}) async {

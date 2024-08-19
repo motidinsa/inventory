@@ -18,47 +18,47 @@ class ProductList extends StatelessWidget {
       pageName: productListN,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: GetBuilder<ProductListController>(
-          builder: (productListController) {
-            return
-              productListController.isEmpty == true
-                ? const AddNewProduct()
-                :
-            ListView(
-              children: [
-                SizedBox(height: 15),
-                const CustomTextField(
-                  title: productListN,
-                ),
-                // sizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child:productListController.productList.isEmpty
-                      ? Center(
-                    child: Text(
-                      noProductFoundN,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey.shade700),
+        child:
+            GetBuilder<ProductListController>(builder: (productListController) {
+          return productListController.isEmpty == true
+              ? const AddNewProduct()
+              : ListView(
+                  children: [
+                    SizedBox(height: 15),
+                    const CustomTextField(
+                      title: productListN,
                     ),
-                  )
-                      :  ListView.separated(
-                    shrinkWrap: true,
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (ctx, index) => MiniProductDetail(
-                      productModel: productListController.productList[index],
-                      index: index,
+                    // sizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: productListController.productList.isEmpty
+                          ? Center(
+                              child: Text(
+                                noProductFoundN,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.grey.shade700),
+                              ),
+                            )
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              reverse: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (ctx, index) => MiniProductDetail(
+                                productModel:
+                                    productListController.productList[index],
+                                index: index,
+                              ),
+                              itemCount:
+                                  productListController.productList.length,
+                              separatorBuilder: (ctx, index) =>
+                                  SizedBox(height: 15),
+                            ),
                     ),
-                    itemCount: productListController.productList.length,
-                    separatorBuilder: (ctx, index) => SizedBox(height: 15),
-                  ),
-                ),
-              ],
-            );
-          }
-        ),
+                  ],
+                );
+        }),
       ),
     );
   }
