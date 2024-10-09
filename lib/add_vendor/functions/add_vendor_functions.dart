@@ -18,7 +18,7 @@ onAddVendorTextFieldChange({
     addVendorController.vendorModel.name = data;
   } else if (title == phoneNumberN) {
     addVendorController.vendorModel.phoneNumber = data;
-  }else if (title == contactPersonN) {
+  } else if (title == contactPersonN) {
     addVendorController.vendorModel.contactPerson = data;
   } else if (title == addressN) {
     addVendorController.vendorModel.address = data;
@@ -30,24 +30,24 @@ onAddVendorTextFieldChange({
 }
 
 onAddVendorSaveButtonPressed() async {
+  final AddVendorController addVendorController = AddVendorController.to;
+  addVendorController.isSaveButtonPressed = true;
+  addVendorController.update();
   if (AppController.to.formKey.currentState!.validate()) {
-    final AddVendorController addVendorController = AddVendorController.to;
     addVendorController.isLoading = true;
-    addVendorController.update();
+
     try {
       await AddVendorRepository.addVendor();
       if (Get.previousRoute == RouteName.vendorList) {
         VendorListController vendorListController = VendorListController.to;
-        vendorListController.vendorList =
-            VendorListRepository.getAllVendors();
+        vendorListController.vendorList = VendorListRepository.getAllVendors();
         vendorListController.isEmpty = false;
         vendorListController.update();
       }
-      showSnackbar(message: successfullyAddedVendorN,success: true);
+      showSnackbar(message: successfullyAddedVendorN, success: true);
       Get.back();
-
     } on Exception {
-      showSnackbar(message: someErrorOccurredN,success: false);
+      showSnackbar(message: someErrorOccurredN, success: false);
     } finally {
       addVendorController.isLoading = false;
       addVendorController.update();

@@ -223,7 +223,7 @@ Widget? getSuffixWidget({required String title}) {
   } else if (hasSearchIcon(title: title)) {
     suffixWidget = IconButton(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      onPressed: () {},
+      onPressed: null,
       icon: Icon(
         Icons.search_rounded,
         size: 26,

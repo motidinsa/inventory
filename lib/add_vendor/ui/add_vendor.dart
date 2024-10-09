@@ -26,6 +26,7 @@ class AddVendor extends StatelessWidget {
     cityN,
     emailN
   ];
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddVendorController>(builder: (addVendorController) {
@@ -40,6 +41,9 @@ class AddVendor extends StatelessWidget {
         pageName: addVendorN,
         body: Form(
           key: AppController.to.formKey,
+          autovalidateMode: addVendorController.isSaveButtonPressed
+              ? AutovalidateMode.always
+              : null,
           child: Center(
             child: SizedBox(
               width: context.responsive<double>(
@@ -58,8 +62,7 @@ class AddVendor extends StatelessWidget {
                       ),
                       shrinkWrap: true,
                       itemCount: titles.length,
-                      separatorBuilder: (ctx, index) =>
-                          sizedBox(height: 15),
+                      separatorBuilder: (ctx, index) => sizedBox(height: 15),
                     ),
                   ),
                   const ActionButton(),

@@ -41,18 +41,16 @@ onTextFieldChange({
     onEditProductTextFieldChange(data: data,  title: title!);
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseTextFieldChange(data: data, index: index, title: title);
-  } else if (currentRoute == productListN) {
-    onProductListTextFieldChange(data: data);
   } else if (currentRoute == RouteName.customerList) {
     onCustomerListTextFieldChange(data: data);
-  } else if (currentRoute == vendorListN) {
-    onVendorListTextFieldChange(data: data);
-  }else if (currentRoute == RouteName.addVendor) {
+  } else if (currentRoute == RouteName.addVendor) {
     onAddVendorTextFieldChange(data: data, title: title!);
   }else if (currentRoute == RouteName.vendorList) {
     onVendorListTextFieldChange(data: data);
   }else if (currentRoute == RouteName.editVendor) {
     onEditVendorTextFieldChange(data: data, title: title!);
+  }else if (currentRoute == RouteName.productList) {
+    onProductListTextFieldChange(data: data);
   }
 }
 

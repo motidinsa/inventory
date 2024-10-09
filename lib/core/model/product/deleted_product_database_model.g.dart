@@ -55,7 +55,7 @@ const DeletedProductDatabaseModelSchema = CollectionSchema(
   getId: _deletedProductDatabaseModelGetId,
   getLinks: _deletedProductDatabaseModelGetLinks,
   attach: _deletedProductDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _deletedProductDatabaseModelEstimateSize(

@@ -90,7 +90,7 @@ const SalesPaymentDatabaseModelSchema = CollectionSchema(
   getId: _salesPaymentDatabaseModelGetId,
   getLinks: _salesPaymentDatabaseModelGetLinks,
   attach: _salesPaymentDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _salesPaymentDatabaseModelEstimateSize(

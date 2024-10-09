@@ -85,7 +85,7 @@ const LogPurchaseAllDatabaseModelSchema = CollectionSchema(
   getId: _logPurchaseAllDatabaseModelGetId,
   getLinks: _logPurchaseAllDatabaseModelGetLinks,
   attach: _logPurchaseAllDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logPurchaseAllDatabaseModelEstimateSize(

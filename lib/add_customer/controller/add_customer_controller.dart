@@ -3,6 +3,7 @@ import 'package:my_inventory/core/model/customer/customer_model.dart';
 
 class AddCustomerController extends GetxController {
   bool isLoading = false;
+  bool isSaveButtonPressed = false;
   CustomerModel customerModel = CustomerModel(
     name: '',
   );

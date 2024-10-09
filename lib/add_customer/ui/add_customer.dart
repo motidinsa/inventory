@@ -40,6 +40,9 @@ class AddCustomer extends StatelessWidget {
         pageName: addCustomerN,
         body: Form(
           key: AppController.to.formKey,
+          autovalidateMode: addCustomerController.isSaveButtonPressed
+              ? AutovalidateMode.always
+              : null,
           child: Center(
             child: SizedBox(
               width: context.responsive<double>(
@@ -48,13 +51,12 @@ class AddCustomer extends StatelessWidget {
               ),
               child: ListView(
                 children: [
-                  sizedBox(height: 20),
+                  SizedBox(height: 20),
                   ShadowedContainer(
                     child: ListView.separated(
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) => CustomTextField2(
                         title: titles[index],
-
                       ),
                       shrinkWrap: true,
                       itemCount: titles.length,

@@ -55,7 +55,7 @@ const LogDeletedVendorDatabaseModelSchema = CollectionSchema(
   getId: _logDeletedVendorDatabaseModelGetId,
   getLinks: _logDeletedVendorDatabaseModelGetLinks,
   attach: _logDeletedVendorDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logDeletedVendorDatabaseModelEstimateSize(

@@ -14,6 +14,7 @@ import 'package:my_inventory/core/model/vendor/vendor_database_model.dart';
 import 'package:my_inventory/core/packages/custom_date_picker.dart';
 
 import '../../../add_purchase/controller/add_purchase_controller.dart';
+import '../helper_functions.dart';
 
 onProfileEditPressed() {
   if (Get.currentRoute == RouteName.customerDetail) {
@@ -25,6 +26,7 @@ onProfileEditPressed() {
 
 onSingleProfileDetailPressed({required int index}) {
   String currentRoute = Get.currentRoute;
+  unFocus();
   if (currentRoute == RouteName.customerList) {
     Get.toNamed(RouteName.customerDetail,
         arguments: CustomerListController.to.customerList[index]);

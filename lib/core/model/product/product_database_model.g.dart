@@ -120,7 +120,7 @@ const ProductDatabaseModelSchema = CollectionSchema(
   getId: _productDatabaseModelGetId,
   getLinks: _productDatabaseModelGetLinks,
   attach: _productDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _productDatabaseModelEstimateSize(

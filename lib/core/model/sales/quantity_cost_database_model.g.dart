@@ -45,7 +45,7 @@ const QuantityCostDatabaseModelSchema = CollectionSchema(
   getId: _quantityCostDatabaseModelGetId,
   getLinks: _quantityCostDatabaseModelGetLinks,
   attach: _quantityCostDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _quantityCostDatabaseModelEstimateSize(

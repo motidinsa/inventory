@@ -95,7 +95,7 @@ const LogVendorDatabaseModelSchema = CollectionSchema(
   getId: _logVendorDatabaseModelGetId,
   getLinks: _logVendorDatabaseModelGetLinks,
   attach: _logVendorDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logVendorDatabaseModelEstimateSize(

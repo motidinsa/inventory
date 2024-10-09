@@ -11,7 +11,6 @@ class ProductListRepository {
   static List<ProductDatabaseModel> getAllProducts() {
     return _isar.productDatabaseModels
         .where()
-        .sortByDateCreatedDesc()
         .findAllSync();
   }
 

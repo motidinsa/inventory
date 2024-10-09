@@ -120,7 +120,7 @@ const LogProductDatabaseModelSchema = CollectionSchema(
   getId: _logProductDatabaseModelGetId,
   getLinks: _logProductDatabaseModelGetLinks,
   attach: _logProductDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logProductDatabaseModelEstimateSize(

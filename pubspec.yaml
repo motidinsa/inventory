@@ -36,8 +36,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   appwrite: ^11.0.1
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
+  isar:
+    version: 3.1.8
+    hosted: https://pub.isar-community.dev/
+  isar_flutter_libs: # contains Isar Core
+    version: 3.1.8
+    hosted: https://pub.isar-community.dev/
   path_provider: ^2.1.2
   smooth_corner: ^1.1.0
   get: ^4.6.6
@@ -72,7 +76,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  isar_generator: ^3.1.0+1
+  isar_generator:
+    version: 3.1.8
+    hosted: https://pub.isar-community.dev/
   envied_generator: ^0.5.4+1
   build_runner: ^2.4.8
   hive_generator: ^2.0.1

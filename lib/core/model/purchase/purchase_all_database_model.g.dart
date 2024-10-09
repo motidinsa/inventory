@@ -85,7 +85,7 @@ const PurchaseAllDatabaseModelSchema = CollectionSchema(
   getId: _purchaseAllDatabaseModelGetId,
   getLinks: _purchaseAllDatabaseModelGetLinks,
   attach: _purchaseAllDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _purchaseAllDatabaseModelEstimateSize(

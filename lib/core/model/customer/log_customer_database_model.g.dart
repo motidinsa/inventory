@@ -90,7 +90,7 @@ const LogCustomerDatabaseModelSchema = CollectionSchema(
   getId: _logCustomerDatabaseModelGetId,
   getLinks: _logCustomerDatabaseModelGetLinks,
   attach: _logCustomerDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logCustomerDatabaseModelEstimateSize(

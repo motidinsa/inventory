@@ -9,6 +9,7 @@ import 'package:my_inventory/core/model/purchase/purchase_all_database_model.dar
 import 'package:my_inventory/core/model/purchase/purchase_available_database_model.dart';
 
 import 'package:my_inventory/core/model/unit_of_measurement/unit_of_measurement_database_model.dart';
+import 'package:my_inventory/core/routes/route_names.dart';
 
 import '../../core/functions/helper_functions.dart';
 import '../../core/model/product/product_database_model.dart';
@@ -77,7 +78,6 @@ class AddProductRepository {
   static addProduct() async {
     ProductModel productModel = AddProductController.to.productModel;
     AppController appController = AppController.to;
-    ProductListController productListController = ProductListController.to;
     DateTime now = DateTime.now();
     String productId = generateDatabaseId(time: now);
     String productName = productModel.name.trim();
@@ -164,9 +164,13 @@ class AddProductRepository {
       );
 
     });
-    productListController.productList =  ProductListRepository.getAllProducts();
-    productListController.isEmpty=false;
-    productListController.update();
+    if(Get.previousRoute == RouteName.productList){
+      ProductListController productListController = ProductListController.to;
+      productListController.productList =  ProductListRepository.getAllProducts();
+      productListController.isEmpty=false;
+      productListController.update();
+    }
+
   }
 
   static void clearProductImagePath({required String productId}) async {

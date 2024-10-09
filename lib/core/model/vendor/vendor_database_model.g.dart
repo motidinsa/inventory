@@ -95,7 +95,7 @@ const VendorDatabaseModelSchema = CollectionSchema(
   getId: _vendorDatabaseModelGetId,
   getLinks: _vendorDatabaseModelGetLinks,
   attach: _vendorDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _vendorDatabaseModelEstimateSize(

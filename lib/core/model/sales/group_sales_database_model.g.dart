@@ -40,7 +40,7 @@ const GroupSalesDatabaseModelSchema = CollectionSchema(
   getId: _groupSalesDatabaseModelGetId,
   getLinks: _groupSalesDatabaseModelGetLinks,
   attach: _groupSalesDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _groupSalesDatabaseModelEstimateSize(

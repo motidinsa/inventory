@@ -35,70 +35,68 @@ class AddProduct extends StatelessWidget {
     return BodyWrapper(
       pageName: addProductN,
       body: PopScope(
-        onPopInvoked: (isPopped) {
+        onPopInvokedWithResult: (isPopped,result) {
           if (isPopped) {
             clearTemporaryFile();
           }
         },
-        child: GetBuilder<AddProductController>(
-          builder: (addProductController) {
-            if (addProductController.isLoading) {
-              executeAfterBuild((){
-                context.loaderOverlay.show();
-              });
-
-            } else {
-              executeAfterBuild(() {
-                context.loaderOverlay.hide();
-              });
-            }
-            return Form(
-              key: AppController.to.formKey,
-              autovalidateMode: addProductController.isSubmitButtonPressed?AutovalidateMode.always:null,
-
-              child: ListView(
-                children: [
-                  const SizedBox(height: 20),
-              ShadowedContainer(
-
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) => index == 4
-                      ?  const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        child: CustomTextField2(
-                          title: costN,
-                          // labelText: title,
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Expanded(
-                        child: CustomTextField2(
-                          title: priceN,
-                          // labelText: title,
-                        ),
-                      ),
-                    ],
-                  )
-                      : index == 8
-                      ? AddProductImage()
-                      : CustomTextField2(
-                    title: titleList[index],
-                    // labelText: titleList[index],
-                  ),
-                  separatorBuilder: (ctx, index) => sizedBox(height: 15),
-                  itemCount: titleList.length,
-                ),
-              ),
-                  const ActionButton(),
-                ],
-              ),
-            );
+        child:
+            GetBuilder<AddProductController>(builder: (addProductController) {
+          if (addProductController.isLoading) {
+            executeAfterBuild(() {
+              context.loaderOverlay.show();
+            });
+          } else {
+            executeAfterBuild(() {
+              context.loaderOverlay.hide();
+            });
           }
-        ),
+          return Form(
+            key: AppController.to.formKey,
+            autovalidateMode: addProductController.isSubmitButtonPressed
+                ? AutovalidateMode.always
+                : null,
+            child: ListView(
+              children: [
+                const SizedBox(height: 20),
+                ShadowedContainer(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) => index == 4
+                        ? const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Expanded(
+                                child: CustomTextField2(
+                                  title: costN,
+                                  // labelText: title,
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Expanded(
+                                child: CustomTextField2(
+                                  title: priceN,
+                                  // labelText: title,
+                                ),
+                              ),
+                            ],
+                          )
+                        : index == 8
+                            ? AddProductImage()
+                            : CustomTextField2(
+                                title: titleList[index],
+                                // labelText: titleList[index],
+                              ),
+                    separatorBuilder: (ctx, index) => SizedBox(height: 15),
+                    itemCount: titleList.length,
+                  ),
+                ),
+                const ActionButton(),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

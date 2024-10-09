@@ -85,7 +85,7 @@ const SignUpDatabaseModelSchema = CollectionSchema(
   getId: _signUpDatabaseModelGetId,
   getLinks: _signUpDatabaseModelGetLinks,
   attach: _signUpDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _signUpDatabaseModelEstimateSize(

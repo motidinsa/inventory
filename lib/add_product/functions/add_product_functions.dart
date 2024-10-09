@@ -24,8 +24,9 @@ onAddProductSaveButtonPressed() async {
   addProductController.isSubmitButtonPressed = true;
   addProductController.update();
   if (AppController.to.formKey.currentState!.validate()) {
+    unFocus();
     addProductController.isLoading = true;
-    addProductController.update();
+    // addProductController.update();
     try {
       await AddProductRepository.addProduct();
       showSnackbar(message: successfullyAddedProductN, success: true);

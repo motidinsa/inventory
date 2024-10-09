@@ -80,7 +80,7 @@ const LogCategoryDatabaseModelSchema = CollectionSchema(
   getId: _logCategoryDatabaseModelGetId,
   getLinks: _logCategoryDatabaseModelGetLinks,
   attach: _logCategoryDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logCategoryDatabaseModelEstimateSize(

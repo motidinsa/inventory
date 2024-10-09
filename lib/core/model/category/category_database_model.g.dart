@@ -70,7 +70,7 @@ const CategoryDatabaseModelSchema = CollectionSchema(
   getId: _categoryDatabaseModelGetId,
   getLinks: _categoryDatabaseModelGetLinks,
   attach: _categoryDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _categoryDatabaseModelEstimateSize(

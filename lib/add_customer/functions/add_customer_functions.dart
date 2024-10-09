@@ -28,28 +28,29 @@ onAddCustomerTextFieldChange({
 }
 
 onAddCustomerSaveButtonPressed() async {
-
+  AddCustomerController addCustomerController = AddCustomerController.to;
+  addCustomerController.isSaveButtonPressed = true;
+  addCustomerController.update();
   if (AppController.to.formKey.currentState!.validate()) {
-    AddCustomerController addCustomerController = AddCustomerController.to;
     addCustomerController.isLoading = true;
-    addCustomerController.update();
-    try {
-        await AddCustomerRepository.addCustomer();
-        if (Get.previousRoute == RouteName.customerList) {
-          CustomerListController customerListController = CustomerListController.to;
-          customerListController.customerList =
-              CustomerListRepository.getAllCustomers();
-          customerListController.isEmpty = false;
-          customerListController.update();
-        }
-        showSnackbar(message: successfullyAddedCustomerN,success: true);
-        Get.back();
 
-      } on Exception {
-        showSnackbar(message: someErrorOccurredN,success: false);
-      } finally {
-        addCustomerController.isLoading = false;
-        addCustomerController.update();
+    try {
+      await AddCustomerRepository.addCustomer();
+      if (Get.previousRoute == RouteName.customerList) {
+        CustomerListController customerListController =
+            CustomerListController.to;
+        customerListController.customerList =
+            CustomerListRepository.getAllCustomers();
+        customerListController.isEmpty = false;
+        customerListController.update();
       }
+      showSnackbar(message: successfullyAddedCustomerN, success: true);
+      Get.back();
+    } on Exception {
+      showSnackbar(message: someErrorOccurredN, success: false);
+    } finally {
+      addCustomerController.isLoading = false;
+      addCustomerController.update();
+    }
   }
 }

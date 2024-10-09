@@ -8,8 +8,6 @@ import 'package:my_inventory/core/ui/profile/profile_mini_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/add_new_customer.dart';
 
-import '../../core/model/customer/customer_database_model.dart';
-import '../repository/customer_list_repository.dart';
 
 class CustomerList extends StatelessWidget {
   const CustomerList({super.key});
@@ -52,7 +50,7 @@ class CustomerList extends StatelessWidget {
                               ),
                               itemCount: customerListController.customerList.length,
                               separatorBuilder: (ctx, index) =>
-                                  sizedBox(height: 12),
+                                  SizedBox(height: 12),
                             ),
                     ),
                   ],

@@ -70,7 +70,7 @@ const UnitOfMeasurementDatabaseModelSchema = CollectionSchema(
   getId: _unitOfMeasurementDatabaseModelGetId,
   getLinks: _unitOfMeasurementDatabaseModelGetLinks,
   attach: _unitOfMeasurementDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _unitOfMeasurementDatabaseModelEstimateSize(

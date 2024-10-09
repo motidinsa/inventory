@@ -58,9 +58,16 @@ onImageSourceButtonPressed({
           path.join(dir, '$imageName${path.extension(value.name)}');
       try {
         await File(value.path).rename(newPath);
-        AddProductController addProductController = AddProductController.to;
-        addProductController.productModel.localImagePath = newPath;
-        addProductController.update();
+        if(Get.currentRoute == RouteName.addProduct){
+          AddProductController addProductController = AddProductController.to;
+          addProductController.productModel.localImagePath = newPath;
+          addProductController.update();
+        }else if(Get.currentRoute == RouteName.editProduct){
+          EditProductController editProductController = EditProductController.to;
+          editProductController.productModel.localImagePath = newPath;
+          editProductController.update();
+        }
+
         Get.back();
       } catch (e) {
         showSnackbar(message: unableToLoadImageN, success: false);

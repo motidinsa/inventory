@@ -54,7 +54,7 @@ const CoreDatabaseModelSchema = CollectionSchema(
   getId: _coreDatabaseModelGetId,
   getLinks: _coreDatabaseModelGetLinks,
   attach: _coreDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _coreDatabaseModelEstimateSize(

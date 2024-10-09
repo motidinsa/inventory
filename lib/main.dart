@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(builder: (_, child) {
       return GlobalLoaderOverlay(
-        useDefaultLoading: false,
+        // useDefaultLoading: false,
         overlayWidgetBuilder: (_) {
           return Center(
             child: CircularProgressIndicator(

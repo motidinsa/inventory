@@ -80,7 +80,7 @@ const LogUnitOfMeasurementDatabaseModelSchema = CollectionSchema(
   getId: _logUnitOfMeasurementDatabaseModelGetId,
   getLinks: _logUnitOfMeasurementDatabaseModelGetLinks,
   attach: _logUnitOfMeasurementDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _logUnitOfMeasurementDatabaseModelEstimateSize(

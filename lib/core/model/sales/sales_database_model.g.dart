@@ -95,7 +95,7 @@ const SalesDatabaseModelSchema = CollectionSchema(
   getId: _salesDatabaseModelGetId,
   getLinks: _salesDatabaseModelGetLinks,
   attach: _salesDatabaseModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _salesDatabaseModelEstimateSize(
