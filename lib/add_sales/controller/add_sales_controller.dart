@@ -26,6 +26,7 @@ class AddSalesController extends GetxController {
       quantity: '',
       price: '',
       totalAmount: 0,
+      productQuantity: 0
     )
   ];
 

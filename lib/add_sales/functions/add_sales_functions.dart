@@ -27,12 +27,12 @@ addSalesProduct() {
   AddSalesController addSalesController = AddSalesController.to;
   addSalesController.salesModels.add(
     SalesModel(
-      productId: '',
-      productName: '',
-      quantity: '',
-      price: '',
-      totalAmount: 0,
-    ),
+        productId: '',
+        productName: '',
+        quantity: '',
+        price: '',
+        totalAmount: 0,
+        productQuantity: 0),
   );
   addSalesController.update();
 }
@@ -57,7 +57,7 @@ onAddSalesSaveButtonPressed() async {
         File file = File(companyLogo);
         List<int> imageBytes = file.readAsBytesSync();
         // return Uint8List.fromList(imageBytes);
-         byteList = Uint8List.fromList(imageBytes);
+        byteList = Uint8List.fromList(imageBytes);
       }
 
       Get.off(pdftest(image: byteList));
@@ -120,9 +120,11 @@ onSalesTitleToData({required String title, int? index}) {
   }
   // else if (title == selectN) {
   //   return salesController.customerName;
-  // } else if (title == qtyN) {
-  //   return salesController.salesModels[index!].quantity;
-  // } else if (title == cashN) {
+  // }
+  else if (title == qtyN) {
+    return addSalesController.salesModels[index!].quantity;
+  }
+  // else if (title == cashN) {
   //   return salesController.cash;
   // } else if (title == transferN) {
   //   return salesController.transfer;
@@ -193,14 +195,29 @@ onSalesTextFieldChange({
         addSalesController.cash = '';
         addSalesController.credit = '0';
       } else {
-        sales.quantity = data;
-        if (isNumeric(sales.quantity) && isNumeric(sales.price)) {
-          sales.totalAmount = double.parse(data) * double.parse(sales.price);
-          addSalesController.cash =
-              getFormattedNumberWithoutComa(getSalesTotal());
-          addSalesController.transfer = '';
+        if (double.parse(data) <= sales.productQuantity) {
+          sales.quantity = data;
+          if (isNumeric(sales.quantity) && isNumeric(sales.price)) {
+            sales.totalAmount = double.parse(data) * double.parse(sales.price);
+            addSalesController.cash =
+                getFormattedNumberWithoutComa(getSalesTotal());
+            addSalesController.transfer = '';
+            addSalesController.credit = '0';
+          }
+        } else {
+          sales.quantity = '';
+          sales.totalAmount = 0;
+          addSalesController.cash = '';
           addSalesController.credit = '0';
+          unFocus();
+          showSnackbar(
+            message:
+                'Quantity can not be greater than product\'s remaining item',
+            success: false,
+            duration: Duration(seconds: 3),
+          );
         }
+
         // else {
         //   sales.totalAmount = 0;
         //   addSalesController.cash = '';
@@ -230,6 +247,7 @@ onSalesSearchProductAlertDialogOptionSelect(
       SalesModel salesModel = addSalesController.salesModels[listIndex!];
       salesModel.productId = productDatabaseModel.productId;
       salesModel.productName = productDatabaseModel.productName;
+      salesModel.productQuantity = productDatabaseModel.quantityOnHand;
       salesModel.price = emptyIfDefaultValue(
           getFormattedNumberWithoutComa(productDatabaseModel.price));
       if (salesModel.quantity.isNotEmpty && isNumeric(salesModel.quantity)) {

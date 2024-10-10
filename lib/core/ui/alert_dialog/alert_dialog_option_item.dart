@@ -27,7 +27,10 @@ class AlertDialogOptionItem extends StatelessWidget {
             fontSize: 17,
           ),
         ),
-      ),
+      ),trailing: Text(getAlertDialogSuffixName(  title: title, index: index,),style: const TextStyle(
+     color: Colors.green,
+      fontSize: 13,
+    ),),
       titleAlignment: ListTileTitleAlignment.center,
       onTap: () => onAlertDialogOptionSelect(
           title: title, listIndex: listIndex, index: index),

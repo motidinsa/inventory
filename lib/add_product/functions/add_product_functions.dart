@@ -18,6 +18,8 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import '../../core/controller/app_controller.dart';
+import '../../product_list/controller/product_list_controller.dart';
+import '../../product_list/repository/product_list_repository.dart';
 
 onAddProductSaveButtonPressed() async {
   AddProductController addProductController = AddProductController.to;
@@ -29,6 +31,14 @@ onAddProductSaveButtonPressed() async {
     // addProductController.update();
     try {
       await AddProductRepository.addProduct();
+      if (addProductController.redirectedFrom == RouteName.productList) {
+        ProductListController productListController =
+            ProductListController.to;
+        productListController.productList =
+            ProductListRepository.getAllProducts();
+        productListController.isEmpty = false;
+        productListController.update();
+      }
       showSnackbar(message: successfullyAddedProductN, success: true);
       Get.back();
     } on Exception{

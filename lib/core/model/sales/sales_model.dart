@@ -4,6 +4,7 @@ class SalesModel {
   String quantity;
   double totalAmount;
   String price;
+  double productQuantity;
 
   SalesModel({
     required this.productId,
@@ -11,5 +12,6 @@ class SalesModel {
     required this.quantity,
     required this.price,
     required this.totalAmount,
+    required this.productQuantity,
   });
 }

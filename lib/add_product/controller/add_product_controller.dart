@@ -10,6 +10,7 @@ import 'package:my_inventory/add_product/repository/add_product_repository.dart'
 class AddProductController extends GetxController {
   bool isLoading = false;
   bool isSubmitButtonPressed = false;
+  String redirectedFrom = Get.previousRoute;
   late bool isCategoryEmpty;
   late bool isUnitOfMeasurementEmpty;
   ProductModel productModel = ProductModel(

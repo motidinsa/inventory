@@ -47,7 +47,7 @@ onAlertDialogOptionSelect(
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales) {
     onSalesSearchProductAlertDialogOptionSelect(
-        listIndex: listIndex, title: title,index: index);
+        listIndex: listIndex, title: title, index: index);
   } else if (currentRoute == RouteName.addProduct) {
     onAddProductAlertDialogOptionSelect(
       title: title,
@@ -55,7 +55,9 @@ onAlertDialogOptionSelect(
     );
   } else if (currentRoute == RouteName.editProduct) {
     onEditProductAlertDialogOptionSelect(
-        title: title, index: index,);
+      title: title,
+      index: index,
+    );
   } else if (currentRoute == RouteName.addPurchase) {
     onPurchaseSearchProductAlertDialogOptionSelect(
         listIndex: listIndex, title: title, index: index);
@@ -133,6 +135,16 @@ String getAlertDialogOptionName({required int index, String? title}) {
     return title == searchProductsN
         ? addPurchaseController.searchProductFoundResult[index].productName
         : addPurchaseController.searchVendorFoundResult[index].name;
+  }
+  return '';
+}
+
+String getAlertDialogSuffixName({required int index, String? title}) {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addSales && title == searchProductsN) {
+    AddSalesController salesController = Get.find();
+    return salesController.searchProductFoundResult[index].quantityOnHand
+        .toString();
   }
   return '';
 }
