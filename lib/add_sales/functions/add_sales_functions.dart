@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
@@ -20,6 +21,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
 import '../../core/controller/app_controller.dart';
+import '../../core/functions/product/product_functions.dart';
 import '../../core/ui/alert_dialog/alert_dialog_option_select.dart';
 
 addSalesProduct() {
@@ -117,11 +119,9 @@ onSalesTitleToData({required String title, int? index}) {
     return addSalesController.cash;
   } else if (title == transferN) {
     return addSalesController.transfer;
-  }
-  // else if (title == selectN) {
-  //   return salesController.customerName;
-  // }
-  else if (title == qtyN) {
+  } else if (title == discountN) {
+    return addSalesController.discount;
+  } else if (title == qtyN) {
     return addSalesController.salesModels[index!].quantity;
   }
   // else if (title == cashN) {
@@ -155,31 +155,94 @@ onSalesTextFieldChange({
     addSalesController.searchProductFoundResult =
         AddSalesRepository.searchProduct(data: data);
   } else if (title == discountN) {
-    addSalesController.discount = data;
+    if (data.isNotEmpty &&
+        double.parse(data) > double.parse(addSalesController.subtotal)) {
+      unFocus();
+      addSalesController.cash = getFormattedNumberWithoutComa(getSubtotal());
+      addSalesController.transfer = '';
+      addSalesController.credit = '0';
+      addSalesController.discount = '';
+      showSnackbar(
+          message:
+              'discount is greater than ${getFormattedNumberWithComa(double.parse(addSalesController.subtotal))}',
+          duration: Duration(seconds: 1));
+    } else {
+      ScaffoldMessenger.of(Get.context!).clearSnackBars();
+      addSalesController.discount = data;
+      // addSalesController.cash = getFormattedNumberWithoutComa(getTotal());
+      if (data.isEmpty &&
+          addSalesController.cash.isNotEmpty &&
+          addSalesController.transfer.isNotEmpty) {
+        addSalesController.credit = getFormattedNumberWithoutComa(
+                double.parse(addSalesController.subtotal) -
+                    double.parse(data.isEmpty ? '0' : data) -
+                    double.parse(addSalesController.cash) -
+                    double.parse(addSalesController.transfer))
+            .toString();
+      } else if (addSalesController.cash.isNotEmpty &&
+          addSalesController.transfer.isEmpty) {
+        // addSalesController.credit = getFormattedNumberWithoutComa(getTotal());
+        addSalesController.credit = getFormattedNumberWithoutComa(
+                double.parse(addSalesController.subtotal) -
+                    double.parse(data.isEmpty ? '0' : data) -
+                    double.parse(addSalesController.cash))
+            .toString();
+        // addSalesController.cash = getFormattedNumberWithoutComa(getTotal());
+      } else if (addSalesController.transfer.isNotEmpty &&
+          addSalesController.cash.isNotEmpty &&
+          double.parse(data.isEmpty ? '0' : data) <=
+              double.parse(addSalesController.credit)) {
+        // addSalesController.cash = '';
+        // addSalesController.transfer = '';
+        // addSalesController.credit = '0';
+        addSalesController.credit = getFormattedNumberWithoutComa(
+                double.parse(addSalesController.subtotal) -
+                    double.parse(data.isEmpty ? '0' : data) -
+                    double.parse(addSalesController.cash) -
+                    double.parse(addSalesController.transfer))
+            .toString();
+      } else {
+        addSalesController.cash = '';
+        addSalesController.transfer = '';
+        addSalesController.credit = '0';
+      }
+      // else if()
+    }
   } else if (title == cashN) {
     addSalesController.cash = data;
-    if (isNumeric(addSalesController.total) &&
-        isNumeric(data) &&
-        isNumeric(addSalesController.transfer)) {
-      addSalesController.credit = getFormattedNumberWithoutComa(
-          (double.parse(addSalesController.total) -
-              double.parse(data) -
-              double.parse(addSalesController.transfer)));
-      // salesController.cash = data;
+    if (data.isNotEmpty) {
+      if (isNumeric(addSalesController.total) && isNumeric(data)) {
+        addSalesController.credit = getFormattedNumberWithoutComa(
+            (double.parse(addSalesController.total) -
+                double.parse(data) -
+                double.parse(addSalesController.transfer.isEmpty
+                    ? '0'
+                    : addSalesController.transfer)));
+        // salesController.cash = data;
+      }
+    } else if (addSalesController.transfer.isEmpty) {
+      addSalesController.credit = '0';
     }
-    // else {
-    //   addSalesController.credit = '0';
-    // }
   } else if (title == transferN) {
     addSalesController.transfer = data;
-    if (isNumeric(addSalesController.total) &&
+    if (data.isEmpty && addSalesController.cash.isNotEmpty) {
+      addSalesController.credit = getFormattedNumberWithoutComa((double.parse(
+              addSalesController.subtotal) -
+          double.parse(
+              addSalesController.cash.isEmpty ? '0' : addSalesController.cash) -
+          double.parse(addSalesController.discount.isEmpty
+              ? '0'
+              : addSalesController.discount)));
+    } else if (isNumeric(addSalesController.total) &&
         isNumeric(addSalesController.cash) &&
         isNumeric(data)) {
+      // addSalesController.transfer = data;
       addSalesController.credit = getFormattedNumberWithoutComa(
           (double.parse(addSalesController.total) -
               double.parse(addSalesController.cash) -
               double.parse(data)));
     }
+
     // else {
     //   addSalesController.credit = '0';
     // }

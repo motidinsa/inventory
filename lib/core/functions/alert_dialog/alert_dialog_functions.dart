@@ -22,6 +22,8 @@ import 'package:my_inventory/vendor_detail/functions/vendor_detail_functions.dar
 import '../../../add_purchase/controller/add_purchase_controller.dart';
 import '../../../add_purchase/functions/add_purchase_functions.dart';
 import '../../../edit_product/functions/edit_product_functions.dart';
+import '../../../product_detail/functions/product_detail_functions.dart';
+import '../helper_functions.dart';
 
 String? onAddProductTitleToData({required String title}) {
   ProductModel productModel = AddProductController.to.productModel;
@@ -143,7 +145,9 @@ String getAlertDialogSuffixName({required int index, String? title}) {
   String currentRoute = Get.currentRoute;
   if (currentRoute == RouteName.addSales && title == searchProductsN) {
     AddSalesController salesController = Get.find();
-    return salesController.searchProductFoundResult[index].quantityOnHand
+    return '${getFormattedNumberWithComa(salesController.searchProductFoundResult[index].quantityOnHand)} ${getUomName(
+      id: salesController.searchProductFoundResult[index].unitOfMeasurementId,
+    )}'
         .toString();
   }
   return '';

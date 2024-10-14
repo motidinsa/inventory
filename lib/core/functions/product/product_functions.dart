@@ -28,6 +28,16 @@ String  getTotal() {
   }
   return '0';
 }
+String  getCredit() {
+  String currentRoute = Get.currentRoute;
+  if (currentRoute == RouteName.addSales) {
+    return getSalesTotal();
+  }
+  // else if (currentRoute == RouteName.addPurchase) {
+  //   return getPurchaseTotal();
+  // }
+  return '0';
+}
 
 double getProductPrice({required int index}) {
   String currentRoute = Get.currentRoute;

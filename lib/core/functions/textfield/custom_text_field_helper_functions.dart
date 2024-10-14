@@ -23,7 +23,7 @@ String? titleToData({required String title, int? index}) {
     return onAddProductTitleToData(title: title);
   } else if (currentRoute == RouteName.addPurchase) {
     return onPurchaseTitleToData(title: title, index: index);
-  }else if (currentRoute == RouteName.addSales) {
+  } else if (currentRoute == RouteName.addSales) {
     return onSalesTitleToData(title: title, index: index);
   } else if (currentRoute == RouteName.editProduct) {
     return getEditProductData(title: title);
@@ -31,8 +31,11 @@ String? titleToData({required String title, int? index}) {
     return getEditCustomerData(title: title);
   } else if (currentRoute == RouteName.editVendor) {
     return getEditVendorData(title: title);
-  } else if ([RouteName.salesReport, RouteName.purchaseReport, RouteName.paymentReport]
-      .contains(currentRoute)) {
+  } else if ([
+    RouteName.salesReport,
+    RouteName.purchaseReport,
+    RouteName.paymentReport
+  ].contains(currentRoute)) {
     return getReportSelectedDate(title: title);
   }
   return null;
@@ -124,8 +127,8 @@ EdgeInsetsGeometry? getTextFieldPadding({required String title}) {
     categoryNameN,
   ].contains(title)) {
     return const EdgeInsets.only(left: 30, right: 20, top: 10, bottom: 10);
-  }else if([RouteName.salesReport].contains(currentRoute)){
-    return EdgeInsets.symmetric(horizontal: 15,vertical: 0);
+  } else if ([RouteName.salesReport].contains(currentRoute)) {
+    return EdgeInsets.symmetric(horizontal: 15, vertical: 0);
   }
   return null;
 }
@@ -240,8 +243,7 @@ String getSuffixText() {
   if (currentRoute == RouteName.addProduct) {
     suffixText = AddProductController.to.productModel.unitOfMeasurementName;
   } else if (currentRoute == RouteName.editProduct) {
-    suffixText =
-        EditProductController.to.productModel.unitOfMeasurementName;
+    suffixText = EditProductController.to.productModel.unitOfMeasurementName;
   }
   return suffixText;
 }
@@ -281,7 +283,8 @@ EdgeInsets getContentPadding({required String title}) {
     horizontalPadding = 20;
     verticalPadding = 10;
   }
-  return  EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding);
+  return EdgeInsets.symmetric(
+      horizontal: horizontalPadding, vertical: verticalPadding);
 }
 
 bool paymentModeTitles({String? title}) {
@@ -338,7 +341,10 @@ TextInputType getKeyboardType({required String title}) {
     priceN,
     quantityOnHandN,
     reorderQuantityN,
-    qtyN
+    qtyN,
+    discountN,
+    cashN,
+    transferN
   ];
   if (numberKeyboardLists.contains(title)) {
     return TextInputType.number;

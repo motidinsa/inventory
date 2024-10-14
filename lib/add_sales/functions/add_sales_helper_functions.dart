@@ -18,6 +18,16 @@ getSalesSubtotal() {
   salesController.subtotal=subTotal.toString();
   return salesController.subtotal;
 }
+getCreditAmount() {
+  // AddSalesController salesController = Get.find();
+  // double subTotal = 0;
+  // // if(salesController.total)
+  // for (var element in salesController.salesModels) {
+  //   subTotal += double.parse(element.totalAmount.toString());
+  // }
+  // salesController.subtotal=subTotal.toString();
+  // return double.parse(source);
+}
 
 getSalesTotal() {
   AddSalesController salesController = Get.find();

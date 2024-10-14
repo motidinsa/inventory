@@ -47,7 +47,7 @@ class ProductPriceSummary extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: CustomTextField2(
                   title: discountN,
