@@ -14,6 +14,9 @@ import 'package:my_inventory/core/ui/action_button.dart';
 
 import 'package:my_inventory/core/functions/helper_functions.dart';
 
+import '../../../customer_detail/ui/pay_customer_credit.dart';
+import '../alert_dialog/alert_dialog_option_select.dart';
+
 class ProfileDetail extends StatelessWidget {
   ProfileDetail({super.key});
 
@@ -40,7 +43,8 @@ class ProfileDetail extends StatelessWidget {
                   TextButton(
                     onPressed: () => onProfileEditPressed(),
                     style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 10),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Row(
@@ -105,15 +109,27 @@ class ProfileDetail extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      getFormattedNumberWithComa(
-                          Get.find<CustomerDetailController>()
-                                  .customerDatabaseModel
-                                  .totalCreditAmount ??
-                              0),
+                      '${getFormattedNumberWithComa(Get.find<CustomerDetailController>().customerDatabaseModel.totalCreditAmount ?? 0)} birr',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey.shade700),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.dialog(PayCustomerCredit())
+                            .then((value) => unFocus());
+                      },
+                      child: Text('Pay'),
+                      style: ElevatedButton.styleFrom(
+                        shape: smoothRectangleBorder(radius: 12),
+                        // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        backgroundColor: Colors.green.shade100,
+                        padding: EdgeInsets.zero,
+                      ),
                     )
                   ],
                 ),

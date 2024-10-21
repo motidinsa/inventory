@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
+import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 
 import 'package:my_inventory/payment_report/controller/payment_report_controller.dart';
 import 'package:my_inventory/purchase_report/controller/purchase_report_controller.dart';
@@ -501,6 +503,9 @@ class _DatePickerDialogState extends State<DatePickerDialog>
         PaymentReportController.to.endDate = date;
       }
       PaymentReportController.to.update();
+    }else if (AppController.to.currentRoute == RouteName.customerDetail) {
+      CustomerDetailController.to.customerPaymentDate = date;
+      CustomerDetailController.to.update();
     }
     Get.back();
   }

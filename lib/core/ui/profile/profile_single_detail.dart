@@ -31,7 +31,7 @@ class ProfileSingleDetail extends StatelessWidget {
        titleToIcon(
           title: title,
         )!,
-        sizedBox(width: 15),
+        SizedBox(width: 15),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -68,7 +68,7 @@ List<GetPage> routes = [
       page: () => AddCustomer(),
       binding: BindingsBuilder.put(() => AddCustomerController())),
   GetPage(
-      name: RouteName.customerDetail,
+      name: RouteName.customerDetail,preventDuplicates: false,
       page: () => const CustomerDetail(),
       binding: BindingsBuilder.put(() => CustomerDetailController())),
   GetPage(

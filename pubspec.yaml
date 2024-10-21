@@ -66,6 +66,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   envied: ^0.5.4+1
   path: any
+  go_router: ^14.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

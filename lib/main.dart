@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_inventory/core/app_bindings.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
@@ -10,6 +11,8 @@ import 'package:my_inventory/core/database/initialize.dart';
 import 'package:my_inventory/core/env/env.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/routes/routes.dart';
+
+import 'homepage/ui/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +31,25 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final _router = GoRouter(
+    initialLocation: '/',
+    routes: [
+      GoRoute(
+        name: 'home', // Optional, add name to your routes. Allows you navigate by name instead of path
+        path: '/',
+        builder: (context, state) => Homepage(),
+      ),
+      // GoRoute(
+      //   name: 'shope',
+      //   path: '/shope',
+      //   builder: (context, state) => ShopeScreen(),
+      // ),
+    ],
+  );
   final String initialRoute;
   @override
   Widget build(BuildContext context) {
+    // GoRouter.of(context).routeInformationProvider.value.uri;
     return ScreenUtilInit(builder: (_, child) {
       return GlobalLoaderOverlay(
         // useDefaultLoading: false,
@@ -49,6 +68,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
             useMaterial3: true,
           ),
+
           initialRoute: initialRoute,
           getPages: routes,
           initialBinding: ApplicationBindings(),
@@ -58,7 +78,7 @@ class MyApp extends StatelessWidget {
   }
 
 
-  const MyApp({super.key, required this.initialRoute});
+   MyApp({super.key, required this.initialRoute});
 }
 
 extension Responsive on BuildContext {

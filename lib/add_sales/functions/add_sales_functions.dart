@@ -182,12 +182,12 @@ onSalesTextFieldChange({
       } else if (addSalesController.cash.isNotEmpty &&
           addSalesController.transfer.isEmpty) {
         // addSalesController.credit = getFormattedNumberWithoutComa(getTotal());
-        addSalesController.credit = getFormattedNumberWithoutComa(
-                double.parse(addSalesController.subtotal) -
-                    double.parse(data.isEmpty ? '0' : data) -
-                    double.parse(addSalesController.cash))
-            .toString();
-        // addSalesController.cash = getFormattedNumberWithoutComa(getTotal());
+        // addSalesController.credit = getFormattedNumberWithoutComa(
+        //         double.parse(addSalesController.subtotal) -
+        //             double.parse(data.isEmpty ? '0' : data) -
+        //             double.parse(addSalesController.cash))
+        //     .toString();
+        addSalesController.cash = getFormattedNumberWithoutComa(getTotal());
       } else if (addSalesController.transfer.isNotEmpty &&
           addSalesController.cash.isNotEmpty &&
           double.parse(data.isEmpty ? '0' : data) <=

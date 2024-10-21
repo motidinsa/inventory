@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/styles/styles.dart';
 
 import 'package:my_inventory/core/ui/alert_dialog/alert_dialog_confirmation.dart';
@@ -8,6 +9,7 @@ import 'package:my_inventory/core/functions/alert_dialog/alert_dialog_functions.
 
 import 'package:my_inventory/add_customer/controller/add_customer_controller.dart';
 import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
+import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
 import 'package:my_inventory/signup/controller/signup_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 
@@ -115,7 +117,9 @@ DateTime getSelectedDate() {
   if (currentRoute == RouteName.addSales) {
     return AddSalesController.to.selectedSalesDate;
   } else if (currentRoute == RouteName.addPurchase) {
-    return AddPurchaseController.to.selectedPurchaseDate??DateTime.now();
+    return AddPurchaseController.to.selectedPurchaseDate;
+  }else if (AppController.to.currentRoute == RouteName.customerDetail) {
+    return CustomerDetailController.to.customerPaymentDate;
   }
   return DateTime.now();
 }

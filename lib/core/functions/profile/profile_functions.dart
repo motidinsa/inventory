@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
+import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/add_sales/controller/add_sales_controller.dart';
 import 'package:my_inventory/vendor_list/controller/vendor_list_controller.dart';
@@ -91,20 +93,20 @@ onProfileCancelPressed() {
 
 onProfileDatePressed() {
   String currentRoute = Get.currentRoute;
-  if ([RouteName.addSales, RouteName.addPurchase].contains(currentRoute)) {
+  // if ([RouteName.addSales, RouteName.addPurchase,].contains(currentRoute)) {
     showCustomDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
-  }
+  // }
 }
 
 String getProfileDetailDateAdded() {
   DateTime? date;
   String currentRoute = Get.currentRoute;
-  if (currentRoute == RouteName.customerDetail) {
+  if (AppController.to.currentRoute == RouteName.customerDetail) {
     date = CustomerDetailController.to.customerDatabaseModel.dateCreated;
   } else if (currentRoute == RouteName.vendorDetail) {
     date = VendorDetailController.to.vendorDatabaseModel.dateCreated;
@@ -114,16 +116,16 @@ String getProfileDetailDateAdded() {
 }
 
 List<String> profileTitles() {
-  if (Get.currentRoute == RouteName.customerDetail) {
+  if (AppController.to.currentRoute == RouteName.customerDetail) {
     return [customerNameN, phoneNumberN, addressN, cityN, emailN];
-  } else if (Get.currentRoute == RouteName.vendorDetail) {
+  } else if (AppController.to.currentRoute == RouteName.vendorDetail) {
     return [vendorNameN, phoneNumberN, contactPersonN, addressN, cityN, emailN];
   }
   return [];
 }
 
 String? getProfileTitleToData({required String title}) {
-  String currentRoute = Get.currentRoute;
+  String? currentRoute = AppController.to.currentRoute;
   String? value;
   if (currentRoute == RouteName.customerDetail) {
     CustomerDatabaseModel customerDatabaseModel =
@@ -162,7 +164,7 @@ String? getProfileTitleToData({required String title}) {
 }
 
 bool customerHasCredit() {
-  String currentRoute = Get.currentRoute;
+  String? currentRoute = AppController.to.currentRoute;
   bool value = false;
   if (currentRoute == RouteName.customerDetail &&
       CustomerDetailController.to.customerDatabaseModel.totalCreditAmount !=

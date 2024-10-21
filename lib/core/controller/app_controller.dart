@@ -19,6 +19,7 @@ class AppController extends GetxController {
   String companyName = '';
   String? companyLogo;
   List<String> currentRoutes = [];
+  String? currentRoute;
   var key = GlobalKey<ScaffoldState>();
 
   static AppController get to => Get.find();
