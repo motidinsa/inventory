@@ -9,20 +9,20 @@ class CustomerCreditPaymentHistoryDatabaseModel {
   DateTime datePaid;
   double cash;
   double transfer;
+  double remainingCredit;
   bool? isAppWriteSynced;
   DateTime? lastDateModified;
   String? lastModifiedByUserId;
   String addedByUserId;
-  String? comment;
 
   CustomerCreditPaymentHistoryDatabaseModel({
     required this.customerId,
     required this.datePaid,
     required this.cash,
     required this.transfer,
+    required this.remainingCredit,
     this.lastDateModified,
     this.lastModifiedByUserId,
-    required this.comment,
     this.isAppWriteSynced,
     required this.addedByUserId,
   });

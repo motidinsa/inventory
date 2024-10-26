@@ -130,3 +130,6 @@ const String unableToLoadImageN = 'Unable to load image';
 const String unableToSaveLogoN = 'Unable to save logo';
 const String pleaseFillTheRequiredFieldN = 'Please fill the required field';
 const String productAlreadySelectedN = 'Product already selected';
+const String payCreditN = 'Pay credit';
+const String errorPayingCustomerCreditN = 'Error paying customer credit';
+const String creditPayHistoryN = 'Credit pay history';

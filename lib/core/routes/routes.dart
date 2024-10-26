@@ -8,6 +8,7 @@ import 'package:my_inventory/add_vendor/controller/add_vendor_controller.dart';
 import 'package:my_inventory/add_vendor/ui/add_vendor.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/customer_detail/controller/customer_detail_controller.dart';
+import 'package:my_inventory/customer_detail/ui/credit_pay_history.dart';
 import 'package:my_inventory/customer_detail/ui/customer_detail.dart';
 import 'package:my_inventory/customer_list/controller/customer_list_controller.dart';
 import 'package:my_inventory/customer_list/ui/customer_list.dart';
@@ -114,6 +115,9 @@ List<GetPage> routes = [
   GetPage(
     name: RouteName.creditHistory,
     page: () => const CreditHistory(),
+  ),GetPage(
+    name: RouteName.creditPayHistory,
+    page: () => const CreditPayHistory(),
   ),
   GetPage(
       name: RouteName.editCustomer,

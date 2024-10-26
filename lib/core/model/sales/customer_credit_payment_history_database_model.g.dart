@@ -28,35 +28,35 @@ const CustomerCreditPaymentHistoryDatabaseModelSchema = CollectionSchema(
       name: r'cash',
       type: IsarType.double,
     ),
-    r'comment': PropertySchema(
-      id: 2,
-      name: r'comment',
-      type: IsarType.string,
-    ),
     r'customerId': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'customerId',
       type: IsarType.string,
     ),
     r'datePaid': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'datePaid',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
+    ),
+    r'remainingCredit': PropertySchema(
+      id: 7,
+      name: r'remainingCredit',
+      type: IsarType.double,
     ),
     r'transfer': PropertySchema(
       id: 8,
@@ -85,12 +85,6 @@ int _customerCreditPaymentHistoryDatabaseModelEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.addedByUserId.length * 3;
-  {
-    final value = object.comment;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
   bytesCount += 3 + object.customerId.length * 3;
   {
     final value = object.lastModifiedByUserId;
@@ -109,12 +103,12 @@ void _customerCreditPaymentHistoryDatabaseModelSerialize(
 ) {
   writer.writeString(offsets[0], object.addedByUserId);
   writer.writeDouble(offsets[1], object.cash);
-  writer.writeString(offsets[2], object.comment);
-  writer.writeString(offsets[3], object.customerId);
-  writer.writeDateTime(offsets[4], object.datePaid);
-  writer.writeBool(offsets[5], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[6], object.lastDateModified);
-  writer.writeString(offsets[7], object.lastModifiedByUserId);
+  writer.writeString(offsets[2], object.customerId);
+  writer.writeDateTime(offsets[3], object.datePaid);
+  writer.writeBool(offsets[4], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[5], object.lastDateModified);
+  writer.writeString(offsets[6], object.lastModifiedByUserId);
+  writer.writeDouble(offsets[7], object.remainingCredit);
   writer.writeDouble(offsets[8], object.transfer);
 }
 
@@ -128,12 +122,12 @@ CustomerCreditPaymentHistoryDatabaseModel
   final object = CustomerCreditPaymentHistoryDatabaseModel(
     addedByUserId: reader.readString(offsets[0]),
     cash: reader.readDouble(offsets[1]),
-    comment: reader.readStringOrNull(offsets[2]),
-    customerId: reader.readString(offsets[3]),
-    datePaid: reader.readDateTime(offsets[4]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
+    customerId: reader.readString(offsets[2]),
+    datePaid: reader.readDateTime(offsets[3]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[5]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
+    remainingCredit: reader.readDouble(offsets[7]),
     transfer: reader.readDouble(offsets[8]),
   );
   object.id = id;
@@ -152,17 +146,17 @@ P _customerCreditPaymentHistoryDatabaseModelDeserializeProp<P>(
     case 1:
       return (reader.readDouble(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
-    case 3:
       return (reader.readString(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readDateTime(offset)) as P;
-    case 5:
+    case 4:
       return (reader.readBoolOrNull(offset)) as P;
-    case 6:
+    case 5:
       return (reader.readDateTimeOrNull(offset)) as P;
-    case 7:
+    case 6:
       return (reader.readStringOrNull(offset)) as P;
+    case 7:
+      return (reader.readDouble(offset)) as P;
     case 8:
       return (reader.readDouble(offset)) as P;
     default:
@@ -507,182 +501,6 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryFilter on QueryBuilder<
         upper: upper,
         includeUpper: includeUpper,
         epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'comment',
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'comment',
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'comment',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel,
-          CustomerCreditPaymentHistoryDatabaseModel, QAfterFilterCondition>
-      commentContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'comment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel,
-          CustomerCreditPaymentHistoryDatabaseModel, QAfterFilterCondition>
-      commentMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'comment',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'comment',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterFilterCondition> commentIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'comment',
-        value: '',
       ));
     });
   }
@@ -1268,6 +1086,80 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryFilter on QueryBuilder<
   QueryBuilder<
       CustomerCreditPaymentHistoryDatabaseModel,
       CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterFilterCondition> remainingCreditEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'remainingCredit',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterFilterCondition> remainingCreditGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'remainingCredit',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterFilterCondition> remainingCreditLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'remainingCredit',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterFilterCondition> remainingCreditBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'remainingCredit',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
       QAfterFilterCondition> transferEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1388,22 +1280,6 @@ extension CustomerCreditPaymentHistoryDatabaseModelQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel, QAfterSortBy> sortByComment() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'comment', Sort.asc);
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterSortBy> sortByCommentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'comment', Sort.desc);
-    });
-  }
-
   QueryBuilder<
       CustomerCreditPaymentHistoryDatabaseModel,
       CustomerCreditPaymentHistoryDatabaseModel,
@@ -1497,6 +1373,24 @@ extension CustomerCreditPaymentHistoryDatabaseModelQuerySortBy on QueryBuilder<
   QueryBuilder<
       CustomerCreditPaymentHistoryDatabaseModel,
       CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterSortBy> sortByRemainingCredit() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'remainingCredit', Sort.asc);
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterSortBy> sortByRemainingCreditDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'remainingCredit', Sort.desc);
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
       QAfterSortBy> sortByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'transfer', Sort.asc);
@@ -1547,22 +1441,6 @@ extension CustomerCreditPaymentHistoryDatabaseModelQuerySortThenBy
       QAfterSortBy> thenByCashDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cash', Sort.desc);
-    });
-  }
-
-  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel, QAfterSortBy> thenByComment() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'comment', Sort.asc);
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QAfterSortBy> thenByCommentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'comment', Sort.desc);
     });
   }
 
@@ -1673,6 +1551,24 @@ extension CustomerCreditPaymentHistoryDatabaseModelQuerySortThenBy
   QueryBuilder<
       CustomerCreditPaymentHistoryDatabaseModel,
       CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterSortBy> thenByRemainingCredit() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'remainingCredit', Sort.asc);
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
+      QAfterSortBy> thenByRemainingCreditDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'remainingCredit', Sort.desc);
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
       QAfterSortBy> thenByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'transfer', Sort.asc);
@@ -1706,15 +1602,6 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryWhereDistinct
       CustomerCreditPaymentHistoryDatabaseModel, QDistinct> distinctByCash() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cash');
-    });
-  }
-
-  QueryBuilder<
-      CustomerCreditPaymentHistoryDatabaseModel,
-      CustomerCreditPaymentHistoryDatabaseModel,
-      QDistinct> distinctByComment({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'comment', caseSensitive: caseSensitive);
     });
   }
 
@@ -1767,6 +1654,15 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryWhereDistinct
   QueryBuilder<
       CustomerCreditPaymentHistoryDatabaseModel,
       CustomerCreditPaymentHistoryDatabaseModel,
+      QDistinct> distinctByRemainingCredit() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'remainingCredit');
+    });
+  }
+
+  QueryBuilder<
+      CustomerCreditPaymentHistoryDatabaseModel,
+      CustomerCreditPaymentHistoryDatabaseModel,
       QDistinct> distinctByTransfer() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'transfer');
@@ -1795,13 +1691,6 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryProperty
       QQueryOperations> cashProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cash');
-    });
-  }
-
-  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel, String?,
-      QQueryOperations> commentProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'comment');
     });
   }
 
@@ -1837,6 +1726,13 @@ extension CustomerCreditPaymentHistoryDatabaseModelQueryProperty
       QQueryOperations> lastModifiedByUserIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastModifiedByUserId');
+    });
+  }
+
+  QueryBuilder<CustomerCreditPaymentHistoryDatabaseModel, double,
+      QQueryOperations> remainingCreditProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'remainingCredit');
     });
   }
 

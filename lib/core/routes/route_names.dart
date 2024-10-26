@@ -15,6 +15,7 @@ class RouteName {
   static const String editProduct = '/edit_product';
   static const String reorderStock = '/reorder_stock';
   static const String creditHistory = '/credit_history';
+  static const String creditPayHistory = '/credit_pay_history';
   static const String signUp = '/sign_up';
   static const String editVendor = '/edit_vendor';
   static const String salesReport = '/sales_report';

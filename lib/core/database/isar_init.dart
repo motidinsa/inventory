@@ -26,6 +26,7 @@ import 'package:my_inventory/core/model/vendor/log_vendor_database_model.dart';
 
 import '../../signup/model/sign_up_database_model.dart';
 import '../model/purchase/log_purchase_all_database_model.dart';
+import '../model/sales/customer_credit_payment_history_database_model.dart';
 
 isarInit() async {
   await Get.putAsync<Isar>(() async {
@@ -47,6 +48,7 @@ isarInit() async {
         LogUnitOfMeasurementDatabaseModelSchema,
         CustomerDatabaseModelSchema,
         LogCustomerDatabaseModelSchema,
+        CustomerCreditPaymentHistoryDatabaseModelSchema,
         LogDeletedCustomerDatabaseModelSchema,
         VendorDatabaseModelSchema,
         LogVendorDatabaseModelSchema,

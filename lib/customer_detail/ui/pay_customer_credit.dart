@@ -8,6 +8,7 @@ import '../../core/constants/name_constants.dart';
 import '../../core/functions/helper_functions.dart';
 import '../../core/styles/styles.dart';
 import '../../core/ui/product/profile_title_to_data.dart';
+import '../functions/customer_detail_functions.dart';
 
 class PayCustomerCredit extends StatelessWidget {
   PayCustomerCredit({super.key});
@@ -42,36 +43,71 @@ class PayCustomerCredit extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: GetBuilder<CustomerDetailController>(
-                  builder: (_) {
-                    return ProfileTitleToData(
-                      title: dateN,
-                      dataColor: Colors.green.shade700,
-                      data: dateFormatter.format(getSelectedDate()),
-                    );
-                  }
+                child: GetBuilder<CustomerDetailController>(builder: (_) {
+                  return ProfileTitleToData(
+                    title: dateN,
+                    dataColor: Colors.green.shade700,
+                    data: dateFormatter.format(getSelectedDate()),
+                  );
+                }),
+              ),
+              // const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 5),
+                      decoration: BoxDecoration(
+                          color: Colors.red.shade300,
+                          borderRadius: smoothBorderRadius()),
+                      child: const Text(
+                        creditN,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '${getFormattedNumberWithComa(CustomerDetailController.to.customerDatabaseModel.totalCreditAmount ?? 0)} birr',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade700),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
               Row(
                 children: [
-                  Expanded(child: CustomTextField2(title: 'cash')),
+                  Expanded(child: CustomTextField2(title: cashN)),
                   SizedBox(
                     width: 10,
                   ),
-                  Expanded(child: CustomTextField2(title: 'transfer'))
+                  Expanded(child: CustomTextField2(title: transferN))
                 ],
               ),
               const SizedBox(height: 10),
-              ElevatedButton(onPressed: () {}, child: Text('Pay credit'),   style: ElevatedButton.styleFrom(
-                // padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    15,
+              ElevatedButton(
+                onPressed: () => onPayCreditPressed(),
+                child: Text(payCreditN),
+                style: ElevatedButton.styleFrom(
+                  // padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      15,
+                    ),
                   ),
+                  backgroundColor: Colors.green.shade100,
                 ),
-                backgroundColor: Colors.green.shade100,
-              ),)
+              ),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/core/ui/profile/profile_single_detail.dart';
 import 'package:my_inventory/core/ui/shadowed_container.dart';
@@ -177,10 +178,22 @@ class ProfileDetail extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         shape: smoothRectangleBorder(radius: 12),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        backgroundColor: Colors.green.shade50),
-                    child: const Text(showCreditHistoryN),
+                        backgroundColor: Colors.red.shade300),
+                    child: const Text(showCreditHistoryN,style: TextStyle(color: Colors.white),),
                   ),
-                )
+                ),if(AppController.to.currentRoute == RouteName.customerDetail && CustomerDetailController.to.hasCreditPayHistory)  Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(RouteName.creditPayHistory);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      shape: smoothRectangleBorder(radius: 12),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      backgroundColor: Colors.green.shade100),
+                  child: const Text(creditPayHistoryN),
+                ),
+              )
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:my_inventory/add_customer/functions/add_customer_functions.dart'
 import 'package:my_inventory/add_product/functions/add_product_functions.dart';
 import 'package:my_inventory/add_vendor/functions/add_vendor_functions.dart';
 import 'package:my_inventory/core/constants/name_constants.dart';
+import 'package:my_inventory/core/controller/app_controller.dart';
 import 'package:my_inventory/core/functions/report/report_functions.dart';
 import 'package:my_inventory/customer_list/functions/customer_list_functions.dart';
 import 'package:my_inventory/edit_customer/functions/edit_customer_functions.dart';
@@ -19,6 +20,7 @@ import 'package:my_inventory/core/routes/route_names.dart';
 import 'package:my_inventory/signup/functions/signup_functions.dart';
 
 import '../../../add_purchase/functions/add_purchase_functions.dart';
+import '../../../customer_detail/functions/customer_detail_functions.dart';
 
 onTextFieldChange({
   String? title,
@@ -51,6 +53,8 @@ onTextFieldChange({
     onEditVendorTextFieldChange(data: data, title: title!);
   }else if (currentRoute == RouteName.productList) {
     onProductListTextFieldChange(data: data);
+  }else if (AppController.to.currentRoute == RouteName.customerDetail) {
+    onCustomerDetailTextFieldChange(data: data,title: title!);
   }
 }
 
