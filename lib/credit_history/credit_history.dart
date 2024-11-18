@@ -26,7 +26,8 @@ class CreditHistory extends StatelessWidget {
             SalesPaymentDatabaseModel salesPaymentDatabaseModel =
                 CustomerDetailController.to.salesPaymentDatabaseModels[index];
             return Card(
-              elevation: 3,
+              surfaceTintColor: Colors.green,
+              elevation: 1,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(

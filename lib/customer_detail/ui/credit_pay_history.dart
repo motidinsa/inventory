@@ -27,17 +27,10 @@ class CreditPayHistory extends StatelessWidget {
             CustomerCreditPaymentHistoryDatabaseModel
                 customerCreditPaymentHistoryDatabaseModel =
                 customerCreditPayHistories[index];
-            return Container(
-              decoration: BoxDecoration(
-                color:  Color(0xfffcfdf6),
-                borderRadius: smoothBorderRadius(radius: 15),
-                border: Border.all(
-                  color: Colors.green.shade200,
-                  width: 0.5,
-                ),
-              ),
-              child: Card(
-                elevation: 2,
+            return Card(
+              surfaceTintColor: Colors.green,
+              elevation: 1,
+              child: Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 8),
                   child: Column(
@@ -148,27 +141,27 @@ class CreditPayHistory extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container( padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 5),
-                              decoration: BoxDecoration(
-                                  color: Colors.red.shade300,
-                                  borderRadius: smoothBorderRadius()),
-                              child: Text('Remaining',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(getFormattedNumberWithComa(customerCreditPaymentHistoryDatabaseModel
-                              .remainingCredit)
-
-                          )
-                        ],
-                      )
+                      // const SizedBox(
+                      //   height: 5,
+                      // ),
+                      // Row(
+                      //   // mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     Container( padding: const EdgeInsets.symmetric(
+                      //         horizontal: 8, vertical: 5),
+                      //         decoration: BoxDecoration(
+                      //             color: Colors.red.shade300,
+                      //             borderRadius: smoothBorderRadius()),
+                      //         child: Text('Remaining',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
+                      //     SizedBox(
+                      //       width: 10,
+                      //     ),
+                      //     Text(getFormattedNumberWithComa(customerCreditPaymentHistoryDatabaseModel
+                      //         .remainingCredit)
+                      //
+                      //     )
+                      //   ],
+                      // )
                     ],
                   ),
                 ),
@@ -176,7 +169,7 @@ class CreditPayHistory extends StatelessWidget {
             );
           },
           separatorBuilder: (ctx, index) => const SizedBox(
-            height: 3,
+            height: 5,
           ),
           itemCount: customerCreditPayHistories.length,
         ),

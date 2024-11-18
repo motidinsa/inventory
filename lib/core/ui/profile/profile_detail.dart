@@ -31,7 +31,10 @@ class ProfileDetail extends StatelessWidget {
         ShadowedContainer(
           horizontalMargin: 20,
           padding: EdgeInsets.only(
-              bottom: customerWithCredit ? 0 : 20,
+              bottom: customerWithCredit ||
+                      CustomerDetailController.to.hasCreditPayHistory
+                  ? 0
+                  : 20,
               left: 20,
               right: 20,
               top: 10),
@@ -170,7 +173,7 @@ class ProfileDetail extends StatelessWidget {
               ),
               if (customerWithCredit)
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.only(top: 12),
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(RouteName.creditHistory);
@@ -179,21 +182,29 @@ class ProfileDetail extends StatelessWidget {
                         shape: smoothRectangleBorder(radius: 12),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         backgroundColor: Colors.red.shade300),
-                    child: const Text(showCreditHistoryN,style: TextStyle(color: Colors.white),),
+                    child: const Text(
+                      showCreditHistoryN,
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),if(AppController.to.currentRoute == RouteName.customerDetail && CustomerDetailController.to.hasCreditPayHistory)  Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(RouteName.creditPayHistory);
-                  },
-                  style: ElevatedButton.styleFrom(
+                ),
+              if (AppController.to.currentRoute == RouteName.customerDetail &&
+                  CustomerDetailController.to.hasCreditPayHistory)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed(RouteName.creditPayHistory);
+                    },
+                    style: ElevatedButton.styleFrom(
                       shape: smoothRectangleBorder(radius: 12),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      backgroundColor: Colors.green.shade100),
-                  child: const Text(creditPayHistoryN),
-                ),
-              )
+                      backgroundColor: Colors.green.shade100,
+                    ),
+                    child: const Text(creditPayHistoryN),
+                  ),
+                )
+              // else SizedBox(height: 10,)
             ],
           ),
         ),
