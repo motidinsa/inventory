@@ -24,8 +24,8 @@ import '../../product_list/repository/product_list_repository.dart';
 onAddProductSaveButtonPressed() async {
   AddProductController addProductController = AddProductController.to;
   addProductController.isSubmitButtonPressed = true;
-  addProductController.update();
   if (AppController.to.formKey.currentState!.validate()) {
+    addProductController.update();
     unFocus();
     addProductController.isLoading = true;
     // addProductController.update();

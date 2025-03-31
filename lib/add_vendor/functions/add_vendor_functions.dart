@@ -32,8 +32,8 @@ onAddVendorTextFieldChange({
 onAddVendorSaveButtonPressed() async {
   final AddVendorController addVendorController = AddVendorController.to;
   addVendorController.isSaveButtonPressed = true;
-  addVendorController.update();
   if (AppController.to.formKey.currentState!.validate()) {
+  addVendorController.update();
     addVendorController.isLoading = true;
 
     try {

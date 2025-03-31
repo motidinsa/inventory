@@ -14,7 +14,7 @@ import 'package:inventory/signup/ui/add_company_logo.dart';
 import 'package:inventory/core/functions/helper_functions.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({super.key});
   static const List<String> signUpRequirements = [
     companyNameN,
     firstNameN,

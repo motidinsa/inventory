@@ -30,8 +30,9 @@ onAddCustomerTextFieldChange({
 onAddCustomerSaveButtonPressed() async {
   AddCustomerController addCustomerController = AddCustomerController.to;
   addCustomerController.isSaveButtonPressed = true;
-  addCustomerController.update();
+
   if (AppController.to.formKey.currentState!.validate()) {
+    addCustomerController.update();
     addCustomerController.isLoading = true;
 
     try {
