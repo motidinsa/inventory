@@ -52,8 +52,9 @@ class AddProductRepository {
     return _isar.unitOfMeasurementDatabaseModels.countSync();
   }
 
-  static List<UnitOfMeasurementDatabaseModel> searchUnitOfMeasurement(
-      {required String data}) {
+  static List<UnitOfMeasurementDatabaseModel> searchUnitOfMeasurement({
+    required String data,
+  }) {
     return _isar.unitOfMeasurementDatabaseModels
         .filter()
         .nameContains(data, caseSensitive: false)
@@ -83,26 +84,30 @@ class AddProductRepository {
     String productName = productModel.name.trim();
     String? description = nullIfEmpty(productModel.description?.trim());
     String? categoryId = productModel.categoryId;
-    String? userAssignedProductId =
-        nullIfEmpty(productModel.userAssignedProductId?.trim());
+    String? userAssignedProductId = nullIfEmpty(
+      productModel.userAssignedProductId?.trim(),
+    );
     double cost =
         productModel.cost.isNotEmpty ? double.parse(productModel.cost) : 0;
     double price =
         productModel.price.isNotEmpty ? double.parse(productModel.price) : 0;
     String? unitOfMeasurementId = productModel.unitOfMeasurementId;
-    double quantityOnHand = productModel.quantityOnHand.isNotEmpty
-        ? double.parse(productModel.quantityOnHand)
-        : 0;
-    double reorderQuantity = productModel.reorderQuantity.isNotEmpty
-        ? double.parse(productModel.reorderQuantity)
-        : 0;
+    double quantityOnHand =
+        productModel.quantityOnHand.isNotEmpty
+            ? double.parse(productModel.quantityOnHand)
+            : 0;
+    double reorderQuantity =
+        productModel.reorderQuantity.isNotEmpty
+            ? double.parse(productModel.reorderQuantity)
+            : 0;
     String userId = appController.userId;
     String companyId = appController.companyId;
 
     await _isar.writeTxn(() async {
       if (productModel.localImagePath != null) {
         await saveImageToInternalStorage(
-            filePath: AddProductController.to.productModel.localImagePath!);
+          filePath: AddProductController.to.productModel.localImagePath!,
+        );
       }
       final ProductDatabaseModel productDatabaseModel = ProductDatabaseModel(
         productName: productName,
@@ -121,28 +126,45 @@ class AddProductRepository {
         localImagePath: productModel.localImagePath,
       );
       await _isar.productDatabaseModels.put(productDatabaseModel);
+      if (isNumeric(productModel.quantityOnHand)) {
+        await _isar.purchaseAllDatabaseModels.put(
+          PurchaseAllDatabaseModel(
+            productId: productId,
+            addedByUserId: userId,
+            companyId: companyId,
+            cost: cost,
+            purchaseId: productId,
+            quantity: quantityOnHand,
+            dateCreated: now,
+            purchaseDate: now,
+          ),
+        );
+      }
       if (productModel.quantityOnHand.isNotEmpty) {
-        _isar.logPurchaseAllDatabaseModels.put(LogPurchaseAllDatabaseModel(
-          addedByUserId: userId,
-          companyId: companyId,
-          cost: cost,
-          productId: productId,
-          purchaseId: productId,
-          quantity: quantityOnHand,
-          dateCreated: now,
-          purchaseDate: now,
-        ));
-        _isar.purchaseAvailableDatabaseModels
-            .put(PurchaseAvailableDatabaseModel(
-          addedByUserId: userId,
-          companyId: companyId,
-          cost: cost,
-          productId: productId,
-          purchaseId: productId,
-          quantity: quantityOnHand,
-          dateCreated: now,
-          purchaseDate: now,
-        ));
+        _isar.logPurchaseAllDatabaseModels.put(
+          LogPurchaseAllDatabaseModel(
+            addedByUserId: userId,
+            companyId: companyId,
+            cost: cost,
+            productId: productId,
+            purchaseId: productId,
+            quantity: quantityOnHand,
+            dateCreated: now,
+            purchaseDate: now,
+          ),
+        );
+        _isar.purchaseAvailableDatabaseModels.put(
+          PurchaseAvailableDatabaseModel(
+            addedByUserId: userId,
+            companyId: companyId,
+            cost: cost,
+            productId: productId,
+            purchaseId: productId,
+            quantity: quantityOnHand,
+            dateCreated: now,
+            purchaseDate: now,
+          ),
+        );
       }
       await _isar.logProductDatabaseModels.put(
         LogProductDatabaseModel(
@@ -162,23 +184,23 @@ class AddProductRepository {
           localImagePath: productModel.localImagePath,
         ),
       );
-
     });
-    if(Get.previousRoute == RouteName.productList){
+    if (Get.previousRoute == RouteName.productList) {
       ProductListController productListController = ProductListController.to;
-      productListController.productList =  ProductListRepository.getAllProducts();
-      productListController.isEmpty=false;
+      productListController.productList =
+          ProductListRepository.getAllProducts();
+      productListController.isEmpty = false;
       productListController.update();
     }
-
   }
 
   static void clearProductImagePath({required String productId}) async {
-    ProductDatabaseModel productDatabaseModel = _isar.productDatabaseModels
-        .filter()
-        .productIdEqualTo(productId)
-        .findAllSync()
-        .last;
+    ProductDatabaseModel productDatabaseModel =
+        _isar.productDatabaseModels
+            .filter()
+            .productIdEqualTo(productId)
+            .findAllSync()
+            .last;
     await _isar.writeTxn(() async {
       productDatabaseModel.localImagePath = null;
       await _isar.productDatabaseModels.put(productDatabaseModel);
