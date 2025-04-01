@@ -4,10 +4,7 @@ import 'package:inventory/core/routes/route_names.dart';
 
 import 'package:inventory/core/functions/helper_functions.dart';
 
-validateInput({
-  required String title,
-  required String data,
-}) {
+validateInput({required String title, required String data}) {
   String currentRoute = Get.currentRoute;
   List<String> nonEmptyTitles = [
     productN,
@@ -16,15 +13,17 @@ validateInput({
     qtyN,
     purchaseN,
     salesN,
-    customerNameN,vendorNameN,
+    customerNameN,
+    vendorNameN,
     fromN,
     toN,
     companyNameN,
     firstNameN,
     lastNameN,
-    if(currentRoute == RouteName.signUp)phoneNumberN,
-    if(currentRoute == RouteName.addPurchase)...[RouteName.addPurchase,costN],
-    if(currentRoute == RouteName.addSales)...[RouteName.addSales,priceN],
+    costN,
+    if (currentRoute == RouteName.signUp) phoneNumberN,
+    if (currentRoute == RouteName.addPurchase) ...[RouteName.addPurchase],
+    if (currentRoute == RouteName.addSales) ...[RouteName.addSales, priceN],
   ];
   List<String> numberKeyboardLists = [
     costN,

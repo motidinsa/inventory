@@ -87,11 +87,11 @@ class PayCustomerCredit extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Expanded(child: CustomTextField2(title: cashN)),
+                  Expanded(child: CustomTextField2(title: cashN, color: Colors.grey.shade300,)),
                   SizedBox(
                     width: 10,
                   ),
-                  Expanded(child: CustomTextField2(title: transferN))
+                  Expanded(child: CustomTextField2(title: transferN, color: Colors.grey.shade300,))
                 ],
               ),
               const SizedBox(height: 10),

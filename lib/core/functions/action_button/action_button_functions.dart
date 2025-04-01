@@ -16,6 +16,7 @@ import '../../../add_product/functions/add_product_functions.dart';
 import '../../../add_purchase/functions/add_purchase_functions.dart';
 import '../../../add_sales/functions/add_sales_functions.dart';
 import '../../../edit_product/functions/edit_product_functions.dart';
+import '../../../sales_report/functions/sales_report_functions.dart';
 
 onActionButtonPressed({String? redirectFrom}) async {
   String currentRoute = Get.currentRoute;
@@ -70,5 +71,7 @@ onActionButtonPressed({String? redirectFrom}) async {
     onAddPurchaseSaveButtonPressed();
   }else if (currentRoute == RouteName.addSales) {
     onAddSalesSaveButtonPressed();
+  }else if (currentRoute == RouteName.salesReport) {
+    onSalesReportDateSelectionSaveButtonPressed();
   }
 }

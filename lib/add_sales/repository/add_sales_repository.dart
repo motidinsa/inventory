@@ -17,6 +17,7 @@ import 'package:inventory/core/model/sales/sales_model.dart';
 import 'package:inventory/core/functions/helper_functions.dart';
 
 import '../../core/model/customer/customer_database_model.dart';
+import '../../core/model/purchase/purchase_all_database_model.dart';
 
 class AddSalesRepository {
   static final Isar _isar = Get.find();
@@ -200,4 +201,12 @@ class AddSalesRepository {
             (q) => q.productIdEqualTo(productId).and().quantityGreaterThan(0))
         .findAll();
   }
+  // static Future<List<PurchaseAllDatabaseModel>> getAllPurchases(
+  //     {required String productId}) {
+  //   return _isar.purchaseAllDatabaseModels
+  //       .filter()
+  //       .group(
+  //           (q) => q.productIdEqualTo(productId).and().quantityGreaterThan(0))
+  //       .findAll();
+  // }
 }

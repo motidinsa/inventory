@@ -67,8 +67,8 @@ class SalesReport extends StatelessWidget {
                         endDate: SalesReportController.to.displayEndDate!,
                       ),
                     SalesReportSummary(
-                      subtotal: SalesReportController.to.subtotal,
-                      discount: SalesReportController.to.discount,
+                      subtotal: SalesReportController.to.subtotalAmount,
+                      discount: SalesReportController.to.totalDiscount,
                     ),
                   ],
                 )

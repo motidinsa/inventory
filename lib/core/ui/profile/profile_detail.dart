@@ -173,7 +173,7 @@ class ProfileDetail extends StatelessWidget {
               ),
               if (customerWithCredit)
                 Padding(
-                  padding: const EdgeInsets.only(top: 12),
+                  padding: const EdgeInsets.only(top: 12,bottom: 10),
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(RouteName.creditHistory);
@@ -191,7 +191,7 @@ class ProfileDetail extends StatelessWidget {
               if (AppController.to.currentRoute == RouteName.customerDetail &&
                   CustomerDetailController.to.hasCreditPayHistory)
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.only(bottom: 12),
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(RouteName.creditPayHistory);
