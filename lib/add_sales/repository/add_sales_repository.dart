@@ -127,6 +127,7 @@ class AddSalesRepository {
             salesPaymentId: salesPaymentId,
             addedByUserId: appController.userId,
             companyId: appController.companyId,
+            cost: purchases.first.cost
           ),
         );
         //     // await _isar.logProductDatabaseModels.put(

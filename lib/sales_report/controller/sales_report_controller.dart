@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:inventory/core/model/purchase/purchase_available_database_model.dart';
 import 'package:inventory/core/model/sales/sales_payment_database_model.dart';
 import 'package:isar/isar.dart';
 import 'package:inventory/core/constants/name_constants.dart';
@@ -35,37 +36,55 @@ class SalesReportController extends GetxController {
             .where()
             .sortBySalesDateDesc()
             .findAllSync()) {
-      List<QuantityCostDatabaseModel> quantityCostDatabaseModels =
-          isar.quantityCostDatabaseModels
-              .filter()
-              .salesIdEqualTo(element.salesId)
-              .findAllSync();
 
-      for (var quantityCostElement in quantityCostDatabaseModels) {
-        double totalCost =
-            quantityCostElement.quantity *
-            isar.purchaseAllDatabaseModels
-                .filter()
-                .purchaseIdEqualTo(quantityCostElement.purchaseId)
-                .findFirstSync()!
-                .cost;
-        double totalPrice = quantityCostElement.quantity * element.price;
-        salesReportModels.add(
-          SalesReportModel(
-            salesDate: element.salesDate,
-            quantity: quantityCostElement.quantity,
-            productName:
-                isar.productDatabaseModels
-                    .filter()
-                    .productIdEqualTo(element.productId)
-                    .findFirstSync()!
-                    .productName,
-            totalCost: totalCost,
-            totalPrice: totalPrice,
-          ),
-        );
-        subtotal += totalPrice - totalCost;
-      }
+      double totalCost = element.quantity * element.cost;
+      double totalPrice = element.quantity * element.price;
+      salesReportModels.add(
+            SalesReportModel(
+              salesDate: element.salesDate,
+              quantity: element.quantity,
+              productName:
+                  isar.productDatabaseModels
+                      .filter()
+                      .productIdEqualTo(element.productId)
+                      .findFirstSync()!
+                      .productName,
+              totalCost: totalCost,
+              totalPrice: totalPrice,
+            ),
+          );
+
+      // List<QuantityCostDatabaseModel> quantityCostDatabaseModels =
+      //     isar.quantityCostDatabaseModels
+      //         .filter()
+      //         .salesIdEqualTo(element.salesId)
+      //         .findAllSync();
+
+      // for (var quantityCostElement in quantityCostDatabaseModels) {
+      //   double totalCost =
+      //       quantityCostElement.quantity *
+      //       isar.purchaseAvailableDatabaseModels
+      //           .filter()
+      //           .purchaseIdEqualTo(quantityCostElement.purchaseId)
+      //           .findFirstSync()!
+      //           .cost;
+      //   double totalPrice = quantityCostElement.quantity * element.price;
+      //   salesReportModels.add(
+      //     SalesReportModel(
+      //       salesDate: element.salesDate,
+      //       quantity: quantityCostElement.quantity,
+      //       productName:
+      //           isar.productDatabaseModels
+      //               .filter()
+      //               .productIdEqualTo(element.productId)
+      //               .findFirstSync()!
+      //               .productName,
+      //       totalCost: totalCost,
+      //       totalPrice: totalPrice,
+      //     ),
+      //   );
+      //   subtotal += totalPrice - totalCost;
+      // }
 
 
       // if (currentGroupSalesId != element.groupSalesId) {
@@ -80,9 +99,9 @@ class SalesReportController extends GetxController {
     for (var element
     in isar.salesPaymentDatabaseModels.where().findAllSync()) {
       totalDiscount += element.discount;
-      subtotalAmount += element.total;
+      totalAmount += element.total;
     }
-    totalAmount = subtotalAmount - totalDiscount;
+    subtotalAmount = totalAmount + totalDiscount;
     super.onInit();
   }
 

@@ -126,20 +126,20 @@ class AddProductRepository {
         localImagePath: productModel.localImagePath,
       );
       await _isar.productDatabaseModels.put(productDatabaseModel);
-      if (isNumeric(productModel.quantityOnHand)) {
-        await _isar.purchaseAllDatabaseModels.put(
-          PurchaseAllDatabaseModel(
-            productId: productId,
-            addedByUserId: userId,
-            companyId: companyId,
-            cost: cost,
-            purchaseId: productId,
-            quantity: quantityOnHand,
-            dateCreated: now,
-            purchaseDate: now,
-          ),
-        );
-      }
+      // if (isNumeric(productModel.quantityOnHand)) {
+      //   await _isar.purchaseAllDatabaseModels.put(
+      //     PurchaseAllDatabaseModel(
+      //       productId: productId,
+      //       addedByUserId: userId,
+      //       companyId: companyId,
+      //       cost: cost,
+      //       purchaseId: productId,
+      //       quantity: quantityOnHand,
+      //       dateCreated: now,
+      //       purchaseDate: now,
+      //     ),
+      //   );
+      // }
       if (productModel.quantityOnHand.isNotEmpty) {
         _isar.logPurchaseAllDatabaseModels.put(
           LogPurchaseAllDatabaseModel(

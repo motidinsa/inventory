@@ -28,58 +28,63 @@ const SalesDatabaseModelSchema = CollectionSchema(
       name: r'companyId',
       type: IsarType.string,
     ),
-    r'customerId': PropertySchema(
+    r'cost': PropertySchema(
       id: 2,
+      name: r'cost',
+      type: IsarType.double,
+    ),
+    r'customerId': PropertySchema(
+      id: 3,
       name: r'customerId',
       type: IsarType.string,
     ),
     r'dateCreated': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'dateCreated',
       type: IsarType.dateTime,
     ),
     r'isAppWriteSynced': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'isAppWriteSynced',
       type: IsarType.bool,
     ),
     r'lastDateModified': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'lastDateModified',
       type: IsarType.dateTime,
     ),
     r'lastModifiedByUserId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'lastModifiedByUserId',
       type: IsarType.string,
     ),
     r'price': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'price',
       type: IsarType.double,
     ),
     r'productId': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'productId',
       type: IsarType.string,
     ),
     r'quantity': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'quantity',
       type: IsarType.double,
     ),
     r'salesDate': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'salesDate',
       type: IsarType.dateTime,
     ),
     r'salesId': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'salesId',
       type: IsarType.string,
     ),
     r'salesPaymentId': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'salesPaymentId',
       type: IsarType.string,
     )
@@ -132,17 +137,18 @@ void _salesDatabaseModelSerialize(
 ) {
   writer.writeString(offsets[0], object.addedByUserId);
   writer.writeString(offsets[1], object.companyId);
-  writer.writeString(offsets[2], object.customerId);
-  writer.writeDateTime(offsets[3], object.dateCreated);
-  writer.writeBool(offsets[4], object.isAppWriteSynced);
-  writer.writeDateTime(offsets[5], object.lastDateModified);
-  writer.writeString(offsets[6], object.lastModifiedByUserId);
-  writer.writeDouble(offsets[7], object.price);
-  writer.writeString(offsets[8], object.productId);
-  writer.writeDouble(offsets[9], object.quantity);
-  writer.writeDateTime(offsets[10], object.salesDate);
-  writer.writeString(offsets[11], object.salesId);
-  writer.writeString(offsets[12], object.salesPaymentId);
+  writer.writeDouble(offsets[2], object.cost);
+  writer.writeString(offsets[3], object.customerId);
+  writer.writeDateTime(offsets[4], object.dateCreated);
+  writer.writeBool(offsets[5], object.isAppWriteSynced);
+  writer.writeDateTime(offsets[6], object.lastDateModified);
+  writer.writeString(offsets[7], object.lastModifiedByUserId);
+  writer.writeDouble(offsets[8], object.price);
+  writer.writeString(offsets[9], object.productId);
+  writer.writeDouble(offsets[10], object.quantity);
+  writer.writeDateTime(offsets[11], object.salesDate);
+  writer.writeString(offsets[12], object.salesId);
+  writer.writeString(offsets[13], object.salesPaymentId);
 }
 
 SalesDatabaseModel _salesDatabaseModelDeserialize(
@@ -154,17 +160,18 @@ SalesDatabaseModel _salesDatabaseModelDeserialize(
   final object = SalesDatabaseModel(
     addedByUserId: reader.readString(offsets[0]),
     companyId: reader.readString(offsets[1]),
-    customerId: reader.readStringOrNull(offsets[2]),
-    dateCreated: reader.readDateTime(offsets[3]),
-    isAppWriteSynced: reader.readBoolOrNull(offsets[4]),
-    lastDateModified: reader.readDateTimeOrNull(offsets[5]),
-    lastModifiedByUserId: reader.readStringOrNull(offsets[6]),
-    price: reader.readDouble(offsets[7]),
-    productId: reader.readString(offsets[8]),
-    quantity: reader.readDouble(offsets[9]),
-    salesDate: reader.readDateTime(offsets[10]),
-    salesId: reader.readString(offsets[11]),
-    salesPaymentId: reader.readString(offsets[12]),
+    cost: reader.readDouble(offsets[2]),
+    customerId: reader.readStringOrNull(offsets[3]),
+    dateCreated: reader.readDateTime(offsets[4]),
+    isAppWriteSynced: reader.readBoolOrNull(offsets[5]),
+    lastDateModified: reader.readDateTimeOrNull(offsets[6]),
+    lastModifiedByUserId: reader.readStringOrNull(offsets[7]),
+    price: reader.readDouble(offsets[8]),
+    productId: reader.readString(offsets[9]),
+    quantity: reader.readDouble(offsets[10]),
+    salesDate: reader.readDateTime(offsets[11]),
+    salesId: reader.readString(offsets[12]),
+    salesPaymentId: reader.readString(offsets[13]),
   );
   object.id = id;
   return object;
@@ -182,26 +189,28 @@ P _salesDatabaseModelDeserializeProp<P>(
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
-    case 4:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 5:
-      return (reader.readDateTimeOrNull(offset)) as P;
-    case 6:
       return (reader.readStringOrNull(offset)) as P;
-    case 7:
-      return (reader.readDouble(offset)) as P;
-    case 8:
-      return (reader.readString(offset)) as P;
-    case 9:
-      return (reader.readDouble(offset)) as P;
-    case 10:
+    case 4:
       return (reader.readDateTime(offset)) as P;
-    case 11:
+    case 5:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 6:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 7:
+      return (reader.readStringOrNull(offset)) as P;
+    case 8:
+      return (reader.readDouble(offset)) as P;
+    case 9:
       return (reader.readString(offset)) as P;
+    case 10:
+      return (reader.readDouble(offset)) as P;
+    case 11:
+      return (reader.readDateTime(offset)) as P;
     case 12:
+      return (reader.readString(offset)) as P;
+    case 13:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -572,6 +581,72 @@ extension SalesDatabaseModelQueryFilter
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'companyId',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      costEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'cost',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      costGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'cost',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      costLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'cost',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterFilterCondition>
+      costBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'cost',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
       ));
     });
   }
@@ -1732,6 +1807,20 @@ extension SalesDatabaseModelQuerySortBy
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortByCost() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cost', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      sortByCostDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cost', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
       sortByCustomerId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'customerId', Sort.asc);
@@ -1913,6 +2002,20 @@ extension SalesDatabaseModelQuerySortThenBy
       thenByCompanyIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'companyId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenByCost() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cost', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QAfterSortBy>
+      thenByCostDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cost', Sort.desc);
     });
   }
 
@@ -2103,6 +2206,13 @@ extension SalesDatabaseModelQueryWhereDistinct
   }
 
   QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
+      distinctByCost() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'cost');
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, SalesDatabaseModel, QDistinct>
       distinctByCustomerId({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'customerId', caseSensitive: caseSensitive);
@@ -2201,6 +2311,12 @@ extension SalesDatabaseModelQueryProperty
       companyIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'companyId');
+    });
+  }
+
+  QueryBuilder<SalesDatabaseModel, double, QQueryOperations> costProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'cost');
     });
   }
 

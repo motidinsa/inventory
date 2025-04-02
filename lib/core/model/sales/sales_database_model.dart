@@ -18,6 +18,7 @@ class SalesDatabaseModel {
   String salesPaymentId;
   String addedByUserId;
   String companyId;
+  double cost;
 
   SalesDatabaseModel({
     required this.productId,
@@ -33,5 +34,6 @@ class SalesDatabaseModel {
     this.isAppWriteSynced,
     required this.addedByUserId,
     required this.companyId,
+    required this.cost,
   });
 }
