@@ -118,7 +118,7 @@ DateTime getSelectedDate() {
     return AddSalesController.to.selectedSalesDate;
   } else if (currentRoute == RouteName.addPurchase) {
     return AddPurchaseController.to.selectedPurchaseDate;
-  }else if (AppController.to.currentRoute == RouteName.customerDetail) {
+  }else if (currentRoute == RouteName.customerDetail) {
     return CustomerDetailController.to.customerPaymentDate;
   }
   return DateTime.now();

@@ -70,7 +70,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         isDense: true,
         filled: true,
-        fillColor: widget.fillColor??Colors.grey.shade200,
+        fillColor: widget.fillColor??Colors.grey.shade300,
         // isCollapsed: true,
         errorMaxLines: 5,
         prefixIcon: titleToIcon(title: widget.title),

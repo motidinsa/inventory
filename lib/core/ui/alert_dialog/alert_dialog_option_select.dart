@@ -17,13 +17,16 @@ class AlertDialogOptionSelect extends StatelessWidget {
   final String title;
   final int? listIndex;
 
-  const AlertDialogOptionSelect({super.key, required this.title, this.listIndex});
+  const AlertDialogOptionSelect({
+    super.key,
+    required this.title,
+    this.listIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bool isSearchedListEmpty = getAlertDialogOptionLists(
-      title: title,
-    ).isEmpty;
+    final bool isSearchedListEmpty =
+        getAlertDialogOptionLists(title: title).isEmpty;
     return GestureDetector(
       onTap: () => unFocus(),
       child: AlertDialog(
@@ -41,95 +44,103 @@ class AlertDialogOptionSelect extends StatelessWidget {
         title: Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-          ),
-        ),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+        ),surfaceTintColor: Colors.white,
         content: SizedBox(
           width: title != selectSourceN ? double.maxFinite : null,
-          child: title == selectSourceN
-              ? const ImageSelectOption()
-              : ListView(
-                  shrinkWrap: true,
-                  physics: isSearchedListEmpty
-                      ? const NeverScrollableScrollPhysics()
-                      : const ClampingScrollPhysics(),
-                  children: [
-                    if (!isAlertDialogListEmpty(title: title))
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: CustomTextField(
-                          title: title,
-                          index: listIndex,fillColor: Colors.white54,
+          child:
+              title == selectSourceN
+                  ? const ImageSelectOption()
+                  : ListView(
+                    shrinkWrap: true,
+                    physics:
+                        isSearchedListEmpty
+                            ? const NeverScrollableScrollPhysics()
+                            : const ClampingScrollPhysics(),
+                    children: [
+                      if (!isAlertDialogListEmpty(title: title))
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: CustomTextField(
+                            title: title,
+                            index: listIndex,
+                            fillColor: Colors.grey.shade300,
+                          ),
                         ),
-                      ),
-                    isSearchedListEmpty && !isAlertDialogListEmpty(title: title)
-                        ? Center(
+                      isSearchedListEmpty &&
+                              !isAlertDialogListEmpty(title: title)
+                          ? Center(
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Text(
                                 getEmptySearchResult(title: title),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.grey.shade700),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.grey.shade700,
+                                ),
                               ),
                             ),
                           )
-                        : ListView.builder(
+                          : ListView.builder(
                             shrinkWrap: true,
                             reverse: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return AlertDialogOptionItem(
-                                  title: title,
-                                  listIndex: [
-                                    RouteName.addPurchase,
-                                    RouteName.addSales
-                                  ].contains(Get.currentRoute)
-                                      ? listIndex
-                                      : null,
-                                  index: index);
+                                title: title,
+                                listIndex:
+                                    [
+                                          RouteName.addPurchase,
+                                          RouteName.addSales,
+                                        ].contains(Get.currentRoute)
+                                        ? listIndex
+                                        : null,
+                                index: index,
+                              );
                             },
-                            itemCount: getAlertDialogOptionLists(
-                              title: title,
-                            ).length,
+                            itemCount:
+                                getAlertDialogOptionLists(title: title).length,
                           ),
-                    if (isSearchedListEmpty) const SizedBox(height: 8),
-                    if (isAlertDialogListEmpty(title: title))
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 8),
-                        child: Text(
-                          getEmptyMessage(title: title),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            // fontStyle: FontStyle.italic,
-                            color: Colors.grey.shade800,
+                      if (isSearchedListEmpty) const SizedBox(height: 8),
+                      if (isAlertDialogListEmpty(title: title))
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 8,
+                          ),
+                          child: Text(
+                            getEmptyMessage(title: title),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              // fontStyle: FontStyle.italic,
+                              color: Colors.grey.shade800,
+                            ),
                           ),
                         ),
-                      ),
-                    if (![searchCustomersN, searchProductsN, searchVendorsN]
-                        .contains(title))
-                      Align(
-                        child: IconButton(
-                            onPressed: () => onAddIconPressed(
-                                  type: title,
-                                ),
+                      if (![
+                        searchCustomersN,
+                        searchProductsN,
+                        searchVendorsN,
+                      ].contains(title))
+                        Align(
+                          child: IconButton(
+                            onPressed: () => onAddIconPressed(type: title),
                             style: IconButton.styleFrom(
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                padding: EdgeInsets.zero),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              padding: EdgeInsets.zero,
+                            ),
                             icon: const Icon(
                               Icons.add,
                               color: Colors.green,
                               size: 27,
-                            )),
-                      ),
-                    const SizedBox(height: 8)
-                  ],
-                ),
+                            ),
+                          ),
+                        ),
+                      const SizedBox(height: 8),
+                    ],
+                  ),
         ),
       ),
     );

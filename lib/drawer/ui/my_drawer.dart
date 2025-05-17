@@ -24,46 +24,6 @@ class MyDrawer extends StatelessWidget {
             const TitleWithSubMenu(
               title: 'Report',
             ),
-            sizedBox(height: 5),
-            Card(
-              elevation: 2,
-              surfaceTintColor: Colors.white,
-              child: ListTile(
-                shape: smoothRectangleBorder(radius: 12),
-                title: const Text(
-                  'Export',
-                ),
-                leading: const FaIcon(FontAwesomeIcons.fileExport,size: 22,),
-                onTap: () async {
-                  // await FolderFileSaver.saveFileIntoCustomDir(
-                  //   filePath:  '/data/data/com.inventory.inventory/app_flutter/default.isar',
-                  //   dirNamed: '/',
-                  // );
-                  // showSnackbar(message: 'Successfully exported to Documents/inventory');
-                },
-              ),
-            ),sizedBox(height: 5),
-            Card(
-              elevation: 2,
-              surfaceTintColor: Colors.white,
-              child: ListTile(
-                shape: smoothRectangleBorder(radius: 12),
-                title: const Text(
-                  'Import',
-                ),
-                leading: const FaIcon(FontAwesomeIcons.fileImport,size: 22,),
-                onTap: () async {
-                  FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-                  if (result != null) {
-                    File file = File(result.files.single.path!).copySync('/data/data/com.inventory.inventory/app_flutter/default.isar');
-                    showSnackbar(message: 'Successfully imported');
-                  } else {
-                    // User canceled the picker
-                  }
-                },
-              ),
-            )
           ],
         ),
       ),

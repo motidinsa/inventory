@@ -25,7 +25,7 @@ class VendorList extends StatelessWidget {
               : ListView(
                   children: [
                     sizedBox(height: 15),
-                      const CustomTextField(
+                       CustomTextField(fillColor: Colors.grey.shade200,
                         title: vendorListN,),
 
                     Padding(

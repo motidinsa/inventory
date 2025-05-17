@@ -25,7 +25,8 @@ class ProductList extends StatelessWidget {
               : ListView(
                   children: [
                     SizedBox(height: 15),
-                    const CustomTextField(
+                     CustomTextField(
+                      fillColor: Colors.grey.shade200,
                       title: productListN,
                     ),
                     // sizedBox(height: 15),

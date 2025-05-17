@@ -25,8 +25,8 @@ class CustomerList extends StatelessWidget {
               : ListView(
                   children: [
                     SizedBox(height: 15),
-                    const CustomTextField(
-                      title: customerListN,
+                     CustomTextField(
+                      title: customerListN,fillColor: Colors.grey.shade200,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),

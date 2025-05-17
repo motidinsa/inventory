@@ -37,7 +37,7 @@ class AddCompanyLogo extends StatelessWidget {
                   onAddLogoPressed();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade50,
                   shape: smoothRectangleBorder(),
                   padding: const EdgeInsets.symmetric(
                     vertical: 5,

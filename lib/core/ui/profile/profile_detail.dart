@@ -30,14 +30,14 @@ class ProfileDetail extends StatelessWidget {
         SizedBox(height: 20),
         ShadowedContainer(
           horizontalMargin: 20,
-          padding: EdgeInsets.only(
-              bottom: customerWithCredit ||
-                      CustomerDetailController.to.hasCreditPayHistory
-                  ? 0
-                  : 20,
-              left: 20,
-              right: 20,
-              top: 10),
+          // padding: EdgeInsets.only(
+          //     bottom: customerWithCredit ||
+          //             CustomerDetailController.to.hasCreditPayHistory
+          //         ? 0
+          //         : 20,
+          //     left: 20,
+          //     right: 20,
+          //     top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -78,7 +78,8 @@ class ProfileDetail extends StatelessWidget {
                   Expanded(
                     child: ProductDetailSingleDescription(
                       title: dateAddedN,
-                      description: getProfileDetailDateAdded(),
+                      description:
+                      getProfileDetailDateAdded(),
                       dataColor: Colors.green.shade800,
                       titleColor: Colors.grey.shade700,
                       textAlign: TextAlign.end,
@@ -188,8 +189,7 @@ class ProfileDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (AppController.to.currentRoute == RouteName.customerDetail &&
-                  CustomerDetailController.to.hasCreditPayHistory)
+              if (Get.currentRoute == RouteName.customerDetail )
                 Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: ElevatedButton(

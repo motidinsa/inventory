@@ -66,12 +66,22 @@ class SignUp extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 16),
-                        Card(
-                          color: Colors.grey.shade50,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
+                        Container(margin: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.green.shade200, width: 1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade400,
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: const Offset(0, 1),
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                             child: ListView(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
@@ -83,7 +93,7 @@ class SignUp extends StatelessWidget {
                                   itemBuilder: (context, index) =>
                                       CustomTextField2(
                                     title: signUpRequirements[index],
-                                        color: Colors.white70,
+                                        color: Colors.green.shade50,
                                   ),
                                   separatorBuilder: (context, index) =>
                                       SizedBox(height: 12),
